@@ -37,7 +37,7 @@ class SessionViewCell: UITableViewCell {
         
         subTitleLabel = UILabel()
         subTitleLabel.font = UIFont.systemFont(ofSize: 14)
-        subTitleLabel.textColor = Colors.DEFAULT_TEXT_DISABLED_COLOR
+        subTitleLabel.textColor = UIColor(hexString: "9A9B9C") //Colors.DEFAULT_TEXT_DISABLED_COLOR
         
         timeLabel = UILabel()
         timeLabel.text = "16:42"

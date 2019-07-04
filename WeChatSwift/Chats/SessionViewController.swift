@@ -109,7 +109,7 @@ extension SessionViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(SessionViewCell.self), for: indexPath) as! SessionViewCell
-        cell.backgroundColor = .clear
+        cell.backgroundColor = UIColor(hexString: "FEFFFF")
         let session = dataSource[indexPath.row]
         cell.update(session)
         return cell
