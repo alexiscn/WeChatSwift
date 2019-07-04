@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="20px" viewBox="0 0 32 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>comment</title>
+    <desc>Created with Sketch.</desc>
+    <g id="comment" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-6" fill-opacity="0.03" fill="#000000" x="0" y="0" width="32" height="20" rx="4"></rect>
+        <path d="M16,11.5 C15.1715729,11.5 14.5,10.8284271 14.5,10 C14.5,9.17157288 15.1715729,8.5 16,8.5 C16.8284271,8.5 17.5,9.17157288 17.5,10 C17.5,10.8284271 16.8284271,11.5 16,11.5 Z M22,11.5 C21.1715729,11.5 20.5,10.8284271 20.5,10 C20.5,9.17157288 21.1715729,8.5 22,8.5 C22.8284271,8.5 23.5,9.17157288 23.5,10 C23.5,10.8284271 22.8284271,11.5 22,11.5 Z M10,11.5 C9.17157288,11.5 8.5,10.8284271 8.5,10 C8.5,9.17157288 9.17157288,8.5 10,8.5 C10.8284271,8.5 11.5,9.17157288 11.5,10 C11.5,10.8284271 10.8284271,11.5 10,11.5 Z" id="Combined-Shape" fill="#576B95"></path>
+    </g>
+</svg>

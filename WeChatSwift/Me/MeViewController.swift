@@ -16,4 +16,10 @@ class MeViewController: UIViewController {
         view.backgroundColor = Colors.backgroundColor
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.navigationItem.rightBarButtonItem = nil
+        tabBarController?.navigationItem.title = nil
+    }
 }

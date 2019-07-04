@@ -12,7 +12,7 @@ class SessionViewCell: UITableViewCell {
     
     private let iconView: UIImageView
     
-    private let redDotView: UIView
+    private let redDotView: UIImageView
     
     private let titleLabel: UILabel
     
@@ -27,7 +27,8 @@ class SessionViewCell: UITableViewCell {
         iconView = UIImageView()
         iconView.layer.cornerRadius = 4
         
-        redDotView = UIView()
+        redDotView = UIImageView()
+        redDotView.image = UIImage.SVGImage(named: "ui-resources_badge_dot")
         
         titleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 16)
@@ -52,5 +53,9 @@ class SessionViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func update(_ session: Session) {
+        
     }
 }

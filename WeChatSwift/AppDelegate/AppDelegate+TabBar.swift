@@ -33,9 +33,9 @@ extension AppDelegate {
         meVC.tabBarItem.title = "我"
         meVC.tabBarItem.tag = 3
         
-        tabbar = TabBarViewController()
+        tabBarVC = UITabBarController()
         let viewControllers = [chatsVC, contactsVC, discoverVC, meVC]
-        tabbar.viewControllers = viewControllers
+        tabBarVC.viewControllers = viewControllers
         for vc in viewControllers {
             vc.tabBarItem.setTitleTextAttributes([
                 .foregroundColor: Colors.tintColor,
@@ -45,7 +45,7 @@ extension AppDelegate {
                 .font: UIFont.systemFont(ofSize: 10.5, weight: .thin)], for: .normal)
         }
         
-        let navigation = UINavigationController(rootViewController: tabbar)
+        let navigation = UINavigationController(rootViewController: tabBarVC)
         navigation.navigationBar.shadowImage = UIImage()
         navigation.navigationBar.isTranslucent = false
         let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)

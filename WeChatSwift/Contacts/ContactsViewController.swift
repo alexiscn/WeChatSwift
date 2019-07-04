@@ -14,6 +14,11 @@ class ContactsViewController: UIViewController {
     
     private var dataSource: [ContactSection] = []
     
+    private lazy var rightButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addfriends"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +28,12 @@ class ContactsViewController: UIViewController {
         setupDataSource()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
+        tabBarController?.navigationItem.title = "通讯录"
+    }
     
     private func setupTableView() {
         tableView = UITableView(frame: view.bounds, style: .grouped)
@@ -46,6 +57,17 @@ class ContactsViewController: UIViewController {
     
 }
 
+// MARK: - Event Handlers
+extension ContactsViewController {
+    
+    @objc private func handleRightBarButtonTapped(_ sender: Any) {
+        let controller = AddContactViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+}
+
+// MARK: - UITableViewDataSource & UITableViewDelegate
 extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

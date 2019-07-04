@@ -8,13 +8,16 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+
+typealias RelayCommand = () -> Void
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var tabbar: TabBarViewController!
+    var tabBarVC: UITabBarController!
     
     var chatsVC = SessionViewController()
     var contactsVC = ContactsViewController()

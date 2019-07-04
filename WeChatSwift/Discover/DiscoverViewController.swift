@@ -27,6 +27,13 @@ class DiscoverViewController: UIViewController {
         setupDataSource()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarController?.navigationItem.rightBarButtonItem = nil
+        tabBarController?.navigationItem.title = "发现"
+    }
+    
     private func setupTableView() {
         tableView = UITableView(frame: view.bounds, style: .grouped)
         tableView.backgroundColor = .clear

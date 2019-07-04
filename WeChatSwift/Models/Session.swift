@@ -10,4 +10,10 @@ import Foundation
 
 class Session {
     
+    var sessionID: String = ""
+    
+    var content: String? = nil
+    
+    /// 是否显示红点
+    var showUnreadAsRedDot = false
 }
