@@ -14,6 +14,10 @@ class DiscoverViewController: UIViewController {
     
     private var sections: [DiscoverSection] = []
     
+    private lazy var momentsVC: MomentsViewController = {
+       return MomentsViewController()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +80,13 @@ extension DiscoverViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        let model = sections[indexPath.section].models[indexPath.row]
+        switch model.type {
+        case .moment:
+            navigationController?.pushViewController(momentsVC, animated: true)
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
