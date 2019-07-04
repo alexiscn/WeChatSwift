@@ -73,6 +73,14 @@
 		A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA520A22CDD58800C67D92 /* Constants.swift */; };
 		A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA520C22CDD5F400C67D92 /* ui-resources_badge_dot.svg */; };
 		A3CA520F22CDD5F400C67D92 /* ui-resources_badge_count.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA520D22CDD5F400C67D92 /* ui-resources_badge_count.svg */; };
+		A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521122CDE9D900C67D92 /* Tyrion.jpg */; };
+		A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521322CDEADF00C67D92 /* Jaime.jpg */; };
+		A3CA521622CDF4EF00C67D92 /* Cersei.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521522CDF4EF00C67D92 /* Cersei.jpg */; };
+		A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521722CDF59800C67D92 /* Daenerys.jpg */; };
+		A3CA521A22CDF5FA00C67D92 /* JonSnow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521922CDF5FA00C67D92 /* JonSnow.jpg */; };
+		A3CA521C22CDF73000C67D92 /* Sansa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521B22CDF73000C67D92 /* Sansa.jpg */; };
+		A3CA521E22CDF76B00C67D92 /* Arya.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521D22CDF76A00C67D92 /* Arya.jpg */; };
+		A3CA522022CDF82A00C67D92 /* Bran.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521F22CDF82A00C67D92 /* Bran.jpg */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +154,14 @@
 		A3CA520A22CDD58800C67D92 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A3CA520C22CDD5F400C67D92 /* ui-resources_badge_dot.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_badge_dot.svg"; sourceTree = "<group>"; };
 		A3CA520D22CDD5F400C67D92 /* ui-resources_badge_count.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_badge_count.svg"; sourceTree = "<group>"; };
+		A3CA521122CDE9D900C67D92 /* Tyrion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tyrion.jpg; sourceTree = "<group>"; };
+		A3CA521322CDEADF00C67D92 /* Jaime.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Jaime.jpg; sourceTree = "<group>"; };
+		A3CA521522CDF4EF00C67D92 /* Cersei.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Cersei.jpg; sourceTree = "<group>"; };
+		A3CA521722CDF59800C67D92 /* Daenerys.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Daenerys.jpg; sourceTree = "<group>"; };
+		A3CA521922CDF5FA00C67D92 /* JonSnow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JonSnow.jpg; sourceTree = "<group>"; };
+		A3CA521B22CDF73000C67D92 /* Sansa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sansa.jpg; sourceTree = "<group>"; };
+		A3CA521D22CDF76A00C67D92 /* Arya.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Arya.jpg; sourceTree = "<group>"; };
+		A3CA521F22CDF82A00C67D92 /* Bran.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bran.jpg; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -329,6 +345,7 @@
 		A3CA51B122CD9ACE00C67D92 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3CA521022CDE9C500C67D92 /* Avatars */,
 				A3CA51C322CD9C1C00C67D92 /* Icons */,
 			);
 			path = Resources;
@@ -389,6 +406,21 @@
 				A3CA51FA22CDA87D00C67D92 /* AppContext.swift */,
 			);
 			path = Context;
+			sourceTree = "<group>";
+		};
+		A3CA521022CDE9C500C67D92 /* Avatars */ = {
+			isa = PBXGroup;
+			children = (
+				A3CA521122CDE9D900C67D92 /* Tyrion.jpg */,
+				A3CA521322CDEADF00C67D92 /* Jaime.jpg */,
+				A3CA521522CDF4EF00C67D92 /* Cersei.jpg */,
+				A3CA521722CDF59800C67D92 /* Daenerys.jpg */,
+				A3CA521922CDF5FA00C67D92 /* JonSnow.jpg */,
+				A3CA521B22CDF73000C67D92 /* Sansa.jpg */,
+				A3CA521D22CDF76A00C67D92 /* Arya.jpg */,
+				A3CA521F22CDF82A00C67D92 /* Bran.jpg */,
+			);
+			path = Avatars;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,23 +497,31 @@
 				A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */,
 				A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */,
 				A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */,
+				A3CA521A22CDF5FA00C67D92 /* JonSnow.jpg in Resources */,
+				A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */,
 				A3CA51E522CD9FD500C67D92 /* icons_outlined_mini-program.svg in Resources */,
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
 				A3CA51D122CD9C8500C67D92 /* icons_outlined_contacts.svg in Resources */,
 				A3CA51D322CD9C9300C67D92 /* icons_outlined_chats.svg in Resources */,
+				A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */,
 				A3CA51DF22CD9FB900C67D92 /* icons_outlined_nearby.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
 				A3CA520222CDAFD100C67D92 /* icon_filled_timelineophl.svg in Resources */,
+				A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */,
 				A3CA51E322CD9FCA00C67D92 /* icons_outlined_colorful_game.svg in Resources */,
 				A3CA51B322CD9AF900C67D92 /* icons_outlined_radar.svg in Resources */,
 				A3CA51EB22CDA0D000C67D92 /* icons_outlined_addoutline.svg in Resources */,
 				A3CA51D522CD9F8C00C67D92 /* icons_outlined_colorful_moment.svg in Resources */,
 				A3CA51C522CD9C4A00C67D92 /* icons_filled_chats.svg in Resources */,
+				A3CA522022CDF82A00C67D92 /* Bran.jpg in Resources */,
+				A3CA521C22CDF73000C67D92 /* Sansa.jpg in Resources */,
+				A3CA521E22CDF76B00C67D92 /* Arya.jpg in Resources */,
 				A3CA51CF22CD9C7B00C67D92 /* icons_outlined_me.svg in Resources */,
 				A3CA51C722CD9C5400C67D92 /* icons_filled_contacts.svg in Resources */,
 				A3CA51CD22CD9C7200C67D92 /* icons_outlined_discover.svg in Resources */,
 				A3CA51CB22CD9C6600C67D92 /* icons_filled_discover.svg in Resources */,
 				A3CA520F22CDD5F400C67D92 /* ui-resources_badge_count.svg in Resources */,
+				A3CA521622CDF4EF00C67D92 /* Cersei.jpg in Resources */,
 				A3CA51FF22CDAF1400C67D92 /* icons_filled_radar.svg in Resources */,
 				A3CA520722CDC90F00C67D92 /* icons_filled_add-friends.svg in Resources */,
 				A3CA51E922CDA03F00C67D92 /* icons_outlined_arrow.svg in Resources */,

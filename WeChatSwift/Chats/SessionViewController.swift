@@ -25,6 +25,7 @@ class SessionViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = Colors.backgroundColor
         setupTableView()
+        setupDataSource()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,7 +39,7 @@ class SessionViewController: UIViewController {
         tableView = UITableView(frame: view.bounds)
         tableView.backgroundColor = .clear
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 72, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,7 +48,8 @@ class SessionViewController: UIViewController {
     }
     
     private func setupDataSource() {
-        
+        dataSource = MockFactory.shared.sessions()
+        tableView.reloadData()
     }
     
     private func showMoreMenu() {
@@ -78,7 +80,11 @@ class SessionViewController: UIViewController {
     }
     
     private func hideMoreMenu() {
-        
+        UIView.animate(withDuration: 0.2, animations: {
+            
+        }) { _ in
+            
+        }
     }
 }
 
@@ -94,7 +100,7 @@ extension SessionViewController {
 // MARK: - UITableViewDataSource & UITableViewDelegate
 extension SessionViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,10 +108,18 @@ extension SessionViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(SessionViewCell.self), for: indexPath) as! SessionViewCell
+        cell.backgroundColor = .clear
+        let session = dataSource[indexPath.row]
+        cell.update(session)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        return 70.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

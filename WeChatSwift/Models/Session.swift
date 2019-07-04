@@ -10,10 +10,19 @@ import Foundation
 
 class Session {
     
-    var sessionID: String = ""
+    var sessionID: String
+    
+    var name: String
+    
+    var avatar: String?
     
     var content: String? = nil
     
     /// 是否显示红点
     var showUnreadAsRedDot = false
+    
+    init(sessionID: String, name: String) {
+        self.sessionID = sessionID
+        self.name = name
+    }
 }
