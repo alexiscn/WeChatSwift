@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class AppContext {
+    
+    static let shared = AppContext()
+    
+    private init() {}
+    
+    var userProfileService = UserProfileService()
+    
+}

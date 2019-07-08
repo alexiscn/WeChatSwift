@@ -10,4 +10,23 @@ import UIKit
 
 class MomentOperationMenuView: UIView {
     
+    private let likeButton: UIButton
+    private let commentButton: UIButton
+    
+    override init(frame: CGRect) {
+        
+        likeButton = UIButton()
+        
+        commentButton = UIButton()
+        
+        super.init(frame: frame)
+        
+        addSubview(likeButton)
+        addSubview(commentButton)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
