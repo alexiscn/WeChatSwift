@@ -34,8 +34,6 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         
         node.addSubnode(tableNode)
         node.addSubnode(toolBar)
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +49,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         tableNode.dataSource = self
         tableNode.delegate = self
-        tableNode.view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        tableNode.view.backgroundColor = UIColor(hexString: "#EFEFF4")
         
         let toolBarHeight: CGFloat = 60.0
         let toolBarY = Constants.screenHeight - Constants.topInset - Constants.bottomInset - 44.0 - toolBarHeight

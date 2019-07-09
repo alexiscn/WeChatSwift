@@ -12,10 +12,12 @@ enum ChatRoomKeyboardType {
     case none
     case voice
     case emotion
-    case more
+    case tools
 }
 
 final class ChatRoomToolBar: ASDisplayNode {
+    
+    var keyboard: ChatRoomKeyboardType = .none
     
     private lazy var voiceNode: ASButtonNode = {
         let button = ASButtonNode()
