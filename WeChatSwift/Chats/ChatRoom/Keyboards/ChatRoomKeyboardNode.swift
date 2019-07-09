@@ -16,7 +16,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     private let emotionPanel = ChatRoomEmotionPanelNode()
     
-    private let toolsPanel = ChatRoomToolPanelNode()
+    private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     
     override init() {
         super.init()

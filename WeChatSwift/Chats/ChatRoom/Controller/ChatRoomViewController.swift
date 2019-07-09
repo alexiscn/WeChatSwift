@@ -57,8 +57,19 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         toolBar.frame = toolBarFrame
         
         tableNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenHeight - 34 - toolBarHeight)
+        
+        scrollToLastMessage(animated: false)
     }
     
+    func scrollToLastMessage(animated: Bool) {
+        DispatchQueue.main.async {
+            let last = self.dataSource.numberOfRows() - 1
+            if last > 0 {
+                let indexPath = IndexPath(row: last, section: 0)
+                self.tableNode.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+            }
+        }
+    }
 }
 
 extension ChatRoomViewController: ASTableDataSource, ASTableDelegate {

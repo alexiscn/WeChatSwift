@@ -9,90 +9,80 @@
 import AsyncDisplayKit
 import UIKit
 
-class ChatRoomToolPanelNode: ASDisplayNode {
+class ChatRoomToolPanelNode: ASDisplayNode, ASPagerDelegate, ASPagerDataSource {
  
-    var pageNode: ASPagerNode = ASPagerNode()
+    var pagerNode: ASPagerNode = ASPagerNode()
     
     var pageControl: UIPageControl = {
         let page = UIPageControl()
         return page
     }()
     
-    var dataSource: [ChatRoomTool] = ChatRoomTool.tools()
+    private let dataSource: [ChatRoomTool]
     
-    override init() {
+    init(tools: [ChatRoomTool]) {
+        self.dataSource = tools
+        
         super.init()
+        
+        addSubnode(pagerNode)
+        pagerNode.setDelegate(self)
+        pagerNode.setDataSource(self)
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+    }
+    
+    func numberOfPages(in pagerNode: ASPagerNode) -> Int {
+        return dataSource.count / 6
+    }
+    
+    func pagerNode(_ pagerNode: ASPagerNode, nodeBlockAt index: Int) -> ASCellNodeBlock {
+        let tool = dataSource[index]
+        let block: ASCellNodeBlock = {
+            return ChatRoomToolNode(tool: tool)
+        }
+        return block
     }
 }
 
-enum ChatRoomTool: CaseIterable {
-    case album
-    case camera
-    case videoCall
-    case location
-    case redPacket
-    case transfer
-    case voice
-    case favorites
-    case contactCard
-    case files
-    case coupons
+class ChatRoomToolNode: ASCellNode {
     
-    var imageName: String? {
-        switch self {
-        case .album:
-            return "ChatRomm_ToolPanel_Icon_Photo_64x64_"
-        case .camera:
-            return "ChatRomm_ToolPanel_Icon_Video_64x64_"
-        case .videoCall:
-            return "ChatRomm_ToolPanel_Icon_Videovoip_64x64_"
-        case .location:
-            return "ChatRomm_ToolPanel_Icon_Location_64x64_"
-        case .redPacket:
-            return "ChatRomm_ToolPanel_Icon_Luckymoney_64x64_"
-        case .transfer:
-            return "ChatRomm_ToolPanel_Icon_Pay_64x64_"
-        case .voice:
-            return "ChatRomm_ToolPanel_Icon_Voiceinput_64x64_"
-        case .favorites:
-            return "ChatRomm_ToolPanel_Icon_MyFav_64x64_"
-        case .contactCard:
-            return "ChatRomm_ToolPanel_Icon_FriendCard_64x64_"
-        case .files:
-            return "ChatRomm_ToolPanel_Icon_Files_64x64_"
-        case .coupons:
-            return "ChatRomm_ToolPanel_Icon_Wallet_64x64_"
-        }
+    private let backgroundNode: ASImageNode
+    
+    private let iconNode: ASImageNode
+    
+    private let textNode: ASTextNode
+    
+    init(tool: ChatRoomTool) {
+        backgroundNode = ASImageNode()
+        backgroundNode.image = UIImage.as_imageNamed("ChatRomm_ToolPanel_Icon_Buttons_64x64_")
+        backgroundNode.style.preferredSize = CGSize(width: 64, height: 64)
+        
+        iconNode = ASImageNode()
+        iconNode.image = UIImage.as_imageNamed(tool.imageName)
+        
+        textNode = ASTextNode()
+        textNode.style.alignSelf = .center
+        textNode.attributedText = NSAttributedString(string: tool.title, attributes: [
+            .foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR,
+            .font: UIFont.systemFont(ofSize: 13)
+        ])
+        
+        super.init()
+        
+        addSubnode(backgroundNode)
+        addSubnode(iconNode)
+        addSubnode(textNode)
     }
     
-    var title: String? {
-        switch self {
-        case .album:
-            return "照片"
-        case .camera:
-            return "拍摄"
-        case .videoCall:
-            return "视频通话"
-        case .location:
-            return "位置"
-        case .redPacket:
-            return "红包"
-        case .transfer:
-            return "转账"
-        case .voice:
-            return "语音输入"
-        case .favorites:
-            return "收藏"
-        case .contactCard:
-            return "个人名片"
-        case .files:
-            return "文件"
-        case .coupons:
-            return "折扣"
-        }
-    }
-    
-    static func tools() -> [ChatRoomTool] {
-        return ChatRoomTool.allCases
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let imageSpec = ASInsetLayoutSpec(insets: .zero, child: iconNode)
+        let backgroundSpec = ASBackgroundLayoutSpec(child: imageSpec, background: backgroundNode)
+        
+        let stack = ASStackLayoutSpec.vertical()
+        stack.children = [backgroundSpec, textNode]
+        return stack
     }
 }
