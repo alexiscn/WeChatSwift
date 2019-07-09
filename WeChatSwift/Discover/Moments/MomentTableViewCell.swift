@@ -80,7 +80,7 @@ class MomentTableViewCell: UITableViewCell {
     
     func update(moment: Moment) {
         
-        let user = AppContext.shared.userProfileService.getUser(with: moment.userID)
+        let user = AppContext.current.userProfileService.getUser(with: moment.userID)
         
         let avatar = user?.avatar ?? "DefaultHead_48x48_"
         avatarImageView.image = UIImage(named: avatar)

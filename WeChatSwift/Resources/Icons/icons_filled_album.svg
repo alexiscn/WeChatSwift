@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>icons_filled_album</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icons_filled_album" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="common_icons_album" fill="#000000" fill-rule="nonzero">
+            <path d="M20.5,14.1360582 L20.5,5.5 L3.5,5.5 L3.5,13.8496056 L8.19924553,10.0492586 C8.66179904,9.67518501 9.40462562,9.69332718 9.85049542,10.0850837 L14.3269229,14.0182264 L16.6091025,12.0774977 C17.0713175,11.6844376 17.8067229,11.6924226 18.2554314,12.0950837 L20.5,14.1360582 Z M2.99180311,4 L21.0081969,4 C21.5446944,4 22,4.481137 22,5.07464957 L22,18.9253504 C22,19.5211518 21.5559546,20 21.0081969,20 L2.99180311,20 C2.45530558,20 2,19.518863 2,18.9253504 L2,5.07464957 C2,4.47884822 2.44404538,4 2.99180311,4 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

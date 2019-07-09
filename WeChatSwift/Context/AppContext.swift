@@ -10,9 +10,13 @@ import Foundation
 
 class AppContext {
     
-    static let shared = AppContext()
+    static let current = AppContext()
     
-    private init() {}
+    let userID: String
+    
+    private init() {
+        userID = MockFactory.shared.users.first!.identifier
+    }
     
     var userProfileService = UserProfileService()
     

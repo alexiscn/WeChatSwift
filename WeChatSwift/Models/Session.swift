@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import WCDBSwift
 
-class Session {
+public class Session {
     
     var sessionID: String
     
@@ -21,7 +22,7 @@ class Session {
     /// 是否显示红点
     var showUnreadAsRedDot = false
     
-    init(sessionID: String, name: String) {
+    public init(sessionID: String, name: String) {
         self.sessionID = sessionID
         self.name = name
     }

@@ -1746,7 +1746,7 @@ POSSIBILITY OF SUCH DAMAGE.
 			<key>License</key>
 			<string>BSD</string>
 			<key>Title</key>
-			<string>WCDB</string>
+			<string>WCDB.swift</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

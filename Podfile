@@ -6,7 +6,7 @@ target 'WeChatSwift' do
     pod 'Kingfisher'
     pod 'SnapKit'
     pod 'WXActionSheet'
-    pod 'WCDB'
+    pod 'WCDB.swift'
     pod 'Texture'
 
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'

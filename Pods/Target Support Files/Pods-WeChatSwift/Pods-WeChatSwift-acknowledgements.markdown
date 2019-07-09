@@ -1260,7 +1260,7 @@ Apache License
    END OF TERMS AND CONDITIONS
 
 
-## WCDB
+## WCDB.swift
 
 Tencent is pleased to support the open source community by making WCDB available.  
 
