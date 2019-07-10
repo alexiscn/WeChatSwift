@@ -24,6 +24,7 @@
 		A33DB30422CCDE1000A11776 /* DiscoverViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB30322CCDE1000A11776 /* DiscoverViewCell.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
+		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862922D4383F002EEC4F /* ChatRoomViewController.swift */; };
 		A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */; };
 		A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */; };
@@ -142,6 +143,7 @@
 		A33DB30322CCDE1000A11776 /* DiscoverViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewCell.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
+		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A374862922D4383F002EEC4F /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDataSource.swift; sourceTree = "<group>"; };
 		A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCellNodeFactory.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */,
 				A3CA51F022CDA30400C67D92 /* MomentTableViewCell.swift */,
 				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
+				A37221A422D568AB003403D4 /* MomentCellNode.swift */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
 				A374863E22D445B6002EEC4F /* TextContentNode.swift in Sources */,
+				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
 				A374865522D49500002EEC4F /* ChatRoomToolBar.swift in Sources */,
 				A33DB2FE22CCDD5000A11776 /* SessionViewCell.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
