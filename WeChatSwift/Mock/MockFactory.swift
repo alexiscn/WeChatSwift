@@ -17,15 +17,23 @@ class MockFactory {
         var avatar: String
     }
     
+    struct RemoteImage {
+        var urlString: String
+        var size: CGSize
+    }
+    
     static let shared = MockFactory()
     
     var users: [MockUser] = []
     
     var messages: [String] = []
     
+    var remoteImages: [RemoteImage] = []
+    
     private init() {
         setupUsers()
         setupMessages()
+        setupRemoteImages()
     }
     
     private func setupUsers() {
@@ -73,8 +81,19 @@ class MockFactory {
         messages.append("我想这也算是最后的一点慈悲")
     }
     
-    func random<T>() -> T? {
-        return nil
+    private func setupRemoteImages() {
+        remoteImages.append(RemoteImage(urlString: "https://ws3.sinaimg.cn/large/005BYqpgly1g4uu4e0p80j30k00cijst.jpg",
+                                        size: CGSize(width: 755.0, height: 450.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ws3.sinaimg.cn/large/005BYqpgly1g4uu6b6ir4j30kz0cidq8.jpg",
+                                        size: CGSize(width: 720.0, height: 450.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ws3.sinaimg.cn/large/005BYqpgly1g4uw1spjs2j30b90godio.jpg",
+                                        size: CGSize(width: 405.0, height: 600.0)))
+    }
+    
+    func random<T>(of list: [T]) -> T {
+        let count = list.count
+        let index = Int(arc4random_uniform(UInt32(count)))
+        return list[index]
     }
     
     func randomUser() -> MockUser {
@@ -114,5 +133,22 @@ class MockFactory {
             messages.append(msg)
         }
         return messages
+    }
+    
+    func moments() -> [Moment] {
+        var moments: [Moment] = []
+        for index in 0 ..< 20 {
+            let user = random(of: users)
+            let moment = Moment()
+            moment.userID = user.identifier
+            moment.content = randomMessage()
+            if index % 4 == 1 {
+                let remoteImage = random(of: remoteImages)
+                let body = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
+                moment.body = MomentBody.media(body)
+            }
+            moments.append(moment)
+        }
+        return moments
     }
 }

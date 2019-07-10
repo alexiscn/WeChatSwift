@@ -18,7 +18,7 @@ class MomentCellNode: ASCellNode {
     
     private var textNode: ASTextNode?
     
-    private var bodyNode: ASDisplayNode?
+    private var contentNode: MomentContentNode?
     
     private let timeNode: ASTextNode
     
@@ -44,6 +44,13 @@ class MomentCellNode: ASCellNode {
         nameNode.contentHorizontalAlignment = .left
         
         textNode = ASTextNode()
+        
+        switch moment.body {
+        case .media(_):
+            contentNode = ImageContentNode(moment: moment)
+        default:
+            break
+        }
         
         timeNode = ASTextNode()
         
@@ -89,6 +96,11 @@ class MomentCellNode: ASCellNode {
             rightStack.children?.append(textNode)
         }
         
+        if let node  = contentNode {
+            node.style.flexGrow = 0.5
+            rightStack.children?.append(node)
+        }
+        
         let footerStack = ASStackLayoutSpec.horizontal()
         let footerSpacer = ASLayoutSpec()
         footerSpacer.style.flexGrow = 1.0
@@ -118,8 +130,106 @@ class MomentCellNode: ASCellNode {
     }
 }
 
+// MARK: - MomentContentNode
 extension MomentCellNode {
-    class WebpageContentNode: ASDisplayNode {
+    
+    class MomentContentNode: ASDisplayNode {
+        let moment: Moment
+        init(moment: Moment) {
+            self.moment = moment
+            super.init()
+        }
+    }
+    
+}
+
+// MARK: - WebpageContentNode
+extension MomentCellNode {
+    
+    class WebpageContentNode: MomentContentNode {
+    
+        private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
         
+        private let textNode: ASTextNode = ASTextNode()
+        
+        override init(moment: Moment) {
+            super.init(moment: moment)
+            
+            addSubnode(imageNode)
+            addSubnode(textNode)
+            
+            imageNode.style.preferredSize = CGSize(width: 45, height: 45)
+            
+            backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+            
+        }
+        
+        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+            
+            textNode.style.flexGrow = 1.0
+            textNode.style.flexShrink = 1.0
+            
+            let stack = ASStackLayoutSpec.horizontal()
+            stack.alignItems = .center
+            stack.spacing = 4.0
+            stack.children = [imageNode, textNode]
+            
+            return ASInsetLayoutSpec(insets: .zero, child: stack)
+        }
+        
+    }
+}
+
+// MARK: - ImageContentNode
+extension MomentCellNode {
+    
+    class ImageContentNode: MomentContentNode {
+        
+        private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
+        
+        private var ratio: CGFloat = 1.0
+        
+        override init(moment: Moment) {
+            super.init(moment: moment)
+            
+            switch moment.body {
+            case .media(let media):
+                imageNode.url = media.url
+                ratio = media.size.height / media.size.width
+            default:
+                break
+            }
+            
+            imageNode.contentMode = .scaleToFill
+            imageNode.clipsToBounds = true
+            imageNode.shouldCacheImage = false
+            addSubnode(imageNode)
+        }
+        
+        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+            let width = constrainedSize.max.width * 0.75
+            
+            let ratiopSpec = ASRatioLayoutSpec(ratio: ratio, child: imageNode)
+            ratiopSpec.style.maxSize = CGSize(width: width, height: width)
+            
+            let layout = ASStackLayoutSpec.horizontal()
+            layout.style.flexGrow = 1.0
+            layout.children = [ratiopSpec]
+            return layout
+        }
+    }
+}
+
+// MARK: - MultiImageContentNode
+extension MomentCellNode {
+    
+    class MultiImageContentNode: MomentContentNode {
+        override init(moment: Moment) {
+            super.init(moment: moment)
+        }
+        
+        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+            return ASLayoutSpec()
+        }
     }
 }

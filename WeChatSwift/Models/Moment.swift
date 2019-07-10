@@ -32,7 +32,22 @@ enum MomentBody {
 }
 
 class MomentMedia {
-    var size: CGSize = .zero
+    
+    var url: URL? = nil
+    
+    var image: UIImage? = nil
+    
+    var size: CGSize = CGSize(width: 1.0, height: 1.0)
+    
+    init(url: URL?, size: CGSize = CGSize(width: 1.0, height: 1.0)) {
+        self.url = url
+        self.size = size
+    }
+    
+    init(image: UIImage?, size: CGSize = CGSize(width: 1.0, height: 1.0)) {
+        self.image = image
+        self.size = size
+    }
 }
 
 struct MomentLikeUser {
@@ -44,6 +59,19 @@ class MomentComment {
     var comment: String = ""
 }
 
+struct MomentWebpage {
+    var url: URL?
+    var title: String?
+    var thumbImage: UIImage? = nil
+    var thumbImageURL: URL? = nil
+    
+    init(url: URL?, title: String?, thumbImage: UIImage? = nil, thumbImageURL: URL? = nil) {
+        self.url = url
+        self.title = title
+        self.thumbImage = thumbImage
+        self.thumbImageURL = thumbImageURL
+    }
+}
 
 extension Moment {
     

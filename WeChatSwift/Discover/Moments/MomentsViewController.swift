@@ -40,15 +40,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        let users = MockFactory.shared.users
-        var moments: [Moment] = []
-        for user in users {
-            let moment = Moment()
-            moment.userID = user.identifier
-            moment.content = MockFactory.shared.randomMessage()
-            moments.append(moment)
-        }
-        dataSource = moments
+        dataSource = MockFactory.shared.moments()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
