@@ -6,31 +6,37 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-class MomentsViewController: UIViewController {
+class MomentsViewController: ASViewController<ASDisplayNode> {
 
-    private var tableView: UITableView!
+    private let tableNode: ASTableNode = ASTableNode(style: .plain)
     private var dataSource: [Moment] = []
     private var statusBarStyle: UIStatusBarStyle = .lightContent
+    
+    init() {
+        super.init(node: ASDisplayNode())
+        
+        node.addSubnode(tableNode)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Colors.white
-        setupTableView()
+        node.backgroundColor = Colors.backgroundColor
+        
+        tableNode.frame = view.bounds
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.delegate = self
+        tableNode.dataSource = self
+        tableNode.view.allowsSelection = false
+        tableNode.view.separatorStyle = .none
+        
         setupDataSource()
-    }
-    
-    private func setupTableView() {
-        tableView = UITableView(frame: view.bounds)
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(MomentTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(MomentTableViewCell.self))
-        view.addSubview(tableView)
     }
     
     private func setupDataSource() {
@@ -39,10 +45,10 @@ class MomentsViewController: UIViewController {
         for user in users {
             let moment = Moment()
             moment.userID = user.identifier
+            moment.content = MockFactory.shared.randomMessage()
             moments.append(moment)
         }
         dataSource = moments
-        tableView.reloadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -50,29 +56,20 @@ class MomentsViewController: UIViewController {
     }
 }
 
-extension MomentsViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension MomentsViewController: ASTableDelegate, ASTableDataSource {
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(MomentTableViewCell.self), for: indexPath) as! MomentTableViewCell
-        cell.selectionStyle = .none
-        
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let moment = dataSource[indexPath.row]
-        cell.update(moment: moment)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        let block: ASCellNodeBlock = {
+            return MomentCellNode(moment: moment)
+        }
+        return block
     }
 }

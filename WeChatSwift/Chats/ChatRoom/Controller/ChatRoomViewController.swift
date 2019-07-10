@@ -44,6 +44,8 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         super.viewDidLoad()
         
         navigationItem.title = user.name
+        let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
+        navigationItem.rightBarButtonItem = moreButtonItem
         
         tableNode.allowsSelection = false
         tableNode.view.separatorStyle = .none
@@ -69,6 +71,10 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
                 self.tableNode.scrollToRow(at: indexPath, at: .bottom, animated: animated)
             }
         }
+    }
+    
+    @objc private func moreButtonClicked() {
+    
     }
 }
 

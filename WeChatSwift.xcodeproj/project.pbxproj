@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
 		A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2D322CCC80F00A11776 /* AppDelegate.swift */; };
 		A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DA22CCC81100A11776 /* Assets.xcassets */; };
 		A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DC22CCC81100A11776 /* LaunchScreen.storyboard */; };
@@ -87,7 +88,6 @@
 		A3CA51EB22CDA0D000C67D92 /* icons_outlined_addoutline.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51EA22CDA0D000C67D92 /* icons_outlined_addoutline.svg */; };
 		A3CA51ED22CDA0F300C67D92 /* icons_outlined_addfriends.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51EC22CDA0F300C67D92 /* icons_outlined_addfriends.svg */; };
 		A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */; };
-		A3CA51F122CDA30400C67D92 /* MomentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F022CDA30400C67D92 /* MomentTableViewCell.swift */; };
 		A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */; };
 		A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F422CDA66E00C67D92 /* Moment.swift */; };
 		A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */; };
@@ -124,6 +124,7 @@
 
 /* Begin PBXFileReference section */
 		04841C8B18BE984EE8C1B6BB /* Pods-WeChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
 		A33DB2D022CCC80F00A11776 /* WeChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33DB2D322CCC80F00A11776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A33DB2DA22CCC81100A11776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,7 +207,6 @@
 		A3CA51EA22CDA0D000C67D92 /* icons_outlined_addoutline.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_addoutline.svg; sourceTree = "<group>"; };
 		A3CA51EC22CDA0F300C67D92 /* icons_outlined_addfriends.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_addfriends.svg; sourceTree = "<group>"; };
 		A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
-		A3CA51F022CDA30400C67D92 /* MomentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentTableViewCell.swift; sourceTree = "<group>"; };
 		A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentOperationMenuView.swift; sourceTree = "<group>"; };
 		A3CA51F422CDA66E00C67D92 /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
@@ -323,7 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */,
-				A3CA51F022CDA30400C67D92 /* MomentTableViewCell.swift */,
 				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
 				A37221A422D568AB003403D4 /* MomentCellNode.swift */,
 			);
@@ -494,6 +493,7 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A328C25C22D590670060C391 /* icons_filled_more.svg */,
 				A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */,
 				A374866622D4B031002EEC4F /* icons_filled_sticker.svg */,
 				A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */,
@@ -660,6 +660,7 @@
 				A3CA521A22CDF5FA00C67D92 /* JonSnow.jpg in Resources */,
 				A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */,
 				A3CA51E522CD9FD500C67D92 /* icons_outlined_mini-program.svg in Resources */,
+				A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */,
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
 				A3CA51D122CD9C8500C67D92 /* icons_outlined_contacts.svg in Resources */,
 				A3CA523022CE1CBE00C67D92 /* icons_outlined_album.svg in Resources */,
@@ -827,7 +828,6 @@
 				A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */,
 				A33DB30422CCDE1000A11776 /* DiscoverViewCell.swift in Sources */,
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
-				A3CA51F122CDA30400C67D92 /* MomentTableViewCell.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 			);
