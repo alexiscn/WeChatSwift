@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
+		A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
 		A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2D322CCC80F00A11776 /* AppDelegate.swift */; };
 		A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DA22CCC81100A11776 /* Assets.xcassets */; };
@@ -42,7 +44,7 @@
 		A374864C22D44D34002EEC4F /* UnknownContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864B22D44D34002EEC4F /* UnknownContentNode.swift */; };
 		A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864D22D44D46002EEC4F /* NoticeContentNode.swift */; };
 		A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374865122D461C0002EEC4F /* MessageContentNode.swift */; };
-		A374865522D49500002EEC4F /* ChatRoomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374865422D49500002EEC4F /* ChatRoomToolBar.swift */; };
+		A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374865422D49500002EEC4F /* ChatRoomToolBarNode.swift */; };
 		A374865722D4A27C002EEC4F /* icons_outlined_voice.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374865622D4A27C002EEC4F /* icons_outlined_voice.svg */; };
 		A374865922D4A2BC002EEC4F /* icons_outlined_add2.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374865822D4A2BC002EEC4F /* icons_outlined_add2.svg */; };
 		A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374865A22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift */; };
@@ -126,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		04841C8B18BE984EE8C1B6BB /* Pods-WeChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmotionLayoutDelegate.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
 		A33DB2D022CCC80F00A11776 /* WeChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33DB2D322CCC80F00A11776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,7 +167,7 @@
 		A374864B22D44D34002EEC4F /* UnknownContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownContentNode.swift; sourceTree = "<group>"; };
 		A374864D22D44D46002EEC4F /* NoticeContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeContentNode.swift; sourceTree = "<group>"; };
 		A374865122D461C0002EEC4F /* MessageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContentNode.swift; sourceTree = "<group>"; };
-		A374865422D49500002EEC4F /* ChatRoomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomToolBar.swift; sourceTree = "<group>"; };
+		A374865422D49500002EEC4F /* ChatRoomToolBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomToolBarNode.swift; sourceTree = "<group>"; };
 		A374865622D4A27C002EEC4F /* icons_outlined_voice.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_voice.svg; sourceTree = "<group>"; };
 		A374865822D4A2BC002EEC4F /* icons_outlined_add2.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_add2.svg; sourceTree = "<group>"; };
 		A374865A22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomKeyboardNode.swift; sourceTree = "<group>"; };
@@ -275,6 +279,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A326847922D6DCBD00F1EC91 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A326847A22D6DCD300F1EC91 /* PageControl.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		A33DB2C722CCC80F00A11776 = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +312,7 @@
 				A3CA51F922CDA87100C67D92 /* Context */,
 				A3CA51F622CDA85600C67D92 /* Service */,
 				A33DB2EA22CCCA2A00A11776 /* Common */,
+				A326847922D6DCBD00F1EC91 /* Components */,
 				A33DB2EB22CCCA3200A11776 /* Extensions */,
 				A33DB2E722CCCA0D00A11776 /* Chats */,
 				A33DB2E822CCCA1200A11776 /* Contacts */,
@@ -454,9 +467,10 @@
 			isa = PBXGroup;
 			children = (
 				A374865A22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift */,
-				A374865422D49500002EEC4F /* ChatRoomToolBar.swift */,
+				A374865422D49500002EEC4F /* ChatRoomToolBarNode.swift */,
 				A374865C22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift */,
 				A374866A22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift */,
+				A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */,
 			);
 			path = Keyboards;
 			sourceTree = "<group>";
@@ -794,13 +808,14 @@
 				A374866B22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift in Sources */,
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
+				A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* AudioContentNode.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
 				A374863E22D445B6002EEC4F /* TextContentNode.swift in Sources */,
 				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
-				A374865522D49500002EEC4F /* ChatRoomToolBar.swift in Sources */,
+				A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */,
 				A33DB2FE22CCDD5000A11776 /* SessionViewCell.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
@@ -814,6 +829,7 @@
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
+				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmotionContentNode.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,

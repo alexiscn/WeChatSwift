@@ -18,7 +18,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     
     private let user: MockFactory.MockUser
     
-    private let toolBar = ChatRoomToolBar()
+    private let toolBar = ChatRoomToolBarNode()
     
     private let tableNode = ASTableNode(style: .plain)
     

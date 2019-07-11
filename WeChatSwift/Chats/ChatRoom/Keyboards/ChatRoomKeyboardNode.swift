@@ -12,7 +12,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     private var lastKeyboardOffsetY: CGFloat = 0.0
     
-    private let toolBar = ChatRoomToolBar()
+    private let toolBar = ChatRoomToolBarNode()
     
     private let emotionPanel = ChatRoomEmotionPanelNode(expressions: Expression.all)
     

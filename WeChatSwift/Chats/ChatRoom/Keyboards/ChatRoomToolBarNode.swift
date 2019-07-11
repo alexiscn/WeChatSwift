@@ -1,5 +1,5 @@
 //
-//  ChatRoomToolBar.swift
+//  ChatRoomToolBarNode.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/7/9.
@@ -15,7 +15,7 @@ enum ChatRoomKeyboardType {
     case tools
 }
 
-final class ChatRoomToolBar: ASDisplayNode {
+final class ChatRoomToolBarNode: ASDisplayNode {
     
     var keyboard: ChatRoomKeyboardType = .none
     
@@ -68,9 +68,9 @@ final class ChatRoomToolBar: ASDisplayNode {
         
         //view.backgroundColor = .red
         
-        voiceNode.addTarget(self, action: #selector(ChatRoomToolBar.voiceNodeClicked), forControlEvents: .touchUpInside)
-        emotionNode.addTarget(self, action: #selector(ChatRoomToolBar.emotionNodeClicked), forControlEvents: .touchUpInside)
-        moreNode.addTarget(self, action: #selector(ChatRoomToolBar.moreNodeClicked), forControlEvents: .touchUpInside)
+        voiceNode.addTarget(self, action: #selector(ChatRoomToolBarNode.voiceNodeClicked), forControlEvents: .touchUpInside)
+        emotionNode.addTarget(self, action: #selector(ChatRoomToolBarNode.emotionNodeClicked), forControlEvents: .touchUpInside)
+        moreNode.addTarget(self, action: #selector(ChatRoomToolBarNode.moreNodeClicked), forControlEvents: .touchUpInside)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -86,7 +86,7 @@ final class ChatRoomToolBar: ASDisplayNode {
     }
 }
 
-extension ChatRoomToolBar {
+extension ChatRoomToolBarNode {
     
     @objc private func voiceNodeClicked() {
         

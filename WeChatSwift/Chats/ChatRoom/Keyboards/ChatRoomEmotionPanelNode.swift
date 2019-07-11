@@ -8,54 +8,38 @@
 
 import AsyncDisplayKit
 
-struct ExpressionSection {
-    var items: [Expression]
-}
-
 class ChatRoomEmotionPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollectionDelegate {
     
     private let collectionNode: ASCollectionNode
     
-    private var dataSource: [ExpressionSection] = []
+    private var dataSource: [Expression] = []
+    
+    private let layoutInfo: ChatRoomEmotionLayoutInfo
     
     init(expressions: [Expression]) {
+        
+        self.dataSource = expressions
         
         let itemSize = CGSize(width: 36.0, height: 36.0)
         let itemSpacing: CGFloat = 6
         var margin: CGFloat = 12.0
-        let count = (Constants.screenWidth - 2.0 * margin + itemSpacing) / (itemSpacing + itemSize.width)
-        let numberInRows = Int(count)
-        margin = (Constants.screenWidth - CGFloat(numberInRows) * (itemSize.height + itemSpacing))/2
+        let columns = Int((Constants.screenWidth - 2.0 * margin + itemSpacing) / (itemSpacing + itemSize.width))
+        margin = (Constants.screenWidth - CGFloat(columns) * (itemSize.height + itemSpacing))/2
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = itemSize
-        layout.minimumLineSpacing = itemSpacing
-        layout.minimumInteritemSpacing = itemSpacing
-        layout.sectionInset = UIEdgeInsets(top: 20, left: margin, bottom: 20, right: margin)
-        
-        collectionNode = ASCollectionNode(collectionViewLayout: layout)
-        
-        let pages = expressions.count / (numberInRows * 3)
-        
-        var offset: Int = 0
-        let numbersInPage = numberInRows * 3
-        for _ in 0 ..< pages {
-            var items: [Expression] = []
-            for _ in 0 ..< numbersInPage {
-                if offset >= expressions.count {
-                    break
-                }
-                items.append(expressions[offset])
-                offset += 1
-            }
-            dataSource.append(ExpressionSection(items: items))
-        }
+        layoutInfo = ChatRoomEmotionLayoutInfo(itemsCount: expressions.count,
+                                               itemSize: itemSize,
+                                               itemSpacing: itemSpacing,
+                                               margin: margin,
+                                               columns: columns)
+
+        let layoutDelegate = ChatRoomEmotionLayoutDelegate(layoutInfo: layoutInfo)
+        collectionNode = ASCollectionNode(layoutDelegate: layoutDelegate, layoutFacilitator: nil)
 
         super.init()
-    
+        
         collectionNode.dataSource = self
         collectionNode.delegate = self
+        
         addSubnode(collectionNode)
     }
     
@@ -63,19 +47,30 @@ class ChatRoomEmotionPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollect
         super.didLoad()
         
         collectionNode.view.isPagingEnabled = true
+        collectionNode.showsVerticalScrollIndicator = false
+        collectionNode.showsHorizontalScrollIndicator = false
+        
+        for page in 0 ..< layoutInfo.numberOfPages {
+            let x = CGFloat(page) * Constants.screenWidth + layoutInfo.margin + (layoutInfo.itemSpacing + layoutInfo.itemSize.width) *  CGFloat(layoutInfo.columns - 1)
+            let y = CGFloat(layoutInfo.rows - 1) * (layoutInfo.itemSpacing + layoutInfo.itemSize.width)
+            let button = UIButton(type: .custom)
+            button.setImage(UIImage(named: "DeleteEmoticonBtn_32x32_"), for: .normal)
+            button.frame = CGRect(origin: CGPoint(x: x, y: y), size: layoutInfo.itemSize)
+            button.contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+            collectionNode.view.addSubview(button)
+        }
     }
     
-    
     func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
-        return dataSource.count
+        return 1
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        return dataSource[section].items.count
+        return dataSource.count
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let expression = dataSource[indexPath.section].items[indexPath.row]
+        let expression = dataSource[indexPath.row]
         let block = {
             return ChatRoomExpressionCellNode(expression: expression)
         }
@@ -83,8 +78,9 @@ class ChatRoomEmotionPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollect
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASInsetLayoutSpec(insets: .zero, child: collectionNode)
+        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0), child: collectionNode)
     }
+    
 }
 
 class ChatRoomExpressionCellNode: ASCellNode {
