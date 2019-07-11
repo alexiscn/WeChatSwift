@@ -9,6 +9,9 @@
 import Foundation
 
 struct Expression: Codable {
+    
+    static var all: [Expression] = []
+    
     var icon: String
     var zh: String
     var code: String
@@ -16,19 +19,17 @@ struct Expression: Codable {
 
 extension Expression {
     
-    static func all() -> [Expression] {
+    static func load() {
         guard let path = Bundle.main.path(forResource: "Expressions", ofType: "json"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            return []
+                return
         }
         
         do {
             let expressions = try JSONDecoder().decode([Expression].self, from: data)
-            return expressions
+            all = expressions
         } catch {
             print(error)
         }
-        return []
     }
-    
 }

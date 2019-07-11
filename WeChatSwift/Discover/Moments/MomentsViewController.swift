@@ -14,10 +14,13 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private var dataSource: [Moment] = []
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     
+    private let expressionNode = ChatRoomEmotionPanelNode(expressions: Expression.all)
+    
     init() {
         super.init(node: ASDisplayNode())
         
         node.addSubnode(tableNode)
+        node.addSubnode(expressionNode)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +38,8 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         tableNode.dataSource = self
         tableNode.view.allowsSelection = false
         tableNode.view.separatorStyle = .none
+        
+        expressionNode.frame = CGRect(x: 0, y: 200, width: view.bounds.width, height: 185)
         
         setupDataSource()
     }

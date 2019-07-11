@@ -14,7 +14,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     private let toolBar = ChatRoomToolBar()
     
-    private let emotionPanel = ChatRoomEmotionPanelNode()
+    private let emotionPanel = ChatRoomEmotionPanelNode(expressions: Expression.all)
     
     private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     
