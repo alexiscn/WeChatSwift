@@ -6,25 +6,35 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-class DiscoverViewController: UIViewController {
-    
-    private var tableView: UITableView!
+class DiscoverViewController: ASViewController<ASTableNode> {
     
     private var sections: [DiscoverSection] = []
     
     private lazy var momentsVC: MomentsViewController = {
-       return MomentsViewController()
+        return MomentsViewController()
     }()
+    
+    init() {
+        super.init(node: ASTableNode(style: .grouped))
+        setupDataSource()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = Colors.backgroundColor
         
-        setupTableView()
-        setupDataSource()
+        node.delegate = self
+        node.dataSource = self
+        node.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        node.view.separatorStyle = .singleLine
+        node.view.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,17 +42,6 @@ class DiscoverViewController: UIViewController {
         
         tabBarController?.navigationItem.rightBarButtonItem = nil
         tabBarController?.navigationItem.title = "发现"
-    }
-    
-    private func setupTableView() {
-        tableView = UITableView(frame: view.bounds, style: .grouped)
-        tableView.backgroundColor = .clear
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(DiscoverViewCell.self, forCellReuseIdentifier: NSStringFromClass(DiscoverViewCell.self))
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
-        view.addSubview(tableView)
     }
     
     private func setupDataSource() {
@@ -68,36 +67,21 @@ class DiscoverViewController: UIViewController {
     }
 }
 
-extension DiscoverViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension DiscoverViewController: ASTableDelegate, ASTableDataSource {
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
         return sections.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return sections[section].models.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(DiscoverViewCell.self), for: indexPath) as! DiscoverViewCell
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = sections[indexPath.section].models[indexPath.row]
-        cell.update(model)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        let model = sections[indexPath.section].models[indexPath.row]
-        switch model.type {
-        case .moment:
-            navigationController?.pushViewController(momentsVC, animated: true)
-        default:
-            break
+        let block: ASCellNodeBlock = {
+            return DiscoverCellNode(model: model)
         }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54.0
+        return block
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -105,14 +89,25 @@ extension DiscoverViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0
+        return 0.1
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
     }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
+        let model = sections[indexPath.section].models[indexPath.row]
+        switch model.type {
+        case .moment:
+            navigationController?.pushViewController(momentsVC, animated: true)
+        default:
+            break
+        }
     }
 }

@@ -27,3 +27,15 @@ public class Session {
         self.name = name
     }
 }
+
+extension Session {
+    
+    func attributedStringForTitle() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 15.5),
+            .foregroundColor: Colors.black
+        ]
+        return NSAttributedString(string: name, attributes: attributes)
+    }
+    
+}
