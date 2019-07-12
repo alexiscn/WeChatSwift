@@ -22,6 +22,8 @@ public class Session {
     /// 是否显示红点
     var showUnreadAsRedDot = false
     
+    var muted: Bool = false
+    
     public init(sessionID: String, name: String) {
         self.sessionID = sessionID
         self.name = name
@@ -38,4 +40,19 @@ extension Session {
         return NSAttributedString(string: name, attributes: attributes)
     }
     
+    func attributedStringForSubTitle() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor(hexString: "9A9B9C")
+        ]
+        return NSAttributedString(string: content ?? "", attributes: attributes)
+    }
+    
+    func attributedStringForTime() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 11),
+            .foregroundColor: Colors.DEFAULT_TEXT_DISABLED_COLOR
+        ]
+        return NSAttributedString(string: "12:40", attributes: attributes)
+    }
 }

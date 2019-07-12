@@ -6,13 +6,25 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-class SessionViewController: UIViewController {
+class SessionViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .plain)
+    
+    init() {
+        super.init(node: ASDisplayNode())
+        
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var dataSource: [Session] = []
-    
-    private var tableView: UITableView!
     
     private lazy var rightButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addoutline"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
@@ -24,8 +36,12 @@ class SessionViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         view.backgroundColor = Colors.backgroundColor
-        setupTableView()
-        setupDataSource()
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        dataSource = MockFactory.shared.sessions()
+        tableNode.reloadData()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,23 +49,6 @@ class SessionViewController: UIViewController {
         
         tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
         tabBarController?.navigationItem.title = "微信"
-    }
-    
-    private func setupTableView() {
-        tableView = UITableView(frame: view.bounds)
-        tableView.backgroundColor = .clear
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 72, bottom: 0, right: 0)
-        tableView.tableFooterView = UIView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(SessionViewCell.self, forCellReuseIdentifier: NSStringFromClass(SessionViewCell.self))
-        view.addSubview(tableView)
-    }
-    
-    private func setupDataSource() {
-        dataSource = MockFactory.shared.sessions()
-        tableView.reloadData()
     }
     
     private func showMoreMenu() {
@@ -97,30 +96,26 @@ extension SessionViewController {
     
 }
 
-// MARK: - UITableViewDataSource & UITableViewDelegate
-extension SessionViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension SessionViewController: ASTableDelegate, ASTableDataSource {
+    
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(SessionViewCell.self), for: indexPath) as! SessionViewCell
-        cell.backgroundColor = UIColor(hexString: "FEFFFF")
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let session = dataSource[indexPath.row]
-        cell.update(session)
-        return cell
+        let block: ASCellNodeBlock = {
+            return SessionCellNode(session: session)
+        }
+        return block
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70.0
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
         
         let session = dataSource[indexPath.row]
         let chatVC = ChatRoomViewController(sessionID: session.sessionID)
