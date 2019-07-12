@@ -83,7 +83,6 @@ class ChatRoomEmotionLayoutDelegate: NSObject, ASCollectionLayoutDelegate {
             attrsMap.setObject(attribute, forKey: element)
         }
         let contentSize = CGSize(width: info.contentWidth, height: info.contentHeight)
-        print(contentSize)
         return ASCollectionLayoutState(context: context, contentSize: contentSize, elementToLayoutAttributesTable: attrsMap)
     }
 }

@@ -23,25 +23,21 @@ class ChatRoomToolPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollection
     init(tools: [ChatRoomTool]) {
         self.dataSource = tools
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        
         let itemWidth = (Constants.screenWidth - 20.0)/4
-        let itemHeight: CGFloat = 84
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        let itemHeight: CGFloat = (216 - 20)/2.0
         
-        collectionNode = ASCollectionNode(collectionViewLayout: layout)
+        let layoutInfo = GridPageLayoutInfo(itemsCount: tools.count, itemSize: CGSize(width: itemWidth, height: itemHeight))
+        layoutInfo.minimumLineSpacing = 3
+        layoutInfo.minimumInteritemSpacing = 3
+        let layoutDelegate = GridPageLayoutDelegate(layoutInfo: layoutInfo)
+        
+        collectionNode = ASCollectionNode(layoutDelegate: layoutDelegate, layoutFacilitator: nil)
         
         super.init()
         
         addSubnode(collectionNode)
         collectionNode.dataSource = self
         collectionNode.delegate = self
-        
-        
-        
     }
     
     override func didLoad() {
@@ -49,7 +45,8 @@ class ChatRoomToolPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollection
         
         collectionNode.backgroundColor = UIColor(hexString: "#F5F5F7")
         collectionNode.view.isPagingEnabled = true
-        collectionNode.view.contentSize = CGSize(width: Constants.screenWidth * 2.0, height: 180)
+        collectionNode.view.showsHorizontalScrollIndicator = false
+        collectionNode.view.showsVerticalScrollIndicator = false
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -114,6 +111,7 @@ class ChatRoomToolCellNode: ASCellNode {
         let backgroundSpec = ASBackgroundLayoutSpec(child: imageSpec, background: backgroundNode)
         
         let stack = ASStackLayoutSpec.vertical()
+        stack.spacing = 5.0
         stack.children = [backgroundSpec, textNode]
         
         let spacingX = (constrainedSize.max.width - 64)/2.0
