@@ -6,12 +6,13 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 import SVGKit
 
 extension AppDelegate {
     
     func setupTaBar() {
+        ASDisableLogging()
         
         chatsVC.tabBarItem.selectedImage = HomeTab.chats.selectedImage
         chatsVC.tabBarItem.image = HomeTab.chats.image
@@ -33,7 +34,7 @@ extension AppDelegate {
         meVC.tabBarItem.title = "我"
         meVC.tabBarItem.tag = 3
         
-        tabBarVC = UITabBarController()
+        tabBarVC = ASTabBarController()
         let viewControllers = [chatsVC, contactsVC, discoverVC, meVC]
         tabBarVC.viewControllers = viewControllers
         for vc in viewControllers {
@@ -45,7 +46,7 @@ extension AppDelegate {
                 .font: UIFont.systemFont(ofSize: 10.5, weight: .thin)], for: .normal)
         }
         
-        let navigation = UINavigationController(rootViewController: tabBarVC)
+        let navigation = ASNavigationController(rootViewController: tabBarVC)
         navigation.navigationBar.shadowImage = UIImage()
         navigation.navigationBar.isTranslucent = false
         let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)

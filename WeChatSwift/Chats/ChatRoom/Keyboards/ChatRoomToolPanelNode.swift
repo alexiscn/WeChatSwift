@@ -109,13 +109,15 @@ class ChatRoomToolCellNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let imageSpec = ASInsetLayoutSpec(insets: .zero, child: iconNode)
         let backgroundSpec = ASBackgroundLayoutSpec(child: imageSpec, background: backgroundNode)
+        backgroundSpec.style.preferredSize = CGSize(width: 64, height: 64)
         
         let stack = ASStackLayoutSpec.vertical()
         stack.spacing = 5.0
+        stack.alignItems = .center
         stack.children = [backgroundSpec, textNode]
         
-        let spacingX = (constrainedSize.max.width - 64)/2.0
-        let spacingY = (constrainedSize.max.height - 64)/2.0
+        let spacingX = (constrainedSize.max.width - 80)/2.0
+        let spacingY = (constrainedSize.max.height - 80)/2.0
         let insets = UIEdgeInsets(top: spacingY, left: spacingX, bottom: spacingY, right: spacingX)
         
         return ASInsetLayoutSpec(insets: insets, child: stack)

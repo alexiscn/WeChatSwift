@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import AsyncDisplayKit
 
 typealias RelayCommand = () -> Void
 
@@ -17,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var tabBarVC: UITabBarController!
+    var tabBarVC: ASTabBarController!
     
     var chatsVC = SessionViewController()
     var contactsVC = ContactsViewController()

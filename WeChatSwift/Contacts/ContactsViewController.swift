@@ -6,12 +6,10 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-class ContactsViewController: UIViewController {
-    
-    private var tableView: UITableView!
-    
+class ContactsViewController: ASViewController<ASTableNode> {
+
     private var dataSource: [ContactSection] = []
     
     private lazy var rightButtonItem: UIBarButtonItem = {
@@ -19,12 +17,22 @@ class ContactsViewController: UIViewController {
         return button
     }()
     
+    init() {
+        super.init(node: ASTableNode(style: .grouped))
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.backgroundColor
         
-        setupTableView()
+        node.dataSource = self
+        node.delegate = self
+        
         setupDataSource()
     }
     
@@ -33,21 +41,6 @@ class ContactsViewController: UIViewController {
         
         tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
         tabBarController?.navigationItem.title = "通讯录"
-    }
-    
-    private func setupTableView() {
-        tableView = UITableView(frame: view.bounds, style: .grouped)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .clear
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(ContactViewCell.self, forCellReuseIdentifier: NSStringFromClass(ContactViewCell.self))
-//        tableView.sectionIndexColor = .gray
-//        tableView.sectionIndexBackgroundColor = .clear
-//        tableView.sectionIndexTrackingBackgroundColor = .gray
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
-        view.addSubview(tableView)
     }
     
     private func setupDataSource() {
@@ -67,29 +60,22 @@ extension ContactsViewController {
     
 }
 
-// MARK: - UITableViewDataSource & UITableViewDelegate
-extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+// MARK: - ASTableDelegate & ASTableDataSource
+
+extension ContactsViewController: ASTableDelegate, ASTableDataSource {
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
         return dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].models.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(ContactViewCell.self), for: indexPath) as! ContactViewCell
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = dataSource[indexPath.section].models[indexPath.row]
-        cell.update(model)
-        return cell
+        let block: ASCellNodeBlock = {
+            return ContactCellNode(model: model)
+        }
+        return block
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 56.0
-    }
-    
-//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-//        return dataSource.map { return $0.title }
-//    }
 }

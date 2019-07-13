@@ -6,11 +6,11 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-class MeViewController: UIViewController {
+class MeViewController: ASViewController<ASDisplayNode> {
 
-    private var tableView: UITableView!
+    private let tableNode: ASTableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [MeTableSection] = []
     
@@ -19,13 +19,26 @@ class MeViewController: UIViewController {
         return button
     }()
     
+    init() {
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.backgroundColor
+        tableNode.frame = node.bounds
+        tableNode.dataSource = self
+        tableNode.delegate = self
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        setupTableView()
         setupDataSource()
+        tableNode.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,18 +46,6 @@ class MeViewController: UIViewController {
         
         tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
         tabBarController?.navigationItem.title = nil
-    }
-    
-    private func setupTableView() {
-        tableView = UITableView(frame: view.bounds, style: .grouped)
-        tableView.backgroundColor = .clear
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(MeTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(MeTableViewCell.self))
-        view.addSubview(tableView)
     }
     
     private func setupDataSource() {
@@ -59,7 +60,6 @@ class MeViewController: UIViewController {
         
         let settings = MeTableModel(type: .settings, title: "设置", icon: "icons_outlined_setting", color: Colors.blue)
         dataSource.append(MeTableSection(items: [settings]))
-        tableView.reloadData()
     }
 }
 
@@ -72,26 +72,22 @@ extension MeViewController {
     
 }
 
-// MARK: - UITableViewDataSource & UITableViewDelegate
-extension MeViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
+// MARK: - ASTableDelegate & ASTableDataSource
+extension MeViewController: ASTableDelegate, ASTableDataSource {
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
         return dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].items.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(MeTableViewCell.self), for: indexPath) as! MeTableViewCell
-        cell.backgroundColor = Colors.white
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = dataSource[indexPath.section].items[indexPath.row]
-        cell.update(model)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54.0
+        let block: ASCellNodeBlock = {
+            return MeCellNode(model: model)
+        }
+        return block
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -99,18 +95,10 @@ extension MeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0
+        return 0.1
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
     }
 }
