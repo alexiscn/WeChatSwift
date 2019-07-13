@@ -31,6 +31,7 @@
 		A372227C22D62033003403D4 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372227B22D62033003403D4 /* Expression.swift */; };
 		A372228722D95216003403D4 /* MeCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372228622D95216003403D4 /* MeCellNode.swift */; };
 		A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372228822D954C9003403D4 /* ContactCellNode.swift */; };
+		A372228B22D984D9003403D4 /* flutter.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A372228A22D984D9003403D4 /* flutter.jpeg */; };
 		A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862922D4383F002EEC4F /* ChatRoomViewController.swift */; };
 		A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */; };
 		A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */; };
@@ -156,6 +157,7 @@
 		A372227B22D62033003403D4 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
 		A372228622D95216003403D4 /* MeCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeCellNode.swift; sourceTree = "<group>"; };
 		A372228822D954C9003403D4 /* ContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellNode.swift; sourceTree = "<group>"; };
+		A372228A22D984D9003403D4 /* flutter.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flutter.jpeg; sourceTree = "<group>"; };
 		A374862922D4383F002EEC4F /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDataSource.swift; sourceTree = "<group>"; };
 		A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCellNodeFactory.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				A3CA521022CDE9C500C67D92 /* Avatars */,
 				A3CA51C322CD9C1C00C67D92 /* Icons */,
 				A372227922D6154C003403D4 /* Expressions.json */,
+				A372228A22D984D9003403D4 /* flutter.jpeg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				A374866122D4AF68002EEC4F /* icons_filled_location.svg in Resources */,
 				A3CA522E22CE1C5F00C67D92 /* icons_outlined_colorful_favorites.svg in Resources */,
 				A3CA51D922CD9FA000C67D92 /* icons_outlined_shake.svg in Resources */,
+				A372228B22D984D9003403D4 /* flutter.jpeg in Resources */,
 				A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */,
 				A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */,
 				A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */,

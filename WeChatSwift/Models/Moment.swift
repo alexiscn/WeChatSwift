@@ -27,7 +27,7 @@ class Moment {
 
 enum MomentBody {
     case none
-    case link(URL)
+    case link(MomentWebpage)
     case media(MomentMedia)
 }
 
@@ -70,6 +70,15 @@ struct MomentWebpage {
         self.title = title
         self.thumbImage = thumbImage
         self.thumbImageURL = thumbImageURL
+    }
+    
+    func attributedStringForTitle() -> NSAttributedString? {
+        guard let title = title else { return nil }
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
+            .font: UIFont.systemFont(ofSize: 15)
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
     }
 }
 

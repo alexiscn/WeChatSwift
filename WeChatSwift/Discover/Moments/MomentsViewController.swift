@@ -14,13 +14,13 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private var dataSource: [Moment] = []
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     
-    private let toolNode = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
+//    private let toolNode = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     
     init() {
         super.init(node: ASDisplayNode())
         
         node.addSubnode(tableNode)
-        node.addSubnode(toolNode)
+//        node.addSubnode(toolNode)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +39,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         tableNode.view.allowsSelection = false
         tableNode.view.separatorStyle = .none
         
-        toolNode.frame = CGRect(x: 0, y: 200, width: view.bounds.width, height: 216)
+//        toolNode.frame = CGRect(x: 0, y: 200, width: view.bounds.width, height: 216)
         
         setupDataSource()
     }

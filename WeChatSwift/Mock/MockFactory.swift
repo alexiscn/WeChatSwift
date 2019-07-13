@@ -22,6 +22,13 @@ class MockFactory {
         var size: CGSize
     }
     
+    struct WebPage {
+        var urlString: String
+        var title: String
+        var thumbImage: UIImage?
+        //var thumbURL: String
+    }
+    
     static let shared = MockFactory()
     
     var users: [MockUser] = []
@@ -30,10 +37,13 @@ class MockFactory {
     
     var remoteImages: [RemoteImage] = []
     
+    var webPages: [WebPage] = []
+    
     private init() {
         setupUsers()
         setupMessages()
         setupRemoteImages()
+        setupWebPages()
         
         DispatchQueue.global().async {
             Expression.load()
@@ -94,6 +104,12 @@ class MockFactory {
                                         size: CGSize(width: 405.0, height: 600.0)))
     }
     
+    private func setupWebPages() {
+        webPages.append(WebPage(urlString: "https://mp.weixin.qq.com/s/WZruGVpOpen2f4NNiSu7cw", title: "Flutter 1.7 版正式发布", thumbImage: UIImage(named: "flutter.jpeg")))
+        
+        
+    }
+    
     func random<T>(of list: [T]) -> T {
         let count = list.count
         let index = Int(arc4random_uniform(UInt32(count)))
@@ -146,10 +162,17 @@ class MockFactory {
             let moment = Moment()
             moment.userID = user.identifier
             moment.content = randomMessage()
-            if index % 4 == 1 {
+            if index % 4 == 0 {
                 let remoteImage = random(of: remoteImages)
                 let body = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
                 moment.body = MomentBody.media(body)
+            } else if index % 6 == 0 {
+                let link = random(of: webPages)
+                let webPage = MomentWebpage(url: URL(string: link.urlString),
+                                            title: link.title,
+                                            thumbImage: link.thumbImage,
+                                            thumbImageURL: nil)
+                moment.body = .link(webPage)
             }
             moments.append(moment)
         }
