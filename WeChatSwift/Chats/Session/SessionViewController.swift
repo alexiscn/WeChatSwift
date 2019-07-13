@@ -35,7 +35,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        view.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.backgroundColor
         tableNode.frame = view.bounds
         tableNode.view.separatorStyle = .none
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]

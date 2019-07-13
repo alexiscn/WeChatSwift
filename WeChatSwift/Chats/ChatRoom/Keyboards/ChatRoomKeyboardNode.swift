@@ -28,6 +28,15 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
+    override func didLoad() {
+        super.didLoad()
+        
+        toolBar.frame = bounds
+        toolBar.backgroundColor = UIColor(hexString: "#F5F6F7")
+        emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: 216)
+        toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: 216)
+    }
+    
     @objc private func keyboardWillChangeFrame(_ notification: Notification) {
         switch toolBar.keyboard {
         case .emotion:
@@ -41,8 +50,29 @@ class ChatRoomKeyboardNode: ASDisplayNode {
             }, completion: nil)
         case .tools:
             print("....")
+        case .none:
+            guard let beginFrame = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
+                let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+                let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
+                    return
+            }
+            let superNodeHeight = supernode?.bounds.height ?? Constants.screenHeight
+            let targetY = endFrame.origin.y - toolBar.bounds.height - (Constants.screenHeight - superNodeHeight)
+            UIView.animate(withDuration: 0.25) {
+                if beginFrame.size.height >= 0 && beginFrame.origin.y - endFrame.origin.y > 0 {
+                    self.lastKeyboardOffsetY = self.frame.origin.y
+                    self.frame.origin = CGPoint(x: 0, y: targetY)
+                } else if endFrame.origin.y == Constants.screenHeight && beginFrame.origin.y != endFrame.origin.y && duration > 0 {
+                    
+                }
+            }
+            
         default:
             break
         }
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASInsetLayoutSpec(insets: .zero, child: toolBar)
     }
 }

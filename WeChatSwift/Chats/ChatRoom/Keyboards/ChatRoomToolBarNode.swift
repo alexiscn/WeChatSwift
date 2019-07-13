@@ -15,9 +15,15 @@ enum ChatRoomKeyboardType {
     case tools
 }
 
+protocol ChatRoomToolBarNodeDelegate {
+    func toolBar(_ toolBar: ChatRoomToolBarNode, didSendText text: String)
+}
+
 final class ChatRoomToolBarNode: ASDisplayNode {
     
     var keyboard: ChatRoomKeyboardType = .none
+    
+    var delegate: ChatRoomToolBarNodeDelegate?
     
     private lazy var voiceNode: ASButtonNode = {
         let button = ASButtonNode()
@@ -46,9 +52,6 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     
     private lazy var textNode: ASEditableTextNode = {
         let node = ASEditableTextNode()
-        node.cornerRadius = 6.0
-        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.cornerRoundingType = .clipping
         node.returnKeyType = .send
         node.backgroundColor = Colors.white
         return node
@@ -61,12 +64,15 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         addSubnode(textNode)
         addSubnode(emotionNode)
         addSubnode(moreNode)
+        
+        textNode.delegate = self
     }
     
     override func didLoad() {
         super.didLoad()
         
-        //view.backgroundColor = .red
+        textNode.layer.cornerRadius = 6
+        textNode.layer.masksToBounds = true
         
         voiceNode.addTarget(self, action: #selector(ChatRoomToolBarNode.voiceNodeClicked), forControlEvents: .touchUpInside)
         emotionNode.addTarget(self, action: #selector(ChatRoomToolBarNode.emotionNodeClicked), forControlEvents: .touchUpInside)
@@ -86,17 +92,35 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     }
 }
 
+// MARK: - ASEditableTextNodeDelegate
+extension ChatRoomToolBarNode: ASEditableTextNodeDelegate {
+    func editableTextNodeShouldBeginEditing(_ editableTextNode: ASEditableTextNode) -> Bool {
+        keyboard = .none
+        voiceNode.isSelected = false
+        return true
+    }
+    
+    func editableTextNode(_ editableTextNode: ASEditableTextNode, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            delegate?.toolBar(self, didSendText: textNode.textView.text)
+            return false
+        }
+        return true
+    }
+}
+
+// MARK: - Event Handers
 extension ChatRoomToolBarNode {
     
     @objc private func voiceNodeClicked() {
-        
+        keyboard = .voice
     }
     
     @objc private func emotionNodeClicked() {
-        
+        keyboard = .emotion
     }
     
     @objc private func moreNodeClicked() {
-        
+        keyboard = .tools
     }
 }
