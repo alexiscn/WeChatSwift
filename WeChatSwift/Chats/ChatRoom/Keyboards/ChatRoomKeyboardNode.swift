@@ -18,7 +18,14 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     
-    override init() {
+    private let barHeight: CGFloat
+    
+    private let panelHeight: CGFloat
+    
+    init(barHeight: CGFloat = 60.0, panelHeight: CGFloat = 216.0) {
+        self.barHeight = barHeight
+        self.panelHeight = panelHeight
+        
         super.init()
         
         addSubnode(toolBar)
@@ -31,10 +38,16 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     override func didLoad() {
         super.didLoad()
         
-        toolBar.frame = bounds
+//        let toolBarHeight: CGFloat = 60.0
+//        let toolBarY = Constants.screenHeight - Constants.topInset - Constants.bottomInset - 44.0 - toolBarHeight
+//        let toolBarFrame = CGRect(x: 0, y: toolBarY, width: Constants.screenWidth, height: toolBarHeight)
+        
+        backgroundColor = UIColor(hexString: "#F5F6F7")
+        
+        toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
         toolBar.backgroundColor = UIColor(hexString: "#F5F6F7")
-        emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: 216)
-        toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: 216)
+        emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
+        toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: Notification) {
