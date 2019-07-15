@@ -16,6 +16,8 @@ struct Constants {
     
     static let iPhoneX = UIScreen.main.bounds.height >= 812
     
+    static let lineHeight = 1/UIScreen.main.scale
+    
     static var bottomInset: CGFloat {
         return iPhoneX ? 34.0: 0.0
     }
@@ -28,7 +30,3 @@ struct Constants {
         return iPhoneX ? 44.0: 20.0
     }
 }
-
-let LINE_HEIGHT: CGFloat = 1/UIScreen.main.scale
-
-

@@ -63,7 +63,7 @@ class MomentCellNode: ASCellNode {
         
         bottomSeparator = ASDisplayNode()
         bottomSeparator.backgroundColor = Colors.DEFAULT_BORDER_COLOR
-        bottomSeparator.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionMake("100%"), height: ASDimensionMake(LINE_HEIGHT))
+        bottomSeparator.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionMake("100%"), height: ASDimensionMake(Constants.lineHeight))
         
         super.init()
         

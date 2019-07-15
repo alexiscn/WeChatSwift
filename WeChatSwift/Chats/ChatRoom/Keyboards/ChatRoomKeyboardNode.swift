@@ -24,16 +24,27 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     private let bottomInset: CGFloat
     
-    init(barHeight: CGFloat = 60.0, panelHeight: CGFloat = 216.0) {
+    private var height: CGFloat {
+        return 0.0
+    }
+    
+    init(barHeight: CGFloat = 60.0, panelHeight: CGFloat = 236.0) {
         self.barHeight = barHeight
         self.panelHeight = panelHeight
         self.bottomInset = Constants.bottomInset
+        
+        toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
+        
+        emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
+        toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
         
         super.init()
         
         addSubnode(toolBar)
         addSubnode(emotionPanel)
         addSubnode(toolsPanel)
+        
+        toolBar.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
@@ -46,11 +57,6 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         self.frame = CGRect(x: 0, y: offsetY, width: Constants.screenWidth, height: height)
         
         backgroundColor = UIColor(hexString: "#F5F6F7")
-        
-        toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
-        toolBar.backgroundColor = UIColor(hexString: "#F5F6F7")
-        emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
-        toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: Notification) {
@@ -60,18 +66,18 @@ class ChatRoomKeyboardNode: ASDisplayNode {
                 self.toolsPanel.isHidden = true
                 self.emotionPanel.isHidden = false
                 self.lastKeyboardOffsetY = self.frame.origin.y
-                self.frame.origin = CGPoint(x: 0, y: self.supernode!.frame.height - self.bounds.height)
-                self.emotionPanel.frame.origin = CGPoint(x: 0, y: self.barHeight + self.bottomInset)
-                self.toolsPanel.frame.origin = CGPoint(x: 0, y: self.bounds.height)
+                self.frame.origin.y = Constants.screenHeight - self.bounds.height - Constants.topInset - 44
+                self.emotionPanel.frame.origin.y = self.barHeight
+                self.toolsPanel.frame.origin.y = self.bounds.height
             }, completion: nil)
         case .tools:
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
                 self.toolsPanel.isHidden = false
                 self.emotionPanel.isHidden = true
                 self.lastKeyboardOffsetY = self.frame.origin.y
-                self.frame.origin = CGPoint(x: 0, y: self.supernode!.frame.height - self.bounds.height)
-                self.emotionPanel.frame.origin = CGPoint(x: 0, y: self.bounds.height)
-                self.toolsPanel.frame.origin = CGPoint(x: 0, y: self.barHeight + self.bottomInset)
+                self.frame.origin.y = Constants.screenHeight - self.bounds.height - Constants.topInset - 44
+                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.toolsPanel.frame.origin.y = self.barHeight
             }, completion: nil)
         case .none:
             guard let beginFrame = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
@@ -110,4 +116,37 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
         return ASInsetLayoutSpec(insets: .zero, child: stack)
     }
+}
+
+extension ChatRoomKeyboardNode: ChatRoomToolBarNodeDelegate {
+    
+    func toolBar(_ toolBar: ChatRoomToolBarNode, didSendText text: String) {
+        
+    }
+    
+    func toolBar(_ toolBar: ChatRoomToolBarNode, keyboardTypeChanged keyboard: ChatRoomKeyboardType) {
+        switch keyboard {
+        case .emotion:
+            toolsPanel.isHidden = true
+            emotionPanel.isHidden = false
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
+                self.lastKeyboardOffsetY = self.frame.origin.y
+                self.frame.origin.y = self.supernode!.bounds.height - self.bounds.height
+                self.emotionPanel.frame.origin.y = self.barHeight
+                self.toolsPanel.frame.origin.y = self.frame.height
+            }, completion: nil)
+        case .tools:
+            toolsPanel.isHidden = false
+            emotionPanel.isHidden = true
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
+                self.lastKeyboardOffsetY = self.frame.origin.y
+                self.frame.origin.y = self.supernode!.bounds.height - self.bounds.height
+                self.emotionPanel.frame.origin.y = self.frame.height
+                self.toolsPanel.frame.origin.y = self.barHeight
+            }, completion: nil)
+        default:
+            break
+        }
+    }
+    
 }

@@ -46,9 +46,11 @@ class ChatRoomEmotionPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollect
     override func didLoad() {
         super.didLoad()
         
+        collectionNode.backgroundColor = .clear
         collectionNode.view.isPagingEnabled = true
         collectionNode.showsVerticalScrollIndicator = false
         collectionNode.showsHorizontalScrollIndicator = false
+        collectionNode.style.preferredSize = CGSize(width: bounds.width, height: bounds.height - 40)
         
         for page in 0 ..< layoutInfo.numberOfPages {
             let x = CGFloat(page) * Constants.screenWidth + layoutInfo.margin + (layoutInfo.itemSpacing + layoutInfo.itemSize.width) *  CGFloat(layoutInfo.columns - 1)

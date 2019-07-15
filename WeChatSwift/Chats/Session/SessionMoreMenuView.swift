@@ -53,7 +53,7 @@ class SessionMoreMenuView: UIView {
             if index != menus.count - 1 {
                 let line = UIImageView()
                 line.image = UIImage(named: "MoreFunctionFrameLine_120x0_")
-                line.frame = CGRect(x: 50, y: itemHeight - LINE_HEIGHT, width: bounds.width - 50, height: LINE_HEIGHT)
+                line.frame = CGRect(x: 50, y: itemHeight - Constants.lineHeight, width: bounds.width - 50, height: Constants.lineHeight)
                 button.addSubview(line)
             }
         }

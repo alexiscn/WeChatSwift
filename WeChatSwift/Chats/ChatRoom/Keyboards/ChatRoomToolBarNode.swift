@@ -17,6 +17,7 @@ enum ChatRoomKeyboardType {
 
 protocol ChatRoomToolBarNodeDelegate {
     func toolBar(_ toolBar: ChatRoomToolBarNode, didSendText text: String)
+    func toolBar(_ toolBar: ChatRoomToolBarNode, keyboardTypeChanged keyboard: ChatRoomKeyboardType)
 }
 
 final class ChatRoomToolBarNode: ASDisplayNode {
@@ -25,9 +26,18 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     
     var delegate: ChatRoomToolBarNodeDelegate?
     
+    fileprivate struct Images {
+        private init() {}
+        static let Voice = UIImage.SVGImage(named: "icons_outlined_voice")
+        static let Keyboard = UIImage.SVGImage(named: "icons_outlined_keyboard")
+        static let Sticker = UIImage.SVGImage(named: "icons_outlined_sticker")
+        static let More = UIImage.SVGImage(named: "icons_outlined_add2")
+    }
+    
     private lazy var voiceNode: ASButtonNode = {
         let button = ASButtonNode()
-        button.setImage(UIImage.SVGImage(named: "icons_outlined_voice"), for: .normal)
+        button.setImage(Images.Voice, for: .normal)
+        button.setImage(Images.Keyboard, for: .selected)
         button.style.preferredSize = CGSize(width: 40, height: 40)
         button.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
         return button
@@ -35,8 +45,8 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     
     private lazy var emotionNode: ASButtonNode = {
         let button = ASButtonNode()
-        button.setImage(UIImage(named: "Add_emoticon_icon_nor_28x28_"), for: .normal)
-        button.setImage(UIImage(named: "Add_emoticon_icon_pre_28x28_"), for: .highlighted)
+        button.setImage(Images.Sticker, for: .normal)
+        button.setImage(Images.Keyboard, for: .selected)
         button.style.preferredSize = CGSize(width: 40, height: 40)
         button.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
         return button
@@ -44,7 +54,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     
     private lazy var moreNode: ASButtonNode = {
         let button = ASButtonNode()
-        button.setImage(UIImage.SVGImage(named: "icons_outlined_add2"), for: .normal)
+        button.setImage(Images.More, for: .normal)
         button.style.preferredSize = CGSize(width: 40, height: 40)
         button.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
         return button
@@ -54,6 +64,12 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         let node = ASEditableTextNode()
         node.returnKeyType = .send
         node.backgroundColor = Colors.white
+        node.typingAttributes =
+            [
+                NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: 15),
+                NSAttributedString.Key.foregroundColor.rawValue: Colors.DEFAULT_TEXT_COLOR
+            ]
+        node.textContainerInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
         return node
     }()
     
@@ -73,13 +89,18 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         
         textNode.layer.cornerRadius = 6
         textNode.layer.masksToBounds = true
-        
-        voiceNode.addTarget(self, action: #selector(ChatRoomToolBarNode.voiceNodeClicked), forControlEvents: .touchUpInside)
-        emotionNode.addTarget(self, action: #selector(ChatRoomToolBarNode.emotionNodeClicked), forControlEvents: .touchUpInside)
-        moreNode.addTarget(self, action: #selector(ChatRoomToolBarNode.moreNodeClicked), forControlEvents: .touchUpInside)
+    
+        let buttonNodes = [voiceNode, emotionNode, moreNode]
+        buttonNodes.forEach { $0.addTarget(self, action: #selector(tapToolBarButtonNode(_:)), forControlEvents: .touchUpInside) }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        voiceNode.style.spacingBefore = 3
+        voiceNode.style.spacingAfter = 3
+        emotionNode.style.spacingBefore = 3
+        moreNode.style.spacingBefore = -6
+        moreNode.style.spacingAfter = 3
         
         textNode.style.preferredSize = CGSize(width: 0, height: frame.height - 20)
         textNode.style.flexGrow = 1.0
@@ -112,15 +133,27 @@ extension ChatRoomToolBarNode: ASEditableTextNodeDelegate {
 // MARK: - Event Handers
 extension ChatRoomToolBarNode {
     
-    @objc private func voiceNodeClicked() {
-        keyboard = .voice
+    @objc private func tapToolBarButtonNode(_ sender: ASButtonNode) {
+        let nodes = [voiceNode, emotionNode, moreNode]
+        nodes.forEach { if sender != $0 { $0.isSelected = false } }
+        sender.isSelected = !sender.isSelected
+        
+        let keyboards: [ChatRoomKeyboardType] = [.voice, .emotion, .tools]
+        guard let index = nodes.firstIndex(of: sender) else {
+            return
+        }
+        keyboard = keyboards[index]
+        
+        if sender.isSelected {
+            if !textNode.isFirstResponder() {
+                delegate?.toolBar(self, keyboardTypeChanged: keyboard)
+            }
+            textNode.resignFirstResponder()
+        } else {
+            textNode.becomeFirstResponder()
+        }
+        
+        
     }
     
-    @objc private func emotionNodeClicked() {
-        keyboard = .emotion
-    }
-    
-    @objc private func moreNodeClicked() {
-        keyboard = .tools
-    }
 }
