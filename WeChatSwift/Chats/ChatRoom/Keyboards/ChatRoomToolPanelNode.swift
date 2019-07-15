@@ -9,8 +9,14 @@
 import AsyncDisplayKit
 import UIKit
 
+protocol ChatRoomToolPanelNodeDelegate {
+    func toolPanelDidPressedTool(_ tool: ChatRoomTool)
+}
+
 class ChatRoomToolPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollectionDelegate {
  
+    var delegate: ChatRoomToolPanelNodeDelegate?
+    
     private let collectionNode: ASCollectionNode
     
     private let pageContainerNode: ASDisplayNode
@@ -93,7 +99,11 @@ class ChatRoomToolPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollection
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         let tool = dataSource[indexPath.row]
         let block: ASCellNodeBlock = {
-            return ChatRoomToolCellNode(tool: tool)
+            let node = ChatRoomToolCellNode(tool: tool)
+            node.tapHandler = { [weak self] in
+                self?.delegate?.toolPanelDidPressedTool(tool)
+            }
+            return node
         }
         return block
     }
@@ -101,21 +111,20 @@ class ChatRoomToolPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollection
 
 class ChatRoomToolCellNode: ASCellNode {
     
-    private let backgroundNode: ASImageNode
+    var tapHandler: RelayCommand?
     
-    private let iconNode: ASImageNode
+    private let buttonNode: ASButtonNode
     
     private let textNode: ASTextNode
     
     init(tool: ChatRoomTool) {
-        backgroundNode = ASImageNode()
-        backgroundNode.image = UIImage.as_imageNamed("ChatRomm_ToolPanel_Icon_Buttons_64x64_")
-        backgroundNode.style.preferredSize = CGSize(width: 64, height: 64)
-        
-        iconNode = ASImageNode()
-        iconNode.style.preferredSize = CGSize(width: 64, height: 64)
-        iconNode.image = UIImage.as_imageNamed(tool.imageName)
-        iconNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor(white: 75.0/255, alpha: 1.0))
+        buttonNode = ASButtonNode()
+        buttonNode.isUserInteractionEnabled = true
+        buttonNode.setBackgroundImage(UIImage.as_imageNamed("ChatRomm_ToolPanel_Icon_Buttons_64x64_"), for: .normal)
+        buttonNode.setBackgroundImage(UIImage.as_imageNamed("ChatRomm_ToolPanel_Icon_Buttons_HL_64x64_"), for: .highlighted)
+        buttonNode.setImage(UIImage.as_imageNamed(tool.imageName), for: .normal)
+        buttonNode.style.preferredSize = CGSize(width: 64, height: 64)
+        buttonNode.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(UIColor(white: 75.0/255, alpha: 1.0))
         
         textNode = ASTextNode()
         textNode.style.alignSelf = .center
@@ -126,21 +135,26 @@ class ChatRoomToolCellNode: ASCellNode {
         
         super.init()
         
-        addSubnode(backgroundNode)
-        addSubnode(iconNode)
+        addSubnode(buttonNode)
         addSubnode(textNode)
     }
     
+    override func didLoad() {
+        super.didLoad()
+        
+        buttonNode.addTarget(self, action: #selector(buttonClicked), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func buttonClicked() {
+        tapHandler?()
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let imageSpec = ASInsetLayoutSpec(insets: .zero, child: iconNode)
-        let backgroundSpec = ASBackgroundLayoutSpec(child: imageSpec, background: backgroundNode)
-        backgroundSpec.style.preferredSize = CGSize(width: 64, height: 64)
         
         let stack = ASStackLayoutSpec.vertical()
         stack.spacing = 6.0
         stack.alignItems = .center
-        stack.children = [backgroundSpec, textNode]
-        
+        stack.children = [buttonNode, textNode]
         
         let spacingX = (constrainedSize.max.width - 84)/2.0
         let spacingY = (constrainedSize.max.height - 84)/2.0
