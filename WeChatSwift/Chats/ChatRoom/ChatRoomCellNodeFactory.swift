@@ -17,6 +17,8 @@ final class ChatRoomCellNodeFactory {
             contentNode = TextContentNode(message: message)
         case .image(_):
             contentNode = ImageContentNode(message: message)
+        case .audio(_):
+            contentNode = AudioContentNode(message: message)
         default:
             contentNode = UnknownContentNode(message: message)
         }

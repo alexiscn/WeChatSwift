@@ -53,6 +53,7 @@ public enum MessageContent {
     case location(CLLocation)
     case media
     case link(URL)
+    case audio(AudioMessage)
     
     var sessionContent: String {
         switch self {
@@ -83,4 +84,10 @@ public struct ImageMessage {
         self.url = url
         self.size = size
     }
+}
+
+public struct AudioMessage {
+    
+    var duration: Int = 1
+    
 }

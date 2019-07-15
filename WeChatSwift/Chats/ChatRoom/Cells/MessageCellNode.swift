@@ -86,6 +86,7 @@ public class MessageCellNode: ASCellNode {
         
         let contentVerticalStack = ASStackLayoutSpec.vertical()
         contentVerticalStack.style.flexShrink = 1.0
+        contentVerticalStack.style.flexGrow = 1.0
         contentVerticalStack.style.spacingAfter = 5.0
         contentVerticalStack.style.spacingBefore = 5.0
         if let contentTopTextNode = contentTopTextNode {

@@ -92,6 +92,11 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     
         let buttonNodes = [voiceNode, emotionNode, moreNode]
         buttonNodes.forEach { $0.addTarget(self, action: #selector(tapToolBarButtonNode(_:)), forControlEvents: .touchUpInside) }
+        buttonNodes.forEach { node in
+            node.addTarget(self, action: #selector(tapToolBarButtonNode(_:)), forControlEvents: .touchUpInside)
+            node.style.preferredSize = CGSize(width: 40.0, height: 40.0)
+            node.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -118,6 +123,8 @@ extension ChatRoomToolBarNode: ASEditableTextNodeDelegate {
     func editableTextNodeShouldBeginEditing(_ editableTextNode: ASEditableTextNode) -> Bool {
         keyboard = .none
         voiceNode.isSelected = false
+        emotionNode.isSelected = false
+        moreNode.isSelected = false
         return true
     }
     
@@ -152,8 +159,5 @@ extension ChatRoomToolBarNode {
         } else {
             textNode.becomeFirstResponder()
         }
-        
-        
     }
-    
 }
