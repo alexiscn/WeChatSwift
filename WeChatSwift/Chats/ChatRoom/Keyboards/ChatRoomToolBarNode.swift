@@ -99,6 +99,23 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         }
     }
     
+    func appendText(_ text: String) {
+        let attributedText = NSMutableAttributedString(attributedString: textNode.attributedText ?? NSAttributedString())
+        attributedText.append(NSAttributedString(string: text, attributes: [
+            .font: UIFont.systemFont(ofSize: 15),
+            .foregroundColor: Colors.DEFAULT_TEXT_COLOR
+        ]))
+        textNode.attributedText = attributedText
+    }
+    
+    override func isFirstResponder() -> Bool {
+        return textNode.isFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        textNode.resignFirstResponder()
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         voiceNode.style.spacingBefore = 3

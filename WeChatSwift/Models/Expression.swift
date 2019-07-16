@@ -15,6 +15,10 @@ struct Expression: Codable {
     var icon: String
     var zh: String
     var code: String
+    
+    var text: String {
+        return "[\(zh)]"
+    }
 }
 
 extension Expression {

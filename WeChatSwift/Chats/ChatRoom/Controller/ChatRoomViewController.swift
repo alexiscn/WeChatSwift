@@ -53,6 +53,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         tableNode.delegate = self
         tableNode.view.backgroundColor = Colors.backgroundColor
         tableNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenHeight - 34 - 60)
+        inputNode.tableNode = tableNode
         
         scrollToLastMessage(animated: false)
     }
@@ -89,5 +90,13 @@ extension ChatRoomViewController: ASTableDataSource, ASTableDelegate {
             return ChatRoomCellNodeFactory.node(for: message)
         }
         return nodeBlock
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension ChatRoomViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        inputNode.dismissKeyboard()
     }
 }
