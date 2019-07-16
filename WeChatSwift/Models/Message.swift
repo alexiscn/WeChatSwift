@@ -54,6 +54,7 @@ public enum MessageContent {
     case media
     case link(URL)
     case audio(AudioMessage)
+    case redPacket(RedPacketMessage)
     
     var sessionContent: String {
         switch self {
@@ -90,4 +91,11 @@ public struct AudioMessage {
     
     var duration: Int = 1
     
+}
+
+public struct RedPacketMessage {
+    
+    var title: String
+    
+    var amount: Float
 }

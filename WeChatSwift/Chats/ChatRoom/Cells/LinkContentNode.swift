@@ -1,14 +1,14 @@
 //
-//  NoticeContentNode.swift
+//  LinkContentNode.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/9.
+//  Created by xu.shuifeng on 2019/7/16.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
 import AsyncDisplayKit
 
-class NoticeContentNode: MessageContentNode {
+class LinkContentNode: MessageContentNode {
     
     override init(message: Message) {
         super.init(message: message)
