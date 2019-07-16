@@ -8,15 +8,17 @@
 
 import Foundation
 
-struct EmoticonPackage {
+struct EmoticonPackage: Codable {
     
     var packageID: String
     
-    var emoticons: [Emoticon]
+    var emoticons: [String]
     
 }
 
 struct Emoticon {
+    
+    var packageID: String
     
     var name: String
     

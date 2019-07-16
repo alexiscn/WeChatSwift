@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SSZipArchive
 
 class MockFactory {
     
@@ -114,6 +115,10 @@ class MockFactory {
         let path = NSHomeDirectory().appending("/Documents/emoticons/")
         if !FileManager.default.fileExists(atPath: path) {
             
+        }
+        
+        guard let jsonPath = Bundle.main.path(forResource: "Emoticons", ofType: "json") else {
+            return
         }
     }
     
