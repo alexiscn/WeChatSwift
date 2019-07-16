@@ -133,9 +133,8 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
+
         toolBar.style.preferredSize = CGSize(width: Constants.screenWidth, height: barHeight)
-        
         let additionLayout = ASOverlayLayoutSpec(child: toolsPanel, overlay: emotionPanel)
         additionLayout.style.preferredSize = CGSize(width: Constants.screenWidth, height: panelHeight)
         
@@ -143,8 +142,18 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         spacer.style.preferredSize = CGSize(width: Constants.screenWidth, height: bottomInset)
         
         let stack = ASStackLayoutSpec.vertical()
-        stack.children = [toolBar, spacer, additionLayout]
-    
+        switch keyboardType {
+        case .none:
+            stack.children = [toolBar, spacer, additionLayout]
+        case .input:
+            stack.children = [toolBar, spacer, additionLayout]
+        case .emotion:
+            stack.children = [toolBar, additionLayout, spacer]
+        case .tools:
+            stack.children = [toolBar, additionLayout, spacer]
+        case .voice:
+            stack.children = [toolBar, spacer, additionLayout]
+        }
         return ASInsetLayoutSpec(insets: .zero, child: stack)
     }
     
