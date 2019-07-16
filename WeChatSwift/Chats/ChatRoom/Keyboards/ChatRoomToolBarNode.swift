@@ -10,6 +10,7 @@ import AsyncDisplayKit
 
 enum ChatRoomKeyboardType {
     case none
+    case input
     case voice
     case emotion
     case tools
@@ -113,7 +114,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     }
     
     override func resignFirstResponder() -> Bool {
-        textNode.resignFirstResponder()
+        return textNode.resignFirstResponder()
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

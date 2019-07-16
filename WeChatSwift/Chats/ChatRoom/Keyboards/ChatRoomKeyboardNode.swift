@@ -16,25 +16,26 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     var delegate: ChatRoomKeyboardNodeDelegate?
     
+    var isSwipeBackGestureCauseKeyboardDismiss = false
+    
     weak var tableNode: ASTableNode?
     
-    private var lastKeyboardOffsetY: CGFloat = 0.0
-    
     private let toolBar = ChatRoomToolBarNode()
-    
     private let emotionPanel = ChatRoomEmotionPanelNode(expressions: Expression.all)
-    
     private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     
     private let barHeight: CGFloat
-    
     private let panelHeight: CGFloat
-    
     private let bottomInset: CGFloat
     
-    private var height: CGFloat {
-        return 0.0
+    private var lastKeyboardOffsetY: CGFloat = 0.0
+    private var keyboardType: ChatRoomKeyboardType = .none {
+        didSet {
+            transitionLayout()
+        }
     }
+    private var keyboardEndFrame: CGRect = .zero
+    private var keyboardBeginFrame: CGRect = .zero
     
     init(barHeight: CGFloat = 60.0, panelHeight: CGFloat = 236.0) {
         self.barHeight = barHeight
@@ -73,66 +74,38 @@ class ChatRoomKeyboardNode: ASDisplayNode {
             let _ = toolBar.resignFirstResponder()
         } else {
             let superNodeHeight = supernode?.bounds.height ?? Constants.screenHeight
-            if superNodeHeight - frame.origin.y > barHeight {
-                UIView.animate(withDuration: 0.25) {
-                    self.lastKeyboardOffsetY = self.frame.origin.y
-                    let y = superNodeHeight - self.barHeight - self.bottomInset
-                    self.frame.origin.y = y
-                    self.toolsPanel.frame.origin.y = self.bounds.height
-                    self.emotionPanel.frame.origin.y = self.bounds.height
-                    self.updateTableNodeFrame()
-                }
+            if superNodeHeight - frame.origin.y > (barHeight + self.bottomInset) {
+                self.keyboardType = .none
             }
         }
+    }
+    
+    private func transitionLayout() {
+        self.transitionLayout(withAnimation: true, shouldMeasureAsync: false, measurementCompletion: nil)
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: Notification) {
         switch toolBar.keyboard {
         case .emotion:
-            self.toolsPanel.isHidden = true
-            self.emotionPanel.isHidden = false
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
-                self.lastKeyboardOffsetY = self.frame.origin.y
-                self.frame.origin.y = Constants.screenHeight - self.bounds.height - Constants.topInset - 44
-                self.emotionPanel.frame.origin.y = self.barHeight
-                self.toolsPanel.frame.origin.y = self.bounds.height
-                self.updateTableNodeFrame()
-            }, completion: nil)
+            self.keyboardType = .emotion
         case .tools:
-            self.toolsPanel.isHidden = false
-            self.emotionPanel.isHidden = true
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
-                self.lastKeyboardOffsetY = self.frame.origin.y
-                self.frame.origin.y = Constants.screenHeight - self.bounds.height - Constants.topInset - 44
-                self.emotionPanel.frame.origin.y = self.bounds.height
-                self.toolsPanel.frame.origin.y = self.barHeight
-                self.updateTableNodeFrame()
-            }, completion: nil)
+            self.keyboardType = .tools
         case .none:
             guard let beginFrame = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
                 let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
                 let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
                     return
             }
-            let superNodeHeight = supernode?.bounds.height ?? Constants.screenHeight
-            let targetY = endFrame.origin.y - toolBar.bounds.height - (Constants.screenHeight - superNodeHeight)
-            UIView.animate(withDuration: 0.25) {
-                if beginFrame.size.height >= 0 && beginFrame.origin.y - endFrame.origin.y > 0 {
-                    self.lastKeyboardOffsetY = self.frame.origin.y
-                    self.frame.origin.y = targetY
-                    self.emotionPanel.frame.origin.y = self.bounds.height
-                    self.toolsPanel.frame.origin.y = self.bounds.height
-                    print(self.bounds.height)
-                    self.updateTableNodeFrame()
-                } else if endFrame.origin.y == Constants.screenHeight && beginFrame.origin.y != endFrame.origin.y && duration > 0 {
-                    self.lastKeyboardOffsetY = self.frame.origin.y
-                    self.frame.origin.y = targetY - self.bottomInset
-                    self.updateTableNodeFrame()
-                } else if beginFrame.origin.y - endFrame.origin.y < 0 && duration == 0.0 {
-                    self.lastKeyboardOffsetY = self.frame.origin.y
-                    self.frame.origin.y = targetY - self.bottomInset
-                    self.updateTableNodeFrame()
+            self.keyboardEndFrame = endFrame
+            self.keyboardBeginFrame = beginFrame
+            if beginFrame.size.height >= 0 && beginFrame.origin.y - endFrame.origin.y > 0 {
+                self.keyboardType = .input
+            } else if endFrame.origin.y == Constants.screenHeight && beginFrame.origin.y != endFrame.origin.y && duration > 0 {
+                if !isSwipeBackGestureCauseKeyboardDismiss {
+                    self.keyboardType = .none
                 }
+            } else if beginFrame.origin.y - endFrame.origin.y < 0 && duration == 0.0 {
+                self.keyboardType = .none
             }
         default:
             break
@@ -174,6 +147,48 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
         return ASInsetLayoutSpec(insets: .zero, child: stack)
     }
+    
+    override func animateLayoutTransition(_ context: ASContextTransitioning) {
+        
+        let containerHeight = Constants.screenHeight - Constants.topInset - 44
+        
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
+            self.lastKeyboardOffsetY = self.frame.origin.y
+            switch self.keyboardType {
+            case .none:
+                self.toolsPanel.isHidden = true
+                self.emotionPanel.isHidden = true
+                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.toolsPanel.frame.origin.y = self.bounds.height
+                self.frame.origin.y = containerHeight - self.barHeight - self.bottomInset
+            case .input:
+                self.toolsPanel.isHidden = true
+                self.emotionPanel.isHidden = true
+                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.toolsPanel.frame.origin.y = self.bounds.height
+                self.frame.origin.y = self.keyboardEndFrame.origin.y - self.barHeight - (Constants.screenHeight - containerHeight)
+            case .emotion:
+                self.toolsPanel.isHidden = true
+                self.emotionPanel.isHidden = false
+                self.frame.origin.y = containerHeight - self.bounds.height
+                self.emotionPanel.frame.origin.y = self.barHeight
+                self.toolsPanel.frame.origin.y = self.bounds.height
+            case .tools:
+                self.toolsPanel.isHidden = false
+                self.emotionPanel.isHidden = true
+                self.frame.origin.y = containerHeight - self.bounds.height
+                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.toolsPanel.frame.origin.y = self.barHeight
+            case .voice:
+                print("voice")
+            }
+            self.updateTableNodeFrame()
+            
+        }) { completed in
+            context.completeTransition(completed)
+        }
+        
+    }
 }
 
 // MARK: - ChatRoomToolBarNodeDelegate
@@ -184,30 +199,7 @@ extension ChatRoomKeyboardNode: ChatRoomToolBarNodeDelegate {
     }
     
     func toolBar(_ toolBar: ChatRoomToolBarNode, keyboardTypeChanged keyboard: ChatRoomKeyboardType) {
-        switch keyboard {
-        case .emotion:
-            toolsPanel.isHidden = true
-            emotionPanel.isHidden = false
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
-                self.lastKeyboardOffsetY = self.frame.origin.y
-                self.frame.origin.y = self.supernode!.bounds.height - self.bounds.height
-                self.emotionPanel.frame.origin.y = self.barHeight
-                self.toolsPanel.frame.origin.y = self.frame.height
-                self.updateTableNodeFrame()
-            }, completion: nil)
-        case .tools:
-            toolsPanel.isHidden = false
-            emotionPanel.isHidden = true
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
-                self.lastKeyboardOffsetY = self.frame.origin.y
-                self.frame.origin.y = self.supernode!.bounds.height - self.bounds.height
-                self.emotionPanel.frame.origin.y = self.frame.height
-                self.toolsPanel.frame.origin.y = self.barHeight
-                self.updateTableNodeFrame()
-            }, completion: nil)
-        default:
-            break
-        }
+        self.keyboardType = keyboard
     }
     
 }

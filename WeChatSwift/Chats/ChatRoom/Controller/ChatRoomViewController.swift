@@ -54,8 +54,15 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         tableNode.view.backgroundColor = Colors.backgroundColor
         tableNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenHeight - 34 - 60)
         inputNode.tableNode = tableNode
+        inputNode.delegate = self
         
         scrollToLastMessage(animated: false)
+        
+        navigationController?.interactivePopGestureRecognizer?.addTarget(self, action: #selector(handlePopGesture(_:)))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     func scrollToLastMessage(animated: Bool) {
@@ -67,9 +74,25 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
             }
         }
     }
+}
+
+// MARK: - Event Handlers
+
+extension ChatRoomViewController {
+    
+    @objc private func handlePopGesture(_ gesture: UIGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            inputNode.isSwipeBackGestureCauseKeyboardDismiss = true
+        case .cancelled, .ended:
+            inputNode.isSwipeBackGestureCauseKeyboardDismiss = false
+        default:
+            inputNode.isSwipeBackGestureCauseKeyboardDismiss = true
+        }
+    }
     
     @objc private func moreButtonClicked() {
-    
+        
     }
 }
 
@@ -98,5 +121,15 @@ extension ChatRoomViewController: ASTableDataSource, ASTableDelegate {
 extension ChatRoomViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         inputNode.dismissKeyboard()
+    }
+}
+
+
+// MARK: - ChatRoomKeyboardNodeDelegate
+
+extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
+    
+    func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendText text: String) {
+        
     }
 }
