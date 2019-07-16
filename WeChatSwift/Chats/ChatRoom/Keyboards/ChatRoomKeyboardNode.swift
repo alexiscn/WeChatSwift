@@ -113,17 +113,15 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     }
     
     func updateTableNodeFrame() {
-        guard let tableNode = tableNode else {
-            return
-        }
-        let originOffsetY = tableNode.contentOffset.y
+        guard let tableNode = tableNode else { return }
+        let tableNodeOffsetY = tableNode.contentOffset.y
         let keyboardOffsetY = self.frame.origin.y - lastKeyboardOffsetY
         
         tableNode.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.frame.origin.y)
         let contentSizeDiff = tableNode.view.contentSize.height - tableNode.bounds.height
         var offset: CGFloat = 0.0
         if fabsf(Float(contentSizeDiff)) > fabsf(Float(keyboardOffsetY)) {
-            offset = originOffsetY - keyboardOffsetY
+            offset = tableNodeOffsetY - keyboardOffsetY
         } else {
             offset = contentSizeDiff
         }
@@ -189,7 +187,11 @@ class ChatRoomKeyboardNode: ASDisplayNode {
                 self.emotionPanel.frame.origin.y = self.bounds.height
                 self.toolsPanel.frame.origin.y = self.barHeight
             case .voice:
-                print("voice")
+                self.toolsPanel.isHidden = true
+                self.emotionPanel.isHidden = true
+                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.toolsPanel.frame.origin.y = self.bounds.height
+                self.frame.origin.y = containerHeight - self.barHeight - self.bottomInset
             }
             self.updateTableNodeFrame()
             

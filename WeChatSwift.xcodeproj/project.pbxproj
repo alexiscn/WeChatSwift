@@ -127,6 +127,11 @@
 		A3CA523022CE1CBE00C67D92 /* icons_outlined_album.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA522F22CE1CBE00C67D92 /* icons_outlined_album.svg */; };
 		A3CA523222CE1D0000C67D92 /* icons_outlined_sticker.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA523122CE1D0000C67D92 /* icons_outlined_sticker.svg */; };
 		A3CA523422CE1D7B00C67D92 /* icons_outlined_setting.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA523322CE1D7B00C67D92 /* icons_outlined_setting.svg */; };
+		A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE01422DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg */; };
+		A3CCE01722DDA0DF0003DC25 /* icons_outlined_like.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE01622DDA0DE0003DC25 /* icons_outlined_like.svg */; };
+		A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE01822DDD3D10003DC25 /* Emoticon.swift */; };
+		A3CCE01B22DDD9150003DC25 /* Emoticons.json in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE01A22DDD9150003DC25 /* Emoticons.json */; };
+		A3CCE01D22DDDA0A0003DC25 /* Emoticons.zip in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE01C22DDDA0A0003DC25 /* Emoticons.zip */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -254,6 +259,11 @@
 		A3CA522F22CE1CBE00C67D92 /* icons_outlined_album.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_album.svg; sourceTree = "<group>"; };
 		A3CA523122CE1D0000C67D92 /* icons_outlined_sticker.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_sticker.svg; sourceTree = "<group>"; };
 		A3CA523322CE1D7B00C67D92 /* icons_outlined_setting.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_setting.svg; sourceTree = "<group>"; };
+		A3CCE01422DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_takephoto_nor.svg; sourceTree = "<group>"; };
+		A3CCE01622DDA0DE0003DC25 /* icons_outlined_like.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_like.svg; sourceTree = "<group>"; };
+		A3CCE01822DDD3D10003DC25 /* Emoticon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoticon.swift; sourceTree = "<group>"; };
+		A3CCE01A22DDD9150003DC25 /* Emoticons.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Emoticons.json; sourceTree = "<group>"; };
+		A3CCE01C22DDDA0A0003DC25 /* Emoticons.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Emoticons.zip; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -418,6 +428,7 @@
 				A3CA522722CE1A8A00C67D92 /* MeTableModel.swift */,
 				A37221A222D5474A003403D4 /* ChatRoomTool.swift */,
 				A372227B22D62033003403D4 /* Expression.swift */,
+				A3CCE01822DDD3D10003DC25 /* Emoticon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,6 +528,8 @@
 				A3CA51C322CD9C1C00C67D92 /* Icons */,
 				A372227922D6154C003403D4 /* Expressions.json */,
 				A372228A22D984D9003403D4 /* flutter.jpeg */,
+				A3CCE01C22DDDA0A0003DC25 /* Emoticons.zip */,
+				A3CCE01A22DDD9150003DC25 /* Emoticons.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -524,6 +537,8 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A3CCE01622DDA0DE0003DC25 /* icons_outlined_like.svg */,
+				A3CCE01422DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg */,
 				A328C25C22D590670060C391 /* icons_filled_more.svg */,
 				A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */,
 				A374866622D4B031002EEC4F /* icons_filled_sticker.svg */,
@@ -675,10 +690,12 @@
 				A3CA51E722CD9FDC00C67D92 /* icons_outlined_miniprogram.svg in Resources */,
 				A374865F22D4AEF3002EEC4F /* icons_filled_album.svg in Resources */,
 				A3CA51D722CD9F9400C67D92 /* icons_outlined_scan.svg in Resources */,
+				A3CCE01B22DDD9150003DC25 /* Emoticons.json in Resources */,
 				A3CA51B722CD9B1E00C67D92 /* icons_filled_scan.svg in Resources */,
 				A3CA51B922CD9B2800C67D92 /* icons_filled_mobile-contacts.svg in Resources */,
 				A3CA520322CDAFD100C67D92 /* icon_filled_timelineop.svg in Resources */,
 				A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */,
+				A3CCE01D22DDDA0A0003DC25 /* Emoticons.zip in Resources */,
 				A3CA51ED22CDA0F300C67D92 /* icons_outlined_addfriends.svg in Resources */,
 				A374865922D4A2BC002EEC4F /* icons_outlined_add2.svg in Resources */,
 				A3CA520922CDC93E00C67D92 /* icons_filled_pay.svg in Resources */,
@@ -702,6 +719,7 @@
 				A3CA51D322CD9C9300C67D92 /* icons_outlined_chats.svg in Resources */,
 				A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */,
 				A3CA51DF22CD9FB900C67D92 /* icons_outlined_nearby.svg in Resources */,
+				A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
 				A3CA520222CDAFD100C67D92 /* icon_filled_timelineophl.svg in Resources */,
 				A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */,
@@ -724,6 +742,7 @@
 				A3CA51CB22CD9C6600C67D92 /* icons_filled_discover.svg in Resources */,
 				A3CA520F22CDD5F400C67D92 /* ui-resources_badge_count.svg in Resources */,
 				A372227A22D6154C003403D4 /* Expressions.json in Resources */,
+				A3CCE01722DDA0DF0003DC25 /* icons_outlined_like.svg in Resources */,
 				A3CA521622CDF4EF00C67D92 /* Cersei.jpg in Resources */,
 				A3CA51FF22CDAF1400C67D92 /* icons_filled_radar.svg in Resources */,
 				A3CA520722CDC90F00C67D92 /* icons_filled_add-friends.svg in Resources */,
@@ -767,7 +786,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -775,6 +794,7 @@
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLiteRepairKit/sqliterk.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SVGKit/SVGKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
@@ -793,6 +813,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqliterk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVGKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
@@ -802,7 +823,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -844,6 +865,7 @@
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
+				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,

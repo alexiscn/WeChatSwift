@@ -8,6 +8,7 @@ target 'WeChatSwift' do
     pod 'WXActionSheet'
     pod 'WCDB.swift'
     pod 'Texture'
+    pod 'SSZipArchive'
 
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'
 end

@@ -22,6 +22,7 @@ PODS:
   - SnapKit (5.0.0)
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
+  - SSZipArchive (2.2.2)
   - SVGKit (2.1.0):
     - CocoaLumberjack (~> 3.0)
   - Texture (2.8.1):
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - Alamofire
   - Kingfisher
   - SnapKit
+  - SSZipArchive
   - SVGKit (from `DevelopmentPods/SVGKit`)
   - Texture
   - WCDB.swift
@@ -69,6 +71,7 @@ SPEC REPOS:
     - PINRemoteImage
     - SnapKit
     - SQLiteRepairKit
+    - SSZipArchive
     - Texture
     - WCDB.swift
     - WCDBOptimizedSQLCipher
@@ -87,12 +90,13 @@ SPEC CHECKSUMS:
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
-  SVGKit: eb32a7710074d7c543d70a745634a4358bda66ee
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  SVGKit: 738dc9c82dc0e0e07b27a9f934fc4aaddebd5236
   Texture: 8ecf6984065a1e54f06bf97b349ecca28582acd7
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: e80e27ce19211d8f105f8e148700e0e36c444656
 
-PODFILE CHECKSUM: dd8eab95635ab0284c1c1ba83001be7e475bcc2d
+PODFILE CHECKSUM: cf9768f9f5a8c5a690355df575395c642b0fec37
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.5.3
