@@ -9,5 +9,16 @@ Requirements
 
 
 
+Screenshots
+==
+
+![](/Screenshots/sessions.jpeg)
+
+![](/Screenshots/chats.jpeg)
+
+![](/Screenshots/discover.jpeg)
+
+![](/Screenshots/moments.jpeg)
+
 
 Resources and App Design copyrights to [Wechat](https://weixin.qq.com/). 
