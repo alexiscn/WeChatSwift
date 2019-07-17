@@ -40,7 +40,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         button.setImage(Images.Voice, for: .normal)
         button.setImage(Images.Keyboard, for: .selected)
         button.style.preferredSize = CGSize(width: 40, height: 40)
-        button.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
+        button.imageNode.style.preferredSize = CGSize(width: 32, height: 32)
         return button
     }()
     
@@ -49,7 +49,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         button.setImage(Images.Sticker, for: .normal)
         button.setImage(Images.Keyboard, for: .selected)
         button.style.preferredSize = CGSize(width: 40, height: 40)
-        button.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
+        button.imageNode.style.preferredSize = CGSize(width: 32, height: 32)
         return button
     }()
     
@@ -57,7 +57,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         let button = ASButtonNode()
         button.setImage(Images.More, for: .normal)
         button.style.preferredSize = CGSize(width: 40, height: 40)
-        button.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
+        button.imageNode.style.preferredSize = CGSize(width: 32, height: 32)
         return button
     }()
     
@@ -96,7 +96,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         buttonNodes.forEach { node in
             node.addTarget(self, action: #selector(tapToolBarButtonNode(_:)), forControlEvents: .touchUpInside)
             node.style.preferredSize = CGSize(width: 40.0, height: 40.0)
-            node.imageNode.style.preferredSize = CGSize(width: 30, height: 30)
+            node.imageNode.style.preferredSize = CGSize(width: 32, height: 32)
         }
     }
     
@@ -125,7 +125,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         moreNode.style.spacingBefore = -6
         moreNode.style.spacingAfter = 3
         
-        textNode.style.preferredSize = CGSize(width: 0, height: frame.height - 20)
+        textNode.style.preferredSize = CGSize(width: 0, height: 40)
         textNode.style.flexGrow = 1.0
         
         let layoutSpec = ASStackLayoutSpec.horizontal()

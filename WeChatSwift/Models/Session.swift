@@ -45,7 +45,7 @@ extension Session {
     func attributedStringForSubTitle() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 14),
-            .foregroundColor: UIColor(hexString: "9A9B9C")
+            .foregroundColor: UIColor(hexString: "9B9B9B")
         ]
         return NSAttributedString(string: content ?? "", attributes: attributes)
     }

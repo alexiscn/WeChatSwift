@@ -14,7 +14,7 @@ class ImageContentNode: MessageContentNode {
     
     private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
     
-    override init(message: Message) {
+    init(message: Message, imageMsg: ImageMessage) {
         
         super.init(message: message)
         
@@ -23,19 +23,12 @@ class ImageContentNode: MessageContentNode {
         imageNode.cornerRoundingType = .clipping
         addSubnode(imageNode)
         
-        switch message.content {
-        case .image(let imageMsg):
-            let size = imageMsg.size == .zero ? defaultImageSize: imageMsg.size
-            imageNode.style.preferredSize = size
-            
-            if let image = imageMsg.image {
-                imageNode.image = image
-            } else {
-                imageNode.url = imageMsg.url
-            }
-            
-        default:
-            break
+        let size = imageMsg.size == .zero ? defaultImageSize: imageMsg.size
+        imageNode.style.preferredSize = size
+        if let image = imageMsg.image {
+            imageNode.image = image
+        } else {
+            imageNode.url = imageMsg.url
         }
     }
     

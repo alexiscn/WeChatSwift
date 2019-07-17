@@ -52,9 +52,10 @@ public enum MessageContent {
     case image(ImageMessage)
     case location(CLLocation)
     case media
-    case link(URL)
-    case audio(AudioMessage)
+    case link(AppURLMessage)
+    case voice(VoiceMessage)
     case redPacket(RedPacketMessage)
+    case emoticon(EmoticonMessage)
     
     var sessionContent: String {
         switch self {
@@ -87,7 +88,7 @@ public struct ImageMessage {
     }
 }
 
-public struct AudioMessage {
+public struct VoiceMessage {
     
     var duration: Int = 1
     
@@ -98,4 +99,38 @@ public struct RedPacketMessage {
     var title: String
     
     var amount: Float
+}
+
+public struct AppURLMessage {
+    
+    var URL: URL?
+    
+    var title: String?
+    
+    var subTitle: String?
+    
+    var thumbImage: UIImage?
+    
+    func attributedStringForTitle() -> NSAttributedString? {
+        guard let title = title else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: Colors.black
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
+    }
+    
+    func attributedStringForSubTitle() -> NSAttributedString? {
+        guard let subTitle = subTitle else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+            NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
+        ]
+        return NSAttributedString(string: subTitle, attributes: attributes)
+        
+    }
+}
+
+public struct EmoticonMessage {
+    
 }

@@ -41,9 +41,9 @@
 		A374864022D44711002EEC4F /* ImageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374863F22D44711002EEC4F /* ImageContentNode.swift */; };
 		A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864122D44C48002EEC4F /* LocationContentNode.swift */; };
 		A374864422D44C56002EEC4F /* VideoContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864322D44C56002EEC4F /* VideoContentNode.swift */; };
-		A374864622D44C74002EEC4F /* EmotionContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864522D44C74002EEC4F /* EmotionContentNode.swift */; };
+		A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864522D44C74002EEC4F /* EmoticonContentNode.swift */; };
 		A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864722D44CA6002EEC4F /* MiniProgramContentNode.swift */; };
-		A374864A22D44CB8002EEC4F /* AudioContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864922D44CB8002EEC4F /* AudioContentNode.swift */; };
+		A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864922D44CB8002EEC4F /* VoiceContentNode.swift */; };
 		A374864C22D44D34002EEC4F /* UnknownContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864B22D44D34002EEC4F /* UnknownContentNode.swift */; };
 		A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374864D22D44D46002EEC4F /* NoticeContentNode.swift */; };
 		A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374865122D461C0002EEC4F /* MessageContentNode.swift */; };
@@ -137,7 +137,7 @@
 		A3CCE02422DDECFA0003DC25 /* red_envelopes_detail_top_bg.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE02122DDECF90003DC25 /* red_envelopes_detail_top_bg.svg */; };
 		A3CCE02522DDECFA0003DC25 /* red_envelopes_top_bg.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE02222DDECF90003DC25 /* red_envelopes_top_bg.svg */; };
 		A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE02622DDED1F0003DC25 /* VOIPContentNode.swift */; };
-		A3CCE02922DDEEBC0003DC25 /* LinkContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE02822DDEEBC0003DC25 /* LinkContentNode.swift */; };
+		A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE02822DDEEBC0003DC25 /* AppURLContentNode.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,9 +179,9 @@
 		A374863F22D44711002EEC4F /* ImageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContentNode.swift; sourceTree = "<group>"; };
 		A374864122D44C48002EEC4F /* LocationContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContentNode.swift; sourceTree = "<group>"; };
 		A374864322D44C56002EEC4F /* VideoContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContentNode.swift; sourceTree = "<group>"; };
-		A374864522D44C74002EEC4F /* EmotionContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionContentNode.swift; sourceTree = "<group>"; };
+		A374864522D44C74002EEC4F /* EmoticonContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonContentNode.swift; sourceTree = "<group>"; };
 		A374864722D44CA6002EEC4F /* MiniProgramContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniProgramContentNode.swift; sourceTree = "<group>"; };
-		A374864922D44CB8002EEC4F /* AudioContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioContentNode.swift; sourceTree = "<group>"; };
+		A374864922D44CB8002EEC4F /* VoiceContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceContentNode.swift; sourceTree = "<group>"; };
 		A374864B22D44D34002EEC4F /* UnknownContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownContentNode.swift; sourceTree = "<group>"; };
 		A374864D22D44D46002EEC4F /* NoticeContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeContentNode.swift; sourceTree = "<group>"; };
 		A374865122D461C0002EEC4F /* MessageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContentNode.swift; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		A3CCE02122DDECF90003DC25 /* red_envelopes_detail_top_bg.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = red_envelopes_detail_top_bg.svg; sourceTree = "<group>"; };
 		A3CCE02222DDECF90003DC25 /* red_envelopes_top_bg.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = red_envelopes_top_bg.svg; sourceTree = "<group>"; };
 		A3CCE02622DDED1F0003DC25 /* VOIPContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOIPContentNode.swift; sourceTree = "<group>"; };
-		A3CCE02822DDEEBC0003DC25 /* LinkContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkContentNode.swift; sourceTree = "<group>"; };
+		A3CCE02822DDEEBC0003DC25 /* AppURLContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURLContentNode.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -486,14 +486,14 @@
 				A374863D22D445B6002EEC4F /* TextContentNode.swift */,
 				A374863F22D44711002EEC4F /* ImageContentNode.swift */,
 				A374864322D44C56002EEC4F /* VideoContentNode.swift */,
-				A374864922D44CB8002EEC4F /* AudioContentNode.swift */,
+				A374864922D44CB8002EEC4F /* VoiceContentNode.swift */,
 				A374864122D44C48002EEC4F /* LocationContentNode.swift */,
-				A374864522D44C74002EEC4F /* EmotionContentNode.swift */,
+				A374864522D44C74002EEC4F /* EmoticonContentNode.swift */,
 				A374864722D44CA6002EEC4F /* MiniProgramContentNode.swift */,
 				A374864D22D44D46002EEC4F /* NoticeContentNode.swift */,
 				A3CCE01E22DDEADE0003DC25 /* RedPacketContentNode.swift */,
 				A3CCE02622DDED1F0003DC25 /* VOIPContentNode.swift */,
-				A3CCE02822DDEEBC0003DC25 /* LinkContentNode.swift */,
+				A3CCE02822DDEEBC0003DC25 /* AppURLContentNode.swift */,
 				A374864B22D44D34002EEC4F /* UnknownContentNode.swift */,
 			);
 			path = Cells;
@@ -865,9 +865,9 @@
 				A374866B22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift in Sources */,
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
-				A3CCE02922DDEEBC0003DC25 /* LinkContentNode.swift in Sources */,
+				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */,
-				A374864A22D44CB8002EEC4F /* AudioContentNode.swift in Sources */,
+				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
@@ -895,7 +895,7 @@
 				A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
-				A374864622D44C74002EEC4F /* EmotionContentNode.swift in Sources */,
+				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,

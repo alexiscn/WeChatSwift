@@ -14,20 +14,12 @@ class TextContentNode: MessageContentNode {
     
     private let textNode: MessageTextNode = MessageTextNode()
     
-    override init(message: Message) {
+    init(message: Message, text: String) {
         super.init(message: message)
         
         let icon = message.isOutgoing ? "ChatRoom_Bubble_Text_Sender_Green_57x40_": "ChatRoom_Bubble_Text_Receiver_White_57x40_"
         bubbleNode.image = UIImage(named: icon)
         bubbleNode.style.flexShrink = 1
-        
-        var text = ""
-        switch message.content {
-        case .text(let content):
-            text = content
-        default:
-            break
-        }
         
         addSubnode(bubbleNode)
         addSubnode(textNode)

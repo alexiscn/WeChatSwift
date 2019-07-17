@@ -1,5 +1,5 @@
 //
-//  AudioContentNode.swift
+//  VoiceContentNode.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/7/9.
@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class AudioContentNode: MessageContentNode {
+class VoiceContentNode: MessageContentNode {
     
     private let bubbleNode = ASImageNode()
     

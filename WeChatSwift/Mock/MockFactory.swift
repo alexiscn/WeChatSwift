@@ -167,7 +167,7 @@ class MockFactory {
             if index % 3 == 0 {
                 msg.content = .image(ImageMessage(image: UIImage(named: "Bran.jpg"), size: .zero))
             } else if index % 4 == 0 {
-                msg.content = .audio(AudioMessage(duration: 4))
+                msg.content = .voice(VoiceMessage(duration: 4))
             } else {
                 msg.content = .text(randomMessage())
             }

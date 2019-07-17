@@ -13,12 +13,16 @@ final class ChatRoomCellNodeFactory {
     class func node(for message: Message) -> MessageCellNode {
         var contentNode: MessageContentNode
         switch message.content {
-        case .text(_):
-            contentNode = TextContentNode(message: message)
-        case .image(_):
-            contentNode = ImageContentNode(message: message)
-        case .audio(_):
-            contentNode = AudioContentNode(message: message)
+        case .text(let txtMsg):
+            contentNode = TextContentNode(message: message, text: txtMsg)
+        case .image(let imageMsg):
+            contentNode = ImageContentNode(message: message, imageMsg: imageMsg)
+        case .emoticon(let emoticonMsg):
+            contentNode = EmoticonContentNode(message: message, emoticon: emoticonMsg)
+        case .voice(_):
+            contentNode = VoiceContentNode(message: message)
+        case .link(let appURL):
+            contentNode = AppURLContentNode(message: message, appURL: appURL)
         default:
             contentNode = UnknownContentNode(message: message)
         }

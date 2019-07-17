@@ -37,7 +37,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     private var keyboardEndFrame: CGRect = .zero
     private var keyboardBeginFrame: CGRect = .zero
     
-    init(barHeight: CGFloat = 60.0, panelHeight: CGFloat = 236.0) {
+    init(barHeight: CGFloat = 56.0, panelHeight: CGFloat = 240.0) {
         self.barHeight = barHeight
         self.panelHeight = panelHeight
         self.bottomInset = Constants.bottomInset
