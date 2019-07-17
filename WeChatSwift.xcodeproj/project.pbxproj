@@ -11,6 +11,10 @@
 		A32333B922DF091D00B79555 /* icons_outlined_mute.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32333B822DF091D00B79555 /* icons_outlined_mute.svg */; };
 		A32333BB22DF0C6900B79555 /* WCBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333BA22DF0C6900B79555 /* WCBadgeView.swift */; };
 		A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333BC22DF0F6A00B79555 /* BadgeNode.swift */; };
+		A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */; };
+		A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */; };
+		A32333C422DF216200B79555 /* EmoticonBoardPageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */; };
+		A32333C622DF296600B79555 /* EmoticonGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C522DF296600B79555 /* EmoticonGridNode.swift */; };
 		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
 		A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
@@ -150,6 +154,10 @@
 		A32333B822DF091D00B79555 /* icons_outlined_mute.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icons_outlined_mute.svg; sourceTree = "<group>"; };
 		A32333BA22DF0C6900B79555 /* WCBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBadgeView.swift; sourceTree = "<group>"; };
 		A32333BC22DF0F6A00B79555 /* BadgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeNode.swift; sourceTree = "<group>"; };
+		A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardTabBarNode.swift; sourceTree = "<group>"; };
+		A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardNode.swift; sourceTree = "<group>"; };
+		A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardPageCellNode.swift; sourceTree = "<group>"; };
+		A32333C522DF296600B79555 /* EmoticonGridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonGridNode.swift; sourceTree = "<group>"; };
 		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmotionLayoutDelegate.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
@@ -315,6 +323,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A32333BE22DF1C8200B79555 /* EmoticonBoard */ = {
+			isa = PBXGroup;
+			children = (
+				A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */,
+				A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */,
+				A32333C522DF296600B79555 /* EmoticonGridNode.swift */,
+				A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */,
+			);
+			path = EmoticonBoard;
+			sourceTree = "<group>";
+		};
 		A326847922D6DCBD00F1EC91 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +496,7 @@
 		A374862822D4382C002EEC4F /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				A32333BE22DF1C8200B79555 /* EmoticonBoard */,
 				A374866C22D4C3BC002EEC4F /* Controller */,
 				A374865322D49413002EEC4F /* Keyboards */,
 				A374863122D43BE2002EEC4F /* Cells */,
@@ -870,6 +890,7 @@
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
+				A32333C422DF216200B79555 /* EmoticonBoardPageCellNode.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
 				A3CA51AC22CD99FD00C67D92 /* AddContactViewController.swift in Sources */,
 				A374866B22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift in Sources */,
@@ -888,7 +909,9 @@
 				A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */,
 				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
 				A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */,
+				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
+				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,
@@ -900,6 +923,7 @@
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
+				A32333C622DF296600B79555 /* EmoticonGridNode.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
