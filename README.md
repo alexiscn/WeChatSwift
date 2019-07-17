@@ -12,7 +12,7 @@ Requirements
 Screenshots
 ==
 
-![](/Screenshots/sessions.jpeg)
+![](/Screenshots/sessions.jpeg | width=375)
 
 ![](/Screenshots/chats.jpeg)
 
