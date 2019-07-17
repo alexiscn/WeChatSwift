@@ -32,7 +32,7 @@ class ContactCellNode: ASCellNode {
         
         titleNode.attributedText = NSAttributedString(string: model.name, attributes: [
             .foregroundColor: Colors.black,
-            .font: UIFont.systemFont(ofSize: 16)
+            .font: UIFont.systemFont(ofSize: 17)
         ])
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
         arrowNode.style.preferredSize = CGSize(width: 12, height: 12)
@@ -42,7 +42,7 @@ class ContactCellNode: ASCellNode {
         
         imageNode.style.spacingBefore = 16
         imageNode.style.spacingAfter = 16
-        imageNode.style.preferredSize = CGSize(width: 36, height: 36)
+        imageNode.style.preferredSize = CGSize(width: 40, height: 40)
         
         titleNode.style.flexGrow = 1.0
         titleNode.style.flexShrink = 1.0
@@ -53,6 +53,6 @@ class ContactCellNode: ASCellNode {
         stack.alignItems = .center
         stack.children = [imageNode, titleNode, arrowNode]
         
-        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0), child: stack)
+        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0), child: stack)
     }
 }

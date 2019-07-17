@@ -45,9 +45,9 @@ class DiscoverViewController: ASViewController<ASTableNode> {
     }
     
     private func setupDataSource() {
-        sections.append(DiscoverSection(models: [
-            DiscoverModel(type: .moment, title: "朋友圈", icon: "icons_outlined_colorful_moment")
-            ]))
+        var moment = DiscoverModel(type: .moment, title: "朋友圈", icon: "icons_outlined_colorful_moment")
+        moment.unreadCount = 2
+        sections.append(DiscoverSection(models: [moment]))
         
         sections.append(DiscoverSection(models: [
             DiscoverModel(type: .scan, title: "扫一扫", icon: "icons_outlined_scan", color: Colors.indigo),

@@ -14,7 +14,7 @@ class SessionCellNode: ASCellNode {
     
     private let avatarNode = ASImageNode()
     
-    private let badgeNode = SessionBadgeNode()
+    private let badgeNode = BadgeNode()
     
     private let titleNode = ASTextNode()
     
@@ -45,7 +45,10 @@ class SessionCellNode: ASCellNode {
         
         subTitleNode.attributedText = session.attributedStringForSubTitle()
         subTitleNode.maximumNumberOfLines = 1
-        muteNode.image = UIImage.SVGImage(named: "icons_outlined_mute")
+        
+        muteNode.image = UIImage.as_imageNamed("chatNotPush_15x15_")
+        muteNode.style.spacingAfter = 16
+        muteNode.style.preferredSize = CGSize(width: 15, height: 15)
         
         hairlineNode.backgroundColor = UIColor(white: 0, alpha: 0.15)
         hairlineNode.style.preferredSize = CGSize(width: 9, height: Constants.lineHeight)
@@ -55,7 +58,6 @@ class SessionCellNode: ASCellNode {
         super.didLoad()
         
         backgroundColor = UIColor(hexString: "#FEFFFF")
-        //badgeNode.backgroundColor = .green
         badgeNode.update(count: session.unreadCount, showDot: session.showUnreadAsRedDot)
     }
     
@@ -84,7 +86,7 @@ class SessionCellNode: ASCellNode {
         topStack.children = [titleNode, timeNode]
         
         let bottomStack = ASStackLayoutSpec.horizontal()
-        bottomStack.children = session.muted ? [subTitleNode]: [subTitleNode, muteNode]
+        bottomStack.children = session.muted ? [subTitleNode, muteNode]: [subTitleNode]
         
         let stack = ASStackLayoutSpec.vertical()
         stack.style.flexGrow = 1.0

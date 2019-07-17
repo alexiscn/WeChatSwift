@@ -53,7 +53,7 @@ extension Session {
     func attributedStringForTime() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 11),
-            .foregroundColor: Colors.DEFAULT_TEXT_DISABLED_COLOR
+            .foregroundColor: Colors.DEFAUTL_TABLE_INTROL_COLOR
         ]
         return NSAttributedString(string: "12:40", attributes: attributes)
     }

@@ -151,6 +151,7 @@ class MockFactory {
             if user.identifier == "20002" {
                 session.unreadCount = 2
                 session.showUnreadAsRedDot = true
+                session.muted = true
             }
             return session
         }

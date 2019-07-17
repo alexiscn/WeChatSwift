@@ -1,5 +1,5 @@
 //
-//  SessionBadgeNode.swift
+//  BadgeNode.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/7/17.
@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class SessionBadgeNode: ASDisplayNode {
+class BadgeNode: ASDisplayNode {
     
     private let textNode = ASTextNode()
     
@@ -29,27 +29,27 @@ class SessionBadgeNode: ASDisplayNode {
     override init() {
         super.init()
         automaticallyManagesSubnodes = true
-        //backgroundColor = .green
     }
     
     func update(count: Int, showDot: Bool) {
         self.showDot = showDot
-        textNode.attributedText = NSAttributedString(string: String(count), attributes: [
-            .font: UIFont.systemFont(ofSize: 10),
-            .foregroundColor: UIColor.white
-            ])
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        textNode.attributedText = NSAttributedString(string: String(count), attributes: attributes)
         setNeedsLayout()
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         if showDot {
             badgeDotNode.style.preferredSize = CGSize(width: 20, height: 20)
-            return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0), child: badgeDotNode)
+            return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 7.5, bottom: 5, right: 0), child: badgeDotNode)
         } else {
             let center = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .minimumXY, child: textNode)
             let background = ASBackgroundLayoutSpec(child: center, background: badgeCountNode)
-            return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0), child: background)
+            return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 7.5, bottom: 0, right: 0), child: background)
         }
     }
-    
 }
+

@@ -39,4 +39,12 @@ struct DiscoverModel {
         self.unread = false
         self.unreadCount = 0
     }
+    
+    func attributedStringForTitle() -> NSAttributedString {
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: Colors.black,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
+    }
 }
