@@ -12,13 +12,13 @@ Requirements
 Screenshots
 ==
 
-![](/Screenshots/sessions.jpeg | width=375)
+<img src="/Screenshots/sessions.jpeg" width=375 />
 
-![](/Screenshots/chats.jpeg)
+<img src="/Screenshots/chats.jpeg" width=375 />
 
-![](/Screenshots/discover.jpeg)
+<img src="/Screenshots/discover.jpeg" width=375/>
 
-![](/Screenshots/moments.jpeg)
+<img src="/Screenshots/moments.jpeg" width=375/>
 
 
 Resources and App Design copyrights to [Wechat](https://weixin.qq.com/). 
