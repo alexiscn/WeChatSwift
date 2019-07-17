@@ -76,7 +76,7 @@ struct MomentWebpage {
         guard let title = title else { return nil }
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
-            .font: UIFont.systemFont(ofSize: 15)
+            .font: UIFont.systemFont(ofSize: 14.5)
         ]
         return NSAttributedString(string: title, attributes: attributes)
     }
@@ -87,7 +87,7 @@ extension Moment {
     func attributedStringForUsername(with name: String) -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Colors.DEFAULT_LINK_COLOR,
-            .font: UIFont.systemFont(ofSize: 15, weight: .semibold)
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold)
         ]
         return NSAttributedString(string: name, attributes: attributes)
     }
@@ -95,7 +95,7 @@ extension Moment {
     func timeAttributedText() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Colors.DEFAULT_TEXT_DISABLED_COLOR,
-            .font: UIFont.systemFont(ofSize: 13)
+            .font: UIFont.systemFont(ofSize: 14)
         ]
         return NSAttributedString(string: "5小时前", attributes: attributes)
     }
@@ -104,7 +104,7 @@ extension Moment {
         guard let content = content else { return nil }
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
-            .font: UIFont.systemFont(ofSize: 15)
+            .font: UIFont.systemFont(ofSize: 17)
         ]
         return NSAttributedString(string: content, attributes: attributes)
     }

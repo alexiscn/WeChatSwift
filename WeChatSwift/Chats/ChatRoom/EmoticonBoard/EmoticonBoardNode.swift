@@ -49,9 +49,10 @@ extension EmoticonBoardNode: ASCollectionDataSource, ASCollectionDelegate {
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let emoticon = dataSource[indexPath.section]
+        let sectionModel = dataSource[indexPath.section]
+        let emoticons = sectionModel.numberOfItems(at: indexPath.row)
         let block: ASCellNodeBlock = {
-            return ASCellNode()
+            return EmoticonBoardPageCellNode(emoticons: emoticons)
         }
         return block
     }

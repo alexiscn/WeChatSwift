@@ -1,5 +1,5 @@
 //
-//  EmoticonBoardPageCellNode.swift
+//  MomentContentNode.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/7/17.
@@ -8,10 +8,9 @@
 
 import AsyncDisplayKit
 
-class EmoticonBoardPageCellNode: ASCellNode {
+extension MomentCellNode {
     
-    init(emoticons: [Emoticon]) {
-        super.init()
+    class MomentContentNode: ASDisplayNode {
+        
     }
-    
 }

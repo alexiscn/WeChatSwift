@@ -15,6 +15,11 @@
 		A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */; };
 		A32333C422DF216200B79555 /* EmoticonBoardPageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */; };
 		A32333C622DF296600B79555 /* EmoticonGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C522DF296600B79555 /* EmoticonGridNode.swift */; };
+		A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C722DF4E7700B79555 /* MomentCommentNode.swift */; };
+		A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CA22DF4FEE00B79555 /* MomentWebpageContentNode.swift */; };
+		A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CC22DF501900B79555 /* MomentImageContentNode.swift */; };
+		A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */; };
+		A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333D022DF507600B79555 /* MomentContentNode.swift */; };
 		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
 		A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
@@ -158,6 +163,11 @@
 		A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardNode.swift; sourceTree = "<group>"; };
 		A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardPageCellNode.swift; sourceTree = "<group>"; };
 		A32333C522DF296600B79555 /* EmoticonGridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonGridNode.swift; sourceTree = "<group>"; };
+		A32333C722DF4E7700B79555 /* MomentCommentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentNode.swift; sourceTree = "<group>"; };
+		A32333CA22DF4FEE00B79555 /* MomentWebpageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentWebpageContentNode.swift; sourceTree = "<group>"; };
+		A32333CC22DF501900B79555 /* MomentImageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentImageContentNode.swift; sourceTree = "<group>"; };
+		A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentMultiImageContentNode.swift; sourceTree = "<group>"; };
+		A32333D022DF507600B79555 /* MomentContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentContentNode.swift; sourceTree = "<group>"; };
 		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmotionLayoutDelegate.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
@@ -334,6 +344,17 @@
 			path = EmoticonBoard;
 			sourceTree = "<group>";
 		};
+		A32333C922DF4FE100B79555 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				A32333D022DF507600B79555 /* MomentContentNode.swift */,
+				A32333CA22DF4FEE00B79555 /* MomentWebpageContentNode.swift */,
+				A32333CC22DF501900B79555 /* MomentImageContentNode.swift */,
+				A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		A326847922D6DCBD00F1EC91 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,9 +419,11 @@
 		A33DB2E622CCC9FE00A11776 /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				A32333C922DF4FE100B79555 /* Content */,
 				A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */,
 				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
 				A37221A422D568AB003403D4 /* MomentCellNode.swift */,
+				A32333C722DF4E7700B79555 /* MomentCommentNode.swift */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -889,6 +912,7 @@
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
+				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
 				A32333C422DF216200B79555 /* EmoticonBoardPageCellNode.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
@@ -928,14 +952,18 @@
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
 				A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */,
+				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
+				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
+				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
 				A33DB2EF22CCCB8E00A11776 /* SVGImage+Extensions.swift in Sources */,
+				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */,

@@ -26,7 +26,7 @@ class MomentCellNode: ASCellNode {
     
     private let moreNode: ASButtonNode
     
-    private var commentNode: ASDisplayNode?
+    private var commentNode: MomentCommentNode?
     
     private let bottomSeparator: ASDisplayNode
     
@@ -129,107 +129,5 @@ class MomentCellNode: ASCellNode {
         verticalSpec.children = [topSpacer, layoutSpec, bottomSeparator]
         
         return ASInsetLayoutSpec(insets: .zero, child: verticalSpec)
-    }
-}
-
-// MARK: - MomentContentNode
-extension MomentCellNode {
-    
-    class MomentContentNode: ASDisplayNode {
-        
-    }
-    
-}
-
-// MARK: - WebpageContentNode
-extension MomentCellNode {
-    
-    class WebpageContentNode: MomentContentNode {
-    
-        private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
-        
-        private let textNode: ASTextNode = ASTextNode()
-        
-        private let webPage: MomentWebpage
-        
-        init(webPage: MomentWebpage) {
-            
-            self.webPage = webPage
-            
-            super.init()
-            backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-            textNode.maximumNumberOfLines = 2
-            imageNode.contentMode = .scaleAspectFill
-            
-            addSubnode(imageNode)
-            addSubnode(textNode)
-            
-            imageNode.image = webPage.thumbImage
-            textNode.attributedText = webPage.attributedStringForTitle()
-        }
-        
-        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-            imageNode.style.preferredSize = CGSize(width: 40, height: 40)
-            
-            textNode.style.flexGrow = 1.0
-            textNode.style.flexShrink = 1.0
-            
-            let stack = ASStackLayoutSpec.horizontal()
-            stack.alignItems = .center
-            stack.spacing = 4.0
-            stack.children = [imageNode, textNode]
-            
-            let insets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-            return ASInsetLayoutSpec(insets: insets, child: stack)
-        }
-    }
-}
-
-// MARK: - ImageContentNode
-extension MomentCellNode {
-    
-    class ImageContentNode: MomentContentNode {
-        
-        private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
-        
-        private var ratio: CGFloat = 1.0
-        
-        init(image: MomentMedia) {
-            super.init()
-            
-            imageNode.url = image.url
-            ratio = image.size.height / image.size.width
-            
-            imageNode.contentMode = .scaleToFill
-            imageNode.clipsToBounds = true
-            imageNode.shouldCacheImage = false
-            addSubnode(imageNode)
-        }
-        
-        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-            let width = constrainedSize.max.width * 0.75
-            
-            let ratiopSpec = ASRatioLayoutSpec(ratio: ratio, child: imageNode)
-            ratiopSpec.style.maxSize = CGSize(width: width, height: width)
-            
-            let layout = ASStackLayoutSpec.horizontal()
-            layout.style.flexGrow = 1.0
-            layout.children = [ratiopSpec]
-            return layout
-        }
-    }
-}
-
-// MARK: - MultiImageContentNode
-extension MomentCellNode {
-    
-    class MultiImageContentNode: MomentContentNode {
-        override init() {
-            super.init()
-        }
-        
-        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-            return ASLayoutSpec()
-        }
     }
 }

@@ -62,7 +62,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     override func didLoad() {
         super.didLoad()
         
-        let offsetY = Constants.screenHeight - Constants.topInset - Constants.bottomInset - 44.0 - barHeight
+        let offsetY = Constants.screenHeight - Constants.statusBarHeight - Constants.bottomInset - 44.0 - barHeight
         let height = barHeight + bottomInset + panelHeight
         self.frame = CGRect(x: 0, y: offsetY, width: Constants.screenWidth, height: height)
         
@@ -157,7 +157,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     override func animateLayoutTransition(_ context: ASContextTransitioning) {
         
-        let containerHeight = Constants.screenHeight - Constants.topInset - 44
+        let containerHeight = Constants.screenHeight - Constants.statusBarHeight - 44
         
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
             self.lastKeyboardOffsetY = self.frame.origin.y
