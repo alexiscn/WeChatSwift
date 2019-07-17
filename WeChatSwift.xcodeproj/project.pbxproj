@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32333B522DEBD8A00B79555 /* SessionBadgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333B422DEBD8A00B79555 /* SessionBadgeNode.swift */; };
 		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
 		A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
@@ -22,7 +23,6 @@
 		A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2F622CCDCF500A11776 /* SessionViewController.swift */; };
 		A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2F922CCDD0400A11776 /* Session.swift */; };
 		A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FB22CCDD0B00A11776 /* Message.swift */; };
-		A33DB2FE22CCDD5000A11776 /* SessionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FD22CCDD5000A11776 /* SessionViewCell.swift */; };
 		A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */; };
 		A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB30122CCDDE200A11776 /* DiscoverModel.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
@@ -143,6 +143,7 @@
 
 /* Begin PBXFileReference section */
 		04841C8B18BE984EE8C1B6BB /* Pods-WeChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A32333B422DEBD8A00B79555 /* SessionBadgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionBadgeNode.swift; sourceTree = "<group>"; };
 		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmotionLayoutDelegate.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
@@ -160,7 +161,6 @@
 		A33DB2F622CCDCF500A11776 /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		A33DB2F922CCDD0400A11776 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A33DB2FB22CCDD0B00A11776 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		A33DB2FD22CCDD5000A11776 /* SessionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewCell.swift; sourceTree = "<group>"; };
 		A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		A33DB30122CCDDE200A11776 /* DiscoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverModel.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -459,9 +459,9 @@
 			isa = PBXGroup;
 			children = (
 				A33DB2F622CCDCF500A11776 /* SessionViewController.swift */,
-				A33DB2FD22CCDD5000A11776 /* SessionViewCell.swift */,
 				A37E73E322D89AFB008019A4 /* SessionCellNode.swift */,
 				A3CA520422CDC47100C67D92 /* SessionMoreMenuView.swift */,
+				A32333B422DEBD8A00B79555 /* SessionBadgeNode.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -877,7 +877,7 @@
 				A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */,
 				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
 				A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */,
-				A33DB2FE22CCDD5000A11776 /* SessionViewCell.swift in Sources */,
+				A32333B522DEBD8A00B79555 /* SessionBadgeNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,

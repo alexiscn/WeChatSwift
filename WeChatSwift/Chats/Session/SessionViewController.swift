@@ -36,9 +36,9 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         
         // Do any additional setup after loading the view.
         node.backgroundColor = Colors.backgroundColor
-        tableNode.frame = view.bounds
-        tableNode.view.separatorStyle = .none
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.view.separatorStyle = .none
+        tableNode.frame = view.bounds
         dataSource = MockFactory.shared.sessions()
         tableNode.reloadData()
         

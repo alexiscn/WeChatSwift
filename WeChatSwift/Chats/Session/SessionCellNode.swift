@@ -14,7 +14,7 @@ class SessionCellNode: ASCellNode {
     
     private let avatarNode = ASImageNode()
     
-    //private let redDi
+    private let badgeNode = SessionBadgeNode()
     
     private let titleNode = ASTextNode()
     
@@ -23,6 +23,8 @@ class SessionCellNode: ASCellNode {
     private let timeNode = ASTextNode()
     
     private let muteNode = ASImageNode()
+    
+    private let hairlineNode = ASDisplayNode()
     
     init(session: Session) {
         self.session = session
@@ -44,19 +46,32 @@ class SessionCellNode: ASCellNode {
         subTitleNode.attributedText = session.attributedStringForSubTitle()
         subTitleNode.maximumNumberOfLines = 1
         muteNode.image = UIImage.SVGImage(named: "icons_outlined_mute")
+        
+        hairlineNode.backgroundColor = UIColor(white: 0, alpha: 0.15)
+        hairlineNode.style.preferredSize = CGSize(width: 9, height: Constants.lineHeight)
     }
     
     override func didLoad() {
         super.didLoad()
         
         backgroundColor = UIColor(hexString: "#FEFFFF")
+        //badgeNode.backgroundColor = .green
+        badgeNode.update(count: session.unreadCount, showDot: session.showUnreadAsRedDot)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
+        badgeNode.style.preferredSize = CGSize(width: 30, height: 30)
         avatarNode.style.preferredSize = CGSize(width: 48.0, height: 48.0)
-        avatarNode.style.spacingBefore = 16
-        avatarNode.style.spacingAfter = 8
+        
+        let avatarLayout: ASLayoutSpec
+        if session.unreadCount > 0 {
+            avatarNode.style.layoutPosition = CGPoint(x: 16.0, y: 12.0)
+            badgeNode.style.layoutPosition = CGPoint(x: 47, y: -1)
+            avatarLayout = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .minimumXY, child: ASAbsoluteLayoutSpec(children: [avatarNode, badgeNode]))
+        } else {
+            avatarLayout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 12), child: avatarNode)
+        }
+        avatarLayout.style.preferredSize = CGSize(width: 72.0, height: 76.0)
         
         titleNode.style.flexGrow = 1.0
         subTitleNode.style.flexGrow = 1.0
@@ -79,10 +94,12 @@ class SessionCellNode: ASCellNode {
         
         let layout = ASStackLayoutSpec.horizontal()
         layout.alignItems = .center
-        layout.children = [avatarNode, stack]
+        layout.children = [avatarLayout, stack]
+        layout.style.preferredSize = CGSize(width: Constants.screenWidth, height: 72)
         
-        let insets = UIEdgeInsets(top: 11, left: 0, bottom: 11, right: 0)
-        
-        return ASInsetLayoutSpec(insets: insets, child: layout)
+        let abs = ASAbsoluteLayoutSpec(children: [layout, hairlineNode])
+        hairlineNode.style.layoutPosition = CGPoint(x: 76, y: 72 - Constants.lineHeight)
+        hairlineNode.style.preferredSize = CGSize(width: Constants.screenWidth - 76, height: Constants.lineHeight)
+        return abs
     }
 }

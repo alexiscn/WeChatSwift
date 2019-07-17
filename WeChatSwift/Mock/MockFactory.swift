@@ -145,6 +145,13 @@ class MockFactory {
             let session = Session(sessionID: user.identifier, name: user.name)
             session.content = randomMessage()
             session.avatar = user.avatar
+            if user.identifier == "20001" {
+                session.unreadCount = 5
+            }
+            if user.identifier == "20002" {
+                session.unreadCount = 2
+                session.showUnreadAsRedDot = true
+            }
             return session
         }
     }

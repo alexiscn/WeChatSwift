@@ -19,6 +19,8 @@ public class Session {
     
     var content: String? = nil
     
+    var unreadCount: Int = 0
+    
     /// 是否显示红点
     var showUnreadAsRedDot = false
     
