@@ -16,7 +16,7 @@ class VoiceContentNode: MessageContentNode {
     
     private let durationNode = ASTextNode()
     
-    override init(message: Message) {
+    init(message: Message, voiceMsg: VoiceMessage) {
         
         let icon = message.isOutgoing ? "ChatRoom_Bubble_Text_Sender_Green_57x40_": "ChatRoom_Bubble_Text_Receiver_White_57x40_"
         bubbleNode.image = UIImage(named: icon)
@@ -31,10 +31,7 @@ class VoiceContentNode: MessageContentNode {
         let image = message.isOutgoing ? "ChatRoom_Bubble_Voice_Sender_24x24_": "ChatRoom_Bubble_Voice_Receiver_24x24_"
         imageNode.image = UIImage.as_imageNamed(image)
         
-        durationNode.attributedText = NSAttributedString(string: "4\"", attributes: [
-            .font: UIFont.systemFont(ofSize: 13),
-            .foregroundColor: Colors.DEFAULT_TEXT_COLOR
-            ])
+        durationNode.attributedText = voiceMsg.attributedStringForDuration()
     }
  
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

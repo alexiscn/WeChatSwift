@@ -28,7 +28,7 @@ class TextContentNode: MessageContentNode {
         paragraphStyle.lineSpacing = 3
         
         textNode.attributedText = NSAttributedString(string: text, attributes: [
-            .font: UIFont.systemFont(ofSize: 15),
+            .font: UIFont.systemFont(ofSize: 17),
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
             .paragraphStyle: paragraphStyle
             ])

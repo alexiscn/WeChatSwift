@@ -40,10 +40,10 @@ struct Colors {
     
     // MARK: - Basic
     
-    /// 默认文字颜色
+    /// 默认文字颜色 #000000
     static let DEFAULT_TEXT_COLOR = UIColor(hexString: "#000000")
     
-    /// 默认灰色文字颜色
+    /// 默认灰色文字颜色 #888888
     static let DEFAULT_TEXT_GRAY_COLOR = UIColor(hexString: "#888888")
     
     /// 默认深灰色文字颜色

@@ -50,7 +50,7 @@ public enum MessageContent {
     case none
     case text(String)
     case image(ImageMessage)
-    case location(CLLocation)
+    case location(LocationMessage)
     case media
     case link(AppURLMessage)
     case voice(VoiceMessage)
@@ -92,6 +92,14 @@ public struct VoiceMessage {
     
     var duration: Int = 1
     
+    func attributedStringForDuration() -> NSAttributedString {
+        let attributes = [
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+        NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_COLOR
+        ]
+        let text = String(format: "%d\"", duration)
+        return NSAttributedString(string: text, attributes: attributes)
+    }
 }
 
 public struct RedPacketMessage {
@@ -128,6 +136,33 @@ public struct AppURLMessage {
         ]
         return NSAttributedString(string: subTitle, attributes: attributes)
         
+    }
+}
+
+public struct LocationMessage {
+    
+    var coordinate: CLLocationCoordinate2D
+    
+    var thumbImage: UIImage?
+    
+    var title: String?
+    
+    var subTitle: String?
+    
+    func attributedStringForTitle() -> NSAttributedString {
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_COLOR
+        ]
+        return NSAttributedString(string: "望京SOHOT2", attributes: attributes)
+    }
+    
+    func attributedStringForDesc() -> NSAttributedString {
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+            NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
+        ]
+        return NSAttributedString(string: "北京市朝阳区阜通东大街", attributes: attributes)
     }
 }
 

@@ -19,8 +19,10 @@ final class ChatRoomCellNodeFactory {
             contentNode = ImageContentNode(message: message, imageMsg: imageMsg)
         case .emoticon(let emoticonMsg):
             contentNode = EmoticonContentNode(message: message, emoticon: emoticonMsg)
-        case .voice(_):
-            contentNode = VoiceContentNode(message: message)
+        case .voice(let voiceMsg):
+            contentNode = VoiceContentNode(message: message, voiceMsg: voiceMsg)
+        case .location(let locationMsg):
+            contentNode = LocationContentNode(message: message, locationMsg: locationMsg)
         case .link(let appURL):
             contentNode = AppURLContentNode(message: message, appURL: appURL)
         default:
