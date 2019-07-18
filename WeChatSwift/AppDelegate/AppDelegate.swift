@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         setupTaBar()
+        
+        AppContext.current.doHeavySetup()
+        
         return true
     }
 

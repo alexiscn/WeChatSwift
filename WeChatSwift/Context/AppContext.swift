@@ -16,11 +16,15 @@ class AppContext {
     
     private init() {
         userID = MockFactory.shared.users.first!.identifier
-        
-        emoticonMgr.setup()
     }
     
     var userProfileService = UserProfileService()
     
     var emoticonMgr = EmoticonManager()
+    
+    func doHeavySetup() {
+        DispatchQueue.global(qos: .background).async {
+            self.emoticonMgr.setup()
+        }
+    }
 }

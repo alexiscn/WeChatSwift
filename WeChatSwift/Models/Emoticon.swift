@@ -49,14 +49,21 @@ struct EmoticonViewModel {
         self.type = type
         
         var layout = type.layoutInfo
-        let columns = Int((Constants.screenWidth + layout.spacingX)/(layout.spacingX + layout.itemSize.height))
-        let margin = (Constants.screenWidth - CGFloat(columns) * (layout.itemSize.height + layout.spacingX))/2
+        let columns = Int((Constants.screenWidth - 2 * layout.marginLeft + layout.spacingX)/(layout.spacingX + layout.itemSize.width))
+        let margin = (Constants.screenWidth + layout.spacingX - CGFloat(columns) * (layout.itemSize.width + layout.spacingX))/2
         layout.marginLeft = margin
+        
+        if type != .expression {
+            let width = Constants.screenWidth - CGFloat(columns) * layout.itemSize.width
+            let space = width / CGFloat(columns - 1 + 2)
+            layout.marginLeft = space
+            layout.spacingX = space
+        }
+        
+        print("当前的Type:\(type)，列数：\(columns)，左边距:\(layout.marginLeft)，间距:\(layout.spacingX)")
+
         let count = emoticons.count
         let rows = layout.rows
-        
-        print("当前的Type:\(type)，列数：\(columns)，左边距:\(margin)")
-
         let numberOfItemsInPage = type == .emotion ? (rows * columns - 1): rows * columns
         var temp: [Emoticon] = []
         for index in 0 ..< count {
@@ -93,13 +100,13 @@ enum EmoticonType {
         switch self {
         case .expression:
             let size = CGSize(width: 30, height: 30)
-            return EmoticonGridInfo(itemSize: size, rows: 3, marginTop: 30, spacingX: 12.0, spacingY: 12)
+            return EmoticonGridInfo(itemSize: size, rows: 3, marginTop: 30, spacingX: 12.0, spacingY: 12, marginLeft: 20)
         case .favorites:
             let size = CGSize(width: 56, height: 56)
-            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 18, spacingX: 18.0, spacingY: 15)
+            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 18, spacingX: 18.0, spacingY: 15, marginLeft: 20)
         default:
             let size = CGSize(width: 56, height: 56)
-            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 10, spacingX: 18.0, spacingY: 23)
+            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 10, spacingX: 18.0, spacingY: 23, marginLeft: 20)
         }
     }
 }
@@ -116,15 +123,7 @@ struct EmoticonGridInfo {
     
     var spacingY: CGFloat
     
-    var marginLeft: CGFloat = 0.0
-    
-    init(itemSize: CGSize, rows: Int, marginTop: CGFloat, spacingX: CGFloat, spacingY: CGFloat) {
-        self.itemSize = itemSize
-        self.rows = rows
-        self.marginTop = marginTop
-        self.spacingX = spacingX
-        self.spacingY = spacingY
-    }
+    var marginLeft: CGFloat
 }
 
 struct EmoticonTab {
