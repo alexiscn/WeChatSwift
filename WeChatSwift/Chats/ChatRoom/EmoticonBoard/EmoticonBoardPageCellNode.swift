@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 class EmoticonBoardPageCellNode: ASCellNode {
     
-    init(emoticons: [Emoticon]) {
+    init(viewMode: EmoticonViewModel, emoticons: [Emoticon]) {
         super.init()
     }
     

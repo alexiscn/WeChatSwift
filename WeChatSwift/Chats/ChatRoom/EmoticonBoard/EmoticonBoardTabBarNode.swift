@@ -51,6 +51,11 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
         sendButtonNode.setAttributedTitle(sendText, for: .normal)
     }
     
+    override func didLoad() {
+        super.didLoad()
+        backgroundColor = .red
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         collectionNode.style.flexShrink = 1.0

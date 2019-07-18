@@ -21,7 +21,8 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     weak var tableNode: ASTableNode?
     
     private let toolBar = ChatRoomToolBarNode()
-    private let emotionPanel = ChatRoomEmotionPanelNode(expressions: Expression.all)
+//    private let emotionPanel = ChatRoomEmotionPanelNode(expressions: Expression.all)
+    private let emotionPanel: EmoticonBoardNode
     private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     
     private let barHeight: CGFloat
@@ -42,10 +43,14 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         self.panelHeight = panelHeight
         self.bottomInset = Constants.bottomInset
         
-        toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
+        let emoticonMgr = AppContext.current.emoticonMgr
+        emotionPanel = EmoticonBoardNode(emoticons: emoticonMgr.emoticons, tabs: emoticonMgr.tabs)
         
+        toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
         emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
         toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
+        
+        
         
         super.init()
         
@@ -53,7 +58,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         addSubnode(emotionPanel)
         addSubnode(toolsPanel)
         
-        emotionPanel.delegate = self
+        //emotionPanel.delegate = self
         toolBar.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)

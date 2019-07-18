@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Expression: Codable {
+struct Expression: Codable, Emoticon {
     
     static var all: [Expression] = []
     
