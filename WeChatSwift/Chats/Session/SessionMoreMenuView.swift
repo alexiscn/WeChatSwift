@@ -10,20 +10,35 @@ import UIKit
 
 struct SessionMoreItem {
     
+    var type: MoreItemType
+    
     var title: String
     
     var icon: String
     
-    var action: RelayCommand
+    enum MoreItemType {
+        case groupChats
+        case addFriends
+        case scan
+        case money
+    }
+}
+
+protocol SessionMoreMenuViewDelegate {
+    func moreMenuView(_ menu: SessionMoreMenuView, didTap item: SessionMoreItem)
 }
 
 class SessionMoreMenuView: UIView {
     
+    var delegate: SessionMoreMenuViewDelegate?
+    
     private let backgroundView: UIImageView
     
-    private var actions: [RelayCommand] = []
+    private let menus: [SessionMoreItem]
     
     init(frame: CGRect, menus: [SessionMoreItem]) {
+        
+        self.menus = menus
         
         backgroundView = UIImageView()
         backgroundView.image = UIImage(named: "MoreFunctionFrame_58x50_")
@@ -48,7 +63,6 @@ class SessionMoreMenuView: UIView {
             button.setTitleColor(UIColor.white, for: .normal)
             button.tag = index
             addSubview(button)
-            actions.append(menu.action)
             
             if index != menus.count - 1 {
                 let line = UIImageView()
@@ -64,8 +78,8 @@ class SessionMoreMenuView: UIView {
     }
     
     @objc private func handleTapMenuButton(_ sender: UIButton) {
-        let action = actions[sender.tag]
-        action()
+        let item = menus[sender.tag]
+        delegate?.moreMenuView(self, didTap: item)
     }
     
 }

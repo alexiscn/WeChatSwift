@@ -10,6 +10,7 @@
 		A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32286FD22E04C56004E516E /* icons_filled_add.svg */; };
 		A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */; };
 		A322870322E06299004E516E /* EmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322870222E06299004E516E /* EmoticonManager.swift */; };
+		A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322870422E07C64004E516E /* SessionMoreMenuFloatView.swift */; };
 		A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333B622DF070500B79555 /* WCTabBarItem.swift */; };
 		A32333B922DF091D00B79555 /* icons_outlined_mute.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32333B822DF091D00B79555 /* icons_outlined_mute.svg */; };
 		A32333BB22DF0C6900B79555 /* WCBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333BA22DF0C6900B79555 /* WCBadgeView.swift */; };
@@ -161,6 +162,7 @@
 		A32286FD22E04C56004E516E /* icons_filled_add.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_add.svg; sourceTree = "<group>"; };
 		A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardTabBarCellNode.swift; sourceTree = "<group>"; };
 		A322870222E06299004E516E /* EmoticonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManager.swift; sourceTree = "<group>"; };
+		A322870422E07C64004E516E /* SessionMoreMenuFloatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionMoreMenuFloatView.swift; sourceTree = "<group>"; };
 		A32333B622DF070500B79555 /* WCTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTabBarItem.swift; sourceTree = "<group>"; };
 		A32333B822DF091D00B79555 /* icons_outlined_mute.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icons_outlined_mute.svg; sourceTree = "<group>"; };
 		A32333BA22DF0C6900B79555 /* WCBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBadgeView.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 			children = (
 				A33DB2F622CCDCF500A11776 /* SessionViewController.swift */,
 				A37E73E322D89AFB008019A4 /* SessionCellNode.swift */,
+				A322870422E07C64004E516E /* SessionMoreMenuFloatView.swift */,
 				A3CA520422CDC47100C67D92 /* SessionMoreMenuView.swift */,
 			);
 			path = Session;
@@ -971,6 +974,7 @@
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
 				A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */,
+				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
 				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,

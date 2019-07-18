@@ -13,8 +13,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
-    private var menuView: SessionMoreMenuView?
-    private var menuViewFrame: CGRect = .zero
+    private var menuFloatView: SessionMoreFrameFloatView?
     
     init() {
         super.init(node: ASDisplayNode())
@@ -55,55 +54,14 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     }
     
     private func showMoreMenu() {
-        
-        if menuView == nil {
-            let groupChatMenu = SessionMoreItem(title: "发起群聊", icon: "icons_filled_chats") {
-                
-            }
-            let addFriendMenu = SessionMoreItem(title: "添加朋友", icon: "icons_filled_add-friends") {
-                
-            }
-            let scanMenu = SessionMoreItem(title: "扫一扫", icon: "icons_filled_scan") {
-                
-            }
-            let payMenu = SessionMoreItem(title: "收付款", icon: "icons_filled_pay") {
-                
-            }
-            let menuWidth: CGFloat = 0.45 * view.bounds.width
-            let menuHeight: CGFloat = 60.0
-            let paddingTop: CGFloat = 0
-            let paddingRight: CGFloat = 8.0
-            let menus = [groupChatMenu, addFriendMenu, scanMenu, payMenu]
-            let menuFrame = CGRect(x: view.bounds.width - menuWidth - paddingRight,
-                                   y: paddingTop,
-                                   width: menuWidth,
-                                   height: CGFloat(menus.count) * menuHeight)
-            let menuView = SessionMoreMenuView(frame: menuFrame, menus: menus)
-            menuView.transform = .identity
-            menuView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            self.menuView = menuView
-            self.menuViewFrame = menuFrame
+        if menuFloatView == nil {
+            menuFloatView = SessionMoreFrameFloatView(frame: view.bounds)
         }
-        
-        guard let menu = menuView else {
-            return
-        }
-        menu.frame = menuViewFrame
-        view.addSubview(menu)
+        menuFloatView?.show(in: self.view)
     }
     
     private func hideMoreMenu() {
-        UIView.animate(withDuration: 0.25, animations: {
-            let scale: CGFloat = 0.7
-            self.menuView?.transform = CGAffineTransform(scaleX: scale, y: scale)
-            self.menuView?.frame.origin.x = self.menuViewFrame.origin.x + self.menuViewFrame.width * scale/2 - 12 // To keep arrow stick
-            self.menuView?.frame.origin.y = self.menuViewFrame.origin.y
-            self.menuView?.alpha = 0.0
-        }) { _ in
-            self.menuView?.alpha = 1.0
-            self.menuView?.transform = .identity
-            self.menuView?.removeFromSuperview()
-        }
+        menuFloatView?.hide()
     }
 }
 
@@ -111,7 +69,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
 extension SessionViewController {
     
     @objc private func handleRightBarButtonTapped(_ sender: Any) {
-        if self.menuView?.superview != nil {
+        if self.menuFloatView?.superview != nil {
             hideMoreMenu()
         } else {
             showMoreMenu()
