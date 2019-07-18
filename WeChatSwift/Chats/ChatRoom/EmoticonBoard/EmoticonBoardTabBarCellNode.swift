@@ -14,15 +14,17 @@ class EmoticonBoardTabBarCellNode: ASCellNode {
     
     private let hairlineNode = ASDisplayNode()
     
-    init(emoticonTab: EmoticonTab) {
+    init(viewModel: EmoticonViewModel) {
         
         super.init()
         
         automaticallyManagesSubnodes = true
+        
+        imageNode.image = viewModel.tabImage
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let layout = ASLayoutSpec()
-        return layout
+        
+        return ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .minimumXY, child: imageNode)
     }
 }

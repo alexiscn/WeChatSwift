@@ -44,13 +44,11 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         self.bottomInset = Constants.bottomInset
         
         let emoticonMgr = AppContext.current.emoticonMgr
-        emotionPanel = EmoticonBoardNode(emoticons: emoticonMgr.emoticons, tabs: emoticonMgr.tabs)
+        emotionPanel = EmoticonBoardNode(emoticons: emoticonMgr.emoticons)
         
         toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
         emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
         toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
-        
-        
         
         super.init()
         

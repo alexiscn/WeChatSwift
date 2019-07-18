@@ -45,10 +45,6 @@ class MockFactory {
         setupMessages()
         setupRemoteImages()
         setupWebPages()
-        
-        DispatchQueue.global().async {
-            Expression.load()
-        }
     }
     
     private func setupUsers() {

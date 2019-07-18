@@ -12,9 +12,20 @@ import UIKit
 struct Expression: Codable, Emoticon {
     
     var image: UIImage? { return UIImage(named: icon) }
-    
-    
-    static var all: [Expression] = []
+
+    static var all: [Expression] = {
+        guard let path = Bundle.main.path(forResource: "Expressions", ofType: "json"),
+            let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+                return []
+        }
+        do {
+            let expressions = try JSONDecoder().decode([Expression].self, from: data)
+            return expressions
+        } catch {
+            print(error)
+        }
+        return []
+    }()
     
     var icon: String
     var zh: String
@@ -22,22 +33,5 @@ struct Expression: Codable, Emoticon {
     
     var text: String {
         return "[\(zh)]"
-    }
-}
-
-extension Expression {
-    
-    static func load() {
-        guard let path = Bundle.main.path(forResource: "Expressions", ofType: "json"),
-            let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-                return
-        }
-        
-        do {
-            let expressions = try JSONDecoder().decode([Expression].self, from: data)
-            all = expressions
-        } catch {
-            print(error)
-        }
     }
 }

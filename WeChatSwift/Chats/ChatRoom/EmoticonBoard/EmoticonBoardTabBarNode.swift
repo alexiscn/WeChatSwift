@@ -18,10 +18,10 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
     
     private let sendButtonNode: ASButtonNode
     
-    private var dataSource: [EmoticonTab] = []
+    private var dataSource: [EmoticonViewModel] = []
     
-    init(tabs: [EmoticonTab]) {
-        self.dataSource = tabs
+    init(emoticons: [EmoticonViewModel]) {
+        self.dataSource = emoticons
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -33,11 +33,10 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
         
         addButtonNode = ASButtonNode()
         settingButtonNode = ASButtonNode()
-        
         sendButtonNode = ASButtonNode()
         
         super.init()
-        
+        automaticallyManagesSubnodes = true
         collectionNode.delegate = self
         collectionNode.dataSource = self
         
@@ -53,7 +52,7 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
     
     override func didLoad() {
         super.didLoad()
-        backgroundColor = .red
+        
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -68,7 +67,7 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
         let stack = ASStackLayoutSpec.horizontal()
         stack.children = [addButtonNode, collectionNode, sendButtonNode]
         
-        return ASInsetLayoutSpec(insets: .zero, child: collectionNode)
+        return ASInsetLayoutSpec(insets: .zero, child: stack)
     }
 }
 
@@ -82,9 +81,9 @@ extension EmoticonBoardTabBarNode: ASCollectionDelegate, ASCollectionDataSource 
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let tabModel = dataSource[indexPath.row]
+        let viewModel = dataSource[indexPath.row]
         let block: ASCellNodeBlock = {
-            return EmoticonBoardTabBarCellNode(emoticonTab: tabModel)
+            return EmoticonBoardTabBarCellNode(viewModel: viewModel)
         }
         return block
     }

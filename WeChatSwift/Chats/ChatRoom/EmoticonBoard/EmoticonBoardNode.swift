@@ -23,10 +23,10 @@ class EmoticonBoardNode: ASDisplayNode {
     
     private var dataSource: [EmoticonViewModel] = []
     
-    init(emoticons: [EmoticonViewModel], tabs: [EmoticonTab]) {
+    init(emoticons: [EmoticonViewModel]) {
         
         dataSource = emoticons
-        tabBarNode = EmoticonBoardTabBarNode(tabs: tabs)
+        tabBarNode = EmoticonBoardTabBarNode(emoticons: emoticons)
         
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
