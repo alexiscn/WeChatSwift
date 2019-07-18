@@ -17,7 +17,7 @@ struct EmoticonPackage: Codable {
     
 }
 
-struct Emotion {
+struct WCEmotion {
     
     var packageID: String
     
@@ -37,38 +37,49 @@ protocol Emoticon {
     
 }
 
-struct EmoticonModel {
+struct EmoticonViewModel {
+    
     var type: EmoticonType
-    var pages: Int
-    private var sections: [[Emoticon]]
+    
+    var layout: EmoticonGridInfo
+    
+    private var pagesDataSource: [[Emoticon]] = []
     
     init(type: EmoticonType, emoticons: [Emoticon]) {
         self.type = type
-        self.sections = []
         
-//        let count = emoticons.count
-//        let rows = type.rows
-//        let columns = 6
-//        
-//        var temp: [Emoticon] = []
-//        var offset: Int = 0
-//        for index in 0 ..< count {
-//            if offset == rows * columns {
-//                
-//            }
-//        }
+        var layout = type.layoutInfo
+        let columns = Int((Constants.screenWidth + layout.spacingX)/(layout.spacingX + layout.itemSize.height))
+        let margin = (Constants.screenWidth - CGFloat(columns) * (layout.itemSize.height + layout.spacingX))/2
+        layout.marginLeft = margin
+        let count = emoticons.count
+        let rows = layout.rows
         
-//        let itemSize = CGSize(width: 36.0, height: 36.0)
-//        let itemSpacing: CGFloat = 6
-//        var margin: CGFloat = 12.0
-//        let columns = Int((Constants.screenWidth - 2.0 * margin + itemSpacing) / (itemSpacing + itemSize.width))
-//        margin = (Constants.screenWidth - CGFloat(columns) * (itemSize.height + itemSpacing))/2
+        print("当前的Type:\(type)，列数：\(columns)，左边距:\(margin)")
+
+        let numberOfItemsInPage = type == .emotion ? (rows * columns - 1): rows * columns
+        var temp: [Emoticon] = []
+        for index in 0 ..< count {
+            if index == numberOfItemsInPage {
+                pagesDataSource.append(temp)
+                temp.removeAll()
+            }
+            temp.append(emoticons[index])
+        }
+        if temp.count > 0 {
+            pagesDataSource.append(temp)
+            temp.removeAll()
+        }
         
-        self.pages = 1
+        self.layout = layout
+    }
+    
+    func numberOfPages() -> Int {
+        return pagesDataSource.count
     }
     
     func numberOfItems(at page: Int) -> [Emoticon] {
-        return sections[page]
+        return pagesDataSource[page]
     }
 }
 
@@ -78,23 +89,44 @@ enum EmoticonType {
     case custom
     case emotion
     
-    var itemSize: CGSize {
+    var layoutInfo: EmoticonGridInfo {
         switch self {
         case .expression:
-            return CGSize(width: 36, height: 36)
-        case .emotion:
-            return CGSize(width: 56, height: 56)
+            let size = CGSize(width: 30, height: 30)
+            return EmoticonGridInfo(itemSize: size, rows: 3, marginTop: 30, spacingX: 12.0, spacingY: 12)
+        case .favorites:
+            let size = CGSize(width: 56, height: 56)
+            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 18, spacingX: 18.0, spacingY: 15)
         default:
-            return CGSize(width: 60, height: 60)
+            let size = CGSize(width: 56, height: 56)
+            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 10, spacingX: 18.0, spacingY: 23)
         }
     }
+}
+
+struct EmoticonGridInfo {
     
-    var rows: Int {
-        switch self {
-        case .expression:
-            return 3
-        default:
-            return 2
-        }
+    var itemSize: CGSize
+    
+    var rows: Int
+    
+    var marginTop: CGFloat
+    
+    var spacingX: CGFloat
+    
+    var spacingY: CGFloat
+    
+    var marginLeft: CGFloat = 0.0
+    
+    init(itemSize: CGSize, rows: Int, marginTop: CGFloat, spacingX: CGFloat, spacingY: CGFloat) {
+        self.itemSize = itemSize
+        self.rows = rows
+        self.marginTop = marginTop
+        self.spacingX = spacingX
+        self.spacingY = spacingY
     }
+}
+
+struct EmoticonTab {
+    var thumbImage: UIImage?
 }

@@ -14,27 +14,36 @@ class EmoticonBoardNode: ASDisplayNode {
     
     private let collectionNode: ASCollectionNode
     
-    private var dataSource: [EmoticonModel] = []
+    private var dataSource: [EmoticonViewModel] = []
     
-    override init() {
+    init(emoticons: [EmoticonViewModel], tabs: [EmoticonTab]) {
         
-        tabBarNode = EmoticonBoardTabBarNode()
+        dataSource = emoticons
+        tabBarNode = EmoticonBoardTabBarNode(tabs: tabs)
         
         let layout = UICollectionViewFlowLayout()
-        
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: Constants.screenWidth, height: 196)
         collectionNode = ASCollectionNode(collectionViewLayout: layout)
         
         super.init()
+        
+        collectionNode.delegate = self
+        collectionNode.dataSource = self
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        collectionNode.backgroundColor = .clear
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
         tabBarNode.style.preferredSize = CGSize(width: Constants.screenWidth, height: 44.0)
-        
         let stack = ASStackLayoutSpec.vertical()
         stack.children = [collectionNode, tabBarNode]
-        
-        return stack
+        return ASInsetLayoutSpec(insets: .zero, child: stack)
     }
 }
 
@@ -45,7 +54,7 @@ extension EmoticonBoardNode: ASCollectionDataSource, ASCollectionDelegate {
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        return dataSource[section].pages
+        return dataSource[section].numberOfPages()
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {

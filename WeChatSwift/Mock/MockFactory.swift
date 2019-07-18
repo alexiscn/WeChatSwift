@@ -111,17 +111,6 @@ class MockFactory {
         
     }
     
-    private func setupEmoticon() {
-        let path = NSHomeDirectory().appending("/Documents/emoticons/")
-        if !FileManager.default.fileExists(atPath: path) {
-            
-        }
-        
-        guard let jsonPath = Bundle.main.path(forResource: "Emoticons", ofType: "json") else {
-            return
-        }
-    }
-    
     func random<T>(of list: [T]) -> T {
         let count = list.count
         let index = Int(arc4random_uniform(UInt32(count)))

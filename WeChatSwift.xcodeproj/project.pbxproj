@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32286FD22E04C56004E516E /* icons_filled_add.svg */; };
+		A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */; };
+		A322870322E06299004E516E /* EmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322870222E06299004E516E /* EmoticonManager.swift */; };
 		A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333B622DF070500B79555 /* WCTabBarItem.swift */; };
 		A32333B922DF091D00B79555 /* icons_outlined_mute.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32333B822DF091D00B79555 /* icons_outlined_mute.svg */; };
 		A32333BB22DF0C6900B79555 /* WCBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333BA22DF0C6900B79555 /* WCBadgeView.swift */; };
@@ -155,6 +158,9 @@
 
 /* Begin PBXFileReference section */
 		04841C8B18BE984EE8C1B6BB /* Pods-WeChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A32286FD22E04C56004E516E /* icons_filled_add.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_add.svg; sourceTree = "<group>"; };
+		A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardTabBarCellNode.swift; sourceTree = "<group>"; };
+		A322870222E06299004E516E /* EmoticonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManager.swift; sourceTree = "<group>"; };
 		A32333B622DF070500B79555 /* WCTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTabBarItem.swift; sourceTree = "<group>"; };
 		A32333B822DF091D00B79555 /* icons_outlined_mute.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icons_outlined_mute.svg; sourceTree = "<group>"; };
 		A32333BA22DF0C6900B79555 /* WCBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBadgeView.swift; sourceTree = "<group>"; };
@@ -333,6 +339,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A322870122E0627F004E516E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A322870222E06299004E516E /* EmoticonManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		A32333BE22DF1C8200B79555 /* EmoticonBoard */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +354,7 @@
 				A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */,
 				A32333C522DF296600B79555 /* EmoticonGridNode.swift */,
 				A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */,
+				A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */,
 			);
 			path = EmoticonBoard;
 			sourceTree = "<group>";
@@ -399,6 +414,7 @@
 				A33DB2E522CCC9F200A11776 /* Discover */,
 				A33DB2E922CCCA1F00A11776 /* Me */,
 				A33DB2F822CCDCF900A11776 /* Models */,
+				A322870122E0627F004E516E /* Managers */,
 				A3CA51A122CD995C00C67D92 /* Mock */,
 				A3CA51B122CD9ACE00C67D92 /* Resources */,
 				A33DB30522CCDE2A00A11776 /* Supporting Files */,
@@ -616,6 +632,7 @@
 				A374866222D4AFCE002EEC4F /* icons_filled_folder.svg */,
 				A374866022D4AF67002EEC4F /* icons_filled_location.svg */,
 				A374865E22D4AEF3002EEC4F /* icons_filled_album.svg */,
+				A32286FD22E04C56004E516E /* icons_filled_add.svg */,
 				A374865822D4A2BC002EEC4F /* icons_outlined_add2.svg */,
 				A374865622D4A27C002EEC4F /* icons_outlined_voice.svg */,
 				A3CA523322CE1D7B00C67D92 /* icons_outlined_setting.svg */,
@@ -771,6 +788,7 @@
 				A374865922D4A2BC002EEC4F /* icons_outlined_add2.svg in Resources */,
 				A3CA520922CDC93E00C67D92 /* icons_filled_pay.svg in Resources */,
 				A3CA51DD22CD9FAF00C67D92 /* icons_filled_search-logo.svg in Resources */,
+				A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */,
 				A374866122D4AF68002EEC4F /* icons_filled_location.svg in Resources */,
 				A3CA522E22CE1C5F00C67D92 /* icons_outlined_colorful_favorites.svg in Resources */,
 				A3CA51D922CD9FA000C67D92 /* icons_outlined_shake.svg in Resources */,
@@ -925,6 +943,7 @@
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
+				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
 				A372228722D95216003403D4 /* MeCellNode.swift in Sources */,
 				A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */,
@@ -963,6 +982,7 @@
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
 				A33DB2EF22CCCB8E00A11776 /* SVGImage+Extensions.swift in Sources */,
+				A322870322E06299004E516E /* EmoticonManager.swift in Sources */,
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
