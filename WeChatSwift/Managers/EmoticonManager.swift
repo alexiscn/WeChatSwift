@@ -16,6 +16,7 @@ class EmoticonManager {
     public private(set) var tabs: [EmoticonTab] = []
     
     init() {
+        Expression.load()
         emoticons.append(EmoticonViewModel(type: .expression, emoticons: Expression.all))
         emoticons.append(EmoticonViewModel(type: .favorites, emoticons: []))
         emoticons.append(EmoticonViewModel(type: .custom, emoticons: []))

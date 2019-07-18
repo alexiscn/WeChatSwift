@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 struct Expression: Codable, Emoticon {
+    
+    var image: UIImage? { return UIImage(named: icon) }
+    
     
     static var all: [Expression] = []
     

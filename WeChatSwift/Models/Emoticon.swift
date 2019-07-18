@@ -34,7 +34,7 @@ struct WCEmotion {
 }
 
 protocol Emoticon {
-    
+    var image: UIImage? { get }
 }
 
 struct EmoticonViewModel {
@@ -52,7 +52,7 @@ struct EmoticonViewModel {
         let columns = Int((Constants.screenWidth - 2 * layout.marginLeft + layout.spacingX)/(layout.spacingX + layout.itemSize.width))
         let margin = (Constants.screenWidth + layout.spacingX - CGFloat(columns) * (layout.itemSize.width + layout.spacingX))/2
         layout.marginLeft = margin
-        
+        layout.columns = columns
         if type != .expression {
             let width = Constants.screenWidth - CGFloat(columns) * layout.itemSize.width
             let space = width / CGFloat(columns - 1 + 2)
@@ -66,9 +66,11 @@ struct EmoticonViewModel {
         let rows = layout.rows
         let numberOfItemsInPage = type == .emotion ? (rows * columns - 1): rows * columns
         var temp: [Emoticon] = []
+        print(numberOfItemsInPage)
         for index in 0 ..< count {
-            if index == numberOfItemsInPage {
+            if index != 0 && index % numberOfItemsInPage == 0 {
                 pagesDataSource.append(temp)
+                print("count:\(temp.count)")
                 temp.removeAll()
             }
             temp.append(emoticons[index])
@@ -77,7 +79,7 @@ struct EmoticonViewModel {
             pagesDataSource.append(temp)
             temp.removeAll()
         }
-        
+        print(pagesDataSource.count)
         self.layout = layout
     }
     
@@ -124,6 +126,17 @@ struct EmoticonGridInfo {
     var spacingY: CGFloat
     
     var marginLeft: CGFloat
+    
+    var columns: Int = 0
+    
+    init(itemSize: CGSize, rows: Int, marginTop: CGFloat, spacingX: CGFloat, spacingY: CGFloat, marginLeft: CGFloat) {
+        self.itemSize = itemSize
+        self.rows = rows
+        self.marginTop = marginTop
+        self.spacingX = spacingX
+        self.spacingY = spacingY
+        self.marginLeft = marginLeft
+    }
 }
 
 struct EmoticonTab {

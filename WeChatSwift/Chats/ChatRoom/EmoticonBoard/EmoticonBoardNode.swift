@@ -36,17 +36,23 @@ class EmoticonBoardNode: ASDisplayNode {
         collectionNode = ASCollectionNode(collectionViewLayout: layout)
         
         super.init()
-        
+        addSubnode(collectionNode)
+        addSubnode(tabBarNode)
         collectionNode.delegate = self
         collectionNode.dataSource = self
     }
     
     override func didLoad() {
         super.didLoad()
+        collectionNode.view.isPagingEnabled = true
+        collectionNode.view.showsHorizontalScrollIndicator = false
+        collectionNode.view.showsVerticalScrollIndicator = false
         collectionNode.backgroundColor = .clear
         
-        collectionNode.view.addSubview(pageControl)
-        pageControl.frame = CGRect(x: 0, y: collectionNode.frame.height - 37, width: collectionNode.frame.width, height: 37)
+        print(collectionNode.frame.width)
+        
+        view.addSubview(pageControl)
+        pageControl.frame = CGRect(x: 0, y: 196.0 - 37.0, width: Constants.screenWidth, height: 37)
         
         pageControl.numberOfPages = 5
         collectionNode.reloadData()
@@ -75,7 +81,7 @@ extension EmoticonBoardNode: ASCollectionDataSource, ASCollectionDelegate {
         let sectionModel = dataSource[indexPath.section]
         let emoticons = sectionModel.numberOfItems(at: indexPath.row)
         let block: ASCellNodeBlock = {
-            return EmoticonBoardPageCellNode(viewMode: sectionModel, emoticons: emoticons)
+            return EmoticonGridNode(viewMode: sectionModel, emoticons: emoticons)
         }
         return block
     }

@@ -17,8 +17,7 @@
 		A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333BC22DF0F6A00B79555 /* BadgeNode.swift */; };
 		A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */; };
 		A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */; };
-		A32333C422DF216200B79555 /* EmoticonBoardPageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */; };
-		A32333C622DF296600B79555 /* EmoticonGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C522DF296600B79555 /* EmoticonGridNode.swift */; };
+		A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C522DF296600B79555 /* EmoticonGridCellNode.swift */; };
 		A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333C722DF4E7700B79555 /* MomentCommentNode.swift */; };
 		A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CA22DF4FEE00B79555 /* MomentWebpageContentNode.swift */; };
 		A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CC22DF501900B79555 /* MomentImageContentNode.swift */; };
@@ -169,8 +168,7 @@
 		A32333BC22DF0F6A00B79555 /* BadgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeNode.swift; sourceTree = "<group>"; };
 		A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardTabBarNode.swift; sourceTree = "<group>"; };
 		A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardNode.swift; sourceTree = "<group>"; };
-		A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardPageCellNode.swift; sourceTree = "<group>"; };
-		A32333C522DF296600B79555 /* EmoticonGridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonGridNode.swift; sourceTree = "<group>"; };
+		A32333C522DF296600B79555 /* EmoticonGridCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonGridCellNode.swift; sourceTree = "<group>"; };
 		A32333C722DF4E7700B79555 /* MomentCommentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentNode.swift; sourceTree = "<group>"; };
 		A32333CA22DF4FEE00B79555 /* MomentWebpageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentWebpageContentNode.swift; sourceTree = "<group>"; };
 		A32333CC22DF501900B79555 /* MomentImageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentImageContentNode.swift; sourceTree = "<group>"; };
@@ -353,8 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				A32333C122DF1EB500B79555 /* EmoticonBoardNode.swift */,
-				A32333C322DF216200B79555 /* EmoticonBoardPageCellNode.swift */,
-				A32333C522DF296600B79555 /* EmoticonGridNode.swift */,
+				A32333C522DF296600B79555 /* EmoticonGridCellNode.swift */,
 				A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */,
 				A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */,
 			);
@@ -935,7 +932,6 @@
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
-				A32333C422DF216200B79555 /* EmoticonBoardPageCellNode.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
 				A3CA51AC22CD99FD00C67D92 /* AddContactViewController.swift in Sources */,
 				A374866B22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift in Sources */,
@@ -969,7 +965,7 @@
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
-				A32333C622DF296600B79555 /* EmoticonGridNode.swift in Sources */,
+				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
