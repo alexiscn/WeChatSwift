@@ -158,6 +158,8 @@
 		A3D897EB22E1D14500814669 /* 153716293386e633a27b0f3d76.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897EA22E1CFEB00814669 /* 153716293386e633a27b0f3d76.png */; };
 		A3D897EC22E1D14900814669 /* 15031638347220abdd83283a10.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */; };
 		A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */; };
+		A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */; };
+		A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -316,6 +318,8 @@
 		A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 15031638347220abdd83283a10.png; sourceTree = "<group>"; };
 		A3D897EA22E1CFEB00814669 /* 153716293386e633a27b0f3d76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 153716293386e633a27b0f3d76.png; sourceTree = "<group>"; };
 		A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardCameraEntryNode.swift; sourceTree = "<group>"; };
+		A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jsb_emoticon_md5.png; sourceTree = "<group>"; };
+		A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_emoticon_md5.png; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -627,6 +631,8 @@
 				A3D897E722E194E100814669 /* 153716293386e633a27b0f3d76.json */,
 				A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */,
 				A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */,
+				A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */,
+				A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -803,6 +809,7 @@
 				A3CA51ED22CDA0F300C67D92 /* icons_outlined_addfriends.svg in Resources */,
 				A374865922D4A2BC002EEC4F /* icons_outlined_add2.svg in Resources */,
 				A3CA520922CDC93E00C67D92 /* icons_filled_pay.svg in Resources */,
+				A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */,
 				A3CA51DD22CD9FAF00C67D92 /* icons_filled_search-logo.svg in Resources */,
 				A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */,
 				A374866122D4AF68002EEC4F /* icons_filled_location.svg in Resources */,
@@ -830,6 +837,7 @@
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
 				A3CA520222CDAFD100C67D92 /* icon_filled_timelineophl.svg in Resources */,
 				A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */,
+				A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */,
 				A3CA51E322CD9FCA00C67D92 /* icons_outlined_colorful_game.svg in Resources */,
 				A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */,
 				A3CA51B322CD9AF900C67D92 /* icons_outlined_radar.svg in Resources */,

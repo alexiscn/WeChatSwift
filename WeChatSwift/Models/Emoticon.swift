@@ -180,3 +180,32 @@ class EmoticonGridLayoutInfo {
     
 
 }
+
+
+struct FavoriteEmoticon: Emoticon {
+    
+    var thumbImage: UIImage? {
+        switch type {
+        case .add:
+            return UIImage(named: "EmoticonAddButton_56x56_")
+        case .dice:
+            return UIImage(named: "dice_emoticon_md5")
+        case .jsb:
+            return UIImage(named: "jsb_emoticon_md5")
+        }
+    }
+    
+    var title: String? = nil
+    
+    var type: FavoriteEmoticonType
+    
+    init(type: FavoriteEmoticonType) {
+        self.type = type
+    }
+}
+
+enum FavoriteEmoticonType {
+    case add
+    case dice
+    case jsb
+}

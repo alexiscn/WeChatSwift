@@ -22,7 +22,12 @@ class EmoticonManager {
         emoticons.append(EmoticonViewModel(type: .expression, tabImage: expressionTabImage, emoticons: Expression.all))
         
         let favImage = UIImage.SVGImage(named: "icons_outlined_like")
-        emoticons.append(EmoticonViewModel(type: .favorites, tabImage: favImage, emoticons: []))
+        
+        var favorites: [FavoriteEmoticon] = []
+        favorites.append(FavoriteEmoticon(type: .add))
+        favorites.append(FavoriteEmoticon(type: .jsb))
+        favorites.append(FavoriteEmoticon(type: .dice))
+        emoticons.append(EmoticonViewModel(type: .favorites, tabImage: favImage, emoticons: favorites))
         
         let takeImage = UIImage.SVGImage(named: "icons_outlined_takephoto_nor")
         emoticons.append(EmoticonViewModel(type: .cameraEmoticon, tabImage: takeImage, emoticons: []))
