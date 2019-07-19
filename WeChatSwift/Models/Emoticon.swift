@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol Emoticon {
-    var image: UIImage? { get }
+    var thumbImage: UIImage? { get }
 }
 
 struct EmoticonPackage: Codable {
@@ -31,13 +31,9 @@ struct WCEmotion: Emoticon {
     
     var name: String
     
-    var image: UIImage? {
-        let folder = NSHomeDirectory().appending("/Documents/emoticons/Emoticons/")
+    var thumbImage: UIImage? {
+        let folder = NSHomeDirectory().appending("/Documents/emoticons/thumbs/")
         let filename = folder.appending("\(name).pic.thumb")
-//        if name == "ba7eb52f6b1b5ebc42ed7e3f2a7cac14" {
-//            let img = UIImage(named: filename)
-//            print(img)
-//        }
         return UIImage.as_imageNamed(filename)
     }
 }

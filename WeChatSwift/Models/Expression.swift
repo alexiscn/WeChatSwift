@@ -11,7 +11,7 @@ import UIKit
 
 struct Expression: Codable, Emoticon {
     
-    var image: UIImage? { return UIImage(named: icon) }
+    var thumbImage: UIImage? { return UIImage.as_imageNamed(icon) }
 
     static var all: [Expression] = {
         guard let path = Bundle.main.path(forResource: "Expressions", ofType: "json"),

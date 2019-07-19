@@ -55,7 +55,7 @@ class EmoticonNode: ASDisplayNode {
     init(emoticon: Emoticon, itemSize: CGSize) {
         self.emoticon = emoticon
         super.init()
-        
+        imageNode.image = emoticon.thumbImage
         imageNode.style.preferredSize = itemSize
         imageNode.contentMode = .scaleAspectFill
         addSubnode(imageNode)
@@ -63,7 +63,6 @@ class EmoticonNode: ASDisplayNode {
     
     override func didLoad() {
         super.didLoad()
-        imageNode.image = emoticon.image
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

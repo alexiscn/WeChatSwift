@@ -28,6 +28,7 @@ class EmoticonManager {
         emoticons.append(EmoticonViewModel(type: .custom, tabImage: takeImage, emoticons: []))
         
         let path = NSHomeDirectory().appending("/Documents/emoticons/")
+        try? FileManager.default.removeItem(atPath: path)
         if !FileManager.default.fileExists(atPath: path) {
             try? FileManager.default.createDirectory(at: URL(fileURLWithPath: path), withIntermediateDirectories: true, attributes: nil)
             if let zipPath = Bundle.main.path(forResource: "Emoticons", ofType: "zip") {
