@@ -21,10 +21,17 @@ class EmoticonBoardTabBarCellNode: ASCellNode {
         automaticallyManagesSubnodes = true
         
         imageNode.image = viewModel.tabImage
+        
+        hairlineNode.backgroundColor = UIColor(hexString: "#ECECEC"          )
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let center = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .minimumXY, child: imageNode)
+        center.style.preferredSize = constrainedSize.max
+        center.style.layoutPosition = .zero
         
-        return ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .minimumXY, child: imageNode)
+        hairlineNode.style.preferredSize = CGSize(width: 0.5, height: 32)
+        hairlineNode.style.layoutPosition = CGPoint(x: constrainedSize.max.width - 0.5, y: (constrainedSize.max.height - 32)/2)
+        return ASAbsoluteLayoutSpec(children: [center, hairlineNode])
     }
 }

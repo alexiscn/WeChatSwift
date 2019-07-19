@@ -7,6 +7,7 @@
 //
 
 import AsyncDisplayKit
+import Foundation
 
 class EmoticonGridItemNode: ASDisplayNode {
     

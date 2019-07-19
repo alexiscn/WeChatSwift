@@ -48,9 +48,7 @@ class EmoticonBoardNode: ASDisplayNode {
         collectionNode.view.showsHorizontalScrollIndicator = false
         collectionNode.view.showsVerticalScrollIndicator = false
         collectionNode.backgroundColor = .clear
-        
-        print(collectionNode.frame.width)
-        
+    
         view.addSubview(pageControl)
         pageControl.frame = CGRect(x: 0, y: 196.0 - 37.0, width: Constants.screenWidth, height: 37)
         
@@ -86,4 +84,20 @@ extension EmoticonBoardNode: ASCollectionDataSource, ASCollectionDelegate {
         return block
     }
     
+}
+
+extension EmoticonBoardNode: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageWidth = bounds.width
+        let point = CGPoint(x: scrollView.contentOffset.x + pageWidth/2, y: 0)
+        if let indexPath = collectionNode.indexPathForItem(at: point) {
+            pageControl.numberOfPages = dataSource[indexPath.section].numberOfPages()
+            pageControl.currentPage = indexPath.row
+        }
+    }
 }

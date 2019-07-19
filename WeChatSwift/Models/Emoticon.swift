@@ -48,6 +48,9 @@ struct WCEmotion: Emoticon {
     var thumbImage: UIImage? {
         let folder = NSHomeDirectory().appending("/Documents/emoticons/thumbs/")
         let filename = folder.appending("\(name).pic.thumb")
+        if let data = try? Data(contentsOf: URL(fileURLWithPath: filename)) {
+            return UIImage(data: data)
+        }
         return UIImage.as_imageNamed(filename)
     }
     
