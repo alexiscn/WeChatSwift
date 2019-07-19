@@ -1,5 +1,5 @@
 //
-//  EmoticonGridNode.swift
+//  EmoticonGridCellNode.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/7/17.
@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class EmoticonGridNode: ASCellNode {
+class EmoticonGridCellNode: ASCellNode {
     
     private var nodes: [EmoticonGridItemNode] = []
     
     private let viewModel: EmoticonViewModel
     
-    private var cameraNode: EmoticonBoardCameraEntryNode?
+    private var cameraEntryNode: EmoticonBoardCameraEntryNode?
     
     init(viewModel: EmoticonViewModel, emoticons: [Emoticon]) {
         self.viewModel = viewModel
@@ -32,8 +32,8 @@ class EmoticonGridNode: ASCellNode {
         for index in 0 ..< emoticons.count {
             let page = index / numberOfPerPage // 当前的页数
             let offsetInPage = index - page * numberOfPerPage // 在当前页的索引
-            let col: CGFloat = CGFloat(offsetInPage % columns) // 在当前页的列数
-            let row: CGFloat = CGFloat(offsetInPage/columns) // 在当前页的行数
+            let col = CGFloat(offsetInPage % columns) // 在当前页的列数
+            let row = CGFloat(offsetInPage/columns) // 在当前页的行数
             let x = insetX + col * (spacingX + itemSize.width) + CGFloat(page) * Constants.screenWidth
             let y = insetY +  row * (spacingY + itemSize.height)
             let emoticon = emoticons[index]
@@ -47,7 +47,7 @@ class EmoticonGridNode: ASCellNode {
         if viewModel.type == .cameraEmoticon {
             let node = EmoticonBoardCameraEntryNode()
             addSubnode(node)
-            self.cameraNode = node
+            self.cameraEntryNode = node
         }
     }
     
@@ -55,12 +55,13 @@ class EmoticonGridNode: ASCellNode {
         super.didLoad()
         
         addDeleteButtonIfNeeded()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     func addDeleteButtonIfNeeded() {
-        guard viewModel.type == .expression else {
-            return
-        }
+        guard viewModel.type == .expression else { return }
         
         let layout = viewModel.layout
         let x = layout.marginLeft + CGFloat(layout.columns - 1) * (layout.spacingX + layout.itemSize.width)
@@ -73,16 +74,26 @@ class EmoticonGridNode: ASCellNode {
         self.view.addSubview(deleteButton)
     }
     
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        if let cameraNode = cameraEntryNode {
+            return ASInsetLayoutSpec(insets: .zero, child: cameraNode)
+        }
+        return ASAbsoluteLayoutSpec(children: nodes)
+    }
+}
+
+// MARK: - Event Handlers
+extension EmoticonGridCellNode {
+    
     @objc private func deleteEmoticonButtonClicked() {
         
     }
     
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: self.view)
         
-        if let cameraNode = cameraNode {
-            return ASInsetLayoutSpec(insets: .zero, child: cameraNode)
+        if let node = nodes.first(where: { $0.frame.contains(point) }) {
+            print(node)
         }
-        
-        return ASAbsoluteLayoutSpec(children: nodes)
     }
 }

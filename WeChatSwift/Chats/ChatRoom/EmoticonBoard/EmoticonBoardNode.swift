@@ -88,7 +88,7 @@ extension EmoticonBoardNode: ASCollectionDelegate, ASCollectionDataSource {
         let sectionModel = dataSource[indexPath.section]
         let emoticons = sectionModel.numberOfItems(at: indexPath.row)
         let block: ASCellNodeBlock = {
-            return EmoticonGridNode(viewModel: sectionModel, emoticons: emoticons)
+            return EmoticonGridCellNode(viewModel: sectionModel, emoticons: emoticons)
         }
         return block
     }
@@ -121,7 +121,7 @@ extension EmoticonBoardNode: EmoticonBoardTabBarNodeDelegate {
     }
     
     func emoticonBoardTabBarPressedSendButton() {
-        
+        delegate?.emoticonBoardPressedSendButton()
     }
     
     func emoticonBoardTabBarPressedDeleteButton() {

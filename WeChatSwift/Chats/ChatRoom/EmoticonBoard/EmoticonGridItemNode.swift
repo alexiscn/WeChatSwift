@@ -15,7 +15,7 @@ class EmoticonGridItemNode: ASDisplayNode {
     
     private let textNode = ASTextNode()
     
-    private let emoticon: Emoticon
+    let emoticon: Emoticon
     
     init(emoticon: Emoticon, itemSize: CGSize) {
         self.emoticon = emoticon

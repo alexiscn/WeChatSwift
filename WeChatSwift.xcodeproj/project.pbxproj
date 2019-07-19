@@ -24,7 +24,6 @@
 		A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */; };
 		A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333D022DF507600B79555 /* MomentContentNode.swift */; };
 		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
-		A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
 		A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */ = {isa = PBXBuildFile; fileRef = A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */; };
 		A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2D322CCC80F00A11776 /* AppDelegate.swift */; };
@@ -73,7 +72,6 @@
 		A374866522D4AFE4002EEC4F /* icons_filled_favorites.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */; };
 		A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866622D4B031002EEC4F /* icons_filled_sticker.svg */; };
 		A374866922D4B04F002EEC4F /* icons_filled_transfer.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */; };
-		A374866B22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374866A22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift */; };
 		A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */; };
 		A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */; };
 		A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E322D89AFB008019A4 /* SessionCellNode.swift */; };
@@ -182,7 +180,6 @@
 		A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentMultiImageContentNode.swift; sourceTree = "<group>"; };
 		A32333D022DF507600B79555 /* MomentContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentContentNode.swift; sourceTree = "<group>"; };
 		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
-		A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmotionLayoutDelegate.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
 		A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_keyboard.svg; sourceTree = "<group>"; };
 		A33DB2D022CCC80F00A11776 /* WeChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,7 +230,6 @@
 		A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_favorites.svg; sourceTree = "<group>"; };
 		A374866622D4B031002EEC4F /* icons_filled_sticker.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_sticker.svg; sourceTree = "<group>"; };
 		A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_transfer.svg; sourceTree = "<group>"; };
-		A374866A22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmotionPanelNode.swift; sourceTree = "<group>"; };
 		A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPageLayoutDelegate.swift; sourceTree = "<group>"; };
 		A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellNode.swift; sourceTree = "<group>"; };
 		A37E73E322D89AFB008019A4 /* SessionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCellNode.swift; sourceTree = "<group>"; };
@@ -589,8 +585,6 @@
 				A374865A22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift */,
 				A374865422D49500002EEC4F /* ChatRoomToolBarNode.swift */,
 				A374865C22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift */,
-				A374866A22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift */,
-				A326847E22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift */,
 			);
 			path = Keyboards;
 			sourceTree = "<group>";
@@ -959,11 +953,9 @@
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
 				A3CA51AC22CD99FD00C67D92 /* AddContactViewController.swift in Sources */,
-				A374866B22D4BE32002EEC4F /* ChatRoomEmotionPanelNode.swift in Sources */,
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
-				A326847F22D714D600F1EC91 /* ChatRoomEmotionLayoutDelegate.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,

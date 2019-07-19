@@ -19,13 +19,15 @@ Features
 Screenshots
 ==
 
-<img src="/Screenshots/sessions.jpeg" width=375 />
+<p>
+<img src="/Screenshots/sessions.jpeg" width=275 />
+<img src="/Screenshots/chat.jpeg" width=275 />
+</p>
 
-<img src="/Screenshots/chat.jpeg" width=375 />
-
-<img src="/Screenshots/discover.jpeg" width=375/>
-
-<img src="/Screenshots/moments.jpeg" width=375/>
+<p>
+<img src="/Screenshots/discover.jpeg" width=275/>
+<img src="/Screenshots/moments.jpeg" width=275/>
+</p>
 
 
 Resources and App Design copyrights to [Wechat](https://weixin.qq.com/). 
