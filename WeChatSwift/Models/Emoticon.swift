@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 
 protocol Emoticon {
+    
     var thumbImage: UIImage? { get }
+    
+    var title: String? { get set }
 }
 
 struct EmoticonPackage: Codable {
@@ -20,7 +23,18 @@ struct EmoticonPackage: Codable {
     var emoticons: [String]
     
     func toEmoticonViewModel() -> EmoticonViewModel {
-        let items = emoticons.map { return WCEmotion(packageID: packageID, name: $0) }
+        
+        var package: StickerDescPackage? = nil
+        if let descPath = Bundle.main.path(forResource: packageID, ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: descPath)) {
+            do {
+                package = try JSONDecoder().decode(StickerDescPackage.self, from: data)
+            } catch {
+                print(error)
+            }
+            
+        }
+        
+        let items = emoticons.map { return WCEmotion(packageID: packageID, name: $0, package: package) }
         return EmoticonViewModel(type: .emotion, tabImage: nil, emoticons: items)
     }
 }
@@ -36,6 +50,15 @@ struct WCEmotion: Emoticon {
         let filename = folder.appending("\(name).pic.thumb")
         return UIImage.as_imageNamed(filename)
     }
+    
+    var title: String? = nil
+    
+    init(packageID: String, name: String, package: StickerDescPackage?) {
+        self.packageID = packageID
+        self.name = name
+        
+        self.title = package?.stickers.first(where: { $0.key == name })?.value.title
+    }
 }
 
 struct EmoticonViewModel {
@@ -44,33 +67,17 @@ struct EmoticonViewModel {
     
     var tabImage: UIImage?
     
-    var layout: EmoticonGridInfo
+    var layout: EmoticonGridLayoutInfo
     
     private var pagesDataSource: [[Emoticon]] = []
     
     init(type: EmoticonType, tabImage: UIImage?, emoticons: [Emoticon]) {
         self.type = type
         self.tabImage = tabImage
-        var layout = type.layoutInfo
-        let columns = Int((Constants.screenWidth - 2 * layout.marginLeft + layout.spacingX)/(layout.spacingX + layout.itemSize.width))
-        let margin = (Constants.screenWidth + layout.spacingX - CGFloat(columns) * (layout.itemSize.width + layout.spacingX))/2
-        layout.marginLeft = margin
-        layout.columns = columns
-        if type != .expression {
-            let width = Constants.screenWidth - CGFloat(columns) * layout.itemSize.width
-            let space = width / CGFloat(columns - 1 + 2)
-            layout.marginLeft = space
-            layout.spacingX = space
-        }
-        
-        //print("当前的Type:\(type)，列数：\(columns)，左边距:\(layout.marginLeft)，间距:\(layout.spacingX)")
-
-        let count = emoticons.count
-        let rows = layout.rows
-        let numberOfItemsInPage = type == .expression ? (rows * columns - 1): rows * columns
+        self.layout = EmoticonGridLayoutInfo(emoticonType: type)
         var temp: [Emoticon] = []
-        for index in 0 ..< count {
-            if index != 0 && index % numberOfItemsInPage == 0 {
+        for index in 0 ..< emoticons.count {
+            if index != 0 && index % layout.numberOfItemsInPage == 0 {
                 pagesDataSource.append(temp)
                 temp.removeAll()
             }
@@ -80,7 +87,6 @@ struct EmoticonViewModel {
             pagesDataSource.append(temp)
             temp.removeAll()
         }
-        self.layout = layout
     }
     
     func numberOfPages() -> Int {
@@ -97,44 +103,70 @@ enum EmoticonType {
     case favorites
     case custom
     case emotion
-    
-    var layoutInfo: EmoticonGridInfo {
-        switch self {
-        case .expression:
-            let size = CGSize(width: 30, height: 30)
-            return EmoticonGridInfo(itemSize: size, rows: 3, marginTop: 30, spacingX: 12.0, spacingY: 12, marginLeft: 20)
-        case .favorites:
-            let size = CGSize(width: 56, height: 56)
-            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 18, spacingX: 18.0, spacingY: 15, marginLeft: 20)
-        default:
-            let size = CGSize(width: 56, height: 56)
-            return EmoticonGridInfo(itemSize: size, rows: 2, marginTop: 10, spacingX: 18.0, spacingY: 23, marginLeft: 20)
-        }
-    }
 }
 
-struct EmoticonGridInfo {
+class EmoticonGridLayoutInfo {
     
-    var itemSize: CGSize
+    var emoticonType: EmoticonType
     
-    var rows: Int
+    var itemSize: CGSize = .zero
     
-    var marginTop: CGFloat
+    var rows: Int = 2
     
-    var spacingX: CGFloat
+    var marginTop: CGFloat = 1
     
-    var spacingY: CGFloat
+    var spacingX: CGFloat = 1
     
-    var marginLeft: CGFloat
+    var spacingY: CGFloat = 1
+    
+    var marginLeft: CGFloat = 20
     
     var columns: Int = 0
     
-    init(itemSize: CGSize, rows: Int, marginTop: CGFloat, spacingX: CGFloat, spacingY: CGFloat, marginLeft: CGFloat) {
-        self.itemSize = itemSize
-        self.rows = rows
-        self.marginTop = marginTop
-        self.spacingX = spacingX
-        self.spacingY = spacingY
-        self.marginLeft = marginLeft
+    var numberOfItemsInPage: Int {
+        if emoticonType == .expression {
+            return rows * columns - 1
+        }
+        return rows * columns
     }
+    
+    init(emoticonType: EmoticonType) {
+        self.emoticonType = emoticonType
+        
+        switch emoticonType {
+        case .expression:
+            itemSize = CGSize(width: 30, height: 30)
+            rows = 3
+            spacingX = 12
+            spacingY = 12
+            marginTop = 30
+        case .favorites:
+            itemSize = CGSize(width: 56, height: 56)
+            rows = 2
+            spacingX = 18
+            spacingY = 15
+            marginTop = 18
+        default:
+            itemSize = CGSize(width: 56, height: 56)
+            rows = 2
+            spacingX = 18
+            spacingY = 23
+            marginTop = 10
+        }
+        
+        let columns = Int((Constants.screenWidth - 2 * marginLeft + spacingX)/(spacingX + itemSize.width))
+        let margin = (Constants.screenWidth + spacingX - CGFloat(columns) * (itemSize.width + spacingX))/2
+        self.columns = columns
+        
+        if emoticonType != .expression {
+            let width = Constants.screenWidth - CGFloat(columns) * itemSize.width
+            let space = width / CGFloat(columns - 1 + 2)
+            self.marginLeft = space
+            self.spacingX = space
+        } else {
+            self.marginLeft = margin
+        }
+    }
+    
+
 }

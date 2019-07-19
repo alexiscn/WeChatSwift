@@ -11,6 +11,8 @@ import UIKit
 
 struct Expression: Codable, Emoticon {
     
+    var title: String? = nil
+    
     var thumbImage: UIImage? { return UIImage.as_imageNamed(icon) }
 
     static var all: [Expression] = {

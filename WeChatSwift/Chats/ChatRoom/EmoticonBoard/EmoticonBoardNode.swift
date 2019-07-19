@@ -81,7 +81,7 @@ extension EmoticonBoardNode: ASCollectionDataSource, ASCollectionDelegate {
         let sectionModel = dataSource[indexPath.section]
         let emoticons = sectionModel.numberOfItems(at: indexPath.row)
         let block: ASCellNodeBlock = {
-            return EmoticonGridNode(viewMode: sectionModel, emoticons: emoticons)
+            return EmoticonGridNode(viewModel: sectionModel, emoticons: emoticons)
         }
         return block
     }

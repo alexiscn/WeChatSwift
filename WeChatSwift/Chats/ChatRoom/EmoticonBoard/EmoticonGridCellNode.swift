@@ -10,19 +10,23 @@ import AsyncDisplayKit
 
 class EmoticonGridNode: ASCellNode {
     
-    var nodes: [EmoticonNode] = []
+    private var nodes: [EmoticonGridItemNode] = []
     
-    init(viewMode: EmoticonViewModel, emoticons: [Emoticon]) {
+    private let viewModel: EmoticonViewModel
+    
+    init(viewModel: EmoticonViewModel, emoticons: [Emoticon]) {
+        self.viewModel = viewModel
+        
         super.init()
         
-        let rows = viewMode.layout.rows
-        let columns = viewMode.layout.columns
-        let insetX = viewMode.layout.marginLeft
-        let insetY = viewMode.layout.marginTop
-        let itemSize = viewMode.layout.itemSize
-        let spacingX = viewMode.layout.spacingX
-        let spacingY = viewMode.layout.spacingY
-        let numberOfPerPage = viewMode.type == .expression ? (rows * columns - 1): rows * columns
+        let columns = viewModel.layout.columns
+        let insetX = viewModel.layout.marginLeft
+        let insetY = viewModel.layout.marginTop
+        let itemSize = viewModel.layout.itemSize
+        let spacingX = viewModel.layout.spacingX
+        let spacingY = viewModel.layout.spacingY
+        let numberOfPerPage = viewModel.layout.numberOfItemsInPage
+        
         for index in 0 ..< emoticons.count {
             let page = index / numberOfPerPage // 当前的页数
             let offsetInPage = index - page * numberOfPerPage // 在当前页的索引
@@ -31,7 +35,7 @@ class EmoticonGridNode: ASCellNode {
             let x = insetX + col * (spacingX + itemSize.width) + CGFloat(page) * Constants.screenWidth
             let y = insetY +  row * (spacingY + itemSize.height)
             let emoticon = emoticons[index]
-            let node = EmoticonNode(emoticon: emoticon, itemSize: itemSize)
+            let node = EmoticonGridItemNode(emoticon: emoticon, itemSize: itemSize)
             node.style.preferredSize = itemSize
             node.style.layoutPosition = CGPoint(x: x, y: y)
             addSubnode(node)
@@ -39,36 +43,33 @@ class EmoticonGridNode: ASCellNode {
         }
     }
     
+    override func didLoad() {
+        super.didLoad()
+        
+        addDeleteButtonIfNeeded()
+    }
+    
+    func addDeleteButtonIfNeeded() {
+        guard viewModel.type == .expression else {
+            return
+        }
+        
+        let layout = viewModel.layout
+        let x = layout.marginLeft + CGFloat(layout.columns - 1) * (layout.spacingX + layout.itemSize.width)
+        let y = layout.marginTop + CGFloat(layout.rows - 1) * (layout.spacingY + layout.itemSize.height)
+        let deleteButton = UIButton(type: .custom)
+        deleteButton.addTarget(self, action: #selector(deleteEmoticonButtonClicked), for: .touchUpInside)
+        deleteButton.setImage(UIImage(named: "DeleteEmoticonBtn_32x32_"), for: .normal)
+        deleteButton.frame = CGRect(origin: CGPoint(x: x, y: y), size: layout.itemSize)
+        deleteButton.contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        self.view.addSubview(deleteButton)
+    }
+    
+    @objc private func deleteEmoticonButtonClicked() {
+        
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return ASAbsoluteLayoutSpec(children: nodes)
     }
-}
-
-class EmoticonNode: ASDisplayNode {
-    
-    private let imageNode = ASImageNode()
-    
-    private let textNode = ASTextNode()
-    
-    private let emoticon: Emoticon
-    
-    init(emoticon: Emoticon, itemSize: CGSize) {
-        self.emoticon = emoticon
-        super.init()
-        imageNode.image = emoticon.thumbImage
-        imageNode.style.preferredSize = itemSize
-        imageNode.contentMode = .scaleAspectFill
-        addSubnode(imageNode)
-    }
-    
-    override func didLoad() {
-        super.didLoad()
-    }
-    
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let stack = ASStackLayoutSpec.vertical()
-        stack.children = [imageNode, textNode]
-        return ASInsetLayoutSpec(insets: .zero, child: imageNode)
-    }
-    
 }
