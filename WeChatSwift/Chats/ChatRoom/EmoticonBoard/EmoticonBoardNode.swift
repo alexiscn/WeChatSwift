@@ -8,7 +8,13 @@
 
 import AsyncDisplayKit
 
+protocol EmoticonBoardNodeDelegate {
+    func emoticonBoardPressedSendButton()
+}
+
 class EmoticonBoardNode: ASDisplayNode {
+    
+    var delegate: EmoticonBoardNodeDelegate?
     
     private let tabBarNode: EmoticonBoardTabBarNode
     
@@ -18,6 +24,7 @@ class EmoticonBoardNode: ASDisplayNode {
         let page = UIPageControl()
         page.pageIndicatorTintColor = UIColor(hexString: "#E1E2E6")
         page.currentPageIndicatorTintColor = UIColor(hexString: "#8E8E8E")
+        page.hidesForSinglePage = true
         return page
     }()
     
@@ -40,6 +47,7 @@ class EmoticonBoardNode: ASDisplayNode {
         addSubnode(tabBarNode)
         collectionNode.delegate = self
         collectionNode.dataSource = self
+        tabBarNode.delegate = self
     }
     
     override func didLoad() {
@@ -65,7 +73,8 @@ class EmoticonBoardNode: ASDisplayNode {
     }
 }
 
-extension EmoticonBoardNode: ASCollectionDataSource, ASCollectionDelegate {
+// MARK: - ASCollectionDelegate & ASCollectionDataSource
+extension EmoticonBoardNode: ASCollectionDelegate, ASCollectionDataSource {
     
     func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
         return dataSource.count
@@ -86,6 +95,7 @@ extension EmoticonBoardNode: ASCollectionDataSource, ASCollectionDelegate {
     
 }
 
+// MARK: - UIScrollViewDelegate
 extension EmoticonBoardNode: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -96,8 +106,34 @@ extension EmoticonBoardNode: UIScrollViewDelegate {
         let pageWidth = bounds.width
         let point = CGPoint(x: scrollView.contentOffset.x + pageWidth/2, y: 0)
         if let indexPath = collectionNode.indexPathForItem(at: point) {
-            pageControl.numberOfPages = dataSource[indexPath.section].numberOfPages()
+            let numberOfPages = dataSource[indexPath.section].numberOfPages()
+            pageControl.numberOfPages = numberOfPages
             pageControl.currentPage = indexPath.row
         }
+    }
+}
+
+// MARK: - EmoticonBoardTabBarNodeDelegate
+extension EmoticonBoardNode: EmoticonBoardTabBarNodeDelegate {
+    
+    func emoticonBoardTabBarPressedAddButton() {
+        
+    }
+    
+    func emoticonBoardTabBarPressedSendButton() {
+        
+    }
+    
+    func emoticonBoardTabBarPressedDeleteButton() {
+        
+    }
+    
+    func emoticonBoardTabBarPressedSettingButton() {
+        
+    }
+    
+    func emoticonBoardTabBarDidSelected(at indexPath: IndexPath) {
+        let destIndex = IndexPath(row: 0, section: indexPath.row)
+        collectionNode.scrollToItem(at: destIndex, at: .left, animated: false)
     }
 }

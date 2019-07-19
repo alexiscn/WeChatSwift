@@ -8,7 +8,17 @@
 
 import AsyncDisplayKit
 
+protocol EmoticonBoardTabBarNodeDelegate {
+    func emoticonBoardTabBarPressedAddButton()
+    func emoticonBoardTabBarPressedSendButton()
+    func emoticonBoardTabBarPressedDeleteButton()
+    func emoticonBoardTabBarPressedSettingButton()
+    func emoticonBoardTabBarDidSelected(at indexPath: IndexPath)
+}
+
 class EmoticonBoardTabBarNode: ASDisplayNode {
+    
+    var delegate: EmoticonBoardTabBarNodeDelegate?
     
     private let addButtonNode: ASButtonNode
     
@@ -36,6 +46,7 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
         sendButtonNode = ASButtonNode()
         
         super.init()
+        backgroundColor = Colors.white
         automaticallyManagesSubnodes = true
         collectionNode.delegate = self
         collectionNode.dataSource = self
@@ -53,6 +64,14 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
     override func didLoad() {
         super.didLoad()
         
+        addButtonNode.addTarget(self, action: #selector(handleTapAddButton(_:)), forControlEvents: .touchUpInside)
+        sendButtonNode.addTarget(self, action: #selector(handleTapSendButton(_:)), forControlEvents: .touchUpInside)
+        settingButtonNode.addTarget(self, action: #selector(handleTapSettingButton(_:)), forControlEvents: .touchUpInside)
+        
+        let addButtonLineView = UIView()
+        addButtonLineView.frame = CGRect(x: 44.5, y: 6, width: 0.5, height: 32)
+        addButtonLineView.backgroundColor = UIColor(hexString: "#ECECEC")
+        addButtonNode.view.addSubview(addButtonLineView)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -71,6 +90,27 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
     }
 }
 
+// MARK: - Event Handler
+extension EmoticonBoardTabBarNode {
+    
+    @objc private func handleTapAddButton(_ sender: Any) {
+        delegate?.emoticonBoardTabBarPressedAddButton()
+    }
+    
+    @objc private func handleTapSendButton(_ sender: Any) {
+        delegate?.emoticonBoardTabBarPressedSendButton()
+    }
+    
+    @objc private func handleTapDeleteButton(_ sender: Any) {
+        delegate?.emoticonBoardTabBarPressedDeleteButton()
+    }
+    
+    @objc private func handleTapSettingButton(_ sender: Any) {
+        delegate?.emoticonBoardTabBarPressedSettingButton()
+    }
+}
+
+// MARK: - ASCollectionDelegate & ASCollectionDataSource
 extension EmoticonBoardTabBarNode: ASCollectionDelegate, ASCollectionDataSource {
     func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
         return 1
@@ -89,6 +129,6 @@ extension EmoticonBoardTabBarNode: ASCollectionDelegate, ASCollectionDataSource 
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        
+        delegate?.emoticonBoardTabBarDidSelected(at: indexPath)
     }
 }

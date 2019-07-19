@@ -25,7 +25,7 @@ class EmoticonManager {
         emoticons.append(EmoticonViewModel(type: .favorites, tabImage: favImage, emoticons: []))
         
         let takeImage = UIImage.SVGImage(named: "icons_outlined_takephoto_nor")
-        emoticons.append(EmoticonViewModel(type: .custom, tabImage: takeImage, emoticons: []))
+        emoticons.append(EmoticonViewModel(type: .cameraEmoticon, tabImage: takeImage, emoticons: []))
         
         let path = NSHomeDirectory().appending("/Documents/emoticons/")
         //try? FileManager.default.removeItem(atPath: path)

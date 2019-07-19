@@ -157,6 +157,9 @@
 		A3D897E422E1733A00814669 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897E322E1733A00814669 /* Sticker.swift */; };
 		A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897E522E1916300814669 /* EmoticonGridItemNode.swift */; };
 		A3D897E822E194E100814669 /* 153716293386e633a27b0f3d76.json in Resources */ = {isa = PBXBuildFile; fileRef = A3D897E722E194E100814669 /* 153716293386e633a27b0f3d76.json */; };
+		A3D897EB22E1D14500814669 /* 153716293386e633a27b0f3d76.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897EA22E1CFEB00814669 /* 153716293386e633a27b0f3d76.png */; };
+		A3D897EC22E1D14900814669 /* 15031638347220abdd83283a10.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */; };
+		A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -314,6 +317,9 @@
 		A3D897E322E1733A00814669 /* Sticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
 		A3D897E522E1916300814669 /* EmoticonGridItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonGridItemNode.swift; sourceTree = "<group>"; };
 		A3D897E722E194E100814669 /* 153716293386e633a27b0f3d76.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 153716293386e633a27b0f3d76.json; sourceTree = "<group>"; };
+		A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 15031638347220abdd83283a10.png; sourceTree = "<group>"; };
+		A3D897EA22E1CFEB00814669 /* 153716293386e633a27b0f3d76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 153716293386e633a27b0f3d76.png; sourceTree = "<group>"; };
+		A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardCameraEntryNode.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -363,6 +369,7 @@
 				A3D897E522E1916300814669 /* EmoticonGridItemNode.swift */,
 				A32333BF22DF1CB000B79555 /* EmoticonBoardTabBarNode.swift */,
 				A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */,
+				A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */,
 			);
 			path = EmoticonBoard;
 			sourceTree = "<group>";
@@ -622,8 +629,10 @@
 				A372228A22D984D9003403D4 /* flutter.jpeg */,
 				A3CCE01C22DDDA0A0003DC25 /* Emoticons.zip */,
 				A3CCE01A22DDD9150003DC25 /* Emoticons.json */,
-				A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */,
+				A3D897EA22E1CFEB00814669 /* 153716293386e633a27b0f3d76.png */,
 				A3D897E722E194E100814669 /* 153716293386e633a27b0f3d76.json */,
+				A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */,
+				A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -803,6 +812,7 @@
 				A3CA51DD22CD9FAF00C67D92 /* icons_filled_search-logo.svg in Resources */,
 				A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */,
 				A374866122D4AF68002EEC4F /* icons_filled_location.svg in Resources */,
+				A3D897EB22E1D14500814669 /* 153716293386e633a27b0f3d76.png in Resources */,
 				A3CA522E22CE1C5F00C67D92 /* icons_outlined_colorful_favorites.svg in Resources */,
 				A3CA51D922CD9FA000C67D92 /* icons_outlined_shake.svg in Resources */,
 				A372228B22D984D9003403D4 /* flutter.jpeg in Resources */,
@@ -838,6 +848,7 @@
 				A3CA51CF22CD9C7B00C67D92 /* icons_outlined_me.svg in Resources */,
 				A3CA51C722CD9C5400C67D92 /* icons_filled_contacts.svg in Resources */,
 				A32333B922DF091D00B79555 /* icons_outlined_mute.svg in Resources */,
+				A3D897EC22E1D14900814669 /* 15031638347220abdd83283a10.png in Resources */,
 				A3CA523222CE1D0000C67D92 /* icons_outlined_sticker.svg in Resources */,
 				A374866322D4AFCE002EEC4F /* icons_filled_folder.svg in Resources */,
 				A374866522D4AFE4002EEC4F /* icons_filled_favorites.svg in Resources */,
@@ -958,6 +969,7 @@
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
+				A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */,
 				A372228722D95216003403D4 /* MeCellNode.swift in Sources */,
 				A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */,
 				A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */,

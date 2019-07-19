@@ -14,6 +14,8 @@ class EmoticonGridNode: ASCellNode {
     
     private let viewModel: EmoticonViewModel
     
+    private var cameraNode: EmoticonBoardCameraEntryNode?
+    
     init(viewModel: EmoticonViewModel, emoticons: [Emoticon]) {
         self.viewModel = viewModel
         
@@ -40,6 +42,12 @@ class EmoticonGridNode: ASCellNode {
             node.style.layoutPosition = CGPoint(x: x, y: y)
             addSubnode(node)
             nodes.append(node)
+        }
+        
+        if viewModel.type == .cameraEmoticon {
+            let node = EmoticonBoardCameraEntryNode()
+            addSubnode(node)
+            self.cameraNode = node
         }
     }
     
@@ -70,6 +78,11 @@ class EmoticonGridNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        if let cameraNode = cameraNode {
+            return ASInsetLayoutSpec(insets: .zero, child: cameraNode)
+        }
+        
         return ASAbsoluteLayoutSpec(children: nodes)
     }
 }

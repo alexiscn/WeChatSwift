@@ -21,9 +21,9 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     weak var tableNode: ASTableNode?
     
     private let toolBar = ChatRoomToolBarNode()
-//    private let emotionPanel = ChatRoomEmotionPanelNode(expressions: Expression.all)
     private let emotionPanel: EmoticonBoardNode
     private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
+    private let bottomNode = ASDisplayNode()
     
     private let barHeight: CGFloat
     private let panelHeight: CGFloat
@@ -49,6 +49,8 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
         emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
         toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
+        
+        bottomNode.backgroundColor = Colors.white
         
         super.init()
         
@@ -139,21 +141,21 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         let additionLayout = ASOverlayLayoutSpec(child: toolsPanel, overlay: emotionPanel)
         additionLayout.style.preferredSize = CGSize(width: Constants.screenWidth, height: panelHeight)
         
-        let spacer = ASLayoutSpec()
-        spacer.style.preferredSize = CGSize(width: Constants.screenWidth, height: bottomInset)
+        
+        bottomNode.style.preferredSize = CGSize(width: Constants.screenWidth, height: bottomInset)
         
         let stack = ASStackLayoutSpec.vertical()
         switch keyboardType {
         case .none:
-            stack.children = [toolBar, spacer, additionLayout]
+            stack.children = [toolBar, bottomNode, additionLayout]
         case .input:
-            stack.children = [toolBar, spacer, additionLayout]
+            stack.children = [toolBar, bottomNode, additionLayout]
         case .emotion:
-            stack.children = [toolBar, additionLayout, spacer]
+            stack.children = [toolBar, additionLayout, bottomNode]
         case .tools:
-            stack.children = [toolBar, additionLayout, spacer]
+            stack.children = [toolBar, additionLayout, bottomNode]
         case .voice:
-            stack.children = [toolBar, spacer, additionLayout]
+            stack.children = [toolBar, bottomNode, additionLayout]
         }
         return ASInsetLayoutSpec(insets: .zero, child: stack)
     }
@@ -178,12 +180,14 @@ class ChatRoomKeyboardNode: ASDisplayNode {
                 self.toolsPanel.frame.origin.y = self.bounds.height
                 self.frame.origin.y = self.keyboardEndFrame.origin.y - self.barHeight - (Constants.screenHeight - containerHeight)
             case .emotion:
+                self.bottomNode.backgroundColor = .white
                 self.toolsPanel.isHidden = true
                 self.emotionPanel.isHidden = false
                 self.frame.origin.y = containerHeight - self.bounds.height
                 self.emotionPanel.frame.origin.y = self.barHeight
                 self.toolsPanel.frame.origin.y = self.bounds.height
             case .tools:
+                self.bottomNode.backgroundColor = .clear
                 self.toolsPanel.isHidden = false
                 self.emotionPanel.isHidden = true
                 self.frame.origin.y = containerHeight - self.bounds.height
@@ -216,17 +220,4 @@ extension ChatRoomKeyboardNode: ChatRoomToolBarNodeDelegate {
         self.keyboardType = keyboard
     }
     
-}
-
-// MARK: - ChatRoomEmotionPanelNodeDelegate
-
-extension ChatRoomKeyboardNode: ChatRoomEmotionPanelNodeDelegate {
-    
-    func emotionPanelPressedDeleteButton() {
-        
-    }
-    
-    func emotionPanelSelectedExpression(_ expression: Expression) {
-        toolBar.appendText(expression.text)
-    }
 }

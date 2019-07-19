@@ -35,7 +35,8 @@ struct EmoticonPackage: Codable {
         }
         
         let items = emoticons.map { return WCEmotion(packageID: packageID, name: $0, package: package) }
-        return EmoticonViewModel(type: .emotion, tabImage: nil, emoticons: items)
+        let tabImage = UIImage(named: "\(packageID).png")
+        return EmoticonViewModel(type: .emotion, tabImage: tabImage, emoticons: items)
     }
 }
 
@@ -93,10 +94,16 @@ struct EmoticonViewModel {
     }
     
     func numberOfPages() -> Int {
+        if type == .cameraEmoticon && pagesDataSource.count == 0 {
+            return 1
+        }
         return pagesDataSource.count
     }
     
     func numberOfItems(at page: Int) -> [Emoticon] {
+        if pagesDataSource.count == 0 {
+            return []
+        }
         return pagesDataSource[page]
     }
 }
@@ -104,7 +111,7 @@ struct EmoticonViewModel {
 enum EmoticonType {
     case expression
     case favorites
-    case custom
+    case cameraEmoticon
     case emotion
 }
 
