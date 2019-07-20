@@ -10,6 +10,8 @@ import AsyncDisplayKit
 
 class EmoticonGridCellNode: ASCellNode {
     
+    var didTapEmoticon: ((_ emoticon: Emoticon) -> Void)?
+    
     private var nodes: [EmoticonGridItemNode] = []
     
     private let viewModel: EmoticonViewModel
@@ -91,9 +93,8 @@ extension EmoticonGridCellNode {
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: self.view)
-        
         if let node = nodes.first(where: { $0.frame.contains(point) }) {
-            print(node)
+            didTapEmoticon?(node.emoticon)
         }
     }
 }

@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-protocol ChatRoomKeyboardNodeDelegate {
+protocol ChatRoomKeyboardNodeDelegate: class {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendText text: String)
 }
 
 class ChatRoomKeyboardNode: ASDisplayNode {
     
-    var delegate: ChatRoomKeyboardNodeDelegate?
+    weak var delegate: ChatRoomKeyboardNodeDelegate?
     
     var isSwipeBackGestureCauseKeyboardDismiss = false
     
@@ -58,7 +58,6 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         addSubnode(emotionPanel)
         addSubnode(toolsPanel)
         
-        //emotionPanel.delegate = self
         toolBar.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -168,6 +167,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
             self.lastKeyboardOffsetY = self.frame.origin.y
             switch self.keyboardType {
             case .none:
+                self.bottomNode.backgroundColor = .clear
                 self.toolsPanel.isHidden = true
                 self.emotionPanel.isHidden = true
                 self.emotionPanel.frame.origin.y = self.bounds.height

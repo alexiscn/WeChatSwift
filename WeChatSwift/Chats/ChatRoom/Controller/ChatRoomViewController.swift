@@ -36,6 +36,10 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         node.addSubnode(inputNode)
     }
     
+    deinit {
+        print("chatRoom deinit")
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

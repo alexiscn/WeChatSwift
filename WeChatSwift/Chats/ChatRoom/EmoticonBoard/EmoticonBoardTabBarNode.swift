@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-protocol EmoticonBoardTabBarNodeDelegate {
+protocol EmoticonBoardTabBarNodeDelegate: class {
     func emoticonBoardTabBarPressedAddButton()
     func emoticonBoardTabBarPressedSendButton()
     func emoticonBoardTabBarPressedDeleteButton()
@@ -18,7 +18,7 @@ protocol EmoticonBoardTabBarNodeDelegate {
 
 class EmoticonBoardTabBarNode: ASDisplayNode {
     
-    var delegate: EmoticonBoardTabBarNodeDelegate?
+    weak var delegate: EmoticonBoardTabBarNodeDelegate?
     
     private let addButtonNode: ASButtonNode
     
@@ -59,6 +59,11 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
             .foregroundColor: UIColor(white: 0.0, alpha: 0.9)
             ])
         sendButtonNode.setAttributedTitle(sendText, for: .normal)
+    }
+    
+    func emoticonGridDidScrollTo(_ indexPath: IndexPath) {
+        let destIndex = IndexPath(row: indexPath.section, section: 0)
+        collectionNode.selectItem(at: destIndex, animated: false, scrollPosition: .left)
     }
     
     override func didLoad() {

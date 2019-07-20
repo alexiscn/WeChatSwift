@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-protocol EmoticonBoardNodeDelegate {
+protocol EmoticonBoardNodeDelegate: class {
     func emoticonBoardPressedSendButton()
 }
 
 class EmoticonBoardNode: ASDisplayNode {
     
-    var delegate: EmoticonBoardNodeDelegate?
+    weak var delegate: EmoticonBoardNodeDelegate?
     
     private let tabBarNode: EmoticonBoardTabBarNode
     
@@ -57,11 +57,14 @@ class EmoticonBoardNode: ASDisplayNode {
         collectionNode.view.showsVerticalScrollIndicator = false
         collectionNode.backgroundColor = .clear
     
+        pageControl.frame = CGRect(x: 0, y: 196.0 - 20.0, width: Constants.screenWidth, height: 28)
+        pageControl.numberOfPages = dataSource.first?.numberOfPages() ?? 0
         view.addSubview(pageControl)
-        pageControl.frame = CGRect(x: 0, y: 196.0 - 37.0, width: Constants.screenWidth, height: 37)
         
-        pageControl.numberOfPages = 5
         collectionNode.reloadData()
+        DispatchQueue.main.async {
+            self.tabBarNode.emoticonGridDidScrollTo(IndexPath(row: 0, section: 0))
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -88,11 +91,14 @@ extension EmoticonBoardNode: ASCollectionDelegate, ASCollectionDataSource {
         let sectionModel = dataSource[indexPath.section]
         let emoticons = sectionModel.numberOfItems(at: indexPath.row)
         let block: ASCellNodeBlock = {
-            return EmoticonGridCellNode(viewModel: sectionModel, emoticons: emoticons)
+            let cell = EmoticonGridCellNode(viewModel: sectionModel, emoticons: emoticons)
+//            cell.didTapEmoticon = { emoticon in
+//                print(sectionModel.type)
+//            }
+            return cell
         }
         return block
     }
-    
 }
 
 // MARK: - UIScrollViewDelegate
@@ -102,13 +108,14 @@ extension EmoticonBoardNode: UIScrollViewDelegate {
         
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let pageWidth = bounds.width
         let point = CGPoint(x: scrollView.contentOffset.x + pageWidth/2, y: 0)
         if let indexPath = collectionNode.indexPathForItem(at: point) {
             let numberOfPages = dataSource[indexPath.section].numberOfPages()
             pageControl.numberOfPages = numberOfPages
             pageControl.currentPage = indexPath.row
+            tabBarNode.emoticonGridDidScrollTo(indexPath)
         }
     }
 }
