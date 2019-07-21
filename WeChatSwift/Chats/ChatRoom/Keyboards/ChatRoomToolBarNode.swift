@@ -90,6 +90,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         
         textNode.layer.cornerRadius = 6
         textNode.layer.masksToBounds = true
+        textNode.maximumLinesToDisplay = 4
     
         let buttonNodes = [voiceNode, emotionNode, moreNode]
         buttonNodes.forEach { $0.addTarget(self, action: #selector(tapToolBarButtonNode(_:)), forControlEvents: .touchUpInside) }
@@ -124,15 +125,15 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         emotionNode.style.spacingBefore = 3
         moreNode.style.spacingBefore = -6
         moreNode.style.spacingAfter = 3
-        
-        textNode.style.preferredSize = CGSize(width: 0, height: 40)
+            
         textNode.style.flexGrow = 1.0
+        textNode.style.minHeight = ASDimensionMake(40)
         
         let layoutSpec = ASStackLayoutSpec.horizontal()
         layoutSpec.alignItems = .center
         layoutSpec.children = [voiceNode, textNode, emotionNode, moreNode]
         
-        return layoutSpec
+        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0), child: layoutSpec)
     }
 }
 

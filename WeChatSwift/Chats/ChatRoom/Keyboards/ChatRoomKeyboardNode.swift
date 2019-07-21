@@ -137,10 +137,9 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
 
-        toolBar.style.preferredSize = CGSize(width: Constants.screenWidth, height: barHeight)
+        toolBar.style.preferredSize = CGSize(width: Constants.screenWidth, height: toolBar.bounds.height)
         let additionLayout = ASOverlayLayoutSpec(child: toolsPanel, overlay: emoticonBoardNode)
         additionLayout.style.preferredSize = CGSize(width: Constants.screenWidth, height: panelHeight)
-        
         
         bottomNode.style.preferredSize = CGSize(width: Constants.screenWidth, height: bottomInset)
         
