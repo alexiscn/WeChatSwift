@@ -43,6 +43,8 @@
 		A36BE2CB22E3F58A003F334B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2CA22E3F58A003F334B /* SettingsViewController.swift */; };
 		A36BE2CD22E3F643003F334B /* SettingsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2CC22E3F643003F334B /* SettingsCellNode.swift */; };
 		A36BE2CF22E3F7CD003F334B /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2CE22E3F7CD003F334B /* SettingsTableModel.swift */; };
+		A36BE2D122E4362A003F334B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2D022E4362A003F334B /* AboutViewController.swift */; };
+		A36BE2D322E4615C003F334B /* AboutTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2D222E4615C003F334B /* AboutTableModel.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
@@ -206,6 +208,8 @@
 		A36BE2CA22E3F58A003F334B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Me/Settings/SettingsViewController.swift; sourceTree = "<group>"; };
 		A36BE2CC22E3F643003F334B /* SettingsCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsCellNode.swift; path = ../../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Me/Settings/SettingsCellNode.swift; sourceTree = "<group>"; };
 		A36BE2CE22E3F7CD003F334B /* SettingsTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableModel.swift; path = ../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Models/SettingsTableModel.swift; sourceTree = "<group>"; };
+		A36BE2D022E4362A003F334B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = ../../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Me/Settings/AboutViewController.swift; sourceTree = "<group>"; };
+		A36BE2D222E4615C003F334B /* AboutTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutTableModel.swift; path = ../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Models/AboutTableModel.swift; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
@@ -528,6 +532,7 @@
 				A3CA51FC22CDAD1D00C67D92 /* User.swift */,
 				A3CA522722CE1A8A00C67D92 /* MeTableModel.swift */,
 				A36BE2CE22E3F7CD003F334B /* SettingsTableModel.swift */,
+				A36BE2D222E4615C003F334B /* AboutTableModel.swift */,
 				A37221A222D5474A003403D4 /* ChatRoomTool.swift */,
 				A372227B22D62033003403D4 /* Expression.swift */,
 				A3CCE01822DDD3D10003DC25 /* Emoticon.swift */,
@@ -551,6 +556,7 @@
 			children = (
 				A36BE2CA22E3F58A003F334B /* SettingsViewController.swift */,
 				A36BE2CC22E3F643003F334B /* SettingsCellNode.swift */,
+				A36BE2D022E4362A003F334B /* AboutViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1009,6 +1015,7 @@
 				A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */,
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
 				A36BE2CD22E3F643003F334B /* SettingsCellNode.swift in Sources */,
+				A36BE2D322E4615C003F334B /* AboutTableModel.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
@@ -1047,6 +1054,7 @@
 				A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */,
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
+				A36BE2D122E4362A003F334B /* AboutViewController.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

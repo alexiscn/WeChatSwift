@@ -26,6 +26,7 @@ class SettingsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        navigationItem.title = "设置"
         setupDataSource()
         node.reloadData()
     }
@@ -40,7 +41,8 @@ class SettingsViewController: ASViewController<ASTableNode> {
         dataSource.append(SettingsTableGroupModel(models: [messageModel, privacyModel, generalModel]))
         
         let helpModel = SettingsTableModel(type: .helpAndFeedback, title: "帮助与反馈")
-        let aboutModel = SettingsTableModel(type: .about, title: "关于微信")
+        var aboutModel = SettingsTableModel(type: .about, title: "关于微信")
+        aboutModel.value = "版本7.0.4"
         dataSource.append(SettingsTableGroupModel(models: [helpModel, aboutModel]))
         
         let pluginModel = SettingsTableModel(type: .plugins, title: "插件")
@@ -90,5 +92,15 @@ extension SettingsViewController: ASTableDelegate, ASTableDataSource {
     }
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let model = dataSource[indexPath.section].models[indexPath.row]
+        switch model.type {
+        case .about:
+            let aboutVC = AboutViewController()
+            navigationController?.pushViewController(aboutVC, animated: true)
+        default:
+            break
+        }
     }
 }

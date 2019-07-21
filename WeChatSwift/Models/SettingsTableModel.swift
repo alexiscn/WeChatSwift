@@ -32,6 +32,15 @@ struct SettingsTableModel {
         ]
         return NSAttributedString(string: title, attributes: attributes)
     }
+    
+    func attributedStringForValue() -> NSAttributedString? {
+        guard let value = value else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.5)
+        ]
+        return NSAttributedString(string: value, attributes: attributes)
+    }
 }
 
 enum SettingsType {

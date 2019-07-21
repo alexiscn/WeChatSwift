@@ -14,17 +14,19 @@ class SettingsCellNode: ASCellNode {
     
     private let arrowNode: ASImageNode
     
+    private let valueNode: ASTextNode
+    
     private let model: SettingsTableModel
     
     init(model: SettingsTableModel) {
         self.model = model
         titleNode = ASTextNode()
-        
         arrowNode = ASImageNode()
-        
+        valueNode = ASTextNode()
         super.init()
         automaticallyManagesSubnodes = true
         titleNode.attributedText = model.attributedStringForTitle()
+        valueNode.attributedText = model.attributedStringForValue()
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
     }
     
@@ -44,6 +46,7 @@ class SettingsCellNode: ASCellNode {
         titleNode.style.spacingBefore = 16
         arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
         arrowNode.style.spacingAfter = 16
+        valueNode.style.spacingAfter = 12
         
         let stack = ASStackLayoutSpec.horizontal()
         stack.alignItems = .center
@@ -51,8 +54,7 @@ class SettingsCellNode: ASCellNode {
         
         let spacer = ASLayoutSpec()
         spacer.style.flexGrow = 1.0
-        
-        stack.children = [titleNode, spacer, arrowNode]
+        stack.children = model.value == nil ? [titleNode, spacer, arrowNode]: [titleNode, spacer, valueNode, arrowNode]
         
         return ASInsetLayoutSpec(insets: .zero, child: stack)
     }
