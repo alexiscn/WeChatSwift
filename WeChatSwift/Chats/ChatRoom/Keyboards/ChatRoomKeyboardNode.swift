@@ -21,7 +21,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     weak var tableNode: ASTableNode?
     
     private let toolBar = ChatRoomToolBarNode()
-    private let emotionPanel: EmoticonBoardNode
+    private let emoticonBoardNode: EmoticonBoardNode
     private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     private let bottomNode = ASDisplayNode()
     
@@ -44,10 +44,10 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         self.bottomInset = Constants.bottomInset
         
         let emoticonMgr = AppContext.current.emoticonMgr
-        emotionPanel = EmoticonBoardNode(emoticons: emoticonMgr.emoticons)
+        emoticonBoardNode = EmoticonBoardNode(emoticons: emoticonMgr.emoticons)
         
         toolBar.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: barHeight)
-        emotionPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
+        emoticonBoardNode.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
         toolsPanel.frame = CGRect(x: 0, y: Constants.screenHeight, width: Constants.screenWidth, height: panelHeight)
         
         bottomNode.backgroundColor = Colors.white
@@ -55,10 +55,11 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         super.init()
         
         addSubnode(toolBar)
-        addSubnode(emotionPanel)
+        addSubnode(emoticonBoardNode)
         addSubnode(toolsPanel)
         
         toolBar.delegate = self
+        emoticonBoardNode.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
@@ -137,7 +138,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
 
         toolBar.style.preferredSize = CGSize(width: Constants.screenWidth, height: barHeight)
-        let additionLayout = ASOverlayLayoutSpec(child: toolsPanel, overlay: emotionPanel)
+        let additionLayout = ASOverlayLayoutSpec(child: toolsPanel, overlay: emoticonBoardNode)
         additionLayout.style.preferredSize = CGSize(width: Constants.screenWidth, height: panelHeight)
         
         
@@ -169,34 +170,34 @@ class ChatRoomKeyboardNode: ASDisplayNode {
             case .none:
                 self.bottomNode.backgroundColor = .clear
                 self.toolsPanel.isHidden = true
-                self.emotionPanel.isHidden = true
-                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.emoticonBoardNode.isHidden = true
+                self.emoticonBoardNode.frame.origin.y = self.bounds.height
                 self.toolsPanel.frame.origin.y = self.bounds.height
                 self.frame.origin.y = containerHeight - self.barHeight - self.bottomInset
             case .input:
                 self.toolsPanel.isHidden = true
-                self.emotionPanel.isHidden = true
-                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.emoticonBoardNode.isHidden = true
+                self.emoticonBoardNode.frame.origin.y = self.bounds.height
                 self.toolsPanel.frame.origin.y = self.bounds.height
                 self.frame.origin.y = self.keyboardEndFrame.origin.y - self.barHeight - (Constants.screenHeight - containerHeight)
             case .emotion:
                 self.bottomNode.backgroundColor = .white
                 self.toolsPanel.isHidden = true
-                self.emotionPanel.isHidden = false
+                self.emoticonBoardNode.isHidden = false
                 self.frame.origin.y = containerHeight - self.bounds.height
-                self.emotionPanel.frame.origin.y = self.barHeight
+                self.emoticonBoardNode.frame.origin.y = self.barHeight
                 self.toolsPanel.frame.origin.y = self.bounds.height
             case .tools:
                 self.bottomNode.backgroundColor = .clear
                 self.toolsPanel.isHidden = false
-                self.emotionPanel.isHidden = true
+                self.emoticonBoardNode.isHidden = true
                 self.frame.origin.y = containerHeight - self.bounds.height
-                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.emoticonBoardNode.frame.origin.y = self.bounds.height
                 self.toolsPanel.frame.origin.y = self.barHeight
             case .voice:
                 self.toolsPanel.isHidden = true
-                self.emotionPanel.isHidden = true
-                self.emotionPanel.frame.origin.y = self.bounds.height
+                self.emoticonBoardNode.isHidden = true
+                self.emoticonBoardNode.frame.origin.y = self.bounds.height
                 self.toolsPanel.frame.origin.y = self.bounds.height
                 self.frame.origin.y = containerHeight - self.barHeight - self.bottomInset
             }
@@ -219,5 +220,35 @@ extension ChatRoomKeyboardNode: ChatRoomToolBarNodeDelegate {
     func toolBar(_ toolBar: ChatRoomToolBarNode, keyboardTypeChanged keyboard: ChatRoomKeyboardType) {
         self.keyboardType = keyboard
     }
+}
+
+// MARK: - EmoticonBoardNodeDelegate
+extension ChatRoomKeyboardNode: EmoticonBoardNodeDelegate {
     
+    func emoticonBoardPressedSendButton() {
+        
+    }
+    
+    func emoticonBoardPressedDeleteButton() {
+        
+    }
+    
+    func emoticonBoardPressedSettingButton() {
+        
+    }
+    
+    func emoticonBoardPressedAddButton() {
+        
+    }
+    
+    func emoticonBoardDidTapEmoticon(_ emoticon: Emoticon, viewModel: EmoticonViewModel) {
+        switch viewModel.type {
+        case .expression:
+            if let expression = emoticon as? Expression {
+                toolBar.appendText(expression.text)
+            }
+        default:
+            break
+        }
+    }
 }

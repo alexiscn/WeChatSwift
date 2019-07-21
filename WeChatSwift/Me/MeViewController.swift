@@ -100,5 +100,14 @@ extension MeViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        switch model.type {
+        case .settings:
+            let settingsVC = SettingsViewController()
+            navigationController?.pushViewController(settingsVC, animated: true)
+        default:
+            break
+        }
     }
 }

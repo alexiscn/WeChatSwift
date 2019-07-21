@@ -10,6 +10,10 @@ import AsyncDisplayKit
 
 protocol EmoticonBoardNodeDelegate: class {
     func emoticonBoardPressedSendButton()
+    func emoticonBoardPressedDeleteButton()
+    func emoticonBoardPressedSettingButton()
+    func emoticonBoardPressedAddButton()
+    func emoticonBoardDidTapEmoticon(_ emoticon: Emoticon, viewModel: EmoticonViewModel)
 }
 
 class EmoticonBoardNode: ASDisplayNode {
@@ -57,7 +61,7 @@ class EmoticonBoardNode: ASDisplayNode {
         collectionNode.view.showsVerticalScrollIndicator = false
         collectionNode.backgroundColor = .clear
     
-        pageControl.frame = CGRect(x: 0, y: 196.0 - 20.0, width: Constants.screenWidth, height: 28)
+        pageControl.frame = CGRect(x: 0, y: 196.0 - 24.0, width: Constants.screenWidth, height: 20)
         pageControl.numberOfPages = dataSource.first?.numberOfPages() ?? 0
         view.addSubview(pageControl)
         
@@ -92,9 +96,9 @@ extension EmoticonBoardNode: ASCollectionDelegate, ASCollectionDataSource {
         let emoticons = sectionModel.numberOfItems(at: indexPath.row)
         let block: ASCellNodeBlock = {
             let cell = EmoticonGridCellNode(viewModel: sectionModel, emoticons: emoticons)
-//            cell.didTapEmoticon = { emoticon in
-//                print(sectionModel.type)
-//            }
+            cell.didTapEmoticon = { [weak self] emoticon in
+                self?.delegate?.emoticonBoardDidTapEmoticon(emoticon, viewModel: sectionModel)
+            }
             return cell
         }
         return block
@@ -124,7 +128,7 @@ extension EmoticonBoardNode: UIScrollViewDelegate {
 extension EmoticonBoardNode: EmoticonBoardTabBarNodeDelegate {
     
     func emoticonBoardTabBarPressedAddButton() {
-        
+        delegate?.emoticonBoardPressedAddButton()
     }
     
     func emoticonBoardTabBarPressedSendButton() {
@@ -132,15 +136,18 @@ extension EmoticonBoardNode: EmoticonBoardTabBarNodeDelegate {
     }
     
     func emoticonBoardTabBarPressedDeleteButton() {
-        
+        delegate?.emoticonBoardPressedDeleteButton()
     }
     
     func emoticonBoardTabBarPressedSettingButton() {
-        
+        delegate?.emoticonBoardPressedSettingButton()
     }
     
     func emoticonBoardTabBarDidSelected(at indexPath: IndexPath) {
         let destIndex = IndexPath(row: 0, section: indexPath.row)
         collectionNode.scrollToItem(at: destIndex, at: .left, animated: false)
+        let numberOfPages = dataSource[destIndex.section].numberOfPages()
+        pageControl.numberOfPages = numberOfPages
+        pageControl.currentPage = 0
     }
 }

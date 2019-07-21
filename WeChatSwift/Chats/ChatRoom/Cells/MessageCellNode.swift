@@ -51,17 +51,11 @@ public class MessageCellNode: ASCellNode {
         
         super.init()
         
-        if let node = topTextNode {
-            addSubnode(node)
-        }
+        if let node = topTextNode { addSubnode(node) }
         addSubnode(avatarNode)
         addSubnode(contentNode)
-        if let node = contentTopTextNode {
-            addSubnode(node)
-        }
-        if let node = bottomTextNode {
-            addSubnode(node)
-        }
+        if let node = contentTopTextNode { addSubnode(node) }
+        if let node = bottomTextNode { addSubnode(node) }
         
         selectionStyle = .none
         let user = MockFactory.shared.users.first(where: { $0.identifier == message.senderID })
@@ -70,8 +64,6 @@ public class MessageCellNode: ASCellNode {
         avatarNode.cornerRadius = 6.0
         avatarNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         avatarNode.cornerRoundingType = .clipping
-        
-        avatarNode.addTarget(self, action: #selector(avatarClicked), forControlEvents: .touchUpInside)
     }
     
     @objc private func avatarClicked() {
@@ -80,6 +72,7 @@ public class MessageCellNode: ASCellNode {
     
     public override func didLoad() {
         super.didLoad()
+        avatarNode.addTarget(self, action: #selector(avatarClicked), forControlEvents: .touchUpInside)
     }
     
     public override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

@@ -37,7 +37,7 @@ class TextContentNode: MessageContentNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let offsetLeft: CGFloat = message.isOutgoing ? 0: 6
         let offsetRight: CGFloat = message.isOutgoing ? 6: 0
-        let insets = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 12 + offsetLeft, bottom: 12, right: 12 + offsetRight), child: textNode)
+        let insets = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 12 + offsetLeft, bottom: 12, right: 9 + offsetRight), child: textNode)
         let spec = ASBackgroundLayoutSpec()
         spec.background = bubbleNode
         spec.child = insets

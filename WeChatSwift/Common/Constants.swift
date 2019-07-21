@@ -29,4 +29,6 @@ struct Constants {
     static var statusBarHeight: CGFloat {
         return iPhoneX ? 44.0: 20.0
     }
+    
+    static let helpURL = URL(string: "https://kf.qq.com/touch/product/wechat_app.html?scene_id=kf338")
 }

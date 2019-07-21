@@ -40,6 +40,9 @@
 		A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */; };
 		A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB30122CCDDE200A11776 /* DiscoverModel.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
+		A36BE2CB22E3F58A003F334B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2CA22E3F58A003F334B /* SettingsViewController.swift */; };
+		A36BE2CD22E3F643003F334B /* SettingsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2CC22E3F643003F334B /* SettingsCellNode.swift */; };
+		A36BE2CF22E3F7CD003F334B /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BE2CE22E3F7CD003F334B /* SettingsTableModel.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
@@ -200,6 +203,9 @@
 		A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		A33DB30122CCDDE200A11776 /* DiscoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverModel.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		A36BE2CA22E3F58A003F334B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Me/Settings/SettingsViewController.swift; sourceTree = "<group>"; };
+		A36BE2CC22E3F643003F334B /* SettingsCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsCellNode.swift; path = ../../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Me/Settings/SettingsCellNode.swift; sourceTree = "<group>"; };
+		A36BE2CE22E3F7CD003F334B /* SettingsTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableModel.swift; path = ../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Models/SettingsTableModel.swift; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
@@ -483,6 +489,7 @@
 		A33DB2E922CCCA1F00A11776 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				A36BE2C922E3F56C003F334B /* Settings */,
 				A33DB2F222CCD16D00A11776 /* MeViewController.swift */,
 				A372228622D95216003403D4 /* MeCellNode.swift */,
 			);
@@ -520,6 +527,7 @@
 				A3CA51F422CDA66E00C67D92 /* Moment.swift */,
 				A3CA51FC22CDAD1D00C67D92 /* User.swift */,
 				A3CA522722CE1A8A00C67D92 /* MeTableModel.swift */,
+				A36BE2CE22E3F7CD003F334B /* SettingsTableModel.swift */,
 				A37221A222D5474A003403D4 /* ChatRoomTool.swift */,
 				A372227B22D62033003403D4 /* Expression.swift */,
 				A3CCE01822DDD3D10003DC25 /* Emoticon.swift */,
@@ -536,6 +544,15 @@
 				A33DB2DA22CCC81100A11776 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A36BE2C922E3F56C003F334B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A36BE2CA22E3F58A003F334B /* SettingsViewController.swift */,
+				A36BE2CC22E3F643003F334B /* SettingsCellNode.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A374862722D43820002EEC4F /* Session */ = {
@@ -954,6 +971,7 @@
 			files = (
 				A33DB2F322CCD16D00A11776 /* MeViewController.swift in Sources */,
 				A3CA520522CDC47100C67D92 /* SessionMoreMenuView.swift in Sources */,
+				A36BE2CB22E3F58A003F334B /* SettingsViewController.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
@@ -965,6 +983,7 @@
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
+				A36BE2CF22E3F7CD003F334B /* SettingsTableModel.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
@@ -989,6 +1008,7 @@
 				A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */,
 				A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */,
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
+				A36BE2CD22E3F643003F334B /* SettingsCellNode.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
