@@ -25,13 +25,16 @@ class TextContentNode: MessageContentNode {
         addSubnode(textNode)
         
         let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
         paragraphStyle.lineSpacing = 3
         
-        textNode.attributedText = NSAttributedString(string: text, attributes: [
+        let attributedText = NSAttributedString(string: text, attributes: [
             .font: UIFont.systemFont(ofSize: 17),
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
             .paragraphStyle: paragraphStyle
             ])
+        
+        textNode.attributedText = attributedText //ExpressionParser.shared?.attributedText(with: attributedText)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

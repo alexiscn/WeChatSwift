@@ -36,4 +36,8 @@ struct Expression: Codable, Emoticon {
     var text: String {
         return "[\(zh)]"
     }
+    
+    func match(text: String) -> Bool {
+        return self.text == text
+    }
 }

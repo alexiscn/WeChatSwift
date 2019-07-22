@@ -90,6 +90,10 @@ class MockFactory {
         messages.append("今天我们接获了悲伤的消息，大人，我不想在你清理宝剑之前打扰你")
         messages.append("这消息确实么？")
         messages.append("我想这也算是最后的一点慈悲")
+        
+        let temp = messages
+        messages.removeAll()
+        messages = temp.map { return $0 + "[微笑]hahah" }
     }
     
     private func setupRemoteImages() {
