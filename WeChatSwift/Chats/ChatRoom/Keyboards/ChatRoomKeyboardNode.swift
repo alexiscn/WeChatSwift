@@ -85,6 +85,10 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         }
     }
     
+    func clearText() {
+        toolBar.clearText()
+    }
+    
     private func transitionLayout() {
         self.transitionLayout(withAnimation: true, shouldMeasureAsync: false, measurementCompletion: nil)
     }
@@ -225,7 +229,9 @@ extension ChatRoomKeyboardNode: ChatRoomToolBarNodeDelegate {
 extension ChatRoomKeyboardNode: EmoticonBoardNodeDelegate {
     
     func emoticonBoardPressedSendButton() {
-        
+        if let text = toolBar.text {
+            delegate?.keyboard(self, didSendText: text)
+        }
     }
     
     func emoticonBoardPressedDeleteButton() {

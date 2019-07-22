@@ -109,10 +109,6 @@ extension EmoticonBoardNode: ASCollectionDelegate, ASCollectionDataSource {
 extension EmoticonBoardNode: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let pageWidth = bounds.width
         let point = CGPoint(x: scrollView.contentOffset.x + pageWidth/2, y: 0)
         if let indexPath = collectionNode.indexPathForItem(at: point) {
@@ -121,6 +117,10 @@ extension EmoticonBoardNode: UIScrollViewDelegate {
             pageControl.currentPage = indexPath.row
             tabBarNode.emoticonGridDidScrollTo(indexPath)
         }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
     }
 }
 

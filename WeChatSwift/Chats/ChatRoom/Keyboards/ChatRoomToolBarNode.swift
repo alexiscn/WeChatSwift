@@ -74,6 +74,10 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         return node
     }()
     
+    var text: String? {
+        return textNode.attributedText?.string
+    }
+    
     override init() {
         super.init()
         
@@ -99,6 +103,10 @@ final class ChatRoomToolBarNode: ASDisplayNode {
             node.style.preferredSize = CGSize(width: 40.0, height: 40.0)
             node.imageNode.style.preferredSize = CGSize(width: 32, height: 32)
         }
+    }
+    
+    func clearText() {
+        textNode.attributedText = nil
     }
     
     func appendText(_ text: String) {

@@ -16,6 +16,11 @@ protocol EmoticonBoardTabBarNodeDelegate: class {
     func emoticonBoardTabBarDidSelected(at indexPath: IndexPath)
 }
 
+fileprivate enum EmoticonBoardTabBarRightButtonType {
+    case settings
+    case send
+}
+
 class EmoticonBoardTabBarNode: ASDisplayNode {
     
     weak var delegate: EmoticonBoardTabBarNodeDelegate?
@@ -29,6 +34,8 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
     private let sendButtonNode: ASButtonNode
     
     private var dataSource: [EmoticonViewModel] = []
+    
+    private var rightButtonType: EmoticonBoardTabBarRightButtonType = .send
     
     init(emoticons: [EmoticonViewModel]) {
         self.dataSource = emoticons
@@ -52,18 +59,35 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
         collectionNode.dataSource = self
         
         addButtonNode.setImage(UIImage.SVGImage(named: "icons_filled_add"), for: .normal)
+        
         settingButtonNode.setImage(UIImage.SVGImage(named: "icons_outlined_setting"), for: .normal)
+        settingButtonNode.setBackgroundImage(UIImage.as_imageNamed("EmotionsSendBtnGrey_70x37_"), for: .normal)
+        settingButtonNode.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         
         let sendText = NSAttributedString(string: "发送", attributes: [
             .font: UIFont.systemFont(ofSize: 15, weight: .semibold),
             .foregroundColor: UIColor(white: 0.0, alpha: 0.9)
             ])
         sendButtonNode.setAttributedTitle(sendText, for: .normal)
+        sendButtonNode.setBackgroundImage(UIImage.as_imageNamed("EmotionsSendBtnGrey_70x37_"), for: .normal)
+        sendButtonNode.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
     }
     
     func emoticonGridDidScrollTo(_ indexPath: IndexPath) {
         let destIndex = IndexPath(row: indexPath.section, section: 0)
         collectionNode.selectItem(at: destIndex, animated: false, scrollPosition: .left)
+        
+        if indexPath.section == 0 {
+            if rightButtonType != .send {
+                rightButtonType = .send
+                transitionLayout(withAnimation: true, shouldMeasureAsync: false, measurementCompletion: nil)
+            }
+        } else {
+            if rightButtonType != .settings {
+                rightButtonType = .settings
+                transitionLayout(withAnimation: true, shouldMeasureAsync: false, measurementCompletion: nil)
+            }
+        }
     }
     
     override func didLoad() {
@@ -79,17 +103,34 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
         addButtonNode.view.addSubview(addButtonLineView)
     }
     
+    override func animateLayoutTransition(_ context: ASContextTransitioning) {
+        UIView.animate(withDuration: 0.25) {
+            switch self.rightButtonType {
+            case .send:
+                self.settingButtonNode.frame.origin.x += 60
+                self.sendButtonNode.frame.origin.x -= 60
+            case .settings:
+                self.settingButtonNode.frame.origin.x -= 60
+                self.sendButtonNode.frame.origin.x += 60
+            }
+        }
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         collectionNode.style.flexShrink = 1.0
         collectionNode.style.flexGrow = 1.0
         
         addButtonNode.style.preferredSize = CGSize(width: 45, height: 44)
-        settingButtonNode.style.preferredSize = CGSize(width: 45, height: 44)
-        sendButtonNode.style.preferredSize = CGSize(width: 45, height: 44)
+        settingButtonNode.style.preferredSize = CGSize(width: 60, height: 44)
+        sendButtonNode.style.preferredSize = CGSize(width: 60, height: 44)
         
         let stack = ASStackLayoutSpec.horizontal()
-        stack.children = [addButtonNode, collectionNode, sendButtonNode]
+        if rightButtonType == .settings {
+            stack.children = [addButtonNode, collectionNode, settingButtonNode]
+        } else {
+            stack.children = [addButtonNode, collectionNode, sendButtonNode]
+        }
         
         return ASInsetLayoutSpec(insets: .zero, child: stack)
     }

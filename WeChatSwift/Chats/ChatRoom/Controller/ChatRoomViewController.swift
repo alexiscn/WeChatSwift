@@ -60,6 +60,8 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         inputNode.tableNode = tableNode
         inputNode.delegate = self
         
+        dataSource.tableNode = tableNode
+        
         scrollToLastMessage(animated: false)
         
         navigationController?.interactivePopGestureRecognizer?.addTarget(self, action: #selector(handlePopGesture(_:)))
@@ -134,6 +136,14 @@ extension ChatRoomViewController: UIScrollViewDelegate {
 extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendText text: String) {
+        let message = Message()
+        message.chatID = sessionID
+        message.content = .text(text)
+        message.senderID = AppContext.current.userID
+        message.msgID = UUID().uuidString
+        message.time = Int(Date().timeIntervalSinceNow)
+        dataSource.append(message)
         
+        inputNode.clearText()
     }
 }

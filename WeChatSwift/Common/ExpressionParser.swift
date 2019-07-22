@@ -41,7 +41,7 @@ class ExpressionParser {
             if let expression = regex.expression {
                 let attachment = NSTextAttachment()
                 attachment.image = UIImage(named: expression)
-                attachment.bounds = CGRect(x: 0, y: descender, width: 20, height: 20)
+                attachment.bounds = CGRect(x: 0, y: descender, width: 21, height: 21)
                 let attachmentText = NSAttributedString(attachment: attachment)
                 result.replaceCharacters(in: NSRange(location: offset, length: regex.range.length), with: attachmentText)
                 offset += attachmentText.length
