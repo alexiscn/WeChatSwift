@@ -10,6 +10,5 @@ target 'WeChatSwift' do
     pod 'Texture'
     pod 'SSZipArchive'
     
-    pod 'YYText', :path => 'DevelopmentPods/YYText'
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'
 end

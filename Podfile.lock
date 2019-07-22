@@ -50,7 +50,6 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
   - WXActionSheet (0.0.8)
-  - YYText (1.0.7)
 
 DEPENDENCIES:
   - Alamofire
@@ -61,7 +60,6 @@ DEPENDENCIES:
   - Texture
   - WCDB.swift
   - WXActionSheet
-  - YYText (from `DevelopmentPods/YYText`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -82,8 +80,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   SVGKit:
     :path: DevelopmentPods/SVGKit
-  YYText:
-    :path: DevelopmentPods/YYText
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -100,8 +96,7 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: e80e27ce19211d8f105f8e148700e0e36c444656
-  YYText: 0bdd0e5806f9eebc4faa17e0ab301dd8692a2b56
 
-PODFILE CHECKSUM: ffe5f3c8775e2d4ce3711731c70e2fc9c68afcc8
+PODFILE CHECKSUM: 8615704542ad7069aa6d8c5c85717af23a67d99e
 
 COCOAPODS: 1.5.3
