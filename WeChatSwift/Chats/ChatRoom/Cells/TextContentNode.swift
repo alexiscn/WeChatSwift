@@ -24,16 +24,19 @@ class TextContentNode: MessageContentNode {
         addSubnode(bubbleNode)
         addSubnode(textNode)
         
+        let textFont = UIFont.systemFont(ofSize: 17)
+        let lineHeight = textFont.lineHeight
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
         paragraphStyle.lineSpacing = 3
+        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.minimumLineHeight = lineHeight
         
         let attributedText = NSAttributedString(string: text, attributes: [
-            .font: UIFont.systemFont(ofSize: 17),
+            .font: textFont,
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
             .paragraphStyle: paragraphStyle
             ])
-        
         textNode.attributedText = ExpressionParser.shared?.attributedText(with: attributedText)
     }
     
@@ -47,7 +50,6 @@ class TextContentNode: MessageContentNode {
         textNode.style.flexShrink = 1.0
         
         let insets: UIEdgeInsets
-        
         if message.isOutgoing {
             insets = UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 15)
         } else {

@@ -91,9 +91,9 @@ class MockFactory {
         messages.append("这消息确实么？")
         messages.append("我想这也算是最后的一点慈悲")
         
-//        let temp = messages
-//        messages.removeAll()
-//        messages = temp.map { return $0 + "[微笑]好的" }
+        let temp = messages
+        messages.removeAll()
+        messages = temp.map { return $0 + "[微笑]好的" }
     }
     
     private func setupRemoteImages() {
