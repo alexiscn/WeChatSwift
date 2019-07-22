@@ -10,9 +10,9 @@ import AsyncDisplayKit
 
 class TextContentNode: MessageContentNode {
     
-    private let bubbleNode: ASImageNode = ASImageNode()
+    private let bubbleNode = ASImageNode()
     
-    private let textNode: MessageTextNode = MessageTextNode()
+    private let textNode = ASTextNode()
     
     init(message: Message, text: String) {
         super.init(message: message)
@@ -34,16 +34,31 @@ class TextContentNode: MessageContentNode {
             .paragraphStyle: paragraphStyle
             ])
         
-        textNode.attributedText = attributedText //ExpressionParser.shared?.attributedText(with: attributedText)
+        textNode.attributedText = ExpressionParser.shared?.attributedText(with: attributedText)
+    }
+    
+    override func didLoad() {
+        super.didLoad()
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let offsetLeft: CGFloat = message.isOutgoing ? 0: 6
-        let offsetRight: CGFloat = message.isOutgoing ? 6: 0
-        let insets = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 12 + offsetLeft, bottom: 12, right: 9 + offsetRight), child: textNode)
+        
+        textNode.style.flexGrow = 1.0
+        textNode.style.flexShrink = 1.0
+        
+        let insets: UIEdgeInsets
+        
+        if message.isOutgoing {
+            insets = UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 15)
+        } else {
+            insets = UIEdgeInsets(top: 10, left: 17, bottom: 10, right: 12)
+        }
+        
+        let insetsLayout = ASInsetLayoutSpec(insets: insets, child: textNode)
         let spec = ASBackgroundLayoutSpec()
         spec.background = bubbleNode
-        spec.child = insets
+        
+        spec.child = insetsLayout
         return spec
     }
 }
@@ -58,7 +73,7 @@ private class MessageTextNode: ASTextNode {
     
     override func calculateSizeThatFits(_ constrainedSize: CGSize) -> CGSize {
         let size = super.calculateSizeThatFits(constrainedSize)
-        return CGSize(width: max(size.width, 15), height: size.height)
+        return CGSize(width: max(size.width, 17), height: size.height)
     }
     
 }

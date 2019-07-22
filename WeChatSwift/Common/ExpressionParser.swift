@@ -36,11 +36,12 @@ class ExpressionParser {
         
         let result = NSMutableAttributedString(attributedString: attributedText)
         var offset: Int = 0
+        let descender = UIFont.systemFont(ofSize: 17).descender
         for regex in regexes {
             if let expression = regex.expression {
                 let attachment = NSTextAttachment()
                 attachment.image = UIImage(named: expression)
-                attachment.bounds = CGRect(x: 0, y: -5, width: 22, height: 22)
+                attachment.bounds = CGRect(x: 0, y: descender, width: 20, height: 20)
                 let attachmentText = NSAttributedString(attachment: attachment)
                 result.replaceCharacters(in: NSRange(location: offset, length: regex.range.length), with: attachmentText)
                 offset += attachmentText.length

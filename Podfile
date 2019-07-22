@@ -9,6 +9,7 @@ target 'WeChatSwift' do
     pod 'WCDB.swift'
     pod 'Texture'
     pod 'SSZipArchive'
-
+    
+    pod 'YYText', :path => 'DevelopmentPods/YYText'
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'
 end

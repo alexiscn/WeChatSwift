@@ -76,7 +76,7 @@ class MockFactory {
         messages.append("毕竟他才三岁。")
         messages.append("他得学着面对自己的恐惧，他不可能永远都是三岁，更何况凛冬将至。")
         messages.append("今天那个人死得很干脆，这一点我承认")
-        messages.append("我很为布兰高兴，你要是在场，也会为他骄傲的")
+        messages.append("我很为布兰高兴，你要是在场也会为他骄傲的")
         messages.append("我向来都很为他骄傲")
         messages.append("这已经是今年第四个逃兵了")
         messages.append("是野人的关系吗？")
@@ -91,9 +91,9 @@ class MockFactory {
         messages.append("这消息确实么？")
         messages.append("我想这也算是最后的一点慈悲")
         
-        let temp = messages
-        messages.removeAll()
-        messages = temp.map { return $0 + "[微笑]hahah" }
+//        let temp = messages
+//        messages.removeAll()
+//        messages = temp.map { return $0 + "[微笑]好的" }
     }
     
     private func setupRemoteImages() {
