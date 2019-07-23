@@ -10,6 +10,7 @@ import AsyncDisplayKit
 
 protocol ChatRoomKeyboardNodeDelegate: class {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendText text: String)
+    func keyboard(_ keyboard: ChatRoomKeyboardNode, didSelectToolItem tool: ChatRoomTool)
 }
 
 class ChatRoomKeyboardNode: ASDisplayNode {
@@ -222,6 +223,13 @@ extension ChatRoomKeyboardNode: ChatRoomToolBarNodeDelegate {
     
     func toolBar(_ toolBar: ChatRoomToolBarNode, keyboardTypeChanged keyboard: ChatRoomKeyboardType) {
         self.keyboardType = keyboard
+    }
+}
+
+// MARK: - ChatRoomToolPanelNodeDelegate
+extension ChatRoomKeyboardNode: ChatRoomToolPanelNodeDelegate {
+    func toolPanelDidPressedTool(_ tool: ChatRoomTool) {
+        delegate?.keyboard(self, didSelectToolItem: tool)
     }
 }
 

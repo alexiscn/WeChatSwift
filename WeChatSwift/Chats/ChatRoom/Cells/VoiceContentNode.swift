@@ -16,6 +16,8 @@ class VoiceContentNode: MessageContentNode {
     
     private let durationNode = ASTextNode()
     
+    private let unreadNode = ASImageNode()
+    
     init(message: Message, voiceMsg: VoiceMessage) {
         
         let icon = message.isOutgoing ? "ChatRoom_Bubble_Text_Sender_Green_57x40_": "ChatRoom_Bubble_Text_Receiver_White_57x40_"
@@ -27,10 +29,12 @@ class VoiceContentNode: MessageContentNode {
         addSubnode(bubbleNode)
         addSubnode(imageNode)
         addSubnode(durationNode)
+        addSubnode(unreadNode)
         
         let image = message.isOutgoing ? "ChatRoom_Bubble_Voice_Sender_24x24_": "ChatRoom_Bubble_Voice_Receiver_24x24_"
         imageNode.image = UIImage.as_imageNamed(image)
-        
+        unreadNode.image = UIImage.as_imageNamed("VoiceNodeUnread_8x8_")
+        unreadNode.style.preferredSize = CGSize(width: 8, height: 8)
         durationNode.attributedText = voiceMsg.attributedStringForDuration()
     }
  
@@ -57,6 +61,11 @@ class VoiceContentNode: MessageContentNode {
         }
         
         let backgroundSpec = ASBackgroundLayoutSpec(child: stack, background: bubbleNode)
-        return ASInsetLayoutSpec(insets: .zero, child: backgroundSpec)
+        
+        let layout = ASStackLayoutSpec.horizontal()
+        layout.alignItems = .center
+        layout.spacing = 10
+        layout.children = [backgroundSpec, unreadNode]
+        return ASInsetLayoutSpec(insets: .zero, child: layout)
     }
 }

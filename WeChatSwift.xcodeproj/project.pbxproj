@@ -45,6 +45,8 @@
 		A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0422E5555600F18106 /* SettingsTableModel.swift */; };
 		A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0622E5555C00F18106 /* AboutTableModel.swift */; };
 		A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0822E55A6E00F18106 /* ExpressionParser.swift */; };
+		A34760A722E6BDA70043AE1D /* AssetPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760A622E6BDA70043AE1D /* AssetPickerViewController.swift */; };
+		A34760A922E6C03F0043AE1D /* AssetPickerCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
@@ -211,6 +213,8 @@
 		A341CF0422E5555600F18106 /* SettingsTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableModel.swift; sourceTree = "<group>"; };
 		A341CF0622E5555C00F18106 /* AboutTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableModel.swift; sourceTree = "<group>"; };
 		A341CF0822E55A6E00F18106 /* ExpressionParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionParser.swift; sourceTree = "<group>"; };
+		A34760A622E6BDA70043AE1D /* AssetPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerViewController.swift; sourceTree = "<group>"; };
+		A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerCellNode.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
@@ -476,7 +480,6 @@
 			children = (
 				A374862822D4382C002EEC4F /* ChatRoom */,
 				A374862722D43820002EEC4F /* Session */,
-				A3CA522322CE196100C67D92 /* ChatDetailViewController.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -554,6 +557,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A34760A422E6BCDD0043AE1D /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		A34760A522E6BD950043AE1D /* AssetPicker */ = {
+			isa = PBXGroup;
+			children = (
+				A34760A622E6BDA70043AE1D /* AssetPickerViewController.swift */,
+				A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */,
+			);
+			path = AssetPicker;
+			sourceTree = "<group>";
+		};
 		A36BE2C922E3F56C003F334B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,11 +598,12 @@
 		A374862822D4382C002EEC4F /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				A34760A522E6BD950043AE1D /* AssetPicker */,
+				A34760A422E6BCDD0043AE1D /* DataSource */,
 				A32333BE22DF1C8200B79555 /* EmoticonBoard */,
 				A374866C22D4C3BC002EEC4F /* Controller */,
 				A374865322D49413002EEC4F /* Keyboards */,
 				A374863122D43BE2002EEC4F /* Cells */,
-				A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */,
 				A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */,
 			);
 			path = ChatRoom;
@@ -622,6 +643,7 @@
 		A374866C22D4C3BC002EEC4F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A3CA522322CE196100C67D92 /* ChatDetailViewController.swift */,
 				A374862922D4383F002EEC4F /* ChatRoomViewController.swift */,
 			);
 			path = Controller;
@@ -1031,6 +1053,7 @@
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
+				A34760A722E6BDA70043AE1D /* AssetPickerViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
@@ -1057,6 +1080,7 @@
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
 				A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */,
+				A34760A922E6C03F0043AE1D /* AssetPickerCellNode.swift in Sources */,
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,

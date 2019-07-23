@@ -146,4 +146,16 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
         
         inputNode.clearText()
     }
+    
+    func keyboard(_ keyboard: ChatRoomKeyboardNode, didSelectToolItem tool: ChatRoomTool) {
+        switch tool {
+        case .album:
+            // TODO:
+            let assetPickerVC = AssetPickerViewController()
+            let nav = UINavigationController(rootViewController: assetPickerVC)
+            present(nav, animated: true, completion: nil)
+        default:
+            break
+        }
+    }
 }
