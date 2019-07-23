@@ -6,6 +6,8 @@ Requirements
 ==
 
 - [Texture](https://github.com/TextureGroup/Texture)
+- Swift 5.0 +
+- Xcode 10.2 +
 
 
 Features
