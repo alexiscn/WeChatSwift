@@ -174,6 +174,7 @@
 		A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */; };
 		A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */; };
 		A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */; };
+		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -348,6 +349,7 @@
 		A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardCameraEntryNode.swift; sourceTree = "<group>"; };
 		A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jsb_emoticon_md5.png; sourceTree = "<group>"; };
 		A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_emoticon_md5.png; sourceTree = "<group>"; };
+		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -584,6 +586,7 @@
 				A34760B422E6F22D0043AE1D /* TODO */,
 				A34760AA22E6DE100043AE1D /* MediaAsset.swift */,
 				A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */,
+				A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */,
 				A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */,
 				A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */,
 				A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */,
@@ -1062,6 +1065,7 @@
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,
 				A374864C22D44D34002EEC4F /* UnknownContentNode.swift in Sources */,
+				A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */,
 				A33DB2F522CCD92E00A11776 /* Colors.swift in Sources */,
 				A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */,
 				A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */,

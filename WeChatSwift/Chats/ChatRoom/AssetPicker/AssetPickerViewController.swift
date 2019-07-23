@@ -17,12 +17,15 @@ class AssetPickerViewController: UIViewController {
     
     private var dataSource: [MediaAsset] = []
     
+    private var bottomBar: AssetPickerBottomBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
         configureNavigationBar()
         setupCollectionView()
+        setupBottomBar()
         requestAuthorizationAndLoadPhotos()
         
     }
@@ -63,7 +66,20 @@ class AssetPickerViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(AssetPickerCollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(AssetPickerCollectionViewCell.self))
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         view.addSubview(collectionView)
+    }
+    
+    private func setupBottomBar() {
+        let frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 45 + Constants.bottomInset)
+        bottomBar = AssetPickerBottomBar(frame: frame)
+        view.addSubview(bottomBar)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        bottomBar.frame.origin.y = view.bounds.height - bottomBar.bounds.height
     }
     
     private func loadPhotos() {

@@ -5,6 +5,20 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 45,
+          "top" : 44,
+          "right" : 23,
+          "left" : 22
+        }
+      },
       "idiom" : "universal",
       "filename" : "buttontoolbarBkg_dark_23x45_@2x.png",
       "scale" : "2x"
