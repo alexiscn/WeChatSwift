@@ -1,0 +1,101 @@
+//
+//  AlbumPickerViewController.swift
+//  WeChatSwift
+//
+//  Created by xu.shuifeng on 2019/7/23.
+//  Copyright © 2019 alexiscn. All rights reserved.
+//
+
+import UIKit
+import Photos
+
+class AlbumPickerViewController: UIViewController {
+
+    private var tableView: UITableView!
+    
+    private var dataSource: [AlbumPickerModel] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        configureNavigationBar()
+        setupTableView()
+        loadAlbums()
+    }
+    
+    private func setupTableView() {
+        tableView = UITableView(frame: view.bounds)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableView.register(AlbumPickerTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(AlbumPickerTableViewCell.self))
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+    }
+    
+    private func configureNavigationBar() {
+        navigationItem.title = "照片"
+        navigationController?.navigationBar.tintColor = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
+    }
+    
+    @objc private func cancelButtonClicked() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    private func loadAlbums() {
+        dataSource.append(contentsOf: loadAlbum(type: .smartAlbum))
+        dataSource.append(contentsOf: loadAlbum(type: .album))
+    }
+    
+    private func loadAlbum(type: PHAssetCollectionType) -> [AlbumPickerModel] {
+        var result: [AlbumPickerModel] = []
+        let collections = PHAssetCollection.fetchAssetCollections(with: type, subtype: .any, options: nil)
+        collections.enumerateObjects { (collection, _, _) in
+            let assets = PHAsset.fetchAssets(in: collection, options: nil)
+            let count = assets.count
+            if count > 0 {
+                let name = collection.localizedTitle
+                let cover = assets.firstObject
+                result.append(AlbumPickerModel(assetCollection: collection, coverAsset: cover, name: name, count: count))
+            }
+        }
+        return result
+    }
+}
+
+extension AlbumPickerViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let album = dataSource[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(AlbumPickerTableViewCell.self), for: indexPath) as! AlbumPickerTableViewCell
+        cell.update(album)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 56.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+}
+
+
+struct AlbumPickerModel {
+    
+    var assetCollection: PHAssetCollection
+    
+    var coverAsset: PHAsset?
+    
+    var name: String?
+    
+    var count: Int
+}

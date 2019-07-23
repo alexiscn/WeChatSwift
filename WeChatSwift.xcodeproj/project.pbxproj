@@ -45,8 +45,14 @@
 		A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0422E5555600F18106 /* SettingsTableModel.swift */; };
 		A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0622E5555C00F18106 /* AboutTableModel.swift */; };
 		A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0822E55A6E00F18106 /* ExpressionParser.swift */; };
-		A34760A722E6BDA70043AE1D /* AssetPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760A622E6BDA70043AE1D /* AssetPickerViewController.swift */; };
+		A34760A722E6BDA70043AE1D /* AssetPickerNodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760A622E6BDA70043AE1D /* AssetPickerNodeController.swift */; };
 		A34760A922E6C03F0043AE1D /* AssetPickerCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */; };
+		A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AA22E6DE100043AE1D /* MediaAsset.swift */; };
+		A34760AD22E6E8BB0043AE1D /* AssetPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */; };
+		A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */; };
+		A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */; };
+		A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B222E6F02E0043AE1D /* WCNavigationController.swift */; };
+		A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
@@ -213,8 +219,14 @@
 		A341CF0422E5555600F18106 /* SettingsTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableModel.swift; sourceTree = "<group>"; };
 		A341CF0622E5555C00F18106 /* AboutTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableModel.swift; sourceTree = "<group>"; };
 		A341CF0822E55A6E00F18106 /* ExpressionParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionParser.swift; sourceTree = "<group>"; };
-		A34760A622E6BDA70043AE1D /* AssetPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerViewController.swift; sourceTree = "<group>"; };
+		A34760A622E6BDA70043AE1D /* AssetPickerNodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerNodeController.swift; sourceTree = "<group>"; };
 		A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerCellNode.swift; sourceTree = "<group>"; };
+		A34760AA22E6DE100043AE1D /* MediaAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAsset.swift; sourceTree = "<group>"; };
+		A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerViewController.swift; sourceTree = "<group>"; };
+		A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerViewController.swift; sourceTree = "<group>"; };
+		A34760B222E6F02E0043AE1D /* WCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCNavigationController.swift; sourceTree = "<group>"; };
+		A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerTableViewCell.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
@@ -409,6 +421,7 @@
 				A32333B622DF070500B79555 /* WCTabBarItem.swift */,
 				A32333BA22DF0C6900B79555 /* WCBadgeView.swift */,
 				A32333BC22DF0F6A00B79555 /* BadgeNode.swift */,
+				A34760B222E6F02E0043AE1D /* WCNavigationController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -568,10 +581,23 @@
 		A34760A522E6BD950043AE1D /* AssetPicker */ = {
 			isa = PBXGroup;
 			children = (
-				A34760A622E6BDA70043AE1D /* AssetPickerViewController.swift */,
-				A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */,
+				A34760B422E6F22D0043AE1D /* TODO */,
+				A34760AA22E6DE100043AE1D /* MediaAsset.swift */,
+				A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */,
+				A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */,
+				A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */,
+				A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */,
 			);
 			path = AssetPicker;
+			sourceTree = "<group>";
+		};
+		A34760B422E6F22D0043AE1D /* TODO */ = {
+			isa = PBXGroup;
+			children = (
+				A34760A622E6BDA70043AE1D /* AssetPickerNodeController.swift */,
+				A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */,
+			);
+			path = TODO;
 			sourceTree = "<group>";
 		};
 		A36BE2C922E3F56C003F334B /* Settings */ = {
@@ -1012,6 +1038,7 @@
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
+				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
@@ -1023,6 +1050,7 @@
 				A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */,
 				A374863E22D445B6002EEC4F /* TextContentNode.swift in Sources */,
 				A341CF0222E5554800F18106 /* SettingsViewController.swift in Sources */,
+				A34760AD22E6E8BB0043AE1D /* AssetPickerViewController.swift in Sources */,
 				A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */,
 				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
 				A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */,
@@ -1045,6 +1073,7 @@
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,
 				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
+				A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
 				A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */,
@@ -1053,7 +1082,7 @@
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
-				A34760A722E6BDA70043AE1D /* AssetPickerViewController.swift in Sources */,
+				A34760A722E6BDA70043AE1D /* AssetPickerNodeController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
@@ -1069,6 +1098,7 @@
 				A341CF0122E5554800F18106 /* SettingsCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
+				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,
 				A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */,
 				A374864022D44711002EEC4F /* ImageContentNode.swift in Sources */,
 				A32333BB22DF0C6900B79555 /* WCBadgeView.swift in Sources */,
@@ -1083,7 +1113,9 @@
 				A34760A922E6C03F0043AE1D /* AssetPickerCellNode.swift in Sources */,
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
+				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
+				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

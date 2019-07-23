@@ -60,6 +60,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         addSubnode(toolsPanel)
         
         toolBar.delegate = self
+        toolsPanel.delegate = self
         emoticonBoardNode.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)

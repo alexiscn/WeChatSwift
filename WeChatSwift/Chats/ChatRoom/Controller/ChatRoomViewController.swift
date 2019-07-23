@@ -150,9 +150,10 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSelectToolItem tool: ChatRoomTool) {
         switch tool {
         case .album:
-            // TODO:
+            let albumPickerVC = AlbumPickerViewController()
             let assetPickerVC = AssetPickerViewController()
-            let nav = UINavigationController(rootViewController: assetPickerVC)
+            let nav = WCNavigationController()
+            nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             present(nav, animated: true, completion: nil)
         default:
             break

@@ -9,13 +9,13 @@
 import AsyncDisplayKit
 import UIKit
 
-protocol ChatRoomToolPanelNodeDelegate {
+protocol ChatRoomToolPanelNodeDelegate: class {
     func toolPanelDidPressedTool(_ tool: ChatRoomTool)
 }
 
 class ChatRoomToolPanelNode: ASDisplayNode, ASCollectionDataSource, ASCollectionDelegate {
  
-    var delegate: ChatRoomToolPanelNodeDelegate?
+    weak var delegate: ChatRoomToolPanelNodeDelegate?
     
     private let collectionNode: ASCollectionNode
     
