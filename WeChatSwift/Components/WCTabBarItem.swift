@@ -10,6 +10,14 @@ import UIKit
 
 class WCTabBarItem: UITabBarItem {
     
+    var contentView: WCTabBarContentView?
+    
+    override var title: String? { didSet { contentView?.title = title } }
+    
+    override var image: UIImage? { didSet { contentView?.image = image } }
+    
+    override var selectedImage: UIImage? { didSet { contentView?.selectedImage = selectedImage } }
+    
     override init() {
         super.init()
     }
@@ -18,4 +26,21 @@ class WCTabBarItem: UITabBarItem {
         super.init(coder: aDecoder)
     }
     
+}
+
+class WCTabBarContentView: UIView {
+    
+    var title: String?
+    
+    var image: UIImage?
+    
+    var selectedImage: UIImage?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

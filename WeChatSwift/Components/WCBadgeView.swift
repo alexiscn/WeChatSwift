@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum WCBadge {
+    case none
+    case dot
+    case number(Int)
+    case text(String)
+}
+
 class WCBadgeView {
+
     
 }
