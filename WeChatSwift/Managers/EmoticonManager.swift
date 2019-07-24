@@ -13,6 +13,8 @@ class EmoticonManager {
  
     public private(set) var emoticons: [EmoticonViewModel] = []
     
+    public private(set) var allStickers: [EmoticonPackage] = []
+    
     init() {
         
     }
@@ -45,6 +47,7 @@ class EmoticonManager {
             let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
             do {
                 let list = try JSONDecoder().decode([EmoticonPackage].self, from: jsonData)
+                allStickers = list
                 list.forEach { emoticons.append($0.toEmoticonViewModel()) }
             } catch {
                 print(error)

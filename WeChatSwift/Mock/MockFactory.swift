@@ -158,6 +158,11 @@ class MockFactory {
                 msg.content = .image(ImageMessage(image: UIImage(named: "Bran.jpg"), size: .zero))
             } else if index % 4 == 0 {
                 msg.content = .voice(VoiceMessage(duration: 4))
+            } else if index % 5 == 0 {
+                let stickerPackages = AppContext.current.emoticonMgr.allStickers
+                let package = random(of: stickerPackages)
+                let sticker = random(of: package.emoticons)
+                msg.content = .emoticon(EmoticonMessage(md5: sticker, packageID: package.packageID))
             } else {
                 msg.content = .text(randomMessage())
             }

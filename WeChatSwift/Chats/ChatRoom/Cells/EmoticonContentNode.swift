@@ -13,14 +13,20 @@ class EmoticonContentNode: MessageContentNode {
     private let imageNode = ASNetworkImageNode()
     
     init(message: Message, emoticon: EmoticonMessage) {
+        
+        imageNode.shouldCacheImage = false
+        
         super.init(message: message)
         
         addSubnode(imageNode)
+        imageNode.url = emoticon.url
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        imageNode.style.preferredSize = CGSize(width: 120, height: 120)
+        
         let layout = ASInsetLayoutSpec(insets: .zero, child: imageNode)
-        layout.style.preferredSize = CGSize(width: 240, height: 240)
         return layout
     }
     
