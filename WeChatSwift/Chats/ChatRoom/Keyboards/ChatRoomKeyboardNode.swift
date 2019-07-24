@@ -168,6 +168,8 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     override func animateLayoutTransition(_ context: ASContextTransitioning) {
         
         let containerHeight = Constants.screenHeight - Constants.statusBarHeight - 44
+        let toolBarHeight = toolBar.bounds.height
+        print("toolBar Height:\(toolBarHeight)")
         
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
             self.lastKeyboardOffsetY = self.frame.origin.y

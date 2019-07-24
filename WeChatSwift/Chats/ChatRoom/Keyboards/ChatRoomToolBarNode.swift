@@ -62,13 +62,22 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     }()
     
     private lazy var textNode: ASEditableTextNode = {
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1
+        paragraphStyle.paragraphSpacing = 1
+        paragraphStyle.lineHeightMultiple = 1
+        paragraphStyle.minimumLineHeight = 20
+        paragraphStyle.maximumLineHeight = 20
+        
         let node = ASEditableTextNode()
         node.returnKeyType = .send
         node.backgroundColor = Colors.white
         node.typingAttributes =
             [
-                NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: 15),
-                NSAttributedString.Key.foregroundColor.rawValue: Colors.DEFAULT_TEXT_COLOR
+                NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: 17),
+                NSAttributedString.Key.foregroundColor.rawValue: Colors.DEFAULT_TEXT_COLOR,
+                NSAttributedString.Key.paragraphStyle.rawValue: paragraphStyle
             ]
         node.textContainerInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
         return node
@@ -135,10 +144,11 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         moreNode.style.spacingAfter = 3
             
         textNode.style.flexGrow = 1.0
+        textNode.style.flexShrink = 1.0
         textNode.style.minHeight = ASDimensionMake(40)
         
         let layoutSpec = ASStackLayoutSpec.horizontal()
-        layoutSpec.alignItems = .center
+        layoutSpec.alignItems = .end
         layoutSpec.children = [voiceNode, textNode, emotionNode, moreNode]
         
         return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0), child: layoutSpec)
@@ -161,6 +171,12 @@ extension ChatRoomToolBarNode: ASEditableTextNodeDelegate {
             return false
         }
         return true
+    }
+    
+    func editableTextNodeDidUpdateText(_ editableTextNode: ASEditableTextNode) {
+//        let frame = editableTextNode.frame(forTextRange: NSRange(location: 0, length: editableTextNode.textView.text.count))
+//        print(frame)
+        setNeedsLayout()
     }
 }
 
