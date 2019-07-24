@@ -155,6 +155,14 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             let nav = WCNavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             present(nav, animated: true, completion: nil)
+        case .location:
+            let message = Message()
+            message.chatID = sessionID
+            message.content = .location(LocationMessage(coordinate: CLLocationCoordinate2DMake(0, 0), thumbImage: UIImage(named: "location_thumb"), title: "望京SOHOT2(北京市朝阳区)", subTitle: "北京市朝阳区阜通东大街"))
+            message.senderID = AppContext.current.userID
+            message.msgID = UUID().uuidString
+            message.time = Int(Date().timeIntervalSinceNow)
+            dataSource.append(message)
         default:
             break
         }

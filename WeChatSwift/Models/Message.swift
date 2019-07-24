@@ -165,20 +165,22 @@ public struct LocationMessage {
     
     var subTitle: String?
     
-    func attributedStringForTitle() -> NSAttributedString {
+    func attributedStringForTitle() -> NSAttributedString? {
+        guard let title = title else { return nil }
         let attributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
             NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_COLOR
         ]
-        return NSAttributedString(string: "望京SOHOT2", attributes: attributes)
+        return NSAttributedString(string: title, attributes: attributes)
     }
     
-    func attributedStringForDesc() -> NSAttributedString {
+    func attributedStringForDesc() -> NSAttributedString? {
+        guard let desc = subTitle else { return nil }
         let attributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
             NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
         ]
-        return NSAttributedString(string: "北京市朝阳区阜通东大街", attributes: attributes)
+        return NSAttributedString(string: desc, attributes: attributes)
     }
 }
 
