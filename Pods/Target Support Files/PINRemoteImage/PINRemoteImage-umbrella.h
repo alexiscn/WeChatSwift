@@ -44,6 +44,7 @@
 #import "PINResume.h"
 #import "PINSpeedRecorder.h"
 #import "PINURLSessionManager.h"
+#import "FLAnimatedImageView+PINRemoteImage.h"
 #import "PINCache+PINRemoteImageCaching.h"
 
 FOUNDATION_EXPORT double PINRemoteImageVersionNumber;

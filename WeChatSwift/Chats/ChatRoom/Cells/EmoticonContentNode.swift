@@ -34,10 +34,10 @@ class EmoticonContentNode: MessageContentNode {
     override func didLoad() {
         super.didLoad()
         
-        //animatedImageView.pin_setImage(from: emoticon.url)
-        if let url = emoticon.url, let data = try? Data(contentsOf: url) {
-            animatedImageView.animatedImage = FLAnimatedImage(animatedGIFData: data)
-        }
+        animatedImageView.pin_setImage(from: emoticon.url)
+//        if let url = emoticon.url, let data = try? Data(contentsOf: url) {
+//            animatedImageView.animatedImage = FLAnimatedImage(animatedGIFData: data)
+//        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

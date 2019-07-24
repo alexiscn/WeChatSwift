@@ -9,7 +9,7 @@ target 'WeChatSwift' do
     pod 'WCDB.swift'
     pod 'Texture'
     pod 'SSZipArchive'
-    pod 'FLAnimatedImage'
+    pod 'PINRemoteImage'
     
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'
 end

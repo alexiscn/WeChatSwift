@@ -160,7 +160,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
         }
     }
     
-    func keybaord(_ keyboard: ChatRoomKeyboardNode, didSendSticker sticker: WCEmotion) {
+    func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendSticker sticker: WCEmotion) {
         let message = Message()
         message.chatID = sessionID
         message.content = .emoticon(EmoticonMessage(md5: sticker.name, packageID: sticker.packageID))
@@ -168,5 +168,24 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
         message.msgID = UUID().uuidString
         message.time = Int(Date().timeIntervalSinceNow)
         dataSource.append(message)
+    }
+    
+    func keyboardAddFavoriteEmoticonButtonPressed() {
+        
+    }
+    
+    func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendGameEmoticon game: FavoriteEmoticon) {
+        switch game.type {
+        case .dice:
+            let message = Message()
+            message.chatID = sessionID
+            message.content = .game(GameMessage(gameType: .dice))
+            message.senderID = AppContext.current.userID
+            message.msgID = UUID().uuidString
+            message.time = Int(Date().timeIntervalSinceNow)
+            dataSource.append(message)
+        default:
+            break
+        }
     }
 }

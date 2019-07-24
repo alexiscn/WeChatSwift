@@ -60,24 +60,27 @@ public enum MessageContent {
     case text(String)
     case image(ImageMessage)
     case location(LocationMessage)
-    case media
     case link(AppURLMessage)
     case voice(VoiceMessage)
     case redPacket(RedPacketMessage)
     case emoticon(EmoticonMessage)
+    case game(GameMessage)
     
     var sessionContent: String {
         switch self {
         case .text(let body):
             return body
-        case .media:
+        case .image(_):
             return "[图片]"
+        case .voice(_):
+            return "[语音]"
         default:
             return ""
         }
     }
 }
 
+// MARK: - ImageMessage
 public struct ImageMessage {
     
     var url: URL? = nil
@@ -97,6 +100,7 @@ public struct ImageMessage {
     }
 }
 
+// MARK: - VoiceMessage
 public struct VoiceMessage {
     
     var duration: Int = 1
@@ -111,6 +115,7 @@ public struct VoiceMessage {
     }
 }
 
+// MARK: - RedPacketMessage
 public struct RedPacketMessage {
     
     var title: String
@@ -118,6 +123,7 @@ public struct RedPacketMessage {
     var amount: Float
 }
 
+// MARK: - AppURLMessage
 public struct AppURLMessage {
     
     var URL: URL?
@@ -148,6 +154,7 @@ public struct AppURLMessage {
     }
 }
 
+// MARK: - LocationMessage
 public struct LocationMessage {
     
     var coordinate: CLLocationCoordinate2D
@@ -175,6 +182,7 @@ public struct LocationMessage {
     }
 }
 
+// MARK: - EmoticonMessage
 public struct EmoticonMessage {
     var md5: String
     var packageID: String
@@ -184,4 +192,72 @@ public struct EmoticonMessage {
         let filename = folder.appending("\(md5).pic")
         return URL(fileURLWithPath: filename)
     }
+}
+
+// MARK: - GameMessage
+public struct GameMessage {
+    
+    enum GameType: Int {
+        case dice
+        case jsb
+        
+        var values: [Int] {
+            switch self {
+            case .dice:
+                return [1, 2, 3, 4, 5, 6]
+            case .jsb:
+                return [1, 2, 3]
+            }
+        }
+        
+        var animationImages: [UIImage] {
+            var images: [UIImage] = []
+            switch self {
+            case .dice:
+                for index in 0 ... 3 {
+                    images.append(UIImage.as_imageNamed("dice_Action_\(index)_100x100_")!)
+                }
+            case .jsb: // 剪刀(J)、石头(S)、布(B)
+                images.append(UIImage.as_imageNamed("JSB_J.pic")!)
+                images.append(UIImage.as_imageNamed("JSB_S.pic")!)
+                images.append(UIImage.as_imageNamed("JSB_B.pic")!)
+            }
+            return images
+        }
+        
+        var animationDuration: TimeInterval {
+            switch self {
+            case .dice:
+                return 0.4
+            case .jsb:
+                return 0.5
+            }
+        }
+        
+        func imageFor(value: Int?) -> UIImage? {
+            guard let value = value, value > 0 else {
+                return nil
+            }
+            switch self {
+            case .dice:
+                return UIImage.as_imageNamed("dic_\(value).pic")
+            case .jsb:
+                let map = ["JSB_J.pic", "JSB_S.pic", "JSB_B.pic"]
+                let name = map[value - 1]
+                return UIImage.as_imageNamed(name)
+            }
+        }
+    }
+    
+    var gameType: GameType
+    
+    var played: Bool = false
+    
+    /// when has value
+    var value: Int?
+    
+    init(gameType: GameType) {
+        self.gameType = gameType
+    }
+    
 }

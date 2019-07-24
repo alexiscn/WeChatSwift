@@ -13,8 +13,14 @@ PODS:
   - PINCache/Core (3.0.1-beta.6):
     - PINOperation (~> 1.1.0)
   - PINOperation (1.1.2)
+  - PINRemoteImage (3.0.0-beta.13):
+    - PINRemoteImage/FLAnimatedImage (= 3.0.0-beta.13)
+    - PINRemoteImage/PINCache (= 3.0.0-beta.13)
   - PINRemoteImage/Core (3.0.0-beta.13):
     - PINOperation
+  - PINRemoteImage/FLAnimatedImage (3.0.0-beta.13):
+    - FLAnimatedImage (>= 1.0)
+    - PINRemoteImage/Core
   - PINRemoteImage/iOS (3.0.0-beta.13):
     - PINRemoteImage/Core
   - PINRemoteImage/PINCache (3.0.0-beta.13):
@@ -54,8 +60,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - FLAnimatedImage
   - Kingfisher
+  - PINRemoteImage
   - SnapKit
   - SSZipArchive
   - SVGKit (from `DevelopmentPods/SVGKit`)
@@ -101,6 +107,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: e80e27ce19211d8f105f8e148700e0e36c444656
 
-PODFILE CHECKSUM: 2ba6a0edda42a37fd86594b0068a86f884c22a50
+PODFILE CHECKSUM: 8fa0cd53f209ed434831a71e1f7cc3bfe3f6d1cb
 
 COCOAPODS: 1.5.3

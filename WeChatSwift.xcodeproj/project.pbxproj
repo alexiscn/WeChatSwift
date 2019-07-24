@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31057D422E852FA00856D71 /* JSB_S.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D122E852F900856D71 /* JSB_S.pic */; };
+		A31057D522E852FA00856D71 /* JSB_J.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D222E852F900856D71 /* JSB_J.pic */; };
+		A31057D622E852FA00856D71 /* JSB_B.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D322E852F900856D71 /* JSB_B.pic */; };
+		A31057DE22E8532E00856D71 /* dice_1.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D722E8532C00856D71 /* dice_1.pic */; };
+		A31057DF22E8532E00856D71 /* dice_6.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D822E8532C00856D71 /* dice_6.pic */; };
+		A31057E022E8532E00856D71 /* dice_5.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D922E8532D00856D71 /* dice_5.pic */; };
+		A31057E122E8532E00856D71 /* dice_4.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057DA22E8532D00856D71 /* dice_4.pic */; };
+		A31057E222E8532E00856D71 /* dice_2.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057DB22E8532D00856D71 /* dice_2.pic */; };
+		A31057E322E8532E00856D71 /* dice_3.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057DC22E8532E00856D71 /* dice_3.pic */; };
+		A31057E422E8532E00856D71 /* dice.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057DD22E8532E00856D71 /* dice.pic */; };
+		A31057E622E8533C00856D71 /* JSB.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057E522E8533C00856D71 /* JSB.pic */; };
+		A31057E822E8537300856D71 /* GameContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31057E722E8537300856D71 /* GameContentNode.swift */; };
 		A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32286FD22E04C56004E516E /* icons_filled_add.svg */; };
 		A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */; };
 		A322870322E06299004E516E /* EmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322870222E06299004E516E /* EmoticonManager.swift */; };
@@ -180,6 +192,18 @@
 
 /* Begin PBXFileReference section */
 		04841C8B18BE984EE8C1B6BB /* Pods-WeChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A31057D122E852F900856D71 /* JSB_S.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_S.pic; sourceTree = "<group>"; };
+		A31057D222E852F900856D71 /* JSB_J.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_J.pic; sourceTree = "<group>"; };
+		A31057D322E852F900856D71 /* JSB_B.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_B.pic; sourceTree = "<group>"; };
+		A31057D722E8532C00856D71 /* dice_1.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_1.pic; sourceTree = "<group>"; };
+		A31057D822E8532C00856D71 /* dice_6.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_6.pic; sourceTree = "<group>"; };
+		A31057D922E8532D00856D71 /* dice_5.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_5.pic; sourceTree = "<group>"; };
+		A31057DA22E8532D00856D71 /* dice_4.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_4.pic; sourceTree = "<group>"; };
+		A31057DB22E8532D00856D71 /* dice_2.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_2.pic; sourceTree = "<group>"; };
+		A31057DC22E8532E00856D71 /* dice_3.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice_3.pic; sourceTree = "<group>"; };
+		A31057DD22E8532E00856D71 /* dice.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice.pic; sourceTree = "<group>"; };
+		A31057E522E8533C00856D71 /* JSB.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB.pic; sourceTree = "<group>"; };
+		A31057E722E8537300856D71 /* GameContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentNode.swift; sourceTree = "<group>"; };
 		A32286FD22E04C56004E516E /* icons_filled_add.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_add.svg; sourceTree = "<group>"; };
 		A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardTabBarCellNode.swift; sourceTree = "<group>"; };
 		A322870222E06299004E516E /* EmoticonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManager.swift; sourceTree = "<group>"; };
@@ -654,6 +678,7 @@
 				A3CCE01E22DDEADE0003DC25 /* RedPacketContentNode.swift */,
 				A3CCE02622DDED1F0003DC25 /* VOIPContentNode.swift */,
 				A3CCE02822DDEEBC0003DC25 /* AppURLContentNode.swift */,
+				A31057E722E8537300856D71 /* GameContentNode.swift */,
 				A374864B22D44D34002EEC4F /* UnknownContentNode.swift */,
 			);
 			path = Cells;
@@ -710,6 +735,17 @@
 				A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */,
 				A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */,
 				A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */,
+				A31057D722E8532C00856D71 /* dice_1.pic */,
+				A31057DB22E8532D00856D71 /* dice_2.pic */,
+				A31057DC22E8532E00856D71 /* dice_3.pic */,
+				A31057DA22E8532D00856D71 /* dice_4.pic */,
+				A31057D922E8532D00856D71 /* dice_5.pic */,
+				A31057D822E8532C00856D71 /* dice_6.pic */,
+				A31057DD22E8532E00856D71 /* dice.pic */,
+				A31057D322E852F900856D71 /* JSB_B.pic */,
+				A31057D222E852F900856D71 /* JSB_J.pic */,
+				A31057D122E852F900856D71 /* JSB_S.pic */,
+				A31057E522E8533C00856D71 /* JSB.pic */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -879,10 +915,12 @@
 				A3CA51D722CD9F9400C67D92 /* icons_outlined_scan.svg in Resources */,
 				A3CCE01B22DDD9150003DC25 /* Emoticons.json in Resources */,
 				A3CA51B722CD9B1E00C67D92 /* icons_filled_scan.svg in Resources */,
+				A31057DF22E8532E00856D71 /* dice_6.pic in Resources */,
 				A3CA51B922CD9B2800C67D92 /* icons_filled_mobile-contacts.svg in Resources */,
 				A3CA520322CDAFD100C67D92 /* icon_filled_timelineop.svg in Resources */,
 				A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */,
 				A3CCE01D22DDDA0A0003DC25 /* Emoticons.zip in Resources */,
+				A31057D422E852FA00856D71 /* JSB_S.pic in Resources */,
 				A3CA51ED22CDA0F300C67D92 /* icons_outlined_addfriends.svg in Resources */,
 				A374865922D4A2BC002EEC4F /* icons_outlined_add2.svg in Resources */,
 				A3CA520922CDC93E00C67D92 /* icons_filled_pay.svg in Resources */,
@@ -895,23 +933,29 @@
 				A3CA51D922CD9FA000C67D92 /* icons_outlined_shake.svg in Resources */,
 				A372228B22D984D9003403D4 /* flutter.jpeg in Resources */,
 				A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */,
+				A31057E122E8532E00856D71 /* dice_4.pic in Resources */,
 				A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */,
 				A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */,
 				A3CA521A22CDF5FA00C67D92 /* JonSnow.jpg in Resources */,
 				A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */,
+				A31057D522E852FA00856D71 /* JSB_J.pic in Resources */,
 				A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */,
 				A3CA51E522CD9FD500C67D92 /* icons_outlined_mini-program.svg in Resources */,
 				A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */,
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
 				A3CCE02322DDECFA0003DC25 /* red_envelopes_bottom_bg.svg in Resources */,
 				A3CA51D122CD9C8500C67D92 /* icons_outlined_contacts.svg in Resources */,
+				A31057E622E8533C00856D71 /* JSB.pic in Resources */,
 				A3CA523022CE1CBE00C67D92 /* icons_outlined_album.svg in Resources */,
 				A3CA522C22CE1BCF00C67D92 /* icons_outlined_wechatpay.svg in Resources */,
 				A3CA51D322CD9C9300C67D92 /* icons_outlined_chats.svg in Resources */,
 				A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */,
 				A3CA51DF22CD9FB900C67D92 /* icons_outlined_nearby.svg in Resources */,
+				A31057DE22E8532E00856D71 /* dice_1.pic in Resources */,
 				A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
+				A31057E222E8532E00856D71 /* dice_2.pic in Resources */,
+				A31057E422E8532E00856D71 /* dice.pic in Resources */,
 				A3CA520222CDAFD100C67D92 /* icon_filled_timelineophl.svg in Resources */,
 				A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */,
 				A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */,
@@ -934,6 +978,7 @@
 				A3CA523422CE1D7B00C67D92 /* icons_outlined_setting.svg in Resources */,
 				A3CA51CD22CD9C7200C67D92 /* icons_outlined_discover.svg in Resources */,
 				A3CA51CB22CD9C6600C67D92 /* icons_filled_discover.svg in Resources */,
+				A31057D622E852FA00856D71 /* JSB_B.pic in Resources */,
 				A3D897E822E194E100814669 /* 153716293386e633a27b0f3d76.json in Resources */,
 				A3CCE02522DDECFA0003DC25 /* red_envelopes_top_bg.svg in Resources */,
 				A3CA520F22CDD5F400C67D92 /* ui-resources_badge_count.svg in Resources */,
@@ -945,7 +990,9 @@
 				A374866922D4B04F002EEC4F /* icons_filled_transfer.svg in Resources */,
 				A3CA51E922CDA03F00C67D92 /* icons_outlined_arrow.svg in Resources */,
 				A3CA51B522CD9B0A00C67D92 /* icons_filled_group-detail.svg in Resources */,
+				A31057E022E8532E00856D71 /* dice_5.pic in Resources */,
 				A3CA51C222CD9C1900C67D92 /* icons_outlined_back.svg in Resources */,
+				A31057E322E8532E00856D71 /* dice_3.pic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,6 +1101,7 @@
 				A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */,
 				A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */,
 				A374863E22D445B6002EEC4F /* TextContentNode.swift in Sources */,
+				A31057E822E8537300856D71 /* GameContentNode.swift in Sources */,
 				A341CF0222E5554800F18106 /* SettingsViewController.swift in Sources */,
 				A34760AD22E6E8BB0043AE1D /* AssetPickerViewController.swift in Sources */,
 				A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */,

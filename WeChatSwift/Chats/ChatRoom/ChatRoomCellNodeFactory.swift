@@ -25,6 +25,8 @@ final class ChatRoomCellNodeFactory {
             contentNode = LocationContentNode(message: message, locationMsg: locationMsg)
         case .link(let appURL):
             contentNode = AppURLContentNode(message: message, appURL: appURL)
+        case .game(let gameMsg):
+            contentNode = GameContentNode(message: message, gameMsg: gameMsg)
         default:
             contentNode = UnknownContentNode(message: message)
         }
