@@ -104,6 +104,7 @@ public class MessageCellNode: ASCellNode {
         layoutSpec.alignItems = isOutgoing ? .end: .start
         var layoutElements: [ASLayoutElement] = []
         if let topTextNode = topTextNode {
+            topTextNode.style.preferredSize = CGSize(width: Constants.screenWidth, height: 44)
             layoutElements.append(topTextNode)
         }
         layoutElements.append(contentHorizontalSpec)

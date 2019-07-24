@@ -36,7 +36,7 @@ struct EmoticonPackage: Codable {
         
         let items = emoticons.map { return WCEmotion(packageID: packageID, name: $0, package: package) }
         let tabImage = UIImage(named: "\(packageID).png")
-        return EmoticonViewModel(type: .emotion, tabImage: tabImage, emoticons: items)
+        return EmoticonViewModel(type: .sticker, tabImage: tabImage, emoticons: items)
     }
 }
 
@@ -108,11 +108,18 @@ struct EmoticonViewModel {
     }
 }
 
+
+/// 表情类型
+///
+/// - expression: emoji 表情
+/// - favorites: 自定义表情
+/// - cameraEmoticon: 相机表情
+/// - sticker: 商城表情
 enum EmoticonType {
     case expression
     case favorites
     case cameraEmoticon
-    case emotion
+    case sticker
 }
 
 class EmoticonGridLayoutInfo {

@@ -159,4 +159,14 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             break
         }
     }
+    
+    func keybaord(_ keyboard: ChatRoomKeyboardNode, didSendSticker sticker: WCEmotion) {
+        let message = Message()
+        message.chatID = sessionID
+        message.content = .emoticon(EmoticonMessage(md5: sticker.name, packageID: sticker.packageID))
+        message.senderID = AppContext.current.userID
+        message.msgID = UUID().uuidString
+        message.time = Int(Date().timeIntervalSinceNow)
+        dataSource.append(message)
+    }
 }

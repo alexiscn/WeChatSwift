@@ -44,6 +44,14 @@ public extension Message {
     
     var isOutgoing: Bool { return senderID == AppContext.current.userID }
     
+    func attributedStringForTime() -> NSAttributedString? {
+        guard let timeString = _formattedTime else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.4)
+        ]
+        return NSAttributedString(string: timeString, attributes: attributes)
+    }
 }
 
 
@@ -175,7 +183,5 @@ public struct EmoticonMessage {
         let folder = NSHomeDirectory().appending("/Documents/emoticons/pics/")
         let filename = folder.appending("\(md5).pic")
         return URL(fileURLWithPath: filename)
-        
-        
     }
 }

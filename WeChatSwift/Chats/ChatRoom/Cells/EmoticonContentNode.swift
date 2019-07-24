@@ -16,7 +16,8 @@ class EmoticonContentNode: MessageContentNode {
     private let emoticon: EmoticonMessage
     
     private lazy var animatedImageView: FLAnimatedImageView = {
-        return FLAnimatedImageView()
+        let animatedImage = FLAnimatedImageView()
+        return animatedImage
     }()
     
     init(message: Message, emoticon: EmoticonMessage) {
@@ -33,14 +34,16 @@ class EmoticonContentNode: MessageContentNode {
     override func didLoad() {
         super.didLoad()
         
-        animatedImageView.pin_setImage(from: emoticon.url)
+        //animatedImageView.pin_setImage(from: emoticon.url)
+        if let url = emoticon.url, let data = try? Data(contentsOf: url) {
+            animatedImageView.animatedImage = FLAnimatedImage(animatedGIFData: data)
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
         imageNode.style.preferredSize = CGSize(width: 120, height: 120)
-        
-        let layout = ASInsetLayoutSpec(insets: .zero, child: imageNode)
+        let insets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+        let layout = ASInsetLayoutSpec(insets: insets, child: imageNode)
         return layout
     }
     

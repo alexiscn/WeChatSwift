@@ -11,6 +11,7 @@ import AsyncDisplayKit
 protocol ChatRoomKeyboardNodeDelegate: class {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendText text: String)
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSelectToolItem tool: ChatRoomTool)
+    func keybaord(_ keyboard: ChatRoomKeyboardNode, didSendSticker sticker: WCEmotion)
 }
 
 class ChatRoomKeyboardNode: ASDisplayNode {
@@ -262,6 +263,10 @@ extension ChatRoomKeyboardNode: EmoticonBoardNodeDelegate {
         case .expression:
             if let expression = emoticon as? Expression {
                 toolBar.appendText(expression.text)
+            }
+        case .sticker:
+            if let sticker = emoticon as? WCEmotion {
+                delegate?.keybaord(self, didSendSticker: sticker)
             }
         default:
             break

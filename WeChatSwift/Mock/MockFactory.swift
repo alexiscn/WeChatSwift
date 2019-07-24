@@ -146,7 +146,7 @@ class MockFactory {
         }
     }
     
-    func messages(with user: MockUser, count: Int = 20) -> [Message] {
+    func messages(with user: MockUser, count: Int = 30) -> [Message] {
         var messages: [Message] = []
         let myID = AppContext.current.userID
         for index in 0 ..< count {
