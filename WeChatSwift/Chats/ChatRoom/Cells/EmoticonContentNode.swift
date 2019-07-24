@@ -7,19 +7,33 @@
 //
 
 import AsyncDisplayKit
+import FLAnimatedImage
 
 class EmoticonContentNode: MessageContentNode {
     
-    private let imageNode = ASNetworkImageNode()
+    private let imageNode = ASDisplayNode()
+    
+    private let emoticon: EmoticonMessage
+    
+    private lazy var animatedImageView: FLAnimatedImageView = {
+        return FLAnimatedImageView()
+    }()
     
     init(message: Message, emoticon: EmoticonMessage) {
         
-        imageNode.shouldCacheImage = false
-        
+        self.emoticon = emoticon
         super.init(message: message)
         
         addSubnode(imageNode)
-        imageNode.url = emoticon.url
+        setViewBlock { [weak self] () -> UIView in
+            return self?.animatedImageView ?? UIView()
+        }
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        
+        animatedImageView.pin_setImage(from: emoticon.url)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -31,3 +45,4 @@ class EmoticonContentNode: MessageContentNode {
     }
     
 }
+

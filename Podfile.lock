@@ -3,6 +3,7 @@ PODS:
   - CocoaLumberjack (3.5.3):
     - CocoaLumberjack/Core (= 3.5.3)
   - CocoaLumberjack/Core (3.5.3)
+  - FLAnimatedImage (1.0.12)
   - Kingfisher (5.7.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
@@ -53,6 +54,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FLAnimatedImage
   - Kingfisher
   - SnapKit
   - SSZipArchive
@@ -65,6 +67,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - CocoaLumberjack
+    - FLAnimatedImage
     - Kingfisher
     - PINCache
     - PINOperation
@@ -84,6 +87,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
@@ -97,6 +101,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: e80e27ce19211d8f105f8e148700e0e36c444656
 
-PODFILE CHECKSUM: 8615704542ad7069aa6d8c5c85717af23a67d99e
+PODFILE CHECKSUM: 2ba6a0edda42a37fd86594b0068a86f884c22a50
 
 COCOAPODS: 1.5.3

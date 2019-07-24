@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import WCDBSwift
+import PINRemoteImage
 
 public class Message: TableCodable {
     
@@ -174,5 +175,7 @@ public struct EmoticonMessage {
         let folder = NSHomeDirectory().appending("/Documents/emoticons/pics/")
         let filename = folder.appending("\(md5).pic")
         return URL(fileURLWithPath: filename)
+        
+        
     }
 }
