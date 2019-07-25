@@ -19,6 +19,8 @@ class AssetPickerViewController: UIViewController {
     
     private var bottomBar: AssetPickerBottomBar!
     
+    private var selectedAssets: [MediaAsset] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -126,9 +128,13 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = dataSource[indexPath.row]
+        var asset = dataSource[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(AssetPickerCollectionViewCell.self), for: indexPath) as! AssetPickerCollectionViewCell
         cell.update(mediaAsset: asset)
+        cell.selectionHandler = { [weak self] in
+            asset.selected = !asset.selected
+            self?.collectionView.reloadItems(at: [indexPath])
+        }
         return cell
     }
 }

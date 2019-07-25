@@ -68,8 +68,14 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
             .font: UIFont.systemFont(ofSize: 15, weight: .semibold),
             .foregroundColor: UIColor(white: 0.0, alpha: 0.9)
             ])
+        let selectedText = NSAttributedString(string: "发送", attributes: [
+            .font: UIFont.systemFont(ofSize: 15, weight: .semibold),
+            .foregroundColor: UIColor(white: 1.0, alpha: 1)
+            ])
         sendButtonNode.setAttributedTitle(sendText, for: .normal)
+        sendButtonNode.setAttributedTitle(selectedText, for: .selected)
         sendButtonNode.setBackgroundImage(UIImage.as_imageNamed("EmotionsSendBtnGrey_70x37_"), for: .normal)
+        sendButtonNode.setBackgroundImage(UIImage.as_imageNamed("EmotionsSendBtnBlue_70x37_"), for: .selected)
         sendButtonNode.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
     }
     
@@ -88,6 +94,10 @@ class EmoticonBoardTabBarNode: ASDisplayNode {
                 transitionLayout(withAnimation: true, shouldMeasureAsync: false, measurementCompletion: nil)
             }
         }
+    }
+    
+    func updateSendsButton(selected: Bool) {
+        sendButtonNode.isSelected = selected
     }
     
     override func didLoad() {

@@ -196,4 +196,12 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             break
         }
     }
+    
+    func keyboardEmoticonSettingsButtonPressed() {
+        
+    }
+    
+    func keyboardEmoticonAddButtonPressed() {
+        
+    }
 }

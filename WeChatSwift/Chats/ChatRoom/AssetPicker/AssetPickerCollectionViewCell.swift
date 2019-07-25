@@ -11,11 +11,23 @@ import Photos
 
 class AssetPickerCollectionViewCell: UICollectionViewCell {
     
+    var selectionHandler: RelayCommand?
+    
     private let imageView: UIImageView
     
     private let selectionButton: UIButton
     
     private let selectionImageView: UIImageView
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                
+            } else {
+                
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         
@@ -33,6 +45,8 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addSubview(selectionButton)
         contentView.addSubview(selectionImageView)
+        
+        selectionButton.addTarget(self, action: #selector(selectionButtonTapped), for: .touchUpInside)
     }
     
     override func layoutSubviews() {
@@ -44,6 +58,10 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func selectionButtonTapped() {
+        selectionHandler?()
     }
     
     func update(mediaAsset: MediaAsset) {
@@ -59,5 +77,14 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
                 self?.imageView.image = image
             }
         }
+    }
+    
+    func selectedLabel(with index: Int) -> UILabel {
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
+        label.backgroundColor = UIColor(hexString: "#1AAD19")
+        label.layer.cornerRadius = 11.5
+        label.text = String(index)
+        return label
     }
 }

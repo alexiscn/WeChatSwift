@@ -54,6 +54,11 @@ class EmoticonBoardNode: ASDisplayNode {
         tabBarNode.delegate = self
     }
     
+    func inputBarTextDidUpdated(text: String?) {
+        let text = text ?? ""
+        tabBarNode.updateSendsButton(selected: !text.isEmpty)
+    }
+    
     override func didLoad() {
         super.didLoad()
         collectionNode.view.isPagingEnabled = true

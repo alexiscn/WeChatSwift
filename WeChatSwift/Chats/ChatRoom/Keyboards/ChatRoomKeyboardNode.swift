@@ -14,6 +14,8 @@ protocol ChatRoomKeyboardNodeDelegate: class {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendSticker sticker: WCEmotion)
     func keyboardAddFavoriteEmoticonButtonPressed()
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendGameEmoticon game: FavoriteEmoticon)
+    func keyboardEmoticonAddButtonPressed()
+    func keyboardEmoticonSettingsButtonPressed()
 }
 
 class ChatRoomKeyboardNode: ASDisplayNode {
@@ -253,11 +255,11 @@ extension ChatRoomKeyboardNode: EmoticonBoardNodeDelegate {
     }
     
     func emoticonBoardPressedSettingButton() {
-        
+        delegate?.keyboardEmoticonSettingsButtonPressed()
     }
     
     func emoticonBoardPressedAddButton() {
-        
+        delegate?.keyboardEmoticonAddButtonPressed()
     }
     
     func emoticonBoardDidTapEmoticon(_ emoticon: Emoticon, viewModel: EmoticonViewModel) {
@@ -265,6 +267,7 @@ extension ChatRoomKeyboardNode: EmoticonBoardNodeDelegate {
         case .expression:
             if let expression = emoticon as? Expression {
                 toolBar.appendText(expression.text)
+                emoticonBoardNode.inputBarTextDidUpdated(text: toolBar.text)
             }
         case .sticker:
             if let sticker = emoticon as? WCEmotion {
