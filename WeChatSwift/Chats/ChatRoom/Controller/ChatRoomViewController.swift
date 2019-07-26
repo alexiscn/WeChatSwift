@@ -129,7 +129,9 @@ extension ChatRoomViewController: ASTableDataSource, ASTableDelegate {
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let message = dataSource.itemAtIndexPath(indexPath)
         let nodeBlock: ASCellNodeBlock = {
-            return ChatRoomCellNodeFactory.node(for: message)
+            let cellNode = ChatRoomCellNodeFactory.node(for: message)
+            cellNode.delegate = self
+            return cellNode
         }
         return nodeBlock
     }
@@ -220,5 +222,23 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     
     func keyboardEmoticonAddButtonPressed() {
         
+    }
+}
+
+// MARK: - MessageCellNodeDelegate
+extension ChatRoomViewController: MessageCellNodeDelegate {
+    
+    func messageCell(_ cellNode: MessageContentNode, didTapAvatar userID: String) {
+        
+    }
+    
+    func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent) {
+        switch content {
+        case .emoticon(let emoticonMsg):
+            let controller = ChatRoomEmoticonPreviewViewController(emoticon: emoticonMsg)
+            navigationController?.pushViewController(controller, animated: true)
+        default:
+            break
+        }
     }
 }

@@ -88,6 +88,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
             let superNodeHeight = supernode?.bounds.height ?? Constants.screenHeight
             if superNodeHeight - frame.origin.y > (barHeight + self.bottomInset) {
                 self.keyboardType = .none
+                toolBar.resetButtonsSelection()
             }
         }
     }

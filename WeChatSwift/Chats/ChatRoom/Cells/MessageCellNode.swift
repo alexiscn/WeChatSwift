@@ -19,6 +19,8 @@ import AsyncDisplayKit
 /// Base Message Cell Node
 public class MessageCellNode: ASCellNode {
     
+    weak var delegate: MessageCellNodeDelegate?
+    
     let isOutgoing: Bool
     
     private var topTextNode: ASTextNode?
@@ -66,13 +68,20 @@ public class MessageCellNode: ASCellNode {
         avatarNode.cornerRoundingType = .clipping
     }
     
-    @objc private func avatarClicked() {
-        
-    }
-    
     public override func didLoad() {
         super.didLoad()
-        avatarNode.addTarget(self, action: #selector(avatarClicked), forControlEvents: .touchUpInside)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: self.view)
+        if avatarNode.frame.contains(point) {
+            
+        } else if contentNode.frame.contains(point) {
+            delegate?.messageCell(self, didTapContent: message.content)
+        }
     }
     
     public override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -119,3 +128,7 @@ public class MessageCellNode: ASCellNode {
 }
 
 
+protocol MessageCellNodeDelegate: class {
+    func messageCell(_ cellNode: MessageContentNode, didTapAvatar userID: String)
+    func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent)
+}

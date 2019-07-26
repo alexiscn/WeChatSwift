@@ -127,11 +127,18 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         textNode.attributedText = attributedText
     }
     
+    func resetButtonsSelection() {
+        voiceNode.isSelected = false
+        emotionNode.isSelected = false
+        moreNode.isSelected = false
+    }
+    
     override func isFirstResponder() -> Bool {
         return textNode.isFirstResponder()
     }
     
     override func resignFirstResponder() -> Bool {
+        resetButtonsSelection()
         return textNode.resignFirstResponder()
     }
     

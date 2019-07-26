@@ -190,6 +190,7 @@
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
+		A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -380,6 +381,7 @@
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
+		A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewViewController.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -698,6 +700,7 @@
 			children = (
 				A3CA522322CE196100C67D92 /* ChatDetailViewController.swift */,
 				A374862922D4383F002EEC4F /* ChatRoomViewController.swift */,
+				A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1089,6 +1092,7 @@
 			files = (
 				A33DB2F322CCD16D00A11776 /* MeViewController.swift in Sources */,
 				A3CA520522CDC47100C67D92 /* SessionMoreMenuView.swift in Sources */,
+				A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */,
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
