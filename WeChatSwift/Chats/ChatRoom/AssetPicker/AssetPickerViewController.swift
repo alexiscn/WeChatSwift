@@ -13,6 +13,8 @@ class AssetPickerViewController: UIViewController {
 
     var dismissHandler: RelayCommand?
     
+    var selectionHandler: ((_ assets: [MediaAsset]) -> Void)?
+    
     private var collectionView: UICollectionView!
     
     private var dataSource: [MediaAsset] = []
@@ -64,6 +66,7 @@ class AssetPickerViewController: UIViewController {
         
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
+        collectionView.allowsMultipleSelection = true
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -133,7 +136,11 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
         cell.update(mediaAsset: asset)
         cell.selectionHandler = { [weak self] in
             asset.selected = !asset.selected
-            self?.collectionView.reloadItems(at: [indexPath])
+            if asset.selected {
+                self?.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            } else {
+                self?.collectionView.deselectItem(at: indexPath, animated: true)
+            }
         }
         return cell
     }

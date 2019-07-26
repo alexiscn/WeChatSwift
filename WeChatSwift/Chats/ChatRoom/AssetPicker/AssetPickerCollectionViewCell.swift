@@ -22,9 +22,9 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                
+                selectionImageView.addSubview(selectedLabel(with: 1))
             } else {
-                
+                selectionImageView.subviews.forEach { $0.removeFromSuperview() }
             }
         }
     }
@@ -81,10 +81,14 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
     
     func selectedLabel(with index: Int) -> UILabel {
         let label = UILabel()
-        label.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
+        label.frame = CGRect(x: 2, y: 2, width: 23, height: 23)
         label.backgroundColor = UIColor(hexString: "#1AAD19")
         label.layer.cornerRadius = 11.5
+        label.layer.masksToBounds = true
         label.text = String(index)
+        label.textAlignment = .center
+        label.textColor = .white
+        label.clipsToBounds = true
         return label
     }
 }

@@ -140,7 +140,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
         message.chatID = sessionID
         message.content = .text(text)
         message.senderID = AppContext.current.userID
-        message.msgID = UUID().uuidString
+        message.localMsgID = UUID().uuidString
         message.time = Int(Date().timeIntervalSinceNow)
         dataSource.append(message)
         
@@ -152,6 +152,9 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
         case .album:
             let albumPickerVC = AlbumPickerViewController()
             let assetPickerVC = AssetPickerViewController()
+            assetPickerVC.selectionHandler = { selectedAssets in
+                print(selectedAssets.count)
+            }
             let nav = WCNavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             present(nav, animated: true, completion: nil)
@@ -160,7 +163,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             message.chatID = sessionID
             message.content = .location(LocationMessage(coordinate: CLLocationCoordinate2DMake(0, 0), thumbImage: UIImage(named: "location_thumb"), title: "望京SOHOT2(北京市朝阳区)", subTitle: "北京市朝阳区阜通东大街"))
             message.senderID = AppContext.current.userID
-            message.msgID = UUID().uuidString
+            message.localMsgID = UUID().uuidString
             message.time = Int(Date().timeIntervalSinceNow)
             dataSource.append(message)
         default:
@@ -173,7 +176,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
         message.chatID = sessionID
         message.content = .emoticon(EmoticonMessage(md5: sticker.name, packageID: sticker.packageID))
         message.senderID = AppContext.current.userID
-        message.msgID = UUID().uuidString
+        message.localMsgID = UUID().uuidString
         message.time = Int(Date().timeIntervalSinceNow)
         dataSource.append(message)
     }
@@ -189,7 +192,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             message.chatID = sessionID
             message.content = .game(GameMessage(gameType: .dice))
             message.senderID = AppContext.current.userID
-            message.msgID = UUID().uuidString
+            message.localMsgID = UUID().uuidString
             message.time = Int(Date().timeIntervalSinceNow)
             dataSource.append(message)
         default:

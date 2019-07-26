@@ -14,4 +14,6 @@ struct MediaAsset {
     var asset: PHAsset
     
     var selected: Bool = false
+    
+    var keepOrigin: Bool = false
 }

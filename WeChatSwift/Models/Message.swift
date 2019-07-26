@@ -18,16 +18,22 @@ public class Message: TableCodable {
         public typealias Root = Message
         public static let objectRelationalMapping = TableBinding(CodingKeys.self)
         
-        case msgID = "msgID"
+        case localMsgID = "localMsgID"
+        case serverMsgID
+        case type
         
         public static var columnConstraintBindings: [CodingKeys: ColumnConstraintBinding]? {
             return [
-                msgID: ColumnConstraintBinding(isPrimary: true)
+                localMsgID: ColumnConstraintBinding(isPrimary: true)
             ]
         }
     }
     
-    var msgID: String = ""
+    var localMsgID: String = ""
+    
+    var serverMsgID: String = ""
+    
+    var type: Int = 0
     
     var chatID: String = ""
     
