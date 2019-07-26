@@ -70,11 +70,10 @@ class AlbumPickerTableViewCell: UITableViewCell {
         
         if let asset = album.coverAsset {
             let size = bounds.size
-            PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: size,
-                                                  contentMode: .aspectFill,
-                                                  options: nil) { [weak self] (image, _) in
-                self?.headImageView.image = image
+            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { [weak self] (image, _) in
+                DispatchQueue.main.async {
+                    self?.headImageView.image = image
+                }
             }
         } else {
             // Display Default Album Cover

@@ -43,6 +43,17 @@ class AlbumPickerViewController: UIViewController {
     }
 
     private func loadAlbums() {
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        let result = PHAsset.fetchAssets(with: options)
+        var cameraAssets: [PHAsset] = []
+        result.enumerateObjects { (asset, _, _) in
+            cameraAssets.append(asset)
+        }
+        let cameraCollection = PHAssetCollection.transientAssetCollection(with: cameraAssets, title: "相机胶卷")
+        let cameraRollAlbum = AlbumPickerModel(assetCollection: cameraCollection, coverAsset: cameraAssets.last, name: "相机胶卷", count: cameraAssets.count)
+        
+        dataSource.append(cameraRollAlbum)
         dataSource.append(contentsOf: loadAlbum(type: .smartAlbum))
         dataSource.append(contentsOf: loadAlbum(type: .album))
     }
@@ -51,11 +62,13 @@ class AlbumPickerViewController: UIViewController {
         var result: [AlbumPickerModel] = []
         let collections = PHAssetCollection.fetchAssetCollections(with: type, subtype: .any, options: nil)
         collections.enumerateObjects { (collection, _, _) in
-            let assets = PHAsset.fetchAssets(in: collection, options: nil)
+            let options = PHFetchOptions()
+            options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+            let assets = PHAsset.fetchAssets(in: collection, options: options)
             let count = assets.count
             if count > 0 {
                 let name = collection.localizedTitle
-                let cover = assets.firstObject
+                let cover = assets.lastObject
                 result.append(AlbumPickerModel(assetCollection: collection, coverAsset: cover, name: name, count: count))
             }
         }
