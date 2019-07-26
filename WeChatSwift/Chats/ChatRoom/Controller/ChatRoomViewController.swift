@@ -67,8 +67,21 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         navigationController?.interactivePopGestureRecognizer?.addTarget(self, action: #selector(handlePopGesture(_:)))
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    func sendMediaAssets(_ assets: [MediaAsset]) {
+        for mediaAsset in assets {
+            // TODO
+            if mediaAsset.asset.mediaType == .image {
+                let thumbImage = mediaAsset.asset.thumbImage(with: CGSize(width: 500, height: 500))
+                let imageMsg = ImageMessage(image: thumbImage, size: mediaAsset.asset.pixelSize)
+                let message = Message()
+                message.chatID = sessionID
+                message.content = .image(imageMsg)
+                message.senderID = AppContext.current.userID
+                message.localMsgID = UUID().uuidString
+                message.time = Int(Date().timeIntervalSinceNow)
+                dataSource.append(message)
+            }
+        }
     }
     
     func scrollToLastMessage(animated: Bool) {
@@ -152,8 +165,9 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
         case .album:
             let albumPickerVC = AlbumPickerViewController()
             let assetPickerVC = AssetPickerViewController()
-            assetPickerVC.selectionHandler = { selectedAssets in
-                print(selectedAssets.count)
+            assetPickerVC.selectionHandler = { [weak self] selectedAssets in
+                self?.sendMediaAssets(selectedAssets)
+                self?.dismiss(animated: true, completion: nil)
             }
             let nav = WCNavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)

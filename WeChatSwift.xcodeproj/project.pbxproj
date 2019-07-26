@@ -57,8 +57,6 @@
 		A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0422E5555600F18106 /* SettingsTableModel.swift */; };
 		A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0622E5555C00F18106 /* AboutTableModel.swift */; };
 		A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0822E55A6E00F18106 /* ExpressionParser.swift */; };
-		A34760A722E6BDA70043AE1D /* AssetPickerNodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760A622E6BDA70043AE1D /* AssetPickerNodeController.swift */; };
-		A34760A922E6C03F0043AE1D /* AssetPickerCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */; };
 		A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AA22E6DE100043AE1D /* MediaAsset.swift */; };
 		A34760AD22E6E8BB0043AE1D /* AssetPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */; };
 		A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */; };
@@ -66,7 +64,6 @@
 		A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B222E6F02E0043AE1D /* WCNavigationController.swift */; };
 		A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
-		A36DAD8D22EA7791008D79BC /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36DAD8C22EA7791008D79BC /* UIImage+Compression.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
@@ -191,6 +188,8 @@
 		A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */; };
 		A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
+		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
+		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -248,8 +247,6 @@
 		A341CF0422E5555600F18106 /* SettingsTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableModel.swift; sourceTree = "<group>"; };
 		A341CF0622E5555C00F18106 /* AboutTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableModel.swift; sourceTree = "<group>"; };
 		A341CF0822E55A6E00F18106 /* ExpressionParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionParser.swift; sourceTree = "<group>"; };
-		A34760A622E6BDA70043AE1D /* AssetPickerNodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerNodeController.swift; sourceTree = "<group>"; };
-		A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerCellNode.swift; sourceTree = "<group>"; };
 		A34760AA22E6DE100043AE1D /* MediaAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAsset.swift; sourceTree = "<group>"; };
 		A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerViewController.swift; sourceTree = "<group>"; };
 		A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -257,7 +254,6 @@
 		A34760B222E6F02E0043AE1D /* WCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCNavigationController.swift; sourceTree = "<group>"; };
 		A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerTableViewCell.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
-		A36DAD8C22EA7791008D79BC /* UIImage+Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Compression.swift"; path = "../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Extensions/UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
@@ -382,6 +378,8 @@
 		A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jsb_emoticon_md5.png; sourceTree = "<group>"; };
 		A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_emoticon_md5.png; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
+		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
+		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -570,7 +568,8 @@
 				A33DB2EE22CCCB8E00A11776 /* SVGImage+Extensions.swift */,
 				A33DB2F022CCCBA800A11776 /* UIColor+Extensions.swift */,
 				A369A4A722D36772004722C4 /* UIImage+Extensions.swift */,
-				A36DAD8C22EA7791008D79BC /* UIImage+Compression.swift */,
+				A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */,
+				A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -617,7 +616,6 @@
 		A34760A522E6BD950043AE1D /* AssetPicker */ = {
 			isa = PBXGroup;
 			children = (
-				A34760B422E6F22D0043AE1D /* TODO */,
 				A34760AA22E6DE100043AE1D /* MediaAsset.swift */,
 				A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */,
 				A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */,
@@ -626,15 +624,6 @@
 				A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */,
 			);
 			path = AssetPicker;
-			sourceTree = "<group>";
-		};
-		A34760B422E6F22D0043AE1D /* TODO */ = {
-			isa = PBXGroup;
-			children = (
-				A34760A622E6BDA70043AE1D /* AssetPickerNodeController.swift */,
-				A34760A822E6C03F0043AE1D /* AssetPickerCellNode.swift */,
-			);
-			path = TODO;
 			sourceTree = "<group>";
 		};
 		A36BE2C922E3F56C003F334B /* Settings */ = {
@@ -1100,6 +1089,7 @@
 			files = (
 				A33DB2F322CCD16D00A11776 /* MeViewController.swift in Sources */,
 				A3CA520522CDC47100C67D92 /* SessionMoreMenuView.swift in Sources */,
+				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
@@ -1116,7 +1106,6 @@
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
-				A36DAD8D22EA7791008D79BC /* UIImage+Compression.swift in Sources */,
 				A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */,
 				A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */,
 				A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */,
@@ -1159,8 +1148,8 @@
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
-				A34760A722E6BDA70043AE1D /* AssetPickerNodeController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
+				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
@@ -1187,7 +1176,6 @@
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
 				A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */,
-				A34760A922E6C03F0043AE1D /* AssetPickerCellNode.swift in Sources */,
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,

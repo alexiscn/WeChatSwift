@@ -9,11 +9,17 @@
 import Foundation
 import Photos
 
-struct MediaAsset {
+class MediaAsset {
     
     var asset: PHAsset
     
     var selected: Bool = false
     
     var keepOrigin: Bool = false
+    
+    var index: Int = -1
+    
+    init(asset: PHAsset) {
+        self.asset = asset
+    }
 }

@@ -11,6 +11,8 @@ import Photos
 
 class AssetPickerCollectionViewCell: UICollectionViewCell {
     
+    weak var parent: AssetPickerViewController?
+    
     var selectionHandler: RelayCommand?
     
     private let imageView: UIImageView
@@ -19,15 +21,9 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
     
     private let selectionImageView: UIImageView
     
-    override var isSelected: Bool {
-        didSet {
-            if isSelected {
-                selectionImageView.addSubview(selectedLabel(with: 1))
-            } else {
-                selectionImageView.subviews.forEach { $0.removeFromSuperview() }
-            }
-        }
-    }
+    private let selectionNumberLabel: UILabel
+    
+    private var mediaAsset: MediaAsset?
     
     override init(frame: CGRect) {
         
@@ -40,11 +36,26 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
         selectionImageView = UIImageView()
         selectionImageView.image = UIImage.as_imageNamed("FriendsSendsPicturesSelectIcon_27x27_")
         
+        selectionNumberLabel = UILabel()
+        selectionNumberLabel.isHidden = true
+        selectionNumberLabel.layer.cornerRadius = 11.5
+        selectionNumberLabel.layer.masksToBounds = true
+        selectionNumberLabel.clipsToBounds = true
+        selectionNumberLabel.frame = CGRect(x: 2, y: 2, width: 23, height: 23)
+        selectionNumberLabel.backgroundColor = UIColor(hexString: "#1AAD19")
+        
+        selectionNumberLabel.textAlignment = .center
+        selectionNumberLabel.textColor = .white
+        
+        selectionNumberLabel.font = UIFont.systemFont(ofSize: 14)
+        
         super.init(frame: frame)
         
         contentView.addSubview(imageView)
         contentView.addSubview(selectionButton)
         contentView.addSubview(selectionImageView)
+        
+        selectionImageView.addSubview(selectionNumberLabel)
         
         selectionButton.addTarget(self, action: #selector(selectionButtonTapped), for: .touchUpInside)
     }
@@ -61,12 +72,27 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func selectionButtonTapped() {
+        guard let mediaAsset = mediaAsset, let parent = parent else { return }
+        if !mediaAsset.selected && parent.selectedIndexPathList.count >= 9 {
+            return
+        }
+        
+        mediaAsset.selected.toggle()
+        if mediaAsset.selected {
+            let index = parent.selectedIndexPathList.count + 1
+            selectionNumberLabel.text = String(index)
+            selectionNumberLabel.isHidden = false
+        } else {
+            selectionNumberLabel.isHidden = true
+        }
         selectionHandler?()
     }
     
     func update(mediaAsset: MediaAsset) {
+        self.mediaAsset = mediaAsset
         
-        selectionImageView.isHidden = mediaAsset.selected
+        selectionNumberLabel.text = String(mediaAsset.index)
+        selectionNumberLabel.isHidden = !mediaAsset.selected
         
         let size = CGSize(width: 150, height: 150)
         PHCachingImageManager.default().requestImage(for: mediaAsset.asset,
@@ -77,18 +103,5 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
                 self?.imageView.image = image
             }
         }
-    }
-    
-    func selectedLabel(with index: Int) -> UILabel {
-        let label = UILabel()
-        label.frame = CGRect(x: 2, y: 2, width: 23, height: 23)
-        label.backgroundColor = UIColor(hexString: "#1AAD19")
-        label.layer.cornerRadius = 11.5
-        label.layer.masksToBounds = true
-        label.text = String(index)
-        label.textAlignment = .center
-        label.textColor = .white
-        label.clipsToBounds = true
-        return label
     }
 }

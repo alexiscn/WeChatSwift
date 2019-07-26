@@ -10,6 +10,9 @@ import UIKit
 
 class AssetPickerBottomBar: UIView {
     
+    var previewHandler: RelayCommand?
+    var sendHandler: RelayCommand?
+    
     private let backgroundImageView: UIImageView
     
     private let containerView: UIView
@@ -76,6 +79,10 @@ class AssetPickerBottomBar: UIView {
             make.height.equalTo(30)
             make.trailing.equalToSuperview().offset(-15)
         }
+        
+        previewButton.addTarget(self, action: #selector(previewButtonClicked), for: .touchUpInside)
+        originButton.addTarget(self, action: #selector(originButtonClicked), for: .touchUpInside)
+        sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,4 +96,20 @@ class AssetPickerBottomBar: UIView {
         containerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 45)
     }
     
+    func updateButtonEnabled(_ enabled: Bool) {
+        previewButton.isEnabled = enabled
+        sendButton.isEnabled = enabled
+    }
+    
+    @objc private func originButtonClicked() {
+        originButton.isSelected.toggle()
+    }
+    
+    @objc private func previewButtonClicked() {
+        previewHandler?()
+    }
+    
+    @objc private func sendButtonClicked() {
+        sendHandler?()
+    }
 }

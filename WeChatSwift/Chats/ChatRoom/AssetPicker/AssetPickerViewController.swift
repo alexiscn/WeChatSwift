@@ -15,13 +15,15 @@ class AssetPickerViewController: UIViewController {
     
     var selectionHandler: ((_ assets: [MediaAsset]) -> Void)?
     
+    var enableOrigin: Bool = true
+    
     private var collectionView: UICollectionView!
     
     private var dataSource: [MediaAsset] = []
     
     private var bottomBar: AssetPickerBottomBar!
     
-    private var selectedAssets: [MediaAsset] = []
+    private(set) var selectedIndexPathList: [IndexPath] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,6 @@ class AssetPickerViewController: UIViewController {
         setupCollectionView()
         setupBottomBar()
         requestAuthorizationAndLoadPhotos()
-        
     }
     
     private func requestAuthorizationAndLoadPhotos() {
@@ -78,7 +79,18 @@ class AssetPickerViewController: UIViewController {
     private func setupBottomBar() {
         let frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 45 + Constants.bottomInset)
         bottomBar = AssetPickerBottomBar(frame: frame)
+        bottomBar.previewHandler = {
+            
+        }
+        bottomBar.sendHandler = { [weak self] in
+            self?.sendAssets()
+        }
         view.addSubview(bottomBar)
+    }
+    
+    private func sendAssets() {
+        let selectedAssets = selectedIndexPathList.map { return dataSource[$0.row] }
+        selectionHandler?(selectedAssets)
     }
     
     override func viewDidLayoutSubviews() {
@@ -95,7 +107,7 @@ class AssetPickerViewController: UIViewController {
         
         let result = PHAsset.fetchAssets(with: options)
         result.enumerateObjects { (asset, _, _) in
-            temp.append(MediaAsset(asset: asset, selected: false))
+            temp.append(MediaAsset(asset: asset))
         }
         dataSource = temp
         collectionView.reloadData()
@@ -115,12 +127,35 @@ class AssetPickerViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
     }
     
+    private func updateSelection(at indexPath: IndexPath) {
+    
+        let mediaAsset = dataSource[indexPath.row]
+        if mediaAsset.selected {
+            selectedIndexPathList.append(indexPath)
+        } else {
+            mediaAsset.index = -1
+            if let index = selectedIndexPathList.firstIndex(where: { $0 == indexPath }) {
+                selectedIndexPathList.remove(at: index)
+            }
+        }
+        for (index, item) in selectedIndexPathList.enumerated() {
+            let asset = dataSource[item.row]
+            asset.index = index + 1
+        }
+        collectionView.reloadItems(at: selectedIndexPathList)
+        bottomBar.updateButtonEnabled(selectedIndexPathList.count > 0)
+    }
+}
+
+// Event Handlers
+extension AssetPickerViewController {
+    
     @objc private func cancelButtonClicked() {
         dismiss(animated: true, completion: nil)
     }
-
 }
 
+// MARK: - UICollectionViewDataSource & UICollectionViewDelegate
 extension AssetPickerViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -131,17 +166,13 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var asset = dataSource[indexPath.row]
+        let asset = dataSource[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(AssetPickerCollectionViewCell.self), for: indexPath) as! AssetPickerCollectionViewCell
         cell.update(mediaAsset: asset)
         cell.selectionHandler = { [weak self] in
-            asset.selected = !asset.selected
-            if asset.selected {
-                self?.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-            } else {
-                self?.collectionView.deselectItem(at: indexPath, animated: true)
-            }
+            self?.updateSelection(at: indexPath)
         }
+        cell.parent = self
         return cell
     }
 }
