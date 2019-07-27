@@ -149,6 +149,8 @@ class MockFactory {
     func messages(with user: MockUser, count: Int = 30) -> [Message] {
         var messages: [Message] = []
         let myID = AppContext.current.userID
+        let stickerPackages = AppContext.current.emoticonMgr.allStickers
+        let stickerDescPackages = AppContext.current.emoticonMgr.allStickerPackageDesc
         for index in 0 ..< count {
             let msg = Message()
             msg.chatID = user.identifier
@@ -159,10 +161,10 @@ class MockFactory {
             } else if index % 4 == 0 {
                 msg.content = .voice(VoiceMessage(duration: 4))
             } else if index % 5 == 0 {
-                let stickerPackages = AppContext.current.emoticonMgr.allStickers
                 let package = random(of: stickerPackages)
                 let sticker = random(of: package.emoticons)
-                msg.content = .emoticon(EmoticonMessage(md5: sticker, packageID: package.packageID))
+                let title = stickerDescPackages.first(where: { $0.packageID == package.packageID })?.stickers.first(where: { $0.key == sticker })?.value.title
+                msg.content = .emoticon(EmoticonMessage(md5: sticker, packageID: package.packageID, title: title))
             } else {
                 msg.content = .text(randomMessage())
             }

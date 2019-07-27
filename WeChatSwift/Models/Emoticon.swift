@@ -22,6 +22,19 @@ struct EmoticonPackage: Codable {
     
     var emoticons: [String]
     
+    func toDescPackage() -> StickerDescPackage? {
+        var package: StickerDescPackage? = nil
+        if let descPath = Bundle.main.path(forResource: packageID, ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: descPath)) {
+            do {
+                package = try JSONDecoder().decode(StickerDescPackage.self, from: data)
+            } catch {
+                print(error)
+            }
+            
+        }
+        return package
+    }
+    
     func toEmoticonViewModel() -> EmoticonViewModel {
         
         var package: StickerDescPackage? = nil

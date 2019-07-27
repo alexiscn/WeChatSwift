@@ -194,6 +194,7 @@ public struct LocationMessage {
 public struct EmoticonMessage {
     var md5: String
     var packageID: String
+    var title: String?
     
     var url: URL? {
         let folder = NSHomeDirectory().appending("/Documents/emoticons/pics/")

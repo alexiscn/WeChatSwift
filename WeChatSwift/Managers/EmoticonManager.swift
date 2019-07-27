@@ -15,6 +15,8 @@ class EmoticonManager {
     
     public private(set) var allStickers: [EmoticonPackage] = []
     
+    public private(set) var allStickerPackageDesc: [StickerDescPackage] = []
+    
     init() {
         
     }
@@ -48,6 +50,11 @@ class EmoticonManager {
             do {
                 let list = try JSONDecoder().decode([EmoticonPackage].self, from: jsonData)
                 allStickers = list
+                list.forEach { package in
+                    if let desc = package.toDescPackage() {
+                        allStickerPackageDesc.append(desc)
+                    }
+                }
                 list.forEach { emoticons.append($0.toEmoticonViewModel()) }
             } catch {
                 print(error)

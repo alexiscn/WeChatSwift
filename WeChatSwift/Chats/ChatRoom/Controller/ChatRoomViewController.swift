@@ -190,7 +190,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSendSticker sticker: WCEmotion) {
         let message = Message()
         message.chatID = sessionID
-        message.content = .emoticon(EmoticonMessage(md5: sticker.name, packageID: sticker.packageID))
+        message.content = .emoticon(EmoticonMessage(md5: sticker.name, packageID: sticker.packageID, title: sticker.title))
         message.senderID = AppContext.current.userID
         message.localMsgID = UUID().uuidString
         message.time = Int(Date().timeIntervalSinceNow)
