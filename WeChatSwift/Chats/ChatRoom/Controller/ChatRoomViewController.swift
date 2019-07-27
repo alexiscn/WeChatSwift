@@ -165,19 +165,24 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSelectToolItem tool: ChatRoomTool) {
         switch tool {
         case .album:
-            let albumPickerVC = AlbumPickerViewController()
-            let assetPickerVC = AssetPickerViewController()
-            assetPickerVC.selectionHandler = { [weak self] selectedAssets in
+            
+            let selectionHandler = { [weak self] (selectedAssets: [MediaAsset]) in
                 self?.sendMediaAssets(selectedAssets)
                 self?.dismiss(animated: true, completion: nil)
             }
+            
+            let albumPickerVC = AlbumPickerViewController()
+            albumPickerVC.selectionHandler = selectionHandler
+            let assetPickerVC = AssetPickerViewController()
+            assetPickerVC.selectionHandler = selectionHandler
             let nav = WCNavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             present(nav, animated: true, completion: nil)
         case .location:
             let message = Message()
             message.chatID = sessionID
-            message.content = .location(LocationMessage(coordinate: CLLocationCoordinate2DMake(0, 0), thumbImage: UIImage(named: "location_thumb"), title: "望京SOHOT2(北京市朝阳区)", subTitle: "北京市朝阳区阜通东大街"))
+            
+            message.content = .location(LocationMessage(coordinate: CLLocationCoordinate2DMake(39.996074, 116.480813), thumbImage: UIImage(named: "location_thumb"), title: "望京SOHOT2(北京市朝阳区)", subTitle: "北京市朝阳区阜通东大街"))
             message.senderID = AppContext.current.userID
             message.localMsgID = UUID().uuidString
             message.time = Int(Date().timeIntervalSinceNow)
@@ -236,6 +241,9 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
         switch content {
         case .emoticon(let emoticonMsg):
             let controller = ChatRoomEmoticonPreviewViewController(emoticon: emoticonMsg)
+            navigationController?.pushViewController(controller, animated: true)
+        case .location(let locationMsg):
+            let controller = ChatRoomMapViewController(location: locationMsg)
             navigationController?.pushViewController(controller, animated: true)
         default:
             break

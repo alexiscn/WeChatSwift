@@ -25,6 +25,17 @@ class AssetPickerViewController: UIViewController {
     
     private(set) var selectedIndexPathList: [IndexPath] = []
     
+    private var assetCollection: PHAssetCollection?
+    
+    init(assetCollection: PHAssetCollection? = nil) {
+        self.assetCollection = assetCollection
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +43,11 @@ class AssetPickerViewController: UIViewController {
         configureNavigationBar()
         setupCollectionView()
         setupBottomBar()
-        requestAuthorizationAndLoadPhotos()
+        if let collection = assetCollection {
+            loadPhoto(in: collection)
+        } else {
+            requestAuthorizationAndLoadPhotos()
+        }
     }
     
     private func requestAuthorizationAndLoadPhotos() {
@@ -106,6 +121,26 @@ class AssetPickerViewController: UIViewController {
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
         let result = PHAsset.fetchAssets(with: options)
+        result.enumerateObjects { (asset, _, _) in
+            temp.append(MediaAsset(asset: asset))
+        }
+        dataSource = temp
+        collectionView.reloadData()
+        
+        if dataSource.count > 0 {
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: self.dataSource.count - 1, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: false)
+            }
+            
+        }
+    }
+    
+    private func loadPhoto(in collection: PHAssetCollection) {
+        var temp: [MediaAsset] = []
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        let result = PHAsset.fetchAssets(in: collection, options: options)
         result.enumerateObjects { (asset, _, _) in
             temp.append(MediaAsset(asset: asset))
         }

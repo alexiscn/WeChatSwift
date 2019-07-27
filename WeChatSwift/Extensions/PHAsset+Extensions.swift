@@ -8,16 +8,16 @@
 
 import UIKit
 import Photos
+import CoreServices
 
 extension PHAsset {
     
-    var pixelSize: CGSize {
-        return CGSize(width: pixelWidth, height: pixelHeight)
-    }
+    var pixelSize: CGSize { return CGSize(width: pixelWidth, height: pixelHeight) }
     
     func thumbImage(with targetSize: CGSize) -> UIImage? {
         let options = PHImageRequestOptions()
         options.isSynchronous = true
+        options.isNetworkAccessAllowed = true
         var resultImage: UIImage?
         PHImageManager.default().requestImage(for: self,
                                               targetSize: targetSize,
@@ -28,4 +28,10 @@ extension PHAsset {
         return resultImage
     }
     
+    var isGIF: Bool {
+        if let imageType = value(forKey: "uniformTypeIdentifier") as? String {
+            return imageType == (kUTTypeGIF as String)
+        }
+        return false
+    }
 }

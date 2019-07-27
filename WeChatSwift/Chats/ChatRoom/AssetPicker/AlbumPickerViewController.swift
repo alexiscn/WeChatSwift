@@ -15,6 +15,8 @@ class AlbumPickerViewController: UIViewController {
     
     private var dataSource: [AlbumPickerModel] = []
     
+    var selectionHandler: ((_ assets: [MediaAsset]) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,20 +54,23 @@ class AlbumPickerViewController: UIViewController {
         }
         let cameraCollection = PHAssetCollection.transientAssetCollection(with: cameraAssets, title: "相机胶卷")
         let cameraRollAlbum = AlbumPickerModel(assetCollection: cameraCollection, coverAsset: cameraAssets.last, name: "相机胶卷", count: cameraAssets.count)
-        
+    
         dataSource.append(cameraRollAlbum)
         dataSource.append(contentsOf: loadAlbum(type: .smartAlbum))
         dataSource.append(contentsOf: loadAlbum(type: .album))
+        
     }
     
     private func loadAlbum(type: PHAssetCollectionType) -> [AlbumPickerModel] {
         var result: [AlbumPickerModel] = []
         let collections = PHAssetCollection.fetchAssetCollections(with: type, subtype: .any, options: nil)
         collections.enumerateObjects { (collection, _, _) in
+            
             let options = PHFetchOptions()
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
             let assets = PHAsset.fetchAssets(in: collection, options: options)
             let count = assets.count
+            
             if count > 0 {
                 let name = collection.localizedTitle
                 let cover = assets.lastObject
@@ -98,6 +103,11 @@ extension AlbumPickerViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        
+        let album = dataSource[indexPath.row]
+        let assetPickerVC = AssetPickerViewController(assetCollection: album.assetCollection)
+        assetPickerVC.selectionHandler = selectionHandler
+        navigationController?.pushViewController(assetPickerVC, animated: true)
     }
 }
 

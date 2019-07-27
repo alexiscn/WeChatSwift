@@ -70,6 +70,8 @@ class AlbumPickerTableViewCell: UITableViewCell {
         
         if let asset = album.coverAsset {
             let size = bounds.size
+            let options = PHImageRequestOptions()
+            options.isNetworkAccessAllowed = true
             PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { [weak self] (image, _) in
                 DispatchQueue.main.async {
                     self?.headImageView.image = image

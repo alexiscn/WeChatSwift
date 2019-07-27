@@ -63,6 +63,7 @@
 		A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */; };
 		A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B222E6F02E0043AE1D /* WCNavigationController.swift */; };
 		A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */; };
+		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
@@ -254,6 +255,7 @@
 		A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerViewController.swift; sourceTree = "<group>"; };
 		A34760B222E6F02E0043AE1D /* WCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCNavigationController.swift; sourceTree = "<group>"; };
 		A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerTableViewCell.swift; sourceTree = "<group>"; };
+		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 				A3CA522322CE196100C67D92 /* ChatDetailViewController.swift */,
 				A374862922D4383F002EEC4F /* ChatRoomViewController.swift */,
 				A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */,
+				A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1152,6 +1155,7 @@
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
+				A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
