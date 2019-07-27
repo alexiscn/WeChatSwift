@@ -64,6 +64,7 @@
 		A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B222E6F02E0043AE1D /* WCNavigationController.swift */; };
 		A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */; };
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
+		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
@@ -256,6 +257,7 @@
 		A34760B222E6F02E0043AE1D /* WCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCNavigationController.swift; sourceTree = "<group>"; };
 		A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerTableViewCell.swift; sourceTree = "<group>"; };
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
+		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				A3CA520A22CDD58800C67D92 /* Constants.swift */,
 				A33DB2F422CCD92E00A11776 /* Colors.swift */,
 				A341CF0822E55A6E00F18106 /* ExpressionParser.swift */,
+				A34B89B522EC6612005E2B20 /* LinkTextParser.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
+				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,
