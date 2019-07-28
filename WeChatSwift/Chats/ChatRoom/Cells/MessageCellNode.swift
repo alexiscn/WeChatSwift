@@ -66,6 +66,10 @@ public class MessageCellNode: ASCellNode {
         avatarNode.cornerRadius = 6.0
         avatarNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         avatarNode.cornerRoundingType = .clipping
+        
+        if let textContentCell = contentNode as? TextContentNode {
+            textContentCell.delegate = self
+        }
     }
     
     public override func didLoad() {
@@ -127,8 +131,16 @@ public class MessageCellNode: ASCellNode {
     }
 }
 
+extension MessageCellNode: TextContentNodeDelegate {
+    func textContentNode(_ textNode: TextContentNode, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
+        if let url = value as? URL {
+            delegate?.messageCell(self, didTapLink: url)
+        }
+    }
+}
 
 protocol MessageCellNodeDelegate: class {
     func messageCell(_ cellNode: MessageContentNode, didTapAvatar userID: String)
     func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent)
+    func messageCell(_ cellNode: MessageCellNode, didTapLink url: URL?)
 }

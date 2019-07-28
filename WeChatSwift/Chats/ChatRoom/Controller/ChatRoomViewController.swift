@@ -249,4 +249,8 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
             break
         }
     }
+    
+    func messageCell(_ cellNode: MessageCellNode, didTapLink url: URL?) {
+        print("didTapLink")
+    }
 }

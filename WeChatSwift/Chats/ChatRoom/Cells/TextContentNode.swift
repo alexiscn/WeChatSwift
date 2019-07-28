@@ -10,6 +10,8 @@ import AsyncDisplayKit
 
 class TextContentNode: MessageContentNode {
     
+    weak var delegate: TextContentNodeDelegate?
+    
     private let bubbleNode = ASImageNode()
     
     private let textNode = ASTextNode()
@@ -32,16 +34,26 @@ class TextContentNode: MessageContentNode {
         paragraphStyle.maximumLineHeight = lineHeight
         paragraphStyle.minimumLineHeight = lineHeight
         
-        let attributedText = NSAttributedString(string: text, attributes: [
+        let attributedText = NSMutableAttributedString(string: text, attributes: [
             .font: textFont,
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
             .paragraphStyle: paragraphStyle
             ])
+        let links = LinkTextParser.shared.match(text: attributedText.string)
+        for link in links {
+            attributedText.addAttributes([
+                NSAttributedString.Key.link: link.url as Any,
+                NSAttributedString.Key.foregroundColor: Colors.DEFAULT_LINK_HIGHLIGHT_COLOR,
+                NSAttributedString.Key.underlineColor: UIColor.clear
+            ], range: link.range)
+        }
         textNode.attributedText = ExpressionParser.shared?.attributedText(with: attributedText)
     }
     
     override func didLoad() {
         super.didLoad()
+        textNode.isUserInteractionEnabled = true
+        textNode.delegate = self
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -65,17 +77,12 @@ class TextContentNode: MessageContentNode {
     }
 }
 
-private class MessageTextNode: ASTextNode {
-    
-    override init() {
-        super.init()
-        placeholderColor = UIColor.clear
-        isLayerBacked = true
+extension TextContentNode: ASTextNodeDelegate {
+    func textNode(_ textNode: ASTextNode!, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
+        delegate?.textContentNode(self, tappedLinkAttribute: attribute, value: value, at: point, textRange: textRange)
     }
-    
-    override func calculateSizeThatFits(_ constrainedSize: CGSize) -> CGSize {
-        let size = super.calculateSizeThatFits(constrainedSize)
-        return CGSize(width: max(size.width, 17), height: size.height)
-    }
-    
+}
+
+protocol TextContentNodeDelegate: class {
+    func textContentNode(_ textNode: TextContentNode, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange)
 }
