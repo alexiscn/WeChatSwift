@@ -103,4 +103,14 @@ extension SessionViewController: ASTableDelegate, ASTableDataSource {
         let chatVC = ChatRoomViewController(sessionID: session.sessionID)
         navigationController?.pushViewController(chatVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let readAction = UITableViewRowAction(style: .normal, title: "标记为已读") { (_, _) in
+            
+        }
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "删除") { (_, _) in
+            
+        }
+        return [deleteAction, readAction]
+    }
 }

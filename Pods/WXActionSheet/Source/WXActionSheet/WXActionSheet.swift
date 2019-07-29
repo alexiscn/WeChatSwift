@@ -13,10 +13,10 @@ public class WXActionSheet: UIView {
     /// WXActionSheet defaults, you can override it globally
     public struct Preferences {
         
-        /// Height for buttons, defaults 50.0
-        public static var ButtonHeight: CGFloat = 50.0
+        /// Height for buttons, defaults 56.0
+        public static var ButtonHeight: CGFloat = 56.0
         
-        public static var ButtonNormalBackgroundColor = UIColor(white: 1, alpha: 0.8)
+        public static var ButtonNormalBackgroundColor = UIColor(white: 1, alpha: 1)
         
         public static var ButtonHighlightBackgroundColor = UIColor(white: 1, alpha: 0.5)
         
@@ -27,7 +27,7 @@ public class WXActionSheet: UIView {
         public static var DestructiveButtonTitleColor = UIColor.red
         
         /// Separator backgroundColor between CancelButton and other buttons
-        public static var SeparatorColor = UIColor(white: 153.0/255, alpha: 1.0)
+        public static var SeparatorColor = UIColor(white: 242.0/255, alpha: 1.0)
     }
     
     public var titleView: UIView?
@@ -93,7 +93,7 @@ extension WXActionSheet {
         backgroundView.addGestureRecognizer(tapGesture)
         addSubview(backgroundView)
         
-        containerView.backgroundColor = .clear
+        containerView.backgroundColor = .white
         addSubview(containerView)
     }
     
@@ -148,11 +148,11 @@ extension WXActionSheet {
             }
             
             if index == items.count - 1 {
-                let separator = UIView(frame: CGRect(x: 0, y: y , width: width, height: 5.0))
+                let separator = UIView(frame: CGRect(x: 0, y: y , width: width, height: 7.0))
                 separator.backgroundColor = Preferences.SeparatorColor
                 containerView.addSubview(separator)
                 
-                y += 5.0
+                y += separator.bounds.height
                 height = Preferences.ButtonHeight + safeInsets.bottom
                 button.titleEdgeInsets = UIEdgeInsets(top: -safeInsets.bottom/2.0, left: 0, bottom: 0, right: 0)
             }
@@ -160,14 +160,21 @@ extension WXActionSheet {
             containerView.addSubview(button)
             button.addTarget(self, action: #selector(handleButtonTapped(_:)), for: .touchUpInside)
             
-            if index == items.count - 1 || index == items.count - 2 {
+            if index == items.count - 1 {
                 y += height
             } else {
+                let line = UIView()
+                line.frame = CGRect(x: 0, y: y, width: width, height: LineHeight)
+                line.backgroundColor = UIColor(white: 0, alpha: 0.1)
+                containerView.addSubview(line)
                 y += height + LineHeight
             }
         }
         
         containerView.frame = CGRect(x: x, y: bounds.height, width: width, height: y)
+        containerView.layer.cornerRadius = 15
+        containerView.layer.masksToBounds = true
+        containerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
         effectView.frame = containerView.bounds
