@@ -16,6 +16,8 @@ class TextContentNode: MessageContentNode {
     
     private let textNode = ASTextNode()
     
+    private var links: [LinkParserResult] = []
+    
     init(message: Message, text: String) {
         super.init(message: message)
         
@@ -39,7 +41,7 @@ class TextContentNode: MessageContentNode {
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
             .paragraphStyle: paragraphStyle
             ])
-        let links = LinkTextParser.shared.match(text: attributedText.string)
+        links = LinkTextParser.shared.match(text: attributedText.string)
         for link in links {
             attributedText.addAttributes([
                 NSAttributedString.Key.link: link.url as Any,
@@ -54,6 +56,16 @@ class TextContentNode: MessageContentNode {
         super.didLoad()
         textNode.isUserInteractionEnabled = true
         textNode.delegate = self
+        textNode.highlightStyle = .light
+        textNode.layer.as_allowsHighlightDrawing = true
+        for link in links {
+            textNode.highlightRange = link.range
+        }
+//        for layer in textNode.layer.sublayers ?? [] {
+//            if let h = layer as? ASHighlightOverlayLayer {
+//                h.highlightColor = UIColor.red.cgColor
+//            }
+//        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

@@ -15,8 +15,8 @@ struct LinkParserResult {
 
 class LinkTextParser {
     
-    private let pattern = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
-    //[-a-zA-Z0-9@:%_+.~#?&//=]{1,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)?
+    //private let pattern = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
+    private let pattern = #"[-a-zA-Z0-9@:%_\+.~#?&//=]{1,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?"#
     
     static let shared = try! LinkTextParser()
     
@@ -38,7 +38,9 @@ class LinkTextParser {
             let start = text.index(text.startIndex, offsetBy: range.location)
             let end = text.index(text.startIndex, offsetBy: range.location + range.length)
             let value = String(text[start..<end])
-            list.append(LinkParserResult(range: range, url: URL(string: value)))
+            if let url = URL(string: value) {
+                list.append(LinkParserResult(range: range, url: url))
+            }
         }
         return list
     }

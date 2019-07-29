@@ -83,6 +83,12 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         return node
     }()
     
+    private lazy var voiceButtonNode: ASButtonNode = {
+        let button = ASButtonNode()
+        //button.setAttributedTitle(<#T##title: NSAttributedString?##NSAttributedString?#>, for: .normal)
+        return button
+    }()
+    
     var text: String? {
         return textNode.attributedText?.string
     }
