@@ -43,7 +43,7 @@ class TextContentNode: MessageContentNode {
         for link in links {
             attributedText.addAttributes([
                 NSAttributedString.Key.link: link.url as Any,
-                NSAttributedString.Key.foregroundColor: Colors.DEFAULT_LINK_HIGHLIGHT_COLOR,
+                NSAttributedString.Key.foregroundColor: UIColor(hexString: "#007DD6"),
                 NSAttributedString.Key.underlineColor: UIColor.clear
             ], range: link.range)
         }

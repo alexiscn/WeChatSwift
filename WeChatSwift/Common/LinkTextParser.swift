@@ -16,6 +16,7 @@ struct LinkParserResult {
 class LinkTextParser {
     
     private let pattern = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
+    //[-a-zA-Z0-9@:%_+.~#?&//=]{1,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)?
     
     static let shared = try! LinkTextParser()
     

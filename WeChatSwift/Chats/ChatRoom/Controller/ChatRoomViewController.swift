@@ -251,6 +251,10 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
     }
     
     func messageCell(_ cellNode: MessageCellNode, didTapLink url: URL?) {
-        print("didTapLink")
+        if let url = url {
+            let webVC = WebViewController(url: url)
+            navigationController?.pushViewController(webVC, animated: true)
+            inputNode.dismissKeyboard()
+        }
     }
 }
