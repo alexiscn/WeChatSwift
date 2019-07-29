@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AsyncDisplayKit
+import WXActionSheet
 
 class ChatRoomViewController: ASViewController<ASDisplayNode> {
     
@@ -92,6 +93,28 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
                 self.tableNode.scrollToRow(at: indexPath, at: .bottom, animated: animated)
             }
         }
+    }
+    
+    private func showSendLocationActionSheet() {
+        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        actionSheet.add(WXActionSheetItem(title: "发送位置", handler: { [weak self] _ in
+            self?.sendLocation()
+        }))
+        actionSheet.add(WXActionSheetItem(title: "共享实时位置", handler: { _ in
+                    
+        }))
+        actionSheet.show()
+    }
+    
+    private func sendLocation() {
+        let message = Message()
+        message.chatID = sessionID
+        
+        message.content = .location(LocationMessage(coordinate: CLLocationCoordinate2DMake(39.996074, 116.480813), thumbImage: UIImage(named: "location_thumb"), title: "望京SOHOT2(北京市朝阳区)", subTitle: "北京市朝阳区阜通东大街"))
+        message.senderID = AppContext.current.userID
+        message.localMsgID = UUID().uuidString
+        message.time = Int(Date().timeIntervalSinceNow)
+        dataSource.append(message)
     }
 }
 
@@ -179,14 +202,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             present(nav, animated: true, completion: nil)
         case .location:
-            let message = Message()
-            message.chatID = sessionID
-            
-            message.content = .location(LocationMessage(coordinate: CLLocationCoordinate2DMake(39.996074, 116.480813), thumbImage: UIImage(named: "location_thumb"), title: "望京SOHOT2(北京市朝阳区)", subTitle: "北京市朝阳区阜通东大街"))
-            message.senderID = AppContext.current.userID
-            message.localMsgID = UUID().uuidString
-            message.time = Int(Date().timeIntervalSinceNow)
-            dataSource.append(message)
+            showSendLocationActionSheet()
         default:
             break
         }
