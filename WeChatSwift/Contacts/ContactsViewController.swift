@@ -78,4 +78,12 @@ extension ContactsViewController: ASTableDelegate, ASTableDataSource {
         }
         return block
     }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let contact = dataSource[indexPath.section].models[indexPath.row]
+        let contactInfoVC = ContactInfoViewController(contact: contact)
+        navigationController?.pushViewController(contactInfoVC, animated: true)
+    }
 }
