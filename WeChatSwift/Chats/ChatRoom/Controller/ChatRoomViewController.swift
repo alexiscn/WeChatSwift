@@ -134,7 +134,11 @@ extension ChatRoomViewController {
     }
     
     @objc private func moreButtonClicked() {
-        
+        let contact = Contact()
+        contact.name = user.name
+        contact.avatar = UIImage.as_imageNamed(user.avatar)
+        let contactVC = ContactInfoViewController(contact: ContactModel.contact(contact))
+        navigationController?.pushViewController(contactVC, animated: true)
     }
 }
 

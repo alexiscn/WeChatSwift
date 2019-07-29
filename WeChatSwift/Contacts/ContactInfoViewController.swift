@@ -12,37 +12,73 @@ class ContactInfoViewController: ASViewController<ASTableNode> {
     
     private let contact: ContactModel
     
-    private var dataSource: [ContactInfo] = []
+    private var dataSource: [ContactInfoGroup] = []
     
     init(contact: ContactModel) {
         self.contact = contact
         super.init(node: ASTableNode(style: .grouped))
-        
+        setupDataSource()
         node.dataSource = self
         node.delegate = self
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        node.backgroundColor = Colors.backgroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupDataSource() {
+        dataSource.append(ContactInfoGroup(items: [.profile, .remark]))
+        dataSource.append(ContactInfoGroup(items: [.moments, .more]))
+        dataSource.append(ContactInfoGroup(items: [.sendMessage, .voip]))
+    }
 }
 
 extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 1
+        return dataSource.count
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return dataSource[section].items.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let block: ASCellNodeBlock = {
-            return ASCellNode()
+        let info = dataSource[indexPath.section].items[indexPath.row]
+        let block: ASCellNodeBlock = { [weak self] in
+            guard let strongSelf = self else { return ASCellNode() }
+            switch info {
+            case .profile:
+                return ContactInfoProfileCellNode(contact: strongSelf.contact)
+            case .sendMessage, .voip:
+                return ContactInfoButtonCellNode(info: info)
+            case .remark, .moments, .more:
+                return ContactInfoCellNode(info: info)
+            }
         }
         return block
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
     }
 }
 
@@ -78,6 +114,11 @@ class ContactInfoProfileCellNode: ASCellNode {
         regionNode.attributedText = NSAttributedString(string: "国家：", attributes: wechatIDAttributes)
     }
     
+    override func didLoad() {
+        super.didLoad()
+        backgroundColor = Colors.white
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         avatarNode.style.preferredSize = CGSize(width: 64.0, height: 64.0)
@@ -87,9 +128,11 @@ class ContactInfoProfileCellNode: ASCellNode {
         vertical.children = [nicknameNode, wechatIDNode, regionNode]
         
         let horizontal = ASStackLayoutSpec.horizontal()
+        horizontal.spacing = 16.0
         horizontal.children = [avatarNode, vertical]
         
-        return ASInsetLayoutSpec(insets: .zero, child: horizontal)
+        let insets = UIEdgeInsets(top: 10, left: 16, bottom: 28, right: 16)
+        return ASInsetLayoutSpec(insets: insets, child: horizontal)
     }
     
 }
@@ -103,6 +146,18 @@ class ContactInfoCellNode: ASCellNode {
     init(info: ContactInfo) {
         super.init()
         automaticallyManagesSubnodes = true
+        
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_COLOR
+        ]
+        titleNode.attributedText = NSAttributedString(string: info.title, attributes: attributes)
+        arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        backgroundColor = Colors.white
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -128,9 +183,25 @@ class ContactInfoButtonCellNode: ASCellNode {
     init(info: ContactInfo) {
         super.init()
         automaticallyManagesSubnodes = true
+        
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+            NSAttributedString.Key.foregroundColor: Colors.DEFAULT_LINK_COLOR
+        ]
+        let attrbutedText = NSAttributedString(string: info.title, attributes: attributes)
+        buttonNode.setAttributedTitle(attrbutedText, for: .normal)
+        buttonNode.setImage(info.image, for: .normal)
+        buttonNode.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(Colors.DEFAULT_LINK_COLOR)
+        buttonNode.imageNode.style.preferredSize = CGSize(width: 20, height: 20)
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        backgroundColor = Colors.white
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        buttonNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
         return ASInsetLayoutSpec(insets: .zero, child: buttonNode)
     }
 }
@@ -142,4 +213,36 @@ enum ContactInfo {
     case more
     case sendMessage
     case voip
+    
+    var title: String {
+        switch self {
+        case .profile:
+            return ""
+        case .remark:
+            return "设置备注和标签"
+        case .moments:
+            return "朋友圈"
+        case .more:
+            return "更多信息"
+        case .sendMessage:
+            return "发消息"
+        case .voip:
+            return "音视频通话"
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .sendMessage:
+            return UIImage.SVGImage(named: "icons_outlined_chats")
+        case .voip:
+            return UIImage.SVGImage(named: "icons_outlined_videocall")
+        default:
+            return nil
+        }
+    }
+}
+
+struct ContactInfoGroup {
+    var items: [ContactInfo]
 }

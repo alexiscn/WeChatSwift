@@ -29,7 +29,7 @@ class DiscoverCellNode: ASCellNode {
         imageNode.image = model.image
         titleNode.attributedText = model.attributedStringForTitle()
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
-        arrowNode.style.preferredSize = CGSize(width: 12, height: 12)
+        arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
         if model.unreadCount > 0 {
             badgeNode.update(count: model.unreadCount, showDot: false)
         }
