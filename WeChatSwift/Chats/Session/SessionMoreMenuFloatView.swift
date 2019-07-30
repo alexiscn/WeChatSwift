@@ -30,22 +30,18 @@ class SessionMoreFrameFloatView: UIButton {
         let payMenu = SessionMoreItem(type: .money,title: "收付款", icon: "icons_filled_pay")
         menus = [groupChatMenu, addFriendMenu, scanMenu, payMenu]
         
-        let menuWidth: CGFloat = 0.45 * bounds.width
-        let menuHeight: CGFloat = 60.0
-        let paddingTop: CGFloat = 0
+        let menuWidth: CGFloat = 160.0
+        let menuHeight: CGFloat = 56.0
+        let paddingTop: CGFloat = 0.0
         let paddingRight: CGFloat = 8.0
         
-        let menuFrame = CGRect(x: bounds.width - menuWidth - paddingRight,
-                               y: paddingTop,
-                               width: menuWidth,
-                               height: CGFloat(menus.count) * menuHeight)
-        
-        let menuView = SessionMoreMenuView(frame: menuFrame, menus: menus)
+        let menuView = SessionMoreMenuView(itemHeight: menuHeight, itemWidth: menuWidth, menus: menus)
+        menuView.frame.origin = CGPoint(x: bounds.width - menuWidth - paddingRight, y: paddingTop)
         menuView.transform = .identity
         menuView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(menuView)
         
-        self.menuViewFrame = menuFrame
+        self.menuViewFrame = menuView.frame
         self.menuView = menuView
     }
     
@@ -63,8 +59,9 @@ class SessionMoreFrameFloatView: UIButton {
         }
     }
     
-    func hide() {
-        UIView.animate(withDuration: 0.25, animations: {
+    func hide(animated: Bool = true) {
+        let duration: TimeInterval = animated ? 0.2: 0.0
+        UIView.animate(withDuration: duration, animations: {
             let scale: CGFloat = 0.7
             self.menuView?.transform = CGAffineTransform(scaleX: scale, y: scale)
             self.menuView?.frame.origin.x = self.menuViewFrame.origin.x + self.menuViewFrame.width * scale/2 - 12 // To keep arrow stick

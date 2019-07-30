@@ -34,43 +34,54 @@ class SessionMoreMenuView: UIView {
     
     private let backgroundView: UIImageView
     
+    private let containerView: UIView
+    
     private let menus: [SessionMoreItem]
     
-    init(frame: CGRect, menus: [SessionMoreItem]) {
+    init(itemHeight: CGFloat, itemWidth: CGFloat, menus: [SessionMoreItem]) {
         
         self.menus = menus
         
         backgroundView = UIImageView()
         backgroundView.image = UIImage(named: "MoreFunctionFrame_58x50_")
         
-        super.init(frame: frame)
+        containerView = UIView()
         
-        backgroundView.frame = bounds
-        addSubview(backgroundView)
-        
-        let itemHeight = frame.height / CGFloat(menus.count)
-        
+        var buttons: [UIButton] = []
         for (index, menu) in menus.enumerated() {
             let button = UIButton(type: .custom)
             button.contentHorizontalAlignment = .left
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20)
             button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: -30)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-            button.frame = CGRect(x: 0, y: itemHeight * CGFloat(index), width: bounds.width, height: itemHeight)
+            button.frame = CGRect(x: 0, y: itemHeight * CGFloat(index), width: itemWidth, height: itemHeight)
             button.tintColor = .white
             button.setImage(UIImage.SVGImage(named: menu.icon, fillColor: .white), for: .normal)
+            button.setBackgroundImage(UIImage(color: UIColor(hexString: "#000000", alpha: 0.3)), for: .highlighted)
             button.setTitle(menu.title, for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
             button.tag = index
-            addSubview(button)
+            containerView.addSubview(button)
             
             if index != menus.count - 1 {
                 let line = UIImageView()
                 line.image = UIImage(named: "MoreFunctionFrameLine_120x0_")
-                line.frame = CGRect(x: 50, y: itemHeight - Constants.lineHeight, width: bounds.width - 50, height: Constants.lineHeight)
+                line.frame = CGRect(x: 50, y: itemHeight - Constants.lineHeight, width: itemWidth - 50, height: Constants.lineHeight)
                 button.addSubview(line)
             }
+            buttons.append(button)
         }
+        containerView.frame = CGRect(x: 0, y: 5, width: itemWidth, height: itemHeight * CGFloat(menus.count))
+        
+        let frame = CGRect(x: 0, y: 0, width: itemWidth, height: containerView.frame.maxY)
+        
+        super.init(frame: frame)
+        
+        backgroundView.frame = bounds
+        addSubview(backgroundView)
+        addSubview(containerView)
+        
+        buttons.forEach { $0.addTarget(self, action: #selector(handleTapMenuButton(_:)), for: .touchUpInside) }
     }
     
     required init?(coder aDecoder: NSCoder) {

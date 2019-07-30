@@ -56,12 +56,13 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     private func showMoreMenu() {
         if menuFloatView == nil {
             menuFloatView = SessionMoreFrameFloatView(frame: view.bounds)
+            menuFloatView?.delegate = self
         }
         menuFloatView?.show(in: self.view)
     }
     
-    private func hideMoreMenu() {
-        menuFloatView?.hide()
+    private func hideMoreMenu(animated: Bool = true) {
+        menuFloatView?.hide(animated: animated)
     }
 }
 
@@ -78,6 +79,22 @@ extension SessionViewController {
     
 }
 
+// MARK: - SessionMoreMenuViewDelegate
+extension SessionViewController: SessionMoreMenuViewDelegate {
+    
+    func moreMenuView(_ menu: SessionMoreMenuView, didTap item: SessionMoreItem) {
+        switch item.type {
+        case .addFriends:
+            let addFriendVC = AddContactViewController()
+            navigationController?.pushViewController(addFriendVC, animated: true)
+        default:
+            break
+        }
+        hideMoreMenu(animated: false)
+    }
+}
+
+// MARK: - ASTableDelegate & ASTableDataSource
 extension SessionViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {

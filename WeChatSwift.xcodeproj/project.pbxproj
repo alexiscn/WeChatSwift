@@ -68,6 +68,7 @@
 		A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */; };
 		A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */; };
 		A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */; };
+		A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */; };
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
@@ -274,6 +275,7 @@
 		A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCellNode.swift; sourceTree = "<group>"; };
 		A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCellNode.swift; sourceTree = "<group>"; };
 		A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactSearchNode.swift; sourceTree = "<group>"; };
+		A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCardNode.swift; sourceTree = "<group>"; };
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				A32333BA22DF0C6900B79555 /* WCBadgeView.swift */,
 				A32333BC22DF0F6A00B79555 /* BadgeNode.swift */,
 				A34760B222E6F02E0043AE1D /* WCNavigationController.swift */,
+				A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1222,6 +1225,7 @@
 				A374864022D44711002EEC4F /* ImageContentNode.swift in Sources */,
 				A32333BB22DF0C6900B79555 /* WCBadgeView.swift in Sources */,
 				A374864422D44C56002EEC4F /* VideoContentNode.swift in Sources */,
+				A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */,
 				A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */,
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
 				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
