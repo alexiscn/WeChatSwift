@@ -63,6 +63,10 @@
 		A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */; };
 		A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B222E6F02E0043AE1D /* WCNavigationController.swift */; };
 		A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */; };
+		A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */; };
+		A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */; };
+		A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */; };
+		A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */; };
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
@@ -117,7 +121,6 @@
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
 		A3CA51AC22CD99FD00C67D92 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51AB22CD99FD00C67D92 /* AddContactViewController.swift */; };
 		A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51AD22CD9A1500C67D92 /* AddContactSource.swift */; };
-		A3CA51B022CD9A3000C67D92 /* AddContactViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51AF22CD9A3000C67D92 /* AddContactViewCell.swift */; };
 		A3CA51B322CD9AF900C67D92 /* icons_outlined_radar.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51B222CD9AF900C67D92 /* icons_outlined_radar.svg */; };
 		A3CA51B522CD9B0A00C67D92 /* icons_filled_group-detail.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51B422CD9B0A00C67D92 /* icons_filled_group-detail.svg */; };
 		A3CA51B722CD9B1E00C67D92 /* icons_filled_scan.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51B622CD9B1E00C67D92 /* icons_filled_scan.svg */; };
@@ -265,6 +268,10 @@
 		A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerViewController.swift; sourceTree = "<group>"; };
 		A34760B222E6F02E0043AE1D /* WCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCNavigationController.swift; sourceTree = "<group>"; };
 		A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerTableViewCell.swift; sourceTree = "<group>"; };
+		A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoProfileCellNode.swift; sourceTree = "<group>"; };
+		A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoButtonCellNode.swift; sourceTree = "<group>"; };
+		A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCellNode.swift; sourceTree = "<group>"; };
+		A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCellNode.swift; sourceTree = "<group>"; };
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -319,7 +326,6 @@
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		A3CA51AB22CD99FD00C67D92 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		A3CA51AD22CD9A1500C67D92 /* AddContactSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactSource.swift; sourceTree = "<group>"; };
-		A3CA51AF22CD9A3000C67D92 /* AddContactViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewCell.swift; sourceTree = "<group>"; };
 		A3CA51B222CD9AF900C67D92 /* icons_outlined_radar.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_radar.svg; sourceTree = "<group>"; };
 		A3CA51B422CD9B0A00C67D92 /* icons_filled_group-detail.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "icons_filled_group-detail.svg"; sourceTree = "<group>"; };
 		A3CA51B622CD9B1E00C67D92 /* icons_filled_scan.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_scan.svg; sourceTree = "<group>"; };
@@ -559,11 +565,10 @@
 		A33DB2E822CCCA1200A11776 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A3485FAA22EFF608002A804B /* AddContact */,
+				A3485FA322EFF5AA002A804B /* ContactInfo */,
 				A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */,
 				A372228822D954C9003403D4 /* ContactCellNode.swift */,
-				A3CA51AB22CD99FD00C67D92 /* AddContactViewController.swift */,
-				A3CA51AF22CD9A3000C67D92 /* AddContactViewCell.swift */,
-				A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -652,6 +657,26 @@
 				A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */,
 			);
 			path = AssetPicker;
+			sourceTree = "<group>";
+		};
+		A3485FA322EFF5AA002A804B /* ContactInfo */ = {
+			isa = PBXGroup;
+			children = (
+				A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */,
+				A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */,
+				A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */,
+				A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */,
+			);
+			path = ContactInfo;
+			sourceTree = "<group>";
+		};
+		A3485FAA22EFF608002A804B /* AddContact */ = {
+			isa = PBXGroup;
+			children = (
+				A3CA51AB22CD99FD00C67D92 /* AddContactViewController.swift */,
+				A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */,
+			);
+			path = AddContact;
 			sourceTree = "<group>";
 		};
 		A36BE2C922E3F56C003F334B /* Settings */ = {
@@ -1135,6 +1160,7 @@
 				A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */,
 				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
 				A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */,
+				A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
@@ -1157,6 +1183,7 @@
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,
 				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,
+				A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
@@ -1181,6 +1208,7 @@
 				A322870322E06299004E516E /* EmoticonManager.swift in Sources */,
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
+				A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A341CF0122E5554800F18106 /* SettingsCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
@@ -1189,7 +1217,6 @@
 				A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */,
 				A374864022D44711002EEC4F /* ImageContentNode.swift in Sources */,
 				A32333BB22DF0C6900B79555 /* WCBadgeView.swift in Sources */,
-				A3CA51B022CD9A3000C67D92 /* AddContactViewCell.swift in Sources */,
 				A374864422D44C56002EEC4F /* VideoContentNode.swift in Sources */,
 				A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */,
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
@@ -1202,6 +1229,7 @@
 				A37FFB6822EE92210001DD27 /* WCWebView.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,
+				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
 				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,

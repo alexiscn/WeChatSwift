@@ -66,4 +66,20 @@ enum AddContactSource {
             return Colors.indigo
         }
     }
+    
+    func attributedStringForTitle(_ title: String) -> NSAttributedString {
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(hexString: "#181818")
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
+    }
+    
+    func attributedStringForDesc(_ desc: String) -> NSAttributedString {
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+            NSAttributedString.Key.foregroundColor: UIColor(hexString: "#808080")
+        ]
+        return NSAttributedString(string: desc, attributes: attributes)
+    }
 }
