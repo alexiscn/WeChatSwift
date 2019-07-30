@@ -1,0 +1,38 @@
+[
+    {
+        "width": 640,
+        "height": 320,
+        "productId": "com.tencent.xin.emoticon.person.stiker_1562035253ab9200a2bc8f50cd",
+        "title": null,
+        "desc": null,
+        "iconUrl": "http://mmbiz.qpic.cn/mmemoticon/duc2TvpEgSR21Wd0Rj1PwFwFiamF5OGlzb6SwpO4wNz4UjMEJ6wluHQ28dzIA0Diby/0",
+        "setType": 1
+    },
+    {
+        "width": 640,
+        "height": 320,
+        "productId": "com.tencent.xin.emoticon.person.stiker_1559205514948bad9a3394659e",
+        "title": null,
+        "desc": null,
+        "iconUrl": "http://mmbiz.qpic.cn/mmemoticon/PiajxSqBRaEKO5tC4JVibaB6RpFMwtby8D6XslLG35Xoiafn6yibygHA8OChkqPUUfl1ibVFPCBGFQJM/0",
+        "setType": 1
+    },
+    {
+        "width": 640,
+        "height": 320,
+        "productId": "com.tencent.xin.emoticon.person.stiker_156154609766c44a83a3881ae3",
+        "title": null,
+        "desc": null,
+        "iconUrl": "http://mmbiz.qpic.cn/mmemoticon/duc2TvpEgSSfJAxWlQUToL5FPDmOOfpuXKh9wGy3tk516Ie9uszXzXdWLfVj28ypFJFSxlWG0qg/0",
+        "setType": 1
+    },
+    {
+        "width": 640,
+        "height": 320,
+        "productId": null,
+        "title": "微信表情付费篇",
+        "desc": "付费的微信表情来了",
+        "iconUrl": "http://mmbiz.qpic.cn/mmemoticon/duc2TvpEgSTjhOYEb6zab79qb9S7CGO2PJVegXr3Bhs4uqZQGH9D2TmffWdykBRftEhQlCyJanUyZPiabm1GYiag/0",
+        "setType": 3
+    }
+]

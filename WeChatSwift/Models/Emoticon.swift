@@ -229,3 +229,25 @@ enum FavoriteEmoticonType {
     case dice
     case jsb
 }
+
+struct EmoticonBanner: Codable {
+    
+    let width: CGFloat
+    
+    let height: CGFloat
+    
+    let productId: String?
+    
+    let setType: EmoticonBannerType
+    
+    let title: String?
+    
+    let desc: String?
+    
+    let iconUrl: URL?
+}
+
+enum EmoticonBannerType: Int, Codable {
+    case personalSticker = 1
+    case stickerList = 3
+}

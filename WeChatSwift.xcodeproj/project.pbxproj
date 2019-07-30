@@ -71,6 +71,11 @@
 		A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */; };
 		A3485FB322F03E29002A804B /* PayOfflinePayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */; };
 		A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */; };
+		A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */; };
+		A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FBA22F049CB002A804B /* WeChatEmoticonsCellNode.swift */; };
+		A3485FBD22F05363002A804B /* EmoticonBanners.json in Resources */ = {isa = PBXBuildFile; fileRef = A3485FBC22F05363002A804B /* EmoticonBanners.json */; };
+		A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FBE22F05435002A804B /* WeChatEmoticonBannerCellNode.swift */; };
+		A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3499F6D22F06689005DDD55 /* MoreEmoticonsViewController.swift */; };
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
@@ -280,6 +285,11 @@
 		A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCardNode.swift; sourceTree = "<group>"; };
 		A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayViewController.swift; sourceTree = "<group>"; };
 		A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayCellNode.swift; sourceTree = "<group>"; };
+		A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatEmoticonsViewController.swift; sourceTree = "<group>"; };
+		A3485FBA22F049CB002A804B /* WeChatEmoticonsCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatEmoticonsCellNode.swift; sourceTree = "<group>"; };
+		A3485FBC22F05363002A804B /* EmoticonBanners.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EmoticonBanners.json; sourceTree = "<group>"; };
+		A3485FBE22F05435002A804B /* WeChatEmoticonBannerCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatEmoticonBannerCellNode.swift; sourceTree = "<group>"; };
+		A3499F6D22F06689005DDD55 /* MoreEmoticonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreEmoticonsViewController.swift; sourceTree = "<group>"; };
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -796,6 +806,10 @@
 				A389999C22E969FE00620069 /* EmoticonManageViewController.swift */,
 				A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */,
 				A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */,
+				A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */,
+				A3485FBA22F049CB002A804B /* WeChatEmoticonsCellNode.swift */,
+				A3485FBE22F05435002A804B /* WeChatEmoticonBannerCellNode.swift */,
+				A3499F6D22F06689005DDD55 /* MoreEmoticonsViewController.swift */,
 			);
 			path = Emoticons;
 			sourceTree = "<group>";
@@ -843,6 +857,7 @@
 				A31057D222E852F900856D71 /* JSB_J.pic */,
 				A31057D122E852F900856D71 /* JSB_S.pic */,
 				A31057E522E8533C00856D71 /* JSB.pic */,
+				A3485FBC22F05363002A804B /* EmoticonBanners.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1016,6 +1031,7 @@
 				A31057DF22E8532E00856D71 /* dice_6.pic in Resources */,
 				A3CA51B922CD9B2800C67D92 /* icons_filled_mobile-contacts.svg in Resources */,
 				A3CA520322CDAFD100C67D92 /* icon_filled_timelineop.svg in Resources */,
+				A3485FBD22F05363002A804B /* EmoticonBanners.json in Resources */,
 				A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */,
 				A3CCE01D22DDDA0A0003DC25 /* Emoticons.zip in Resources */,
 				A31057D422E852FA00856D71 /* JSB_S.pic in Resources */,
@@ -1183,6 +1199,7 @@
 				A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
+				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
@@ -1213,6 +1230,7 @@
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
 				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
+				A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
 				A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */,
@@ -1231,10 +1249,12 @@
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
 				A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */,
+				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A341CF0122E5554800F18106 /* SettingsCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
+				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
 				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,
 				A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */,
 				A374864022D44711002EEC4F /* ImageContentNode.swift in Sources */,

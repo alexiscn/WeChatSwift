@@ -6,8 +6,6 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<true/>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>WeChat需要使用您的相册来发送照片</string>
