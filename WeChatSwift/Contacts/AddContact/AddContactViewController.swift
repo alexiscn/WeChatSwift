@@ -27,8 +27,19 @@ class AddContactViewController: ASViewController<ASTableNode> {
         
         navigationItem.title = "添加朋友"
         
+        let tableHeader = UIView()
+        tableHeader.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 108)
+        
+        let searchNode = AddContactSearchNode()
+        searchNode.qrCodeHandler = {
+            
+        }
+        searchNode.frame = tableHeader.bounds
+        tableHeader.addSubnode(searchNode)
+        
         node.backgroundColor = Colors.backgroundColor
         node.view.separatorStyle = .none
+        node.view.tableHeaderView = tableHeader
         
         setupDataSource()
     }

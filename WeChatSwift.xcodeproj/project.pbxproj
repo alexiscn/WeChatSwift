@@ -67,6 +67,7 @@
 		A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */; };
 		A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */; };
 		A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */; };
+		A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */; };
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
@@ -272,6 +273,7 @@
 		A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoButtonCellNode.swift; sourceTree = "<group>"; };
 		A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCellNode.swift; sourceTree = "<group>"; };
 		A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCellNode.swift; sourceTree = "<group>"; };
+		A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactSearchNode.swift; sourceTree = "<group>"; };
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 			children = (
 				A3CA51AB22CD99FD00C67D92 /* AddContactViewController.swift */,
 				A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */,
+				A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */,
 			);
 			path = AddContact;
 			sourceTree = "<group>";
@@ -1199,6 +1202,7 @@
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
+				A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
