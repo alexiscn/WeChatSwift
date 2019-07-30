@@ -14,7 +14,11 @@ class EmoticonManageViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "我的表情"
     }
 
 }

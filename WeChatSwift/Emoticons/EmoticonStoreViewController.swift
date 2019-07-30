@@ -18,7 +18,10 @@ class EmoticonStoreViewController: ASViewController<ASDisplayNode> {
     
     private var selectedIndex: Int = -1
     
-    init() {
+    private var presented: Bool = false
+    
+    init(presented: Bool = false) {
+        self.presented = presented
         super.init(node: ASDisplayNode())
     }
     
@@ -48,6 +51,12 @@ class EmoticonStoreViewController: ASViewController<ASDisplayNode> {
         
         let rightButton = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_setting"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
         navigationItem.rightBarButtonItem = rightButton
+        
+        if presented {
+            let closeButton = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(handleCloseButtonTapped(_:)))
+            closeButton.tintColor = UIColor(hexString: "#181818") //Colors.black
+            navigationItem.leftBarButtonItem = closeButton
+        }
     }
     
     private func updateSegmentSelected(_ newIndex: Int) {
@@ -86,6 +95,10 @@ extension EmoticonStoreViewController {
     @objc private func handleRightBarButtonTapped(_ sender: Any) {
         let emoticonManageVC = EmoticonManageViewController()
         navigationController?.pushViewController(emoticonManageVC, animated: true)
+    }
+    
+    @objc private func handleCloseButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc private func handleSegmentControlValueChanged(_ sender: Any) {

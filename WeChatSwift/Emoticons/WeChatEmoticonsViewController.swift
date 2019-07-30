@@ -26,6 +26,7 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
         layout.itemSize = CGSize(width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
         layout.scrollDirection = .horizontal
         bannerNode = ASPagerNode(collectionViewLayout: layout)
+        bannerNode.backgroundColor = .clear
         bannerNode.allowsAutomaticInsetsAdjustment = true
         
         tableNode = ASTableNode(style: .plain)
