@@ -31,4 +31,7 @@ struct Constants {
     }
     
     static let helpURL = URL(string: "https://kf.qq.com/touch/product/wechat_app.html?scene_id=kf338")
+
+    /// 收付款的使用说明URL
+    static let payHelpURL = URL(string: "https://wx.gtimg.com/action/shuaka/help.shtml")
 }

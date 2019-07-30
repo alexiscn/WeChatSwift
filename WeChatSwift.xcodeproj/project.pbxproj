@@ -69,6 +69,8 @@
 		A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */; };
 		A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */; };
 		A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */; };
+		A3485FB322F03E29002A804B /* PayOfflinePayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */; };
+		A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */; };
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
@@ -276,6 +278,8 @@
 		A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCellNode.swift; sourceTree = "<group>"; };
 		A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactSearchNode.swift; sourceTree = "<group>"; };
 		A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCardNode.swift; sourceTree = "<group>"; };
+		A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayViewController.swift; sourceTree = "<group>"; };
+		A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayCellNode.swift; sourceTree = "<group>"; };
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -521,6 +525,7 @@
 				A326847922D6DCBD00F1EC91 /* Components */,
 				A33DB2EB22CCCA3200A11776 /* Extensions */,
 				A389999B22E969CA00620069 /* Emoticons */,
+				A3485FB122F03E04002A804B /* Payment */,
 				A33DB2E722CCCA0D00A11776 /* Chats */,
 				A33DB2E822CCCA1200A11776 /* Contacts */,
 				A33DB2E522CCC9F200A11776 /* Discover */,
@@ -683,6 +688,15 @@
 				A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */,
 			);
 			path = AddContact;
+			sourceTree = "<group>";
+		};
+		A3485FB122F03E04002A804B /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */,
+				A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 		A36BE2C922E3F56C003F334B /* Settings */ = {
@@ -1183,6 +1197,7 @@
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
+				A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */,
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
 				A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */,
 				A37FFB6E22EEB62B0001DD27 /* NewMomentViewController.swift in Sources */,
@@ -1232,6 +1247,7 @@
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
+				A3485FB322F03E29002A804B /* PayOfflinePayViewController.swift in Sources */,
 				A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */,
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
 				A37FFB6822EE92210001DD27 /* WCWebView.swift in Sources */,
