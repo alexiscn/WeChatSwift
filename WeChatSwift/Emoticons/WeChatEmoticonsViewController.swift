@@ -64,7 +64,6 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
         }
         do {
             let banners = try JSONDecoder().decode([EmoticonBanner].self, from: data)
-            //tableNode.contentInset = UIEdgeInsets(top: Constants.screenWidth * 0.5, left: 0, bottom: 0, right: 0)
             self.banners = banners
             bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
             bannerNode.reloadData()
@@ -109,5 +108,8 @@ extension WeChatEmoticonsViewController: ASTableDelegate, ASTableDataSource {
         }
         return block
     }
+    
+    
+    
     
 }

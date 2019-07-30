@@ -112,6 +112,7 @@
 		A374866522D4AFE4002EEC4F /* icons_filled_favorites.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */; };
 		A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866622D4B031002EEC4F /* icons_filled_sticker.svg */; };
 		A374866922D4B04F002EEC4F /* icons_filled_transfer.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */; };
+		A377F57722F103FC00006F2B /* WCNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A377F57622F103FC00006F2B /* WCNavigationBar.swift */; };
 		A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */; };
 		A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */; };
 		A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E322D89AFB008019A4 /* SessionCellNode.swift */; };
@@ -326,6 +327,7 @@
 		A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_favorites.svg; sourceTree = "<group>"; };
 		A374866622D4B031002EEC4F /* icons_filled_sticker.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_sticker.svg; sourceTree = "<group>"; };
 		A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_transfer.svg; sourceTree = "<group>"; };
+		A377F57622F103FC00006F2B /* WCNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WCNavigationBar.swift; path = ../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Navigation/WCNavigationBar.swift; sourceTree = "<group>"; };
 		A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPageLayoutDelegate.swift; sourceTree = "<group>"; };
 		A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellNode.swift; sourceTree = "<group>"; };
 		A37E73E322D89AFB008019A4 /* SessionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCellNode.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 		A33DB2D222CCC80F00A11776 /* WeChatSwift */ = {
 			isa = PBXGroup;
 			children = (
+				A377F57522F103DE00006F2B /* Navigation */,
 				A3CA51A422CD998C00C67D92 /* AppDelegate */,
 				A3CA51F922CDA87100C67D92 /* Context */,
 				A3CA51F622CDA85600C67D92 /* Service */,
@@ -785,6 +788,14 @@
 				A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A377F57522F103DE00006F2B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				A377F57622F103FC00006F2B /* WCNavigationBar.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		A37FFB6022EE8D200001DD27 /* WebView */ = {
@@ -1167,6 +1178,7 @@
 				A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */,
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
+				A377F57722F103FC00006F2B /* WCNavigationBar.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,

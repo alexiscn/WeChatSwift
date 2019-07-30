@@ -23,3 +23,12 @@ class WCNavigationController: UINavigationController {
         navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
     }
 }
+
+extension UINavigationController {
+    
+    @_dynamicReplacement(for: viewDidLoad())
+    func wc_viewDidLoad() {
+        print("ViewDidLoad")
+    }
+    
+}

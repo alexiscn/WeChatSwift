@@ -40,8 +40,6 @@ class WeChatEmoticonsCellNode: ASCellNode {
     
     override func didLoad() {
         super.didLoad()
-        
-        backgroundColor = .red
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
