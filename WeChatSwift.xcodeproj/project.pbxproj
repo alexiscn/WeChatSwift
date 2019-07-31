@@ -82,6 +82,7 @@
 		A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */; };
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
+		A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */ = {isa = PBXBuildFile; fileRef = A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */ = {isa = PBXBuildFile; fileRef = A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
@@ -300,6 +301,7 @@
 		A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreCellNode.swift; sourceTree = "<group>"; };
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
+		A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_back.svg; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_videocall.svg; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
@@ -885,6 +887,7 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */,
 				A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */,
 				A32333B822DF091D00B79555 /* icons_outlined_mute.svg */,
 				A3CCE02022DDECF90003DC25 /* red_envelopes_bottom_bg.svg */,
@@ -1087,6 +1090,7 @@
 				A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */,
 				A3CA51DF22CD9FB900C67D92 /* icons_outlined_nearby.svg in Resources */,
 				A31057DE22E8532E00856D71 /* dice_1.pic in Resources */,
+				A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */,
 				A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
 				A31057E222E8532E00856D71 /* dice_2.pic in Resources */,

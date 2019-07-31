@@ -8,6 +8,40 @@
 
 import UIKit
 
+public struct Navigation<Base> {
+    let base: Base
+    init(_ base: Base) {
+        self.base = base
+    }
+}
+
+extension Navigation where Base: UIViewController {
+    
+    var bar: WCNavigationBar {
+        return base.wc_navigationBar
+    }
+    
+    var item: UINavigationItem {
+        return base.wc_navigationItem
+    }
+}
+
+public protocol NavigationCompatible {
+    
+    associatedtype CompatibleType
+    
+    var navigation: CompatibleType { get }
+}
+
+public extension NavigationCompatible {
+    
+    var navigation: Navigation<Self> {
+        return Navigation(self)
+    }
+}
+
+extension UIViewController: NavigationCompatible {}
+
 public class WCNavigationBar: UINavigationBar {
     
     /// Enable WCNavigationBar
@@ -18,9 +52,7 @@ public class WCNavigationBar: UINavigationBar {
     /// Additional height for navigation bar
     public var additionalHeight: CGFloat = 0.0 {
         didSet {
-            if !prefersLargeTitles {
-                frame.size.height = barHeight + additionalHeight
-            }
+            frame.size.height = barHeight + _additionalHeight
             viewController?.adjustSafeAreaInsets()
         }
     }
@@ -58,6 +90,13 @@ public class WCNavigationBar: UINavigationBar {
             viewController?.navigationController?.navigationBar.largeTitleTextAttributes = newValue
         }
     }
+    
+    public var backBarButtonItem: WCBarButton? {
+        didSet {
+            
+            viewController?.wc_navigationItem.leftBarButtonItem = backBarButtonItem
+        }
+    }
 
     private var _contentView: UIView?
     private var contentView: UIView? {
@@ -71,6 +110,8 @@ public class WCNavigationBar: UINavigationBar {
     private var realNavigationBar: UINavigationBar? { return viewController?.navigationController?.navigationBar }
     
     private var barHeight: CGFloat { return realNavigationBar?.frame.height ?? 44.0 }
+    
+    private var _additionalHeight: CGFloat { return prefersLargeTitles ? 0: additionalHeight }
     
     weak var viewController: UIViewController?
     
@@ -97,15 +138,18 @@ public class WCNavigationBar: UINavigationBar {
         if automaticallyAdjustsPosition {
             frame = navigationBar.frame
             if prefersLargeTitles {
-                frame.origin.y = 0 //TODO
+                frame.origin.y = UIApplication.shared.statusBarFrame.maxY
             }
         } else {
             frame.size = navigationBar.frame.size
         }
+        frame.size.height = navigationBar.frame.height + additionalHeight
     }
     
     private func adjustLayoutMargins() {
-        
+        layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        contentView?.frame.origin.y = prefersLargeTitles ? 0: additionalHeight
+        contentView?.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }
 
@@ -178,6 +222,10 @@ extension UIViewController {
         navigationController.sendNavigationBarToBack()
         wc_navigationBar.prefersLargeTitles = navigationController.navigationBar.prefersLargeTitles
         
+        setupBackBarButtonItem(navigationController)
+        
+        wc_navigationBar.isTranslucent = true
+        
         view.addSubview(wc_navigationBar)
     }
     
@@ -209,9 +257,46 @@ extension UIViewController {
         wc_navigationBar.setNeedsLayout()
     }
     
+    private func setupBackBarButtonItem(_ navigationController: UINavigationController) {
+        let count = navigationController.viewControllers.count
+        guard count > 1 else { return }
+        
+        let backImage = UIImage.SVGImage(named: "icons_filled_back")
+        let backButton = WCBarButton(style: .image(backImage))
+        backButton.navigationController = navigationController
+        wc_navigationBar.backBarButtonItem = backButton
+    }
+    
     func adjustSafeAreaInsets() {
         
     }
 }
 
 
+public class WCBarButton: UIBarButtonItem {
+    
+    public enum BarButtonStyle {
+        case title(String?)
+        case image(UIImage?)
+        case custom(UIButton)
+    }
+    
+    weak var navigationController: UINavigationController?
+    
+    public convenience init(style: BarButtonStyle) {
+        let action = #selector(barButtonTapped)
+        switch style {
+        case .title(let title):
+            self.init(title: title, style: .plain, target: nil, action: action)
+        case .image(let image):
+            self.init(image: image, style: .plain, target: nil, action: action)
+        case .custom(let button):
+            self.init(customView: button)
+        }
+    }
+    
+    @objc private func barButtonTapped() {
+        
+    }
+    
+}
