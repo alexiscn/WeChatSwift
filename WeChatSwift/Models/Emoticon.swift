@@ -251,3 +251,31 @@ enum EmoticonBannerType: Int, Codable {
     case personalSticker = 1
     case stickerList = 3
 }
+
+
+struct StoreEmoticonItem {
+    
+    var image: UIImage?
+    
+    var title: String?
+    
+    var desc: String?
+    
+    func attributedStringForTitle() -> NSAttributedString? {
+        guard let title = title else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: UIColor(hexString: "#111111")
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
+    }
+    
+    func attributedStringForDesc() -> NSAttributedString? {
+        guard let desc = desc else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
+            NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
+        ]
+        return NSAttributedString(string: desc, attributes: attributes)
+    }
+}

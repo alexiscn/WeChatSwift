@@ -16,6 +16,8 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
     
     private var banners: [EmoticonBanner] = []
     
+    private var emoticons: [StoreEmoticonItem] = []
+    
     init() {
         
         let spacing: CGFloat = 15.0
@@ -26,10 +28,12 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: spacing)
         
         collectionNode = ASCollectionNode(collectionViewLayout: layout)
         collectionNode.backgroundColor = .clear
         collectionNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionNode.registerSupplementaryNode(ofKind: UICollectionView.elementKindSectionHeader)
         
         let bannerLayout = ASPagerFlowLayout()
         bannerLayout.minimumLineSpacing = 0
@@ -62,6 +66,7 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
         collectionNode.frame = node.bounds
         
         loadBanners()
+        loadFakeEmoticons()
     }
     
     private func loadBanners() {
@@ -76,6 +81,17 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
             bannerNode.reloadData()
         } catch {
             print(error)
+        }
+    }
+    
+    private func loadFakeEmoticons() {
+        let stickers = AppContext.current.emoticonMgr.emoticons.filter { return $0.type == .sticker }
+        let items = stickers.first?.numberOfItems(at: 0)
+        let count = items?.count ?? 1
+        for i in 0 ... 30 {
+            let index = i % count
+            let item = items?[index]
+            emoticons.append(StoreEmoticonItem(image: item?.thumbImage, title: item?.title, desc: "有\(i)个朋友在用"))
         }
     }
 }
@@ -104,12 +120,13 @@ extension MoreEmoticonsViewController: ASCollectionDelegate, ASCollectionDataSou
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return emoticons.count
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let item = emoticons[indexPath.row]
         let block: ASCellNodeBlock = {
-            return ASCellNode()
+            return EmoticonStoreCellNode(item: item)
         }
         return block
     }
@@ -118,4 +135,12 @@ extension MoreEmoticonsViewController: ASCollectionDelegate, ASCollectionDataSou
         collectionNode.deselectItem(at: indexPath, animated: false)
     }
     
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> ASCellNode {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let cellNode = ASCellNode()
+            cellNode.addSubnode(bannerNode)
+            return cellNode
+        }
+        return ASCellNode()
+    }
 }

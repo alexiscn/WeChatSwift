@@ -18,19 +18,16 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
     
     private var banners: [EmoticonBanner] = []
     
-    private var emoticons: [String] = ["1", "2", "3", "4", "5", "6"]
+    private var emoticons: [StoreEmoticonItem] = []
     
     init() {
-        
-        
-        
-        let layout = ASPagerFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: Constants.screenWidth, height: bannerHeight)
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = .zero
-        bannerNode = ASPagerNode(collectionViewLayout: layout)
+        let bannerLayout = ASPagerFlowLayout()
+        bannerLayout.minimumLineSpacing = 0
+        bannerLayout.minimumInteritemSpacing = 0
+        bannerLayout.itemSize = CGSize(width: Constants.screenWidth, height: bannerHeight)
+        bannerLayout.scrollDirection = .horizontal
+        bannerLayout.sectionInset = .zero
+        bannerNode = ASPagerNode(collectionViewLayout: bannerLayout)
         bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: bannerHeight)
         bannerNode.backgroundColor = .clear
         bannerNode.allowsAutomaticInsetsAdjustment = true
@@ -57,12 +54,14 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
             
         tableNode.frame = node.bounds
+        tableNode.backgroundColor = Colors.white
         let tableHeader = UIView()
         tableHeader.addSubnode(bannerNode)
         tableNode.view.tableHeaderView = tableHeader
         tableNode.view.separatorStyle = .none
         
         loadBanners()
+        loadFakeEmoticons()
     }
     
     private func loadBanners() {
@@ -78,6 +77,17 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
             tableNode.view.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: bannerHeight)
         } catch {
             print(error)
+        }
+    }
+    
+    private func loadFakeEmoticons() {
+        let stickers = AppContext.current.emoticonMgr.emoticons.filter { return $0.type == .sticker }
+        let items = stickers.first?.numberOfItems(at: 0)
+        let count = items?.count ?? 1
+        for i in 0 ... 30 {
+            let index = i % count
+            let item = items?[index]
+            emoticons.append(StoreEmoticonItem(image: item?.thumbImage, title: item?.title, desc: "有\(i)个朋友在用"))
         }
     }
 }
@@ -112,9 +122,14 @@ extension WeChatEmoticonsViewController: ASTableDelegate, ASTableDataSource {
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let emoticonItem = emoticons[indexPath.row]
         let block: ASCellNodeBlock = {
-            return WeChatEmoticonsCellNode(string: "")
+            return WeChatEmoticonsCellNode(storeEmoticonItem: emoticonItem)
         }
         return block
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
     }
 }

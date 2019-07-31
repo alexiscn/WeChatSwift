@@ -20,10 +20,19 @@ class WeChatEmoticonsCellNode: ASCellNode {
     
     private let lineNode = ASDisplayNode()
     
-    init(string: String) {
+    init(storeEmoticonItem: StoreEmoticonItem) {
         super.init()
         
         automaticallyManagesSubnodes = true
+        
+        imageNode.image = storeEmoticonItem.image
+        
+        titleNode.attributedText = storeEmoticonItem.attributedStringForTitle()
+        descNode.attributedText = storeEmoticonItem.attributedStringForDesc()
+        
+        actionButtonNode.borderColor = UIColor(hexString: "#1AAD19").cgColor
+        actionButtonNode.borderWidth = 1
+        actionButtonNode.cornerRadius = 5
         
         let normalAttributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .semibold),
@@ -36,6 +45,8 @@ class WeChatEmoticonsCellNode: ASCellNode {
             NSAttributedString.Key.foregroundColor: UIColor(hexString: "#D9D9D9")
         ]
         actionButtonNode.setAttributedTitle(NSAttributedString(string: "已添加", attributes: disableAttributes), for: .disabled)
+        
+        lineNode.backgroundColor = Colors.DEFAULT_BORDER_COLOR
     }
     
     override func didLoad() {
@@ -47,14 +58,18 @@ class WeChatEmoticonsCellNode: ASCellNode {
         imageNode.style.preferredSize = CGSize(width: 60, height: 60)
         imageNode.style.spacingBefore = 12
         actionButtonNode.style.preferredSize = CGSize(width: 60, height: 26)
+        actionButtonNode.style.spacingAfter = 10
+        lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: Constants.lineHeight)
         
         let nameSpec = ASStackLayoutSpec.vertical()
+        nameSpec.style.spacingBefore = 10
         nameSpec.style.flexGrow = 1.0
         nameSpec.children = [titleNode, descNode]
         
         let stack = ASStackLayoutSpec.horizontal()
         stack.alignItems = .center
         stack.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 80)
+        
         stack.children = [imageNode, nameSpec, actionButtonNode]
         
         let layout = ASStackLayoutSpec.vertical()
