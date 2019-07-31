@@ -1,0 +1,35 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "stretch",
+          "width" : 3,
+          "height" : 5
+        },
+        "cap-insets" : {
+          "bottom" : 11,
+          "top" : 44,
+          "right" : 11,
+          "left" : 28
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "AlbumTimeLineTipBkg_50x40_@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

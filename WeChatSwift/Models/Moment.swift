@@ -110,3 +110,10 @@ extension Moment {
     }
     
 }
+
+struct MomentNewMessage {
+    
+    var userAvatar: UIImage?
+    
+    var unread: Int
+}
