@@ -10,6 +10,7 @@ import AsyncDisplayKit
 
 class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
     
+    private let bannerHeight = CGFloat(ceilf(Float(Constants.screenWidth * 0.375)))
     private let bannerNode: ASPagerNode
     private let collectionNode: ASCollectionNode
     
@@ -33,7 +34,7 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
         let bannerLayout = ASPagerFlowLayout()
         bannerLayout.minimumLineSpacing = 0
         bannerLayout.minimumInteritemSpacing = 0
-        bannerLayout.itemSize = CGSize(width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
+        bannerLayout.itemSize = CGSize(width: Constants.screenWidth, height: bannerHeight)
         bannerLayout.scrollDirection = .horizontal
         bannerNode = ASPagerNode(collectionViewLayout: bannerLayout)
         bannerNode.backgroundColor = .clear
@@ -71,7 +72,7 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
         do {
             let banners = try JSONDecoder().decode([EmoticonBanner].self, from: data)
             self.banners = banners
-            bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
+            bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: bannerHeight)
             bannerNode.reloadData()
         } catch {
             print(error)

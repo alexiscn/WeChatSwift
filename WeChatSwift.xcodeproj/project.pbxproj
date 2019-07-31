@@ -78,6 +78,7 @@
 		A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3499F6D22F06689005DDD55 /* MoreEmoticonsViewController.swift */; };
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
+		A355AA6C22F12F38006A70AF /* WCNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6B22F12F38006A70AF /* WCNavigationBar.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */ = {isa = PBXBuildFile; fileRef = A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
@@ -112,7 +113,6 @@
 		A374866522D4AFE4002EEC4F /* icons_filled_favorites.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */; };
 		A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866622D4B031002EEC4F /* icons_filled_sticker.svg */; };
 		A374866922D4B04F002EEC4F /* icons_filled_transfer.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */; };
-		A377F57722F103FC00006F2B /* WCNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A377F57622F103FC00006F2B /* WCNavigationBar.swift */; };
 		A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */; };
 		A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */; };
 		A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E322D89AFB008019A4 /* SessionCellNode.swift */; };
@@ -293,6 +293,7 @@
 		A3499F6D22F06689005DDD55 /* MoreEmoticonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreEmoticonsViewController.swift; sourceTree = "<group>"; };
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
+		A355AA6B22F12F38006A70AF /* WCNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCNavigationBar.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_videocall.svg; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
@@ -327,7 +328,6 @@
 		A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_favorites.svg; sourceTree = "<group>"; };
 		A374866622D4B031002EEC4F /* icons_filled_sticker.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_sticker.svg; sourceTree = "<group>"; };
 		A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_transfer.svg; sourceTree = "<group>"; };
-		A377F57622F103FC00006F2B /* WCNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WCNavigationBar.swift; path = ../../../../../../System/Volumes/Data/Users/xushuifeng/github/WeChatSwift/WeChatSwift/Navigation/WCNavigationBar.swift; sourceTree = "<group>"; };
 		A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPageLayoutDelegate.swift; sourceTree = "<group>"; };
 		A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellNode.swift; sourceTree = "<group>"; };
 		A37E73E322D89AFB008019A4 /* SessionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCellNode.swift; sourceTree = "<group>"; };
@@ -793,7 +793,7 @@
 		A377F57522F103DE00006F2B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				A377F57622F103FC00006F2B /* WCNavigationBar.swift */,
+				A355AA6B22F12F38006A70AF /* WCNavigationBar.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1178,7 +1178,7 @@
 				A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */,
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
-				A377F57722F103FC00006F2B /* WCNavigationBar.swift in Sources */,
+				A355AA6C22F12F38006A70AF /* WCNavigationBar.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,

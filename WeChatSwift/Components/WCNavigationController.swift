@@ -26,9 +26,9 @@ class WCNavigationController: UINavigationController {
 
 extension UINavigationController {
     
-    @_dynamicReplacement(for: viewDidLoad())
-    func wc_viewDidLoad() {
-        print("ViewDidLoad")
-    }
+//    @_dynamicReplacement(for: viewDidLoad())
+//    func wc_viewDidLoad() {
+//        print("ViewDidLoad")
+//    }
     
 }

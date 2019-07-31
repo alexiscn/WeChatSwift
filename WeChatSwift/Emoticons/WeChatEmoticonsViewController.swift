@@ -14,20 +14,24 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
     
     private let tableNode: ASTableNode
     
+    private let bannerHeight = CGFloat(ceilf(Float(Constants.screenWidth * 0.375)))
+    
     private var banners: [EmoticonBanner] = []
     
     private var emoticons: [String] = ["1", "2", "3", "4", "5", "6"]
     
     init() {
         
+        
+        
         let layout = ASPagerFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
+        layout.itemSize = CGSize(width: Constants.screenWidth, height: bannerHeight)
         layout.scrollDirection = .horizontal
         layout.sectionInset = .zero
         bannerNode = ASPagerNode(collectionViewLayout: layout)
-        bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
+        bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: bannerHeight)
         bannerNode.backgroundColor = .clear
         bannerNode.allowsAutomaticInsetsAdjustment = true
         
@@ -58,9 +62,6 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
         tableNode.view.tableHeaderView = tableHeader
         tableNode.view.separatorStyle = .none
         
-        
-        print(bannerNode.contentInset)
-        
         loadBanners()
     }
     
@@ -74,7 +75,7 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
             self.banners = banners
             
             bannerNode.reloadData()
-            tableNode.view.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
+            tableNode.view.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: bannerHeight)
         } catch {
             print(error)
         }
