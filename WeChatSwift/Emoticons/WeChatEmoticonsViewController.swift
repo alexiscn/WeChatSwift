@@ -25,7 +25,9 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
         layout.scrollDirection = .horizontal
+        layout.sectionInset = .zero
         bannerNode = ASPagerNode(collectionViewLayout: layout)
+        bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
         bannerNode.backgroundColor = .clear
         bannerNode.allowsAutomaticInsetsAdjustment = true
         
@@ -35,8 +37,6 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
         super.init(node: ASDisplayNode())
         
         node.addSubnode(tableNode)
-        tableNode.addSubnode(bannerNode)
-        
         bannerNode.setDelegate(self)
         bannerNode.setDataSource(self)
         
@@ -51,8 +51,15 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        
+            
         tableNode.frame = node.bounds
+        let tableHeader = UIView()
+        tableHeader.addSubnode(bannerNode)
+        tableNode.view.tableHeaderView = tableHeader
+        tableNode.view.separatorStyle = .none
+        
+        
+        print(bannerNode.contentInset)
         
         loadBanners()
     }
@@ -65,8 +72,9 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
         do {
             let banners = try JSONDecoder().decode([EmoticonBanner].self, from: data)
             self.banners = banners
-            bannerNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
+            
             bannerNode.reloadData()
+            tableNode.view.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenWidth * 0.375)
         } catch {
             print(error)
         }
@@ -108,8 +116,4 @@ extension WeChatEmoticonsViewController: ASTableDelegate, ASTableDataSource {
         }
         return block
     }
-    
-    
-    
-    
 }
