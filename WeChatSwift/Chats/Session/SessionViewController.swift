@@ -49,8 +49,8 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        tabBarController?.navigation.item.rightBarButtonItem = rightButtonItem
-        tabBarController?.navigation.item.title = "微信"
+        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
+        tabBarController?.navigationItem.title = "微信"
     }
     
     private func showMoreMenu() {

@@ -1,0 +1,23 @@
+{
+  "name": "WCNavigationBar",
+  "version": "0.0.10",
+  "license": {
+    "type": "MIT"
+  },
+  "requires_arc": true,
+  "source": {
+    "git": "https://github.com/alexiscn/WCNavigationBar.git",
+    "tag": "0.0.10"
+  },
+  "summary": "WCNavigationBar",
+  "homepage": "https://github.com/alexiscn/WCNavigationBar",
+  "authors": {
+    "xushuifeng": "shuifengxu@gmail.com"
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "swift_versions": "5.0",
+  "source_files": "**/*.{swift}",
+  "swift_version": "5.0"
+}

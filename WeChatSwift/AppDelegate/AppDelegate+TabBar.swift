@@ -34,8 +34,14 @@ extension AppDelegate {
         meVC.tabBarItem.title = "我"
         meVC.tabBarItem.tag = 3
         
-        tabBarVC = UITabBarController() //ASTabBarController()
-        let navigation = ASNavigationController(rootViewController: tabBarVC)
+        tabBarVC = ASTabBarController()
+        let navigationController = ASNavigationController(rootViewController: tabBarVC)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = false
+        let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)
+        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
+        navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
+        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
         
         let viewControllers = [chatsVC, contactsVC, discoverVC, meVC]
         tabBarVC.viewControllers = viewControllers
@@ -47,18 +53,10 @@ extension AppDelegate {
                 .foregroundColor: Colors.black,
                 .font: UIFont.systemFont(ofSize: 10.5, weight: .thin)], for: .normal)
         }
-        tabBarVC.navigation.item.title = "微信"
+          
+        UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
         
-//        navigation.navigationBar.shadowImage = UIImage()
-//        navigation.navigationBar.isTranslucent = false
-//        let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)
-//        navigation.navigationBar.setBackgroundImage(backgroundImage, for: .default)
-//        navigation.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
-//        navigation.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
-//        
-//        UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
-        
-        window?.rootViewController = navigation
+        window?.rootViewController = navigationController
     }
 }
 

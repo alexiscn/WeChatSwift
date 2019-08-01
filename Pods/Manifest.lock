@@ -56,6 +56,7 @@ PODS:
     - SQLiteRepairKit (~> 1.2.0)
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
+  - WCNavigationBar (0.0.10)
   - WXActionSheet (0.0.10)
 
 DEPENDENCIES:
@@ -67,6 +68,7 @@ DEPENDENCIES:
   - SVGKit (from `DevelopmentPods/SVGKit`)
   - Texture
   - WCDB.swift
+  - WCNavigationBar (from `DevelopmentPods/WCNavigationBar`)
   - WXActionSheet
 
 SPEC REPOS:
@@ -89,6 +91,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   SVGKit:
     :path: DevelopmentPods/SVGKit
+  WCNavigationBar:
+    :path: DevelopmentPods/WCNavigationBar
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -105,8 +109,9 @@ SPEC CHECKSUMS:
   Texture: 8ecf6984065a1e54f06bf97b349ecca28582acd7
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
+  WCNavigationBar: 4a99745cc5dc3914e9eb2c47ddb1b8eeb4118d26
   WXActionSheet: ce1e319bd2976489cd1ea98d20a773d43a1c6702
 
-PODFILE CHECKSUM: 8fa0cd53f209ed434831a71e1f7cc3bfe3f6d1cb
+PODFILE CHECKSUM: b6fee10489668ba265a38a8ce73e7a6223b49bd5
 
 COCOAPODS: 1.7.5

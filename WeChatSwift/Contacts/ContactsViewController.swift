@@ -39,8 +39,8 @@ class ContactsViewController: ASViewController<ASTableNode> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        tabBarController?.navigation.item.rightBarButtonItem = rightButtonItem
-        tabBarController?.navigation.item.title = "通讯录"
+        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
+        tabBarController?.navigationItem.title = "通讯录"
     }
     
     private func setupDataSource() {

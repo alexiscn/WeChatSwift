@@ -47,15 +47,15 @@ class EmoticonStoreViewController: ASViewController<ASDisplayNode> {
         segmentControl.tintColor = UIColor(hexString: "#181818")
         segmentControl.addTarget(self, action: #selector(handleSegmentControlValueChanged(_:)), for: .valueChanged)
         
-        navigation.item.titleView = segmentControl
+        navigationItem.titleView = segmentControl
         
         let rightButton = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_setting"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
-        navigation.item.rightBarButtonItem = rightButton
+        navigationItem.rightBarButtonItem = rightButton
         
         if presented {
             let closeButton = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(handleCloseButtonTapped(_:)))
             closeButton.tintColor = UIColor(hexString: "#181818") //Colors.black
-            navigation.item.leftBarButtonItem = closeButton
+            navigationItem.leftBarButtonItem = closeButton
         }
     }
     

@@ -44,8 +44,8 @@ class MeViewController: ASViewController<ASDisplayNode> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        tabBarController?.navigation.item.rightBarButtonItem = rightButtonItem
-        tabBarController?.navigation.item.title = nil
+        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
+        tabBarController?.navigationItem.title = nil
     }
     
     private func setupDataSource() {
