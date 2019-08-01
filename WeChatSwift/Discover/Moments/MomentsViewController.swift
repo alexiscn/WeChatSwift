@@ -11,11 +11,13 @@ import AsyncDisplayKit
 class MomentsViewController: ASViewController<ASDisplayNode> {
 
     private let tableNode: ASTableNode = ASTableNode(style: .plain)
-    private var dataSource: [Moment] = []
+    private let dataSource = MomentDataSource()
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private let header: MomentHeaderNode = MomentHeaderNode()
+    
     private var newMessage: MomentNewMessage?
     private var hasNewMessage: Bool { return newMessage != nil }
+    private var isLoadingMoments = false
     
     init() {
         super.init(node: ASDisplayNode())
@@ -40,18 +42,33 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         tableNode.frame = view.bounds
         tableNode.view.allowsSelection = false
         tableNode.view.separatorStyle = .none
+        tableNode.leadingScreensForBatching = 2
         
         let tableHeader = UIView()
         tableHeader.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 307)
         header.frame = tableHeader.bounds
         tableHeader.addSubnode(header)
         tableNode.view.tableHeaderView = tableHeader
-    
-        setupDataSource()
     }
     
-    private func setupDataSource() {
-        dataSource = MockFactory.shared.moments()
+    private func fetchNextMoments(with context: ASBatchContext) {
+        DispatchQueue.main.async {
+            if self.isLoadingMoments { return }
+            
+            self.isLoadingMoments = true
+            self.dataSource.fetchNext(completion: { [unowned self] (succes, newCount) in
+                self.isLoadingMoments = false
+                self.addRows(newMomentsCount: newCount)
+                context.completeBatchFetching(true)
+            })
+        }
+    }
+    
+    private func addRows(newMomentsCount: Int) {
+        let indexRange = (dataSource.numberOfItems() - newMomentsCount..<dataSource.numberOfItems())
+        let section = hasNewMessage ? 1: 0
+        let indexPaths = indexRange.map { return IndexPath(item: $0, section: section) }
+        tableNode.insertRows(at: indexPaths, with: .none)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -69,18 +86,31 @@ extension MomentsViewController: ASTableDelegate, ASTableDataSource {
         if hasNewMessage && section == 0 {
             return 1
         }
-        return dataSource.count
+        return dataSource.numberOfItems()
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let moment = dataSource[indexPath.row]
-        let message = self.newMessage
-        let block: ASCellNodeBlock = {
-            if let message = message, indexPath.section == 0 {
+        
+        if let message = self.newMessage, indexPath.section == 0 {
+            let block: ASCellNodeBlock = {
                 return MomentNewMessageCellNode(newMessage: message)
             }
-            return MomentCellNode(moment: moment)
+            return block
+        } else {
+            let moment = dataSource.item(at: indexPath)
+            let block: ASCellNodeBlock = {
+                return MomentCellNode(moment: moment)
+            }
+            return block
         }
-        return block
+    }
+    
+    func shouldBatchFetch(for tableNode: ASTableNode) -> Bool {
+        return true
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
+        print("willBeginBatchFetchWith")
+        fetchNextMoments(with: context)
     }
 }

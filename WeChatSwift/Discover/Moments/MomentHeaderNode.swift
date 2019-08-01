@@ -38,7 +38,8 @@ class MomentHeaderNode: ASDisplayNode {
         paragraphStyle.alignment = .right
         let nameAttributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 21, weight: .semibold),
-            NSAttributedString.Key.foregroundColor: UIColor(hexString: "#FFFBF2")
+            NSAttributedString.Key.foregroundColor: UIColor(hexString: "#FFFBF2"),
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
         nameNode.attributedText = NSAttributedString(string: "Hello World", attributes: nameAttributes)
     }
@@ -60,6 +61,9 @@ class MomentHeaderNode: ASDisplayNode {
         
         avatarNode.style.preferredSize = CGSize(width: 70, height: 70)
         avatarNode.style.layoutPosition = CGPoint(x: constrainedSize.max.width - 82, y: constrainedSize.max.height - 100)
+        
+        nameNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 90, height: 24)
+        nameNode.style.layoutPosition = CGPoint(x: 0, y: constrainedSize.max.height - 80)
         
         let layout = ASAbsoluteLayoutSpec(children: [coverNode, avatarNode, nameNode])
         return layout
