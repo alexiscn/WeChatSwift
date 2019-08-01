@@ -51,6 +51,16 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         tableNode.view.tableHeaderView = tableHeader
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     private func fetchNextMoments(with context: ASBatchContext) {
         DispatchQueue.main.async {
             if self.isLoadingMoments { return }
