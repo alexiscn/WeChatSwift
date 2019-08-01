@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var tabBarVC: ASTabBarController!
+    var tabBarVC: UITabBarController!//ASTabBarController!
     
     var chatsVC = SessionViewController()
     var contactsVC = ContactsViewController()
@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        WCNavigationBar.enabled = true
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AsyncDisplayKit
 
 public struct Navigation<Base> {
     let base: Base
@@ -45,7 +46,11 @@ extension UIViewController: NavigationCompatible {}
 public class WCNavigationBar: UINavigationBar {
     
     /// Enable WCNavigationBar
-    public static var enabled = false
+    public static var enabled = false {
+        didSet {
+            UIViewController.methodSwizzling
+        }
+    }
     
     public var automaticallyAdjustsPosition = true
     
@@ -91,9 +96,9 @@ public class WCNavigationBar: UINavigationBar {
         }
     }
     
-    public var backBarButtonItem: WCBarButton? {
+    public var backBarButtonItem: BackBarButtonItem? {
         didSet {
-            
+            backBarButtonItem?.navigationController = viewController?.navigationController
             viewController?.wc_navigationItem.leftBarButtonItem = backBarButtonItem
         }
     }
@@ -107,11 +112,11 @@ public class WCNavigationBar: UINavigationBar {
     
     private var backgroundView: UIView? { return subviews.first }
     
-    private var realNavigationBar: UINavigationBar? { return viewController?.navigationController?.navigationBar }
+    private var realNavigationBar: UINavigationBar? { return viewController?.navigationController?.navigationBar ?? viewController?.navigationController?.navigationBar }
     
     private var barHeight: CGFloat { return realNavigationBar?.frame.height ?? 44.0 }
     
-    private var _additionalHeight: CGFloat { return prefersLargeTitles ? 0: additionalHeight }
+    var _additionalHeight: CGFloat { return prefersLargeTitles ? 0: additionalHeight }
     
     weak var viewController: UIViewController?
     
@@ -127,13 +132,14 @@ public class WCNavigationBar: UINavigationBar {
         if let background = backgroundView {
             background.alpha = 1.0
             background.clipsToBounds = isShadowHidden
-            background.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+            let maxY = UIApplication.shared.statusBarFrame.maxY
+            background.frame = CGRect(x: 0, y: -maxY, width: bounds.width, height: bounds.height + maxY)
+            adjustLayoutMargins()
         }
-        adjustLayoutMargins()
     }
     
     func adjustLayout() {
-        guard let navigationBar = viewController?.navigationController?.navigationBar else { return }
+        guard let navigationBar = realNavigationBar else { return }
         
         if automaticallyAdjustsPosition {
             frame = navigationBar.frame
@@ -144,12 +150,13 @@ public class WCNavigationBar: UINavigationBar {
             frame.size = navigationBar.frame.size
         }
         frame.size.height = navigationBar.frame.height + additionalHeight
+        print(frame)
     }
     
     private func adjustLayoutMargins() {
         layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         contentView?.frame.origin.y = prefersLargeTitles ? 0: additionalHeight
-        contentView?.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        //contentView?.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }
 
@@ -183,17 +190,19 @@ extension UIViewController {
     
 }
 
-extension UIApplication {
-    
-    private static let navigationSetup: Void = {
-        UIViewController.methodSwizzling
-    }()
-    
-    open override var next: UIResponder? {
-        UIApplication.navigationSetup
-        return super.next
-    }
-}
+//extension UIApplication {
+//
+//    private static let navigationSetup: Void = {
+//        if WCNavigationBar.enabled {
+//            UIViewController.methodSwizzling
+//        }
+//    }()
+//
+//    open override var next: UIResponder? {
+//        UIApplication.navigationSetup
+//        return super.next
+//    }
+//}
 
 
 extension UIViewController {
@@ -214,6 +223,7 @@ extension UIViewController {
     
     @objc private func wc_viewDidLoad() {
         wc_viewDidLoad()
+        print(self)
         
         guard WCNavigationBar.enabled else { return }
         
@@ -262,18 +272,21 @@ extension UIViewController {
         guard count > 1 else { return }
         
         let backImage = UIImage.SVGImage(named: "icons_filled_back")
-        let backButton = WCBarButton(style: .image(backImage))
+        let backButton = BackBarButtonItem(style: .image(backImage))
         backButton.navigationController = navigationController
         wc_navigationBar.backBarButtonItem = backButton
     }
     
     func adjustSafeAreaInsets() {
-        
+        //let height = _navigationBar.additionalView?.frame.height ?? 0
+        additionalSafeAreaInsets.top = wc_navigationBar.isHidden
+            ? -view.safeAreaInsets.top
+            : wc_navigationBar._additionalHeight //+ height
     }
 }
 
 
-public class WCBarButton: UIBarButtonItem {
+public class BackBarButtonItem: UIBarButtonItem {
     
     public enum BarButtonStyle {
         case title(String?)
@@ -288,15 +301,58 @@ public class WCBarButton: UIBarButtonItem {
         switch style {
         case .title(let title):
             self.init(title: title, style: .plain, target: nil, action: action)
+            self.target = self
         case .image(let image):
             self.init(image: image, style: .plain, target: nil, action: action)
+            self.target = self
         case .custom(let button):
             self.init(customView: button)
+            button.addTarget(self, action: action, for: .touchUpInside)
         }
     }
     
     @objc private func barButtonTapped() {
-        
+        navigationController?.popViewController(animated: true)
     }
     
+}
+
+
+extension UITableViewController {
+    
+    private struct AssociatedKeys {
+        static var observation = "AssociatedKeys_observation"
+    }
+    
+    private var observation: NSKeyValueObservation {
+        if let observation = objc_getAssociatedObject(
+            self,
+            &AssociatedKeys.observation)
+            as? NSKeyValueObservation {
+            return observation
+        }
+        
+        let observation = tableView.observe(
+        \.contentOffset,
+        options: .new) { [weak self] tableView, change in
+            guard let `self` = self else { return }
+            
+            self.view.bringSubviewToFront(self.wc_navigationBar)
+            self.wc_navigationBar.frame.origin.y = tableView.contentOffset.y + UIApplication.shared.statusBarFrame.maxY
+        }
+        
+        objc_setAssociatedObject(
+            self,
+            &AssociatedKeys.observation,
+            observation,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        
+        return observation
+    }
+    
+    func observeContentOffset() {
+        wc_navigationBar.automaticallyAdjustsPosition = false
+        
+        _ = observation
+    }
 }

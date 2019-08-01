@@ -34,7 +34,9 @@ extension AppDelegate {
         meVC.tabBarItem.title = "我"
         meVC.tabBarItem.tag = 3
         
-        tabBarVC = ASTabBarController()
+        tabBarVC = UITabBarController() //ASTabBarController()
+        let navigation = ASNavigationController(rootViewController: tabBarVC)
+        
         let viewControllers = [chatsVC, contactsVC, discoverVC, meVC]
         tabBarVC.viewControllers = viewControllers
         for vc in viewControllers {
@@ -45,16 +47,16 @@ extension AppDelegate {
                 .foregroundColor: Colors.black,
                 .font: UIFont.systemFont(ofSize: 10.5, weight: .thin)], for: .normal)
         }
+        tabBarVC.navigation.item.title = "微信"
         
-        let navigation = ASNavigationController(rootViewController: tabBarVC)
-        navigation.navigationBar.shadowImage = UIImage()
-        navigation.navigationBar.isTranslucent = false
-        let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)
-        navigation.navigationBar.setBackgroundImage(backgroundImage, for: .default)
-        navigation.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
-        navigation.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
-        
-        UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
+//        navigation.navigationBar.shadowImage = UIImage()
+//        navigation.navigationBar.isTranslucent = false
+//        let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)
+//        navigation.navigationBar.setBackgroundImage(backgroundImage, for: .default)
+//        navigation.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
+//        navigation.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
+//        
+//        UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
         
         window?.rootViewController = navigation
     }

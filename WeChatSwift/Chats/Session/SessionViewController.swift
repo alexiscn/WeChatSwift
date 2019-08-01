@@ -38,6 +38,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.backgroundColor
+        node.view.isUserInteractionEnabled = true
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableNode.view.separatorStyle = .none
         tableNode.frame = view.bounds
@@ -48,9 +49,8 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
-        tabBarController?.navigationItem.title = "微信"
-        node.view.isUserInteractionEnabled = true
+        tabBarController?.navigation.item.rightBarButtonItem = rightButtonItem
+        tabBarController?.navigation.item.title = "微信"
     }
     
     private func showMoreMenu() {

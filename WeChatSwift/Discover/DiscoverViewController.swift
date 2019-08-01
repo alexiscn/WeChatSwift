@@ -40,8 +40,8 @@ class DiscoverViewController: ASViewController<ASTableNode> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        tabBarController?.navigationItem.rightBarButtonItem = nil
-        tabBarController?.navigationItem.title = "发现"
+        tabBarController?.navigation.item.rightBarButtonItem = nil
+        tabBarController?.navigation.item.title = "发现"
     }
     
     private func setupDataSource() {
