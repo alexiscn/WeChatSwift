@@ -13,15 +13,39 @@ extension UIViewController {
     private struct AssociatedKeys {
         static var useCustomNavigationBar = "useCustomNavigationBar"
         static var fakeNavigationBar = "fakeNavigationBar"
+        static var useTransparentNavigationBar = "useTransparentNavigationBar"
     }
     
+    
     var useFakeNavigationBar: Bool {
-        if let faked = objc_getAssociatedObject(self, &AssociatedKeys.useCustomNavigationBar) as? Bool {
+        if let faked = objc_getAssociatedObject(
+            self,
+            &AssociatedKeys.useCustomNavigationBar) as? Bool {
             return faked
         }
         let faked = false
-        objc_setAssociatedObject(self, &AssociatedKeys.useCustomNavigationBar, faked, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(
+            self,
+            &AssociatedKeys.useCustomNavigationBar,
+            faked,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return faked
+    }
+    
+    /// Whether navigation bar is transparent. Default to false.
+    var useTransparentNavigationBar: Bool {
+        if let transparent = objc_getAssociatedObject(
+            self,
+            &AssociatedKeys.useTransparentNavigationBar) as? Bool {
+            return transparent
+        }
+        let transparent = false
+        objc_setAssociatedObject(
+            self,
+            &AssociatedKeys.useTransparentNavigationBar,
+            transparent,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return transparent
     }
     
     var fakeNavigationBar: MMNavigationBar {

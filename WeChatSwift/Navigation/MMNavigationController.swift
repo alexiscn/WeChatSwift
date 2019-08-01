@@ -24,6 +24,8 @@ class MMNavigationController: UINavigationController, UINavigationControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationBar.isTranslucent = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,5 +61,9 @@ class MMNavigationController: UINavigationController, UINavigationControllerDele
     
     func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
+    }
+    
+    func layoutViewForBar() {
+        
     }
 }

@@ -9,5 +9,16 @@
 import UIKit
 
 class MMNavigationBar: UINavigationBar {
+ 
+    override func setBackgroundImage(_ backgroundImage: UIImage?, for barMetrics: UIBarMetrics) {
+        
+    }
     
+    override func setBackgroundImage(_ backgroundImage: UIImage?, for barPosition: UIBarPosition, barMetrics: UIBarMetrics) {
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
 }
