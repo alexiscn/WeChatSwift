@@ -9,7 +9,7 @@ target 'WeChatSwift' do
     pod 'WCDB.swift'
     pod 'Texture'
     pod 'SSZipArchive'
-    pod 'PINRemoteImage'
+    pod 'PINRemoteImage', '3.0.0-beta.13'
     
     pod 'WCNavigationBar', :path => 'DevelopmentPods/WCNavigationBar'
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'

@@ -1,13 +1,13 @@
 {
   "name": "WCNavigationBar",
-  "version": "0.0.10",
+  "version": "0.0.1",
   "license": {
     "type": "MIT"
   },
   "requires_arc": true,
   "source": {
     "git": "https://github.com/alexiscn/WCNavigationBar.git",
-    "tag": "0.0.10"
+    "tag": "0.0.1"
   },
   "summary": "WCNavigationBar",
   "homepage": "https://github.com/alexiscn/WCNavigationBar",
