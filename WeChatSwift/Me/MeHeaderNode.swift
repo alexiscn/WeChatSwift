@@ -23,13 +23,28 @@ class MeHeaderNode: ASButtonNode {
     override init() {
         super.init()
         
+        avatarNode.backgroundColor = Colors.white
+        avatarNode.cornerRadius = 10
+        avatarNode.cornerRoundingType = .clipping
+        avatarNode.image = UIImage.as_imageNamed("JonSnow.jpg")
         
         nameNode.attributedText = NSAttributedString(string: "这是一个昵称", attributes: [
             .font: UIFont.systemFont(ofSize: 22, weight: .medium),
             .foregroundColor: UIColor.black
             ])
-        qrCodeNode.image = UIImage.as_imageNamed("icons_outlined_qr-code")
-        arrowNode.image = UIImage.as_imageNamed("icons_outlined_arrow")
+        qrCodeNode.image = UIImage.SVGImage(named: "icons_outlined_qr-code")
+        arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
+        
+        descNode.attributedText = NSAttributedString(string: "微信号：wxid_xzhdsfghids", attributes: [
+            .font: UIFont.systemFont(ofSize: 17),
+            .foregroundColor: UIColor(white: 0, alpha: 0.5)
+            ])
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+        
+        backgroundColor = .white
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -38,17 +53,29 @@ class MeHeaderNode: ASButtonNode {
         descNode.style.flexGrow = 1.0
         
         avatarNode.style.preferredSize = CGSize(width: 64, height: 64)
+        avatarNode.style.spacingBefore = 16
         qrCodeNode.style.preferredSize = CGSize(width: 18, height: 18)
+        qrCodeNode.style.spacingAfter = 12
         arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
         
         let descStack = ASStackLayoutSpec.horizontal()
+        descStack.alignItems = .center
+        descStack.style.flexGrow = 1.0
         descStack.children = [descNode, qrCodeNode, arrowNode]
         
         let infoStack = ASStackLayoutSpec.vertical()
         infoStack.children = [nameNode, descStack]
         
-        let layout = ASStackLayoutSpec.horizontal()
-        layout.children = [avatarNode, infoStack]
+        let horizontalStack = ASStackLayoutSpec.horizontal()
+        horizontalStack.alignItems = .center
+        horizontalStack.spacing = 20
+        horizontalStack.children = [avatarNode, infoStack]
+        
+        let spacer = ASLayoutSpec()
+        spacer.style.flexGrow = 1.0
+        
+        let layout = ASStackLayoutSpec.vertical()
+        layout.children = [horizontalStack, spacer]
         
         return layout
     }

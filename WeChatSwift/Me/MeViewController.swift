@@ -14,6 +14,8 @@ class MeViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [MeTableSection] = []
     
+    private var headerNode: MeHeaderNode!
+    
     private lazy var rightButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_camera"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
         return button
@@ -31,11 +33,19 @@ class MeViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        node.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = node.bounds
         tableNode.dataSource = self
         tableNode.delegate = self
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        headerNode = MeHeaderNode()
+        
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 111)
+        headerView.addSubnode(headerNode)
+        headerNode.frame = headerView.bounds
+        tableNode.view.tableHeaderView = headerView
         
         setupDataSource()
         tableNode.reloadData()
