@@ -16,6 +16,13 @@ class MockFactory {
         var identifier: String
         var name: String
         var avatar: String
+        
+        func toContact() -> Contact {
+            let contact = Contact()
+            contact.avatar = UIImage.as_imageNamed(avatar)
+            contact.name = name
+            return contact
+        }
     }
     
     struct RemoteImage {

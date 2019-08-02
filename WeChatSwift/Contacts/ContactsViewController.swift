@@ -46,6 +46,10 @@ class ContactsViewController: ASViewController<ASTableNode> {
     private func setupDataSource() {
         let searchSection = ContactSection(title: "🔍", models: [.newFriends, .groupChats, .tags, .officialAccounts])
         dataSource.append(searchSection)
+        
+        let users = MockFactory.shared.users.map { return $0.toContact() }
+        let contactUsers = users.map { return ContactModel.contact($0) }
+        dataSource.append(ContactSection(title: "", models: contactUsers))
     }
     
 }
