@@ -37,7 +37,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        node.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         node.view.isUserInteractionEnabled = true
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableNode.view.separatorStyle = .none

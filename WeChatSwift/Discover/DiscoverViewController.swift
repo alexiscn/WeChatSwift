@@ -28,7 +28,7 @@ class DiscoverViewController: ASViewController<ASTableNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         
         node.delegate = self
         node.dataSource = self

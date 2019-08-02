@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 class ContactInfoProfileCellNode: ASCellNode {
     
-    private let contact: ContactModel
+    private let contact: Contact
     
     private let avatarNode = ASImageNode()
     
@@ -18,12 +18,12 @@ class ContactInfoProfileCellNode: ASCellNode {
     private let wechatIDNode = ASTextNode()
     private let regionNode = ASTextNode()
     
-    init(contact: ContactModel) {
+    init(contact: Contact) {
         self.contact = contact
         super.init()
         automaticallyManagesSubnodes = true
         
-        avatarNode.image = contact.image
+        avatarNode.image = contact.avatar
         avatarNode.backgroundColor = Colors.white
         avatarNode.cornerRoundingType = .clipping
         avatarNode.cornerRadius = 6

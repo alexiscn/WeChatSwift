@@ -28,7 +28,7 @@ class ContactsViewController: ASViewController<ASTableNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        node.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         
         node.dataSource = self
         node.delegate = self
@@ -87,7 +87,20 @@ extension ContactsViewController: ASTableDelegate, ASTableDataSource {
         tableNode.deselectRow(at: indexPath, animated: false)
         
         let contact = dataSource[indexPath.section].models[indexPath.row]
-        let contactInfoVC = ContactInfoViewController(contact: contact)
-        navigationController?.pushViewController(contactInfoVC, animated: true)
+        switch contact {
+        case .groupChats:
+            print("group chats")
+        case .newFriends:
+            print("new friends")
+        case .officialAccounts:
+            print("official")
+        case .tags:
+            let contactTagListVC = ContactTagListViewController()
+            navigationController?.pushViewController(contactTagListVC, animated: true)
+        case .contact(let contact):
+            let contactInfoVC = ContactInfoViewController(contact: contact)
+            navigationController?.pushViewController(contactInfoVC, animated: true)
+        }
+        
     }
 }

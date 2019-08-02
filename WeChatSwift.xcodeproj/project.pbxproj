@@ -233,6 +233,11 @@
 		A3FB0AB022F40A2500116329 /* icons_filled_wallet.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0AAF22F40A2500116329 /* icons_filled_wallet.svg */; };
 		A3FB0AB222F40C6C00116329 /* icons_outlined_pay.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0AB122F40C6C00116329 /* icons_outlined_pay.svg */; };
 		A3FB0AB422F40E3B00116329 /* MallFunctionActivityContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AB322F40E3B00116329 /* MallFunctionActivityContainerNode.swift */; };
+		A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AB622F439A600116329 /* ContactTagListViewController.swift */; };
+		A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AB822F43A1100116329 /* ContactTagListCellNode.swift */; };
+		A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0ABA22F43AA600116329 /* ContactTagListAddTagCellNode.swift */; };
+		A3FB0ABD22F43B2A00116329 /* ContactTagListPlacehoderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0ABC22F43B2A00116329 /* ContactTagListPlacehoderNode.swift */; };
+		A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0ABE22F4403300116329 /* ContactTagCreateDetailViewController.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -466,6 +471,11 @@
 		A3FB0AAF22F40A2500116329 /* icons_filled_wallet.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_wallet.svg; sourceTree = "<group>"; };
 		A3FB0AB122F40C6C00116329 /* icons_outlined_pay.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_pay.svg; sourceTree = "<group>"; };
 		A3FB0AB322F40E3B00116329 /* MallFunctionActivityContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MallFunctionActivityContainerNode.swift; sourceTree = "<group>"; };
+		A3FB0AB622F439A600116329 /* ContactTagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagListViewController.swift; sourceTree = "<group>"; };
+		A3FB0AB822F43A1100116329 /* ContactTagListCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagListCellNode.swift; sourceTree = "<group>"; };
+		A3FB0ABA22F43AA600116329 /* ContactTagListAddTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagListAddTagCellNode.swift; sourceTree = "<group>"; };
+		A3FB0ABC22F43B2A00116329 /* ContactTagListPlacehoderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagListPlacehoderNode.swift; sourceTree = "<group>"; };
+		A3FB0ABE22F4403300116329 /* ContactTagCreateDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagCreateDetailViewController.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -627,6 +637,7 @@
 		A33DB2E822CCCA1200A11776 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A3FB0AB522F4398900116329 /* ContactTag */,
 				A3485FAA22EFF608002A804B /* AddContact */,
 				A3485FA322EFF5AA002A804B /* ContactInfo */,
 				A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */,
@@ -1031,6 +1042,18 @@
 			path = Emoticons;
 			sourceTree = "<group>";
 		};
+		A3FB0AB522F4398900116329 /* ContactTag */ = {
+			isa = PBXGroup;
+			children = (
+				A3FB0AB622F439A600116329 /* ContactTagListViewController.swift */,
+				A3FB0AB822F43A1100116329 /* ContactTagListCellNode.swift */,
+				A3FB0ABA22F43AA600116329 /* ContactTagListAddTagCellNode.swift */,
+				A3FB0ABC22F43B2A00116329 /* ContactTagListPlacehoderNode.swift */,
+				A3FB0ABE22F4403300116329 /* ContactTagCreateDetailViewController.swift */,
+			);
+			path = ContactTag;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1258,6 +1281,7 @@
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
 				A37FFB6622EE8E740001DD27 /* MinimizationTransitionController.swift in Sources */,
+				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
@@ -1320,6 +1344,7 @@
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
 				A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */,
 				A3FB0AA922F4057900116329 /* MeHeaderNode.swift in Sources */,
+				A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
@@ -1327,6 +1352,7 @@
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
+				A3FB0ABD22F43B2A00116329 /* ContactTagListPlacehoderNode.swift in Sources */,
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
@@ -1339,6 +1365,7 @@
 				A33D2B2322F3053F0099927A /* UIViewController+MMNavigationBar.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
+				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A341CF0122E5554800F18106 /* SettingsCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
@@ -1366,6 +1393,7 @@
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,
 				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
 				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
+				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,

@@ -61,3 +61,68 @@ class Contact {
     
     var avatar: UIImage? = nil
 }
+
+enum ContactInfo {
+    case profile
+    case remark
+    case moments
+    case more
+    case sendMessage
+    case voip
+    
+    var title: String {
+        switch self {
+        case .profile:
+            return ""
+        case .remark:
+            return "设置备注和标签"
+        case .moments:
+            return "朋友圈"
+        case .more:
+            return "更多信息"
+        case .sendMessage:
+            return "发消息"
+        case .voip:
+            return "音视频通话"
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .sendMessage:
+            return UIImage.SVGImage(named: "icons_outlined_chats")
+        case .voip:
+            return UIImage.SVGImage(named: "icons_outlined_videocall")
+        default:
+            return nil
+        }
+    }
+}
+
+struct ContactInfoGroup {
+    var items: [ContactInfo]
+}
+
+
+struct ContactTag {
+    var title: String
+    var users: [Contact]
+    
+    func attributedStringForTitle() -> NSAttributedString {
+        let text = "\(title)(\(users.count))"
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: UIColor(hexString: "#353535")
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func attributedStringForDesc() -> NSAttributedString {
+        let text = users.map { return $0.name }.joined(separator: ",")
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+}

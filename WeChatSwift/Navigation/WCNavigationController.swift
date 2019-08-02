@@ -13,7 +13,7 @@ class WCNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)
+        let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
         
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = false

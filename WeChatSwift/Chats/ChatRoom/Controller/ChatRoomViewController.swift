@@ -56,7 +56,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         tableNode.dataSource = self
         tableNode.delegate = self
-        tableNode.view.backgroundColor = Colors.backgroundColor
+        tableNode.view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenHeight - 34 - 60)
         inputNode.tableNode = tableNode
         inputNode.delegate = self
@@ -137,7 +137,7 @@ extension ChatRoomViewController {
         let contact = Contact()
         contact.name = user.name
         contact.avatar = UIImage.as_imageNamed(user.avatar)
-        let contactVC = ContactInfoViewController(contact: ContactModel.contact(contact))
+        let contactVC = ContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactVC, animated: true)
     }
 }

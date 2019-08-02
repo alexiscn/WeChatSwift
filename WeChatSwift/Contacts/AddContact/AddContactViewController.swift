@@ -37,7 +37,7 @@ class AddContactViewController: ASViewController<ASTableNode> {
         searchNode.frame = tableHeader.bounds
         tableHeader.addSubnode(searchNode)
         
-        node.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         node.view.separatorStyle = .none
         node.view.tableHeaderView = tableHeader
         

@@ -38,7 +38,7 @@ extension AppDelegate {
         let navigationController = ASNavigationController(rootViewController: tabBarVC)
         navigationController.navigationBar.shadowImage = UIImage()
         navigationController.navigationBar.isTranslucent = false
-        let backgroundImage = UIImage.imageFromColor(Colors.backgroundColor)
+        let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
         navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
         navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
         navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")

@@ -10,11 +10,11 @@ import AsyncDisplayKit
 
 class ContactInfoViewController: ASViewController<ASTableNode> {
     
-    private let contact: ContactModel
+    private let contact: Contact
     
     private var dataSource: [ContactInfoGroup] = []
     
-    init(contact: ContactModel) {
+    init(contact: Contact) {
         self.contact = contact
         super.init(node: ASTableNode(style: .grouped))
         setupDataSource()
@@ -25,7 +25,7 @@ class ContactInfoViewController: ASViewController<ASTableNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        node.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         node.view.separatorStyle = .none
     }
     
@@ -89,47 +89,3 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
 
 
 
-
-
-
-
-enum ContactInfo {
-    case profile
-    case remark
-    case moments
-    case more
-    case sendMessage
-    case voip
-    
-    var title: String {
-        switch self {
-        case .profile:
-            return ""
-        case .remark:
-            return "设置备注和标签"
-        case .moments:
-            return "朋友圈"
-        case .more:
-            return "更多信息"
-        case .sendMessage:
-            return "发消息"
-        case .voip:
-            return "音视频通话"
-        }
-    }
-    
-    var image: UIImage? {
-        switch self {
-        case .sendMessage:
-            return UIImage.SVGImage(named: "icons_outlined_chats")
-        case .voip:
-            return UIImage.SVGImage(named: "icons_outlined_videocall")
-        default:
-            return nil
-        }
-    }
-}
-
-struct ContactInfoGroup {
-    var items: [ContactInfo]
-}

@@ -37,7 +37,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        node.backgroundColor = Colors.backgroundColor
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         
         tableNode.frame = view.bounds
         tableNode.view.allowsSelection = false
