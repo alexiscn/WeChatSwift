@@ -26,6 +26,7 @@ class SettingsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
         navigationItem.title = "设置"
         setupDataSource()
         node.reloadData()
@@ -99,6 +100,9 @@ extension SettingsViewController: ASTableDelegate, ASTableDataSource {
         case .about:
             let aboutVC = AboutViewController()
             navigationController?.pushViewController(aboutVC, animated: true)
+        case .general:
+            let generalVC = SettingGeneralViewController()
+            navigationController?.pushViewController(generalVC, animated: true)
         default:
             break
         }

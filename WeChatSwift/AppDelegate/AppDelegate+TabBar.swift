@@ -43,10 +43,7 @@ extension AppDelegate {
         navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
         navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
         
-        let discoverNav = WCNavigationController(rootViewController: discoverVC)
-        discoverNav.hidesBarsOnTap = true
-        
-        let viewControllers = [chatsVC, contactsVC, discoverNav, meVC]
+        let viewControllers = [chatsVC, contactsVC, discoverVC, meVC]
         tabBarVC.viewControllers = viewControllers
         for vc in viewControllers {
             vc.tabBarItem.setTitleTextAttributes([

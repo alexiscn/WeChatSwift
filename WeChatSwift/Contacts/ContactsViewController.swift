@@ -29,6 +29,7 @@ class ContactsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
         
         node.dataSource = self
         node.delegate = self

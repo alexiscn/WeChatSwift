@@ -32,9 +32,8 @@ class DiscoverViewController: ASViewController<ASTableNode> {
         
         node.delegate = self
         node.dataSource = self
-        node.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        node.view.separatorStyle = .singleLine
-        node.view.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
+        node.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -34,7 +34,7 @@ class AddContactCellNode: ASCellNode {
         descNode.attributedText = model.attributedStringForDesc(titles.1)
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
         
-        lineNode.backgroundColor = Colors.DEFAULT_BORDER_COLOR
+        lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
     }
     
     override func didLoad() {

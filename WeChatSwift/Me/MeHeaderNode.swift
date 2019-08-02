@@ -29,10 +29,11 @@ class MeHeaderNode: ASButtonNode {
         avatarNode.image = UIImage.as_imageNamed("JonSnow.jpg")
         
         nameNode.attributedText = NSAttributedString(string: "这是一个昵称", attributes: [
-            .font: UIFont.systemFont(ofSize: 22, weight: .medium),
+            .font: UIFont.systemFont(ofSize: 21, weight: .medium),
             .foregroundColor: UIColor.black
             ])
         qrCodeNode.image = UIImage.SVGImage(named: "icons_outlined_qr-code")
+        qrCodeNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(Colors.DEFAULT_TEXT_GRAY_COLOR)
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
         
         descNode.attributedText = NSAttributedString(string: "微信号：wxid_xzhdsfghids", attributes: [
@@ -56,6 +57,7 @@ class MeHeaderNode: ASButtonNode {
         avatarNode.style.spacingBefore = 16
         qrCodeNode.style.preferredSize = CGSize(width: 18, height: 18)
         qrCodeNode.style.spacingAfter = 12
+        qrCodeNode.style.spacingBefore = 8
         arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
         
         let descStack = ASStackLayoutSpec.horizontal()

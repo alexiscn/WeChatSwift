@@ -40,6 +40,8 @@ struct Colors {
     
     // MARK: - Basic
     
+    static let DEFAULT_SEPARTOR_LINE_COLOR = UIColor(white: 0, alpha: 0.15)
+    
     /// 默认文字颜色 #000000
     static let DEFAULT_TEXT_COLOR = UIColor(hexString: "#000000")
     

@@ -238,6 +238,10 @@
 		A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0ABA22F43AA600116329 /* ContactTagListAddTagCellNode.swift */; };
 		A3FB0ABD22F43B2A00116329 /* ContactTagListPlacehoderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0ABC22F43B2A00116329 /* ContactTagListPlacehoderNode.swift */; };
 		A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0ABE22F4403300116329 /* ContactTagCreateDetailViewController.swift */; };
+		A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC022F455B200116329 /* SettingGeneralViewController.swift */; };
+		A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */; };
+		A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */; };
+		A3FB0AC722F45E2900116329 /* SettingGeneralCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC622F45E2900116329 /* SettingGeneralCellNode.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -476,6 +480,10 @@
 		A3FB0ABA22F43AA600116329 /* ContactTagListAddTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagListAddTagCellNode.swift; sourceTree = "<group>"; };
 		A3FB0ABC22F43B2A00116329 /* ContactTagListPlacehoderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagListPlacehoderNode.swift; sourceTree = "<group>"; };
 		A3FB0ABE22F4403300116329 /* ContactTagCreateDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagCreateDetailViewController.swift; sourceTree = "<group>"; };
+		A3FB0AC022F455B200116329 /* SettingGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGeneralViewController.swift; sourceTree = "<group>"; };
+		A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDiscoverEntranceViewController.swift; sourceTree = "<group>"; };
+		A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDiscoverEntranceCellNode.swift; sourceTree = "<group>"; };
+		A3FB0AC622F45E2900116329 /* SettingGeneralCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGeneralCellNode.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -772,6 +780,10 @@
 				A341CF0022E5554800F18106 /* AboutViewController.swift */,
 				A341CEFE22E5554800F18106 /* SettingsCellNode.swift */,
 				A341CEFF22E5554800F18106 /* SettingsViewController.swift */,
+				A3FB0AC022F455B200116329 /* SettingGeneralViewController.swift */,
+				A3FB0AC622F45E2900116329 /* SettingGeneralCellNode.swift */,
+				A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */,
+				A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1270,6 +1282,7 @@
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
+				A3FB0AC722F45E2900116329 /* SettingGeneralCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A33D2B1D22F2D8D20099927A /* MMNavigationBar.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
@@ -1279,6 +1292,7 @@
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
+				A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */,
 				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
 				A37FFB6622EE8E740001DD27 /* MinimizationTransitionController.swift in Sources */,
 				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,
@@ -1356,11 +1370,13 @@
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
+				A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
 				A33DB2EF22CCCB8E00A11776 /* SVGImage+Extensions.swift in Sources */,
 				A322870322E06299004E516E /* EmoticonManager.swift in Sources */,
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
+				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
 				A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */,
 				A33D2B2322F3053F0099927A /* UIViewController+MMNavigationBar.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,

@@ -38,6 +38,7 @@ class MeViewController: ASViewController<ASDisplayNode> {
         tableNode.dataSource = self
         tableNode.delegate = self
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
         
         headerNode = MeHeaderNode()
         

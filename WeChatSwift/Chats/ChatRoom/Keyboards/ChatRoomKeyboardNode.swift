@@ -158,14 +158,19 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         let stack = ASStackLayoutSpec.vertical()
         switch keyboardType {
         case .none:
+            bottomNode.backgroundColor = .clear
             stack.children = [toolBar, bottomNode, additionLayout]
         case .input:
+            bottomNode.backgroundColor = .clear
             stack.children = [toolBar, bottomNode, additionLayout]
         case .emotion:
+            bottomNode.backgroundColor = .white
             stack.children = [toolBar, additionLayout, bottomNode]
         case .tools:
+            bottomNode.backgroundColor = .clear
             stack.children = [toolBar, additionLayout, bottomNode]
         case .voice:
+            bottomNode.backgroundColor = .clear
             stack.children = [toolBar, bottomNode, additionLayout]
         }
         return ASInsetLayoutSpec(insets: .zero, child: stack)
