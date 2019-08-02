@@ -224,6 +224,15 @@
 		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
 		A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */; };
+		A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA222F3D54500116329 /* VisualEffectView.swift */; };
+		A3FB0AA522F3D9AE00116329 /* PaymentMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA422F3D9AE00116329 /* PaymentMainViewController.swift */; };
+		A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA622F3DA9C00116329 /* MallFunctionActivityNode.swift */; };
+		A3FB0AA922F4057900116329 /* MeHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA822F4057900116329 /* MeHeaderNode.swift */; };
+		A3FB0AAB22F406E100116329 /* icons_outlined_qr-code.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0AAA22F406E100116329 /* icons_outlined_qr-code.svg */; };
+		A3FB0AAE22F40A1B00116329 /* icons_outlined_wallet.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0AAD22F40A1A00116329 /* icons_outlined_wallet.svg */; };
+		A3FB0AB022F40A2500116329 /* icons_filled_wallet.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0AAF22F40A2500116329 /* icons_filled_wallet.svg */; };
+		A3FB0AB222F40C6C00116329 /* icons_outlined_pay.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3FB0AB122F40C6C00116329 /* icons_outlined_pay.svg */; };
+		A3FB0AB422F40E3B00116329 /* MallFunctionActivityContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AB322F40E3B00116329 /* MallFunctionActivityContainerNode.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -448,6 +457,15 @@
 		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
 		A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewViewController.swift; sourceTree = "<group>"; };
+		A3FB0AA222F3D54500116329 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		A3FB0AA422F3D9AE00116329 /* PaymentMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMainViewController.swift; sourceTree = "<group>"; };
+		A3FB0AA622F3DA9C00116329 /* MallFunctionActivityNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MallFunctionActivityNode.swift; sourceTree = "<group>"; };
+		A3FB0AA822F4057900116329 /* MeHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeHeaderNode.swift; sourceTree = "<group>"; };
+		A3FB0AAA22F406E100116329 /* icons_outlined_qr-code.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "icons_outlined_qr-code.svg"; sourceTree = "<group>"; };
+		A3FB0AAD22F40A1A00116329 /* icons_outlined_wallet.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_wallet.svg; sourceTree = "<group>"; };
+		A3FB0AAF22F40A2500116329 /* icons_filled_wallet.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_wallet.svg; sourceTree = "<group>"; };
+		A3FB0AB122F40C6C00116329 /* icons_outlined_pay.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_pay.svg; sourceTree = "<group>"; };
+		A3FB0AB322F40E3B00116329 /* MallFunctionActivityContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MallFunctionActivityContainerNode.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -522,6 +540,7 @@
 				A32333BA22DF0C6900B79555 /* WCBadgeView.swift */,
 				A32333BC22DF0F6A00B79555 /* BadgeNode.swift */,
 				A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */,
+				A3FB0AA222F3D54500116329 /* VisualEffectView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -622,6 +641,7 @@
 				A36BE2C922E3F56C003F334B /* Settings */,
 				A33DB2F222CCD16D00A11776 /* MeViewController.swift */,
 				A372228622D95216003403D4 /* MeCellNode.swift */,
+				A3FB0AA822F4057900116329 /* MeHeaderNode.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -728,6 +748,9 @@
 			children = (
 				A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */,
 				A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */,
+				A3FB0AA422F3D9AE00116329 /* PaymentMainViewController.swift */,
+				A3FB0AA622F3DA9C00116329 /* MallFunctionActivityNode.swift */,
+				A3FB0AB322F40E3B00116329 /* MallFunctionActivityContainerNode.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -871,16 +894,11 @@
 		A3CA51B122CD9ACE00C67D92 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3FB0AAC22F407BE00116329 /* Emoticons */,
 				A3CA521022CDE9C500C67D92 /* Avatars */,
 				A3CA51C322CD9C1C00C67D92 /* Icons */,
 				A372227922D6154C003403D4 /* Expressions.json */,
 				A372228A22D984D9003403D4 /* flutter.jpeg */,
-				A3CCE01C22DDDA0A0003DC25 /* Emoticons.zip */,
-				A3CCE01A22DDD9150003DC25 /* Emoticons.json */,
-				A3D897EA22E1CFEB00814669 /* 153716293386e633a27b0f3d76.png */,
-				A3D897E722E194E100814669 /* 153716293386e633a27b0f3d76.json */,
-				A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */,
-				A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */,
 				A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */,
 				A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */,
 				A31057D722E8532C00856D71 /* dice_1.pic */,
@@ -894,7 +912,6 @@
 				A31057D222E852F900856D71 /* JSB_J.pic */,
 				A31057D122E852F900856D71 /* JSB_S.pic */,
 				A31057E522E8533C00856D71 /* JSB.pic */,
-				A3485FBC22F05363002A804B /* EmoticonBanners.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -902,6 +919,10 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A3FB0AB122F40C6C00116329 /* icons_outlined_pay.svg */,
+				A3FB0AAF22F40A2500116329 /* icons_filled_wallet.svg */,
+				A3FB0AAD22F40A1A00116329 /* icons_outlined_wallet.svg */,
+				A3FB0AAA22F406E100116329 /* icons_outlined_qr-code.svg */,
 				A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */,
 				A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */,
 				A32333B822DF091D00B79555 /* icons_outlined_mute.svg */,
@@ -996,6 +1017,20 @@
 			path = Avatars;
 			sourceTree = "<group>";
 		};
+		A3FB0AAC22F407BE00116329 /* Emoticons */ = {
+			isa = PBXGroup;
+			children = (
+				A3485FBC22F05363002A804B /* EmoticonBanners.json */,
+				A3CCE01C22DDDA0A0003DC25 /* Emoticons.zip */,
+				A3CCE01A22DDD9150003DC25 /* Emoticons.json */,
+				A3D897EA22E1CFEB00814669 /* 153716293386e633a27b0f3d76.png */,
+				A3D897E722E194E100814669 /* 153716293386e633a27b0f3d76.json */,
+				A3D897E922E1CFEB00814669 /* 15031638347220abdd83283a10.png */,
+				A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */,
+			);
+			path = Emoticons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1064,6 +1099,7 @@
 				A3CCE02422DDECFA0003DC25 /* red_envelopes_detail_top_bg.svg in Resources */,
 				A374865F22D4AEF3002EEC4F /* icons_filled_album.svg in Resources */,
 				A3CA51D722CD9F9400C67D92 /* icons_outlined_scan.svg in Resources */,
+				A3FB0AB022F40A2500116329 /* icons_filled_wallet.svg in Resources */,
 				A3CCE01B22DDD9150003DC25 /* Emoticons.json in Resources */,
 				A3CA51B722CD9B1E00C67D92 /* icons_filled_scan.svg in Resources */,
 				A31057DF22E8532E00856D71 /* dice_6.pic in Resources */,
@@ -1100,11 +1136,13 @@
 				A3CA51D122CD9C8500C67D92 /* icons_outlined_contacts.svg in Resources */,
 				A31057E622E8533C00856D71 /* JSB.pic in Resources */,
 				A3CA523022CE1CBE00C67D92 /* icons_outlined_album.svg in Resources */,
+				A3FB0AB222F40C6C00116329 /* icons_outlined_pay.svg in Resources */,
 				A3CA522C22CE1BCF00C67D92 /* icons_outlined_wechatpay.svg in Resources */,
 				A3CA51D322CD9C9300C67D92 /* icons_outlined_chats.svg in Resources */,
 				A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */,
 				A3CA51DF22CD9FB900C67D92 /* icons_outlined_nearby.svg in Resources */,
 				A31057DE22E8532E00856D71 /* dice_1.pic in Resources */,
+				A3FB0AAB22F406E100116329 /* icons_outlined_qr-code.svg in Resources */,
 				A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */,
 				A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
@@ -1112,6 +1150,7 @@
 				A31057E422E8532E00856D71 /* dice.pic in Resources */,
 				A3CA520222CDAFD100C67D92 /* icon_filled_timelineophl.svg in Resources */,
 				A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */,
+				A3FB0AAE22F40A1B00116329 /* icons_outlined_wallet.svg in Resources */,
 				A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */,
 				A3CA51E322CD9FCA00C67D92 /* icons_outlined_colorful_game.svg in Resources */,
 				A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */,
@@ -1227,6 +1266,7 @@
 				A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */,
 				A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */,
 				A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */,
+				A3FB0AA522F3D9AE00116329 /* PaymentMainViewController.swift in Sources */,
 				A372228722D95216003403D4 /* MeCellNode.swift in Sources */,
 				A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */,
 				A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */,
@@ -1256,7 +1296,9 @@
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */,
+				A3FB0AB422F40E3B00116329 /* MallFunctionActivityContainerNode.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
+				A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */,
 				A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */,
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
 				A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */,
@@ -1277,6 +1319,7 @@
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
 				A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */,
+				A3FB0AA922F4057900116329 /* MeHeaderNode.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
@@ -1319,6 +1362,7 @@
 				A37FFB6822EE92210001DD27 /* WCWebView.swift in Sources */,
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
+				A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */,
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,
 				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
 				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,

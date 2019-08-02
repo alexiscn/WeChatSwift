@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons_outlined_wallet</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons_outlined_wallet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="common_icons_wallet" fill="#000000" fill-rule="nonzero">
+            <path d="M22,14 L22,14.2 C22,14.2684931 21.993114,14.3353779 21.9799964,14.3999999 L22,14.3999999 L22,19 C22,19.5522847 21.5522847,20 21,20 L3,20 C2.44771525,20 2,19.5522847 2,19 L2,5 C2,4.44771525 2.44771525,4 3,4 L21,4 C21.5522847,4 22,4.44771525 22,5 L22,9.5999999 L21.9799964,9.5999999 C21.9931139,9.66462192 22,9.7315068 22,9.8 L22,10 L22,14 Z M20.8,14 L20.8,10 L15,10 C13.8954305,10 13,10.8954305 13,12 C13,13.1045695 13.8954305,14 15,14 L20.8,14 Z M20.8,8.8 L20.8,5.2 L3.2,5.2 L3.2,18.8 L20.8,18.8 L20.8,15.2 L15,15.2 C13.2326888,15.2 11.8,13.7673112 11.8,12 C11.8,10.2326888 13.2326888,8.8 15,8.8 L20.8,8.8 Z M15,13 C14.4477153,13 14,12.5522847 14,12 C14,11.4477153 14.4477153,11 15,11 C15.5522847,11 16,11.4477153 16,12 C16,12.5522847 15.5522847,13 15,13 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

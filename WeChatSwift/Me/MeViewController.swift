@@ -109,6 +109,9 @@ extension MeViewController: ASTableDelegate, ASTableDataSource {
         case .sticker:
             let emoticonStoreViewController = EmoticonStoreViewController()
             navigationController?.pushViewController(emoticonStoreViewController, animated: true)
+        case .pay:
+            let paymentMainVC = PaymentMainViewController()
+            navigationController?.pushViewController(paymentMainVC, animated: true)
         default:
             break
         }
