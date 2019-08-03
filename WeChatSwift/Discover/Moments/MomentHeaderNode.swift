@@ -46,6 +46,7 @@ class MomentHeaderNode: ASDisplayNode {
     
     override func didLoad() {
         super.didLoad()
+        backgroundColor = .white
         avatarNode.isUserInteractionEnabled = true
         avatarNode.addTarget(self, action: #selector(avatarClicked), forControlEvents: .touchUpInside)
     }
@@ -55,17 +56,12 @@ class MomentHeaderNode: ASDisplayNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
         coverNode.style.preferredSize = CGSize(width: Constants.screenWidth, height: Constants.screenWidth)
         coverNode.style.layoutPosition = CGPoint(x: 0, y: constrainedSize.max.height - Constants.screenWidth - 50.0)
-        
         avatarNode.style.preferredSize = CGSize(width: 70, height: 70)
         avatarNode.style.layoutPosition = CGPoint(x: constrainedSize.max.width - 82, y: constrainedSize.max.height - 100)
-        
-        nameNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 90, height: 24)
-        nameNode.style.layoutPosition = CGPoint(x: 0, y: constrainedSize.max.height - 80)
-        
-        let layout = ASAbsoluteLayoutSpec(children: [coverNode, avatarNode, nameNode])
-        return layout
+        nameNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 100, height: 24)
+        nameNode.style.layoutPosition = CGPoint(x: 0, y: constrainedSize.max.height - 90)
+        return ASAbsoluteLayoutSpec(children: [coverNode, avatarNode, nameNode])
     }
 }

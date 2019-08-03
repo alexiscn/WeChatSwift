@@ -12,12 +12,12 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
 
     private let tableNode: ASTableNode = ASTableNode(style: .plain)
     private let dataSource = MomentDataSource()
-    private var statusBarStyle: UIStatusBarStyle = .lightContent
     private let header: MomentHeaderNode = MomentHeaderNode()
     
     private var newMessage: MomentNewMessage?
     private var hasNewMessage: Bool { return newMessage != nil }
     private var isLoadingMoments = false
+    private var rightBarItem: UIBarButtonItem?
     
     init() {
         super.init(node: ASDisplayNode())
@@ -37,9 +37,8 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = UIColor(hexString: "#333333")
         tableNode.view.allowsSelection = false
         tableNode.view.separatorStyle = .none
         tableNode.leadingScreensForBatching = 2
@@ -49,16 +48,24 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         header.frame = tableHeader.bounds
         tableHeader.addSubnode(header)
         tableNode.view.tableHeaderView = tableHeader
+        
+        let rightButtonImage = UIImage.SVGImage(named: "icons_filled_camera")?.withRenderingMode(.alwaysTemplate)
+        let rightButtonItem = UIBarButtonItem(image: rightButtonImage, style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = rightButtonItem
+        self.rightBarItem = rightButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barStyle = .black
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.navigationBar.barStyle = .default
     }
     
     private func fetchNextMoments(with context: ASBatchContext) {
@@ -81,11 +88,33 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         tableNode.insertRows(at: indexPaths, with: .none)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return statusBarStyle
+    private func updateNavigationBarTintColor(_ color: UIColor) {
+        if color == navigationController?.navigationBar.tintColor {
+            return
+        }
+        navigationController?.navigationBar.tintColor = color
+    }
+    
+    private func updateStatusBarStyle(_ style: UIBarStyle) {
+        if style == navigationController?.navigationBar.barStyle {
+            return
+        }
+        navigationController?.navigationBar.barStyle = style
+    }
+    
+    private func update(offset: CGFloat) {
+        
     }
 }
 
+// MARK: - Event Handlers
+extension MomentsViewController {
+    @objc private func handleRightBarButtonTapped(_ sender: Any) {
+        
+    }
+}
+
+// MARK: - ASTableDelegate & ASTableDataSource
 extension MomentsViewController: ASTableDelegate, ASTableDataSource {
     func numberOfSections(in tableNode: ASTableNode) -> Int {
         return hasNewMessage ? 2: 1
@@ -122,5 +151,37 @@ extension MomentsViewController: ASTableDelegate, ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
         print("willBeginBatchFetchWith")
         fetchNextMoments(with: context)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension MomentsViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y = scrollView.contentOffset.y
+        //print(y)
+        
+        // 307: TableNode Header Height
+        // 70: Avatar Height
+        // 30: Avatar Bottom Offset
+        // 44: Navigation Bar Height
+        let barHeight: CGFloat = 44.0
+        let threshold: CGFloat = 307.0 - 70 - 30 - barHeight - Constants.statusBarHeight
+        if y < threshold {
+            updateNavigationBarTintColor(.white)
+        } else if y < threshold + barHeight {
+            let alpha = 1 - (y - threshold)/barHeight
+            updateNavigationBarTintColor(UIColor(white: 1, alpha: alpha))
+            updateStatusBarStyle(.black)
+//            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        } else {
+            let progress = (y - threshold - barHeight)/barHeight
+            let alpha = min(progress, 1)
+            updateNavigationBarTintColor(UIColor(white: 0, alpha: alpha))
+            updateStatusBarStyle(.default)
+//            print(alpha)
+//            let image = UIImage(color: UIColor(hexString: "#EDEDED", alpha: Float(alpha)))
+//            navigationController?.navigationBar.setBackgroundImage(image, for: .default)
+        }
     }
 }

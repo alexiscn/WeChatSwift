@@ -35,15 +35,12 @@ extension AppDelegate {
         meVC.tabBarItem.tag = 3
         
         tabBarVC = ASTabBarController()
-        let navigationController = ASNavigationController(rootViewController: tabBarVC)
-        navigationController.navigationBar.shadowImage = UIImage()
-        navigationController.navigationBar.isTranslucent = false
-        let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
-        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
-        navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
-        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
+        let chatNav = navigationController(with: chatsVC)
+        let contactsNav = navigationController(with: contactsVC)
+        let discoverNav = navigationController(with: discoverVC)
+        let meNav = navigationController(with: meVC)
         
-        let viewControllers = [chatsVC, contactsVC, discoverVC, meVC]
+        let viewControllers = [chatNav, contactsNav, discoverNav, meNav]
         tabBarVC.viewControllers = viewControllers
         for vc in viewControllers {
             vc.tabBarItem.setTitleTextAttributes([
@@ -56,7 +53,27 @@ extension AppDelegate {
           
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
         
-        window?.rootViewController = navigationController
+        window?.rootViewController = tabBarVC
+    }
+    
+    func navigationController(with rootViewController: UIViewController) -> SFSNavigationController {
+        let navigationController = SFSNavigationController(rootViewController: rootViewController)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = false
+        let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
+        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
+        navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
+        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
+        return navigationController
+    }
+}
+
+class SFSNavigationController: ASNavigationController {
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if viewControllers.count > 0 {
+            viewController.hidesBottomBarWhenPushed = true
+        }
+        super.pushViewController(viewController, animated: animated)
     }
 }
 

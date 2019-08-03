@@ -43,6 +43,7 @@ class MomentNewMessageCellNode: ASCellNode {
     
     override func didLoad() {
         super.didLoad()
+        backgroundColor = .white
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

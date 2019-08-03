@@ -16,11 +16,6 @@ class MeViewController: ASViewController<ASDisplayNode> {
     
     private var headerNode: MeHeaderNode!
     
-    private lazy var rightButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_camera"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
-        return button
-    }()
-    
     init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
@@ -50,13 +45,9 @@ class MeViewController: ASViewController<ASDisplayNode> {
         
         setupDataSource()
         tableNode.reloadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
-        tabBarController?.navigationItem.title = nil
+        let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_camera"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = rightButtonItem
     }
     
     private func setupDataSource() {

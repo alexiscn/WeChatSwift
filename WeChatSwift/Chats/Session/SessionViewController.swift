@@ -29,11 +29,6 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [Session] = []
     
-    private lazy var rightButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addoutline"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,13 +39,10 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         tableNode.frame = view.bounds
         dataSource = MockFactory.shared.sessions()
         tableNode.reloadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
-        tabBarController?.navigationItem.title = "微信"
+        let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addoutline"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = rightButtonItem
+        navigationItem.title = "微信"
     }
     
     private func showMoreMenu() {

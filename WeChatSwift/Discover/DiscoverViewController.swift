@@ -34,13 +34,8 @@ class DiscoverViewController: ASViewController<ASTableNode> {
         node.dataSource = self
         node.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        tabBarController?.navigationItem.rightBarButtonItem = nil
-        tabBarController?.navigationItem.title = "发现"
+        navigationItem.title = "发现"
     }
     
     private func setupDataSource() {

@@ -68,6 +68,7 @@ class MomentCellNode: ASCellNode {
         super.init()
         
         automaticallyManagesSubnodes = true
+        backgroundColor = .white
         
         let user = MockFactory.shared.users.first(where: { $0.identifier == moment.userID })
         let avatar = user?.avatar ?? "DefaultHead_48x48_"

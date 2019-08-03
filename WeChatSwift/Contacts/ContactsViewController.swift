@@ -12,11 +12,6 @@ class ContactsViewController: ASViewController<ASTableNode> {
 
     private var dataSource: [ContactSection] = []
     
-    private lazy var rightButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addfriends"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
-        return button
-    }()
-    
     init() {
         super.init(node: ASTableNode(style: .grouped))
     }
@@ -35,13 +30,10 @@ class ContactsViewController: ASViewController<ASTableNode> {
         node.delegate = self
         
         setupDataSource()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        tabBarController?.navigationItem.rightBarButtonItem = rightButtonItem
-        tabBarController?.navigationItem.title = "通讯录"
+        let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addfriends"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = rightButtonItem
+        navigationItem.title = "通讯录"
     }
     
     private func setupDataSource() {
