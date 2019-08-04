@@ -69,6 +69,9 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
         switch item {
         case .language:
             print("language")
+        case .backgroundImage:
+            let backgroundEntranceVC = ChatRoomBackgroundEntranceViewController(isFromGeneralSettings: true)
+            navigationController?.pushViewController(backgroundEntranceVC, animated: true)
         case .emoticon:
             let emoticonManageVC = EmoticonManageViewController()
             navigationController?.pushViewController(emoticonManageVC, animated: true)

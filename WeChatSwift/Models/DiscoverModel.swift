@@ -14,7 +14,7 @@ struct DiscoverSection {
 
 struct DiscoverModel {
     
-    enum DiscoverType {
+    enum DiscoverType: Int {
         case moment
         case scan
         case shake
