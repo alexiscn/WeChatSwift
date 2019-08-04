@@ -35,15 +35,10 @@ class SettingGeneralViewController: ASViewController<ASTableNode> {
     
     private func setupDataSource() {
         dataSource.append(SettingGeneralGroup(items: [.language]))
-        
         dataSource.append(SettingGeneralGroup(items: [.font, .backgroundImage, .emoticon, .files]))
-        
         dataSource.append(SettingGeneralGroup(items: [.earmode]))
-        
         dataSource.append(SettingGeneralGroup(items: [.discover, .assistant]))
-        
         dataSource.append(SettingGeneralGroup(items: [.backup, .storage]))
-        
         dataSource.append(SettingGeneralGroup(items: [.clearChatHistory]))
     }
     
@@ -77,6 +72,9 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
         case .emoticon:
             let emoticonManageVC = EmoticonManageViewController()
             navigationController?.pushViewController(emoticonManageVC, animated: true)
+        case .discover:
+            let discoverEntranceVC = SettingDiscoverEntranceViewController()
+            navigationController?.pushViewController(discoverEntranceVC, animated: true)
         default:
             break
         }

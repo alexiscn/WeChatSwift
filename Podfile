@@ -6,6 +6,7 @@ target 'WeChatSwift' do
     pod 'Kingfisher'
     pod 'SnapKit'
     pod 'WXActionSheet'
+    pod 'MMKV'
     pod 'WCDB.swift'
     pod 'Texture'
     pod 'SSZipArchive'

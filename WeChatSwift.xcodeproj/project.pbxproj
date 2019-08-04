@@ -97,6 +97,9 @@
 		A372228722D95216003403D4 /* MeCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372228622D95216003403D4 /* MeCellNode.swift */; };
 		A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372228822D954C9003403D4 /* ContactCellNode.swift */; };
 		A372228B22D984D9003403D4 /* flutter.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A372228A22D984D9003403D4 /* flutter.jpeg */; };
+		A373D3CE22F5221000451515 /* ScrollActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3CD22F5221000451515 /* ScrollActionSheet.swift */; };
+		A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3CF22F5815D00451515 /* DiscoverManager.swift */; };
+		A373D3D222F65A5300451515 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D122F65A5300451515 /* UserSettings.swift */; };
 		A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862922D4383F002EEC4F /* ChatRoomViewController.swift */; };
 		A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */; };
 		A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */; };
@@ -339,6 +342,9 @@
 		A372228622D95216003403D4 /* MeCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeCellNode.swift; sourceTree = "<group>"; };
 		A372228822D954C9003403D4 /* ContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellNode.swift; sourceTree = "<group>"; };
 		A372228A22D984D9003403D4 /* flutter.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flutter.jpeg; sourceTree = "<group>"; };
+		A373D3CD22F5221000451515 /* ScrollActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollActionSheet.swift; sourceTree = "<group>"; };
+		A373D3CF22F5815D00451515 /* DiscoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverManager.swift; sourceTree = "<group>"; };
+		A373D3D122F65A5300451515 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		A374862922D4383F002EEC4F /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDataSource.swift; sourceTree = "<group>"; };
 		A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCellNodeFactory.swift; sourceTree = "<group>"; };
@@ -521,6 +527,7 @@
 			isa = PBXGroup;
 			children = (
 				A322870222E06299004E516E /* EmoticonManager.swift */,
+				A373D3CF22F5815D00451515 /* DiscoverManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -559,6 +566,7 @@
 				A32333BC22DF0F6A00B79555 /* BadgeNode.swift */,
 				A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */,
 				A3FB0AA222F3D54500116329 /* VisualEffectView.swift */,
+				A373D3CD22F5221000451515 /* ScrollActionSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1021,6 +1029,7 @@
 			isa = PBXGroup;
 			children = (
 				A3CA51FA22CDA87D00C67D92 /* AppContext.swift */,
+				A373D3D122F65A5300451515 /* UserSettings.swift */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -1316,6 +1325,7 @@
 				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
 				A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */,
 				A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */,
+				A373D3D222F65A5300451515 /* UserSettings.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
@@ -1347,6 +1357,7 @@
 				A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */,
+				A373D3CE22F5221000451515 /* ScrollActionSheet.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
 				A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */,
@@ -1372,6 +1383,7 @@
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
 				A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
+				A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */,
 				A33DB2EF22CCCB8E00A11776 /* SVGImage+Extensions.swift in Sources */,
 				A322870322E06299004E516E /* EmoticonManager.swift in Sources */,
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,

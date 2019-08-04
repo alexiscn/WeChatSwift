@@ -31,6 +31,7 @@ struct DiscoverModel {
     var title: String
     var unread: Bool = false
     var unreadCount: Int = 0
+    var enabled: Bool = true
     
     init(type: DiscoverType, title: String, icon: String, color: UIColor? = nil) {
         self.type = type

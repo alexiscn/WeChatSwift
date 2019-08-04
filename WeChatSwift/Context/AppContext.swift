@@ -14,8 +14,11 @@ class AppContext {
     
     let userID: String
     
+    let userSettings: UserSettings
+    
     private init() {
         userID = MockFactory.shared.users.first!.identifier
+        userSettings = UserSettings(userID: userID)
     }
     
     var userProfileService = UserProfileService()
