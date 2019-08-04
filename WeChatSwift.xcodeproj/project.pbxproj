@@ -103,6 +103,8 @@
 		A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D422F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift */; };
 		A373D3D722F668F900451515 /* ChatRoomBackgroundSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D622F668F900451515 /* ChatRoomBackgroundSettingViewController.swift */; };
 		A373D3D922F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D822F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift */; };
+		A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */; };
+		A373D3DD22F6A9A900451515 /* SettingFontSizeStepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */; };
 		A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862922D4383F002EEC4F /* ChatRoomViewController.swift */; };
 		A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */; };
 		A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */; };
@@ -351,6 +353,8 @@
 		A373D3D422F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundEntranceViewController.swift; sourceTree = "<group>"; };
 		A373D3D622F668F900451515 /* ChatRoomBackgroundSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundSettingViewController.swift; sourceTree = "<group>"; };
 		A373D3D822F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundEntranceCellNode.swift; sourceTree = "<group>"; };
+		A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeViewController.swift; sourceTree = "<group>"; };
+		A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeStepSlider.swift; sourceTree = "<group>"; };
 		A374862922D4383F002EEC4F /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		A374862B22D43A6A002EEC4F /* ChatRoomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDataSource.swift; sourceTree = "<group>"; };
 		A374862F22D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCellNodeFactory.swift; sourceTree = "<group>"; };
@@ -798,6 +802,8 @@
 				A3FB0AC622F45E2900116329 /* SettingGeneralCellNode.swift */,
 				A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */,
 				A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */,
+				A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */,
+				A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1312,6 +1318,7 @@
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A33D2B1D22F2D8D20099927A /* MMNavigationBar.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
+				A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
 				A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */,
 				A3CA51AC22CD99FD00C67D92 /* AddContactViewController.swift in Sources */,
@@ -1367,6 +1374,7 @@
 				A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */,
 				A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */,
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
+				A373D3DD22F6A9A900451515 /* SettingFontSizeStepSlider.swift in Sources */,
 				A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */,
 				A37FFB6E22EEB62B0001DD27 /* NewMomentViewController.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
