@@ -16,7 +16,7 @@ class WCNavigationController: UINavigationController {
         let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
         
         navigationBar.shadowImage = UIImage()
-        navigationBar.isTranslucent = false
+        navigationBar.isTranslucent = true
         
         navigationBar.setBackgroundImage(backgroundImage, for: .default)
         navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
@@ -24,3 +24,18 @@ class WCNavigationController: UINavigationController {
     }
 }
 
+extension UIViewController {
+    
+    func titleLabel(_ title: String) -> UILabel {
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        titleLabel.textColor = UIColor(hexString: "#181818")
+        titleLabel.text = title
+        return titleLabel
+    }
+    
+    func setNavigationBarTitle(_ title: String) {
+        navigationItem.titleView = titleLabel(title)
+    }
+    
+}

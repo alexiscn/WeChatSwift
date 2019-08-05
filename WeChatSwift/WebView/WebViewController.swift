@@ -49,6 +49,11 @@ class WebViewController: UIViewController {
         webView.load(request)
     }
     
+    private func setupNavigationBar() {
+        let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
+        navigationItem.rightBarButtonItem = moreButtonItem
+    }
+    
     private func setupWebView() {
         let configuration = WKWebViewConfiguration()
         
@@ -85,6 +90,16 @@ class WebViewController: UIViewController {
     }
 }
 
+// MARK: - Event Handlers
+extension WebViewController {
+    
+    @objc private func moreButtonClicked() {
+        
+    }
+    
+}
+
+// MARK: - WCWebViewDelegate
 extension WebViewController: WCWebViewDelegate {
     
     var allowInlineMediaPlay: Bool { return true }

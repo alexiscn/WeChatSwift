@@ -39,11 +39,8 @@
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
 		A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */ = {isa = PBXBuildFile; fileRef = A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */; };
 		A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1622F2C81C0099927A /* MomentDataSource.swift */; };
-		A33D2B1B22F2D8C50099927A /* MMNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1A22F2D8C50099927A /* MMNavigationController.swift */; };
-		A33D2B1D22F2D8D20099927A /* MMNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1C22F2D8D20099927A /* MMNavigationBar.swift */; };
 		A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */; };
 		A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */; };
-		A33D2B2322F3053F0099927A /* UIViewController+MMNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B2222F3053F0099927A /* UIViewController+MMNavigationBar.swift */; };
 		A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2D322CCC80F00A11776 /* AppDelegate.swift */; };
 		A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DA22CCC81100A11776 /* Assets.xcassets */; };
 		A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DC22CCC81100A11776 /* LaunchScreen.storyboard */; };
@@ -287,11 +284,8 @@
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
 		A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_keyboard.svg; sourceTree = "<group>"; };
 		A33D2B1622F2C81C0099927A /* MomentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDataSource.swift; sourceTree = "<group>"; };
-		A33D2B1A22F2D8C50099927A /* MMNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNavigationController.swift; sourceTree = "<group>"; };
-		A33D2B1C22F2D8D20099927A /* MMNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNavigationBar.swift; sourceTree = "<group>"; };
 		A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPushAnimator.swift; sourceTree = "<group>"; };
 		A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPopAnimator.swift; sourceTree = "<group>"; };
-		A33D2B2222F3053F0099927A /* UIViewController+MMNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MMNavigationBar.swift"; sourceTree = "<group>"; };
 		A33DB2D022CCC80F00A11776 /* WeChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33DB2D322CCC80F00A11776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A33DB2DA22CCC81100A11776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -891,11 +885,8 @@
 			isa = PBXGroup;
 			children = (
 				A34760B222E6F02E0043AE1D /* WCNavigationController.swift */,
-				A33D2B1A22F2D8C50099927A /* MMNavigationController.swift */,
-				A33D2B1C22F2D8D20099927A /* MMNavigationBar.swift */,
 				A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */,
 				A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */,
-				A33D2B2222F3053F0099927A /* UIViewController+MMNavigationBar.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1316,7 +1307,6 @@
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
 				A3FB0AC722F45E2900116329 /* SettingGeneralCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
-				A33D2B1D22F2D8D20099927A /* MMNavigationBar.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
 				A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
@@ -1416,14 +1406,12 @@
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
 				A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */,
-				A33D2B2322F3053F0099927A /* UIViewController+MMNavigationBar.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A341CF0122E5554800F18106 /* SettingsCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
-				A33D2B1B22F2D8C50099927A /* MMNavigationController.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
 				A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */,
 				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,

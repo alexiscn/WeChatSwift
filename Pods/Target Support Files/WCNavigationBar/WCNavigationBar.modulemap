@@ -1,6 +1,0 @@
-framework module WCNavigationBar {
-  umbrella header "WCNavigationBar-umbrella.h"
-
-  export *
-  module * { export * }
-}

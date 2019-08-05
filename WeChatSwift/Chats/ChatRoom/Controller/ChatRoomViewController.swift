@@ -48,7 +48,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = user.name
+        setNavigationBarTitle(user.name)
         let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
         
@@ -258,7 +258,11 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
 extension ChatRoomViewController: MessageCellNodeDelegate {
     
     func messageCell(_ cellNode: MessageContentNode, didTapAvatar userID: String) {
-        
+        let contact = Contact()
+        contact.name = user.name
+        contact.avatar = UIImage.as_imageNamed(user.avatar)
+        let contactVC = ContactInfoViewController(contact: contact)
+        navigationController?.pushViewController(contactVC, animated: true)
     }
     
     func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent) {

@@ -12,6 +12,5 @@ target 'WeChatSwift' do
     pod 'SSZipArchive'
     pod 'PINRemoteImage', '3.0.0-beta.13'
     
-    pod 'WCNavigationBar', :path => 'DevelopmentPods/WCNavigationBar'
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'
 end
