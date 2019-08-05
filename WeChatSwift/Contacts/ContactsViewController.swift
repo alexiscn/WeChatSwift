@@ -72,7 +72,7 @@ extension ContactsViewController: ASTableDelegate, ASTableDataSource {
         let model = dataSource[indexPath.section].models[indexPath.row]
         let isLastCell = indexPath.row == dataSource[indexPath.section].models.count - 1
         let block: ASCellNodeBlock = {
-            return ContactCellNode(model: model, isLastCell: isLastCell)
+            return WCTableCellNode(model: model, isLastCell: isLastCell)
         }
         return block
     }

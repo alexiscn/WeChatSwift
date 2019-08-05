@@ -54,7 +54,6 @@
 		A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FB22CCDD0B00A11776 /* Message.swift */; };
 		A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */; };
 		A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB30122CCDDE200A11776 /* DiscoverModel.swift */; };
-		A341CF0122E5554800F18106 /* SettingsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CEFE22E5554800F18106 /* SettingsCellNode.swift */; };
 		A341CF0222E5554800F18106 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CEFF22E5554800F18106 /* SettingsViewController.swift */; };
 		A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0022E5554800F18106 /* AboutViewController.swift */; };
 		A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0422E5555600F18106 /* SettingsTableModel.swift */; };
@@ -247,7 +246,6 @@
 		A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC022F455B200116329 /* SettingGeneralViewController.swift */; };
 		A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */; };
 		A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */; };
-		A3FB0AC722F45E2900116329 /* SettingGeneralCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AC622F45E2900116329 /* SettingGeneralCellNode.swift */; };
 		EA44FD9B90D86A23F3A2DCC0 /* Pods_WeChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -302,7 +300,6 @@
 		A33DB2FB22CCDD0B00A11776 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		A33DB30122CCDDE200A11776 /* DiscoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverModel.swift; sourceTree = "<group>"; };
-		A341CEFE22E5554800F18106 /* SettingsCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCellNode.swift; sourceTree = "<group>"; };
 		A341CEFF22E5554800F18106 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A341CF0022E5554800F18106 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A341CF0422E5555600F18106 /* SettingsTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableModel.swift; sourceTree = "<group>"; };
@@ -495,7 +492,6 @@
 		A3FB0AC022F455B200116329 /* SettingGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGeneralViewController.swift; sourceTree = "<group>"; };
 		A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDiscoverEntranceViewController.swift; sourceTree = "<group>"; };
 		A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDiscoverEntranceCellNode.swift; sourceTree = "<group>"; };
-		A3FB0AC622F45E2900116329 /* SettingGeneralCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGeneralCellNode.swift; sourceTree = "<group>"; };
 		B6EE9FDFFD0D37885DDF7FB4 /* Pods_WeChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9198CB93151EC26B862EEF0 /* Pods-WeChatSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -793,10 +789,8 @@
 			isa = PBXGroup;
 			children = (
 				A341CF0022E5554800F18106 /* AboutViewController.swift */,
-				A341CEFE22E5554800F18106 /* SettingsCellNode.swift */,
 				A341CEFF22E5554800F18106 /* SettingsViewController.swift */,
 				A3FB0AC022F455B200116329 /* SettingGeneralViewController.swift */,
-				A3FB0AC622F45E2900116329 /* SettingGeneralCellNode.swift */,
 				A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */,
 				A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */,
 				A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */,
@@ -1308,7 +1302,6 @@
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
-				A3FB0AC722F45E2900116329 /* SettingGeneralCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
 				A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */,
@@ -1412,7 +1405,6 @@
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
-				A341CF0122E5554800F18106 /* SettingsCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,

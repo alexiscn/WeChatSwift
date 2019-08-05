@@ -26,7 +26,7 @@ class SettingsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
+        node.view.separatorStyle = .none
         navigationItem.title = "设置"
         setupDataSource()
         node.reloadData()
@@ -70,18 +70,19 @@ extension SettingsViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = dataSource[indexPath.section].models[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].models.count - 1
         let block: ASCellNodeBlock = {
-            return SettingsCellNode(model: model)
+            return WCTableCellNode(model: model, isLastCell: isLastCell)
         }
         return block
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 8.0
+        return section == 0 ? 0.01 : 8.0
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.1
+        return 0.01
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

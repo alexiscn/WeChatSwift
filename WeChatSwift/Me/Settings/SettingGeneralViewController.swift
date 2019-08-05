@@ -27,7 +27,7 @@ class SettingGeneralViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
+        node.view.separatorStyle = .none
         navigationItem.title = "通用"
         
         setupDataSource()
@@ -41,9 +41,9 @@ class SettingGeneralViewController: ASViewController<ASTableNode> {
         dataSource.append(SettingGeneralGroup(items: [.backup, .storage]))
         dataSource.append(SettingGeneralGroup(items: [.clearChatHistory]))
     }
-    
 }
 
+// MARK: - ASTableDelegate & ASTableDataSource
 extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
@@ -55,9 +55,10 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let item = dataSource[indexPath.section].items[indexPath.row]
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
         let block: ASCellNodeBlock = {
-            return SettingGeneralCellNode(setting: item)
+            return WCTableCellNode(model: model, isLastCell: isLastCell)
         }
         return block
     }

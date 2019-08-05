@@ -60,6 +60,8 @@ extension ContactModel: WCTableCellModel {
     var wc_title: String { return name }
     
     var wc_image: UIImage? { return image }
+    
+    var wc_imageLayoutSize: CGSize { return CGSize(width: 40, height: 40) }
 }
 
 class Contact {

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AsyncDisplayKit
 
 struct SettingsTableGroupModel {
     var models: [SettingsTableModel]
@@ -40,6 +41,24 @@ struct SettingsTableModel {
             NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.5)
         ]
         return NSAttributedString(string: value, attributes: attributes)
+    }
+}
+
+extension SettingsTableModel: WCTableCellModel {
+    
+    var wc_title: String { return title }
+    
+    var wc_image: UIImage? { return nil }
+    
+    var wc_accessoryNode: ASDisplayNode? {
+        guard let value = value else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.5)
+        ]
+        let textNode = ASTextNode()
+        textNode.attributedText = NSAttributedString(string: value, attributes: attributes)
+        return textNode
     }
 }
 
@@ -107,4 +126,11 @@ enum SettingGeneral {
         ]
         return NSAttributedString(string: title, attributes: attributes)
     }
+}
+
+extension SettingGeneral: WCTableCellModel {
+    
+    var wc_image: UIImage? { return nil }
+    
+    var wc_title: String { return title }
 }

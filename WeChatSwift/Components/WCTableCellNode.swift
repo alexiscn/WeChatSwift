@@ -42,21 +42,22 @@ class WCTableCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
-        let stack = ASStackLayoutSpec.horizontal()
-        stack.alignItems = .center
         var elements: [ASLayoutElement] = []
+        var leading: CGFloat = 0.0
         
         // Append Image
         if model.wc_image != nil {
             iconNode.style.spacingBefore = 16
-            iconNode.style.spacingAfter = 16
             iconNode.style.preferredSize = model.wc_imageLayoutSize
             elements.append(iconNode)
+            
+            leading += 16.0 + model.wc_imageLayoutSize.width
         }
         
         // Append Title
+        titleNode.style.spacingBefore = 16.0
         elements.append(titleNode)
+        leading += 16.0
     
         // Append Badge
         if model.wc_badgeCount > 0 {
@@ -70,21 +71,26 @@ class WCTableCellNode: ASCellNode {
         spacer.style.flexShrink = 1.0
         elements.append(spacer)
         
+        if let accessory = model.wc_accessoryNode {
+            elements.append(accessory)
+        }
+        
         // Append Arrow
         arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
+        arrowNode.style.spacingBefore = 16
         arrowNode.style.spacingAfter = 16
         elements.append(arrowNode)
         
+        let stack = ASStackLayoutSpec.horizontal()
+        stack.alignItems = .center
         stack.children = elements
-        
-        let layout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0), child: stack)
-        layout.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
+        stack.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
         
         lineNode.isHidden = isLastCell
-        lineNode.style.preferredSize = CGSize(width: Constants.screenWidth - 56, height: Constants.lineHeight)
-        lineNode.style.layoutPosition = CGPoint(x: 56, y: 56 - Constants.lineHeight)
-        
-        return ASAbsoluteLayoutSpec(children: [layout, lineNode])
+        lineNode.style.preferredSize = CGSize(width: Constants.screenWidth - leading, height: Constants.lineHeight)
+        lineNode.style.layoutPosition = CGPoint(x: leading, y: 56 - Constants.lineHeight)
+    
+        return ASAbsoluteLayoutSpec(children: [stack, lineNode])
     }
 }
 
@@ -97,6 +103,8 @@ protocol WCTableCellModel {
     var wc_imageLayoutSize: CGSize { get }
     
     var wc_badgeCount: Int { get }
+    
+    var wc_accessoryNode: ASDisplayNode? { get }
 }
 
 extension WCTableCellModel {
@@ -104,6 +112,8 @@ extension WCTableCellModel {
     var wc_badgeCount: Int { return 0 }
     
     var wc_imageLayoutSize: CGSize { return CGSize(width: 24.0, height: 24.0) }
+    
+    var wc_accessoryNode: ASDisplayNode? { return nil }
     
     func wc_attributedStringForTitle() -> NSAttributedString {
         return NSAttributedString(string: wc_title, attributes: [
