@@ -69,6 +69,10 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
         switch item {
         case .language:
             print("language")
+        case .font:
+            let fontSizeVC = SettingFontSizeViewController()
+            let nav = WCNavigationController(rootViewController: fontSizeVC)
+            present(nav, animated: true, completion: nil)
         case .backgroundImage:
             let backgroundEntranceVC = ChatRoomBackgroundEntranceViewController(isFromGeneralSettings: true)
             navigationController?.pushViewController(backgroundEntranceVC, animated: true)

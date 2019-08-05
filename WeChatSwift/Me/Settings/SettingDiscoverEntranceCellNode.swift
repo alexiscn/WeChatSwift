@@ -50,6 +50,7 @@ class SettingDiscoverEntranceCellNode: ASCellNode {
         super.didLoad()
         
         backgroundColor = .white
+        selectionStyle = .none
         
         switchNode.isUserInteractionEnabled = true
         switchButton.isOn = discover.enabled
