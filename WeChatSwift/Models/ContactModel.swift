@@ -55,6 +55,13 @@ enum ContactModel {
     }
 }
 
+extension ContactModel: WCTableCellModel {
+    
+    var wc_title: String { return name }
+    
+    var wc_image: UIImage? { return image }
+}
+
 class Contact {
     
     var name: String = ""

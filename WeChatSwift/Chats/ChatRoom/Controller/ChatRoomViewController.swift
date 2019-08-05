@@ -257,7 +257,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
 // MARK: - MessageCellNodeDelegate
 extension ChatRoomViewController: MessageCellNodeDelegate {
     
-    func messageCell(_ cellNode: MessageContentNode, didTapAvatar userID: String) {
+    func messageCell(_ cellNode: MessageCellNode, didTapAvatar userID: String) {
         let contact = Contact()
         contact.name = user.name
         contact.avatar = UIImage.as_imageNamed(user.avatar)

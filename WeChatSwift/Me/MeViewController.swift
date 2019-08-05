@@ -33,7 +33,7 @@ class MeViewController: ASViewController<ASDisplayNode> {
         tableNode.dataSource = self
         tableNode.delegate = self
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableNode.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
+        tableNode.view.separatorStyle = .none
         
         headerNode = MeHeaderNode()
         
@@ -86,8 +86,9 @@ extension MeViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = dataSource[indexPath.section].items[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
         let block: ASCellNodeBlock = {
-            return MeCellNode(model: model)
+            return WCTableCellNode(model: model, isLastCell: isLastCell)
         }
         return block
     }

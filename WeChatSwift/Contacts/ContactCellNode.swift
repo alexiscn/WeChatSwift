@@ -12,14 +12,19 @@ class ContactCellNode: ASCellNode {
     
     private let model: ContactModel
     
+    private let isLastCell: Bool
+    
     private let imageNode = ASImageNode()
     
     private let titleNode = ASTextNode()
     
     private let arrowNode = ASImageNode()
     
-    init(model: ContactModel) {
+    private let lineNode = ASDisplayNode()
+    
+    init(model: ContactModel, isLastCell: Bool) {
         self.model = model
+        self.isLastCell = isLastCell
         super.init()
         
         automaticallyManagesSubnodes = true
@@ -35,7 +40,8 @@ class ContactCellNode: ASCellNode {
             .font: UIFont.systemFont(ofSize: 17)
         ])
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
-        arrowNode.style.preferredSize = CGSize(width: 12, height: 12)
+        arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
+        lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -53,6 +59,13 @@ class ContactCellNode: ASCellNode {
         stack.alignItems = .center
         stack.children = [imageNode, titleNode, arrowNode]
         
-        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0), child: stack)
+        lineNode.isHidden = isLastCell
+        lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 72, height: Constants.lineHeight)
+        lineNode.style.layoutPosition = CGPoint(x: 72, y: 56 - Constants.lineHeight)
+        
+        let layout = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0), child: stack)
+        layout.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
+        
+        return ASAbsoluteLayoutSpec(children: [layout, lineNode])
     }
 }

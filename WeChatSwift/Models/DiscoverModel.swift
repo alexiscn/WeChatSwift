@@ -49,3 +49,12 @@ struct DiscoverModel {
         return NSAttributedString(string: title, attributes: attributes)
     }
 }
+
+extension DiscoverModel: WCTableCellModel {
+    
+    var wc_title: String { return title }
+    
+    var wc_image: UIImage? { return image }
+    
+    var wc_badgeCount: Int { return unreadCount }
+}

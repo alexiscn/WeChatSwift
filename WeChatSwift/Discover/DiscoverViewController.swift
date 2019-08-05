@@ -33,7 +33,7 @@ class DiscoverViewController: ASViewController<ASTableNode> {
         node.delegate = self
         node.dataSource = self
         node.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
+        node.view.separatorStyle = .none
         
         navigationItem.title = "发现"
     }
@@ -54,8 +54,9 @@ extension DiscoverViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = dataSource[indexPath.section].models[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].models.count - 1
         let block: ASCellNodeBlock = {
-            return DiscoverCellNode(model: model)
+            return WCTableCellNode(model: model, isLastCell: isLastCell)
         }
         return block
     }

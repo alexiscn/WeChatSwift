@@ -38,3 +38,9 @@ struct MeTableModel {
     }
 }
 
+extension MeTableModel: WCTableCellModel {
+    
+    var wc_image: UIImage? { return image }
+    
+    var wc_title: String { return title }
+}

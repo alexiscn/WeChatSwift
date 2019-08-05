@@ -24,7 +24,7 @@ class ContactsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
+        node.view.separatorStyle = .none
         
         node.dataSource = self
         node.delegate = self
@@ -70,8 +70,9 @@ extension ContactsViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = dataSource[indexPath.section].models[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].models.count - 1
         let block: ASCellNodeBlock = {
-            return ContactCellNode(model: model)
+            return ContactCellNode(model: model, isLastCell: isLastCell)
         }
         return block
     }

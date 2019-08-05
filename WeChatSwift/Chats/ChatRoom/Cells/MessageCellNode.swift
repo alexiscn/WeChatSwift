@@ -75,6 +75,7 @@ public class MessageCellNode: ASCellNode {
     public override func didLoad() {
         super.didLoad()
         
+        isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -82,7 +83,7 @@ public class MessageCellNode: ASCellNode {
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: self.view)
         if avatarNode.frame.contains(point) {
-            
+            delegate?.messageCell(self, didTapAvatar: "TODO")
         } else if contentNode.frame.contains(point) {
             delegate?.messageCell(self, didTapContent: message.content)
         }
@@ -140,7 +141,7 @@ extension MessageCellNode: TextContentNodeDelegate {
 }
 
 protocol MessageCellNodeDelegate: class {
-    func messageCell(_ cellNode: MessageContentNode, didTapAvatar userID: String)
+    func messageCell(_ cellNode: MessageCellNode, didTapAvatar userID: String)
     func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent)
     func messageCell(_ cellNode: MessageCellNode, didTapLink url: URL?)
 }
