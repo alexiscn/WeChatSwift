@@ -103,7 +103,7 @@ extension UIViewController {
     }
     
     private func addTransitionNavigationBarIfNeeded() {
-        guard let navigationController = self.navigationController else {
+        guard let navigationController = self.navigationController, view.mm_visible else {
             return
         }
         
@@ -145,6 +145,72 @@ extension UIViewController {
         if !navigationController.viewControllers.contains(viewController) {
             return
         }
+        
+        if let vc = viewController as? MMNavigationControllerAppearanceDelegate {
+            
+            // 显示/隐藏 导航栏
+            if canCustomNavigationBarTransitionIfBarHiddenable() {
+                if hideNavigationBarWhenTransitioning() {
+                    if !navigationController.isNavigationBarHidden {
+                        navigationController.setNavigationBarHidden(false, animated: animated)
+                    }
+                }
+            } else {
+                if navigationController.isNavigationBarHidden {
+                    navigationController.setNavigationBarHidden(true, animated: animated)
+                }
+            }
+            
+            // 导航栏的背景色
+            if let barTintColor = vc.navigationBarTintColor {
+                navigationController.navigationBar.barTintColor = barTintColor
+            } else {
+                // TODO
+            }
+            
+            // 导航栏的背景
+            if let backgroundImage = vc.navigationBarBackgroundImage {
+                navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
+            } else {
+                // TODO
+            }
+            
+            // 导航栏底部的分隔线
+            if let shadowImage = vc.navigationBarShadowImage {
+                navigationController.navigationBar.shadowImage = shadowImage
+            } else {
+                // TODO
+            }
+            
+            // 导航栏上控件的主题色
+            
+        }
+        
+        
+    }
+    
+    private func respondCustomNavigationBarTransitionIfBarHiddenable() -> Bool {
+        var respondIfBarHiddenable = false
+        if let presentedViewController = self.presentedViewController, presentedViewController is UISearchController {
+            return false
+        }
+        let vc = self as? MMNavigationBarTransitionDelegate
+        if vc?.preferredNavigationBarHidden != nil {
+            respondIfBarHiddenable = true
+        }
+        return respondIfBarHiddenable
+    }
+    
+    private func canCustomNavigationBarTransitionIfBarHiddenable() -> Bool {
+        if respondCustomNavigationBarTransitionIfBarHiddenable() {
+            let vc = self as? MMNavigationBarTransitionDelegate
+            return vc?.shouldCustomizeNavigationBarTransitionIfHideable ?? false
+        }
+        return false
+    }
+    
+    private func hideNavigationBarWhenTransitioning() -> Bool {
+        return (self as? MMNavigationBarTransitionDelegate)?.preferredNavigationBarHidden ?? false
     }
     
     static func copyStyle(from navbarA: UINavigationBar, to navbarB: UINavigationBar) {

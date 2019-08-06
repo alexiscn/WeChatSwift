@@ -66,6 +66,10 @@ import UIKit
     @objc optional var preferredNavigationBarHidden: Bool { get }
     
     
+    /// 当切换界面时，如果不同界面导航栏的显隐状态不同，可以通过 shouldCustomizeNavigationBarTransitionIfHideable
+    /// 设置是否需要接管导航栏的显示和隐藏。从而不需要在各自的界面的 viewWillAppear 和 viewWillDisappear 里面去管理导航栏的状态。
+    @objc optional var shouldCustomizeNavigationBarTransitionIfHideable: Bool { get }
+    
     /// 自定义navBar效果过程中UINavigationController的containerView的背景色
     @objc optional var containerBackgroundColorWhenInTransitioning: UIColor { get }
 }

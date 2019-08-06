@@ -251,3 +251,15 @@ struct AssociatedKeys {
     static var prefersNavigationBarBackgroundViewHidden = "prefersNavigationBarBackgroundViewHidden"
     
 }
+
+extension UIView {
+    var mm_visible: Bool {
+        if self.isHidden || self.alpha < 0.01 {
+            return false
+        }
+        if self.window != nil {
+            return true
+        }
+        return false // TODO
+    }
+}
