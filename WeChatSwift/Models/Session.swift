@@ -24,6 +24,8 @@ public class Session {
     /// 是否显示红点
     var showUnreadAsRedDot = false
     
+    var stickTop: Bool = false
+    
     var muted: Bool = false
     
     public init(sessionID: String, name: String) {

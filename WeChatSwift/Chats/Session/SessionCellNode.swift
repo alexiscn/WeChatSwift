@@ -57,7 +57,7 @@ class SessionCellNode: ASCellNode {
     override func didLoad() {
         super.didLoad()
         
-        backgroundColor = UIColor(hexString: "#FEFFFF")
+        backgroundColor = session.stickTop ? UIColor(hexString: "#F2F2F2") : UIColor(hexString: "#FEFFFF")
         badgeNode.update(count: session.unreadCount, showDot: session.showUnreadAsRedDot)
     }
     
