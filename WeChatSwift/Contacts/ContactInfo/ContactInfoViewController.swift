@@ -27,6 +27,9 @@ class ContactInfoViewController: ASViewController<ASTableNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         node.view.separatorStyle = .none
+        
+        let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
+        navigationItem.rightBarButtonItem = moreButtonItem
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +43,17 @@ class ContactInfoViewController: ASViewController<ASTableNode> {
     }
 }
 
+// MARK: - Event Handlers
+
+extension ContactInfoViewController {
+    
+    @objc private func moreButtonClicked() {
+        let contactSettingVC = ContactSettingViewController(contact: contact)
+        navigationController?.pushViewController(contactSettingVC, animated: true)
+    }
+}
+
+// MARK: - ASTableDelegate & ASTableDataSource
 extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
@@ -52,15 +66,16 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let info = dataSource[indexPath.section].items[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
         let block: ASCellNodeBlock = { [weak self] in
             guard let strongSelf = self else { return ASCellNode() }
             switch info {
             case .profile:
-                return ContactInfoProfileCellNode(contact: strongSelf.contact)
+                return ContactInfoProfileCellNode(contact: strongSelf.contact, isLastCell: isLastCell)
             case .sendMessage, .voip:
-                return ContactInfoButtonCellNode(info: info)
+                return ContactInfoButtonCellNode(info: info, isLastCell: isLastCell)
             case .remark, .moments, .more:
-                return ContactInfoCellNode(info: info)
+                return ContactInfoCellNode(info: info, isLastCell: isLastCell)
             }
         }
         return block

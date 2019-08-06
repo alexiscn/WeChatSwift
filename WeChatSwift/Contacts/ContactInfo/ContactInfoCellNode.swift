@@ -14,7 +14,12 @@ class ContactInfoCellNode: ASCellNode {
     
     private let arrowNode = ASImageNode()
     
-    init(info: ContactInfo) {
+    private let lineNode = ASDisplayNode()
+    
+    private let isLastCell: Bool
+    
+    init(info: ContactInfo, isLastCell: Bool) {
+        self.isLastCell = isLastCell
         super.init()
         automaticallyManagesSubnodes = true
         
@@ -24,6 +29,7 @@ class ContactInfoCellNode: ASCellNode {
         ]
         titleNode.attributedText = NSAttributedString(string: info.title, attributes: attributes)
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
+        lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
     }
     
     override func didLoad() {
@@ -34,15 +40,21 @@ class ContactInfoCellNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
+        titleNode.style.spacingBefore = 16
+        arrowNode.style.spacingAfter = 16
         
         let spacer = ASLayoutSpec()
         spacer.style.flexGrow = 1.0
         
         let stack = ASStackLayoutSpec.horizontal()
+        stack.alignItems = .center
         stack.children = [titleNode, spacer, arrowNode]
+        stack.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
         
-        let insets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        lineNode.isHidden = isLastCell
+        lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 16, height: Constants.lineHeight)
+        lineNode.style.layoutPosition = CGPoint(x: 16, y: 56 - Constants.lineHeight)
         
-        return ASInsetLayoutSpec(insets: insets, child: stack)
+        return ASAbsoluteLayoutSpec(children: [stack, lineNode])
     }
 }

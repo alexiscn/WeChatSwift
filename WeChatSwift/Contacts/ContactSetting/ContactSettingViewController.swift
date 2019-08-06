@@ -10,7 +10,10 @@ import AsyncDisplayKit
 
 class ContactSettingViewController: ASViewController<ASTableNode> {
     
-    init() {
+    private let contact: Contact
+    
+    init(contact: Contact) {
+        self.contact = contact
         super.init(node: ASTableNode(style: .grouped))
         node.dataSource = self
         node.delegate = self

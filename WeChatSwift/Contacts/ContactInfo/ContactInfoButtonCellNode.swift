@@ -12,7 +12,12 @@ class ContactInfoButtonCellNode: ASCellNode {
     
     private let buttonNode = ASButtonNode()
     
-    init(info: ContactInfo) {
+    private let lineNode = ASDisplayNode()
+    
+    private let isLastCell: Bool
+    
+    init(info: ContactInfo, isLastCell: Bool) {
+        self.isLastCell = isLastCell
         super.init()
         automaticallyManagesSubnodes = true
         
@@ -25,6 +30,7 @@ class ContactInfoButtonCellNode: ASCellNode {
         buttonNode.setImage(info.image, for: .normal)
         buttonNode.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(Colors.DEFAULT_LINK_COLOR)
         buttonNode.imageNode.style.preferredSize = CGSize(width: 20, height: 20)
+        lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
     }
     
     override func didLoad() {
@@ -34,6 +40,10 @@ class ContactInfoButtonCellNode: ASCellNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         buttonNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
-        return ASInsetLayoutSpec(insets: .zero, child: buttonNode)
+            
+        lineNode.isHidden = isLastCell
+        lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width, height: Constants.lineHeight)
+        lineNode.style.layoutPosition = CGPoint(x: 0, y: 56.0 - Constants.lineHeight)
+        return ASAbsoluteLayoutSpec(children: [buttonNode, lineNode])
     }
 }

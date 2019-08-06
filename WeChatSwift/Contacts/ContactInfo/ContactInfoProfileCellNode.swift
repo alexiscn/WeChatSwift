@@ -11,15 +11,18 @@ import AsyncDisplayKit
 class ContactInfoProfileCellNode: ASCellNode {
     
     private let contact: Contact
+    private let isLastCell: Bool
     
     private let avatarNode = ASImageNode()
     
     private let nicknameNode = ASTextNode()
     private let wechatIDNode = ASTextNode()
     private let regionNode = ASTextNode()
+    private let lineNode = ASDisplayNode()
     
-    init(contact: Contact) {
+    init(contact: Contact, isLastCell: Bool) {
         self.contact = contact
+        self.isLastCell = isLastCell
         super.init()
         automaticallyManagesSubnodes = true
         
@@ -41,6 +44,8 @@ class ContactInfoProfileCellNode: ASCellNode {
         wechatIDNode.attributedText = NSAttributedString(string: "微信号：", attributes: wechatIDAttributes)
         
         regionNode.attributedText = NSAttributedString(string: "国家：", attributes: wechatIDAttributes)
+        
+        lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
     }
     
     override func didLoad() {
@@ -51,17 +56,23 @@ class ContactInfoProfileCellNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         avatarNode.style.preferredSize = CGSize(width: 64.0, height: 64.0)
+        avatarNode.style.spacingBefore = 21
         
         let vertical = ASStackLayoutSpec.vertical()
         vertical.spacing = 3.0
+        vertical.style.spacingAfter = 16
         vertical.children = [nicknameNode, wechatIDNode, regionNode]
         
         let horizontal = ASStackLayoutSpec.horizontal()
         horizontal.spacing = 16.0
         horizontal.children = [avatarNode, vertical]
+        horizontal.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 108)
         
-        let insets = UIEdgeInsets(top: 10, left: 16, bottom: 28, right: 16)
-        return ASInsetLayoutSpec(insets: insets, child: horizontal)
+        lineNode.isHidden = isLastCell
+        lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 16, height: Constants.lineHeight)
+        lineNode.style.layoutPosition = CGPoint(x: 16, y: 108 - Constants.lineHeight)
+        
+        return ASAbsoluteLayoutSpec(children: [horizontal, lineNode])
     }
     
 }
