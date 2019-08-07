@@ -14,11 +14,20 @@ import AsyncDisplayKit
 /// -------------------------
 class WCTableCellNode: ASCellNode {
     
+    var valueChangedHandler: ((Bool) -> Void)?
+    
     private let iconNode = ASImageNode()
     private let titleNode = ASTextNode()
     private let arrowNode = ASImageNode()
     private let lineNode = ASDisplayNode()
     private let badgeNode = BadgeNode()
+    private var switchNode: ASDisplayNode?
+    
+    private lazy var switchButton: UISwitch = {
+        let button = UISwitch()
+        button.onTintColor = Colors.Brand
+        return button
+    }()
     
     private let model: WCTableCellModel
     private let isLastCell: Bool
@@ -33,12 +42,30 @@ class WCTableCellNode: ASCellNode {
         lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
         badgeNode.update(count: model.wc_badgeCount, showDot: false)
+        
+        if model.wc_showSwitch {
+            isUserInteractionEnabled = true
+            let isOn = model.wc_switchValue
+            switchNode = ASDisplayNode(viewBlock: { [weak self] () -> UIView in
+                let button = self?.switchButton ?? UISwitch()
+                button.isOn = isOn
+                return button
+            })
+        }
     }
     
     override func didLoad() {
         super.didLoad()
         
         backgroundColor = .white
+        
+        if model.wc_showSwitch {
+            switchButton.addTarget(self, action: #selector(switchButtonValueChanged(_:)), for: .valueChanged)
+        }
+    }
+    
+    @objc private func switchButtonValueChanged(_ sender: UISwitch) {
+        valueChangedHandler?(sender.isOn)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -75,11 +102,18 @@ class WCTableCellNode: ASCellNode {
             elements.append(accessory)
         }
         
-        // Append Arrow
-        arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
-        arrowNode.style.spacingBefore = 16
-        arrowNode.style.spacingAfter = 16
-        elements.append(arrowNode)
+        if let switchNode = self.switchNode {
+            // Append Switch
+            switchNode.style.preferredSize = CGSize(width: 51, height: 31)
+            switchNode.style.spacingAfter = 16
+            elements.append(switchNode)
+        } else {
+            // Append Arrow
+            arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
+            arrowNode.style.spacingBefore = 16
+            arrowNode.style.spacingAfter = 16
+            elements.append(arrowNode)
+        }
         
         let stack = ASStackLayoutSpec.horizontal()
         stack.alignItems = .center
@@ -105,6 +139,10 @@ protocol WCTableCellModel {
     var wc_badgeCount: Int { get }
     
     var wc_accessoryNode: ASDisplayNode? { get }
+    
+    var wc_showSwitch: Bool { get }
+    
+    var wc_switchValue: Bool { get }
 }
 
 extension WCTableCellModel {
@@ -114,6 +152,10 @@ extension WCTableCellModel {
     var wc_imageLayoutSize: CGSize { return CGSize(width: 24.0, height: 24.0) }
     
     var wc_accessoryNode: ASDisplayNode? { return nil }
+    
+    var wc_showSwitch: Bool { return false }
+    
+    var wc_switchValue: Bool { return false }
     
     func wc_attributedStringForTitle() -> NSAttributedString {
         return NSAttributedString(string: wc_title, attributes: [

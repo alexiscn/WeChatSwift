@@ -103,6 +103,16 @@ extension ChatRoomContactInfoViewController: ASTableDelegate, ASTableDataSource 
         return nil
     }
     
+    func tableNode(_ tableNode: ASTableNode, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        switch model {
+        case .mute, .stickToTop, .forceNotify:
+            return false
+        default:
+            return true
+        }
+    }
+    
 }
 
 struct ChatRoomContactInfoSection {
@@ -146,4 +156,26 @@ enum ChatRoomContactInfoModel: WCTableCellModel {
     }
     
     var wc_image: UIImage? { return nil }
+    
+    var wc_showSwitch: Bool {
+        switch self {
+        case .mute, .stickToTop, .forceNotify:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    var wc_switchValue: Bool {
+        switch self {
+        case .mute:
+            return true
+        case .stickToTop:
+            return false
+        case .forceNotify:
+            return false
+        default:
+            return false
+        }
+    }
 }

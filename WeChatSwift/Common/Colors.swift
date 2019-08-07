@@ -19,24 +19,6 @@ struct Colors {
     static let white = UIColor.white
     
     static let black = UIColor.black
-
-    static let red = UIColor(hexString: "#FA5151")
-    
-    static let orange = UIColor(hexString: "#FA9D3B")
-    
-    static let yellow = UIColor(hexString: "#FFC300")
-    
-    static let green = UIColor(hexString: "#91D300")
-    
-    static let lightGreen = UIColor(hexString: "#97E86D")
-    
-    static let brand = UIColor(hexString: "#07C160")
-    
-    static let blue = UIColor(hexString: "#10AEFF")
-    
-    static let indigo = UIColor(hexString: "#1485EE")
-    
-    static let purple = UIColor(hexString: "#6467F0")
     
     // MARK: - Basic
     

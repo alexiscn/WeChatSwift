@@ -50,7 +50,7 @@ class ChatRoomAddContactCellNode: ASCellNode {
         let maxY = (elements.last?.style.layoutPosition.y ?? 0) + itemSize.height
         
         let bottomSpacer = ASLayoutSpec()
-        bottomSpacer.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 27)
+        bottomSpacer.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 16)
         bottomSpacer.style.layoutPosition = CGPoint(x: 0, y: maxY)
         layouts.append(bottomSpacer)
         

@@ -56,11 +56,11 @@ class MeViewController: ASViewController<ASDisplayNode> {
         dataSource.append(MeTableSection(items: [pay]))
         
         let fav = MeTableModel(type: .favorites, title: "收藏", icon: "icons_outlined_colorful_favorites")
-        let posts = MeTableModel(type: .posts, title: "相册", icon: "icons_outlined_album", color: Colors.indigo)
-        let sticker = MeTableModel(type: .sticker, title: "表情", icon: "icons_outlined_sticker", color: Colors.orange)
+        let posts = MeTableModel(type: .posts, title: "相册", icon: "icons_outlined_album", color: Colors.Indigo)
+        let sticker = MeTableModel(type: .sticker, title: "表情", icon: "icons_outlined_sticker", color: Colors.Orange)
         dataSource.append(MeTableSection(items: [fav, posts, sticker]))
         
-        let settings = MeTableModel(type: .settings, title: "设置", icon: "icons_outlined_setting", color: Colors.indigo)
+        let settings = MeTableModel(type: .settings, title: "设置", icon: "icons_outlined_setting", color: Colors.Indigo)
         dataSource.append(MeTableSection(items: [settings]))
     }
 }

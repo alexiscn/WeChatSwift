@@ -21,6 +21,7 @@ class SettingDiscoverEntranceCellNode: ASCellNode {
     
     private lazy var switchButton: UISwitch = {
         let button = UISwitch()
+        button.onTintColor = Colors.Brand
         return button
     }()
     

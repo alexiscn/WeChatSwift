@@ -53,17 +53,17 @@ enum AddContactSource {
     var backgroundColor: UIColor {
         switch self {
         case .radar:
-            return Colors.purple
+            return Colors.Purple
         case .faceToFaceGroup:
-            return Colors.brand
+            return Colors.Brand
         case .scan:
-            return Colors.indigo
+            return Colors.Indigo
         case .phoneContacts:
-            return Colors.brand
+            return Colors.Brand
         case .officialAccounts:
-            return Colors.indigo
+            return Colors.Indigo
         case .enterpriseContacts:
-            return Colors.indigo
+            return Colors.Indigo
         }
     }
     
