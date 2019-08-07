@@ -265,6 +265,10 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
         navigationController?.pushViewController(contactVC, animated: true)
     }
     
+    func messageCell(_ cellNode: MessageCellNode, didLongPressedAvatar userID: String) {
+        
+    }
+    
     func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent) {
         switch content {
         case .emoticon(let emoticonMsg):

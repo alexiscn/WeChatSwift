@@ -29,6 +29,7 @@ enum MomentBody {
     case none
     case link(MomentWebpage)
     case media(MomentMedia)
+    case multi(MomentMultiImage)
 }
 
 class MomentMedia {
@@ -80,6 +81,10 @@ struct MomentWebpage {
         ]
         return NSAttributedString(string: title, attributes: attributes)
     }
+}
+
+struct MomentMultiImage {
+    var images: [MomentMedia]
 }
 
 extension Moment {

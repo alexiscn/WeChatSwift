@@ -59,6 +59,16 @@ extension ChatRoomBackgroundEntranceViewController: ASTableDelegate, ASTableData
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let action = dataSource[indexPath.section].items[indexPath.row]
+        switch action {
+        case .pick:
+            let backgroundSettingVC = ChatRoomBackgroundSettingViewController()
+            let nav = WCNavigationController(rootViewController: backgroundSettingVC)
+            present(nav, animated: true, completion: nil)
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

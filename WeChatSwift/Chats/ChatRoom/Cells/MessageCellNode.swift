@@ -78,6 +78,9 @@ public class MessageCellNode: ASCellNode {
         isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         self.view.addGestureRecognizer(tapGesture)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
+        self.view.addGestureRecognizer(longPressGesture)
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
@@ -86,6 +89,13 @@ public class MessageCellNode: ASCellNode {
             delegate?.messageCell(self, didTapAvatar: "TODO")
         } else if contentNode.frame.contains(point) {
             delegate?.messageCell(self, didTapContent: message.content)
+        }
+    }
+    
+    @objc private func handleLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
+        let point = gesture.location(in: self.view)
+        if avatarNode.frame.contains(point) {
+            delegate?.messageCell(self, didLongPressedAvatar: "TODO")
         }
     }
     
@@ -142,6 +152,7 @@ extension MessageCellNode: TextContentNodeDelegate {
 
 protocol MessageCellNodeDelegate: class {
     func messageCell(_ cellNode: MessageCellNode, didTapAvatar userID: String)
+    func messageCell(_ cellNode: MessageCellNode, didLongPressedAvatar userID: String)
     func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent)
     func messageCell(_ cellNode: MessageCellNode, didTapLink url: URL?)
 }

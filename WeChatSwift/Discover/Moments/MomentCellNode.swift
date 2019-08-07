@@ -50,6 +50,8 @@ class MomentCellNode: ASCellNode {
             contentNode = ImageContentNode(image: image)
         case .link(let webPage):
             contentNode = WebpageContentNode(webPage: webPage)
+        case .multi(let multiImage):
+            contentNode = MultiImageContentNode(multiImage: multiImage)
         default:
             break
         }

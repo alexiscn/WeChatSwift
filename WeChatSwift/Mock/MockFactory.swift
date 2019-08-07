@@ -203,6 +203,15 @@ class MockFactory {
                                             thumbImage: link.thumbImage,
                                             thumbImageURL: nil)
                 moment.body = .link(webPage)
+            } else if index % 7 == 0 {
+                var images: [MomentMedia] = []
+                for _ in 0 ..< 9 {
+                    let remoteImage = random(of: remoteImages)
+                    let image = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
+                    images.append(image)
+                }
+                let body = MomentMultiImage(images: images)
+                moment.body = MomentBody.multi(body)
             }
             moments.append(moment)
         }
