@@ -21,6 +21,8 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     
     private let inputNode = ChatRoomKeyboardNode()
     
+    private let backgroundImageNode = ASImageNode()
+    
     private let tableNode = ASTableNode(style: .plain)
     
     init(sessionID: String) {
@@ -33,6 +35,10 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        backgroundImageNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundImageNode.image = UIImage.as_imageNamed("ChatBackground_01")
+        
+        node.addSubnode(backgroundImageNode)
         node.addSubnode(tableNode)
         node.addSubnode(inputNode)
     }
@@ -52,12 +58,15 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
         
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        backgroundImageNode.frame = view.bounds
+        
         tableNode.allowsSelection = false
         tableNode.view.separatorStyle = .none
         tableNode.dataSource = self
         tableNode.delegate = self
-        tableNode.view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        tableNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenHeight - 34 - 60)
+        tableNode.view.backgroundColor = .clear
+        tableNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: Constants.screenHeight - 34 - 56)
         inputNode.tableNode = tableNode
         inputNode.delegate = self
         

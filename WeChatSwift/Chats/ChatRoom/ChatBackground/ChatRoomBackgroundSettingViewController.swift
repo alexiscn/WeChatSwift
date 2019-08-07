@@ -10,14 +10,16 @@ import AsyncDisplayKit
 
 class ChatRoomBackgroundSettingViewController: ASViewController<ASCollectionNode> {
     
-    private var dataSource: [String] = []
+    private var dataSource: [ChatRoomBackgroundItem] = []
     
     private var doneButton: UIButton?
     
+    private var currentSelectIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    
     init() {
         
-        let padding: CGFloat = 12.0
-        let spacing: CGFloat = 6.0
+        let padding: CGFloat = 8.0
+        let spacing: CGFloat = 4.0
         let itemWidth = CGFloat(floorf(Float((Constants.screenWidth - 2 * padding - 2 * spacing)/3)))
         
         let layout = UICollectionViewFlowLayout()
@@ -30,9 +32,7 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASCollectionNode
         node.dataSource = self
         node.delegate = self
         
-        for i in 1 ... 9 {
-            dataSource.append(String(i))
-        }
+        setupDataSource()
     }
     
     required init?(coder: NSCoder) {
@@ -65,6 +65,15 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASCollectionNode
         self.doneButton = doneButton
     }
     
+    private func setupDataSource() {
+        dataSource.append(ChatRoomBackgroundItem(imageName: nil, thumbImageName: nil, isSelected: true))
+        for i in 1 ... 8 {
+            let imageName = "ChatBackground_0\(i)"
+            let thumbImageName = "ChatBackgroundThumb_0\(i)"
+            let item = ChatRoomBackgroundItem(imageName: imageName, thumbImageName: thumbImageName, isSelected: false)
+            dataSource.append(item )
+        }
+    }
 }
 
 // MARK: - Event Handlers
@@ -90,10 +99,40 @@ extension ChatRoomBackgroundSettingViewController: ASCollectionDelegate, ASColle
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let background = dataSource[indexPath.row]
         let block: ASCellNodeBlock = {
-            return ChatRoomBackgroundSettingCellNode(string: "1")
+            return ChatRoomBackgroundSettingCellNode(backgroundItem: background)
         }
         return block
     }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        dataSource[currentSelectIndexPath.row].isSelected = false
+        dataSource[indexPath.row].isSelected = true
+        collectionNode.reloadItems(at: [currentSelectIndexPath, indexPath])
+        currentSelectIndexPath = indexPath
+        
+        let userSettings = AppContext.current.userSettings
+        
+    }
 }
 
+
+class ChatRoomBackgroundItem {
+    var imageName: String?
+    var thumbImageName: String?
+    var isSelected: Bool
+    
+    var thumb: UIImage? {
+        if let name = thumbImageName {
+            return UIImage(named: name)
+        }
+        return nil
+    }
+    
+    init(imageName: String?, thumbImageName: String?, isSelected: Bool) {
+        self.imageName = imageName
+        self.thumbImageName = thumbImageName
+        self.isSelected = isSelected
+    }
+}
