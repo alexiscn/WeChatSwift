@@ -146,7 +146,7 @@ extension ChatRoomViewController {
         let contact = Contact()
         contact.name = user.name
         contact.avatar = UIImage.as_imageNamed(user.avatar)
-        let contactVC = ContactInfoViewController(contact: contact)
+        let contactVC = ChatRoomContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactVC, animated: true)
     }
 }

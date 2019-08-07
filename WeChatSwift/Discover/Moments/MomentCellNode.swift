@@ -36,9 +36,8 @@ class MomentCellNode: ASCellNode {
         avatarNode = ASImageNode()
         avatarNode.contentMode = .scaleAspectFill
         avatarNode.style.preferredSize = CGSize(width: 40, height: 40)
-        avatarNode.cornerRoundingType = .clipping
+        avatarNode.cornerRoundingType = .precomposited
         avatarNode.cornerRadius = 5
-        avatarNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         
         nameNode = ASButtonNode()
         nameNode.contentHorizontalAlignment = .left

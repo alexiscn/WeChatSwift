@@ -26,8 +26,7 @@ class ChatRoomBackgroundSettingCellNode: ASCellNode {
         
         thumbImageNode.image = backgroundItem.thumb
         thumbImageNode.cornerRadius = 4
-        thumbImageNode.cornerRoundingType = .clipping
-        thumbImageNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        thumbImageNode.cornerRoundingType = .precomposited
         
         statusCurrentNode.image = UIImage(named: "ChatBackgroundStatusCurrent_25x25_")
         statusCurrentIconNode.image = UIImage(named: "ChatBackgroundStatusCurrentIcon_15x15_")

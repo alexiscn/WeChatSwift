@@ -36,8 +36,7 @@ class QRCodeCardNode: ASDisplayNode {
         
         avatarNode.image = contact.image
         avatarNode.cornerRadius = 6
-        avatarNode.backgroundColor = Colors.white
-        avatarNode.cornerRoundingType = .clipping
+        avatarNode.cornerRoundingType = .precomposited
         
         genderNode.image = UIImage(named: "Contact_Male_18x18_")
         

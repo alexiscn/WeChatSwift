@@ -23,9 +23,8 @@ class MeHeaderNode: ASButtonNode {
     override init() {
         super.init()
         
-        avatarNode.backgroundColor = Colors.white
         avatarNode.cornerRadius = 10
-        avatarNode.cornerRoundingType = .clipping
+        avatarNode.cornerRoundingType = .precomposited
         avatarNode.image = UIImage.as_imageNamed("JonSnow.jpg")
         
         nameNode.attributedText = NSAttributedString(string: "这是一个昵称", attributes: [

@@ -32,8 +32,7 @@ class ContactCellNode: ASCellNode {
         
         imageNode.image = model.image
         imageNode.cornerRadius = 4
-        imageNode.cornerRoundingType = .clipping
-        imageNode.backgroundColor = Colors.white
+        imageNode.cornerRoundingType = .precomposited
         
         titleNode.attributedText = NSAttributedString(string: model.name, attributes: [
             .foregroundColor: Colors.black,

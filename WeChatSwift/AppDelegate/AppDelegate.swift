@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppContext.current.doHeavySetup()
         
+        UIView.fixTabBarButtonFrame()
         return true
     }
 

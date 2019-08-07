@@ -21,8 +21,7 @@ class ImageContentNode: MessageContentNode {
         super.init(message: message)
         
         imageNode.cornerRadius = 6.0
-        imageNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        imageNode.cornerRoundingType = .clipping
+        imageNode.cornerRoundingType = .precomposited
         addSubnode(imageNode)
         
         if let image = imageMsg.image {

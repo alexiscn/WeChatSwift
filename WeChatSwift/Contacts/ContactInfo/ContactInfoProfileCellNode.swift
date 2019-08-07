@@ -27,8 +27,7 @@ class ContactInfoProfileCellNode: ASCellNode {
         automaticallyManagesSubnodes = true
         
         avatarNode.image = contact.avatar
-        avatarNode.backgroundColor = Colors.white
-        avatarNode.cornerRoundingType = .clipping
+        avatarNode.cornerRoundingType = .precomposited
         avatarNode.cornerRadius = 6
         
         let nameAttributes = [

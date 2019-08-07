@@ -64,8 +64,7 @@ public class MessageCellNode: ASCellNode {
         let avatar = user?.avatar ?? "DefaultHead_48x48_"
         avatarNode.image = UIImage.as_imageNamed(avatar)
         avatarNode.cornerRadius = 6.0
-        avatarNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        avatarNode.cornerRoundingType = .clipping
+        avatarNode.cornerRoundingType = .precomposited
         
         if let textContentCell = contentNode as? TextContentNode {
             textContentCell.delegate = self
