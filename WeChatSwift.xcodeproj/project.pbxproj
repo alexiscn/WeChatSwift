@@ -69,6 +69,7 @@
 		A3476FF822FAA047001B94EC /* ChatRoomContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FF722FAA047001B94EC /* ChatRoomContactInfoViewController.swift */; };
 		A3476FFA22FAA498001B94EC /* ChatRoomAddContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FF922FAA498001B94EC /* ChatRoomAddContactCellNode.swift */; };
 		A3476FFC22FAABBF001B94EC /* ChatRoomMemberItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FFB22FAABBF001B94EC /* ChatRoomMemberItemNode.swift */; };
+		A3476FFF22FAD681001B94EC /* MultiSelectContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FFE22FAD681001B94EC /* MultiSelectContactsViewController.swift */; };
 		A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */; };
 		A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */; };
 		A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */; };
@@ -106,7 +107,6 @@
 		A373D3D222F65A5300451515 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D122F65A5300451515 /* UserSettings.swift */; };
 		A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D422F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift */; };
 		A373D3D722F668F900451515 /* ChatRoomBackgroundSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D622F668F900451515 /* ChatRoomBackgroundSettingViewController.swift */; };
-		A373D3D922F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D822F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift */; };
 		A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */; };
 		A373D3DD22F6A9A900451515 /* SettingFontSizeStepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */; };
 		A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374862922D4383F002EEC4F /* ChatRoomViewController.swift */; };
@@ -325,6 +325,7 @@
 		A3476FF722FAA047001B94EC /* ChatRoomContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomContactInfoViewController.swift; sourceTree = "<group>"; };
 		A3476FF922FAA498001B94EC /* ChatRoomAddContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomAddContactCellNode.swift; sourceTree = "<group>"; };
 		A3476FFB22FAABBF001B94EC /* ChatRoomMemberItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMemberItemNode.swift; sourceTree = "<group>"; };
+		A3476FFE22FAD681001B94EC /* MultiSelectContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectContactsViewController.swift; sourceTree = "<group>"; };
 		A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoProfileCellNode.swift; sourceTree = "<group>"; };
 		A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoButtonCellNode.swift; sourceTree = "<group>"; };
 		A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCellNode.swift; sourceTree = "<group>"; };
@@ -362,7 +363,6 @@
 		A373D3D122F65A5300451515 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		A373D3D422F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundEntranceViewController.swift; sourceTree = "<group>"; };
 		A373D3D622F668F900451515 /* ChatRoomBackgroundSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundSettingViewController.swift; sourceTree = "<group>"; };
-		A373D3D822F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundEntranceCellNode.swift; sourceTree = "<group>"; };
 		A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeViewController.swift; sourceTree = "<group>"; };
 		A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeStepSlider.swift; sourceTree = "<group>"; };
 		A374862922D4383F002EEC4F /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
@@ -676,6 +676,7 @@
 		A33DB2E822CCCA1200A11776 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A3476FFD22FAD65F001B94EC /* ContactSelect */,
 				A3618A9222F97B37000ACF4D /* ContactSetting */,
 				A3FB0AB522F4398900116329 /* ContactTag */,
 				A3485FAA22EFF608002A804B /* AddContact */,
@@ -783,6 +784,14 @@
 			path = ChatContactInfo;
 			sourceTree = "<group>";
 		};
+		A3476FFD22FAD65F001B94EC /* ContactSelect */ = {
+			isa = PBXGroup;
+			children = (
+				A3476FFE22FAD681001B94EC /* MultiSelectContactsViewController.swift */,
+			);
+			path = ContactSelect;
+			sourceTree = "<group>";
+		};
 		A3485FA322EFF5AA002A804B /* ContactInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -842,7 +851,6 @@
 			isa = PBXGroup;
 			children = (
 				A373D3D422F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift */,
-				A373D3D822F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift */,
 				A373D3D622F668F900451515 /* ChatRoomBackgroundSettingViewController.swift */,
 				A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */,
 			);
@@ -1448,6 +1456,7 @@
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
+				A3476FFF22FAD681001B94EC /* MultiSelectContactsViewController.swift in Sources */,
 				A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
 				A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */,
@@ -1489,7 +1498,6 @@
 				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
 				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
 				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
-				A373D3D922F66CFF00451515 /* ChatRoomBackgroundEntranceCellNode.swift in Sources */,
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,

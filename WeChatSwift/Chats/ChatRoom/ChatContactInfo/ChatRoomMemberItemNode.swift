@@ -10,6 +10,8 @@ import AsyncDisplayKit
 
 class ChatRoomMemberItemNode: ASDisplayNode {
     
+    var addButtonHandler: RelayCommand?
+    
     private let avatarNode = ASNetworkImageNode()
     
     private let nameNode = ASTextNode()
@@ -52,7 +54,7 @@ class ChatRoomMemberItemNode: ASDisplayNode {
     }
     
     @objc private func addButtonClicked() {
-        
+        addButtonHandler?()
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

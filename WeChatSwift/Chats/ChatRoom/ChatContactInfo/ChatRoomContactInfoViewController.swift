@@ -47,6 +47,12 @@ class ChatRoomContactInfoViewController: ASViewController<ASTableNode> {
         members.append(.contact(contact))
         members.append(.addButton)
     }
+    
+    private func presentMultiSelectContacts() {
+        let multiSelectContactsVC = MultiSelectContactsViewController(string: "TODO")
+        let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+        present(nav, animated: true, completion: nil)
+    }
 }
 
 // MARK: - ASTableDelegate & ASTableDataSource
@@ -64,9 +70,13 @@ extension ChatRoomContactInfoViewController: ASTableDelegate, ASTableDataSource 
         let model = dataSource[indexPath.section].items[indexPath.row]
         let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
         let members = self.members
-        let block: ASCellNodeBlock = {
+        let block: ASCellNodeBlock = { [weak self] in
             if indexPath.section == 0 {
-                return ChatRoomAddContactCellNode(members: members)
+                let addContactCell = ChatRoomAddContactCellNode(members: members)
+                addContactCell.addButtonHandler = { [weak self] in
+                    self?.presentMultiSelectContacts()
+                }
+                return addContactCell
             } else {
                 return WCTableCellNode(model: model, isLastCell: isLastCell)
             }
@@ -106,7 +116,7 @@ extension ChatRoomContactInfoViewController: ASTableDelegate, ASTableDataSource 
     func tableNode(_ tableNode: ASTableNode, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let model = dataSource[indexPath.section].items[indexPath.row]
         switch model {
-        case .mute, .stickToTop, .forceNotify:
+        case .addContactToChatRoom, .mute, .stickToTop, .forceNotify:
             return false
         default:
             return true

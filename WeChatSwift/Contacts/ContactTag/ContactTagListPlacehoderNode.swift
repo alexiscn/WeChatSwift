@@ -44,17 +44,17 @@ class ContactTagListPlacehoderNode: ASDisplayNode {
             ])
         
         createButtonNode.setAttributedTitle(buttonText, for: .normal)
-        createButtonNode.backgroundColor = Colors.Brand
         
+        let backgroundImageNormal = UIImage.as_resizableRoundedImage(withCornerRadius: 4, cornerColor: nil, fill: Colors.Brand)
+        let backgroundImageHighlight = UIImage.as_resizableRoundedImage(withCornerRadius: 4, cornerColor: nil, fill: Colors.Brand_80)
         
+        createButtonNode.setBackgroundImage(backgroundImageNormal, for: .normal)
+        createButtonNode.setBackgroundImage(backgroundImageHighlight, for: .highlighted)
     }
     
     override func didLoad() {
         super.didLoad()
         
-        createButtonNode.cornerRadius = 4
-        createButtonNode.cornerRoundingType = .defaultSlowCALayer
-        createButtonNode.setBackgroundImage(UIImage(color: Colors.Brand_80), for: .highlighted)
         createButtonNode.addTarget(self, action: #selector(createButtonClicked), forControlEvents: .touchUpInside)
     }
     

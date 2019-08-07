@@ -130,9 +130,10 @@ class WCTableCellNode: ASCellNode {
 
 protocol WCTableCellModel {
     
+    var wc_image: UIImage? { get }
+    
     var wc_title: String { get }
     
-    var wc_image: UIImage? { get }
     
     var wc_imageLayoutSize: CGSize { get }
     
@@ -146,6 +147,8 @@ protocol WCTableCellModel {
 }
 
 extension WCTableCellModel {
+    
+    var wc_image: UIImage? { return nil }
     
     var wc_badgeCount: Int { return 0 }
     

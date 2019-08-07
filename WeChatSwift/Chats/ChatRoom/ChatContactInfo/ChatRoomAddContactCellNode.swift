@@ -11,6 +11,8 @@ import AsyncDisplayKit
 // TODO: Add More Member Entrance
 class ChatRoomAddContactCellNode: ASCellNode {
     
+    var addButtonHandler: RelayCommand?
+    
     private var elements: [ChatRoomMemberItemNode] = []
     
     private let padding: CGFloat = 3.0
@@ -31,6 +33,7 @@ class ChatRoomAddContactCellNode: ASCellNode {
         super.didLoad()
         
         backgroundColor = Colors.white
+        elements.forEach { $0.addButtonHandler = addButtonHandler }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

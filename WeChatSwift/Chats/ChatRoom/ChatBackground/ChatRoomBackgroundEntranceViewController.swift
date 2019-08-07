@@ -35,6 +35,7 @@ class ChatRoomBackgroundEntranceViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        node.view.separatorStyle = .none
         navigationItem.title = "聊天背景"
     }
 }
@@ -50,9 +51,10 @@ extension ChatRoomBackgroundEntranceViewController: ASTableDelegate, ASTableData
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let action = dataSource[indexPath.section].items[indexPath.row]
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
         let block: ASCellNodeBlock = {
-            return ChatRoomBackgroundEntranceCellNode(action: action)
+            return WCTableCellNode(model: model, isLastCell: isLastCell)
         }
         return block
     }
@@ -92,7 +94,7 @@ struct ChatRoomBackgroundActionGroup {
     var items: [ChatRoomBackgroundAction]
 }
 
-enum ChatRoomBackgroundAction {
+enum ChatRoomBackgroundAction: WCTableCellModel {
     case pick
     case pickFromAlbum
     case takeFromCamera
@@ -117,5 +119,9 @@ enum ChatRoomBackgroundAction {
             NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.9)
         ]
         return NSAttributedString(string: title, attributes: attributes)
+    }
+    
+    var wc_title: String {
+        return title
     }
 }
