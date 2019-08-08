@@ -90,8 +90,6 @@
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
 		A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */ = {isa = PBXBuildFile; fileRef = A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */; };
-		A3618A8F22F9514B000ACF4D /* MMNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3618A8E22F9514B000ACF4D /* MMNavigationController.swift */; };
-		A3618A9122F95A42000ACF4D /* MMNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3618A9022F95A42000ACF4D /* MMNavigationControllerDelegate.swift */; };
 		A3618A9422F97B50000ACF4D /* ContactSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3618A9322F97B50000ACF4D /* ContactSettingViewController.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */ = {isa = PBXBuildFile; fileRef = A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */; };
@@ -232,9 +230,6 @@
 		A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE422FC066C008BE41D /* ShakeSettingCellNode.swift */; };
 		A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE622FC0C50008BE41D /* ShakeType.swift */; };
 		A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */; };
-		A3D447A822F91AD60037D083 /* UINavigationBar+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */; };
-		A3D447AA22F91B120037D083 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A922F91B120037D083 /* UIViewController+Transition.swift */; };
-		A3D447AC22F928080037D083 /* UINavigationController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */; };
 		A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */; };
 		A3D897E222E1730B00814669 /* 15031638347220abdd83283a10.json in Resources */ = {isa = PBXBuildFile; fileRef = A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */; };
 		A3D897E422E1733A00814669 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897E322E1733A00814669 /* Sticker.swift */; };
@@ -356,8 +351,6 @@
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
 		A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_back.svg; sourceTree = "<group>"; };
-		A3618A8E22F9514B000ACF4D /* MMNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNavigationController.swift; sourceTree = "<group>"; };
-		A3618A9022F95A42000ACF4D /* MMNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		A3618A9322F97B50000ACF4D /* ContactSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingViewController.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_videocall.svg; sourceTree = "<group>"; };
@@ -498,9 +491,6 @@
 		A3CCEDE422FC066C008BE41D /* ShakeSettingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeSettingCellNode.swift; sourceTree = "<group>"; };
 		A3CCEDE622FC0C50008BE41D /* ShakeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeType.swift; sourceTree = "<group>"; };
 		A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeSettingItem.swift; sourceTree = "<group>"; };
-		A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Transition.swift"; sourceTree = "<group>"; };
-		A3D447A922F91B120037D083 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
-		A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Transition.swift"; sourceTree = "<group>"; };
 		A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 15031638347220abdd83283a10.json; sourceTree = "<group>"; };
 		A3D897E322E1733A00814669 /* Sticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
@@ -955,11 +945,6 @@
 				A34760B222E6F02E0043AE1D /* WCNavigationController.swift */,
 				A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */,
 				A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */,
-				A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */,
-				A3D447A922F91B120037D083 /* UIViewController+Transition.swift */,
-				A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */,
-				A3618A8E22F9514B000ACF4D /* MMNavigationController.swift */,
-				A3618A9022F95A42000ACF4D /* MMNavigationControllerDelegate.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1444,10 +1429,8 @@
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
 				A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */,
-				A3618A9122F95A42000ACF4D /* MMNavigationControllerDelegate.swift in Sources */,
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
-				A3D447AC22F928080037D083 /* UINavigationController+Transition.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
@@ -1477,7 +1460,6 @@
 				A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */,
-				A3618A8F22F9514B000ACF4D /* MMNavigationController.swift in Sources */,
 				A373D3CE22F5221000451515 /* ScrollActionSheet.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
@@ -1489,10 +1471,8 @@
 				A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
-				A3D447AA22F91B120037D083 /* UIViewController+Transition.swift in Sources */,
 				A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */,
 				A3FB0AA922F4057900116329 /* MeHeaderNode.swift in Sources */,
-				A3D447A822F91AD60037D083 /* UINavigationBar+Transition.swift in Sources */,
 				A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */,
 				A3CCEDDF22FBF040008BE41D /* ShakeSettingViewController.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,

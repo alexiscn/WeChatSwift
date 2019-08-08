@@ -56,8 +56,8 @@ extension AppDelegate {
         window?.rootViewController = tabBarVC
     }
     
-    func navigationController(with rootViewController: UIViewController) -> SFSNavigationController {
-        let navigationController = SFSNavigationController(rootViewController: rootViewController)
+    func navigationController(with rootViewController: UIViewController) -> UINavigationController {
+        let navigationController = SFNavigationController(rootViewController: rootViewController)
         navigationController.navigationBar.shadowImage = UIImage()
         navigationController.navigationBar.isTranslucent = false
         let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
@@ -68,7 +68,7 @@ extension AppDelegate {
     }
 }
 
-class SFSNavigationController: ASNavigationController {
+class SFNavigationController: ASNavigationController {
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
