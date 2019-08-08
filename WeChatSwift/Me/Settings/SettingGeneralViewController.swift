@@ -77,6 +77,9 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
         case .backgroundImage:
             let backgroundEntranceVC = ChatRoomBackgroundEntranceViewController(isFromGeneralSettings: true)
             navigationController?.pushViewController(backgroundEntranceVC, animated: true)
+        case .files:
+            let fileVC = SettingFilesViewController()
+            navigationController?.pushViewController(fileVC, animated: true)
         case .emoticon:
             let emoticonManageVC = EmoticonManageViewController()
             navigationController?.pushViewController(emoticonManageVC, animated: true)

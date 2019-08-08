@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A30347F222FCE868003ECF82 /* SettingFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30347F122FCE868003ECF82 /* SettingFilesViewController.swift */; };
 		A31057D422E852FA00856D71 /* JSB_S.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D122E852F900856D71 /* JSB_S.pic */; };
 		A31057D522E852FA00856D71 /* JSB_J.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D222E852F900856D71 /* JSB_J.pic */; };
 		A31057D622E852FA00856D71 /* JSB_B.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D322E852F900856D71 /* JSB_B.pic */; };
@@ -266,6 +267,7 @@
 
 /* Begin PBXFileReference section */
 		04841C8B18BE984EE8C1B6BB /* Pods-WeChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A30347F122FCE868003ECF82 /* SettingFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFilesViewController.swift; sourceTree = "<group>"; };
 		A31057D122E852F900856D71 /* JSB_S.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_S.pic; sourceTree = "<group>"; };
 		A31057D222E852F900856D71 /* JSB_J.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_J.pic; sourceTree = "<group>"; };
 		A31057D322E852F900856D71 /* JSB_B.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_B.pic; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 				A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */,
 				A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */,
 				A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */,
+				A30347F122FCE868003ECF82 /* SettingFilesViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1400,6 +1403,7 @@
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */,
+				A30347F222FCE868003ECF82 /* SettingFilesViewController.swift in Sources */,
 				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
 				A37FFB6622EE8E740001DD27 /* MinimizationTransitionController.swift in Sources */,
 				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,

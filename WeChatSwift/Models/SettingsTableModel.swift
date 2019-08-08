@@ -133,4 +133,12 @@ extension SettingGeneral: WCTableCellModel {
     var wc_image: UIImage? { return nil }
     
     var wc_title: String { return title }
+    
+    var wc_showSwitch: Bool {
+        return self == .earmode
+    }
+    
+    var wc_switchValue: Bool {
+        return true
+    }
 }
