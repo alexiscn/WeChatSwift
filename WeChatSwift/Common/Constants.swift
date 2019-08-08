@@ -34,4 +34,6 @@ struct Constants {
 
     /// 收付款的使用说明URL
     static let payHelpURL = URL(string: "https://wx.gtimg.com/action/shuaka/help.shtml")
+    
+    static let arrowImage = UIImage.SVGImage(named: "icons_outlined_arrow")
 }

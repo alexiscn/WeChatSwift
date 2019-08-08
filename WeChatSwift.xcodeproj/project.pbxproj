@@ -229,6 +229,9 @@
 		A3CCEDDF22FBF040008BE41D /* ShakeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDDE22FBF040008BE41D /* ShakeSettingViewController.swift */; };
 		A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE022FBF0AF008BE41D /* ShakeMessageListViewController.swift */; };
 		A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE222FBF217008BE41D /* ShakeTypeBarNode.swift */; };
+		A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE422FC066C008BE41D /* ShakeSettingCellNode.swift */; };
+		A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE622FC0C50008BE41D /* ShakeType.swift */; };
+		A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */; };
 		A3D447A822F91AD60037D083 /* UINavigationBar+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */; };
 		A3D447AA22F91B120037D083 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A922F91B120037D083 /* UIViewController+Transition.swift */; };
 		A3D447AC22F928080037D083 /* UINavigationController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */; };
@@ -492,6 +495,9 @@
 		A3CCEDDE22FBF040008BE41D /* ShakeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeSettingViewController.swift; sourceTree = "<group>"; };
 		A3CCEDE022FBF0AF008BE41D /* ShakeMessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeMessageListViewController.swift; sourceTree = "<group>"; };
 		A3CCEDE222FBF217008BE41D /* ShakeTypeBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeTypeBarNode.swift; sourceTree = "<group>"; };
+		A3CCEDE422FC066C008BE41D /* ShakeSettingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeSettingCellNode.swift; sourceTree = "<group>"; };
+		A3CCEDE622FC0C50008BE41D /* ShakeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeType.swift; sourceTree = "<group>"; };
+		A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeSettingItem.swift; sourceTree = "<group>"; };
 		A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Transition.swift"; sourceTree = "<group>"; };
 		A3D447A922F91B120037D083 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Transition.swift"; sourceTree = "<group>"; };
@@ -1146,7 +1152,10 @@
 				A3CCEDDC22FBEED3008BE41D /* ShakeViewController.swift */,
 				A3CCEDE222FBF217008BE41D /* ShakeTypeBarNode.swift */,
 				A3CCEDDE22FBF040008BE41D /* ShakeSettingViewController.swift */,
+				A3CCEDE422FC066C008BE41D /* ShakeSettingCellNode.swift */,
 				A3CCEDE022FBF0AF008BE41D /* ShakeMessageListViewController.swift */,
+				A3CCEDE622FC0C50008BE41D /* ShakeType.swift */,
+				A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */,
 			);
 			path = Shake;
 			sourceTree = "<group>";
@@ -1394,6 +1403,7 @@
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
+				A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */,
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
@@ -1523,9 +1533,11 @@
 				A374864422D44C56002EEC4F /* VideoContentNode.swift in Sources */,
 				A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */,
 				A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */,
+				A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */,
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
 				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
+				A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
 				A34C7B0222F829FB00652B4F /* WCTableCellNode.swift in Sources */,

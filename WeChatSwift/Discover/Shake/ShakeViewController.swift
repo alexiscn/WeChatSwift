@@ -14,13 +14,29 @@ class ShakeViewController: ASViewController<ASDisplayNode> {
     
     private let shakeLogoDownNode = ASImageNode()
     
+    private let hiddenImageNode = ASImageNode()
+    
     private let shakeTypeBar: ShakeTypeBarNode
     
-    init() {
+    private var animating: Bool = false
+    
+    init(gender: Bool = true) {
         
         shakeTypeBar = ShakeTypeBarNode(shakes: [.people, .music, .tv])
         
+        hiddenImageNode.image = UIImage(named: "ShakeHideImg_women_320x320_")
+        
+        if gender {
+            shakeLogoUpNode.image = UIImage(named: "Shake_Logo_Up_150x83_")
+            shakeLogoDownNode.image = UIImage(named: "Shake_Logo_Down_150x82_")
+        } else {
+            shakeLogoUpNode.image = UIImage(named: "Shake_Logo_Female_Up_150x83_")
+            shakeLogoDownNode.image = UIImage(named: "Shake_Logo_Female_Down_150x82_")
+        }
+        
         super.init(node: ASDisplayNode())
+        
+        node.addSubnode(hiddenImageNode)
         
         node.addSubnode(shakeTypeBar)
     }
@@ -42,6 +58,7 @@ class ShakeViewController: ASViewController<ASDisplayNode> {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        shakeTypeBar.frame = CGRect(x: 0, y: view.bounds.height - 70 - Constants.bottomInset, width: view.bounds.width, height: 70)
     }
     
     override var canBecomeFirstResponder: Bool {
