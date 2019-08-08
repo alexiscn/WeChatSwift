@@ -222,6 +222,9 @@
 		A3CCE02522DDECFA0003DC25 /* red_envelopes_top_bg.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE02222DDECF90003DC25 /* red_envelopes_top_bg.svg */; };
 		A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE02622DDED1F0003DC25 /* VOIPContentNode.swift */; };
 		A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE02822DDEEBC0003DC25 /* AppURLContentNode.swift */; };
+		A3CCEDD622FBBD00008BE41D /* NearbyPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDD522FBBD00008BE41D /* NearbyPeopleViewController.swift */; };
+		A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDD722FBBD15008BE41D /* NearbyPeopleCellNode.swift */; };
+		A3CCEDDA22FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDD922FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift */; };
 		A3D447A822F91AD60037D083 /* UINavigationBar+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */; };
 		A3D447AA22F91B120037D083 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A922F91B120037D083 /* UIViewController+Transition.swift */; };
 		A3D447AC22F928080037D083 /* UINavigationController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */; };
@@ -478,6 +481,9 @@
 		A3CCE02222DDECF90003DC25 /* red_envelopes_top_bg.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = red_envelopes_top_bg.svg; sourceTree = "<group>"; };
 		A3CCE02622DDED1F0003DC25 /* VOIPContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOIPContentNode.swift; sourceTree = "<group>"; };
 		A3CCE02822DDEEBC0003DC25 /* AppURLContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURLContentNode.swift; sourceTree = "<group>"; };
+		A3CCEDD522FBBD00008BE41D /* NearbyPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPeopleViewController.swift; sourceTree = "<group>"; };
+		A3CCEDD722FBBD15008BE41D /* NearbyPeopleCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPeopleCellNode.swift; sourceTree = "<group>"; };
+		A3CCEDD922FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPeopleErrorPlaceholder.swift; sourceTree = "<group>"; };
 		A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Transition.swift"; sourceTree = "<group>"; };
 		A3D447A922F91B120037D083 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Transition.swift"; sourceTree = "<group>"; };
@@ -641,6 +647,7 @@
 		A33DB2E522CCC9F200A11776 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				A3CCEDD422FBBCC9008BE41D /* NearbyPeople */,
 				A33DB2E622CCC9FE00A11776 /* Moments */,
 				A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */,
 				A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */,
@@ -1114,6 +1121,16 @@
 			path = Avatars;
 			sourceTree = "<group>";
 		};
+		A3CCEDD422FBBCC9008BE41D /* NearbyPeople */ = {
+			isa = PBXGroup;
+			children = (
+				A3CCEDD522FBBD00008BE41D /* NearbyPeopleViewController.swift */,
+				A3CCEDD722FBBD15008BE41D /* NearbyPeopleCellNode.swift */,
+				A3CCEDD922FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift */,
+			);
+			path = NearbyPeople;
+			sourceTree = "<group>";
+		};
 		A3FB0AAC22F407BE00116329 /* Emoticons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1405,6 +1422,7 @@
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,
+				A3CCEDD622FBBD00008BE41D /* NearbyPeopleViewController.swift in Sources */,
 				A374864C22D44D34002EEC4F /* UnknownContentNode.swift in Sources */,
 				A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */,
 				A33DB2F522CCD92E00A11776 /* Colors.swift in Sources */,
@@ -1451,6 +1469,7 @@
 				A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */,
+				A3CCEDDA22FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
 				A3FB0ABD22F43B2A00116329 /* ContactTagListPlacehoderNode.swift in Sources */,
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
@@ -1471,6 +1490,7 @@
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
+				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
 				A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */,
 				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,
