@@ -83,6 +83,9 @@ extension DiscoverViewController: ASTableDelegate, ASTableDataSource {
         switch model.type {
         case .moment:
             navigationController?.pushViewController(momentsVC, animated: true)
+        case .shake:
+            let shakeVC = ShakeViewController()
+            navigationController?.pushViewController(shakeVC, animated: true)
         case .nearby:
             let nearbyPeopleVC = NearbyPeopleViewController()
             navigationController?.pushViewController(nearbyPeopleVC, animated: true)

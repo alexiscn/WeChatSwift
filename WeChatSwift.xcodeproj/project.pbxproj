@@ -225,6 +225,10 @@
 		A3CCEDD622FBBD00008BE41D /* NearbyPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDD522FBBD00008BE41D /* NearbyPeopleViewController.swift */; };
 		A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDD722FBBD15008BE41D /* NearbyPeopleCellNode.swift */; };
 		A3CCEDDA22FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDD922FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift */; };
+		A3CCEDDD22FBEED3008BE41D /* ShakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDDC22FBEED3008BE41D /* ShakeViewController.swift */; };
+		A3CCEDDF22FBF040008BE41D /* ShakeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDDE22FBF040008BE41D /* ShakeSettingViewController.swift */; };
+		A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE022FBF0AF008BE41D /* ShakeMessageListViewController.swift */; };
+		A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE222FBF217008BE41D /* ShakeTypeBarNode.swift */; };
 		A3D447A822F91AD60037D083 /* UINavigationBar+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */; };
 		A3D447AA22F91B120037D083 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447A922F91B120037D083 /* UIViewController+Transition.swift */; };
 		A3D447AC22F928080037D083 /* UINavigationController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */; };
@@ -484,6 +488,10 @@
 		A3CCEDD522FBBD00008BE41D /* NearbyPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPeopleViewController.swift; sourceTree = "<group>"; };
 		A3CCEDD722FBBD15008BE41D /* NearbyPeopleCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPeopleCellNode.swift; sourceTree = "<group>"; };
 		A3CCEDD922FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPeopleErrorPlaceholder.swift; sourceTree = "<group>"; };
+		A3CCEDDC22FBEED3008BE41D /* ShakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeViewController.swift; sourceTree = "<group>"; };
+		A3CCEDDE22FBF040008BE41D /* ShakeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeSettingViewController.swift; sourceTree = "<group>"; };
+		A3CCEDE022FBF0AF008BE41D /* ShakeMessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeMessageListViewController.swift; sourceTree = "<group>"; };
+		A3CCEDE222FBF217008BE41D /* ShakeTypeBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeTypeBarNode.swift; sourceTree = "<group>"; };
 		A3D447A722F91AD60037D083 /* UINavigationBar+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Transition.swift"; sourceTree = "<group>"; };
 		A3D447A922F91B120037D083 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		A3D447AB22F928080037D083 /* UINavigationController+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Transition.swift"; sourceTree = "<group>"; };
@@ -647,6 +655,7 @@
 		A33DB2E522CCC9F200A11776 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				A3CCEDDB22FBEEC3008BE41D /* Shake */,
 				A3CCEDD422FBBCC9008BE41D /* NearbyPeople */,
 				A33DB2E622CCC9FE00A11776 /* Moments */,
 				A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */,
@@ -1131,6 +1140,17 @@
 			path = NearbyPeople;
 			sourceTree = "<group>";
 		};
+		A3CCEDDB22FBEEC3008BE41D /* Shake */ = {
+			isa = PBXGroup;
+			children = (
+				A3CCEDDC22FBEED3008BE41D /* ShakeViewController.swift */,
+				A3CCEDE222FBF217008BE41D /* ShakeTypeBarNode.swift */,
+				A3CCEDDE22FBF040008BE41D /* ShakeSettingViewController.swift */,
+				A3CCEDE022FBF0AF008BE41D /* ShakeMessageListViewController.swift */,
+			);
+			path = Shake;
+			sourceTree = "<group>";
+		};
 		A3FB0AAC22F407BE00116329 /* Emoticons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1413,6 +1433,7 @@
 				A373D3D222F65A5300451515 /* UserSettings.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
+				A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */,
 				A3618A9122F95A42000ACF4D /* MMNavigationControllerDelegate.swift in Sources */,
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
@@ -1463,6 +1484,7 @@
 				A3FB0AA922F4057900116329 /* MeHeaderNode.swift in Sources */,
 				A3D447A822F91AD60037D083 /* UINavigationBar+Transition.swift in Sources */,
 				A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */,
+				A3CCEDDF22FBF040008BE41D /* ShakeSettingViewController.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
@@ -1486,6 +1508,7 @@
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
 				A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
+				A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
@@ -1519,6 +1542,7 @@
 				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
 				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,
+				A3CCEDDD22FBEED3008BE41D /* ShakeViewController.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,
 			);
