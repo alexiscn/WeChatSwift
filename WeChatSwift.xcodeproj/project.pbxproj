@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A30347F222FCE868003ECF82 /* SettingFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30347F122FCE868003ECF82 /* SettingFilesViewController.swift */; };
+		A30347F222FCE868003ECF82 /* SettingAutoDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30347F122FCE868003ECF82 /* SettingAutoDownloadViewController.swift */; };
 		A31057D422E852FA00856D71 /* JSB_S.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D122E852F900856D71 /* JSB_S.pic */; };
 		A31057D522E852FA00856D71 /* JSB_J.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D222E852F900856D71 /* JSB_J.pic */; };
 		A31057D622E852FA00856D71 /* JSB_B.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D322E852F900856D71 /* JSB_B.pic */; };
@@ -42,6 +42,7 @@
 		A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1622F2C81C0099927A /* MomentDataSource.swift */; };
 		A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */; };
 		A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */; };
+		A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618922FD0A6400B767F1 /* SettingPluginsViewController.swift */; };
 		A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2D322CCC80F00A11776 /* AppDelegate.swift */; };
 		A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DA22CCC81100A11776 /* Assets.xcassets */; };
 		A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DC22CCC81100A11776 /* LaunchScreen.storyboard */; };
@@ -267,7 +268,7 @@
 
 /* Begin PBXFileReference section */
 		04841C8B18BE984EE8C1B6BB /* Pods-WeChatSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeChatSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift.release.xcconfig"; sourceTree = "<group>"; };
-		A30347F122FCE868003ECF82 /* SettingFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFilesViewController.swift; sourceTree = "<group>"; };
+		A30347F122FCE868003ECF82 /* SettingAutoDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAutoDownloadViewController.swift; sourceTree = "<group>"; };
 		A31057D122E852F900856D71 /* JSB_S.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_S.pic; sourceTree = "<group>"; };
 		A31057D222E852F900856D71 /* JSB_J.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_J.pic; sourceTree = "<group>"; };
 		A31057D322E852F900856D71 /* JSB_B.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_B.pic; sourceTree = "<group>"; };
@@ -302,6 +303,7 @@
 		A33D2B1622F2C81C0099927A /* MomentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDataSource.swift; sourceTree = "<group>"; };
 		A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPushAnimator.swift; sourceTree = "<group>"; };
 		A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPopAnimator.swift; sourceTree = "<group>"; };
+		A33D618922FD0A6400B767F1 /* SettingPluginsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPluginsViewController.swift; sourceTree = "<group>"; };
 		A33DB2D022CCC80F00A11776 /* WeChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33DB2D322CCC80F00A11776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A33DB2DA22CCC81100A11776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -857,7 +859,8 @@
 				A3FB0AC422F45B5700116329 /* SettingDiscoverEntranceCellNode.swift */,
 				A373D3DA22F6A72300451515 /* SettingFontSizeViewController.swift */,
 				A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */,
-				A30347F122FCE868003ECF82 /* SettingFilesViewController.swift */,
+				A30347F122FCE868003ECF82 /* SettingAutoDownloadViewController.swift */,
+				A33D618922FD0A6400B767F1 /* SettingPluginsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1403,7 +1406,7 @@
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */,
-				A30347F222FCE868003ECF82 /* SettingFilesViewController.swift in Sources */,
+				A30347F222FCE868003ECF82 /* SettingAutoDownloadViewController.swift in Sources */,
 				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
 				A37FFB6622EE8E740001DD27 /* MinimizationTransitionController.swift in Sources */,
 				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,
@@ -1520,6 +1523,7 @@
 				A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */,
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
 				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
+				A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */,
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
 				A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,

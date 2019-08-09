@@ -87,7 +87,7 @@ enum SettingGeneral {
     case files
     case earmode
     case discover
-    case assistant
+    case plugins
     case backup
     case storage
     case clearChatHistory
@@ -108,7 +108,7 @@ enum SettingGeneral {
             return "听筒模式"
         case .discover:
             return "发现页管理"
-        case .assistant:
+        case .plugins:
             return "辅助功能"
         case .backup:
             return "聊天记录备份与迁移"
@@ -140,5 +140,87 @@ extension SettingGeneral: WCTableCellModel {
     
     var wc_switchValue: Bool {
         return true
+    }
+}
+
+
+struct SettingPluginSection {
+    var title: String
+    var items: [SettingPluginItem]
+}
+
+enum SettingPluginItem: WCTableCellModel {
+    case groupMessageAssistant
+    case news
+    case weSport
+    case qqMail
+    
+    var wc_title: String {
+        switch self {
+        case .groupMessageAssistant:
+            return "群发助手"
+        case .news:
+            return "腾讯新闻"
+        case .weSport:
+            return "微信运动"
+        case .qqMail:
+            return "QQ邮箱提醒"
+        }
+    }
+    
+    var wc_image: UIImage? {
+        switch self {
+        case .groupMessageAssistant:
+            return UIImage(named: "Plugins_groupsms_29x29_")
+        case .news:
+            return UIImage(named: "Plugins_News_29x29_")
+        case .weSport:
+            return UIImage(named: "Plugins_WeSport_29x29_")
+        case .qqMail:
+            return UIImage(named: "Plugins_QQMail_29x29_")
+        }
+    }
+}
+
+
+struct SettingAutoDownloadSection {
+    var title: String
+    var items: [SettingAutoDownloadModel]
+}
+
+enum SettingAutoDownloadModel: WCTableCellModel {
+    case automaticallyDownload(Bool)
+    case photoSaveToPhone(Bool)
+    case videoSaveToPhone(Bool)
+    case automaticallyPlayWWAN(Bool)
+    
+    var wc_title: String {
+        switch self {
+        case .automaticallyDownload(_):
+            return "自动下载"
+        case .photoSaveToPhone(_):
+            return "照片"
+        case .videoSaveToPhone(_):
+            return "视频"
+        case .automaticallyPlayWWAN(_):
+            return "移动网络下视频自动播放"
+        }
+    }
+    
+    var wc_showSwitch: Bool {
+        return true
+    }
+    
+    var wc_switchValue: Bool {
+        switch self {
+        case .automaticallyDownload(let isOn):
+            return isOn
+        case .photoSaveToPhone(let isOn):
+            return isOn
+        case .videoSaveToPhone(let isOn):
+            return isOn
+        case .automaticallyPlayWWAN(let isOn):
+            return isOn
+        }
     }
 }

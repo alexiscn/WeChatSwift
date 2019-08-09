@@ -37,7 +37,7 @@ class SettingGeneralViewController: ASViewController<ASTableNode> {
         dataSource.append(SettingGeneralGroup(items: [.language]))
         dataSource.append(SettingGeneralGroup(items: [.font, .backgroundImage, .emoticon, .files]))
         dataSource.append(SettingGeneralGroup(items: [.earmode]))
-        dataSource.append(SettingGeneralGroup(items: [.discover, .assistant]))
+        dataSource.append(SettingGeneralGroup(items: [.discover, .plugins]))
         dataSource.append(SettingGeneralGroup(items: [.backup, .storage]))
         dataSource.append(SettingGeneralGroup(items: [.clearChatHistory]))
     }
@@ -78,14 +78,17 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
             let backgroundEntranceVC = ChatRoomBackgroundEntranceViewController(isFromGeneralSettings: true)
             navigationController?.pushViewController(backgroundEntranceVC, animated: true)
         case .files:
-            let fileVC = SettingFilesViewController()
-            navigationController?.pushViewController(fileVC, animated: true)
+            let autoDownloadVC = SettingAutoDownloadViewController()
+            navigationController?.pushViewController(autoDownloadVC, animated: true)
         case .emoticon:
             let emoticonManageVC = EmoticonManageViewController()
             navigationController?.pushViewController(emoticonManageVC, animated: true)
         case .discover:
             let discoverEntranceVC = SettingDiscoverEntranceViewController()
             navigationController?.pushViewController(discoverEntranceVC, animated: true)
+        case .plugins:
+            let pluginsVC = SettingPluginsViewController()
+            navigationController?.pushViewController(pluginsVC, animated: true)
         default:
             break
         }
