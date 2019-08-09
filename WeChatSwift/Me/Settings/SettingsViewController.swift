@@ -104,6 +104,9 @@ extension SettingsViewController: ASTableDelegate, ASTableDataSource {
         case .general:
             let generalVC = SettingGeneralViewController()
             navigationController?.pushViewController(generalVC, animated: true)
+        case .plugins:
+            let labVC = SettingLabViewController()
+            navigationController?.pushViewController(labVC, animated: true)
         default:
             break
         }

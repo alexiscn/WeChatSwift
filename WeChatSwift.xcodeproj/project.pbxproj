@@ -43,6 +43,9 @@
 		A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */; };
 		A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */; };
 		A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618922FD0A6400B767F1 /* SettingPluginsViewController.swift */; };
+		A33D618C22FD142400B767F1 /* SettingLabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618B22FD142400B767F1 /* SettingLabViewController.swift */; };
+		A33D618E22FD15DF00B767F1 /* SettingLabHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */; };
+		A33D619022FD174E00B767F1 /* SettingLabFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */; };
 		A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2D322CCC80F00A11776 /* AppDelegate.swift */; };
 		A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DA22CCC81100A11776 /* Assets.xcassets */; };
 		A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DC22CCC81100A11776 /* LaunchScreen.storyboard */; };
@@ -304,6 +307,9 @@
 		A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPushAnimator.swift; sourceTree = "<group>"; };
 		A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPopAnimator.swift; sourceTree = "<group>"; };
 		A33D618922FD0A6400B767F1 /* SettingPluginsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPluginsViewController.swift; sourceTree = "<group>"; };
+		A33D618B22FD142400B767F1 /* SettingLabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabViewController.swift; sourceTree = "<group>"; };
+		A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabHeaderNode.swift; sourceTree = "<group>"; };
+		A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabFooterNode.swift; sourceTree = "<group>"; };
 		A33DB2D022CCC80F00A11776 /* WeChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33DB2D322CCC80F00A11776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A33DB2DA22CCC81100A11776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -861,6 +867,9 @@
 				A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */,
 				A30347F122FCE868003ECF82 /* SettingAutoDownloadViewController.swift */,
 				A33D618922FD0A6400B767F1 /* SettingPluginsViewController.swift */,
+				A33D618B22FD142400B767F1 /* SettingLabViewController.swift */,
+				A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */,
+				A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1491,6 +1500,7 @@
 				A3CCEDDA22FBC238008BE41D /* NearbyPeopleErrorPlaceholder.swift in Sources */,
 				A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */,
 				A3FB0ABD22F43B2A00116329 /* ContactTagListPlacehoderNode.swift in Sources */,
+				A33D619022FD174E00B767F1 /* SettingLabFooterNode.swift in Sources */,
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
@@ -1503,6 +1513,7 @@
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
+				A33D618E22FD15DF00B767F1 /* SettingLabHeaderNode.swift in Sources */,
 				A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */,
@@ -1543,6 +1554,7 @@
 				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,
 				A3CCEDDD22FBEED3008BE41D /* ShakeViewController.swift in Sources */,
+				A33D618C22FD142400B767F1 /* SettingLabViewController.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,
 			);
