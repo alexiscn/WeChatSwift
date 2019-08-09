@@ -8,14 +8,17 @@
 
 import AsyncDisplayKit
 
-class SettingsViewController: ASViewController<ASTableNode> {
+class SettingsViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingsTableGroupModel] = []
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -26,10 +29,11 @@ class SettingsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.view.separatorStyle = .none
+        tableNode.frame = view.bounds
         navigationItem.title = "设置"
         setupDataSource()
-        node.reloadData()
+        tableNode.reloadData()
     }
     
     private func setupDataSource() {
