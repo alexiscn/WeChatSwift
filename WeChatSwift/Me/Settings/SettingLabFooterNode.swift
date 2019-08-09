@@ -14,6 +14,8 @@ class SettingLabFooterNode: ASDisplayNode {
     
     private let linkNode = ASButtonNode()
     
+    var linkButtonHandler: RelayCommand?
+    
     override init() {
         super.init()
         automaticallyManagesSubnodes = true
@@ -23,14 +25,33 @@ class SettingLabFooterNode: ASDisplayNode {
             .foregroundColor: UIColor.white
             ])
         
+        let buttonTitle = NSAttributedString(string: "《微信插件使用须知及协议》", attributes: [
+            .font: UIFont.systemFont(ofSize: 13),
+            .foregroundColor: Colors.DEFAULT_LINK_COLOR
+            ])
+        linkNode.setAttributedTitle(buttonTitle, for: .normal)
     }
     
     override func didLoad() {
         super.didLoad()
+        
+        linkNode.addTarget(self, action: #selector(linkButtonClicked), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func linkButtonClicked() {
+        linkButtonHandler?()
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASLayoutSpec()
+        
+        let stack = ASStackLayoutSpec.vertical()
+        stack.spacing = 5
+        stack.alignItems = .center
+        stack.children = [descNode, linkNode]
+        stack.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 38)
+        stack.style.layoutPosition = CGPoint(x: 0, y: 45)
+        
+        return ASAbsoluteLayoutSpec(children: [stack])
     }
     
 }

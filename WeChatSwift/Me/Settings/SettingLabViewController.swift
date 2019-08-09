@@ -32,6 +32,12 @@ class SettingLabViewController: ASViewController<ASTableNode> {
         headerView.addSubnode(headerNode)
         node.view.tableHeaderView = headerView
         
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 117 + Constants.bottomInset))
+        let footerNode = SettingLabFooterNode()
+        footerNode.frame = footerView.bounds
+        footerView.addSubnode(footerNode)
+        node.view.tableFooterView = footerView
+        
         navigationItem.title = "插件"
     }
     

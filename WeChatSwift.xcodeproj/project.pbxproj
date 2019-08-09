@@ -46,6 +46,8 @@
 		A33D618C22FD142400B767F1 /* SettingLabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618B22FD142400B767F1 /* SettingLabViewController.swift */; };
 		A33D618E22FD15DF00B767F1 /* SettingLabHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */; };
 		A33D619022FD174E00B767F1 /* SettingLabFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */; };
+		A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D619122FD365A00B767F1 /* SettingPrivacyViewController.swift */; };
+		A33D619422FD499D00B767F1 /* SettingPrivacyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D619322FD499D00B767F1 /* SettingPrivacyModel.swift */; };
 		A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2D322CCC80F00A11776 /* AppDelegate.swift */; };
 		A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DA22CCC81100A11776 /* Assets.xcassets */; };
 		A33DB2DE22CCC81100A11776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A33DB2DC22CCC81100A11776 /* LaunchScreen.storyboard */; };
@@ -310,6 +312,8 @@
 		A33D618B22FD142400B767F1 /* SettingLabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabViewController.swift; sourceTree = "<group>"; };
 		A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabHeaderNode.swift; sourceTree = "<group>"; };
 		A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabFooterNode.swift; sourceTree = "<group>"; };
+		A33D619122FD365A00B767F1 /* SettingPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPrivacyViewController.swift; sourceTree = "<group>"; };
+		A33D619322FD499D00B767F1 /* SettingPrivacyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPrivacyModel.swift; sourceTree = "<group>"; };
 		A33DB2D022CCC80F00A11776 /* WeChatSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeChatSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33DB2D322CCC80F00A11776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A33DB2DA22CCC81100A11776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -870,6 +874,8 @@
 				A33D618B22FD142400B767F1 /* SettingLabViewController.swift */,
 				A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */,
 				A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */,
+				A33D619122FD365A00B767F1 /* SettingPrivacyViewController.swift */,
+				A33D619322FD499D00B767F1 /* SettingPrivacyModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1452,6 +1458,7 @@
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,
+				A33D619422FD499D00B767F1 /* SettingPrivacyModel.swift in Sources */,
 				A3CCEDD622FBBD00008BE41D /* NearbyPeopleViewController.swift in Sources */,
 				A374864C22D44D34002EEC4F /* UnknownContentNode.swift in Sources */,
 				A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */,
@@ -1522,6 +1529,7 @@
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
+				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
 				A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */,
 				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,

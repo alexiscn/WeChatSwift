@@ -101,6 +101,9 @@ extension SettingsViewController: ASTableDelegate, ASTableDataSource {
         case .about:
             let aboutVC = AboutViewController()
             navigationController?.pushViewController(aboutVC, animated: true)
+        case .privacy:
+            let privacyVC = SettingPrivacyViewController()
+            navigationController?.pushViewController(privacyVC, animated: true)
         case .general:
             let generalVC = SettingGeneralViewController()
             navigationController?.pushViewController(generalVC, animated: true)
