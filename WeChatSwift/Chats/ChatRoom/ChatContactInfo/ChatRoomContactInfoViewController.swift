@@ -8,16 +8,18 @@
 
 import AsyncDisplayKit
 
-class ChatRoomContactInfoViewController: ASViewController<ASTableNode> {
-    
+class ChatRoomContactInfoViewController: ASViewController<ASDisplayNode> {
+    private let tableNode = ASTableNode(style: .grouped)
     private var dataSource: [ChatRoomContactInfoSection] = []
     private var members: [AddChatRoomMemberItem] = []
     private let contact: Contact
     init(contact: Contact) {
         self.contact = contact
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.dataSource = self
+        tableNode.delegate = self
         setupDataSource()
         setupMembers()
     }
@@ -30,7 +32,8 @@ class ChatRoomContactInfoViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
         navigationItem.title = "聊天详情"
     }
     

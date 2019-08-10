@@ -8,14 +8,16 @@
 
 import AsyncDisplayKit
 
-class SettingPrivacyViewController: ASViewController<ASTableNode> {
+class SettingPrivacyViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingPrivacySection] = []
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        tableNode.dataSource = self
+        tableNode.delegate = self
         setupDataSource()
     }
     
@@ -27,7 +29,8 @@ class SettingPrivacyViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
         
         navigationItem.title = "隐私"
     }

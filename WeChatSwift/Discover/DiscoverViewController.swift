@@ -8,7 +8,9 @@
 
 import AsyncDisplayKit
 
-class DiscoverViewController: ASViewController<ASTableNode> {
+class DiscoverViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [DiscoverSection] = []
     
@@ -17,7 +19,11 @@ class DiscoverViewController: ASViewController<ASTableNode> {
     }()
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         setupDataSource()
     }
     
@@ -29,11 +35,8 @@ class DiscoverViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        
-        node.delegate = self
-        node.dataSource = self
-        node.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        node.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
         
         navigationItem.title = "发现"
     }

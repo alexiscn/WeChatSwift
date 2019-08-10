@@ -8,14 +8,17 @@
 
 import AsyncDisplayKit
 
-class MultiSelectContactsViewController: ASViewController<ASTableNode> {
+class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var doneButton: UIButton?
     
     init(string: String) {
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,6 +29,7 @@ class MultiSelectContactsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        tableNode.frame = view.bounds
         navigationItem.title = "选择联系人"
         
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))

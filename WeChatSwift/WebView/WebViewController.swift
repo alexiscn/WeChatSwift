@@ -50,7 +50,7 @@ class WebViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
+        let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
     }
     

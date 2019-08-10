@@ -42,7 +42,7 @@ extension AppDelegate {
         
         let viewControllers = [chatNav, contactsNav, discoverNav, meNav]
         tabBarVC.viewControllers = viewControllers
-        for vc in viewControllers {
+        for vc in [chatsVC, contactsVC, discoverVC, meVC] {
             vc.tabBarItem.setTitleTextAttributes([
                 .foregroundColor: Colors.tintColor,
                 .font: UIFont.systemFont(ofSize: 10.5, weight: .thin)], for: .selected)
@@ -57,13 +57,13 @@ extension AppDelegate {
     }
     
     func navigationController(with rootViewController: UIViewController) -> UINavigationController {
-        let navigationController = SFNavigationController(rootViewController: rootViewController)
-        navigationController.navigationBar.shadowImage = UIImage()
-        navigationController.navigationBar.isTranslucent = false
-        let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
-        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
-        navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
-        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
+        let navigationController = MMNavigationController(rootViewController: rootViewController)
+//        navigationController.navigationBar.shadowImage = UIImage()
+//        navigationController.navigationBar.isTranslucent = false
+//        let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
+//        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
+//        navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
+//        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
         return navigationController
     }
 }

@@ -8,14 +8,17 @@
 
 import AsyncDisplayKit
 
-class SettingDiscoverEntranceViewController: ASViewController<ASTableNode> {
+class SettingDiscoverEntranceViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode()
     
     private var dataSource: [DiscoverModel] = []
     
     init() {
-        super.init(node: ASTableNode(style: .plain))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
         dataSource = MockFactory.shared.discoverEntrance().flatMap { return $0.models }
     }
     
@@ -27,8 +30,9 @@ class SettingDiscoverEntranceViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
-        node.view.allowsSelection = false
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
+        tableNode.view.allowsSelection = false
         navigationItem.title = "发现页管理"
         
         setupTableHeader()
@@ -44,7 +48,7 @@ class SettingDiscoverEntranceViewController: ASViewController<ASTableNode> {
         headerLabel.font = UIFont.systemFont(ofSize: 14)
         headerLabel.frame = CGRect(x: 16, y: 16, width: headerView.bounds.width - 32, height: 17)
         headerView.addSubview(headerLabel)
-        node.view.tableHeaderView = headerView
+        tableNode.view.tableHeaderView = headerView
     }
     
     private func setupTableFooter() {
@@ -56,7 +60,7 @@ class SettingDiscoverEntranceViewController: ASViewController<ASTableNode> {
         footerLabel.font = UIFont.systemFont(ofSize: 14)
         footerLabel.frame = CGRect(x: 16, y: 4, width: footerView.bounds.width - 32, height: 34)
         footerView.addSubview(footerLabel)
-        node.view.tableFooterView = footerView
+        tableNode.view.tableFooterView = footerView
     }
 }
 

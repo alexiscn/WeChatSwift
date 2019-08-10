@@ -51,7 +51,8 @@ class ShakeViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = UIColor(hexString: "#2E3132")
         
         navigationItem.title = "摇一摇"
-        let settingButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_setting"), style: .done, target: self, action: #selector(settingButtonClicked))
+        let image = UIImage.SVGImage(named: "icons_outlined_setting")?.withRenderingMode(.alwaysTemplate)
+        let settingButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(settingButtonClicked))
         navigationItem.rightBarButtonItem = settingButtonItem
     }
     
@@ -77,6 +78,23 @@ class ShakeViewController: ASViewController<ASDisplayNode> {
         super.motionEnded(motion, with: event)
     }
     
+    override var wc_navigationBarBackgroundColor: UIColor? {
+        return UIColor(hexString: "#2E3132")
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
+    override var wc_titleTextAttributes: [NSAttributedString.Key : Any]? {
+        return [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
+    override var wc_barTintColor: UIColor {
+        return UIColor.white
+    }
+    
+    override var wc_barBarTintColor: UIColor? {
+        return UIColor.white
+    }
 }
 
 // MARK: - Event Handlers

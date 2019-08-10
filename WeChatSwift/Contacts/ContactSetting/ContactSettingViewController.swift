@@ -8,15 +8,18 @@
 
 import AsyncDisplayKit
 
-class ContactSettingViewController: ASViewController<ASTableNode> {
+class ContactSettingViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private let contact: Contact
     
     init(contact: Contact) {
         self.contact = contact
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,6 +30,7 @@ class ContactSettingViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         navigationItem.title = "资料设置"
+        tableNode.frame = view.bounds
     }
     
 }

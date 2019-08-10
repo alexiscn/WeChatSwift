@@ -36,4 +36,6 @@ struct Constants {
     static let payHelpURL = URL(string: "https://wx.gtimg.com/action/shuaka/help.shtml")
     
     static let arrowImage = UIImage.SVGImage(named: "icons_outlined_arrow")
+    
+    static let moreImage = UIImage.SVGImage(named: "icons_filled_more")
 }

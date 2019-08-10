@@ -8,27 +8,30 @@
 
 import AsyncDisplayKit
 
-class ContactInfoViewController: ASViewController<ASTableNode> {
+class ContactInfoViewController: ASViewController<ASDisplayNode> {
     
     private let contact: Contact
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [ContactInfoGroup] = []
     
     init(contact: Contact) {
         self.contact = contact
-        super.init(node: ASTableNode(style: .grouped))
+        super.init(node: ASDisplayNode())
         setupDataSource()
-        node.dataSource = self
-        node.delegate = self
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
         
-        let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
+        let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
     }
     

@@ -61,7 +61,9 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     private func showMoreMenu() {
         if menuFloatView == nil {
-            menuFloatView = SessionMoreFrameFloatView(frame: view.bounds)
+            let y = Constants.statusBarHeight + 44
+            let frame = CGRect(x: 0, y: y, width: view.bounds.width, height: view.bounds.height - y)
+            menuFloatView = SessionMoreFrameFloatView(frame: frame)
             menuFloatView?.delegate = self
         }
         menuFloatView?.show(in: self.view)

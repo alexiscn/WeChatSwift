@@ -25,22 +25,6 @@ class WCNavigationController: UINavigationController {
     }
 }
 
-extension UIViewController {
-    
-    func titleLabel(_ title: String) -> UILabel {
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        titleLabel.textColor = UIColor(hexString: "#181818")
-        titleLabel.text = title
-        return titleLabel
-    }
-    
-    func setNavigationBarTitle(_ title: String) {
-        navigationItem.titleView = titleLabel(title)
-    }
-    
-}
-
 fileprivate class MMNavigationGestureRecognizerDelegate: NSObject, UIGestureRecognizerDelegate {
     fileprivate weak var navigationController: MMNavigationController?
     fileprivate init(navigationController: MMNavigationController) {
@@ -67,7 +51,8 @@ class MMNavigationController: UINavigationController {
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
-            let backButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_back"), style: .plain, target: self, action: #selector(backButtonClicked))
+            let backImage = UIImage.SVGImage(named: "icons_outlined_back")?.withRenderingMode(.alwaysTemplate)
+            let backButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backButtonClicked))
             viewController.navigationItem.leftBarButtonItem = backButtonItem
         }
         super.pushViewController(viewController, animated: animated)
@@ -75,5 +60,9 @@ class MMNavigationController: UINavigationController {
     
     @objc private func backButtonClicked() {
         popViewController(animated: true)
+    }
+    
+    override var childForStatusBarStyle: UIViewController? {
+        return topViewController
     }
 }

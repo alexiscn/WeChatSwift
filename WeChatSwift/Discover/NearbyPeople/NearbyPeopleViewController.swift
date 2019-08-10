@@ -10,16 +10,20 @@ import AsyncDisplayKit
 import WXActionSheet
 import CoreLocation
 
-class NearbyPeopleViewController: ASViewController<ASTableNode> {
+class NearbyPeopleViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .plain)
     
     private var dataSource: [NearbyPeople] = []
     
     private var errorPlaceholder: NearbyPeopleErrorPlaceholder?
     
     init() {
-        super.init(node: ASTableNode(style: .plain))
-        node.delegate = self
-        node.dataSource = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.delegate = self
+        tableNode.dataSource = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,10 +34,11 @@ class NearbyPeopleViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
         
         navigationItem.title = "附近的人"
-        let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
+        let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
     }
     

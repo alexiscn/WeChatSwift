@@ -8,10 +8,13 @@
 
 import AsyncDisplayKit
 
-class PayOfflinePayViewController: ASViewController<ASScrollNode> {
+class PayOfflinePayViewController: ASViewController<ASDisplayNode> {
+    
+    private let scrollNode = ASScrollNode()
     
     init() {
-        super.init(node: ASScrollNode())
+        super.init(node: ASDisplayNode())
+        node.addSubnode(scrollNode)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,6 +26,7 @@ class PayOfflinePayViewController: ASViewController<ASScrollNode> {
         
         node.backgroundColor = UIColor(hexString: "#439057")
         navigationItem.title = "收付款"
+        scrollNode.frame = view.bounds
         
         setupBottomButtons()
     }
@@ -49,8 +53,16 @@ class PayOfflinePayViewController: ASViewController<ASScrollNode> {
         }
         let height = CGFloat(actions.count) * (buttonHeight + Constants.lineHeight) - Constants.lineHeight
         containerNode.frame = CGRect(x: 10, y: 505, width: Constants.screenWidth - 20, height: height)
-        node.addSubnode(containerNode)
+        scrollNode.addSubnode(containerNode)
         
-        node.view.contentSize = CGSize(width: Constants.screenWidth, height: 505 + height + Constants.bottomInset)
+        scrollNode.view.contentSize = CGSize(width: Constants.screenWidth, height: 505 + height + Constants.bottomInset)
+    }
+    
+    override var wc_navigationBarBackgroundColor: UIColor? {
+        return UIColor(hexString: "#439057")
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

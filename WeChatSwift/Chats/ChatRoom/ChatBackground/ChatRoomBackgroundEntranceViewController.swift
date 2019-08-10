@@ -8,17 +8,21 @@
 
 import AsyncDisplayKit
 
-class ChatRoomBackgroundEntranceViewController: ASViewController<ASTableNode> {
+class ChatRoomBackgroundEntranceViewController: ASViewController<ASDisplayNode> {
     
     private var isFromGeneralSettings = false
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [ChatRoomBackgroundActionGroup] = []
     
     init(isFromGeneralSettings: Bool = false) {
         self.isFromGeneralSettings = isFromGeneralSettings
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleWidth]
+        tableNode.dataSource = self
+        tableNode.delegate = self
      
         dataSource.append(ChatRoomBackgroundActionGroup(items: [.pick]))
         dataSource.append(ChatRoomBackgroundActionGroup(items: [.pickFromAlbum, .takeFromCamera]))
@@ -35,7 +39,8 @@ class ChatRoomBackgroundEntranceViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
         navigationItem.title = "聊天背景"
     }
 }

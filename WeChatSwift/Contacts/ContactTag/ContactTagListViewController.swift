@@ -12,7 +12,7 @@ class ContactTagListViewController: ASViewController<ASDisplayNode> {
     
     private var placeholder: ContactTagListPlacehoderNode?
     
-    private var tableNode: ASTableNode
+    private let tableNode: ASTableNode
     
     private var dataSource: [ContactTag] = []
     

@@ -74,7 +74,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     override func didLoad() {
         super.didLoad()
         
-        let offsetY = Constants.screenHeight - Constants.statusBarHeight - Constants.bottomInset - 44.0 - barHeight
+        let offsetY = Constants.screenHeight - Constants.bottomInset - barHeight
         let height = barHeight + bottomInset + panelHeight
         self.frame = CGRect(x: 0, y: offsetY, width: Constants.screenWidth, height: height)
         
@@ -178,7 +178,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     override func animateLayoutTransition(_ context: ASContextTransitioning) {
         
-        let containerHeight = Constants.screenHeight - Constants.statusBarHeight - 44
+        let containerHeight = Constants.screenHeight //- Constants.statusBarHeight - 44
         let toolBarHeight = toolBar.bounds.height
         print("toolBar Height:\(toolBarHeight)")
         

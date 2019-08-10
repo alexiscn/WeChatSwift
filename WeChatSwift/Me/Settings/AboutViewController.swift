@@ -9,14 +9,17 @@
 import UIKit
 import AsyncDisplayKit
 
-class AboutViewController: ASViewController<ASTableNode> {
+class AboutViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode()
     
     private var dataSource: [AboutTableModel] = []
 
     init() {
-        super.init(node: ASTableNode())
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -33,13 +36,17 @@ class AboutViewController: ASViewController<ASTableNode> {
         header.addSubnode(headerNode)
         
         node.backgroundColor = Colors.white
-        node.view.separatorStyle = .none
-        node.view.tableHeaderView = header
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
+        tableNode.view.tableHeaderView = header
         
         dataSource = AboutTableModel.allCases
-        node.reloadData()
+        tableNode.reloadData()
     }
     
+    override var wc_navigationBarBackgroundColor: UIColor? {
+        return .white
+    }
 }
 
 extension AboutViewController: ASTableDelegate, ASTableDataSource {

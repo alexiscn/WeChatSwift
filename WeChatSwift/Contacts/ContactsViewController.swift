@@ -8,12 +8,18 @@
 
 import AsyncDisplayKit
 
-class ContactsViewController: ASViewController<ASTableNode> {
+class ContactsViewController: ASViewController<ASDisplayNode> {
 
+    private let tableNode = ASTableNode(style: .grouped)
+    
     private var dataSource: [ContactSection] = []
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -24,11 +30,9 @@ class ContactsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
-        
-        node.dataSource = self
-        node.delegate = self
-        
+        tableNode.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+    
         setupDataSource()
         
         let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addfriends"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))

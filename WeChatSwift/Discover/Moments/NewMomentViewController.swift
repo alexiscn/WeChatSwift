@@ -6,45 +6,51 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-class NewMomentViewController: UIViewController {
+class NewMomentViewController: ASViewController<ASDisplayNode> {
 
-    private var tableView: UITableView!
+    private let tableNode = ASTableNode(style: .plain)
     
     private var dataSource: [NewMomentModel] = []
+    
+    init() {
+        
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTableView()
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
     }
     
-    private func setupTableView() {
-        tableView = UITableView(frame: view.bounds)
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.separatorStyle = .none
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(NewMomentActionTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(NewMomentActionTableViewCell.self))
-        view.addSubview(tableView)
-    }
+    
 }
 
-extension NewMomentViewController: UITableViewDataSource, UITableViewDelegate {
+extension NewMomentViewController: ASTableDelegate, ASTableDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
+        return 0
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let block: ASCellNodeBlock = {
+            return ASCellNode()
+        }
+        return block
     }
-    
 }
 
 enum NewMomentModel {
@@ -53,8 +59,4 @@ enum NewMomentModel {
     case location
     case mention
     case shareTo
-}
-
-class NewMomentActionTableViewCell: UITableViewCell {
-    
 }

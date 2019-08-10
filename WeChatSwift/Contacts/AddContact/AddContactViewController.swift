@@ -8,12 +8,16 @@
 
 import AsyncDisplayKit
 
-class AddContactViewController: ASViewController<ASTableNode> {
+class AddContactViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,8 +42,9 @@ class AddContactViewController: ASViewController<ASTableNode> {
         tableHeader.addSubnode(searchNode)
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
-        node.view.tableHeaderView = tableHeader
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
+        tableNode.view.tableHeaderView = tableHeader
         
         setupDataSource()
     }

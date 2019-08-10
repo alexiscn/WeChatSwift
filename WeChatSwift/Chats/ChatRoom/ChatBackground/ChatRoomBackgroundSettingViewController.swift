@@ -8,13 +8,15 @@
 
 import AsyncDisplayKit
 
-class ChatRoomBackgroundSettingViewController: ASViewController<ASCollectionNode> {
+class ChatRoomBackgroundSettingViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [ChatRoomBackgroundItem] = []
     
     private var doneButton: UIButton?
     
     private var currentSelectIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    
+    private let collectionNode: ASCollectionNode
     
     init() {
         
@@ -28,9 +30,12 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASCollectionNode
         layout.minimumInteritemSpacing = spacing
         layout.sectionInset = UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
         
-        super.init(node: ASCollectionNode(collectionViewLayout: layout))
-        node.dataSource = self
-        node.delegate = self
+        collectionNode = ASCollectionNode(collectionViewLayout: layout)
+        
+        super.init(node: ASDisplayNode())
+        node.addSubnode(collectionNode)
+        collectionNode.dataSource = self
+        collectionNode.delegate = self
         
         setupDataSource()
     }
@@ -43,7 +48,7 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASCollectionNode
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        
+        collectionNode.frame = view.bounds
         navigationItem.title = "选择背景图"
         
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))

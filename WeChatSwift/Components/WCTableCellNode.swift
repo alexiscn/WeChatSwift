@@ -52,6 +52,10 @@ class WCTableCellNode: ASCellNode {
                 return button
             })
         }
+        if model.wc_imageCornerRadius > 0 {
+            iconNode.cornerRadius = model.wc_imageCornerRadius
+            iconNode.cornerRoundingType = .precomposited
+        }
     }
     
     override func didLoad() {
@@ -112,6 +116,7 @@ class WCTableCellNode: ASCellNode {
             arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
             arrowNode.style.spacingBefore = 16
             arrowNode.style.spacingAfter = 16
+            arrowNode.isHidden = !model.wc_showArrow
             elements.append(arrowNode)
         }
         
@@ -128,42 +133,4 @@ class WCTableCellNode: ASCellNode {
     }
 }
 
-protocol WCTableCellModel {
-    
-    var wc_image: UIImage? { get }
-    
-    var wc_title: String { get }
-    
-    
-    var wc_imageLayoutSize: CGSize { get }
-    
-    var wc_badgeCount: Int { get }
-    
-    var wc_accessoryNode: ASDisplayNode? { get }
-    
-    var wc_showSwitch: Bool { get }
-    
-    var wc_switchValue: Bool { get }
-}
 
-extension WCTableCellModel {
-    
-    var wc_image: UIImage? { return nil }
-    
-    var wc_badgeCount: Int { return 0 }
-    
-    var wc_imageLayoutSize: CGSize { return CGSize(width: 24.0, height: 24.0) }
-    
-    var wc_accessoryNode: ASDisplayNode? { return nil }
-    
-    var wc_showSwitch: Bool { return false }
-    
-    var wc_switchValue: Bool { return false }
-    
-    func wc_attributedStringForTitle() -> NSAttributedString {
-        return NSAttributedString(string: wc_title, attributes: [
-            .font: UIFont.systemFont(ofSize: 17),
-            .foregroundColor: UIColor(white: 0, alpha: 0.9)
-            ])
-    }
-}

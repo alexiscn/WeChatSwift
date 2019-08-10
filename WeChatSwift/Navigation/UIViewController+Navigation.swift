@@ -13,6 +13,9 @@ extension UIViewController {
     private struct AssociatedKeys {
         static var barBackgroundColor = "barBackgroundColor"
         static var fakeNavigationBar = "fakeNavigationBar"
+        static var barBarTintColor = "barBarTintColor"
+        static var barTintColor = "barTintColor"
+        static var titleTextAttributes = "titleTextAttributes"
     }
     
     /// Fake NavigationBar
@@ -26,13 +29,41 @@ extension UIViewController {
     }
     
     /// Setting background color of Fake NavigationBar
-    var wc_navigationBarBackgroundColor: UIColor? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.barBackgroundColor) as? UIColor ?? Colors.DEFAULT_BACKGROUND_COLOR
+    @objc var wc_navigationBarBackgroundColor: UIColor? {
+        if let color = objc_getAssociatedObject(self, &AssociatedKeys.barBackgroundColor) as? UIColor {
+            return color
         }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.barBackgroundColor, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        let color = Colors.DEFAULT_BACKGROUND_COLOR
+        objc_setAssociatedObject(self, &AssociatedKeys.barBackgroundColor, color, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return color
+    }
+    
+    @objc var wc_barBarTintColor: UIColor? {
+        if let barBarTintColor = objc_getAssociatedObject(self, &AssociatedKeys.barBarTintColor) as? UIColor {
+            return barBarTintColor
         }
+        objc_setAssociatedObject(self, &AssociatedKeys.barBarTintColor, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return nil
+//        let barBarTintColor = Colors.black
+//        objc_setAssociatedObject(self, &AssociatedKeys.barBarTintColor, barBarTintColor, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//        return barBarTintColor
+    }
+    
+    @objc var wc_barTintColor: UIColor? {
+        if let tintColor = objc_getAssociatedObject(self, &AssociatedKeys.barTintColor) as? UIColor {
+            return tintColor
+        }
+        let tintColor = UIColor(hexString: "#181818")
+        objc_setAssociatedObject(self, &AssociatedKeys.barTintColor, tintColor, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return tintColor
+    }
+    
+    @objc var wc_titleTextAttributes: [NSAttributedString.Key: Any]? {
+        if let attributes = objc_getAssociatedObject(self, &AssociatedKeys.titleTextAttributes) as? [NSAttributedString.Key: Any] {
+            return attributes
+        }
+        objc_setAssociatedObject(self, &AssociatedKeys.titleTextAttributes, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return nil
     }
     
     static let swizzle: Void = {
@@ -62,6 +93,9 @@ extension UIViewController {
     
     @objc private func wc_viewWillAppear(_ animated: Bool) {
         if navigationController != nil {
+            navigationController?.navigationBar.barTintColor = wc_barBarTintColor
+            navigationController?.navigationBar.tintColor = wc_barTintColor
+            navigationController?.navigationBar.titleTextAttributes = wc_titleTextAttributes
             view.bringSubviewToFront(wc_navigationBar)
         }
         wc_viewWillAppear(animated)
@@ -81,10 +115,3 @@ func swizzleMethod(_ cls: AnyClass, _ originSelector: Selector, _ newSelector: S
         method_exchangeImplementations(oriMethod, newMethod)
     }
 }
-
-//extension UIApplication {
-//    open override var next: UIResponder? {
-//        
-//        return super.next
-//    }
-//}

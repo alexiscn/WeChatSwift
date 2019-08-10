@@ -62,6 +62,10 @@ extension ContactModel: WCTableCellModel {
     var wc_image: UIImage? { return image }
     
     var wc_imageLayoutSize: CGSize { return CGSize(width: 40, height: 40) }
+    
+    var wc_imageCornerRadius: CGFloat { return 4.0 }
+    
+    var wc_showArrow: Bool { return false }
 }
 
 class Contact {

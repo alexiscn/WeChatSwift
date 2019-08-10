@@ -8,15 +8,18 @@
 
 import AsyncDisplayKit
 
-class SettingGeneralViewController: ASViewController<ASTableNode> {
+class SettingGeneralViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingGeneralGroup] = []
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
-        node.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        node.delegate = self
-        node.dataSource = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableNode.delegate = self
+        tableNode.dataSource = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,7 +30,8 @@ class SettingGeneralViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = view.bounds
+        tableNode.view.separatorStyle = .none
         navigationItem.title = "通用"
         
         setupDataSource()

@@ -44,7 +44,7 @@ class PaymentMainViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         navigationItem.title = "支付"
-        let moreButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_more"), style: .done, target: self, action: #selector(moreButtonClicked))
+        let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
         
         buttonBackground.backgroundColor = UIColor(hexString: "#3CB371")
