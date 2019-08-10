@@ -27,6 +27,7 @@ class ChatRoomBackgroundSettingCellNode: ASCellNode {
         thumbImageNode.image = backgroundItem.thumb
         thumbImageNode.cornerRadius = 4
         thumbImageNode.cornerRoundingType = .precomposited
+        thumbImageNode.contentMode = .scaleAspectFill
         
         statusCurrentNode.image = UIImage(named: "ChatBackgroundStatusCurrent_25x25_")
         statusCurrentIconNode.image = UIImage(named: "ChatBackgroundStatusCurrentIcon_15x15_")
@@ -38,6 +39,8 @@ class ChatRoomBackgroundSettingCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        thumbImageNode.style.preferredSize = constrainedSize.max
         
         if backgroundItem.isSelected {
             statusCurrentNode.isHidden = false

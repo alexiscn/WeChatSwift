@@ -35,6 +35,8 @@ struct Constants {
     /// 收付款的使用说明URL
     static let payHelpURL = URL(string: "https://wx.gtimg.com/action/shuaka/help.shtml")
     
+    static let labAgreementURL = URL(string: "https://weixin.qq.com/cgi-bin/readtemplate?t=weixin_agreement&s=lab&lang=zh_CN&cliVersion=385877288")
+    
     static let arrowImage = UIImage.SVGImage(named: "icons_outlined_arrow")
     
     static let moreImage = UIImage.SVGImage(named: "icons_filled_more")

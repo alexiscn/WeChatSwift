@@ -33,6 +33,12 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 105))
+        let headerNode = ContactInfoHeaderNode(contact: contact)
+        headerNode.frame = headerView.bounds
+        headerView.addSubnode(headerNode)
+        tableNode.view.tableHeaderView = headerView
+        
         let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
     }
@@ -42,7 +48,7 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        dataSource.append(ContactInfoGroup(items: [.profile, .remark]))
+        dataSource.append(ContactInfoGroup(items: [.remark]))
         dataSource.append(ContactInfoGroup(items: [.moments, .more]))
         dataSource.append(ContactInfoGroup(items: [.sendMessage, .voip]))
     }
@@ -77,10 +83,7 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
         let info = dataSource[indexPath.section].items[indexPath.row]
         let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
         let block: ASCellNodeBlock = { [weak self] in
-            guard let strongSelf = self else { return ASCellNode() }
             switch info {
-            case .profile:
-                return ContactInfoProfileCellNode(contact: strongSelf.contact, isLastCell: isLastCell)
             case .sendMessage, .voip:
                 return ContactInfoButtonCellNode(info: info, isLastCell: isLastCell)
             case .remark, .moments, .more:

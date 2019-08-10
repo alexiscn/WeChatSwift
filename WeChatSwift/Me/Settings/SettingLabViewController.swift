@@ -36,14 +36,25 @@ class SettingLabViewController: ASViewController<ASDisplayNode> {
         headerNode.frame = headerView.bounds
         headerView.addSubnode(headerNode)
         tableNode.view.tableHeaderView = headerView
-        
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 117 + Constants.bottomInset))
+    
         let footerNode = SettingLabFooterNode()
-        footerNode.frame = footerView.bounds
-        footerView.addSubnode(footerNode)
-        tableNode.view.tableFooterView = footerView
+        footerNode.frame = CGRect(x: 0, y: view.bounds.height - 117 - Constants.bottomInset - Constants.topInset, width: view.bounds.width, height: 117 + Constants.bottomInset)
+        footerNode.linkButtonHandler = { [weak self] in
+            self?.navigateToAgreement()
+        }
+        tableNode.addSubnode(footerNode)
         
         navigationItem.title = "插件"
+    }
+    
+    private func navigateToAgreement() {
+        guard let url = Constants.labAgreementURL else { return }
+        let webVC = WebViewController(url: url)
+        navigationController?.pushViewController(webVC, animated: true)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override var wc_navigationBarBackgroundColor: UIColor? {
@@ -57,7 +68,6 @@ class SettingLabViewController: ASViewController<ASDisplayNode> {
     override var wc_barTintColor: UIColor? {
         return .white
     }
-    
 }
 
 // MARK: - ASTableDelegate & ASTableDataSource

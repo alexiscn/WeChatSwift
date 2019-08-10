@@ -76,7 +76,6 @@ class Contact {
 }
 
 enum ContactInfo {
-    case profile
     case remark
     case moments
     case more
@@ -85,8 +84,6 @@ enum ContactInfo {
     
     var title: String {
         switch self {
-        case .profile:
-            return ""
         case .remark:
             return "设置备注和标签"
         case .moments:

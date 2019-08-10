@@ -1,5 +1,5 @@
 //
-//  ContactInfoProfileCellNode.swift
+//  ContactInfoHeaderNode.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/7/30.
@@ -8,21 +8,17 @@
 
 import AsyncDisplayKit
 
-class ContactInfoProfileCellNode: ASCellNode {
+class ContactInfoHeaderNode: ASDisplayNode {
     
     private let contact: Contact
-    private let isLastCell: Bool
-    
     private let avatarNode = ASImageNode()
-    
     private let nicknameNode = ASTextNode()
     private let wechatIDNode = ASTextNode()
     private let regionNode = ASTextNode()
     private let lineNode = ASDisplayNode()
     
-    init(contact: Contact, isLastCell: Bool) {
+    init(contact: Contact) {
         self.contact = contact
-        self.isLastCell = isLastCell
         super.init()
         automaticallyManagesSubnodes = true
         
@@ -65,11 +61,10 @@ class ContactInfoProfileCellNode: ASCellNode {
         let horizontal = ASStackLayoutSpec.horizontal()
         horizontal.spacing = 16.0
         horizontal.children = [avatarNode, vertical]
-        horizontal.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 108)
+        horizontal.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 105)
         
-        lineNode.isHidden = isLastCell
         lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 16, height: Constants.lineHeight)
-        lineNode.style.layoutPosition = CGPoint(x: 16, y: 108 - Constants.lineHeight)
+        lineNode.style.layoutPosition = CGPoint(x: 16, y: 105 - Constants.lineHeight)
         
         return ASAbsoluteLayoutSpec(children: [horizontal, lineNode])
     }

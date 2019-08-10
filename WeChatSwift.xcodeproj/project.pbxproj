@@ -79,7 +79,7 @@
 		A3476FFA22FAA498001B94EC /* ChatRoomAddContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FF922FAA498001B94EC /* ChatRoomAddContactCellNode.swift */; };
 		A3476FFC22FAABBF001B94EC /* ChatRoomMemberItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FFB22FAABBF001B94EC /* ChatRoomMemberItemNode.swift */; };
 		A3476FFF22FAD681001B94EC /* MultiSelectContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FFE22FAD681001B94EC /* MultiSelectContactsViewController.swift */; };
-		A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */; };
+		A3485FA522EFF5C2002A804B /* ContactInfoHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA422EFF5C2002A804B /* ContactInfoHeaderNode.swift */; };
 		A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */; };
 		A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */; };
 		A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */; };
@@ -353,7 +353,7 @@
 		A3476FF922FAA498001B94EC /* ChatRoomAddContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomAddContactCellNode.swift; sourceTree = "<group>"; };
 		A3476FFB22FAABBF001B94EC /* ChatRoomMemberItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMemberItemNode.swift; sourceTree = "<group>"; };
 		A3476FFE22FAD681001B94EC /* MultiSelectContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectContactsViewController.swift; sourceTree = "<group>"; };
-		A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoProfileCellNode.swift; sourceTree = "<group>"; };
+		A3485FA422EFF5C2002A804B /* ContactInfoHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoHeaderNode.swift; sourceTree = "<group>"; };
 		A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoButtonCellNode.swift; sourceTree = "<group>"; };
 		A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCellNode.swift; sourceTree = "<group>"; };
 		A3485FAB22EFF77D002A804B /* AddContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCellNode.swift; sourceTree = "<group>"; };
@@ -836,7 +836,7 @@
 			isa = PBXGroup;
 			children = (
 				A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */,
-				A3485FA422EFF5C2002A804B /* ContactInfoProfileCellNode.swift */,
+				A3485FA422EFF5C2002A804B /* ContactInfoHeaderNode.swift */,
 				A3485FA622EFF5E0002A804B /* ContactInfoButtonCellNode.swift */,
 				A3485FA822EFF5F9002A804B /* ContactInfoCellNode.swift */,
 			);
@@ -1561,7 +1561,7 @@
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
 				A33D618E22FD15DF00B767F1 /* SettingLabHeaderNode.swift in Sources */,
-				A3485FA522EFF5C2002A804B /* ContactInfoProfileCellNode.swift in Sources */,
+				A3485FA522EFF5C2002A804B /* ContactInfoHeaderNode.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,

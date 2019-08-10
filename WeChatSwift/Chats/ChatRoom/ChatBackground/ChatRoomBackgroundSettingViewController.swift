@@ -49,6 +49,7 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         collectionNode.frame = view.bounds
+        collectionNode.backgroundColor = .clear
         navigationItem.title = "选择背景图"
         
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
@@ -118,7 +119,7 @@ extension ChatRoomBackgroundSettingViewController: ASCollectionDelegate, ASColle
         currentSelectIndexPath = indexPath
         
         let userSettings = AppContext.current.userSettings
-        
+        userSettings.globalBackgroundImage = dataSource[indexPath.row].imageName
     }
 }
 

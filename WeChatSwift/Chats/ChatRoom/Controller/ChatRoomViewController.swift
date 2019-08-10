@@ -36,7 +36,9 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         backgroundImageNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundImageNode.image = UIImage.as_imageNamed("ChatBackground_01")
+        if let backgroundImageName = AppContext.current.userSettings.globalBackgroundImage {
+            backgroundImageNode.image = UIImage.as_imageNamed(backgroundImageName)
+        }
         
         node.addSubnode(backgroundImageNode)
         node.addSubnode(tableNode)
