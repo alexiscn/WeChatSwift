@@ -31,6 +31,7 @@ class SettingDiscoverEntranceViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         tableNode.view.allowsSelection = false
         navigationItem.title = "发现页管理"

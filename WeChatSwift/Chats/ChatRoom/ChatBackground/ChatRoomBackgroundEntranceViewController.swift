@@ -40,6 +40,7 @@ class ChatRoomBackgroundEntranceViewController: ASViewController<ASDisplayNode> 
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         navigationItem.title = "聊天背景"
     }

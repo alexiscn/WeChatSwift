@@ -28,6 +28,7 @@ class SettingLabViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = UIColor(hexString: "#F1A555")
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 260))
@@ -43,6 +44,18 @@ class SettingLabViewController: ASViewController<ASDisplayNode> {
         tableNode.view.tableFooterView = footerView
         
         navigationItem.title = "插件"
+    }
+    
+    override var wc_navigationBarBackgroundColor: UIColor? {
+        return UIColor(hexString: "#F1A555")
+    }
+    
+    override var wc_titleTextAttributes: [NSAttributedString.Key : Any]? {
+        return [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
+    override var wc_barTintColor: UIColor? {
+        return .white
     }
     
 }

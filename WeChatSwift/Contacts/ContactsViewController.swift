@@ -32,6 +32,7 @@ class ContactsViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.view.separatorStyle = .none
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
     
         setupDataSource()
         

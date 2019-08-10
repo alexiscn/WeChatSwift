@@ -68,7 +68,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("viewWillAppear")
         DispatchQueue.main.async {
             let offset = self.tableNode.contentOffset.y
             let barHeight: CGFloat = 44.0
@@ -189,7 +189,7 @@ extension MomentsViewController: UIScrollViewDelegate {
             titleView?.alpha = 0
         } else {
             let progress = (y - threshold - barHeight)/barHeight
-            let alpha = min(progress, 1)
+            let alpha = max(0, min(progress, 1))
             wc_navigationBar.alpha = alpha
             titleView?.alpha = alpha
             updateStatusBarStyle(.default)

@@ -8,14 +8,17 @@
 
 import AsyncDisplayKit
 
-class SettingPluginsViewController: ASViewController<ASTableNode> {
+class SettingPluginsViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingPluginSection] = []
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
         setupDataSource()
     }
     
@@ -27,7 +30,9 @@ class SettingPluginsViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = node.bounds
+        tableNode.backgroundColor = .clear
+        tableNode.view.separatorStyle = .none
         
         navigationItem.title = "辅助功能"
     }

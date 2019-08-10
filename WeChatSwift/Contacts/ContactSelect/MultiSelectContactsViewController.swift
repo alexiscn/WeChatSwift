@@ -30,6 +30,7 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
         navigationItem.title = "选择联系人"
         
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))

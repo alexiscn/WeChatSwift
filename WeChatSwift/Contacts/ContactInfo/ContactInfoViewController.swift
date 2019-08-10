@@ -19,6 +19,7 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
     init(contact: Contact) {
         self.contact = contact
         super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
         setupDataSource()
         tableNode.dataSource = self
         tableNode.delegate = self
@@ -29,6 +30,7 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
         let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
@@ -43,6 +45,10 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
         dataSource.append(ContactInfoGroup(items: [.profile, .remark]))
         dataSource.append(ContactInfoGroup(items: [.moments, .more]))
         dataSource.append(ContactInfoGroup(items: [.sendMessage, .voip]))
+    }
+    
+    override var wc_navigationBarBackgroundColor: UIColor? {
+        return .white
     }
 }
 
@@ -104,6 +110,3 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
         tableNode.deselectRow(at: indexPath, animated: false)
     }
 }
-
-
-

@@ -31,6 +31,7 @@ class ContactSettingViewController: ASViewController<ASDisplayNode> {
         
         navigationItem.title = "资料设置"
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
     }
     
 }

@@ -16,6 +16,7 @@ class SettingPrivacyViewController: ASViewController<ASDisplayNode> {
     
     init() {
         super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
         tableNode.dataSource = self
         tableNode.delegate = self
         setupDataSource()
@@ -30,6 +31,7 @@ class SettingPrivacyViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
         navigationItem.title = "隐私"

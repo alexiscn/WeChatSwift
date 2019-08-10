@@ -31,6 +31,7 @@ class SettingsViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.view.separatorStyle = .none
         tableNode.frame = view.bounds
+        tableNode.backgroundColor = .clear
         navigationItem.title = "设置"
         setupDataSource()
         tableNode.reloadData()
