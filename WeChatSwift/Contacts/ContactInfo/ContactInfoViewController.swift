@@ -28,9 +28,9 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        node.backgroundColor = Colors.white
         tableNode.frame = view.bounds
-        tableNode.backgroundColor = .clear
+        tableNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.view.separatorStyle = .none
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 105))

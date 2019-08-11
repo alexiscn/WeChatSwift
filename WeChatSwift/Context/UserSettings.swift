@@ -28,7 +28,7 @@ class UserSettings {
         }
         set {
             if let value = newValue {
-                mmkv.set(value, forKey: "ChatBackground")
+                mmkv.set(value, forKey: Keys.chatBackgroundImage)
             } else {
                 mmkv.removeValue(forKey: Keys.chatBackgroundImage)
             }

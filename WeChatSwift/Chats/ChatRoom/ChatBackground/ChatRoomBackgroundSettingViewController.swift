@@ -72,12 +72,17 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        dataSource.append(ChatRoomBackgroundItem(imageName: nil, thumbImageName: nil, isSelected: true))
+        dataSource.append(ChatRoomBackgroundItem(imageName: nil, thumbImageName: nil, isSelected: false))
         for i in 1 ... 8 {
             let imageName = "ChatBackground_0\(i)"
             let thumbImageName = "ChatBackgroundThumb_0\(i)"
             let item = ChatRoomBackgroundItem(imageName: imageName, thumbImageName: thumbImageName, isSelected: false)
             dataSource.append(item )
+        }
+        let currentImage = AppContext.current.userSettings.globalBackgroundImage
+        if let index = dataSource.firstIndex(where: { $0.imageName == currentImage }) {
+            currentSelectIndexPath = IndexPath(row: index, section: 0)
+            dataSource[index].isSelected = true
         }
     }
 }
@@ -90,6 +95,10 @@ extension ChatRoomBackgroundSettingViewController {
     }
     
     @objc private func doneButtonClicked() {
+        
+        let userSettings = AppContext.current.userSettings
+        userSettings.globalBackgroundImage = dataSource[currentSelectIndexPath.row].imageName
+        
         dismiss(animated: true, completion: nil)
     }
 }
@@ -113,13 +122,13 @@ extension ChatRoomBackgroundSettingViewController: ASCollectionDelegate, ASColle
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == currentSelectIndexPath.row {
+            return
+        }
         dataSource[currentSelectIndexPath.row].isSelected = false
         dataSource[indexPath.row].isSelected = true
         collectionNode.reloadItems(at: [currentSelectIndexPath, indexPath])
         currentSelectIndexPath = indexPath
-        
-        let userSettings = AppContext.current.userSettings
-        userSettings.globalBackgroundImage = dataSource[indexPath.row].imageName
     }
 }
 
