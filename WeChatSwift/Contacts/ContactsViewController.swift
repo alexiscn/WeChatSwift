@@ -92,7 +92,8 @@ extension ContactsViewController: ASTableDelegate, ASTableDataSource {
         case .newFriends:
             print("new friends")
         case .officialAccounts:
-            print("official")
+            let brandContactsVC = BrandContactsViewController()
+            navigationController?.pushViewController(brandContactsVC, animated: true)
         case .tags:
             let contactTagListVC = ContactTagListViewController()
             navigationController?.pushViewController(contactTagListVC, animated: true)

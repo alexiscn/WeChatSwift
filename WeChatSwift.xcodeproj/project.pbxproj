@@ -10,6 +10,7 @@
 		A30347F222FCE868003ECF82 /* SettingAutoDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30347F122FCE868003ECF82 /* SettingAutoDownloadViewController.swift */; };
 		A30347F422FE4B2A003ECF82 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30347F322FE4B2A003ECF82 /* BaseViewController.swift */; };
 		A30347F622FE57B1003ECF82 /* WCTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30347F522FE57B1003ECF82 /* WCTableCellModel.swift */; };
+		A30347F922FF9983003ECF82 /* BrandContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30347F822FF9983003ECF82 /* BrandContactsViewController.swift */; };
 		A31057D422E852FA00856D71 /* JSB_S.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D122E852F900856D71 /* JSB_S.pic */; };
 		A31057D522E852FA00856D71 /* JSB_J.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D222E852F900856D71 /* JSB_J.pic */; };
 		A31057D622E852FA00856D71 /* JSB_B.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057D322E852F900856D71 /* JSB_B.pic */; };
@@ -282,6 +283,7 @@
 		A30347F122FCE868003ECF82 /* SettingAutoDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAutoDownloadViewController.swift; sourceTree = "<group>"; };
 		A30347F322FE4B2A003ECF82 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A30347F522FE57B1003ECF82 /* WCTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTableCellModel.swift; sourceTree = "<group>"; };
+		A30347F822FF9983003ECF82 /* BrandContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandContactsViewController.swift; sourceTree = "<group>"; };
 		A31057D122E852F900856D71 /* JSB_S.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_S.pic; sourceTree = "<group>"; };
 		A31057D222E852F900856D71 /* JSB_J.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_J.pic; sourceTree = "<group>"; };
 		A31057D322E852F900856D71 /* JSB_B.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB_B.pic; sourceTree = "<group>"; };
@@ -581,6 +583,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A30347F722FF995C003ECF82 /* BrandContacts */ = {
+			isa = PBXGroup;
+			children = (
+				A30347F822FF9983003ECF82 /* BrandContactsViewController.swift */,
+			);
+			path = BrandContacts;
+			sourceTree = "<group>";
+		};
 		A322870122E0627F004E516E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,6 +725,7 @@
 		A33DB2E822CCCA1200A11776 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A30347F722FF995C003ECF82 /* BrandContacts */,
 				A3476FFD22FAD65F001B94EC /* ContactSelect */,
 				A3618A9222F97B37000ACF4D /* ContactSetting */,
 				A3FB0AB522F4398900116329 /* ContactTag */,
@@ -1526,6 +1537,7 @@
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
 				A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */,
+				A30347F922FF9983003ECF82 /* BrandContactsViewController.swift in Sources */,
 				A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */,
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
 				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,

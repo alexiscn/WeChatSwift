@@ -14,6 +14,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private let dataSource = MomentDataSource()
     private let header: MomentHeaderNode = MomentHeaderNode()
     private var statusBarStyle = UIStatusBarStyle.lightContent
+    private var barTintColor: UIColor = .white
     private var newMessage: MomentNewMessage?
     private var hasNewMessage: Bool { return newMessage != nil }
     private var isLoadingMoments = false
@@ -59,7 +60,6 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         
         let rightButtonImage = UIImage.SVGImage(named: "icons_filled_camera")?.withRenderingMode(.alwaysTemplate)
         let rightButtonItem = UIBarButtonItem(image: rightButtonImage, style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
-        rightButtonItem.tintColor = .white
         navigationItem.rightBarButtonItem = rightButtonItem
         self.rightBarItem = rightButtonItem
         
@@ -68,15 +68,13 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear")
-        DispatchQueue.main.async {
-            let offset = self.tableNode.contentOffset.y
-            let barHeight: CGFloat = 44.0
-            let threshold: CGFloat = 307.0 - 70 - 30 - barHeight - Constants.statusBarHeight
-            let progress = (offset - threshold - barHeight)/barHeight
-            let alpha = max(0, min(progress, 1))
-            self.titleView?.alpha = alpha
-        }
+        
+        let offset = self.tableNode.contentOffset.y
+        let barHeight: CGFloat = 44.0
+        let threshold: CGFloat = 307.0 - 70 - 30 - barHeight - Constants.statusBarHeight
+        let progress = (offset - threshold - barHeight)/barHeight
+        let alpha = max(0, min(progress, 1))
+        self.titleView?.isHidden = alpha == 0.0
     }
     
     private func fetchNextMoments(with context: ASBatchContext) {
@@ -114,7 +112,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         return statusBarStyle
     }
     
-    override var wc_barTintColor: UIColor? { return .white }
+    override var wc_barTintColor: UIColor? { return barTintColor }
 }
 
 // MARK: - Event Handlers
@@ -177,22 +175,30 @@ extension MomentsViewController: UIScrollViewDelegate {
         // 44: Navigation Bar Height
         let barHeight: CGFloat = 44.0
         let threshold: CGFloat = 307.0 - 70 - 30 - barHeight - Constants.statusBarHeight
-        print("threshold:\(threshold)")
+        //print("threshold:\(threshold)")
         if y < threshold {
             wc_navigationBar.alpha = 0.0
             updateStatusBarStyle(.lightContent)
             titleView?.alpha = 0
+            titleView?.isHidden = true
+            barTintColor = .white
         } else if y < threshold + barHeight {
             //let alpha = (y - threshold)/barHeight
             updateStatusBarStyle(.default)
-            //wc_navigationBar.alpha = alpha
             titleView?.alpha = 0
+            titleView?.isHidden = true
+            barTintColor = .black
         } else {
             let progress = (y - threshold - barHeight)/barHeight
             let alpha = max(0, min(progress, 1))
             wc_navigationBar.alpha = alpha
             titleView?.alpha = alpha
+            titleView?.isHidden = alpha == 0.0
             updateStatusBarStyle(.default)
+            barTintColor = .black
+        }
+        if navigationController?.navigationBar.tintColor != barTintColor {
+            navigationController?.navigationBar.tintColor = barTintColor
         }
     }
 }
