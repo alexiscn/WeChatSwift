@@ -85,6 +85,10 @@ extension SessionViewController: SessionMoreMenuViewDelegate {
         case .money:
             let payVC = PayOfflinePayViewController()
             navigationController?.pushViewController(payVC, animated: true)
+        case .groupChats:
+            let multiSelectContactsVC = MultiSelectContactsViewController(string: "11")
+            let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+            present(nav, animated: true, completion: nil)
         default:
             break
         }

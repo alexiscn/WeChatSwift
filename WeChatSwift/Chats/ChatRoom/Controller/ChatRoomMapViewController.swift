@@ -48,11 +48,6 @@ class ChatRoomMapViewController: UIViewController {
         
         setupInformationView()
         setupMyLocationButton()
-        
-        // TODO
-//        if let pan = mapView.gestureRecognizers?.first(where: { $0 is UIPanGestureRecognizer }) {
-//            navigationController?.interactivePopGestureRecognizer?.require(toFail: pan)
-//        }        
     }
     
     private func setupMyLocationButton() {
@@ -122,9 +117,11 @@ class ChatRoomMapViewController: UIViewController {
     override var wc_navigationBarBackgroundColor: UIColor? {
         return .clear
     }
+    
+
 }
 
-// Event Handlers
+// MARK: - Event Handlers
 extension ChatRoomMapViewController {
     
     @objc private func directionButtonClicked() {

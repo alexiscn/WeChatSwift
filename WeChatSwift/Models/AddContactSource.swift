@@ -36,34 +36,17 @@ enum AddContactSource {
     var image: UIImage? {
         switch self {
         case .radar:
-            return UIImage.SVGImage(named: "icons_filled_radar", fillColor: .white)
+            return UIImage(named: "add_friend_icon_reda_36x36_")
         case .faceToFaceGroup:
-            return UIImage.SVGImage(named: "icons_filled_group-detail", fillColor: .white)
+            return UIImage(named: "add_friend_icon_addgroup_36x36_")
         case .scan:
-            return UIImage.SVGImage(named: "icons_filled_scan", fillColor: .white)
+            return UIImage(named: "add_friend_icon_scanqr_36x36_")
         case .phoneContacts:
-            return UIImage.SVGImage(named: "icons_filled_mobile-contacts", fillColor: .white)
+            return UIImage(named: "add_friend_icon_contacts_36x36_")
         case .officialAccounts:
-            return UIImage.SVGImage(named: "icons_filled_official-accounts", fillColor: .white)
+            return UIImage(named: "add_friend_icon_offical_36x36_")
         case .enterpriseContacts:
-            return UIImage(named: "EnterpriseWeworkMenuIcon_30x30_")
-        }
-    }
-    
-    var backgroundColor: UIColor {
-        switch self {
-        case .radar:
-            return Colors.Purple
-        case .faceToFaceGroup:
-            return Colors.Brand
-        case .scan:
-            return Colors.Indigo
-        case .phoneContacts:
-            return Colors.Brand
-        case .officialAccounts:
-            return Colors.Indigo
-        case .enterpriseContacts:
-            return Colors.Indigo
+            return UIImage(named: "add_friend_icon_search_wework_40x40_")
         }
     }
     

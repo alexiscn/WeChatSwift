@@ -100,6 +100,8 @@
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
 		A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */ = {isa = PBXBuildFile; fileRef = A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */; };
+		A35B21A1230022500057F8FC /* BrandTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B21A0230022500057F8FC /* BrandTimelineViewController.swift */; };
+		A35B21A3230023910057F8FC /* BrandTimelineCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B21A2230023910057F8FC /* BrandTimelineCellNode.swift */; };
 		A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EDF5722FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift */; };
 		A35EDF5A22FD777200C56CAC /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EDF5922FD777200C56CAC /* UIViewController+Navigation.swift */; };
 		A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EDF5B22FD78C300C56CAC /* PayOfflinePayButtonNode.swift */; };
@@ -380,6 +382,8 @@
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
 		A355AA7322F1BBA2006A70AF /* icons_filled_back.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_back.svg; sourceTree = "<group>"; };
+		A35B21A0230022500057F8FC /* BrandTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTimelineViewController.swift; sourceTree = "<group>"; };
+		A35B21A2230023910057F8FC /* BrandTimelineCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTimelineCellNode.swift; sourceTree = "<group>"; };
 		A35EDF5722FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayQRCodeNode.swift; sourceTree = "<group>"; };
 		A35EDF5922FD777200C56CAC /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
 		A35EDF5B22FD78C300C56CAC /* PayOfflinePayButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayButtonNode.swift; sourceTree = "<group>"; };
@@ -725,6 +729,7 @@
 		A33DB2E722CCCA0D00A11776 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				A35B219F230022380057F8FC /* BrandTimeline */,
 				A374862822D4382C002EEC4F /* ChatRoom */,
 				A374862722D43820002EEC4F /* Session */,
 			);
@@ -882,6 +887,15 @@
 				A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */,
 			);
 			path = Payment;
+			sourceTree = "<group>";
+		};
+		A35B219F230022380057F8FC /* BrandTimeline */ = {
+			isa = PBXGroup;
+			children = (
+				A35B21A0230022500057F8FC /* BrandTimelineViewController.swift */,
+				A35B21A2230023910057F8FC /* BrandTimelineCellNode.swift */,
+			);
+			path = BrandTimeline;
 			sourceTree = "<group>";
 		};
 		A35EDF5D22FD7A0400C56CAC /* PayOfflinePay */ = {
@@ -1537,6 +1551,7 @@
 				A37FFB6622EE8E740001DD27 /* MinimizationTransitionController.swift in Sources */,
 				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
+				A35B21A3230023910057F8FC /* BrandTimelineCellNode.swift in Sources */,
 				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
@@ -1647,6 +1662,7 @@
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
 				A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */,
+				A35B21A1230022500057F8FC /* BrandTimelineViewController.swift in Sources */,
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,

@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 class AddContactCellNode: ASCellNode {
     
-    private let imageButtonNode = ASButtonNode()
+    private let imageNode = ASImageNode()
     
     private let titleNode = ASTextNode()
     
@@ -24,10 +24,7 @@ class AddContactCellNode: ASCellNode {
         super.init()
         automaticallyManagesSubnodes = true
         
-        imageButtonNode.setImage(model.image, for: .normal)
-        imageButtonNode.imageNode.style.preferredSize = CGSize(width: 16, height: 16)
-        imageButtonNode.backgroundColor = model.backgroundColor
-        imageButtonNode.isUserInteractionEnabled = false
+        imageNode.image = model.image
         
         let titles = model.titles
         titleNode.attributedText = model.attributedStringForTitle(titles.0)
@@ -45,8 +42,8 @@ class AddContactCellNode: ASCellNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
-        imageButtonNode.style.spacingBefore = 16
-        imageButtonNode.style.preferredSize = CGSize(width: 24, height: 24)
+        imageNode.style.spacingBefore = 16
+        imageNode.style.preferredSize = CGSize(width: 24, height: 24)
         arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
         arrowNode.style.spacingAfter = 16
         
@@ -58,7 +55,7 @@ class AddContactCellNode: ASCellNode {
         let stack = ASStackLayoutSpec.horizontal()
         stack.spacing = 16
         stack.alignItems = .center
-        stack.children = [imageButtonNode, vertical, arrowNode]
+        stack.children = [imageNode, vertical, arrowNode]
         stack.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 67)
         
         lineNode.style.preferredSize = CGSize(width: Constants.screenWidth - 56, height: Constants.lineHeight)
