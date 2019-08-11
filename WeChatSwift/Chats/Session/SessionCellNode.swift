@@ -82,7 +82,6 @@ class SessionCellNode: ASCellNode {
         avatarLayout.style.preferredSize = CGSize(width: 72.0, height: 76.0)
         
         titleNode.style.flexGrow = 1.0
-        draftNode.isHidden = !session.showDrafts
         subTitleNode.style.flexGrow = 1.0
         subTitleNode.style.flexShrink = 1.0
         subTitleNode.style.spacingAfter = 12
@@ -92,8 +91,16 @@ class SessionCellNode: ASCellNode {
         topStack.alignItems = .center
         topStack.children = [titleNode, timeNode]
         
+        var bottomElements: [ASLayoutElement] = []
+        if session.showDrafts {
+            bottomElements.append(draftNode)
+        }
+        bottomElements.append(subTitleNode)
+        if session.muted {
+            bottomElements.append(muteNode)
+        }
         let bottomStack = ASStackLayoutSpec.horizontal()
-        bottomStack.children = session.muted ? [draftNode, subTitleNode, muteNode]: [draftNode, subTitleNode]
+        bottomStack.children = bottomElements
         
         let stack = ASStackLayoutSpec.vertical()
         stack.style.flexGrow = 1.0

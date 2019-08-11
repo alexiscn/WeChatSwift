@@ -111,6 +111,7 @@
 		A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */; };
 		A372145122FFB19D00340023 /* MyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145022FFB19D00340023 /* MyFavoritesViewController.swift */; };
 		A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */; };
+		A372145822FFC2CB00340023 /* SettingLabTipsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145722FFC2CB00340023 /* SettingLabTipsCellNode.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
@@ -389,6 +390,7 @@
 		A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
 		A372145022FFB19D00340023 /* MyFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesViewController.swift; sourceTree = "<group>"; };
 		A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesCellNode.swift; sourceTree = "<group>"; };
+		A372145722FFC2CB00340023 /* SettingLabTipsCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabTipsCellNode.swift; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
@@ -912,7 +914,9 @@
 		A36BE2C922E3F56C003F334B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A341CF0022E5554800F18106 /* AboutViewController.swift */,
+				A372145A22FFC3E000340023 /* About */,
+				A372145622FFC2A700340023 /* Labs */,
+				A372145922FFC3D000340023 /* Privacy */,
 				A341CEFF22E5554800F18106 /* SettingsViewController.swift */,
 				A3FB0AC022F455B200116329 /* SettingGeneralViewController.swift */,
 				A3FB0AC222F4594A00116329 /* SettingDiscoverEntranceViewController.swift */,
@@ -921,11 +925,6 @@
 				A373D3DC22F6A9A900451515 /* SettingFontSizeStepSlider.swift */,
 				A30347F122FCE868003ECF82 /* SettingAutoDownloadViewController.swift */,
 				A33D618922FD0A6400B767F1 /* SettingPluginsViewController.swift */,
-				A33D618B22FD142400B767F1 /* SettingLabViewController.swift */,
-				A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */,
-				A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */,
-				A33D619122FD365A00B767F1 /* SettingPrivacyViewController.swift */,
-				A33D619322FD499D00B767F1 /* SettingPrivacyModel.swift */,
 				A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */,
 			);
 			path = Settings;
@@ -955,6 +954,34 @@
 				A37FFB6D22EEB62B0001DD27 /* NewMomentViewController.swift */,
 			);
 			path = PostMoment;
+			sourceTree = "<group>";
+		};
+		A372145622FFC2A700340023 /* Labs */ = {
+			isa = PBXGroup;
+			children = (
+				A33D618B22FD142400B767F1 /* SettingLabViewController.swift */,
+				A33D618D22FD15DF00B767F1 /* SettingLabHeaderNode.swift */,
+				A33D618F22FD174E00B767F1 /* SettingLabFooterNode.swift */,
+				A372145722FFC2CB00340023 /* SettingLabTipsCellNode.swift */,
+			);
+			path = Labs;
+			sourceTree = "<group>";
+		};
+		A372145922FFC3D000340023 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				A33D619122FD365A00B767F1 /* SettingPrivacyViewController.swift */,
+				A33D619322FD499D00B767F1 /* SettingPrivacyModel.swift */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
+		A372145A22FFC3E000340023 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				A341CF0022E5554800F18106 /* AboutViewController.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		A373D3D322F6687F00451515 /* ChatBackground */ = {
@@ -1532,6 +1559,7 @@
 				A373D3D222F65A5300451515 /* UserSettings.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
+				A372145822FFC2CB00340023 /* SettingLabTipsCellNode.swift in Sources */,
 				A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */,
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,

@@ -74,16 +74,16 @@ class SettingLabViewController: ASViewController<ASDisplayNode> {
 extension SettingLabViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 0
+        return 1
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let block: ASCellNodeBlock = {
-            return ASCellNode()
+            return SettingLabTipsCellNode()
         }
         return block
     }
