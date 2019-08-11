@@ -82,7 +82,7 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let info = dataSource[indexPath.section].items[indexPath.row]
         let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
-        let block: ASCellNodeBlock = { [weak self] in
+        let block: ASCellNodeBlock = {
             switch info {
             case .sendMessage, .voip:
                 return ContactInfoButtonCellNode(info: info, isLastCell: isLastCell)
@@ -111,5 +111,15 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let info = dataSource[indexPath.section].items[indexPath.row]
+        switch info {
+        case .remark:
+            let remarkVC = RemarkViewController()
+            let nav = WCNavigationController(rootViewController: remarkVC)
+            present(nav, animated: true, completion: nil)
+        default:
+            break
+        }
     }
 }

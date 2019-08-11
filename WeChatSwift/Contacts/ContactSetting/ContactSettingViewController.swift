@@ -74,7 +74,9 @@ extension ContactSettingViewController: ASTableDelegate, ASTableDataSource {
         let model = dataSource[indexPath.section].items[indexPath.row]
         switch model {
         case .remakAndTag:
-            print("remark")
+            let remarkVC = RemarkViewController()
+            let nav = WCNavigationController(rootViewController: remarkVC)
+            present(nav, animated: true, completion: nil)
         case .recommendToFriend:
             print("...")
         case .report:

@@ -171,6 +171,7 @@
 		A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889123004D14007273CD /* RemarkTagCellNode.swift */; };
 		A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889323004D2C007273CD /* RemarkPhoneNumberCellNode.swift */; };
 		A3B6889623004D5B007273CD /* RemarkEditDescriptionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */; };
+		A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B68897230055C6007273CD /* ContactTagViewController.swift */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -458,6 +459,7 @@
 		A3B6889123004D14007273CD /* RemarkTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkTagCellNode.swift; sourceTree = "<group>"; };
 		A3B6889323004D2C007273CD /* RemarkPhoneNumberCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkPhoneNumberCellNode.swift; sourceTree = "<group>"; };
 		A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditDescriptionCellNode.swift; sourceTree = "<group>"; };
+		A3B68897230055C6007273CD /* ContactTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagViewController.swift; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -1333,6 +1335,7 @@
 				A3FB0ABA22F43AA600116329 /* ContactTagListAddTagCellNode.swift */,
 				A3FB0ABC22F43B2A00116329 /* ContactTagListPlacehoderNode.swift */,
 				A3FB0ABE22F4403300116329 /* ContactTagCreateDetailViewController.swift */,
+				A3B68897230055C6007273CD /* ContactTagViewController.swift */,
 			);
 			path = ContactTag;
 			sourceTree = "<group>";
@@ -1658,6 +1661,7 @@
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
+				A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */,
 				A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */,
