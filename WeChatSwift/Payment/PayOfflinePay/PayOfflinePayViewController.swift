@@ -62,7 +62,15 @@ class PayOfflinePayViewController: ASViewController<ASDisplayNode> {
         return UIColor(hexString: "#439057")
     }
     
+    override var wc_barTintColor: UIColor? {
+        return UIColor.white
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override var wc_titleTextAttributes: [NSAttributedString.Key : Any]? {
+        return [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }

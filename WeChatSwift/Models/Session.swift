@@ -28,6 +28,8 @@ public class Session {
     
     var muted: Bool = false
     
+    var showDrafts = false
+    
     public init(sessionID: String, name: String) {
         self.sessionID = sessionID
         self.name = name

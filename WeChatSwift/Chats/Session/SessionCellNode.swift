@@ -18,6 +18,8 @@ class SessionCellNode: ASCellNode {
     
     private let titleNode = ASTextNode()
     
+    private let draftNode = ASTextNode()
+    
     private let subTitleNode = ASTextNode()
     
     private let timeNode = ASTextNode()
@@ -34,14 +36,18 @@ class SessionCellNode: ASCellNode {
         
         let avatar = session.avatar ?? "DefaultHead_48x48_"
         avatarNode.cornerRadius = 4.0
-        avatarNode.cornerRoundingType = .clipping
-        avatarNode.backgroundColor = UIColor(hexString: "#FEFFFF")
+        avatarNode.cornerRoundingType = .precomposited
         avatarNode.image = UIImage.as_imageNamed(avatar)
         
         titleNode.attributedText = session.attributedStringForTitle()
         titleNode.maximumNumberOfLines = 1
         
         timeNode.attributedText = session.attributedStringForTime()
+        
+        draftNode.attributedText = NSAttributedString(string: "草稿", attributes: [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor(hexString: "#B71414")
+        ])
         
         subTitleNode.attributedText = session.attributedStringForSubTitle()
         subTitleNode.maximumNumberOfLines = 1
@@ -76,6 +82,7 @@ class SessionCellNode: ASCellNode {
         avatarLayout.style.preferredSize = CGSize(width: 72.0, height: 76.0)
         
         titleNode.style.flexGrow = 1.0
+        draftNode.isHidden = !session.showDrafts
         subTitleNode.style.flexGrow = 1.0
         subTitleNode.style.flexShrink = 1.0
         subTitleNode.style.spacingAfter = 12
@@ -86,7 +93,7 @@ class SessionCellNode: ASCellNode {
         topStack.children = [titleNode, timeNode]
         
         let bottomStack = ASStackLayoutSpec.horizontal()
-        bottomStack.children = session.muted ? [subTitleNode, muteNode]: [subTitleNode]
+        bottomStack.children = session.muted ? [draftNode, subTitleNode, muteNode]: [draftNode, subTitleNode]
         
         let stack = ASStackLayoutSpec.vertical()
         stack.style.flexGrow = 1.0

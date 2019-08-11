@@ -706,15 +706,14 @@
 		A33DB2E622CCC9FE00A11776 /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				A372145522FFC03600340023 /* PostMoment */,
+				A372145422FFBCBE00340023 /* Cells */,
 				A32333C922DF4FE100B79555 /* Content */,
 				A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */,
+				A32333C722DF4E7700B79555 /* MomentCommentNode.swift */,
 				A33D2B1622F2C81C0099927A /* MomentDataSource.swift */,
 				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
-				A37221A422D568AB003403D4 /* MomentCellNode.swift */,
-				A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */,
 				A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */,
-				A32333C722DF4E7700B79555 /* MomentCommentNode.swift */,
-				A37FFB6D22EEB62B0001DD27 /* NewMomentViewController.swift */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -939,6 +938,23 @@
 				A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */,
 			);
 			path = MyFavorites;
+			sourceTree = "<group>";
+		};
+		A372145422FFBCBE00340023 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A37221A422D568AB003403D4 /* MomentCellNode.swift */,
+				A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A372145522FFC03600340023 /* PostMoment */ = {
+			isa = PBXGroup;
+			children = (
+				A37FFB6D22EEB62B0001DD27 /* NewMomentViewController.swift */,
+			);
+			path = PostMoment;
 			sourceTree = "<group>";
 		};
 		A373D3D322F6687F00451515 /* ChatBackground */ = {

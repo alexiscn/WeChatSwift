@@ -132,5 +132,3 @@ class WCTableCellNode: ASCellNode {
         return ASAbsoluteLayoutSpec(children: [stack, lineNode])
     }
 }
-
-
