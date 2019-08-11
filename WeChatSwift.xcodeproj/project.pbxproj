@@ -166,6 +166,11 @@
 		A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999C22E969FE00620069 /* EmoticonManageViewController.swift */; };
 		A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */; };
 		A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */; };
+		A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888D23004A3F007273CD /* RemarkViewController.swift */; };
+		A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */; };
+		A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889123004D14007273CD /* RemarkTagCellNode.swift */; };
+		A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889323004D2C007273CD /* RemarkPhoneNumberCellNode.swift */; };
+		A3B6889623004D5B007273CD /* RemarkEditDescriptionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -448,6 +453,11 @@
 		A389999C22E969FE00620069 /* EmoticonManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageViewController.swift; sourceTree = "<group>"; };
 		A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreViewController.swift; sourceTree = "<group>"; };
 		A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailViewController.swift; sourceTree = "<group>"; };
+		A3B6888D23004A3F007273CD /* RemarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkViewController.swift; sourceTree = "<group>"; };
+		A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditNameCellNode.swift; sourceTree = "<group>"; };
+		A3B6889123004D14007273CD /* RemarkTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkTagCellNode.swift; sourceTree = "<group>"; };
+		A3B6889323004D2C007273CD /* RemarkPhoneNumberCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkPhoneNumberCellNode.swift; sourceTree = "<group>"; };
+		A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditDescriptionCellNode.swift; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -739,6 +749,7 @@
 		A33DB2E822CCCA1200A11776 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A3B6888C230049B0007273CD /* Remark */,
 				A30347F722FF995C003ECF82 /* BrandContacts */,
 				A3476FFD22FAD65F001B94EC /* ContactSelect */,
 				A3618A9222F97B37000ACF4D /* ContactSetting */,
@@ -1118,6 +1129,18 @@
 				A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */,
 			);
 			path = Emoticons;
+			sourceTree = "<group>";
+		};
+		A3B6888C230049B0007273CD /* Remark */ = {
+			isa = PBXGroup;
+			children = (
+				A3B6888D23004A3F007273CD /* RemarkViewController.swift */,
+				A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */,
+				A3B6889123004D14007273CD /* RemarkTagCellNode.swift */,
+				A3B6889323004D2C007273CD /* RemarkPhoneNumberCellNode.swift */,
+				A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */,
+			);
+			path = Remark;
 			sourceTree = "<group>";
 		};
 		A3CA51A122CD995C00C67D92 /* Mock */ = {
@@ -1524,6 +1547,7 @@
 				A33DB2F322CCD16D00A11776 /* MeViewController.swift in Sources */,
 				A37FFB6C22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift in Sources */,
 				A3476FF522FA9827001B94EC /* UITabBar+Fix.swift in Sources */,
+				A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */,
 				A3476FFC22FAABBF001B94EC /* ChatRoomMemberItemNode.swift in Sources */,
 				A37FFB6222EE8D310001DD27 /* WebViewController.swift in Sources */,
 				A3CA520522CDC47100C67D92 /* SessionMoreMenuView.swift in Sources */,
@@ -1536,6 +1560,7 @@
 				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
+				A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */,
 				A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
 				A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */,
@@ -1592,6 +1617,7 @@
 				A374864C22D44D34002EEC4F /* UnknownContentNode.swift in Sources */,
 				A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */,
 				A33DB2F522CCD92E00A11776 /* Colors.swift in Sources */,
+				A3B6889623004D5B007273CD /* RemarkEditDescriptionCellNode.swift in Sources */,
 				A35EDF5F22FD7A1200C56CAC /* PayOfflinePayAction.swift in Sources */,
 				A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */,
 				A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */,
@@ -1662,6 +1688,7 @@
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
 				A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */,
+				A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */,
 				A35B21A1230022500057F8FC /* BrandTimelineViewController.swift in Sources */,
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
@@ -1699,6 +1726,7 @@
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,
 				A3CCEDDD22FBEED3008BE41D /* ShakeViewController.swift in Sources */,
 				A33D618C22FD142400B767F1 /* SettingLabViewController.swift in Sources */,
+				A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,
 			);
