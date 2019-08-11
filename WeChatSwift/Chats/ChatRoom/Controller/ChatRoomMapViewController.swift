@@ -33,48 +33,26 @@ class ChatRoomMapViewController: UIViewController {
         super.viewDidLoad()
         
         setupMapView()
-        setupBackButton()
-        setupMoreButton()
+        
+        let backButton = UIButton(type: .custom)
+        backButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 16)
+        backButton.setImage(UIImage(named: "barbuttonicon_back_cube_30x30_"), for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        let moreButton = UIButton(type: .custom)
+        moreButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 16, bottom: 6, right: 0)
+        moreButton.setImage(UIImage(named: "barbuttonicon_more_cube_30x30_"), for: .normal)
+        moreButton.addTarget(self, action: #selector(moreButtonClicked), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
+        
         setupInformationView()
         setupMyLocationButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
-    private func setupBackButton() {
-        backButton = UIButton(type: .custom)
-        backButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 16, bottom: 6, right: 16)
-        backButton.setImage(UIImage(named: "barbuttonicon_back_cube_30x30_"), for: .normal)
-        view.addSubview(backButton)
-        backButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.top.equalToSuperview().offset(Constants.statusBarHeight)
-            make.height.equalTo(44)
-            make.width.equalTo(62)
-        }
-        backButton.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
-    }
-    
-    private func setupMoreButton() {
-        moreButton = UIButton(type: .custom)
-        moreButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 16, bottom: 6, right: 16)
-        moreButton.setImage(UIImage(named: "barbuttonicon_more_cube_30x30_"), for: .normal)
-        view.addSubview(moreButton)
-        moreButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
-            make.top.equalToSuperview().offset(Constants.statusBarHeight)
-            make.height.equalTo(44)
-            make.width.equalTo(62)
-        }
-        moreButton.addTarget(self, action: #selector(moreButtonClicked), for: .touchUpInside)
+        
+        // TODO
+//        if let pan = mapView.gestureRecognizers?.first(where: { $0 is UIPanGestureRecognizer }) {
+//            navigationController?.interactivePopGestureRecognizer?.require(toFail: pan)
+//        }        
     }
     
     private func setupMyLocationButton() {
@@ -139,6 +117,10 @@ class ChatRoomMapViewController: UIViewController {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
         }
+    }
+    
+    override var wc_navigationBarBackgroundColor: UIColor? {
+        return .clear
     }
 }
 

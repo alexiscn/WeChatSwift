@@ -108,6 +108,7 @@
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */ = {isa = PBXBuildFile; fileRef = A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */; };
 		A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */; };
+		A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */; };
 		A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */; };
 		A372145122FFB19D00340023 /* MyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145022FFB19D00340023 /* MyFavoritesViewController.swift */; };
 		A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */; };
@@ -387,6 +388,7 @@
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_videocall.svg; sourceTree = "<group>"; };
 		A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundSettingCellNode.swift; sourceTree = "<group>"; };
+		A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingModel.swift; sourceTree = "<group>"; };
 		A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
 		A372145022FFB19D00340023 /* MyFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesViewController.swift; sourceTree = "<group>"; };
 		A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesCellNode.swift; sourceTree = "<group>"; };
@@ -907,6 +909,7 @@
 			isa = PBXGroup;
 			children = (
 				A3618A9322F97B50000ACF4D /* ContactSettingViewController.swift */,
+				A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */,
 			);
 			path = ContactSetting;
 			sourceTree = "<group>";
@@ -1643,6 +1646,7 @@
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
+				A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */,
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
