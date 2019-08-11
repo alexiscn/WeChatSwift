@@ -107,15 +107,18 @@ extension MeViewController: ASTableDelegate, ASTableDataSource {
         
         let model = dataSource[indexPath.section].items[indexPath.row]
         switch model.type {
+        case .pay:
+            let paymentMainVC = PaymentMainViewController()
+            navigationController?.pushViewController(paymentMainVC, animated: true)
+        case .favorites:
+            let myFavoritesVC = MyFavoritesViewController()
+            navigationController?.pushViewController(myFavoritesVC, animated: true)
         case .settings:
             let settingsVC = SettingsViewController()
             navigationController?.pushViewController(settingsVC, animated: true)
         case .sticker:
             let emoticonStoreViewController = EmoticonStoreViewController()
             navigationController?.pushViewController(emoticonStoreViewController, animated: true)
-        case .pay:
-            let paymentMainVC = PaymentMainViewController()
-            navigationController?.pushViewController(paymentMainVC, animated: true)
         default:
             break
         }

@@ -87,6 +87,10 @@ extension SettingNotificationViewController: ASTableDelegate, ASTableDataSource 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
     }
+    
+    func tableNode(_ tableNode: ASTableNode, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 }
 
 struct SettingNotificationSection {

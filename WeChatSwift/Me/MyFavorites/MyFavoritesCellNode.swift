@@ -6,4 +6,24 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import Foundation
+import AsyncDisplayKit
+
+class MyFavoritesCellNode: ASCellNode {
+    
+    private let nameNode = ASTextNode()
+    
+    private let timeNode = ASTextNode()
+    
+    init(favItem: FavoriteItem) {
+        super.init()
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASLayoutSpec()
+    }
+    
+}

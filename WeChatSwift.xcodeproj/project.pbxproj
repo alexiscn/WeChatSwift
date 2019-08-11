@@ -109,6 +109,8 @@
 		A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */ = {isa = PBXBuildFile; fileRef = A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */; };
 		A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */; };
 		A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */; };
+		A372145122FFB19D00340023 /* MyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145022FFB19D00340023 /* MyFavoritesViewController.swift */; };
+		A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */; };
 		A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A222D5474A003403D4 /* ChatRoomTool.swift */; };
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
@@ -385,6 +387,8 @@
 		A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_videocall.svg; sourceTree = "<group>"; };
 		A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundSettingCellNode.swift; sourceTree = "<group>"; };
 		A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
+		A372145022FFB19D00340023 /* MyFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesViewController.swift; sourceTree = "<group>"; };
+		A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesCellNode.swift; sourceTree = "<group>"; };
 		A37221A222D5474A003403D4 /* ChatRoomTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTool.swift; sourceTree = "<group>"; };
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
@@ -742,6 +746,7 @@
 		A33DB2E922CCCA1F00A11776 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				A372144F22FFB17700340023 /* MyFavorites */,
 				A36BE2C922E3F56C003F334B /* Settings */,
 				A33DB2F222CCD16D00A11776 /* MeViewController.swift */,
 				A3FB0AA822F4057900116329 /* MeHeaderNode.swift */,
@@ -925,6 +930,15 @@
 				A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		A372144F22FFB17700340023 /* MyFavorites */ = {
+			isa = PBXGroup;
+			children = (
+				A372145022FFB19D00340023 /* MyFavoritesViewController.swift */,
+				A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */,
+			);
+			path = MyFavorites;
 			sourceTree = "<group>";
 		};
 		A373D3D322F6687F00451515 /* ChatBackground */ = {
@@ -1471,6 +1485,7 @@
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */,
 				A30347F422FE4B2A003ECF82 /* BaseViewController.swift in Sources */,
+				A372145122FFB19D00340023 /* MyFavoritesViewController.swift in Sources */,
 				A30347F222FCE868003ECF82 /* SettingAutoDownloadViewController.swift in Sources */,
 				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
 				A37FFB6622EE8E740001DD27 /* MinimizationTransitionController.swift in Sources */,
@@ -1609,6 +1624,7 @@
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
 				A37FFB6822EE92210001DD27 /* WCWebView.swift in Sources */,
 				A3476FFA22FAA498001B94EC /* ChatRoomAddContactCellNode.swift in Sources */,
+				A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */,
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */,

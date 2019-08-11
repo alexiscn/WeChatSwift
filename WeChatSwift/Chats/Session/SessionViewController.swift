@@ -43,21 +43,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         
         let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addoutline"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
         navigationItem.rightBarButtonItem = rightButtonItem
-        //navigationItem.title = "微信"
-        
-        let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        titleLabel.textColor = UIColor(hexString: "#181818")
-        titleLabel.text = "微信"
-        titleLabel.sizeToFit()
-        
-        let titleView = UIView()
-        titleView.frame = CGRect(x: 0, y: 0, width: 1, height: 36)
-        titleView.addSubview(titleLabel)
-        
-        titleLabel.frame.origin = CGPoint(x: (1-titleLabel.bounds.width)/2, y: (36 - titleLabel.bounds.height)/2)
-        
-        navigationItem.titleView = titleView
+        navigationItem.title = "微信"
     }
     
     private func showMoreMenu() {
