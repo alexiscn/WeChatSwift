@@ -8,14 +8,17 @@
 
 import AsyncDisplayKit
 
-class ShakeSettingViewController: ASViewController<ASTableNode> {
+class ShakeSettingViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [ShakeSettingSection] = []
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: ASDisplayNode())
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
         setupDataSource()
     }
     
@@ -27,7 +30,9 @@ class ShakeSettingViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.separatorStyle = .none
+        tableNode.frame = node.bounds
+        tableNode.backgroundColor = .clear
+        tableNode.view.separatorStyle = .none
         
         navigationItem.title = "摇一摇设置"
     }

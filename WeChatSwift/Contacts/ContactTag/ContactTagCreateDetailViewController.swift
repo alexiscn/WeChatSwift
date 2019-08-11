@@ -8,12 +8,15 @@
 
 import AsyncDisplayKit
 
-class ContactTagCreateDetailViewController: ASViewController<ASTableNode> {
+class ContactTagCreateDetailViewController: ASViewController<ASDisplayNode> {
+    
+    private let tableNode = ASTableNode(style: .grouped)
     
     init() {
-        super.init(node: ASTableNode(style: .grouped))
-        node.dataSource = self
-        node.delegate = self
+        super.init(node: tableNode)
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,6 +27,8 @@ class ContactTagCreateDetailViewController: ASViewController<ASTableNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        tableNode.frame = node.bounds
+        tableNode.backgroundColor = .clear
     }
 }
 
