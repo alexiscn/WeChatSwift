@@ -12,6 +12,8 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
     
     private let contact: Contact
     
+    private let headBackgroundNode = ASDisplayNode()
+    
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [ContactInfoGroup] = []
@@ -19,6 +21,7 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
     init(contact: Contact) {
         self.contact = contact
         super.init(node: ASDisplayNode())
+        node.addSubnode(headBackgroundNode)
         node.addSubnode(tableNode)
         setupDataSource()
         tableNode.dataSource = self
@@ -28,9 +31,12 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        node.backgroundColor = Colors.white
+        headBackgroundNode.backgroundColor = Colors.white
+        headBackgroundNode.frame = CGRect(x: 0, y: Constants.topInset + Constants.statusBarHeight - Constants.screenHeight * 2.0, width: Constants.screenWidth, height: Constants.screenHeight * 2.0)
+        
+        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = view.bounds
-        tableNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 105))
@@ -122,4 +128,13 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
             break
         }
     }
+}
+
+// MARK: - UIScrollViewDelegate
+extension ContactInfoViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        headBackgroundNode.frame.origin.y = Constants.screenHeight * -2.0 - scrollView.contentOffset.y
+    }
+    
 }
