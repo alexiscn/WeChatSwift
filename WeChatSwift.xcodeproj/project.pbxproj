@@ -273,6 +273,8 @@
 		A3DE7CC72301095200E73944 /* MessageDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC62301095200E73944 /* MessageDatabase.swift */; };
 		A3DE7CCA2301142200E73944 /* StoryTakePhotoTeachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC92301142200E73944 /* StoryTakePhotoTeachViewController.swift */; };
 		A3DE7CCC2301155E00E73944 /* icons_outlined_camera.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3DE7CCB2301155E00E73944 /* icons_outlined_camera.svg */; };
+		A3DE7CCF2301396B00E73944 /* SettingMyAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CCE2301396B00E73944 /* SettingMyAccountInfoViewController.swift */; };
+		A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CD023013A2800E73944 /* SettingMyAccountInfoModel.swift */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
@@ -567,6 +569,8 @@
 		A3DE7CC62301095200E73944 /* MessageDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDatabase.swift; sourceTree = "<group>"; };
 		A3DE7CC92301142200E73944 /* StoryTakePhotoTeachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTakePhotoTeachViewController.swift; sourceTree = "<group>"; };
 		A3DE7CCB2301155E00E73944 /* icons_outlined_camera.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_camera.svg; sourceTree = "<group>"; };
+		A3DE7CCE2301396B00E73944 /* SettingMyAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountInfoViewController.swift; sourceTree = "<group>"; };
+		A3DE7CD023013A2800E73944 /* SettingMyAccountInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountInfoModel.swift; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
@@ -958,6 +962,7 @@
 		A36BE2C922E3F56C003F334B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE7CCD2301393A00E73944 /* MyAccount */,
 				A372145A22FFC3E000340023 /* About */,
 				A372145622FFC2A700340023 /* Labs */,
 				A372145922FFC3D000340023 /* Privacy */,
@@ -1347,6 +1352,15 @@
 			path = Story;
 			sourceTree = "<group>";
 		};
+		A3DE7CCD2301393A00E73944 /* MyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE7CCE2301396B00E73944 /* SettingMyAccountInfoViewController.swift */,
+				A3DE7CD023013A2800E73944 /* SettingMyAccountInfoModel.swift */,
+			);
+			path = MyAccount;
+			sourceTree = "<group>";
+		};
 		A3FB0AAC22F407BE00116329 /* Emoticons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1645,6 +1659,7 @@
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
 				A3DE7CC32301086E00E73944 /* BrandMessageDatabase.swift in Sources */,
+				A3DE7CCF2301396B00E73944 /* SettingMyAccountInfoViewController.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
 				A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
@@ -1750,6 +1765,7 @@
 				A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */,
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
 				A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */,
+				A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
 				A34C7B0222F829FB00652B4F /* WCTableCellNode.swift in Sources */,

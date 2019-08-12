@@ -103,6 +103,9 @@ extension SettingsViewController: ASTableDelegate, ASTableDataSource {
         
         let model = dataSource[indexPath.section].models[indexPath.row]
         switch model.type {
+        case .accountAndSecurity:
+            let myAccountInfoVC = SettingMyAccountInfoViewController()
+            navigationController?.pushViewController(myAccountInfoVC, animated: true)
         case .newMessageNotification:
             let notificationVC = SettingNotificationViewController()
             navigationController?.pushViewController(notificationVC, animated: true)

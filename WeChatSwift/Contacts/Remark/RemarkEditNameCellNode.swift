@@ -16,6 +16,20 @@ class RemarkEditNameCellNode: ASCellNode, ASEditableTextNodeDelegate {
         super.init()
         
         automaticallyManagesSubnodes = true
+        editNameNode.textContainerInset = UIEdgeInsets(top: 18, left: 0, bottom: 18, right: 0)
+        editNameNode.typingAttributes = [
+            NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor.rawValue: UIColor.black
+        ]
+        editNameNode.attributedPlaceholderText = NSAttributedString(string: "添加备注名", attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.1)
+            ])
+    }
+    
+    @discardableResult
+    override func resignFirstResponder() -> Bool {
+        return editNameNode.resignFirstResponder()
     }
     
     override func didLoad() {

@@ -35,10 +35,10 @@ extension AppDelegate {
         meVC.tabBarItem.tag = 3
         
         tabBarVC = ASTabBarController()
-        let chatNav = navigationController(with: chatsVC)
-        let contactsNav = navigationController(with: contactsVC)
-        let discoverNav = navigationController(with: discoverVC)
-        let meNav = navigationController(with: meVC)
+        let chatNav = MMNavigationController(rootViewController: chatsVC)
+        let contactsNav = MMNavigationController(rootViewController: contactsVC)
+        let discoverNav = MMNavigationController(rootViewController: discoverVC)
+        let meNav = MMNavigationController(rootViewController: meVC)
         
         let viewControllers = [chatNav, contactsNav, discoverNav, meNav]
         tabBarVC.viewControllers = viewControllers
@@ -54,26 +54,6 @@ extension AppDelegate {
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
         
         window?.rootViewController = tabBarVC
-    }
-    
-    func navigationController(with rootViewController: UIViewController) -> UINavigationController {
-        let navigationController = MMNavigationController(rootViewController: rootViewController)
-//        navigationController.navigationBar.shadowImage = UIImage()
-//        navigationController.navigationBar.isTranslucent = false
-//        let backgroundImage = UIImage.imageFromColor(Colors.DEFAULT_BACKGROUND_COLOR)
-//        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
-//        navigationController.navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")
-//        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage.SVGImage(named: "icons_outlined_back")
-        return navigationController
-    }
-}
-
-class SFNavigationController: ASNavigationController {
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        if viewControllers.count > 0 {
-            viewController.hidesBottomBarWhenPushed = true
-        }
-        super.pushViewController(viewController, animated: animated)
     }
 }
 

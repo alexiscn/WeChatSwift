@@ -14,6 +14,8 @@ class RemarkViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [RemarkViewModel] = []
     
+    private var editNameNode: RemarkEditNameCellNode?
+    
     init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
@@ -57,10 +59,16 @@ class RemarkViewController: ASViewController<ASDisplayNode> {
 extension RemarkViewController {
     
     @objc private func cancelButtonClicked() {
+        
+        editNameNode?.resignFirstResponder()
+        
         dismiss(animated: true, completion: nil)
     }
     
     @objc private func doneButtonClicked() {
+        
+        editNameNode?.resignFirstResponder()
+        
         dismiss(animated: true, completion: nil)
     }
 }
@@ -77,10 +85,12 @@ extension RemarkViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = dataSource[indexPath.section]
-        let block: ASCellNodeBlock = {
+        let block: ASCellNodeBlock = { [weak self] in
             switch model.type {
             case .remarkName:
-                return RemarkEditNameCellNode()
+                let cellNode = RemarkEditNameCellNode()
+                self?.editNameNode = cellNode
+                return cellNode
             case .tag:
                 return RemarkTagCellNode()
             case .phoneNumber:
@@ -102,6 +112,29 @@ extension RemarkViewController: ASTableDelegate, ASTableDataSource {
             let nav = WCNavigationController(rootViewController: contactTagVC)
             present(nav, animated: true, completion: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 37.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let titleLabel = UILabel()
+        titleLabel.text = dataSource[section].title
+        titleLabel.textColor = UIColor(hexString: "#808080")
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.frame = CGRect(x: 16, y: 16, width: view.bounds.width - 32, height: 17)
+        let headerView = UIView()
+        headerView.addSubview(titleLabel)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
     }
 }
 
