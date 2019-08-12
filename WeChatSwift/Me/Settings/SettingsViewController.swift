@@ -48,7 +48,7 @@ class SettingsViewController: ASViewController<ASDisplayNode> {
         
         let helpModel = SettingsTableModel(type: .helpAndFeedback, title: "帮助与反馈")
         var aboutModel = SettingsTableModel(type: .about, title: "关于微信")
-        aboutModel.value = "版本7.0.4"
+        aboutModel.value = "版本7.0.5"
         dataSource.append(SettingsTableGroupModel(models: [helpModel, aboutModel]))
         
         let pluginModel = SettingsTableModel(type: .plugins, title: "插件")

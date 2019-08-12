@@ -40,6 +40,11 @@ class AboutViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         tableNode.view.tableHeaderView = header
         
+        let footerNode = AboutFooterNode()
+        let footerOffsetY = view.bounds.height - 107 - Constants.statusBarHeight - 44 - Constants.bottomInset
+        footerNode.frame = CGRect(x: 0, y: footerOffsetY, width: view.bounds.width, height: 107)
+        tableNode.addSubnode(footerNode)
+        
         dataSource = AboutTableModel.allCases
         tableNode.reloadData()
     }
@@ -138,7 +143,7 @@ class AboutHeaderNode: ASDisplayNode {
             .font: UIFont.systemFont(ofSize: 22, weight: .medium),
             .foregroundColor: UIColor(white: 0, alpha: 0.9)
         ])
-        versionNode.attributedText = NSAttributedString(string: "Version 7.0.4", attributes: [
+        versionNode.attributedText = NSAttributedString(string: "Version 7.0.5", attributes: [
             .font: UIFont.systemFont(ofSize: 17),
             .foregroundColor: UIColor(white: 0, alpha: 0.9)
         ])

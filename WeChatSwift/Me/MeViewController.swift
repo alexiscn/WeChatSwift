@@ -64,6 +64,10 @@ class MeViewController: ASViewController<ASDisplayNode> {
         let settings = MeTableModel(type: .settings, title: "设置", icon: "icons_outlined_setting", color: Colors.Indigo)
         dataSource.append(MeTableSection(items: [settings]))
     }
+    
+    override var wc_navigationBarBackgroundColor: UIColor? {
+        return .clear
+    }
 }
 
 // MARK: - Event Handlers

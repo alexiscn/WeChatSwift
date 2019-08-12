@@ -38,7 +38,7 @@ class SettingAutoDownloadViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        dataSource.append(SettingAutoDownloadSection(title: "在其他设备上查看的照片、视频和文件在手机上自动下载", items: [.automaticallyDownload(true)]))
+        dataSource.append(SettingAutoDownloadSection(title: "在其他设备查看的照片、视频和文件在手机上自动下载", items: [.automaticallyDownload(true)]))
         dataSource.append(SettingAutoDownloadSection(title: "拍摄或编辑后的内容保存到系统相册", items: [.photoSaveToPhone(true), .videoSaveToPhone(true)]))
         dataSource.append(SettingAutoDownloadSection(title: "开启后，朋友圈视频在移动网络下自动播放", items: [.automaticallyPlayWWAN(true)]))
     }

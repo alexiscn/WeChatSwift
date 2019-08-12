@@ -172,6 +172,7 @@
 		A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889323004D2C007273CD /* RemarkPhoneNumberCellNode.swift */; };
 		A3B6889623004D5B007273CD /* RemarkEditDescriptionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */; };
 		A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B68897230055C6007273CD /* ContactTagViewController.swift */; };
+		A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B688992300E62C007273CD /* AboutFooterNode.swift */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -460,6 +461,7 @@
 		A3B6889323004D2C007273CD /* RemarkPhoneNumberCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkPhoneNumberCellNode.swift; sourceTree = "<group>"; };
 		A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditDescriptionCellNode.swift; sourceTree = "<group>"; };
 		A3B68897230055C6007273CD /* ContactTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagViewController.swift; sourceTree = "<group>"; };
+		A3B688992300E62C007273CD /* AboutFooterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFooterNode.swift; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 			isa = PBXGroup;
 			children = (
 				A341CF0022E5554800F18106 /* AboutViewController.swift */,
+				A3B688992300E62C007273CD /* AboutFooterNode.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -1722,6 +1725,7 @@
 				A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */,
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
+				A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */,
 				A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */,
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,
 				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
