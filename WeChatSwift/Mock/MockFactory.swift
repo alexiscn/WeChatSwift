@@ -142,7 +142,7 @@ class MockFactory {
     }
     
     func sessions() -> [Session] {
-        return users.map { user in
+        var userSessions: [Session] = users.map { user in
             let session = Session(sessionID: user.identifier, name: user.name)
             session.content = randomMessage()
             session.avatar = user.avatar
@@ -156,6 +156,12 @@ class MockFactory {
             }
             return session
         }
+        
+        let brandSession = Session(sessionID: Constants.BrandSessionName, name: "订阅号消息")
+        brandSession.content = "七麦研究院：从“消灭病毒”到“我的小家”"
+        brandSession.avatar = "ReadVerified_icon_45x45_"
+        userSessions.insert(brandSession, at: 1)
+        return userSessions
     }
     
     func messages(with user: MockUser, count: Int = 30) -> [Message] {

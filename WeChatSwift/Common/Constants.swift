@@ -30,6 +30,8 @@ struct Constants {
         return iPhoneX ? 44.0: 20.0
     }
     
+    static let BrandSessionName = "brandsessionholder"
+    
     static let helpURL = URL(string: "https://kf.qq.com/touch/product/wechat_app.html?scene_id=kf338")
 
     /// 收付款的使用说明URL

@@ -34,6 +34,9 @@ class BrandTimelineViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         
         navigationItem.title = "订阅号消息"
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "brand_timeline_nav3_18x16_"), style: .plain, target: self, action: #selector(handleRightButtonClicked))
+        navigationItem.rightBarButtonItem = rightButton
     }
     
     private func setupDataSource() {
@@ -42,6 +45,15 @@ class BrandTimelineViewController: ASViewController<ASDisplayNode> {
     
 }
 
+// MARK: - Event Handlers
+extension BrandTimelineViewController {
+    
+    @objc private func handleRightButtonClicked() {
+        
+    }
+}
+
+// MARK: - ASTableDelegate & ASTableDataSource
 extension BrandTimelineViewController: ASTableDelegate, ASTableDataSource {
     func numberOfSections(in tableNode: ASTableNode) -> Int {
         return dataSource.count

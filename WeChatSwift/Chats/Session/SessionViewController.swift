@@ -119,8 +119,13 @@ extension SessionViewController: ASTableDelegate, ASTableDataSource {
         tableNode.deselectRow(at: indexPath, animated: false)
         
         let session = dataSource[indexPath.row]
-        let chatVC = ChatRoomViewController(sessionID: session.sessionID)
-        navigationController?.pushViewController(chatVC, animated: true)
+        if session.sessionID == Constants.BrandSessionName {
+            let brandTimelineVC = BrandTimelineViewController()
+            navigationController?.pushViewController(brandTimelineVC, animated: true)
+        } else {
+            let chatVC = ChatRoomViewController(sessionID: session.sessionID)
+            navigationController?.pushViewController(chatVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

@@ -60,6 +60,15 @@ extension SettingsTableModel: WCTableCellModel {
         textNode.attributedText = NSAttributedString(string: value, attributes: attributes)
         return textNode
     }
+    
+    var wc_cellStyle: WCTableCellStyle {
+        switch type {
+        case .switchAccount, .logout:
+            return .centerButton
+        default:
+            return .default
+        }
+    }
 }
 
 enum SettingsType {
@@ -140,6 +149,13 @@ extension SettingGeneral: WCTableCellModel {
     
     var wc_switchValue: Bool {
         return true
+    }
+    
+    var wc_cellStyle: WCTableCellStyle {
+        if self == .clearChatHistory {
+            return .centerButton
+        }
+        return .default
     }
 }
 

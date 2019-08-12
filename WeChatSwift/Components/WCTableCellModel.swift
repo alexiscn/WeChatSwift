@@ -8,6 +8,18 @@
 
 import AsyncDisplayKit
 
+
+/// Style of WCTableCell
+///
+/// - `default`: Normal Cell Style
+/// - centerButton: Center Text Button
+/// - destructiveButton: Center Text Destructive Button
+enum WCTableCellStyle {
+    case `default`
+    case centerButton
+    case destructiveButton
+}
+
 protocol WCTableCellModel {
     
     /// Icon Image, default nil
@@ -28,6 +40,8 @@ protocol WCTableCellModel {
     var wc_showSwitch: Bool { get }
     
     var wc_switchValue: Bool { get }
+    
+    var wc_cellStyle: WCTableCellStyle { get }
 }
 
 extension WCTableCellModel {
@@ -48,10 +62,21 @@ extension WCTableCellModel {
     
     var wc_switchValue: Bool { return false }
     
+    var wc_cellStyle: WCTableCellStyle { return .default }
+    
     func wc_attributedStringForTitle() -> NSAttributedString {
-        return NSAttributedString(string: wc_title, attributes: [
-            .font: UIFont.systemFont(ofSize: 17),
-            .foregroundColor: UIColor(white: 0, alpha: 0.9)
-            ])
+        
+        switch self.wc_cellStyle {
+        case .destructiveButton:
+            return NSAttributedString(string: wc_title, attributes: [
+                .font: UIFont.systemFont(ofSize: 17),
+                .foregroundColor: Colors.Red,
+                ])
+        default:
+            return NSAttributedString(string: wc_title, attributes: [
+                .font: UIFont.systemFont(ofSize: 17),
+                .foregroundColor: UIColor(white: 0, alpha: 0.9)
+                ])
+        }
     }
 }

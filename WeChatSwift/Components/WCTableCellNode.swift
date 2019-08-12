@@ -73,6 +73,16 @@ class WCTableCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        if model.wc_cellStyle == .centerButton || model.wc_cellStyle == .destructiveButton {
+            let stack = ASStackLayoutSpec.horizontal()
+            stack.horizontalAlignment = .middle
+            stack.verticalAlignment = .center
+            stack.children = [titleNode]
+            stack.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
+            return stack
+        }
+        
         var elements: [ASLayoutElement] = []
         var leading: CGFloat = 0.0
         

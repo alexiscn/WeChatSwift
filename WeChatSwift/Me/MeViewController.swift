@@ -10,14 +10,20 @@ import AsyncDisplayKit
 
 class MeViewController: ASViewController<ASDisplayNode> {
 
+    private let backgroundNode = ASDisplayNode()
+    
     private let tableNode: ASTableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [MeTableSection] = []
     
     private var headerNode: MeHeaderNode!
     
+    private let storyTeachVC = StoryTakePhotoTeachViewController()
+    
     init() {
         super.init(node: ASDisplayNode())
+        backgroundNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        node.addSubnode(backgroundNode)
         node.addSubnode(tableNode)
     }
     
@@ -27,6 +33,14 @@ class MeViewController: ASViewController<ASDisplayNode> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backgroundNode.frame = CGRect(x: 0, y: 111 + Constants.statusBarHeight + Constants.topInset, width: view.bounds.width, height: view.bounds.height * 2)
+        
+        addChild(storyTeachVC)
+        storyTeachVC.view.frame = CGRect(x: 0, y: -410, width: view.bounds.width, height: view.bounds.height)
+        view.addSubview(storyTeachVC.view)
+        view.sendSubviewToBack(storyTeachVC.view)
+        storyTeachVC.didMove(toParent: self)
 
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = node.bounds
@@ -126,5 +140,14 @@ extension MeViewController: ASTableDelegate, ASTableDataSource {
         default:
             break
         }
+    }
+}
+
+extension MeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        //print(scrollView.contentOffset.y)
+        
+        backgroundNode.frame.origin.y = 111 - scrollView.contentOffset.y
     }
 }

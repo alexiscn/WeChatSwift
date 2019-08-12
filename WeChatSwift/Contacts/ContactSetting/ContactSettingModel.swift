@@ -67,4 +67,13 @@ enum ContactSettingModel: WCTableCellModel {
             return false
         }
     }
+    
+    var wc_cellStyle: WCTableCellStyle {
+        switch self {
+        case .delete:
+            return .destructiveButton
+        default:
+            return .default
+        }
+    }
 }

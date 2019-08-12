@@ -268,6 +268,11 @@
 		A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */; };
 		A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */; };
 		A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */; };
+		A3DE7CC32301086E00E73944 /* BrandMessageDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC22301086E00E73944 /* BrandMessageDatabase.swift */; };
+		A3DE7CC52301094700E73944 /* SessionDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC42301094700E73944 /* SessionDatabase.swift */; };
+		A3DE7CC72301095200E73944 /* MessageDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC62301095200E73944 /* MessageDatabase.swift */; };
+		A3DE7CCA2301142200E73944 /* StoryTakePhotoTeachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC92301142200E73944 /* StoryTakePhotoTeachViewController.swift */; };
+		A3DE7CCC2301155E00E73944 /* icons_outlined_camera.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3DE7CCB2301155E00E73944 /* icons_outlined_camera.svg */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
@@ -557,6 +562,11 @@
 		A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardCameraEntryNode.swift; sourceTree = "<group>"; };
 		A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jsb_emoticon_md5.png; sourceTree = "<group>"; };
 		A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_emoticon_md5.png; sourceTree = "<group>"; };
+		A3DE7CC22301086E00E73944 /* BrandMessageDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandMessageDatabase.swift; sourceTree = "<group>"; };
+		A3DE7CC42301094700E73944 /* SessionDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDatabase.swift; sourceTree = "<group>"; };
+		A3DE7CC62301095200E73944 /* MessageDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDatabase.swift; sourceTree = "<group>"; };
+		A3DE7CC92301142200E73944 /* StoryTakePhotoTeachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTakePhotoTeachViewController.swift; sourceTree = "<group>"; };
+		A3DE7CCB2301155E00E73944 /* icons_outlined_camera.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_camera.svg; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
@@ -693,6 +703,7 @@
 				A377F57522F103DE00006F2B /* Navigation */,
 				A3CA51A422CD998C00C67D92 /* AppDelegate */,
 				A3CA51F922CDA87100C67D92 /* Context */,
+				A3DE7CC12301084C00E73944 /* Database */,
 				A3CA51F622CDA85600C67D92 /* Service */,
 				A33DB2EA22CCCA2A00A11776 /* Common */,
 				A326847922D6DCBD00F1EC91 /* Components */,
@@ -769,6 +780,7 @@
 		A33DB2E922CCCA1F00A11776 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE7CC82301140D00E73944 /* Story */,
 				A372144F22FFB17700340023 /* MyFavorites */,
 				A36BE2C922E3F56C003F334B /* Settings */,
 				A33DB2F222CCD16D00A11776 /* MeViewController.swift */,
@@ -1193,6 +1205,7 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A3DE7CCB2301155E00E73944 /* icons_outlined_camera.svg */,
 				A3FB0AB122F40C6C00116329 /* icons_outlined_pay.svg */,
 				A3FB0AAF22F40A2500116329 /* icons_filled_wallet.svg */,
 				A3FB0AAD22F40A1A00116329 /* icons_outlined_wallet.svg */,
@@ -1314,6 +1327,24 @@
 				A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */,
 			);
 			path = Shake;
+			sourceTree = "<group>";
+		};
+		A3DE7CC12301084C00E73944 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE7CC22301086E00E73944 /* BrandMessageDatabase.swift */,
+				A3DE7CC42301094700E73944 /* SessionDatabase.swift */,
+				A3DE7CC62301095200E73944 /* MessageDatabase.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		A3DE7CC82301140D00E73944 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE7CC92301142200E73944 /* StoryTakePhotoTeachViewController.swift */,
+			);
+			path = Story;
 			sourceTree = "<group>";
 		};
 		A3FB0AAC22F407BE00116329 /* Emoticons */ = {
@@ -1497,6 +1528,7 @@
 				A3CA51B522CD9B0A00C67D92 /* icons_filled_group-detail.svg in Resources */,
 				A31057E022E8532E00856D71 /* dice_5.pic in Resources */,
 				A3CA51C222CD9C1900C67D92 /* icons_outlined_back.svg in Resources */,
+				A3DE7CCC2301155E00E73944 /* icons_outlined_camera.svg in Resources */,
 				A31057E322E8532E00856D71 /* dice_3.pic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1612,6 +1644,7 @@
 				A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */,
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
+				A3DE7CC32301086E00E73944 /* BrandMessageDatabase.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
 				A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
@@ -1633,6 +1666,7 @@
 				A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */,
 				A3FB0AB422F40E3B00116329 /* MallFunctionActivityContainerNode.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
+				A3DE7CC72301095200E73944 /* MessageDatabase.swift in Sources */,
 				A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */,
 				A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */,
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
@@ -1673,6 +1707,7 @@
 				A3FB0ABD22F43B2A00116329 /* ContactTagListPlacehoderNode.swift in Sources */,
 				A33D619022FD174E00B767F1 /* SettingLabFooterNode.swift in Sources */,
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
+				A3DE7CCA2301142200E73944 /* StoryTakePhotoTeachViewController.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
 				A30347F622FE57B1003ECF82 /* WCTableCellModel.swift in Sources */,
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
@@ -1691,6 +1726,7 @@
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
+				A3DE7CC52301094700E73944 /* SessionDatabase.swift in Sources */,
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
