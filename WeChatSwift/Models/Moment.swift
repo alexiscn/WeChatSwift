@@ -99,7 +99,7 @@ extension Moment {
     
     func timeAttributedText() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: Colors.DEFAULT_TEXT_DISABLED_COLOR,
+            .foregroundColor: UIColor(white: 0, alpha: 0.3),
             .font: UIFont.systemFont(ofSize: 14)
         ]
         return NSAttributedString(string: "5小时前", attributes: attributes)

@@ -41,7 +41,7 @@ class PayOfflinePayButtonNode: ASButtonNode {
         stack.alignItems = .center
         stack.children = [iconNode, textNode, arrowNode]
         
-        let insets = UIEdgeInsets(top: 22, left: 10, bottom: 22, right: 10)
+        let insets = UIEdgeInsets(top: 22, left: 0, bottom: 22, right: 0)
         return ASInsetLayoutSpec(insets: insets, child: stack)
     }
     

@@ -28,7 +28,17 @@ class PayOfflinePayViewController: ASViewController<ASDisplayNode> {
         navigationItem.title = "收付款"
         scrollNode.frame = view.bounds
         
+        setupCardView()
         setupBottomButtons()
+    }
+    
+    private func setupCardView() {
+        let cardNode = PayOfflinePayQRCodeNode()
+        cardNode.frame = CGRect(x: 10, y: 15, width: view.bounds.width - 20, height: 480)
+        cardNode.cornerRadius = 4
+        cardNode.cornerRoundingType = .defaultSlowCALayer
+        cardNode.backgroundColor = .white
+        scrollNode.addSubnode(cardNode)
     }
     
     private func setupBottomButtons() {
@@ -36,7 +46,8 @@ class PayOfflinePayViewController: ASViewController<ASDisplayNode> {
         let buttonHeight: CGFloat = 66.0
         let buttonWidth: CGFloat = Constants.screenWidth - 20
         let containerNode = ASDisplayNode()
-        
+        containerNode.cornerRadius = 2
+        containerNode.cornerRoundingType = .precomposited
         for (index, action) in actions.enumerated() {
             let buttonNode = PayOfflinePayButtonNode(action: action)
             buttonNode.frame = CGRect(x: 0,
