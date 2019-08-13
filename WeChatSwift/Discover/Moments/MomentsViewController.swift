@@ -7,6 +7,7 @@
 //
 
 import AsyncDisplayKit
+import WXActionSheet
 
 class MomentsViewController: ASViewController<ASDisplayNode> {
 
@@ -20,6 +21,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private var isLoadingMoments = false
     private var rightBarItem: UIBarButtonItem?
     private var titleView: UILabel?
+    private var operationMenuView: MomentOperationMenuView?
     
     init() {
         super.init(node: ASDisplayNode())
@@ -117,9 +119,15 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
 
 // MARK: - Event Handlers
 extension MomentsViewController {
+    
     @objc private func handleRightBarButtonTapped(_ sender: Any) {
-        
+        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        actionSheet.add(WXActionSheetItem(title: "从手机相册中选择", handler: { _ in
+            
+        }))
+        actionSheet.show()
     }
+    
 }
 
 // MARK: - ASTableDelegate & ASTableDataSource
@@ -201,4 +209,13 @@ extension MomentsViewController: UIScrollViewDelegate {
             navigationController?.navigationBar.tintColor = barTintColor
         }
     }
+}
+
+// MARK: - MomentCellNodeDelegate
+extension MomentsViewController: MomentCellNodeDelegate {
+    
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode) {
+        
+    }
+    
 }

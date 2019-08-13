@@ -276,6 +276,8 @@
 		A3DE7CCF2301396B00E73944 /* SettingMyAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CCE2301396B00E73944 /* SettingMyAccountInfoViewController.swift */; };
 		A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CD023013A2800E73944 /* SettingMyAccountInfoModel.swift */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
+		A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */; };
+		A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */; };
 		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
 		A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */; };
@@ -572,6 +574,8 @@
 		A3DE7CCE2301396B00E73944 /* SettingMyAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountInfoViewController.swift; sourceTree = "<group>"; };
 		A3DE7CD023013A2800E73944 /* SettingMyAccountInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountInfoModel.swift; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
+		A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentRefreshHeaderView.swift; sourceTree = "<group>"; };
+		A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTableHeaderView.swift; sourceTree = "<group>"; };
 		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
 		A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewViewController.swift; sourceTree = "<group>"; };
@@ -679,6 +683,7 @@
 				A373D3CD22F5221000451515 /* ScrollActionSheet.swift */,
 				A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */,
 				A30347F522FE57B1003ECF82 /* WCTableCellModel.swift */,
+				A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -743,14 +748,13 @@
 		A33DB2E622CCC9FE00A11776 /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				A3E58D9B23025B4A00F73763 /* Views */,
 				A372145522FFC03600340023 /* PostMoment */,
 				A372145422FFBCBE00340023 /* Cells */,
 				A32333C922DF4FE100B79555 /* Content */,
 				A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */,
 				A32333C722DF4E7700B79555 /* MomentCommentNode.swift */,
 				A33D2B1622F2C81C0099927A /* MomentDataSource.swift */,
-				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
-				A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -1361,6 +1365,16 @@
 			path = MyAccount;
 			sourceTree = "<group>";
 		};
+		A3E58D9B23025B4A00F73763 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
+				A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */,
+				A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A3FB0AAC22F407BE00116329 /* Emoticons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1602,6 +1616,7 @@
 				A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */,
 				A3476FFC22FAABBF001B94EC /* ChatRoomMemberItemNode.swift in Sources */,
 				A37FFB6222EE8D310001DD27 /* WebViewController.swift in Sources */,
+				A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */,
 				A3CA520522CDC47100C67D92 /* SessionMoreMenuView.swift in Sources */,
 				A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */,
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
@@ -1673,6 +1688,7 @@
 				A33DB2F522CCD92E00A11776 /* Colors.swift in Sources */,
 				A3B6889623004D5B007273CD /* RemarkEditDescriptionCellNode.swift in Sources */,
 				A35EDF5F22FD7A1200C56CAC /* PayOfflinePayAction.swift in Sources */,
+				A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */,
 				A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */,
 				A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */,
 				A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */,

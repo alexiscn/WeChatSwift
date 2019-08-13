@@ -62,7 +62,7 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        node.backgroundColor = Colors.white
         collectionNode.frame = node.bounds
         
         loadBanners()

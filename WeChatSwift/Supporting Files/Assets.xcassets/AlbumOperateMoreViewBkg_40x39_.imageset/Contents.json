@@ -5,6 +5,17 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "stretch",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 10,
+          "left" : 10
+        }
+      },
       "idiom" : "universal",
       "filename" : "AlbumOperateMoreViewBkg_40x39_@2x.png",
       "scale" : "2x"

@@ -10,6 +10,8 @@ import AsyncDisplayKit
 
 class MomentCellNode: ASCellNode {
     
+    weak var delegate: MomentCellNodeDelegate?
+    
     private let moment: Moment
     
     private let avatarNode: ASImageNode
@@ -81,6 +83,16 @@ class MomentCellNode: ASCellNode {
         textNode?.attributedText = moment.contentAttributedText()
     }
     
+    override func didLoad() {
+        super.didLoad()
+        
+        moreNode.addTarget(self, action: #selector(handleMoreButtonClicked(_:)), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func handleMoreButtonClicked(_ sender: ASButtonNode) {
+        delegate?.momentCellNode(self, didPressedMoreButton: sender)
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         avatarNode.style.spacingBefore = 12
@@ -132,4 +144,10 @@ class MomentCellNode: ASCellNode {
         
         return ASInsetLayoutSpec(insets: .zero, child: verticalSpec)
     }
+}
+
+protocol MomentCellNodeDelegate: class {
+    
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode)
+    
 }
