@@ -57,7 +57,7 @@ PODS:
     - SQLiteRepairKit (~> 1.2.0)
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
-  - WXActionSheet (0.0.10)
+  - WXActionSheet (0.2.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -109,7 +109,7 @@ SPEC CHECKSUMS:
   Texture: 8ecf6984065a1e54f06bf97b349ecca28582acd7
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
-  WXActionSheet: ce1e319bd2976489cd1ea98d20a773d43a1c6702
+  WXActionSheet: f142359aec657ef7fcff8da50418caa4c2caf462
 
 PODFILE CHECKSUM: b3e6290c77117cbe0e4ccd680f058e9925841698
 

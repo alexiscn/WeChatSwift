@@ -122,6 +122,9 @@ extension MomentsViewController {
     
     @objc private func handleRightBarButtonTapped(_ sender: Any) {
         let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        actionSheet.add(WXActionSheetItem(title: "拍摄", desc: "照片或视频", handler: { _ in
+            
+        }))
         actionSheet.add(WXActionSheetItem(title: "从手机相册中选择", handler: { _ in
             
         }))

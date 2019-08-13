@@ -139,6 +139,10 @@ public class MessageCellNode: ASCellNode {
         return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12), child: layoutSpec)
         
     }
+    
+    public override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
 }
 
 extension MessageCellNode: TextContentNodeDelegate {

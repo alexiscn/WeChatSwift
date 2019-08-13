@@ -1,5 +1,5 @@
 //
-//  AssetPickerViewController2.swift
+//  AssetPickerViewController.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/7/23.

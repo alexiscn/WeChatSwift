@@ -278,6 +278,9 @@
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */; };
 		A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */; };
+		A3E58DA22302BE4E00F73763 /* CameraScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58DA12302BE4E00F73763 /* CameraScanViewController.swift */; };
+		A3E58DA42302C88800F73763 /* CameraScanBottomNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58DA32302C88800F73763 /* CameraScanBottomNode.swift */; };
+		A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58DA52302CF0500F73763 /* CameraScanType.swift */; };
 		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
 		A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */; };
@@ -576,6 +579,9 @@
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentRefreshHeaderView.swift; sourceTree = "<group>"; };
 		A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTableHeaderView.swift; sourceTree = "<group>"; };
+		A3E58DA12302BE4E00F73763 /* CameraScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanViewController.swift; sourceTree = "<group>"; };
+		A3E58DA32302C88800F73763 /* CameraScanBottomNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanBottomNode.swift; sourceTree = "<group>"; };
+		A3E58DA52302CF0500F73763 /* CameraScanType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanType.swift; sourceTree = "<group>"; };
 		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
 		A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewViewController.swift; sourceTree = "<group>"; };
@@ -716,6 +722,7 @@
 				A3CA51F622CDA85600C67D92 /* Service */,
 				A33DB2EA22CCCA2A00A11776 /* Common */,
 				A326847922D6DCBD00F1EC91 /* Components */,
+				A3E58DA02302BE3600F73763 /* Camera */,
 				A33DB2EB22CCCA3200A11776 /* Extensions */,
 				A389999B22E969CA00620069 /* Emoticons */,
 				A3485FB122F03E04002A804B /* Payment */,
@@ -1375,6 +1382,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A3E58DA02302BE3600F73763 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				A3E58DA12302BE4E00F73763 /* CameraScanViewController.swift */,
+				A3E58DA32302C88800F73763 /* CameraScanBottomNode.swift */,
+				A3E58DA52302CF0500F73763 /* CameraScanType.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		A3FB0AAC22F407BE00116329 /* Emoticons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1665,6 +1682,7 @@
 				A3CCE02722DDED1F0003DC25 /* VOIPContentNode.swift in Sources */,
 				A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */,
 				A374865522D49500002EEC4F /* ChatRoomToolBarNode.swift in Sources */,
+				A3E58DA42302C88800F73763 /* CameraScanBottomNode.swift in Sources */,
 				A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */,
 				A373D3D222F65A5300451515 /* UserSettings.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
@@ -1706,6 +1724,7 @@
 				A37FFB6E22EEB62B0001DD27 /* NewMomentViewController.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,
+				A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */,
 				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,
 				A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
@@ -1748,6 +1767,7 @@
 				A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */,
 				A33DB2EF22CCCB8E00A11776 /* SVGImage+Extensions.swift in Sources */,
 				A322870322E06299004E516E /* EmoticonManager.swift in Sources */,
+				A3E58DA22302BE4E00F73763 /* CameraScanViewController.swift in Sources */,
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,

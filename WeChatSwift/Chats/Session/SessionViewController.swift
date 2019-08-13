@@ -82,6 +82,9 @@ extension SessionViewController: SessionMoreMenuViewDelegate {
         case .addFriends:
             let addFriendVC = AddContactViewController()
             navigationController?.pushViewController(addFriendVC, animated: true)
+        case .scan:
+            let cameraScanVC = CameraScanViewController()
+            navigationController?.pushViewController(cameraScanVC, animated: true)
         case .money:
             let payVC = PayOfflinePayViewController()
             navigationController?.pushViewController(payVC, animated: true)

@@ -23,6 +23,9 @@ public class WXActionSheetItem {
     public var titleColor: UIColor = WXActionSheet.Preferences.ButtonTitleColor
     public var font: UIFont = UIFont.systemFont(ofSize: 17)
     
+    public var desc: String?
+    public var descColor: UIColor = UIColor(white: 0, alpha: 0.4)
+    
     public var iconImage: UIImage?
     public var imageEdgeInsets: UIEdgeInsets = .zero
     
@@ -43,4 +46,10 @@ public class WXActionSheetItem {
         self.type = type
     }
     
+    public init(title: String, desc: String, handler: WXActionSheetHandler?, type: ItemType = .default) {
+        self.title = title
+        self.handler = handler
+        self.desc = desc
+        self.type = type
+    }
 }
