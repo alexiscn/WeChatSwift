@@ -36,6 +36,7 @@ class PayOfflinePayButtonNode: ASButtonNode {
         iconNode.style.spacingBefore = 20
         textNode.style.flexGrow = 1.0
         arrowNode.style.preferredSize = CGSize(width: 8, height: 12)
+        arrowNode.style.spacingAfter = 20
         
         let stack = ASStackLayoutSpec.horizontal()
         stack.alignItems = .center

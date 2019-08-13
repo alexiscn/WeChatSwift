@@ -159,3 +159,47 @@ protocol MessageCellNodeDelegate: class {
     func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent)
     func messageCell(_ cellNode: MessageCellNode, didTapLink url: URL?)
 }
+
+enum MessageMenuAction {
+    case copy
+    case forward
+    case delete
+    case addFavorite
+    case removeFavorite
+    case multiSelect
+    case remind
+    case translate
+    case recall
+    case addToSticker
+    case followShoot
+    case viewStickerAlbum
+    
+    var title: String? {
+        switch self {
+        case .copy:
+            return "复制"
+        case .forward:
+            return "转发"
+        case .delete:
+            return "删除"
+        case .addFavorite:
+            return "收藏"
+        case .removeFavorite:
+            return "取消收藏"
+        case .multiSelect:
+            return "多选"
+        case .remind:
+            return "提醒"
+        case .translate:
+            return "翻译"
+        case .recall:
+            return "撤回"
+        case .addToSticker:
+            return "添加到表情"
+        case .followShoot:
+            return "跟拍"
+        case .viewStickerAlbum:
+            return "查看专辑"
+        }
+    }
+}
