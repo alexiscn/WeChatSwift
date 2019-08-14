@@ -15,6 +15,10 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     private var menuFloatView: SessionMoreFrameFloatView?
     
+    private var topSessions: [Session] = []
+    
+    private var dataSource: [Session] = []
+    
     init() {
         super.init(node: ASDisplayNode())
         
@@ -26,9 +30,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private var dataSource: [Session] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,12 +40,20 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         tableNode.frame = view.bounds
         tableNode.backgroundColor = .clear
-        dataSource = MockFactory.shared.sessions()
+        tableNode.view.allowsMultipleSelectionDuringEditing = false
+        loadSessions()
         tableNode.reloadData()
         
         let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addoutline"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
         navigationItem.rightBarButtonItem = rightButtonItem
         navigationItem.title = "微信"
+    }
+    
+    private func loadSessions() {
+        dataSource = MockFactory.shared.sessions()
+        let first = dataSource.removeFirst()
+        first.stickTop = true
+        topSessions.append(first)
     }
     
     private func showMoreMenu() {
@@ -92,8 +102,6 @@ extension SessionViewController: SessionMoreMenuViewDelegate {
             let multiSelectContactsVC = MultiSelectContactsViewController(string: "11")
             let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
             present(nav, animated: true, completion: nil)
-        default:
-            break
         }
         hideMoreMenu(animated: false)
     }
@@ -103,15 +111,18 @@ extension SessionViewController: SessionMoreMenuViewDelegate {
 extension SessionViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 1
+        return 2
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return topSessions.count
+        }
         return dataSource.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let session = dataSource[indexPath.row]
+        let session = indexPath.section == 0 ? topSessions[indexPath.row] : dataSource[indexPath.row]
         let block: ASCellNodeBlock = {
             return SessionCellNode(session: session)
         }
@@ -121,7 +132,7 @@ extension SessionViewController: ASTableDelegate, ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
         
-        let session = dataSource[indexPath.row]
+        let session = indexPath.section == 0 ? topSessions[indexPath.row] : dataSource[indexPath.row]
         if session.sessionID == Constants.BrandSessionName {
             let brandTimelineVC = BrandTimelineViewController()
             navigationController?.pushViewController(brandTimelineVC, animated: true)
@@ -132,10 +143,11 @@ extension SessionViewController: ASTableDelegate, ASTableDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
         let readAction = UITableViewRowAction(style: .normal, title: "标记为已读") { (_, _) in
             
         }
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "删除") { (_, _) in
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (_, _) in
             
         }
         return [deleteAction, readAction]
