@@ -90,7 +90,7 @@ class MomentCellNode: ASCellNode {
     }
     
     @objc private func handleMoreButtonClicked(_ sender: ASButtonNode) {
-        delegate?.momentCellNode(self, didPressedMoreButton: sender)
+        delegate?.momentCellNode(self, didPressedMoreButton: sender, moment: moment)
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -148,6 +148,6 @@ class MomentCellNode: ASCellNode {
 
 protocol MomentCellNodeDelegate: class {
     
-    func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode)
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode, moment: Moment)
     
 }

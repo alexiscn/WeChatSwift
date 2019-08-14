@@ -28,7 +28,17 @@ public class Session {
     
     var muted: Bool = false
     
-    var showDrafts = false
+    var showDrafts: Bool {
+        return draft != nil
+    }
+    
+    var draft: String? = nil
+
+    /// 强制提醒
+    var forceNotify: Bool = false
+    
+    /// 聊天背景
+    var chatBackground: String? = nil
     
     public init(sessionID: String, name: String) {
         self.sessionID = sessionID

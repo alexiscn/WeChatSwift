@@ -94,6 +94,15 @@ public class MessageCellNode: ASCellNode {
         let point = gesture.location(in: self.view)
         if avatarNode.frame.contains(point) {
             delegate?.messageCell(self, didLongPressedAvatar: message.senderID)
+        } else if contentNode.frame.contains(point) {
+            if gesture.state == .began {
+                let menus = contentNode.supportedMenus
+                delegate?.messageCell(self,
+                                      showMenus: menus,
+                                      message: message,
+                                      targetRect: contentNode.frame,
+                                      targetView: self.view)
+            }
         }
     }
     
@@ -138,12 +147,9 @@ public class MessageCellNode: ASCellNode {
         return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12), child: layoutSpec)
         
     }
-    
-    public override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
 }
 
+// MARK: - TextContentNodeDelegate
 extension MessageCellNode: TextContentNodeDelegate {
     func textContentNode(_ textNode: TextContentNode, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
         if let url = value as? URL {
@@ -157,9 +163,10 @@ protocol MessageCellNodeDelegate: class {
     func messageCell(_ cellNode: MessageCellNode, didLongPressedAvatar userID: String)
     func messageCell(_ cellNode: MessageCellNode, didTapContent content: MessageContent)
     func messageCell(_ cellNode: MessageCellNode, didTapLink url: URL?)
+    func messageCell(_ cellNode: MessageCellNode, showMenus menus: [MessageMenuAction], message: Message, targetRect: CGRect, targetView: UIView)
 }
 
-enum MessageMenuAction {
+enum MessageMenuAction: Int {
     case copy
     case forward
     case delete
@@ -172,8 +179,9 @@ enum MessageMenuAction {
     case addToSticker
     case followShoot
     case viewStickerAlbum
+    case edit
     
-    var title: String? {
+    var title: String {
         switch self {
         case .copy:
             return "复制"
@@ -199,8 +207,8 @@ enum MessageMenuAction {
             return "跟拍"
         case .viewStickerAlbum:
             return "查看专辑"
+        case .edit:
+            return "编辑"
         }
     }
 }
-
-

@@ -12,6 +12,8 @@ public class MessageContentNode: ASDisplayNode {
     
     let message: Message
     
+    var supportedMenus: [MessageMenuAction] = []
+    
     public init(message: Message) {
         self.message = message
         super.init()

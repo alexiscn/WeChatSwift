@@ -29,6 +29,8 @@ class ImageContentNode: MessageContentNode {
         } else {
             imageNode.url = imageMsg.url
         }
+        
+        supportedMenus = [.forward, .addFavorite, .delete, .remind, .multiSelect]
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

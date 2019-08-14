@@ -50,6 +50,8 @@ class TextContentNode: MessageContentNode {
             ], range: link.range)
         }
         textNode.attributedText = ExpressionParser.shared?.attributedText(with: attributedText)
+        
+        supportedMenus = [.copy, .forward, .addFavorite, .delete, .multiSelect, .remind, .translate]
     }
     
     override func didLoad() {
@@ -61,11 +63,6 @@ class TextContentNode: MessageContentNode {
         for link in links {
             textNode.highlightRange = link.range
         }
-//        for layer in textNode.layer.sublayers ?? [] {
-//            if let h = layer as? ASHighlightOverlayLayer {
-//                h.highlightColor = UIColor.red.cgColor
-//            }
-//        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

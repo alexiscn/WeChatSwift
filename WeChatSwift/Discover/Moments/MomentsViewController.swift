@@ -11,17 +11,19 @@ import WXActionSheet
 
 class MomentsViewController: ASViewController<ASDisplayNode> {
 
+    // View
     private let tableNode: ASTableNode = ASTableNode(style: .plain)
-    private let dataSource = MomentDataSource()
     private let header: MomentHeaderNode = MomentHeaderNode()
+    private var titleView: UILabel?
+    private var operationMenuView: MomentOperationMenuView?
+    private var rightBarItem: UIBarButtonItem?
+    
+    private let dataSource = MomentDataSource()
     private var statusBarStyle = UIStatusBarStyle.lightContent
     private var barTintColor: UIColor = .white
     private var newMessage: MomentNewMessage?
     private var hasNewMessage: Bool { return newMessage != nil }
     private var isLoadingMoments = false
-    private var rightBarItem: UIBarButtonItem?
-    private var titleView: UILabel?
-    private var operationMenuView: MomentOperationMenuView?
     
     init() {
         super.init(node: ASDisplayNode())
@@ -156,8 +158,10 @@ extension MomentsViewController: ASTableDelegate, ASTableDataSource {
             return block
         } else {
             let moment = dataSource.item(at: indexPath)
-            let block: ASCellNodeBlock = {
-                return MomentCellNode(moment: moment)
+            let block: ASCellNodeBlock = { [weak self] in
+                let momentCellNode = MomentCellNode(moment: moment)
+                momentCellNode.delegate = self
+                return momentCellNode
             }
             return block
         }
@@ -168,7 +172,6 @@ extension MomentsViewController: ASTableDelegate, ASTableDataSource {
     }
     
     func tableNode(_ tableNode: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
-        print("willBeginBatchFetchWith")
         fetchNextMoments(with: context)
     }
 }
@@ -217,8 +220,17 @@ extension MomentsViewController: UIScrollViewDelegate {
 // MARK: - MomentCellNodeDelegate
 extension MomentsViewController: MomentCellNodeDelegate {
     
-    func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode) {
-        
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode, moment: Moment) {
+        if let menuView = operationMenuView {
+            menuView.hide()
+        } else {
+            let frame = moreButton.view.convert(moreButton.bounds, to: self.view)
+            let point = CGPoint(x: 0, y: 0)
+            print(frame)
+            let menuView = MomentOperationMenuView(frame: CGRect(x: 0, y: 0, width: 180, height: 39))
+            menuView.show(with: moment, at: point)
+            self.operationMenuView = menuView
+        }
     }
     
 }

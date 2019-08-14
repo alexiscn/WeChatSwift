@@ -127,6 +127,17 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         message.time = Int(Date().timeIntervalSinceNow)
         dataSource.append(message)
     }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+//        if action == #selector(onMenuAction) {
+//            return true
+//        }
+//        return false
+//    }
 }
 
 // MARK: - Event Handlers
@@ -150,6 +161,10 @@ extension ChatRoomViewController {
         contact.avatar = UIImage.as_imageNamed(user.avatar)
         let contactVC = ChatRoomContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactVC, animated: true)
+    }
+    
+    @objc private func onMenuAction() {
+        print("onMenuAction")
     }
 }
 
@@ -302,5 +317,19 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
             navigationController?.pushViewController(webVC, animated: true)
             inputNode.dismissKeyboard()
         }
+    }
+    
+    func messageCell(_ cellNode: MessageCellNode, showMenus menus: [MessageMenuAction], message: Message, targetRect: CGRect, targetView: UIView) {
+        becomeFirstResponder()
+        let menuController = UIMenuController()
+        menuController.arrowDirection = .down
+        var menuItems: [UIMenuItem] = []
+        for menu in menus {
+            let menuItem = UIMenuItem(title: menu.title, action: #selector(onMenuAction))
+            menuItems.append(menuItem)
+        }
+        menuController.menuItems = menuItems
+        menuController.setTargetRect(targetRect, in: targetView)
+        menuController.setMenuVisible(true, animated: true)
     }
 }
