@@ -11,6 +11,8 @@ import AsyncDisplayKit
 
 final class ChatRoomDataSource {
     
+    private let dateFormatter = ChatRoomDateFormatter()
+    
     private var messages: [Message] = []
     
     private var currentPage = 0
@@ -26,6 +28,7 @@ final class ChatRoomDataSource {
         
         let user = MockFactory.shared.users.first(where: { $0.identifier == sessionID })!
         messages = MockFactory.shared.messages(with: user)
+        formatTime()
     }
     
     func numberOfRows() -> Int {
@@ -39,6 +42,7 @@ final class ChatRoomDataSource {
     func append(_ message: Message, scrollToLastMessage: Bool = true) {
         let _ = lock.wait(timeout: .distantFuture)
         messages.append(message)
+        formatTime()
         
         tableNode?.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .none)
         
@@ -53,4 +57,20 @@ final class ChatRoomDataSource {
         lock.signal()
     }
     
+    func formatTime() {
+        guard var time = messages.first?.time else {
+            return
+        }
+        messages.first?._formattedTime = dateFormatter.formatTimestamp(TimeInterval(time))
+        for message in messages {
+            if message.time - time > 300 {
+                time = message.time
+                message._formattedTime = dateFormatter.formatTimestamp(TimeInterval(time))
+            } else {
+                message._formattedTime = nil
+            }
+        }
+    }
+    
 }
+

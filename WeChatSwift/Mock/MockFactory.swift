@@ -169,11 +169,16 @@ class MockFactory {
         let myID = AppContext.current.userID
         let stickerPackages = AppContext.current.emoticonMgr.allStickers
         let stickerDescPackages = AppContext.current.emoticonMgr.allStickerPackageDesc
+        let now = Int(Date().timeIntervalSince1970)
+        let past = 1560493108
         for index in 0 ..< count {
+            
+            let randomTime = Int(arc4random_uniform(UInt32(now - past))) + past
+            
             let msg = Message()
             msg.chatID = user.identifier
             msg.senderID = index % 2 == 0 ? user.identifier: myID
-            
+            msg.time = randomTime
             if index % 3 == 0 {
                 msg.content = .image(ImageMessage(image: UIImage(named: "Bran.jpg"), size: .zero))
             } else if index % 4 == 0 {
@@ -188,6 +193,7 @@ class MockFactory {
             }
             messages.append(msg)
         }
+        messages.sort(by: { $0.time < $1.time })
         return messages
     }
     

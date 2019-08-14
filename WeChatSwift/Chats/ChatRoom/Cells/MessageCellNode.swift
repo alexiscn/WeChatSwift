@@ -23,7 +23,7 @@ public class MessageCellNode: ASCellNode {
     
     let isOutgoing: Bool
     
-    private var topTextNode: ASTextNode?
+    private var timeNode: MessageTimeNode?
     
     private var contentTopTextNode: ASTextNode?
     
@@ -43,9 +43,8 @@ public class MessageCellNode: ASCellNode {
         self.isOutgoing = message.isOutgoing
         
         if let formattedTime = message._formattedTime {
-            topTextNode = ASTextNode()
-            topTextNode?.attributedText = NSAttributedString(string: formattedTime)
-            topTextNode?.style.alignSelf = .center
+            let hideBackground = AppContext.current.userSettings.globalBackgroundImage == nil
+            timeNode = MessageTimeNode(timeString: formattedTime, hideBackground: hideBackground)
         }
         self.contentNode = contentNode
         
@@ -53,7 +52,7 @@ public class MessageCellNode: ASCellNode {
         
         super.init()
         
-        if let node = topTextNode { addSubnode(node) }
+        if let node = timeNode { addSubnode(node) }
         addSubnode(avatarNode)
         addSubnode(contentNode)
         if let node = contentTopTextNode { addSubnode(node) }
@@ -126,7 +125,7 @@ public class MessageCellNode: ASCellNode {
         layoutSpec.justifyContent = .start
         layoutSpec.alignItems = isOutgoing ? .end: .start
         var layoutElements: [ASLayoutElement] = []
-        if let topTextNode = topTextNode {
+        if let topTextNode = timeNode {
             topTextNode.style.preferredSize = CGSize(width: Constants.screenWidth, height: 44)
             layoutElements.append(topTextNode)
         }
@@ -203,3 +202,5 @@ enum MessageMenuAction {
         }
     }
 }
+
+

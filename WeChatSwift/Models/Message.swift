@@ -54,7 +54,7 @@ public extension Message {
         guard let timeString = _formattedTime else { return nil }
         let attributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
-            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.4)
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.9)
         ]
         return NSAttributedString(string: timeString, attributes: attributes)
     }
