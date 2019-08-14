@@ -84,7 +84,7 @@ public class MessageCellNode: ASCellNode {
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: self.view)
         if avatarNode.frame.contains(point) {
-            delegate?.messageCell(self, didTapAvatar: "TODO")
+            delegate?.messageCell(self, didTapAvatar: message.senderID)
         } else if contentNode.frame.contains(point) {
             delegate?.messageCell(self, didTapContent: message.content)
         }
@@ -93,7 +93,7 @@ public class MessageCellNode: ASCellNode {
     @objc private func handleLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
         let point = gesture.location(in: self.view)
         if avatarNode.frame.contains(point) {
-            delegate?.messageCell(self, didLongPressedAvatar: "TODO")
+            delegate?.messageCell(self, didLongPressedAvatar: message.senderID)
         }
     }
     

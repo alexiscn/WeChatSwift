@@ -56,6 +56,7 @@ class MeHeaderNode: ASButtonNode {
         qrCodeNode.style.spacingAfter = 12
         qrCodeNode.style.spacingBefore = 8
         arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
+        arrowNode.style.spacingAfter = 16
         
         let descStack = ASStackLayoutSpec.horizontal()
         descStack.alignItems = .center
@@ -63,6 +64,7 @@ class MeHeaderNode: ASButtonNode {
         descStack.children = [descNode, qrCodeNode, arrowNode]
         
         let infoStack = ASStackLayoutSpec.vertical()
+        infoStack.style.flexGrow = 1.0
         infoStack.children = [nameNode, descStack]
         
         let horizontalStack = ASStackLayoutSpec.horizontal()

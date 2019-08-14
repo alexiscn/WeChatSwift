@@ -42,4 +42,6 @@ struct Constants {
     static let arrowImage = UIImage.SVGImage(named: "icons_outlined_arrow")
     
     static let moreImage = UIImage.SVGImage(named: "icons_filled_more")
+    
+    static let backImage = UIImage.SVGImage(named: "icons_outlined_back")?.withRenderingMode(.alwaysTemplate)
 }

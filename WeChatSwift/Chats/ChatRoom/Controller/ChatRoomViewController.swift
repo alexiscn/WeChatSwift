@@ -269,6 +269,9 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
 extension ChatRoomViewController: MessageCellNodeDelegate {
     
     func messageCell(_ cellNode: MessageCellNode, didTapAvatar userID: String) {
+        guard let user = MockFactory.shared.users.first(where: { $0.identifier == userID }) else {
+            return
+        }
         let contact = Contact()
         contact.name = user.name
         contact.avatar = UIImage.as_imageNamed(user.avatar)
