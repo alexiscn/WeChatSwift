@@ -87,6 +87,11 @@ class TextContentNode: MessageContentNode {
 }
 
 extension TextContentNode: ASTextNodeDelegate {
+    
+    func textNode(_ textNode: ASTextNode!, shouldHighlightLinkAttribute attribute: String!, value: Any!, at point: CGPoint) -> Bool {
+        return true
+    }
+    
     func textNode(_ textNode: ASTextNode!, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
         delegate?.textContentNode(self, tappedLinkAttribute: attribute, value: value, at: point, textRange: textRange)
     }

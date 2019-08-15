@@ -230,6 +230,12 @@ class MockFactory {
                 let remoteImage = random(of: remoteImages)
                 let body = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
                 moment.body = MomentBody.media(body)
+                
+                let comment = MomentComment()
+                comment.nickname = "谢霆锋"
+                comment.content = "还不错哦还不错哦还不错哦还不错哦还不错哦还不错哦"
+                comment.userID = "10002"
+                moment.comments = [comment]
             } else if index % 6 == 0 {
                 let link = random(of: webPages)
                 let webPage = MomentWebpage(url: URL(string: link.urlString),

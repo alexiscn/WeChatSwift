@@ -30,7 +30,7 @@ class MomentCellNode: ASCellNode {
     
     private var commentNode: MomentCommentNode?
     
-    private let bottomSeparator: ASDisplayNode
+    private let bottomSeparator: ASImageNode
     
     init(moment: Moment) {
         self.moment = moment
@@ -64,9 +64,13 @@ class MomentCellNode: ASCellNode {
         moreNode.setImage(UIImage.as_imageNamed("AlbumOperateMoreHL_32x20_"), for: .highlighted)
         moreNode.style.preferredSize = CGSize(width: 32, height: 20)
         
-        bottomSeparator = ASDisplayNode()
-        bottomSeparator.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
-        bottomSeparator.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionMake("100%"), height: ASDimensionMake(Constants.lineHeight))
+        if moment.comments.count > 0 {
+            commentNode = MomentCommentNode(likes: [], comments: moment.comments)
+        }
+        
+        bottomSeparator = ASImageNode()
+        bottomSeparator.image = UIImage.as_imageNamed("PhotographerSeparator_320x2_")
+        bottomSeparator.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionMake("100%"), height: ASDimensionMake(1))
         
         super.init()
         
@@ -130,6 +134,10 @@ class MomentCellNode: ASCellNode {
         footerStack.children = footerElements
         rightStack.children?.append(footerStack)
         
+        if let commentNode = commentNode {
+            rightStack.children?.append(commentNode)
+        }
+        
         let layoutSpec = ASStackLayoutSpec.horizontal()
         layoutSpec.justifyContent = .start
         layoutSpec.alignItems = .start
@@ -138,9 +146,12 @@ class MomentCellNode: ASCellNode {
         let topSpacer = ASLayoutSpec()
         topSpacer.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionMake("100%"), height: ASDimensionMake(1))
         
+        let bottomSpacer = ASLayoutSpec()
+        bottomSpacer.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 6)
+        
         let verticalSpec = ASStackLayoutSpec.vertical()
         verticalSpec.spacing = 10
-        verticalSpec.children = [topSpacer, layoutSpec, bottomSeparator]
+        verticalSpec.children = [topSpacer, layoutSpec, bottomSpacer, bottomSeparator]
         
         return ASInsetLayoutSpec(insets: .zero, child: verticalSpec)
     }

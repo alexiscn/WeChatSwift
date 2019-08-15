@@ -64,8 +64,37 @@ struct MomentLikeUser {
 }
 
 class MomentComment {
+    /// 评论ID
+    var commentId: String = ""
+    
+    /// 评论发布者的昵称
+    var nickname: String = ""
+    
+    /// 评论发布者的UID
     var userID: String = ""
-    var comment: String = ""
+    
+    /// 评论发布时间
+    var createTime: Int64 = 0
+    
+    /// 评论内容
+    var content: String = ""
+    
+    /// 评论中@XX 发表的评论ID
+    var refCommentId: String? = nil
+    
+    var refUsername: String? = nil
+    
+    var refUserId: String? = nil
+    
+    /// 是否为本地添加
+    var isLocalAdded: Bool = false
+    
+    /// 评论类型（未知）
+    var type: Int = 0
+    
+    /// 是否能删除
+    var canBeDeleted: Bool = false
+    
 }
 
 struct MomentWebpage {
