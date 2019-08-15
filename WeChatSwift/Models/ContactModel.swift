@@ -73,6 +73,8 @@ class Contact {
     var name: String = ""
     
     var avatar: UIImage? = nil
+    
+    var letter: String = "#"
 }
 
 enum ContactInfo {

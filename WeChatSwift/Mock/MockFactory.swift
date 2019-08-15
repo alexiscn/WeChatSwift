@@ -21,6 +21,12 @@ class MockFactory {
             let contact = Contact()
             contact.avatar = UIImage.as_imageNamed(avatar)
             contact.name = name
+            
+            let str = NSMutableString(string: name) as CFMutableString
+            if CFStringTransform(str, nil, kCFStringTransformToLatin, false) && CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {
+                contact.letter = String(((str as NSString) as String).first!).uppercased()
+            }
+            
             return contact
         }
     }
@@ -59,17 +65,33 @@ class MockFactory {
         users.append(MockUser(identifier: "10001", name: "提利昂·兰尼斯特", avatar: "Tyrion.jpg"))
         users.append(MockUser(identifier: "10002", name: "詹姆·兰尼斯特", avatar: "Jaime.jpg"))
         users.append(MockUser(identifier: "10003", name: "瑟曦", avatar: "Cersei.jpg"))
+        users.append(MockUser(identifier: "10004", name: "泰温", avatar: "Tywin.jpg"))
         
         // 坦格利安
         users.append(MockUser(identifier: "20001", name: "丹妮莉丝", avatar: "Daenerys.jpg"))
         users.append(MockUser(identifier: "20002", name: "琼恩·雪诺", avatar: "JonSnow.jpg"))
+        users.append(MockUser(identifier: "20003", name: "韦赛里斯", avatar: "Viserys.jpg"))
         
         // 史塔克
         users.append(MockUser(identifier: "30001", name: "珊莎", avatar: "Sansa.jpg"))
         users.append(MockUser(identifier: "30002", name: "艾莉亚", avatar: "Arya.jpg"))
         users.append(MockUser(identifier: "30003", name: "布兰", avatar: "Bran.jpg"))
+        users.append(MockUser(identifier: "30004", name: "奈德", avatar: "Ned.jpg"))
+        users.append(MockUser(identifier: "30005", name: "凯特琳", avatar: "Catelyn.jpg"))
+        users.append(MockUser(identifier: "30006", name: "罗柏", avatar: "Robb.jpg"))
         
         //users.append(MockUser(identifier: "", name: "", avatar: ""))
+        
+        users.append(MockUser(identifier: "80001", name: "波隆", avatar: "Bronn.jpg"))
+        users.append(MockUser(identifier: "80002", name: "瓦里斯", avatar: "Varys.jpg"))
+        users.append(MockUser(identifier: "80003", name: "山姆", avatar: "Samwell.jpg"))
+        users.append(MockUser(identifier: "80004", name: "雪伊", avatar: "Shae.jpg"))
+        users.append(MockUser(identifier: "80005", name: "贾昆", avatar: "Jaqen.jpg"))
+        users.append(MockUser(identifier: "80006", name: "卡奥·卓戈", avatar: "KhalDrogo.jpg"))
+        users.append(MockUser(identifier: "80007", name: "梅丽珊卓", avatar: "Melisandre.jpg"))
+        users.append(MockUser(identifier: "80008", name: "吉莉", avatar: "Gilly.jpg"))
+        users.append(MockUser(identifier: "80009", name: "灰虫子", avatar: "GreyWorm.jpg"))
+        
     }
     
     private func setupMessages() {

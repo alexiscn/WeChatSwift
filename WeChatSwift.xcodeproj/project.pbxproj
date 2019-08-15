@@ -173,6 +173,21 @@
 		A3B6889623004D5B007273CD /* RemarkEditDescriptionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */; };
 		A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B68897230055C6007273CD /* ContactTagViewController.swift */; };
 		A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B688992300E62C007273CD /* AboutFooterNode.swift */; };
+		A3C914262305092400B6E077 /* RichTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C914252305092400B6E077 /* RichTextNode.swift */; };
+		A3C9142823052D9300B6E077 /* Gilly.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142723052D9300B6E077 /* Gilly.jpg */; };
+		A3C9142A23052F1600B6E077 /* Melisandre.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142923052F1600B6E077 /* Melisandre.jpg */; };
+		A3C9142C23052F9900B6E077 /* KhalDrogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142B23052F9900B6E077 /* KhalDrogo.jpg */; };
+		A3C9142E2305303E00B6E077 /* Jaqen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142D2305303E00B6E077 /* Jaqen.jpg */; };
+		A3C914302305309A00B6E077 /* Shae.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142F2305309A00B6E077 /* Shae.jpg */; };
+		A3C914322305311D00B6E077 /* Samwell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C914312305311D00B6E077 /* Samwell.jpg */; };
+		A3C91434230531C400B6E077 /* Varys.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C91433230531C300B6E077 /* Varys.jpg */; };
+		A3C914362305328500B6E077 /* Bronn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C914352305328500B6E077 /* Bronn.jpg */; };
+		A3C91438230532E600B6E077 /* Ned.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C91437230532E600B6E077 /* Ned.jpg */; };
+		A3C9143A2305338E00B6E077 /* Catelyn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C914392305338E00B6E077 /* Catelyn.jpg */; };
+		A3C9143C2305340300B6E077 /* Robb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143B2305340300B6E077 /* Robb.jpg */; };
+		A3C9143E2305347800B6E077 /* Viserys.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143D2305347800B6E077 /* Viserys.jpg */; };
+		A3C914402305353D00B6E077 /* Tywin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143F2305353D00B6E077 /* Tywin.jpg */; };
+		A3C91442230535E800B6E077 /* GreyWorm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C91441230535E800B6E077 /* GreyWorm.jpg */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -476,6 +491,21 @@
 		A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditDescriptionCellNode.swift; sourceTree = "<group>"; };
 		A3B68897230055C6007273CD /* ContactTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagViewController.swift; sourceTree = "<group>"; };
 		A3B688992300E62C007273CD /* AboutFooterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFooterNode.swift; sourceTree = "<group>"; };
+		A3C914252305092400B6E077 /* RichTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextNode.swift; sourceTree = "<group>"; };
+		A3C9142723052D9300B6E077 /* Gilly.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gilly.jpg; sourceTree = "<group>"; };
+		A3C9142923052F1600B6E077 /* Melisandre.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Melisandre.jpg; sourceTree = "<group>"; };
+		A3C9142B23052F9900B6E077 /* KhalDrogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = KhalDrogo.jpg; sourceTree = "<group>"; };
+		A3C9142D2305303E00B6E077 /* Jaqen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Jaqen.jpg; sourceTree = "<group>"; };
+		A3C9142F2305309A00B6E077 /* Shae.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Shae.jpg; sourceTree = "<group>"; };
+		A3C914312305311D00B6E077 /* Samwell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Samwell.jpg; sourceTree = "<group>"; };
+		A3C91433230531C300B6E077 /* Varys.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Varys.jpg; sourceTree = "<group>"; };
+		A3C914352305328500B6E077 /* Bronn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bronn.jpg; sourceTree = "<group>"; };
+		A3C91437230532E600B6E077 /* Ned.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ned.jpg; sourceTree = "<group>"; };
+		A3C914392305338E00B6E077 /* Catelyn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Catelyn.jpg; sourceTree = "<group>"; };
+		A3C9143B2305340300B6E077 /* Robb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Robb.jpg; sourceTree = "<group>"; };
+		A3C9143D2305347800B6E077 /* Viserys.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Viserys.jpg; sourceTree = "<group>"; };
+		A3C9143F2305353D00B6E077 /* Tywin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tywin.jpg; sourceTree = "<group>"; };
+		A3C91441230535E800B6E077 /* GreyWorm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GreyWorm.jpg; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -694,6 +724,7 @@
 				A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */,
 				A30347F522FE57B1003ECF82 /* WCTableCellModel.swift */,
 				A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */,
+				A3C914252305092400B6E077 /* RichTextNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1323,6 +1354,20 @@
 				A3CA521B22CDF73000C67D92 /* Sansa.jpg */,
 				A3CA521D22CDF76A00C67D92 /* Arya.jpg */,
 				A3CA521F22CDF82A00C67D92 /* Bran.jpg */,
+				A3C91441230535E800B6E077 /* GreyWorm.jpg */,
+				A3C9143F2305353D00B6E077 /* Tywin.jpg */,
+				A3C914352305328500B6E077 /* Bronn.jpg */,
+				A3C9143D2305347800B6E077 /* Viserys.jpg */,
+				A3C9143B2305340300B6E077 /* Robb.jpg */,
+				A3C91437230532E600B6E077 /* Ned.jpg */,
+				A3C914392305338E00B6E077 /* Catelyn.jpg */,
+				A3C91433230531C300B6E077 /* Varys.jpg */,
+				A3C914312305311D00B6E077 /* Samwell.jpg */,
+				A3C9142F2305309A00B6E077 /* Shae.jpg */,
+				A3C9142D2305303E00B6E077 /* Jaqen.jpg */,
+				A3C9142B23052F9900B6E077 /* KhalDrogo.jpg */,
+				A3C9142923052F1600B6E077 /* Melisandre.jpg */,
+				A3C9142723052D9300B6E077 /* Gilly.jpg */,
 			);
 			path = Avatars;
 			sourceTree = "<group>";
@@ -1508,14 +1553,18 @@
 				A3CA520922CDC93E00C67D92 /* icons_filled_pay.svg in Resources */,
 				A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */,
 				A3CA51DD22CD9FAF00C67D92 /* icons_filled_search-logo.svg in Resources */,
+				A3C9143C2305340300B6E077 /* Robb.jpg in Resources */,
 				A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */,
 				A374866122D4AF68002EEC4F /* icons_filled_location.svg in Resources */,
 				A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */,
+				A3C9143A2305338E00B6E077 /* Catelyn.jpg in Resources */,
 				A3D897EB22E1D14500814669 /* 153716293386e633a27b0f3d76.png in Resources */,
 				A3CA522E22CE1C5F00C67D92 /* icons_outlined_colorful_favorites.svg in Resources */,
 				A3CA51D922CD9FA000C67D92 /* icons_outlined_shake.svg in Resources */,
+				A3C91442230535E800B6E077 /* GreyWorm.jpg in Resources */,
 				A372228B22D984D9003403D4 /* flutter.jpeg in Resources */,
 				A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */,
+				A3C914322305311D00B6E077 /* Samwell.jpg in Resources */,
 				A31057E122E8532E00856D71 /* dice_4.pic in Resources */,
 				A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */,
 				A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */,
@@ -1526,6 +1575,7 @@
 				A3CA51E522CD9FD500C67D92 /* icons_outlined_mini-program.svg in Resources */,
 				A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */,
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
+				A3C9142823052D9300B6E077 /* Gilly.jpg in Resources */,
 				A3CCE02322DDECFA0003DC25 /* red_envelopes_bottom_bg.svg in Resources */,
 				A3CA51D122CD9C8500C67D92 /* icons_outlined_contacts.svg in Resources */,
 				A31057E622E8533C00856D71 /* JSB.pic in Resources */,
@@ -1540,13 +1590,18 @@
 				A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */,
 				A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
+				A3C91438230532E600B6E077 /* Ned.jpg in Resources */,
 				A31057E222E8532E00856D71 /* dice_2.pic in Resources */,
 				A31057E422E8532E00856D71 /* dice.pic in Resources */,
 				A3CA520222CDAFD100C67D92 /* icon_filled_timelineophl.svg in Resources */,
 				A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */,
 				A3FB0AAE22F40A1B00116329 /* icons_outlined_wallet.svg in Resources */,
 				A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */,
+				A3C914362305328500B6E077 /* Bronn.jpg in Resources */,
+				A3C91434230531C400B6E077 /* Varys.jpg in Resources */,
 				A3CA51E322CD9FCA00C67D92 /* icons_outlined_colorful_game.svg in Resources */,
+				A3C9142C23052F9900B6E077 /* KhalDrogo.jpg in Resources */,
+				A3C9142A23052F1600B6E077 /* Melisandre.jpg in Resources */,
 				A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */,
 				A3CA51B322CD9AF900C67D92 /* icons_outlined_radar.svg in Resources */,
 				A3CA51EB22CDA0D000C67D92 /* icons_outlined_addoutline.svg in Resources */,
@@ -1557,9 +1612,11 @@
 				A3CA521E22CDF76B00C67D92 /* Arya.jpg in Resources */,
 				A3CA51CF22CD9C7B00C67D92 /* icons_outlined_me.svg in Resources */,
 				A3CA51C722CD9C5400C67D92 /* icons_filled_contacts.svg in Resources */,
+				A3C9142E2305303E00B6E077 /* Jaqen.jpg in Resources */,
 				A32333B922DF091D00B79555 /* icons_outlined_mute.svg in Resources */,
 				A3D897EC22E1D14900814669 /* 15031638347220abdd83283a10.png in Resources */,
 				A3CA523222CE1D0000C67D92 /* icons_outlined_sticker.svg in Resources */,
+				A3C914402305353D00B6E077 /* Tywin.jpg in Resources */,
 				A374866322D4AFCE002EEC4F /* icons_filled_folder.svg in Resources */,
 				A374866522D4AFE4002EEC4F /* icons_filled_favorites.svg in Resources */,
 				A3CA523422CE1D7B00C67D92 /* icons_outlined_setting.svg in Resources */,
@@ -1570,7 +1627,9 @@
 				A3CCE02522DDECFA0003DC25 /* red_envelopes_top_bg.svg in Resources */,
 				A3CA520F22CDD5F400C67D92 /* ui-resources_badge_count.svg in Resources */,
 				A372227A22D6154C003403D4 /* Expressions.json in Resources */,
+				A3C9143E2305347800B6E077 /* Viserys.jpg in Resources */,
 				A3CCE01722DDA0DF0003DC25 /* icons_outlined_like.svg in Resources */,
+				A3C914302305309A00B6E077 /* Shae.jpg in Resources */,
 				A3CA521622CDF4EF00C67D92 /* Cersei.jpg in Resources */,
 				A3CA51FF22CDAF1400C67D92 /* icons_filled_radar.svg in Resources */,
 				A3CA520722CDC90F00C67D92 /* icons_filled_add-friends.svg in Resources */,
@@ -1751,6 +1810,7 @@
 				A3FB0AA922F4057900116329 /* MeHeaderNode.swift in Sources */,
 				A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */,
 				A3CCEDDF22FBF040008BE41D /* ShakeSettingViewController.swift in Sources */,
+				A3C914262305092400B6E077 /* RichTextNode.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,

@@ -53,6 +53,14 @@ class MomentMedia {
 
 struct MomentLikeUser {
     var userID: String
+    var username: String
+    
+    func attributedStringForName() -> NSAttributedString {
+        return NSAttributedString(string: username, attributes: [
+            .font: UIFont.systemFont(ofSize: 15),
+            .foregroundColor: Colors.DEFAULT_LINK_COLOR
+            ])
+    }
 }
 
 class MomentComment {
