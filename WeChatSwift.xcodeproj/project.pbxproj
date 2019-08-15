@@ -188,6 +188,9 @@
 		A3C9143E2305347800B6E077 /* Viserys.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143D2305347800B6E077 /* Viserys.jpg */; };
 		A3C914402305353D00B6E077 /* Tywin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143F2305353D00B6E077 /* Tywin.jpg */; };
 		A3C91442230535E800B6E077 /* GreyWorm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C91441230535E800B6E077 /* GreyWorm.jpg */; };
+		A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144423053D3600B6E077 /* ChatRoomListViewController.swift */; };
+		A3C9144823053E5900B6E077 /* SayHelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144723053E5900B6E077 /* SayHelloViewController.swift */; };
+		A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144B23054B4800B6E077 /* ChatRoomListItemModel.swift */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -506,6 +509,9 @@
 		A3C9143D2305347800B6E077 /* Viserys.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Viserys.jpg; sourceTree = "<group>"; };
 		A3C9143F2305353D00B6E077 /* Tywin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tywin.jpg; sourceTree = "<group>"; };
 		A3C91441230535E800B6E077 /* GreyWorm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GreyWorm.jpg; sourceTree = "<group>"; };
+		A3C9144423053D3600B6E077 /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
+		A3C9144723053E5900B6E077 /* SayHelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayHelloViewController.swift; sourceTree = "<group>"; };
+		A3C9144B23054B4800B6E077 /* ChatRoomListItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListItemModel.swift; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -804,6 +810,7 @@
 		A33DB2E722CCCA0D00A11776 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				A3C9144323053D1F00B6E077 /* ChatRoomList */,
 				A35B219F230022380057F8FC /* BrandTimeline */,
 				A374862822D4382C002EEC4F /* ChatRoom */,
 				A374862722D43820002EEC4F /* Session */,
@@ -814,6 +821,7 @@
 		A33DB2E822CCCA1200A11776 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A3C9144623053E4100B6E077 /* SayHello */,
 				A3B6888C230049B0007273CD /* Remark */,
 				A30347F722FF995C003ECF82 /* BrandContacts */,
 				A3476FFD22FAD65F001B94EC /* ContactSelect */,
@@ -1211,6 +1219,23 @@
 				A3B6889523004D5B007273CD /* RemarkEditDescriptionCellNode.swift */,
 			);
 			path = Remark;
+			sourceTree = "<group>";
+		};
+		A3C9144323053D1F00B6E077 /* ChatRoomList */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9144423053D3600B6E077 /* ChatRoomListViewController.swift */,
+				A3C9144B23054B4800B6E077 /* ChatRoomListItemModel.swift */,
+			);
+			path = ChatRoomList;
+			sourceTree = "<group>";
+		};
+		A3C9144623053E4100B6E077 /* SayHello */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9144723053E5900B6E077 /* SayHelloViewController.swift */,
+			);
+			path = SayHello;
 			sourceTree = "<group>";
 		};
 		A3CA51A122CD995C00C67D92 /* Mock */ = {
@@ -1811,6 +1836,7 @@
 				A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */,
 				A3CCEDDF22FBF040008BE41D /* ShakeSettingViewController.swift in Sources */,
 				A3C914262305092400B6E077 /* RichTextNode.swift in Sources */,
+				A3C9144823053E5900B6E077 /* SayHelloViewController.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
@@ -1852,6 +1878,7 @@
 				A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */,
 				A35B21A1230022500057F8FC /* BrandTimelineViewController.swift in Sources */,
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
+				A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
 				A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */,
@@ -1869,6 +1896,7 @@
 				A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */,
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
 				A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */,
+				A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */,
 				A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,

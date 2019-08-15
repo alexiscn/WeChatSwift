@@ -90,9 +90,11 @@ extension ContactsViewController: ASTableDelegate, ASTableDataSource {
         let contact = dataSource[indexPath.section].models[indexPath.row]
         switch contact {
         case .groupChats:
-            print("group chats")
+            let chatRoomListVC = ChatRoomListViewController()
+            navigationController?.pushViewController(chatRoomListVC, animated: true)
         case .newFriends:
-            print("new friends")
+            let sayHelloVC = SayHelloViewController()
+            navigationController?.pushViewController(sayHelloVC, animated: true)
         case .officialAccounts:
             let brandContactsVC = BrandContactsViewController()
             navigationController?.pushViewController(brandContactsVC, animated: true)

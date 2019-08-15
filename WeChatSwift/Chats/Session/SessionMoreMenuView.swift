@@ -49,6 +49,7 @@ class SessionMoreMenuView: UIView {
         
         var buttons: [UIButton] = []
         for (index, menu) in menus.enumerated() {
+            let menuIcon = UIImage.SVGImage(named: menu.icon, fillColor: .white)
             let button = UIButton(type: .custom)
             button.contentHorizontalAlignment = .left
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20)
@@ -56,7 +57,8 @@ class SessionMoreMenuView: UIView {
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             button.frame = CGRect(x: 0, y: itemHeight * CGFloat(index), width: itemWidth, height: itemHeight)
             button.tintColor = .white
-            button.setImage(UIImage.SVGImage(named: menu.icon, fillColor: .white), for: .normal)
+            button.setImage(menuIcon, for: .normal)
+            button.setImage(menuIcon, for: .highlighted)
             button.setBackgroundImage(UIImage(color: UIColor(hexString: "#000000", alpha: 0.3)), for: .highlighted)
             button.setTitle(menu.title, for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
