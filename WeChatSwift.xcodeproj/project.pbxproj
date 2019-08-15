@@ -159,7 +159,7 @@
 		A37FFB6822EE92210001DD27 /* WCWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6722EE92210001DD27 /* WCWebView.swift */; };
 		A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6922EE95D90001DD27 /* WCWebViewDelegate.swift */; };
 		A37FFB6C22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6B22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift */; };
-		A37FFB6E22EEB62B0001DD27 /* NewMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6D22EEB62B0001DD27 /* NewMomentViewController.swift */; };
+		A37FFB6E22EEB62B0001DD27 /* PublishMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6D22EEB62B0001DD27 /* PublishMomentViewController.swift */; };
 		A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999C22E969FE00620069 /* EmoticonManageViewController.swift */; };
 		A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */; };
 		A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */; };
@@ -192,6 +192,10 @@
 		A3C9145223056ED200B6E077 /* MomentCommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9145123056ED200B6E077 /* MomentCommentListViewController.swift */; };
 		A3C9145423056FFA00B6E077 /* MomentCommentListCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9145323056FFA00B6E077 /* MomentCommentListCellNode.swift */; };
 		A3C914562305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C914552305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift */; };
+		A3C914582305886200B6E077 /* PublishMomentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C914572305886200B6E077 /* PublishMomentAction.swift */; };
+		A3C9145A2305887000B6E077 /* PublishMomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C914592305887000B6E077 /* PublishMomentCellNode.swift */; };
+		A3C9145C230588FD00B6E077 /* icons_outlined_location.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9145B230588FD00B6E077 /* icons_outlined_location.svg */; };
+		A3C9145E2305892000B6E077 /* icons_outlined_at.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9145D2305892000B6E077 /* icons_outlined_at.svg */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -481,7 +485,7 @@
 		A37FFB6722EE92210001DD27 /* WCWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCWebView.swift; sourceTree = "<group>"; };
 		A37FFB6922EE95D90001DD27 /* WCWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCWebViewDelegate.swift; sourceTree = "<group>"; };
 		A37FFB6B22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCWebViewScriptMessageHandler.swift; sourceTree = "<group>"; };
-		A37FFB6D22EEB62B0001DD27 /* NewMomentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMomentViewController.swift; sourceTree = "<group>"; };
+		A37FFB6D22EEB62B0001DD27 /* PublishMomentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishMomentViewController.swift; sourceTree = "<group>"; };
 		A389999C22E969FE00620069 /* EmoticonManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageViewController.swift; sourceTree = "<group>"; };
 		A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreViewController.swift; sourceTree = "<group>"; };
 		A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailViewController.swift; sourceTree = "<group>"; };
@@ -514,6 +518,10 @@
 		A3C9145123056ED200B6E077 /* MomentCommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentListViewController.swift; sourceTree = "<group>"; };
 		A3C9145323056FFA00B6E077 /* MomentCommentListCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentListCellNode.swift; sourceTree = "<group>"; };
 		A3C914552305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentLoadHistoryCellNode.swift; sourceTree = "<group>"; };
+		A3C914572305886200B6E077 /* PublishMomentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishMomentAction.swift; sourceTree = "<group>"; };
+		A3C914592305887000B6E077 /* PublishMomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishMomentCellNode.swift; sourceTree = "<group>"; };
+		A3C9145B230588FD00B6E077 /* icons_outlined_location.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_location.svg; sourceTree = "<group>"; };
+		A3C9145D2305892000B6E077 /* icons_outlined_at.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_at.svg; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -799,7 +807,7 @@
 			children = (
 				A3C9145023056EB700B6E077 /* CommentList */,
 				A3E58D9B23025B4A00F73763 /* Views */,
-				A372145522FFC03600340023 /* PostMoment */,
+				A372145522FFC03600340023 /* PublishMoment */,
 				A372145422FFBCBE00340023 /* Cells */,
 				A32333C922DF4FE100B79555 /* Content */,
 				A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */,
@@ -1051,12 +1059,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		A372145522FFC03600340023 /* PostMoment */ = {
+		A372145522FFC03600340023 /* PublishMoment */ = {
 			isa = PBXGroup;
 			children = (
-				A37FFB6D22EEB62B0001DD27 /* NewMomentViewController.swift */,
+				A37FFB6D22EEB62B0001DD27 /* PublishMomentViewController.swift */,
+				A3C914572305886200B6E077 /* PublishMomentAction.swift */,
+				A3C914592305887000B6E077 /* PublishMomentCellNode.swift */,
 			);
-			path = PostMoment;
+			path = PublishMoment;
 			sourceTree = "<group>";
 		};
 		A372145622FFC2A700340023 /* Labs */ = {
@@ -1300,6 +1310,8 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A3C9145D2305892000B6E077 /* icons_outlined_at.svg */,
+				A3C9145B230588FD00B6E077 /* icons_outlined_location.svg */,
 				A3DE7CCB2301155E00E73944 /* icons_outlined_camera.svg */,
 				A3FB0AB122F40C6C00116329 /* icons_outlined_pay.svg */,
 				A3FB0AAF22F40A2500116329 /* icons_filled_wallet.svg */,
@@ -1580,6 +1592,7 @@
 				A3CA522622CE19BE00C67D92 /* icons_filled_camera.svg in Resources */,
 				A3CA51E722CD9FDC00C67D92 /* icons_outlined_miniprogram.svg in Resources */,
 				A3CCE02422DDECFA0003DC25 /* red_envelopes_detail_top_bg.svg in Resources */,
+				A3C9145E2305892000B6E077 /* icons_outlined_at.svg in Resources */,
 				A374865F22D4AEF3002EEC4F /* icons_filled_album.svg in Resources */,
 				A3CA51D722CD9F9400C67D92 /* icons_outlined_scan.svg in Resources */,
 				A3FB0AB022F40A2500116329 /* icons_filled_wallet.svg in Resources */,
@@ -1595,6 +1608,7 @@
 				A3CA51ED22CDA0F300C67D92 /* icons_outlined_addfriends.svg in Resources */,
 				A374865922D4A2BC002EEC4F /* icons_outlined_add2.svg in Resources */,
 				A3CA520922CDC93E00C67D92 /* icons_filled_pay.svg in Resources */,
+				A3C9145C230588FD00B6E077 /* icons_outlined_location.svg in Resources */,
 				A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */,
 				A3CA51DD22CD9FAF00C67D92 /* icons_filled_search-logo.svg in Resources */,
 				A3C9143C2305340300B6E077 /* Robb.jpg in Resources */,
@@ -1747,6 +1761,7 @@
 				A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */,
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
+				A3C9145A2305887000B6E077 /* PublishMomentCellNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */,
 				A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */,
@@ -1821,6 +1836,7 @@
 				A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */,
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
+				A3C914582305886200B6E077 /* PublishMomentAction.swift in Sources */,
 				A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */,
 				A3FB0AB422F40E3B00116329 /* MallFunctionActivityContainerNode.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
@@ -1829,7 +1845,7 @@
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
 				A373D3DD22F6A9A900451515 /* SettingFontSizeStepSlider.swift in Sources */,
 				A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */,
-				A37FFB6E22EEB62B0001DD27 /* NewMomentViewController.swift in Sources */,
+				A37FFB6E22EEB62B0001DD27 /* PublishMomentViewController.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,
 				A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */,

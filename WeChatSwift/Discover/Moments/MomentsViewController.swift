@@ -16,7 +16,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private let header: MomentHeaderNode = MomentHeaderNode()
     private var titleView: UILabel?
     private var operationMenuView: MomentOperationMenuView?
-    private var rightBarItem: UIBarButtonItem?
+    private var rightBarButton: UIButton?
     
     private let dataSource = MomentDataSource()
     private var statusBarStyle = UIStatusBarStyle.lightContent
@@ -54,6 +54,9 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         header.frame = tableHeader.bounds
         tableHeader.addSubnode(header)
         tableNode.view.tableHeaderView = tableHeader
+        header.avatarTapHandler = { [weak self] in
+            self?.onHeaderAvatarClicked()
+        }
         
         let titleLabel = UILabel()
         titleLabel.text = "朋友圈"
@@ -63,9 +66,15 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         self.titleView = titleLabel
         
         let rightButtonImage = UIImage.SVGImage(named: "icons_filled_camera")?.withRenderingMode(.alwaysTemplate)
-        let rightButtonItem = UIBarButtonItem(image: rightButtonImage, style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
-        navigationItem.rightBarButtonItem = rightButtonItem
-        self.rightBarItem = rightButtonItem
+        let rightButtonOutlinedImage = UIImage.SVGImage(named: "icons_outlined_camera")?.withRenderingMode(.alwaysTemplate)
+        let rightButton = UIButton(type: .custom)
+        rightButton.setImage(rightButtonImage, for: .normal)
+        rightButton.setImage(rightButtonOutlinedImage, for: .selected)
+        rightButton.addTarget(self, action: #selector(handleRightBarButtonTapped(_:)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        rightBarButton = rightButton
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressRightBarButtonGesture(_:)))
+        rightButton.addGestureRecognizer(longPressGesture)
         
         wc_navigationBar.alpha = 0.0
     }
@@ -94,6 +103,12 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         }
     }
     
+    private func presentPublishMomentViewController() {
+        let publishMomentVC = PublishMomentViewController(source: .text)
+        let nav = WCNavigationController(rootViewController: publishMomentVC)
+        present(nav, animated: true, completion: nil)
+    }
+    
     private func addRows(newMomentsCount: Int) {
         let indexRange = (dataSource.numberOfItems() - newMomentsCount..<dataSource.numberOfItems())
         let section = hasNewMessage ? 1: 0
@@ -106,10 +121,6 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
             statusBarStyle = style
             setNeedsStatusBarAppearanceUpdate()
         }
-    }
-    
-    private func update(offset: CGFloat) {
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -131,6 +142,21 @@ extension MomentsViewController {
             
         }))
         actionSheet.show()
+    }
+    
+    @objc private func handleLongPressRightBarButtonGesture(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            presentPublishMomentViewController()
+        }
+    }
+    
+    private func onHeaderAvatarClicked() {
+        let me = MockFactory.shared.users.first!
+        let contact = Contact()
+        contact.name = me.name
+        contact.avatar = UIImage(named: me.avatar)
+        let contactInfoVC = ContactInfoViewController(contact: contact)
+        navigationController?.pushViewController(contactInfoVC, animated: true)
     }
     
 }
@@ -196,12 +222,14 @@ extension MomentsViewController: UIScrollViewDelegate {
             titleView?.alpha = 0
             titleView?.isHidden = true
             barTintColor = .white
+            rightBarButton?.isSelected = false
         } else if y < threshold + barHeight {
             //let alpha = (y - threshold)/barHeight
             updateStatusBarStyle(.default)
             titleView?.alpha = 0
             titleView?.isHidden = true
             barTintColor = .black
+            rightBarButton?.isSelected = true
         } else {
             let progress = (y - threshold - barHeight)/barHeight
             let alpha = max(0, min(progress, 1))
@@ -210,6 +238,7 @@ extension MomentsViewController: UIScrollViewDelegate {
             titleView?.isHidden = alpha == 0.0
             updateStatusBarStyle(.default)
             barTintColor = .black
+            rightBarButton?.isSelected = true
         }
         if navigationController?.navigationBar.tintColor != barTintColor {
             navigationController?.navigationBar.tintColor = barTintColor
@@ -231,6 +260,10 @@ extension MomentsViewController: MomentCellNodeDelegate {
             menuView.show(with: moment, at: point)
             self.operationMenuView = menuView
         }
+    }
+    
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String) {
+        
     }
     
 }

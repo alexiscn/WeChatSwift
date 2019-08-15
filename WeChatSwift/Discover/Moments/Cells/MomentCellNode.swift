@@ -91,6 +91,13 @@ class MomentCellNode: ASCellNode {
         super.didLoad()
         
         moreNode.addTarget(self, action: #selector(handleMoreButtonClicked(_:)), forControlEvents: .touchUpInside)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        
     }
     
     @objc private func handleMoreButtonClicked(_ sender: ASButtonNode) {
@@ -160,5 +167,7 @@ class MomentCellNode: ASCellNode {
 protocol MomentCellNodeDelegate: class {
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode, moment: Moment)
+    
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String)
     
 }
