@@ -232,10 +232,13 @@ class MockFactory {
                 moment.body = MomentBody.media(body)
                 
                 let comment = MomentComment()
-                comment.nickname = "谢霆锋"
+                comment.nickname = user.name
                 comment.content = "还不错哦还不错哦还不错哦还不错哦还不错哦还不错哦"
-                comment.userID = "10002"
+                comment.userID = user.identifier
                 moment.comments = [comment]
+                
+                let like = MomentLikeUser(userID: user.identifier, username: user.name)
+                moment.likes = [like]
             } else if index % 6 == 0 {
                 let link = random(of: webPages)
                 let webPage = MomentWebpage(url: URL(string: link.urlString),

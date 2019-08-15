@@ -14,7 +14,9 @@ class MomentCommentNode: ASDisplayNode {
     
     private let containerNode = ASDisplayNode()
     
-    private var likeElements: [ASButtonNode] = []
+    private var likeNode: ASTextNode?
+    
+    private var lineNode: MomentLineNode?
     
     private var commentElements: [ASTextNode] = []
     
@@ -24,13 +26,38 @@ class MomentCommentNode: ASDisplayNode {
         triangleNode.style.preferredSize = CGSize(width: 45, height: 6)
         containerNode.backgroundColor = UIColor(hexString: "#F3F3F5")
         
-        //        for likeUser in likes {
-        //
-        //        }
-        
-        let commentTextColor = UIColor(hexString: "#111111")
-        let commentFont = UIFont.systemFont(ofSize: 15)
         let nameFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        let textColor = UIColor(hexString: "#111111")
+        let textFont = UIFont.systemFont(ofSize: 15)
+        let textAttributes = [
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.foregroundColor: textColor
+        ]
+        
+        if likes.count > 0 {
+            let body = NSMutableAttributedString()
+            let attachment = NSTextAttachment()
+            attachment.image = UIImage(named: "AlbumLikeSmall_18x18_")
+            attachment.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
+            
+            body.append(NSAttributedString(attachment: attachment))
+            
+            for (index, user) in likes.enumerated() {
+                body.append(NSAttributedString(string: user.username, attributes: [
+                    .font: nameFont,
+                    .foregroundColor: Colors.DEFAULT_LINK_COLOR,
+                    .link: URL(string: "wechat://WC/" + user.userID) as Any,
+                    .underlineColor: UIColor.clear
+                    ]))
+                if index != likes.count - 1 {
+                    body.append(NSAttributedString(string: ",", attributes: textAttributes))
+                }
+            }
+            likeNode = ASTextNode()
+            likeNode?.maximumNumberOfLines = 0
+            likeNode?.attributedText = body
+        }
+    
         for comment in comments {
             let body = NSMutableAttributedString()
             body.append(NSAttributedString(string: comment.nickname, attributes: [
@@ -41,10 +68,7 @@ class MomentCommentNode: ASDisplayNode {
                 ]))
             
             if let refName = comment.refUsername, let refUId = comment.refUserId {
-                body.append(NSAttributedString(string: "回复", attributes: [
-                    .font: commentFont,
-                    .foregroundColor: commentTextColor
-                    ]))
+                body.append(NSAttributedString(string: "回复", attributes: textAttributes))
                 
                 body.append(NSAttributedString(string: refName, attributes: [
                     .font: nameFont,
@@ -54,15 +78,16 @@ class MomentCommentNode: ASDisplayNode {
                     ]))
             }
             
-            body.append(NSAttributedString(string: ": \(comment.content)", attributes: [
-                .font: commentFont,
-                .foregroundColor: commentTextColor
-                ]))
+            body.append(NSAttributedString(string: ": \(comment.content)", attributes: textAttributes))
             
             let textNode = ASTextNode()
             textNode.maximumNumberOfLines = 0
             textNode.attributedText = body
             commentElements.append(textNode)
+        }
+        
+        if likes.count > 0 && comments.count > 0 {
+            lineNode = MomentLineNode()
         }
         
         super.init()
@@ -72,12 +97,31 @@ class MomentCommentNode: ASDisplayNode {
     override func didLoad() {
         super.didLoad()
         
+        likeNode?.delegate = self
         commentElements.forEach { $0.delegate = self }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        var elements: [ASLayoutElement] = []
+        if let likeNode = likeNode {
+            let textInsets = UIEdgeInsets(top: 4, left: 9, bottom: 4, right: 9)
+            elements.append(ASInsetLayoutSpec(insets: textInsets, child: likeNode))
+        }
+        
+        if let line = lineNode {
+            line.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 1)
+            elements.append(line)
+        }
+        
+        if commentElements.count > 0 {
+            let textInsets = UIEdgeInsets(top: 4, left: 9, bottom: 4, right: 9)
+            let commentSpecs = commentElements.map { return ASInsetLayoutSpec(insets: textInsets, child: $0) }
+            elements.append(contentsOf: commentSpecs)
+        }
+        
         let commentStack = ASStackLayoutSpec.vertical()
-        commentStack.children = commentElements.map { return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 3, left: 9, bottom: 3, right: 9), child: $0) }
+        commentStack.children = elements
         
         let backgroundSpec = ASBackgroundLayoutSpec(child: commentStack, background: containerNode)
         
@@ -103,17 +147,29 @@ extension MomentCommentNode: ASTextNodeDelegate {
 
 private class MomentLineNode: ASDisplayNode {
     
-    override func didLoad() {
-        super.didLoad()
+    private let frontLine = ASDisplayNode()
+    
+    private let backLine = ASDisplayNode()
+    
+    override init() {
+        super.init()
         
-        let backLayer = CAShapeLayer()
-        backLayer.frame = CGRect(x: 0, y: (1.0 - Constants.lineHeight)/2.0, width: bounds.width, height: Constants.lineHeight)
-        backLayer.backgroundColor = UIColor(hexString: "#DDDEDF").cgColor
-        layer.addSublayer(backLayer)
+        frontLine.backgroundColor = UIColor(hexString: "#DDDEDF")
+        backLine.backgroundColor = UIColor(hexString: "#F6F7F7")
         
-        let frontLayer = CAShapeLayer()
-        frontLayer.backgroundColor = UIColor(hexString: "#F6F7F7").cgColor
-        frontLayer.frame = CGRect(x: 0, y: (1.0 - Constants.lineHeight)/2.0, width: bounds.width, height: Constants.lineHeight)
-        layer.addSublayer(frontLayer)
+        automaticallyManagesSubnodes = true
     }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        
+        frontLine.style.preferredSize = CGSize(width: constrainedSize.max.width, height: Constants.lineHeight)
+        frontLine.style.layoutPosition = CGPoint(x: 0, y: 0)
+        
+        backLine.style.preferredSize = CGSize(width: constrainedSize.max.width, height: Constants.lineHeight)
+        backLine.style.layoutPosition = CGPoint(x: 0, y: Constants.lineHeight)
+        
+        return ASAbsoluteLayoutSpec(children: [frontLine, backLine])
+    }
+    
+    
 }

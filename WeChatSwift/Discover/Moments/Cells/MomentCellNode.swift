@@ -65,7 +65,7 @@ class MomentCellNode: ASCellNode {
         moreNode.style.preferredSize = CGSize(width: 32, height: 20)
         
         if moment.comments.count > 0 {
-            commentNode = MomentCommentNode(likes: [], comments: moment.comments)
+            commentNode = MomentCommentNode(likes: moment.likes, comments: moment.comments)
         }
         
         bottomSeparator = ASImageNode()
@@ -105,7 +105,7 @@ class MomentCellNode: ASCellNode {
         textNode?.style.flexGrow = 1.0
         
         let rightStack = ASStackLayoutSpec.vertical()
-        rightStack.spacing = 6
+        rightStack.spacing = 5
         rightStack.style.flexShrink = 1.0
         rightStack.style.flexGrow = 1.0
         rightStack.style.spacingAfter = 12
@@ -122,6 +122,7 @@ class MomentCellNode: ASCellNode {
         }
         
         let footerStack = ASStackLayoutSpec.horizontal()
+        footerStack.alignItems = .center
         let footerSpacer = ASLayoutSpec()
         footerSpacer.style.flexGrow = 1.0
         var footerElements: [ASLayoutElement] = []
@@ -144,13 +145,12 @@ class MomentCellNode: ASCellNode {
         layoutSpec.children = [avatarNode, rightStack]
         
         let topSpacer = ASLayoutSpec()
-        topSpacer.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionMake("100%"), height: ASDimensionMake(1))
+        topSpacer.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 11)
         
         let bottomSpacer = ASLayoutSpec()
-        bottomSpacer.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 6)
+        bottomSpacer.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 16)
         
         let verticalSpec = ASStackLayoutSpec.vertical()
-        verticalSpec.spacing = 10
         verticalSpec.children = [topSpacer, layoutSpec, bottomSpacer, bottomSeparator]
         
         return ASInsetLayoutSpec(insets: .zero, child: verticalSpec)
