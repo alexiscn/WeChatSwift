@@ -1,25 +1,25 @@
 //
-//  BrandContactsViewController.swift
+//  MomentCommentListViewController.swift
 //  WeChatSwift
 //
-//  Created by xushuifeng on 2019/8/11.
+//  Created by xu.shuifeng on 2019/8/15.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
 import AsyncDisplayKit
 
-class BrandContactsViewController: ASViewController<ASDisplayNode> {
+class MomentCommentListViewController: ASViewController<ASDisplayNode> {
     
-    private let tableNode = ASTableNode(style: .grouped)
+    private let tableNode = ASTableNode(style: .plain)
     
     init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
+        tableNode.dataSource = self
         tableNode.delegate = self
-        
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -27,22 +27,29 @@ class BrandContactsViewController: ASViewController<ASDisplayNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        tableNode.backgroundColor = .white
         tableNode.frame = node.bounds
-        tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "公众号"
-        let addButton = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_add"), style: .plain, target: self, action: #selector(addButtonClicked))
-        navigationItem.rightBarButtonItem = addButton
-    }
-    
-    @objc private func addButtonClicked() {
+        navigationItem.title = "消息"
         
+        let rightButton = UIBarButtonItem(title: "清空", style: .plain, target: self, action: #selector(handleRightButtonClicked))
+        navigationItem.rightBarButtonItem = rightButton
     }
 }
 
+// MARK: - Event Handlers
+extension MomentCommentListViewController {
+    
+    @objc private func handleRightButtonClicked() {
+        
+    }
+    
+}
+
 // MARK: - ASTableDelegate & ASTableDataSource
-extension BrandContactsViewController: ASTableDelegate, ASTableDataSource {
+extension MomentCommentListViewController: ASTableDelegate, ASTableDataSource {
+    
     func numberOfSections(in tableNode: ASTableNode) -> Int {
         return 0
     }
@@ -50,7 +57,7 @@ extension BrandContactsViewController: ASTableDelegate, ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
-    
+
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let block: ASCellNodeBlock = {
             return ASCellNode()

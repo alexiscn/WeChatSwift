@@ -87,7 +87,6 @@
 		A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */; };
 		A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */; };
 		A3485FB322F03E29002A804B /* PayOfflinePayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */; };
-		A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */; };
 		A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */; };
 		A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3485FBA22F049CB002A804B /* WeChatEmoticonsCellNode.swift */; };
 		A3485FBD22F05363002A804B /* EmoticonBanners.json in Resources */ = {isa = PBXBuildFile; fileRef = A3485FBC22F05363002A804B /* EmoticonBanners.json */; };
@@ -119,7 +118,6 @@
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
 		A372227C22D62033003403D4 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372227B22D62033003403D4 /* Expression.swift */; };
-		A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372228822D954C9003403D4 /* ContactCellNode.swift */; };
 		A372228B22D984D9003403D4 /* flutter.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A372228A22D984D9003403D4 /* flutter.jpeg */; };
 		A373D3CE22F5221000451515 /* ScrollActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3CD22F5221000451515 /* ScrollActionSheet.swift */; };
 		A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3CF22F5815D00451515 /* DiscoverManager.swift */; };
@@ -154,7 +152,6 @@
 		A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866622D4B031002EEC4F /* icons_filled_sticker.svg */; };
 		A374866922D4B04F002EEC4F /* icons_filled_transfer.svg in Resources */ = {isa = PBXBuildFile; fileRef = A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */; };
 		A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */; };
-		A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */; };
 		A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E73E322D89AFB008019A4 /* SessionCellNode.swift */; };
 		A37FFB6222EE8D310001DD27 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6122EE8D310001DD27 /* WebViewController.swift */; };
 		A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6322EE8E380001DD27 /* WebBottomToolBar.swift */; };
@@ -191,6 +188,10 @@
 		A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144423053D3600B6E077 /* ChatRoomListViewController.swift */; };
 		A3C9144823053E5900B6E077 /* SayHelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144723053E5900B6E077 /* SayHelloViewController.swift */; };
 		A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144B23054B4800B6E077 /* ChatRoomListItemModel.swift */; };
+		A3C9144E23056CB000B6E077 /* MomentCommentLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144D23056CB000B6E077 /* MomentCommentLineNode.swift */; };
+		A3C9145223056ED200B6E077 /* MomentCommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9145123056ED200B6E077 /* MomentCommentListViewController.swift */; };
+		A3C9145423056FFA00B6E077 /* MomentCommentListCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9145323056FFA00B6E077 /* MomentCommentListCellNode.swift */; };
+		A3C914562305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C914552305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -408,7 +409,6 @@
 		A3485FAD22EFFE1D002A804B /* AddContactSearchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactSearchNode.swift; sourceTree = "<group>"; };
 		A3485FAF22F021B1002A804B /* QRCodeCardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCardNode.swift; sourceTree = "<group>"; };
 		A3485FB222F03E29002A804B /* PayOfflinePayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayViewController.swift; sourceTree = "<group>"; };
-		A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayCellNode.swift; sourceTree = "<group>"; };
 		A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatEmoticonsViewController.swift; sourceTree = "<group>"; };
 		A3485FBA22F049CB002A804B /* WeChatEmoticonsCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatEmoticonsCellNode.swift; sourceTree = "<group>"; };
 		A3485FBC22F05363002A804B /* EmoticonBanners.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EmoticonBanners.json; sourceTree = "<group>"; };
@@ -440,7 +440,6 @@
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
 		A372227B22D62033003403D4 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
-		A372228822D954C9003403D4 /* ContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellNode.swift; sourceTree = "<group>"; };
 		A372228A22D984D9003403D4 /* flutter.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flutter.jpeg; sourceTree = "<group>"; };
 		A373D3CD22F5221000451515 /* ScrollActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollActionSheet.swift; sourceTree = "<group>"; };
 		A373D3CF22F5815D00451515 /* DiscoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverManager.swift; sourceTree = "<group>"; };
@@ -475,7 +474,6 @@
 		A374866622D4B031002EEC4F /* icons_filled_sticker.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_sticker.svg; sourceTree = "<group>"; };
 		A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_transfer.svg; sourceTree = "<group>"; };
 		A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPageLayoutDelegate.swift; sourceTree = "<group>"; };
-		A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellNode.swift; sourceTree = "<group>"; };
 		A37E73E322D89AFB008019A4 /* SessionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCellNode.swift; sourceTree = "<group>"; };
 		A37FFB6122EE8D310001DD27 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		A37FFB6322EE8E380001DD27 /* WebBottomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBottomToolBar.swift; sourceTree = "<group>"; };
@@ -512,6 +510,10 @@
 		A3C9144423053D3600B6E077 /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
 		A3C9144723053E5900B6E077 /* SayHelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayHelloViewController.swift; sourceTree = "<group>"; };
 		A3C9144B23054B4800B6E077 /* ChatRoomListItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListItemModel.swift; sourceTree = "<group>"; };
+		A3C9144D23056CB000B6E077 /* MomentCommentLineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentLineNode.swift; sourceTree = "<group>"; };
+		A3C9145123056ED200B6E077 /* MomentCommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentListViewController.swift; sourceTree = "<group>"; };
+		A3C9145323056FFA00B6E077 /* MomentCommentListCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentListCellNode.swift; sourceTree = "<group>"; };
+		A3C914552305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentLoadHistoryCellNode.swift; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -788,7 +790,6 @@
 				A3CCEDD422FBBCC9008BE41D /* NearbyPeople */,
 				A33DB2E622CCC9FE00A11776 /* Moments */,
 				A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */,
-				A37E73E122D8938D008019A4 /* DiscoverCellNode.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -796,12 +797,12 @@
 		A33DB2E622CCC9FE00A11776 /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				A3C9145023056EB700B6E077 /* CommentList */,
 				A3E58D9B23025B4A00F73763 /* Views */,
 				A372145522FFC03600340023 /* PostMoment */,
 				A372145422FFBCBE00340023 /* Cells */,
 				A32333C922DF4FE100B79555 /* Content */,
 				A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */,
-				A32333C722DF4E7700B79555 /* MomentCommentNode.swift */,
 				A33D2B1622F2C81C0099927A /* MomentDataSource.swift */,
 			);
 			path = Moments;
@@ -830,7 +831,6 @@
 				A3485FAA22EFF608002A804B /* AddContact */,
 				A3485FA322EFF5AA002A804B /* ContactInfo */,
 				A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */,
-				A372228822D954C9003403D4 /* ContactCellNode.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -970,7 +970,6 @@
 			children = (
 				A35EDF6022FD7A3100C56CAC /* PaymentMain */,
 				A35EDF5D22FD7A0400C56CAC /* PayOfflinePay */,
-				A3485FB422F03F2A002A804B /* PayOfflinePayCellNode.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -1238,6 +1237,34 @@
 			path = SayHello;
 			sourceTree = "<group>";
 		};
+		A3C9144F23056DB500B6E077 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				A31057D722E8532C00856D71 /* dice_1.pic */,
+				A31057DB22E8532D00856D71 /* dice_2.pic */,
+				A31057DC22E8532E00856D71 /* dice_3.pic */,
+				A31057DA22E8532D00856D71 /* dice_4.pic */,
+				A31057D922E8532D00856D71 /* dice_5.pic */,
+				A31057D822E8532C00856D71 /* dice_6.pic */,
+				A31057DD22E8532E00856D71 /* dice.pic */,
+				A31057D322E852F900856D71 /* JSB_B.pic */,
+				A31057D222E852F900856D71 /* JSB_J.pic */,
+				A31057D122E852F900856D71 /* JSB_S.pic */,
+				A31057E522E8533C00856D71 /* JSB.pic */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		A3C9145023056EB700B6E077 /* CommentList */ = {
+			isa = PBXGroup;
+			children = (
+				A3C9145123056ED200B6E077 /* MomentCommentListViewController.swift */,
+				A3C9145323056FFA00B6E077 /* MomentCommentListCellNode.swift */,
+				A3C914552305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift */,
+			);
+			path = CommentList;
+			sourceTree = "<group>";
+		};
 		A3CA51A122CD995C00C67D92 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
@@ -1258,6 +1285,7 @@
 		A3CA51B122CD9ACE00C67D92 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3C9144F23056DB500B6E077 /* Games */,
 				A3FB0AAC22F407BE00116329 /* Emoticons */,
 				A3CA521022CDE9C500C67D92 /* Avatars */,
 				A3CA51C322CD9C1C00C67D92 /* Icons */,
@@ -1265,17 +1293,6 @@
 				A372228A22D984D9003403D4 /* flutter.jpeg */,
 				A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */,
 				A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */,
-				A31057D722E8532C00856D71 /* dice_1.pic */,
-				A31057DB22E8532D00856D71 /* dice_2.pic */,
-				A31057DC22E8532E00856D71 /* dice_3.pic */,
-				A31057DA22E8532D00856D71 /* dice_4.pic */,
-				A31057D922E8532D00856D71 /* dice_5.pic */,
-				A31057D822E8532C00856D71 /* dice_6.pic */,
-				A31057DD22E8532E00856D71 /* dice.pic */,
-				A31057D322E852F900856D71 /* JSB_B.pic */,
-				A31057D222E852F900856D71 /* JSB_J.pic */,
-				A31057D122E852F900856D71 /* JSB_S.pic */,
-				A31057E522E8533C00856D71 /* JSB.pic */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1451,6 +1468,8 @@
 		A3E58D9B23025B4A00F73763 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A32333C722DF4E7700B79555 /* MomentCommentNode.swift */,
+				A3C9144D23056CB000B6E077 /* MomentCommentLineNode.swift */,
 				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
 				A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */,
 				A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */,
@@ -1731,7 +1750,7 @@
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
 				A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */,
 				A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */,
-				A372228922D954C9003403D4 /* ContactCellNode.swift in Sources */,
+				A3C914562305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
 				A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */,
@@ -1807,7 +1826,6 @@
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
 				A3DE7CC72301095200E73944 /* MessageDatabase.swift in Sources */,
 				A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */,
-				A3485FB522F03F2A002A804B /* PayOfflinePayCellNode.swift in Sources */,
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
 				A373D3DD22F6A9A900451515 /* SettingFontSizeStepSlider.swift in Sources */,
 				A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */,
@@ -1822,7 +1840,6 @@
 				A373D3CE22F5221000451515 /* ScrollActionSheet.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
-				A37E73E222D8938D008019A4 /* DiscoverCellNode.swift in Sources */,
 				A30347F922FF9983003ECF82 /* BrandContactsViewController.swift in Sources */,
 				A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */,
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
@@ -1851,6 +1868,7 @@
 				A3D897E422E1733A00814669 /* Sticker.swift in Sources */,
 				A3F6AD042303E248007FE74B /* MessageTimeNode.swift in Sources */,
 				A3DE7CCA2301142200E73944 /* StoryTakePhotoTeachViewController.swift in Sources */,
+				A3C9145423056FFA00B6E077 /* MomentCommentListCellNode.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
 				A30347F622FE57B1003ECF82 /* WCTableCellModel.swift in Sources */,
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
@@ -1858,6 +1876,7 @@
 				A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
 				A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */,
+				A3C9145223056ED200B6E077 /* MomentCommentListViewController.swift in Sources */,
 				A33DB2EF22CCCB8E00A11776 /* SVGImage+Extensions.swift in Sources */,
 				A322870322E06299004E516E /* EmoticonManager.swift in Sources */,
 				A3E58DA22302BE4E00F73763 /* CameraScanViewController.swift in Sources */,
@@ -1907,6 +1926,7 @@
 				A37FFB6822EE92210001DD27 /* WCWebView.swift in Sources */,
 				A3476FFA22FAA498001B94EC /* ChatRoomAddContactCellNode.swift in Sources */,
 				A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */,
+				A3C9144E23056CB000B6E077 /* MomentCommentLineNode.swift in Sources */,
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */,

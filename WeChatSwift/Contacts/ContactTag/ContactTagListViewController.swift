@@ -44,6 +44,9 @@ class ContactTagListViewController: ASViewController<ASDisplayNode> {
             let top = Constants.topInset + Constants.statusBarHeight
             let bottom = Constants.bottomInset
             let placeholder = ContactTagListPlacehoderNode()
+            placeholder.createButtonHandler = {
+                
+            }
             placeholder.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - top - bottom)
             node.addSubnode(placeholder)
             self.placeholder = placeholder
