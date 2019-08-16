@@ -11,6 +11,7 @@ import AsyncDisplayKit
 class MomentHeaderNode: ASDisplayNode {
     
     var avatarTapHandler: RelayCommand?
+    var coverTapHandler: RelayCommand?
     
     private let nameNode = ASTextNode()
     
@@ -49,8 +50,16 @@ class MomentHeaderNode: ASDisplayNode {
     override func didLoad() {
         super.didLoad()
         backgroundColor = .white
-        avatarNode.isUserInteractionEnabled = true
+        isUserInteractionEnabled = true
+        
         avatarNode.addTarget(self, action: #selector(avatarClicked), forControlEvents: .touchUpInside)
+    
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        coverTapHandler?()
     }
     
     @objc private func avatarClicked() {

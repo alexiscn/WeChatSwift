@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 enum PublishMomentSource {
     case text
-    case media
+    case media([MediaAsset])
 }
 
 class PublishMomentViewController: ASViewController<ASDisplayNode> {
@@ -41,8 +41,11 @@ class PublishMomentViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         tableNode.backgroundColor = .clear
         
-        if source == .text {
+        switch source {
+        case .text:
             navigationItem.title = "发表文字"
+        case .media(let assets):
+            print(assets.count)
         }
         
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(handleCancelButtonClicked))

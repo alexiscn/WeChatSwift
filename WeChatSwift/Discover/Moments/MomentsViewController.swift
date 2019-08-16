@@ -57,6 +57,9 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         header.avatarTapHandler = { [weak self] in
             self?.onHeaderAvatarClicked()
         }
+        header.coverTapHandler = { [weak self] in
+            self?.onHeaderCoverClicked()
+        }
         
         let titleLabel = UILabel()
         titleLabel.text = "朋友圈"
@@ -109,6 +112,31 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         present(nav, animated: true, completion: nil)
     }
     
+    private func presentPublishMediaMomentViewController(_ assets: [MediaAsset]) {
+        let publishMomentVC = PublishMomentViewController(source: .media(assets))
+        let nav = WCNavigationController(rootViewController: publishMomentVC)
+        present(nav, animated: true, completion: nil)
+    }
+    
+    private func presentPickAssetViewController() {
+        let selectionHandler = { [weak self] (selectedAssets: [MediaAsset]) in
+            self?.dismiss(animated: true, completion: nil)
+            self?.presentPublishMediaMomentViewController(selectedAssets)
+        }
+        
+        let albumPickerVC = AlbumPickerViewController()
+        albumPickerVC.selectionHandler = selectionHandler
+        let assetPickerVC = AssetPickerViewController()
+        assetPickerVC.selectionHandler = selectionHandler
+        let nav = WCNavigationController()
+        nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
+        present(nav, animated: true, completion: nil)
+    }
+    
+    private func navigateToPickCover() {
+        
+    }
+    
     private func addRows(newMomentsCount: Int) {
         let indexRange = (dataSource.numberOfItems() - newMomentsCount..<dataSource.numberOfItems())
         let section = hasNewMessage ? 1: 0
@@ -138,8 +166,8 @@ extension MomentsViewController {
         actionSheet.add(WXActionSheetItem(title: "拍摄", desc: "照片或视频", handler: { _ in
             
         }))
-        actionSheet.add(WXActionSheetItem(title: "从手机相册中选择", handler: { _ in
-            
+        actionSheet.add(WXActionSheetItem(title: "从手机相册中选择", handler: { [weak self] _ in
+            self?.presentPickAssetViewController()
         }))
         actionSheet.show()
     }
@@ -157,6 +185,14 @@ extension MomentsViewController {
         contact.avatar = UIImage(named: me.avatar)
         let contactInfoVC = ContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactInfoVC, animated: true)
+    }
+    
+    private func onHeaderCoverClicked() {
+        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        actionSheet.add(WXActionSheetItem(title: "更换相册封面", handler: { _ in
+            
+        }))
+        actionSheet.show()
     }
     
 }
