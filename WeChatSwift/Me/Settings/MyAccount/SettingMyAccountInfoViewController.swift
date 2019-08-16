@@ -70,6 +70,10 @@ extension SettingMyAccountInfoViewController: ASTableDelegate, ASTableDataSource
         return block
     }
     
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
     }

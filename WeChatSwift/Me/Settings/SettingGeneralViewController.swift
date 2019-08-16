@@ -74,7 +74,9 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
         let item = dataSource[indexPath.section].items[indexPath.row]
         switch item {
         case .language:
-            print("language")
+            let languageVC = SettingLanguageViewController()
+            let nav = WCNavigationController(rootViewController: languageVC)
+            present(nav, animated: true, completion: nil)
         case .font:
             let fontSizeVC = SettingFontSizeViewController()
             let nav = WCNavigationController(rootViewController: fontSizeVC)
@@ -94,6 +96,9 @@ extension SettingGeneralViewController: ASTableDelegate, ASTableDataSource {
         case .plugins:
             let pluginsVC = SettingPluginsViewController()
             navigationController?.pushViewController(pluginsVC, animated: true)
+        case .storage:
+            let storageUsageVC = StorageUsageViewController()
+            navigationController?.pushViewController(storageUsageVC, animated: true)
         default:
             break
         }

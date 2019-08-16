@@ -105,6 +105,14 @@
 		A352AD1A23065B8900332B21 /* AssetPickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD1923065B8900332B21 /* AssetPickerConfiguration.swift */; };
 		A352AD1C2306980D00332B21 /* MomentCoverBackground.json in Resources */ = {isa = PBXBuildFile; fileRef = A352AD1B2306980D00332B21 /* MomentCoverBackground.json */; };
 		A352AD1E23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD1D23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift */; };
+		A352AD212306CB1E00332B21 /* StorageUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD202306CB1E00332B21 /* StorageUsageViewController.swift */; };
+		A352AD232306CB7800332B21 /* StorageUsageDetailNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD222306CB7800332B21 /* StorageUsageDetailNode.swift */; };
+		A352AD252306CDA700332B21 /* StorageUsageSummaryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD242306CDA700332B21 /* StorageUsageSummaryNode.swift */; };
+		A352AD272306CDB300332B21 /* StorageUsageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD262306CDB300332B21 /* StorageUsageDetail.swift */; };
+		A352AD2A2306CE9500332B21 /* SettingLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD292306CE9500332B21 /* SettingLanguageViewController.swift */; };
+		A352AD2C2306D03C00332B21 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2B2306D03C00332B21 /* AppLanguage.swift */; };
+		A352AD2E2306D0B200332B21 /* SettingLanguageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */; };
+		A352AD302306D2FA00332B21 /* icons_filled_done.svg in Resources */ = {isa = PBXBuildFile; fileRef = A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */; };
 		A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */; };
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
@@ -441,6 +449,14 @@
 		A352AD1923065B8900332B21 /* AssetPickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerConfiguration.swift; sourceTree = "<group>"; };
 		A352AD1B2306980D00332B21 /* MomentCoverBackground.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MomentCoverBackground.json; sourceTree = "<group>"; };
 		A352AD1D23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentSetBackgroundHeaderNode.swift; sourceTree = "<group>"; };
+		A352AD202306CB1E00332B21 /* StorageUsageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageViewController.swift; sourceTree = "<group>"; };
+		A352AD222306CB7800332B21 /* StorageUsageDetailNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageDetailNode.swift; sourceTree = "<group>"; };
+		A352AD242306CDA700332B21 /* StorageUsageSummaryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageSummaryNode.swift; sourceTree = "<group>"; };
+		A352AD262306CDB300332B21 /* StorageUsageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageDetail.swift; sourceTree = "<group>"; };
+		A352AD292306CE9500332B21 /* SettingLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLanguageViewController.swift; sourceTree = "<group>"; };
+		A352AD2B2306D03C00332B21 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLanguageCellNode.swift; sourceTree = "<group>"; };
+		A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_done.svg; sourceTree = "<group>"; };
 		A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreCellNode.swift; sourceTree = "<group>"; };
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
@@ -1018,6 +1034,27 @@
 			path = MomentCover;
 			sourceTree = "<group>";
 		};
+		A352AD1F2306CB0B00332B21 /* StorageUsage */ = {
+			isa = PBXGroup;
+			children = (
+				A352AD202306CB1E00332B21 /* StorageUsageViewController.swift */,
+				A352AD222306CB7800332B21 /* StorageUsageDetailNode.swift */,
+				A352AD242306CDA700332B21 /* StorageUsageSummaryNode.swift */,
+				A352AD262306CDB300332B21 /* StorageUsageDetail.swift */,
+			);
+			path = StorageUsage;
+			sourceTree = "<group>";
+		};
+		A352AD282306CE8000332B21 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				A352AD292306CE9500332B21 /* SettingLanguageViewController.swift */,
+				A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */,
+				A352AD2B2306D03C00332B21 /* AppLanguage.swift */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
 		A35B219F230022380057F8FC /* BrandTimeline */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,6 +1097,8 @@
 		A36BE2C922E3F56C003F334B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A352AD282306CE8000332B21 /* Language */,
+				A352AD1F2306CB0B00332B21 /* StorageUsage */,
 				A3DE7CCD2301393A00E73944 /* MyAccount */,
 				A372145A22FFC3E000340023 /* About */,
 				A372145622FFC2A700340023 /* Labs */,
@@ -1347,6 +1386,7 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */,
 				A3C9145D2305892000B6E077 /* icons_outlined_at.svg */,
 				A3C9145B230588FD00B6E077 /* icons_outlined_location.svg */,
 				A3DE7CCB2301155E00E73944 /* icons_outlined_camera.svg */,
@@ -1673,6 +1713,7 @@
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
 				A3C9142823052D9300B6E077 /* Gilly.jpg in Resources */,
 				A3CCE02322DDECFA0003DC25 /* red_envelopes_bottom_bg.svg in Resources */,
+				A352AD302306D2FA00332B21 /* icons_filled_done.svg in Resources */,
 				A3CA51D122CD9C8500C67D92 /* icons_outlined_contacts.svg in Resources */,
 				A31057E622E8533C00856D71 /* JSB.pic in Resources */,
 				A3CA523022CE1CBE00C67D92 /* icons_outlined_album.svg in Resources */,
@@ -1804,10 +1845,12 @@
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A3C9145A2305887000B6E077 /* PublishMomentCellNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
+				A352AD252306CDA700332B21 /* StorageUsageSummaryNode.swift in Sources */,
 				A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */,
 				A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */,
 				A3C914562305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
+				A352AD272306CDB300332B21 /* StorageUsageDetail.swift in Sources */,
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
 				A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */,
 				A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */,
@@ -1819,6 +1862,7 @@
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */,
 				A30347F422FE4B2A003ECF82 /* BaseViewController.swift in Sources */,
+				A352AD2E2306D0B200332B21 /* SettingLanguageCellNode.swift in Sources */,
 				A372145122FFB19D00340023 /* MyFavoritesViewController.swift in Sources */,
 				A30347F222FCE868003ECF82 /* SettingAutoDownloadViewController.swift in Sources */,
 				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
@@ -1839,6 +1883,7 @@
 				A3FB0AA522F3D9AE00116329 /* PaymentMainViewController.swift in Sources */,
 				A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */,
 				A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */,
+				A352AD232306CB7800332B21 /* StorageUsageDetailNode.swift in Sources */,
 				A374863E22D445B6002EEC4F /* TextContentNode.swift in Sources */,
 				A31057E822E8537300856D71 /* GameContentNode.swift in Sources */,
 				A341CF0222E5554800F18106 /* SettingsViewController.swift in Sources */,
@@ -1895,11 +1940,13 @@
 				A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */,
 				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,
 				A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */,
+				A352AD2C2306D03C00332B21 /* AppLanguage.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */,
 				A373D3CE22F5221000451515 /* ScrollActionSheet.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
+				A352AD2A2306CE9500332B21 /* SettingLanguageViewController.swift in Sources */,
 				A30347F922FF9983003ECF82 /* BrandContactsViewController.swift in Sources */,
 				A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */,
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
@@ -1996,6 +2043,7 @@
 				A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */,
 				A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */,
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,
+				A352AD212306CB1E00332B21 /* StorageUsageViewController.swift in Sources */,
 				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
 				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
 				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
