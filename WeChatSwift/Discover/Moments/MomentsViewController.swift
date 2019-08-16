@@ -124,9 +124,10 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
             self?.presentPublishMediaMomentViewController(selectedAssets)
         }
         
-        let albumPickerVC = AlbumPickerViewController()
+        let configuration = AssetPickerConfiguration.configurationForPublishMoment()
+        let albumPickerVC = AlbumPickerViewController(configuration: configuration)
         albumPickerVC.selectionHandler = selectionHandler
-        let assetPickerVC = AssetPickerViewController()
+        let assetPickerVC = AssetPickerViewController(configuration: configuration)
         assetPickerVC.selectionHandler = selectionHandler
         let nav = WCNavigationController()
         nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)

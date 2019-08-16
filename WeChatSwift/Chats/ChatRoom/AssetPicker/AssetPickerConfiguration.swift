@@ -24,8 +24,36 @@ class AssetPickerConfiguration {
     
     var doneButtonTitle: String = "完成"
     
-    func configurationForMomentBackground() -> AssetPickerConfiguration {
+    var showBottomBar: Bool = true
+    
+    static func configurationForMomentBackground() -> AssetPickerConfiguration {
         let configuration = AssetPickerConfiguration()
+        configuration.canSendGif = false
+        configuration.canSendVideo = false
+        configuration.canSendMultiImage = false
+        configuration.canSendOriginImage = false
+        configuration.showBottomBar = false
+        return configuration
+    }
+    
+    static func configurationForPublishMoment() -> AssetPickerConfiguration {
+        let configuration = AssetPickerConfiguration()
+        configuration.doneButtonTitle = "完成"
+        return configuration
+    }
+    
+    static func configurationForScan() -> AssetPickerConfiguration {
+        let configuration = AssetPickerConfiguration()
+        configuration.doneButtonTitle = "完成"
+        return configuration
+    }
+    
+    static func configurationForChatRoom() -> AssetPickerConfiguration {
+        let configuration = AssetPickerConfiguration()
+        configuration.canSendGif = true
+        configuration.canSendMultiImage = true
+        configuration.canSendOriginImage = true
+        configuration.canSendVideo = true
         configuration.doneButtonTitle = "完成"
         return configuration
     }

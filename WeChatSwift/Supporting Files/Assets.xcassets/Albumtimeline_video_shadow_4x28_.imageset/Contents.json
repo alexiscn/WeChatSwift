@@ -1,6 +1,17 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 2,
+          "left" : 1
+        }
+      },
       "idiom" : "universal",
       "filename" : "Albumtimeline_video_shadow_4x28_@1x.png",
       "scale" : "1x"

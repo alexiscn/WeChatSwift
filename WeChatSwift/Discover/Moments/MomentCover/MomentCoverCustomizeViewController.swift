@@ -70,9 +70,22 @@ extension MomentCoverCustomizeViewController: ASTableDelegate, ASTableDataSource
         let source = dataSource[indexPath.section].items[indexPath.row]
         switch source {
         case .albumPhoto:
-            print("...")
+            let selectionHandler = { [weak self] (selectedAssets: [MediaAsset]) in
+                print(selectedAssets.count)
+                self?.dismiss(animated: true, completion: nil)
+            }
+            let configuration = AssetPickerConfiguration.configurationForMomentBackground()
+            let albumPickerVC = AlbumPickerViewController(configuration: configuration)
+            albumPickerVC.selectionHandler = selectionHandler
+            let assetPickerVC = AssetPickerViewController(configuration: configuration)
+            assetPickerVC.selectionHandler = selectionHandler
+            let nav = WCNavigationController()
+            nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
+            present(nav, animated: true, completion: nil)
         case .takePhoto:
-            print("...")
+            let sightCameraVC = SightCameraViewController()
+            let nav = WCNavigationController(rootViewController: sightCameraVC)
+            present(nav, animated: true, completion: nil)
         case .chooseFromWorks:
             let momentSetBackgroundVC = MomentSetBackgroundViewController()
             navigationController?.pushViewController(momentSetBackgroundVC, animated: true)

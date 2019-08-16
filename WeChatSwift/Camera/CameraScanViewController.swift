@@ -121,9 +121,10 @@ extension CameraScanViewController {
             self?.dismiss(animated: true, completion: nil)
         }
         
-        let albumPickerVC = AlbumPickerViewController()
+        let configuration = AssetPickerConfiguration.configurationForScan()
+        let albumPickerVC = AlbumPickerViewController(configuration: configuration)
         albumPickerVC.selectionHandler = selectionHandler
-        let assetPickerVC = AssetPickerViewController()
+        let assetPickerVC = AssetPickerViewController(configuration: configuration)
         assetPickerVC.selectionHandler = selectionHandler
         let nav = WCNavigationController()
         nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)

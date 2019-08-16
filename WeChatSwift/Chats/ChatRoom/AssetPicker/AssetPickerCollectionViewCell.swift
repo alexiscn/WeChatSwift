@@ -25,6 +25,12 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
     
     private var mediaAsset: MediaAsset?
     
+    private var videoLogoView: UIImageView?
+    
+    private var tagBackgroundView: UIImageView?
+    
+    private var lengthLabel: UILabel?
+    
     override init(frame: CGRect) {
         
         imageView = UIImageView()
@@ -60,6 +66,12 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
         selectionButton.addTarget(self, action: #selector(selectionButtonTapped), for: .touchUpInside)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        removeVideoLogoView()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.frame = bounds
@@ -88,8 +100,17 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
         selectionHandler?()
     }
     
-    func update(mediaAsset: MediaAsset) {
+    func update(mediaAsset: MediaAsset, configuration: AssetPickerConfiguration) {
         self.mediaAsset = mediaAsset
+        
+        selectionButton.isHidden = !configuration.canSendMultiImage
+        selectionImageView.isHidden = !configuration.canSendMultiImage
+        
+        if mediaAsset.asset.mediaType == .video {
+            addVideoLogoView()
+        } else {
+            removeVideoLogoView()
+        }
         
         selectionNumberLabel.text = String(mediaAsset.index)
         selectionNumberLabel.isHidden = !mediaAsset.selected
@@ -102,6 +123,39 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
             DispatchQueue.main.async {
                 self?.imageView.image = image
             }
+        }
+    }
+    
+    private func addVideoLogoView() {
+        let videoLogoView = UIImageView(frame: CGRect(x: 10, y: 7, width: 18, height: 11))
+        videoLogoView.image = UIImage(named: "fileicon_video_wall_18x11_")
+        let tagBackgroundView = UIImageView(frame: CGRect(x: 0, y: bounds.height - 28, width: bounds.width, height: 28))
+        tagBackgroundView.image = UIImage(named: "Albumtimeline_video_shadow_4x28_")
+        
+        let lengthLabel = UILabel()
+        lengthLabel.font = UIFont.systemFont(ofSize: 12)
+        lengthLabel.textColor = UIColor.white
+        lengthLabel.text = "00:05" //mediaAsset.asset.duration
+        lengthLabel.frame = CGRect(x: 39, y: 5, width: 34, height: 15)
+        
+        tagBackgroundView.addSubview(videoLogoView)
+        tagBackgroundView.addSubview(lengthLabel)
+        contentView.addSubview(tagBackgroundView)
+        self.tagBackgroundView = tagBackgroundView
+    }
+    
+    private func removeVideoLogoView() {
+        if videoLogoView != nil {
+            videoLogoView?.removeFromSuperview()
+            videoLogoView = nil
+        }
+        if tagBackgroundView != nil {
+            tagBackgroundView?.removeFromSuperview()
+            tagBackgroundView = nil
+        }
+        if lengthLabel != nil {
+            lengthLabel?.removeFromSuperview()
+            lengthLabel = nil
         }
     }
 }

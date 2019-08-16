@@ -21,13 +21,18 @@ class AssetPickerViewController: UIViewController {
     
     private var dataSource: [MediaAsset] = []
     
-    private var bottomBar: AssetPickerBottomBar!
+    private var bottomBar: AssetPickerBottomBar?
     
     private(set) var selectedIndexPathList: [IndexPath] = []
     
+    private let configuration: AssetPickerConfiguration
+    
     private var assetCollection: PHAssetCollection?
     
-    init(assetCollection: PHAssetCollection? = nil) {
+    private let bottomBarHeight: CGFloat = 45 + Constants.bottomInset
+    
+    init(configuration: AssetPickerConfiguration, assetCollection: PHAssetCollection? = nil) {
+        self.configuration = configuration
         self.assetCollection = assetCollection
         super.init(nibName: nil, bundle: nil)
     }
@@ -87,13 +92,16 @@ class AssetPickerViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(AssetPickerCollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(AssetPickerCollectionViewCell.self))
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        collectionView.contentInset = configuration.showBottomBar ? UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0) : .zero
         view.addSubview(collectionView)
     }
     
     private func setupBottomBar() {
-        let frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 45 + Constants.bottomInset)
-        bottomBar = AssetPickerBottomBar(frame: frame)
+        
+        if !configuration.showBottomBar { return }
+        
+        let frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: bottomBarHeight)
+        let bottomBar = AssetPickerBottomBar(frame: frame)
         bottomBar.previewHandler = {
             
         }
@@ -101,6 +109,7 @@ class AssetPickerViewController: UIViewController {
             self?.sendAssets()
         }
         view.addSubview(bottomBar)
+        self.bottomBar = bottomBar
     }
     
     private func sendAssets() {
@@ -111,7 +120,7 @@ class AssetPickerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        bottomBar.frame.origin.y = view.bounds.height - bottomBar.bounds.height
+        bottomBar?.frame.origin.y = view.bounds.height - bottomBarHeight
     }
     
     private func loadPhotos() {
@@ -120,9 +129,23 @@ class AssetPickerViewController: UIViewController {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
+        let canSendVideo = configuration.canSendVideo
+        
         let result = PHAsset.fetchAssets(with: options)
         result.enumerateObjects { (asset, _, _) in
-            temp.append(MediaAsset(asset: asset))
+            switch asset.mediaType {
+            case .image:
+                temp.append(MediaAsset(asset: asset))
+            case .video:
+                if canSendVideo {
+                    temp.append(MediaAsset(asset: asset))
+                }
+            case .audio:
+                print("Break")
+            default:
+                temp.append(MediaAsset(asset: asset))
+            }
+            
         }
         dataSource = temp
         collectionView.reloadData()
@@ -178,7 +201,7 @@ class AssetPickerViewController: UIViewController {
             asset.index = index + 1
         }
         collectionView.reloadItems(at: selectedIndexPathList)
-        bottomBar.updateButtonEnabled(selectedIndexPathList.count > 0)
+        bottomBar?.updateButtonEnabled(selectedIndexPathList.count > 0)
     }
 }
 
@@ -203,7 +226,7 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let asset = dataSource[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(AssetPickerCollectionViewCell.self), for: indexPath) as! AssetPickerCollectionViewCell
-        cell.update(mediaAsset: asset)
+        cell.update(mediaAsset: asset, configuration: configuration)
         cell.selectionHandler = { [weak self] in
             self?.updateSelection(at: indexPath)
         }
