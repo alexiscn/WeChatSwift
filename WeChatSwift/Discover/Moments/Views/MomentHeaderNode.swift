@@ -24,8 +24,10 @@ class MomentHeaderNode: ASDisplayNode {
         super.init()
         automaticallyManagesSubnodes = true
         
+        let user = MockFactory.shared.users.first!
+        
         coverNode.image = UIImage.as_imageNamed("AlbumListViewBkg_320x320_")
-        avatarNode.image = UIImage(named: "JonSnow.jpg")
+        avatarNode.image = UIImage(named: user.avatar)
         avatarNode.cornerRadius = 6
         avatarNode.cornerRoundingType = .defaultSlowCALayer
         
@@ -41,7 +43,7 @@ class MomentHeaderNode: ASDisplayNode {
             NSAttributedString.Key.foregroundColor: UIColor(hexString: "#FFFBF2"),
             NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
-        nameNode.attributedText = NSAttributedString(string: "Hello World", attributes: nameAttributes)
+        nameNode.attributedText = NSAttributedString(string: user.name, attributes: nameAttributes)
     }
     
     override func didLoad() {

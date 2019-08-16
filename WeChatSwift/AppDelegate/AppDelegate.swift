@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 import AsyncDisplayKit
 
 typealias RelayCommand = () -> Void

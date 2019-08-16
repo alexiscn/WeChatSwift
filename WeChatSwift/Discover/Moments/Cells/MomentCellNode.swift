@@ -41,7 +41,10 @@ class MomentCellNode: ASCellNode {
         avatarNode.cornerRoundingType = .precomposited
         avatarNode.cornerRadius = 5
         
+        let highlightBackgroundImage = UIImage.as_resizableRoundedImage(withCornerRadius: 0, cornerColor: nil, fill: UIColor(hexString: "#C6C8C6"))
         nameNode = ASButtonNode()
+        nameNode.isUserInteractionEnabled = true
+        nameNode.setBackgroundImage(highlightBackgroundImage, for: .highlighted)
         nameNode.contentHorizontalAlignment = .left
         
         textNode = ASTextNode()
@@ -76,6 +79,7 @@ class MomentCellNode: ASCellNode {
         
         automaticallyManagesSubnodes = true
         backgroundColor = .white
+        isUserInteractionEnabled = true
         
         let user = MockFactory.shared.users.first(where: { $0.identifier == moment.userID })
         let avatar = user?.avatar ?? "DefaultHead_48x48_"
@@ -90,14 +94,22 @@ class MomentCellNode: ASCellNode {
     override func didLoad() {
         super.didLoad()
         
+        nameNode.addTarget(self, action: #selector(handleNameButtonClicked), forControlEvents: .touchUpInside)
         moreNode.addTarget(self, action: #selector(handleMoreButtonClicked(_:)), forControlEvents: .touchUpInside)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         view.addGestureRecognizer(tapGesture)
     }
     
+    @objc private func handleNameButtonClicked() {
+        delegate?.momentCellNode(self, didPressedUserAvatar: moment.userID)
+    }
+    
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        
+        let point = gesture.location(in: self.view)
+        if avatarNode.frame.contains(point) {
+            delegate?.momentCellNode(self, didPressedUserAvatar: moment.userID)
+        }
     }
     
     @objc private func handleMoreButtonClicked(_ sender: ASButtonNode) {
@@ -107,9 +119,11 @@ class MomentCellNode: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         avatarNode.style.spacingBefore = 12
-        nameNode.style.flexShrink = 1.0
         bottomSeparator.style.flexGrow = 1.0
         textNode?.style.flexGrow = 1.0
+        
+        let nameStack = ASStackLayoutSpec.horizontal()
+        nameStack.children = [nameNode]
         
         let rightStack = ASStackLayoutSpec.vertical()
         rightStack.spacing = 5
@@ -117,7 +131,7 @@ class MomentCellNode: ASCellNode {
         rightStack.style.flexGrow = 1.0
         rightStack.style.spacingAfter = 12
         rightStack.style.spacingBefore = 12
-        rightStack.children = [nameNode]
+        rightStack.children = [nameStack]
         
         if let textNode = textNode {
             rightStack.children?.append(textNode)

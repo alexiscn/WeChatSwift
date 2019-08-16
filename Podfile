@@ -3,7 +3,6 @@ use_frameworks!
 
 target 'WeChatSwift' do
     pod 'Alamofire'
-    pod 'Kingfisher'
     pod 'SnapKit'
     pod 'WXActionSheet'
     pod 'MMKV'

@@ -10,6 +10,8 @@ import AsyncDisplayKit
 
 class MomentCommentNode: ASDisplayNode {
     
+    weak var delegate: MomentCommentNodeDelegate?
+    
     private let triangleNode = ASImageNode()
     
     private let containerNode = ASDisplayNode()
@@ -19,6 +21,8 @@ class MomentCommentNode: ASDisplayNode {
     private var lineNode: MomentCommentLineNode?
     
     private var commentElements: [ASTextNode] = []
+    
+    private let kLinkAttributeName = "kLinkAttributeNamekLinkAttributeName"
     
     init(likes: [MomentLikeUser], comments: [MomentComment]) {
         
@@ -46,14 +50,17 @@ class MomentCommentNode: ASDisplayNode {
                 body.append(NSAttributedString(string: user.username, attributes: [
                     .font: nameFont,
                     .foregroundColor: Colors.DEFAULT_LINK_COLOR,
-                    .link: URL(string: "wechat://WC/" + user.userID) as Any,
-                    .underlineColor: UIColor.clear
+                    .underlineColor: UIColor.clear,
+                    .link: URL(string: "wechat://WC/" + user.userID) as Any
                     ]))
                 if index != likes.count - 1 {
                     body.append(NSAttributedString(string: ",", attributes: textAttributes))
                 }
             }
             likeNode = ASTextNode()
+            likeNode?.highlightStyle = .dark
+//            likeNode?.linkAttributeNames = [kLinkAttributeName]
+            likeNode?.isUserInteractionEnabled = true
             likeNode?.maximumNumberOfLines = 0
             likeNode?.attributedText = body
         }
@@ -81,6 +88,9 @@ class MomentCommentNode: ASDisplayNode {
             body.append(NSAttributedString(string: ": \(comment.content)", attributes: textAttributes))
             
             let textNode = ASTextNode()
+            textNode.highlightStyle = .dark
+//            textNode.linkAttributeNames = [kLinkAttributeName]
+            textNode.isUserInteractionEnabled = true
             textNode.maximumNumberOfLines = 0
             textNode.attributedText = body
             commentElements.append(textNode)
@@ -138,9 +148,13 @@ extension MomentCommentNode: ASTextNodeDelegate {
     }
     
     func textNode(_ textNode: ASTextNode!, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
-        if let value = value {
-            print(value)
+        if let value = value as? String, let url = URL(string: value) {
+            delegate?.momentComment(self, tappedLink: url)
         }
     }
     
+}
+
+protocol MomentCommentNodeDelegate: class {
+    func momentComment(_ commentNode: MomentCommentNode, tappedLink url: URL?)
 }

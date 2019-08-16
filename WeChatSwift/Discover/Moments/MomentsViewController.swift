@@ -263,7 +263,12 @@ extension MomentsViewController: MomentCellNodeDelegate {
     }
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String) {
-        
+        guard let user = MockFactory.shared.users.first(where: { $0.identifier == userID }) else {
+            return
+        }
+        let contact = user.toContact()
+        let contactInfoVC = ContactInfoViewController(contact: contact)
+        navigationController?.pushViewController(contactInfoVC, animated: true)
     }
     
 }
