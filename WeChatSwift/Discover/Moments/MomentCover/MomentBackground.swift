@@ -8,8 +8,37 @@
 
 import UIKit
 
-struct MomentBackgroundGroup {
+struct MomentBackgroundModel: Codable {
+    
+    var artist: MomentBackgroundArtist
+    
+    var photos: [MomentBackgroundGroup]
+    
+}
+
+struct MomentBackgroundArtist: Codable {
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case desc
+        case thumbAvatarURL = "avatar_thumb"
+        case avatarURL = "avatar"
+    }
+    
     var name: String
+    
+    var desc: String
+    
+    var thumbAvatarURL: URL?
+    
+    var avatarURL: URL?
+    
+}
+
+struct MomentBackgroundGroup: Codable {
+    
+    var name: String
+    
     var items: [MomentBackground]
     
     func attributedStringForName() -> NSAttributedString {
@@ -21,10 +50,9 @@ struct MomentBackgroundGroup {
     }
 }
 
-struct MomentBackground {
+struct MomentBackground: Codable {
     
     var previewURL: URL?
     
     var url: URL?
-    
 }

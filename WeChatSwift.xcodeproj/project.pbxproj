@@ -101,6 +101,10 @@
 		A352AD1123064F1200332B21 /* MomentSetBackgroundCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD1023064F1200332B21 /* MomentSetBackgroundCellNode.swift */; };
 		A352AD132306505700332B21 /* MomentCoverCustomizeSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD122306505700332B21 /* MomentCoverCustomizeSource.swift */; };
 		A352AD152306523400332B21 /* MomentCoverCustomizeCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD142306523400332B21 /* MomentCoverCustomizeCellNode.swift */; };
+		A352AD17230659F400332B21 /* SightCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD16230659F400332B21 /* SightCameraViewController.swift */; };
+		A352AD1A23065B8900332B21 /* AssetPickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD1923065B8900332B21 /* AssetPickerConfiguration.swift */; };
+		A352AD1C2306980D00332B21 /* MomentCoverBackground.json in Resources */ = {isa = PBXBuildFile; fileRef = A352AD1B2306980D00332B21 /* MomentCoverBackground.json */; };
+		A352AD1E23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD1D23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift */; };
 		A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */; };
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
@@ -433,6 +437,10 @@
 		A352AD1023064F1200332B21 /* MomentSetBackgroundCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentSetBackgroundCellNode.swift; sourceTree = "<group>"; };
 		A352AD122306505700332B21 /* MomentCoverCustomizeSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverCustomizeSource.swift; sourceTree = "<group>"; };
 		A352AD142306523400332B21 /* MomentCoverCustomizeCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverCustomizeCellNode.swift; sourceTree = "<group>"; };
+		A352AD16230659F400332B21 /* SightCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraViewController.swift; sourceTree = "<group>"; };
+		A352AD1923065B8900332B21 /* AssetPickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerConfiguration.swift; sourceTree = "<group>"; };
+		A352AD1B2306980D00332B21 /* MomentCoverBackground.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MomentCoverBackground.json; sourceTree = "<group>"; };
+		A352AD1D23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentSetBackgroundHeaderNode.swift; sourceTree = "<group>"; };
 		A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreCellNode.swift; sourceTree = "<group>"; };
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
@@ -938,6 +946,7 @@
 			isa = PBXGroup;
 			children = (
 				A34760AA22E6DE100043AE1D /* MediaAsset.swift */,
+				A352AD1923065B8900332B21 /* AssetPickerConfiguration.swift */,
 				A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */,
 				A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */,
 				A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */,
@@ -1003,6 +1012,7 @@
 				A352AD122306505700332B21 /* MomentCoverCustomizeSource.swift */,
 				A352AD0E23064DA500332B21 /* MomentSetBackgroundViewController.swift */,
 				A352AD1023064F1200332B21 /* MomentSetBackgroundCellNode.swift */,
+				A352AD1D23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift */,
 				A352AD0C23064CFF00332B21 /* MomentBackground.swift */,
 			);
 			path = MomentCover;
@@ -1329,6 +1339,7 @@
 				A372228A22D984D9003403D4 /* flutter.jpeg */,
 				A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */,
 				A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */,
+				A352AD1B2306980D00332B21 /* MomentCoverBackground.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1521,6 +1532,7 @@
 				A3E58DA12302BE4E00F73763 /* CameraScanViewController.swift */,
 				A3E58DA32302C88800F73763 /* CameraScanBottomNode.swift */,
 				A3E58DA52302CF0500F73763 /* CameraScanType.swift */,
+				A352AD16230659F400332B21 /* SightCameraViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -1692,6 +1704,7 @@
 				A3CA51D522CD9F8C00C67D92 /* icons_outlined_colorful_moment.svg in Resources */,
 				A3CA51C522CD9C4A00C67D92 /* icons_filled_chats.svg in Resources */,
 				A3CA522022CDF82A00C67D92 /* Bran.jpg in Resources */,
+				A352AD1C2306980D00332B21 /* MomentCoverBackground.json in Resources */,
 				A3CA521C22CDF73000C67D92 /* Sansa.jpg in Resources */,
 				A3CA521E22CDF76B00C67D92 /* Arya.jpg in Resources */,
 				A3CA51CF22CD9C7B00C67D92 /* icons_outlined_me.svg in Resources */,
@@ -1785,6 +1798,7 @@
 				A37FFB6222EE8D310001DD27 /* WebViewController.swift in Sources */,
 				A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */,
 				A3CA520522CDC47100C67D92 /* SessionMoreMenuView.swift in Sources */,
+				A352AD1A23065B8900332B21 /* AssetPickerConfiguration.swift in Sources */,
 				A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */,
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
@@ -1920,6 +1934,7 @@
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
 				A3476FFF22FAD681001B94EC /* MultiSelectContactsViewController.swift in Sources */,
 				A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */,
+				A352AD1E23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
 				A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */,
 				A3C9145223056ED200B6E077 /* MomentCommentListViewController.swift in Sources */,
@@ -1973,6 +1988,7 @@
 				A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */,
 				A37FFB6822EE92210001DD27 /* WCWebView.swift in Sources */,
 				A3476FFA22FAA498001B94EC /* ChatRoomAddContactCellNode.swift in Sources */,
+				A352AD17230659F400332B21 /* SightCameraViewController.swift in Sources */,
 				A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */,
 				A3C9144E23056CB000B6E077 /* MomentCommentLineNode.swift in Sources */,
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,

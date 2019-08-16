@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 class MomentSetBackgroundViewController: ASViewController<ASDisplayNode> {
     
-    private let tableNode = ASTableNode()
+    private let tableNode = ASTableNode(style: .plain)
     
     private var dataSource: [MomentBackgroundGroup] = []
     
@@ -30,8 +30,36 @@ class MomentSetBackgroundViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = UIColor(hexString: "#303030")
         tableNode.backgroundColor = .clear
+        tableNode.frame = node.bounds
+        tableNode.view.separatorStyle = .none
+        tableNode.allowsSelection = false
         
         navigationItem.title = "更换相册封面"
+        
+        setupDataSource()
+    }
+    
+    private func setupDataSource() {
+        guard let path = Bundle.main.path(forResource: "MomentCoverBackground", ofType: "json"),
+            let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+            return
+        }
+        
+        do {
+            let model = try JSONDecoder().decode(MomentBackgroundModel.self, from: data)
+            dataSource = model.photos
+            setupTableHeader(artist: model.artist)
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func setupTableHeader(artist: MomentBackgroundArtist) {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 172))
+        let headerNode = MomentSetBackgroundHeaderNode(artist: artist)
+        headerNode.frame = headerView.bounds
+        headerView.addSubnode(headerNode)
+        tableNode.view.tableHeaderView = headerView
     }
 }
 
