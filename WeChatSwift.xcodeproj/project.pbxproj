@@ -95,6 +95,12 @@
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A34C7B0222F829FB00652B4F /* WCTableCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */; };
+		A352AD092306492E00332B21 /* MomentCoverCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD082306492E00332B21 /* MomentCoverCustomizeViewController.swift */; };
+		A352AD0D23064CFF00332B21 /* MomentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD0C23064CFF00332B21 /* MomentBackground.swift */; };
+		A352AD0F23064DA500332B21 /* MomentSetBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD0E23064DA500332B21 /* MomentSetBackgroundViewController.swift */; };
+		A352AD1123064F1200332B21 /* MomentSetBackgroundCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD1023064F1200332B21 /* MomentSetBackgroundCellNode.swift */; };
+		A352AD132306505700332B21 /* MomentCoverCustomizeSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD122306505700332B21 /* MomentCoverCustomizeSource.swift */; };
+		A352AD152306523400332B21 /* MomentCoverCustomizeCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD142306523400332B21 /* MomentCoverCustomizeCellNode.swift */; };
 		A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */; };
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
@@ -421,6 +427,12 @@
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTableCellNode.swift; sourceTree = "<group>"; };
+		A352AD082306492E00332B21 /* MomentCoverCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverCustomizeViewController.swift; sourceTree = "<group>"; };
+		A352AD0C23064CFF00332B21 /* MomentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentBackground.swift; sourceTree = "<group>"; };
+		A352AD0E23064DA500332B21 /* MomentSetBackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentSetBackgroundViewController.swift; sourceTree = "<group>"; };
+		A352AD1023064F1200332B21 /* MomentSetBackgroundCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentSetBackgroundCellNode.swift; sourceTree = "<group>"; };
+		A352AD122306505700332B21 /* MomentCoverCustomizeSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverCustomizeSource.swift; sourceTree = "<group>"; };
+		A352AD142306523400332B21 /* MomentCoverCustomizeCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverCustomizeCellNode.swift; sourceTree = "<group>"; };
 		A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreCellNode.swift; sourceTree = "<group>"; };
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
@@ -805,6 +817,7 @@
 		A33DB2E622CCC9FE00A11776 /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				A352AD072306490E00332B21 /* MomentCover */,
 				A3C9145023056EB700B6E077 /* CommentList */,
 				A3E58D9B23025B4A00F73763 /* Views */,
 				A372145522FFC03600340023 /* PublishMoment */,
@@ -980,6 +993,19 @@
 				A35EDF5D22FD7A0400C56CAC /* PayOfflinePay */,
 			);
 			path = Payment;
+			sourceTree = "<group>";
+		};
+		A352AD072306490E00332B21 /* MomentCover */ = {
+			isa = PBXGroup;
+			children = (
+				A352AD082306492E00332B21 /* MomentCoverCustomizeViewController.swift */,
+				A352AD142306523400332B21 /* MomentCoverCustomizeCellNode.swift */,
+				A352AD122306505700332B21 /* MomentCoverCustomizeSource.swift */,
+				A352AD0E23064DA500332B21 /* MomentSetBackgroundViewController.swift */,
+				A352AD1023064F1200332B21 /* MomentSetBackgroundCellNode.swift */,
+				A352AD0C23064CFF00332B21 /* MomentBackground.swift */,
+			);
+			path = MomentCover;
 			sourceTree = "<group>";
 		};
 		A35B219F230022380057F8FC /* BrandTimeline */ = {
@@ -1754,6 +1780,7 @@
 				A37FFB6C22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift in Sources */,
 				A3476FF522FA9827001B94EC /* UITabBar+Fix.swift in Sources */,
 				A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */,
+				A352AD092306492E00332B21 /* MomentCoverCustomizeViewController.swift in Sources */,
 				A3476FFC22FAABBF001B94EC /* ChatRoomMemberItemNode.swift in Sources */,
 				A37FFB6222EE8D310001DD27 /* WebViewController.swift in Sources */,
 				A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */,
@@ -1821,6 +1848,7 @@
 				A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
+				A352AD132306505700332B21 /* MomentCoverCustomizeSource.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,
 				A33D619422FD499D00B767F1 /* SettingPrivacyModel.swift in Sources */,
@@ -1840,6 +1868,8 @@
 				A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */,
 				A3FB0AB422F40E3B00116329 /* MallFunctionActivityContainerNode.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
+				A352AD152306523400332B21 /* MomentCoverCustomizeCellNode.swift in Sources */,
+				A352AD0F23064DA500332B21 /* MomentSetBackgroundViewController.swift in Sources */,
 				A3DE7CC72301095200E73944 /* MessageDatabase.swift in Sources */,
 				A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */,
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
@@ -1908,6 +1938,7 @@
 				A3DE7CC52301094700E73944 /* SessionDatabase.swift in Sources */,
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
+				A352AD1123064F1200332B21 /* MomentSetBackgroundCellNode.swift in Sources */,
 				A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */,
 				A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */,
 				A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */,
@@ -1929,6 +1960,7 @@
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
 				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
 				A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */,
+				A352AD0D23064CFF00332B21 /* MomentBackground.swift in Sources */,
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
 				A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */,
 				A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */,

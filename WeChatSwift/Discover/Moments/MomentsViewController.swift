@@ -134,7 +134,8 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     }
     
     private func navigateToPickCover() {
-        
+        let coverCustomizeVC = MomentCoverCustomizeViewController()
+        navigationController?.pushViewController(coverCustomizeVC, animated: true)
     }
     
     private func addRows(newMomentsCount: Int) {
@@ -189,8 +190,8 @@ extension MomentsViewController {
     
     private func onHeaderCoverClicked() {
         let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
-        actionSheet.add(WXActionSheetItem(title: "更换相册封面", handler: { _ in
-            
+        actionSheet.add(WXActionSheetItem(title: "更换相册封面", handler: { [weak self] _ in
+            self?.navigateToPickCover()
         }))
         actionSheet.show()
     }
