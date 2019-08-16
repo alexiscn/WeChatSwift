@@ -38,12 +38,22 @@ class AssetPickerConfiguration {
     
     static func configurationForPublishMoment() -> AssetPickerConfiguration {
         let configuration = AssetPickerConfiguration()
+        configuration.canSendGif = true
+        configuration.canSendVideo = true
+        configuration.canSendMultiImage = true
+        configuration.canSendOriginImage = true
+        configuration.showBottomBar = true
         configuration.doneButtonTitle = "完成"
         return configuration
     }
     
     static func configurationForScan() -> AssetPickerConfiguration {
         let configuration = AssetPickerConfiguration()
+        configuration.canSendGif = false
+        configuration.canSendVideo = false
+        configuration.canSendMultiImage = false
+        configuration.canSendOriginImage = false
+        configuration.showBottomBar = false
         configuration.doneButtonTitle = "完成"
         return configuration
     }
@@ -61,4 +71,6 @@ class AssetPickerConfiguration {
 
 enum AssetCompressionType {
     case `default`
+    case session
+    case moment
 }

@@ -43,6 +43,8 @@ class StorageUsageDetailNode: ASDisplayNode {
     
     override func didLoad() {
         super.didLoad()
+        
+        backgroundColor = Colors.white
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -54,7 +56,7 @@ class StorageUsageDetailNode: ASDisplayNode {
         let insets = UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24)
         let layout = ASInsetLayoutSpec(insets: insets, child: stack)
         
-        return ASLayoutSpec()
+        return ASAbsoluteLayoutSpec(children: [layout, actionButton])
     }
     
 }
