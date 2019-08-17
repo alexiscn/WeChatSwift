@@ -27,7 +27,7 @@ public class MessageCellNode: ASCellNode {
     
     private var contentTopTextNode: ASTextNode?
     
-    private let contentNode: MessageContentNode
+    let contentNode: MessageContentNode
     
     private var bottomTextNode: ASTextNode?
     

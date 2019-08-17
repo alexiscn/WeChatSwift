@@ -128,6 +128,15 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         dataSource.append(message)
     }
     
+    private func previewImages(imageMsg: ImageMessage, originView: UIView) {
+        let localDataSource = PhotoBrowserLocalDataSource(numberOfItems: 1, images: [imageMsg.image])
+        let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
+            return originView
+        }
+        let browser = PhotoBrowserViewController(dataSource: localDataSource, transDelegate: trans)
+        browser.show(pageIndex: 0, in: self)
+    }
+    
     override var canBecomeFirstResponder: Bool {
         return true
     }
@@ -307,7 +316,7 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
             let controller = ChatRoomMapViewController(location: locationMsg)
             navigationController?.pushViewController(controller, animated: true)
         case .image(let imageMsg):
-            print("TODO Preview:\(imageMsg)")
+            previewImages(imageMsg: imageMsg, originView: cellNode.contentNode.view)
         default:
             break
         }

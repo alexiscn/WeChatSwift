@@ -12,13 +12,13 @@ class PhotoBrowserLocalDataSource: NSObject, PhotoBrowserDataSource {
     
     weak var browser: PhotoBrowserViewController?
     
-    var numberOfItems: () -> Int
+    var numberOfItems: Int
     
-    var imageAtIndex: (Int) -> UIImage?
+    var images: [UIImage?]
     
-    init(numberOfItems: @escaping ()-> Int, imageAtIndex: @escaping (Int) -> UIImage?) {
+    init(numberOfItems: Int, images: [UIImage?]) {
         self.numberOfItems = numberOfItems
-        self.imageAtIndex = imageAtIndex
+        self.images = images
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -26,12 +26,12 @@ class PhotoBrowserLocalDataSource: NSObject, PhotoBrowserDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfItems()
+        return numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(PhotoBrowserViewCell.self), for: indexPath) as! PhotoBrowserViewCell
-        cell.imageView.image = imageAtIndex(indexPath.item)
+        cell.imageView.image = images[indexPath.item]
         cell.setNeedsLayout()
         return cell
     }
