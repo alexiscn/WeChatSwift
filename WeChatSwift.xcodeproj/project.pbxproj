@@ -130,6 +130,7 @@
 		A3618A9422F97B50000ACF4D /* ContactSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3618A9322F97B50000ACF4D /* ContactSettingViewController.swift */; };
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */ = {isa = PBXBuildFile; fileRef = A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */; };
+		A36CB5332307859C00F993B6 /* EmoticonManageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36CB5322307859C00F993B6 /* EmoticonManageCellNode.swift */; };
 		A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */; };
 		A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */; };
 		A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */; };
@@ -478,6 +479,7 @@
 		A3618A9322F97B50000ACF4D /* ContactSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingViewController.swift; sourceTree = "<group>"; };
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_videocall.svg; sourceTree = "<group>"; };
+		A36CB5322307859C00F993B6 /* EmoticonManageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageCellNode.swift; sourceTree = "<group>"; };
 		A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundSettingCellNode.swift; sourceTree = "<group>"; };
 		A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingModel.swift; sourceTree = "<group>"; };
 		A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
@@ -1302,13 +1304,14 @@
 			isa = PBXGroup;
 			children = (
 				A389999C22E969FE00620069 /* EmoticonManageViewController.swift */,
+				A36CB5322307859C00F993B6 /* EmoticonManageCellNode.swift */,
 				A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */,
 				A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */,
 				A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */,
 				A3485FBA22F049CB002A804B /* WeChatEmoticonsCellNode.swift */,
+				A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */,
 				A3485FBE22F05435002A804B /* WeChatEmoticonBannerCellNode.swift */,
 				A3499F6D22F06689005DDD55 /* MoreEmoticonsViewController.swift */,
-				A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */,
 			);
 			path = Emoticons;
 			sourceTree = "<group>";
@@ -2050,6 +2053,7 @@
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
 				A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */,
 				A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */,
+				A36CB5332307859C00F993B6 /* EmoticonManageCellNode.swift in Sources */,
 				A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
