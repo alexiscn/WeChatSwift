@@ -237,32 +237,14 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
         
-        let count = dataSource.count
         let assets = dataSource.map { return $0.asset }
-        
-        let localDataSource = PhotoBrowserLocalDataSource(numberOfItems: { () -> Int in
-            return count
-        }) { (index) -> UIImage? in
-            let asset = assets[index]
-            let size = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-            let options = PHImageRequestOptions()
-            options.deliveryMode = .highQualityFormat
-            options.isNetworkAccessAllowed = true
-            options.isSynchronous = true
-            var resultImage: UIImage?
-            PHCachingImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { (image, _) in
-                resultImage = image
-            }
-            return resultImage
-        }
-        
+        let assetDataSource = PhotoBrowserPHAssetDataSource(numberOfItems: dataSource.count, assets: assets)
         let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
             let indexPath = IndexPath(item: index, section: 0)
             let cell = collectionView.cellForItem(at: indexPath) as? AssetPickerCollectionViewCell
             return cell?.imageViewForZoomTransition
         }
-        
-        let browser = PhotoBrowserViewController(dataSource: localDataSource, transDelegate: trans)
+        let browser = PhotoBrowserViewController(dataSource: assetDataSource, transDelegate: trans)
         browser.show(pageIndex: indexPath.item, in: self)
     }
 }

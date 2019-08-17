@@ -34,4 +34,18 @@ extension PHAsset {
         }
         return false
     }
+    
+    var pixelSizeFitToScreen: CGSize {
+        let bounds = UIScreen.main.bounds
+        var width: CGFloat
+        var height: CGFloat
+        if pixelWidth > pixelHeight {
+            width = bounds.width
+            height = width * CGFloat(pixelHeight) / CGFloat(pixelWidth)
+        } else {
+            height = bounds.height
+            width = height * CGFloat(pixelWidth) / CGFloat(pixelHeight)
+        }
+        return CGSize(width: width, height: height)
+    }
 }

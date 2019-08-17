@@ -139,6 +139,7 @@
 		A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369A4A722D36772004722C4 /* UIImage+Extensions.swift */; };
 		A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */ = {isa = PBXBuildFile; fileRef = A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */; };
 		A36CB5332307859C00F993B6 /* EmoticonManageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36CB5322307859C00F993B6 /* EmoticonManageCellNode.swift */; };
+		A36CB5352308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36CB5342308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift */; };
 		A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */; };
 		A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */; };
 		A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */; };
@@ -496,6 +497,7 @@
 		A369A4A722D36772004722C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A36B735B22EFBDBF00A30E4E /* icons_outlined_videocall.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_videocall.svg; sourceTree = "<group>"; };
 		A36CB5322307859C00F993B6 /* EmoticonManageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageCellNode.swift; sourceTree = "<group>"; };
+		A36CB5342308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserPHAssetDataSource.swift; sourceTree = "<group>"; };
 		A36E1B4822FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomBackgroundSettingCellNode.swift; sourceTree = "<group>"; };
 		A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingModel.swift; sourceTree = "<group>"; };
 		A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
@@ -996,6 +998,7 @@
 				A341393E23081E4A008E0EBF /* PhotoBrowserDataSource.swift */,
 				A341394023081E63008E0EBF /* PhotoBrowserLocalDataSource.swift */,
 				A341393B23081DEC008E0EBF /* PhotoBrowserNetworkDataSource.swift */,
+				A36CB5342308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -1969,6 +1972,7 @@
 				A3DE7CC32301086E00E73944 /* BrandMessageDatabase.swift in Sources */,
 				A3DE7CCF2301396B00E73944 /* SettingMyAccountInfoViewController.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
+				A36CB5352308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift in Sources */,
 				A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
