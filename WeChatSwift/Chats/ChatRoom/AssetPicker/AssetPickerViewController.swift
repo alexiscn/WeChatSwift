@@ -233,6 +233,10 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
         cell.parent = self
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        
+        
+    }
 }
-
-

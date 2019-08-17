@@ -13,6 +13,4 @@ protocol PhotoBrowserDataSource: UICollectionViewDataSource {
 }
 
 
-protocol PhotoBrowserDelegate: UICollectionViewDelegate {
-    
-}
+

@@ -21,6 +21,7 @@ class EmoticonManageViewController: ASViewController<ASDisplayNode> {
         node.addSubnode(tableNode)
         tableNode.dataSource = self
         tableNode.delegate = self
+        setupDataSource()
     }
     
     required init?(coder: NSCoder) {
@@ -78,10 +79,37 @@ extension EmoticonManageViewController: ASTableDelegate, ASTableDataSource {
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].items.count - 1
         let block: ASCellNodeBlock = {
-            return ASCellNode()
+            switch model {
+            case .emoticons(let emoticons):
+                return EmoticonManageCellNode(emotions: emoticons, isLastCell: isLastCell)
+            default:
+                return EmoticonManageActionCellNode(model: model, isLastCell: isLastCell)
+            }
         }
         return block
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
     }
 }
 
@@ -90,6 +118,30 @@ enum EmoticonManageItem {
     case emoticons([String])
     case addSingleEmoticon
     case selfieEmoticon
+    
+    var title: String? {
+        switch self {
+        case .addHistory:
+            return "整套表情添加记录"
+        case .addSingleEmoticon:
+            return "添加的单个表情"
+        case .selfieEmoticon:
+            return "我的自拍表情"
+        default:
+            return nil
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .addSingleEmoticon:
+            return UIImage.SVGImage(named: "icons_outlined_like")
+        case .selfieEmoticon:
+            return UIImage.SVGImage(named: "icons_outlined_takephoto_nor")
+        default:
+            return nil
+        }
+    }
 }
 
 struct EmoticonManageGroup {

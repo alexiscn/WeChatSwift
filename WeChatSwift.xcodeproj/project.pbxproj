@@ -68,6 +68,11 @@
 		A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FB22CCDD0B00A11776 /* Message.swift */; };
 		A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */; };
 		A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33DB30122CCDDE200A11776 /* DiscoverModel.swift */; };
+		A34139302307DB77008E0EBF /* PurchasedEmoticonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341392F2307DB77008E0EBF /* PurchasedEmoticonViewController.swift */; };
+		A34139322307DFB8008E0EBF /* EmoticonManageActionCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34139312307DFB8008E0EBF /* EmoticonManageActionCellNode.swift */; };
+		A34139342307E6CC008E0EBF /* PhotoBrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34139332307E6CC008E0EBF /* PhotoBrowserDelegate.swift */; };
+		A34139362307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34139352307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift */; };
+		A34139382307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34139372307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift */; };
 		A341CF0222E5554800F18106 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CEFF22E5554800F18106 /* SettingsViewController.swift */; };
 		A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0022E5554800F18106 /* AboutViewController.swift */; };
 		A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0422E5555600F18106 /* SettingsTableModel.swift */; };
@@ -417,6 +422,11 @@
 		A33DB2FB22CCDD0B00A11776 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A33DB2FF22CCDDBD00A11776 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		A33DB30122CCDDE200A11776 /* DiscoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverModel.swift; sourceTree = "<group>"; };
+		A341392F2307DB77008E0EBF /* PurchasedEmoticonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedEmoticonViewController.swift; sourceTree = "<group>"; };
+		A34139312307DFB8008E0EBF /* EmoticonManageActionCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageActionCellNode.swift; sourceTree = "<group>"; };
+		A34139332307E6CC008E0EBF /* PhotoBrowserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserDelegate.swift; sourceTree = "<group>"; };
+		A34139352307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserTransitioningDelegate.swift; sourceTree = "<group>"; };
+		A34139372307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserZoomTransitioning.swift; sourceTree = "<group>"; };
 		A341CEFF22E5554800F18106 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A341CF0022E5554800F18106 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A341CF0422E5555600F18106 /* SettingsTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableModel.swift; sourceTree = "<group>"; };
@@ -795,9 +805,12 @@
 			isa = PBXGroup;
 			children = (
 				A33B88332307CFA100D28D57 /* PhotoBrowserViewController.swift */,
+				A34139332307E6CC008E0EBF /* PhotoBrowserDelegate.swift */,
 				A33B88352307CFCC00D28D57 /* PhotoBrowserDataSource.swift */,
 				A33B88372307D20700D28D57 /* PhotoBrowserViewCell.swift */,
 				A33B88392307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift */,
+				A34139352307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift */,
+				A34139372307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift */,
 			);
 			path = PhotoBrowser;
 			sourceTree = "<group>";
@@ -823,8 +836,6 @@
 		A33DB2D222CCC80F00A11776 /* WeChatSwift */ = {
 			isa = PBXGroup;
 			children = (
-				A33B88322307CF8100D28D57 /* PhotoBrowser */,
-				A377F57522F103DE00006F2B /* Navigation */,
 				A3CA51A422CD998C00C67D92 /* AppDelegate */,
 				A3CA51F922CDA87100C67D92 /* Context */,
 				A3DE7CC12301084C00E73944 /* Database */,
@@ -840,6 +851,8 @@
 				A33DB2E522CCC9F200A11776 /* Discover */,
 				A33DB2E922CCCA1F00A11776 /* Me */,
 				A33DB2F822CCDCF900A11776 /* Models */,
+				A377F57522F103DE00006F2B /* Navigation */,
+				A33B88322307CF8100D28D57 /* PhotoBrowser */,
 				A322870122E0627F004E516E /* Managers */,
 				A3CA51A122CD995C00C67D92 /* Mock */,
 				A37FFB6022EE8D200001DD27 /* WebView */,
@@ -1305,6 +1318,7 @@
 			children = (
 				A389999C22E969FE00620069 /* EmoticonManageViewController.swift */,
 				A36CB5322307859C00F993B6 /* EmoticonManageCellNode.swift */,
+				A34139312307DFB8008E0EBF /* EmoticonManageActionCellNode.swift */,
 				A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */,
 				A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */,
 				A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */,
@@ -1312,6 +1326,7 @@
 				A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */,
 				A3485FBE22F05435002A804B /* WeChatEmoticonBannerCellNode.swift */,
 				A3499F6D22F06689005DDD55 /* MoreEmoticonsViewController.swift */,
+				A341392F2307DB77008E0EBF /* PurchasedEmoticonViewController.swift */,
 			);
 			path = Emoticons;
 			sourceTree = "<group>";
@@ -1882,6 +1897,7 @@
 				A3CA51AC22CD99FD00C67D92 /* AddContactViewController.swift in Sources */,
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
+				A34139342307E6CC008E0EBF /* PhotoBrowserDelegate.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */,
 				A30347F422FE4B2A003ECF82 /* BaseViewController.swift in Sources */,
@@ -1952,6 +1968,7 @@
 				A3FB0AB422F40E3B00116329 /* MallFunctionActivityContainerNode.swift in Sources */,
 				A369A4A822D36772004722C4 /* UIImage+Extensions.swift in Sources */,
 				A352AD152306523400332B21 /* MomentCoverCustomizeCellNode.swift in Sources */,
+				A34139362307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift in Sources */,
 				A352AD0F23064DA500332B21 /* MomentSetBackgroundViewController.swift in Sources */,
 				A3DE7CC72301095200E73944 /* MessageDatabase.swift in Sources */,
 				A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */,
@@ -1989,6 +2006,7 @@
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
 				A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */,
+				A34139322307DFB8008E0EBF /* EmoticonManageActionCellNode.swift in Sources */,
 				A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
 				A3485FAE22EFFE1D002A804B /* AddContactSearchNode.swift in Sources */,
@@ -2034,11 +2052,13 @@
 				A33B88342307CFA100D28D57 /* PhotoBrowserViewController.swift in Sources */,
 				A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
+				A34139382307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
 				A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */,
 				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,
 				A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */,
 				A374864022D44711002EEC4F /* ImageContentNode.swift in Sources */,
+				A34139302307DB77008E0EBF /* PurchasedEmoticonViewController.swift in Sources */,
 				A32333BB22DF0C6900B79555 /* WCBadgeView.swift in Sources */,
 				A374864422D44C56002EEC4F /* VideoContentNode.swift in Sources */,
 				A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */,

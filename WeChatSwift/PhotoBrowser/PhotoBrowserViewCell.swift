@@ -11,6 +11,8 @@ import UIKit
 
 class PhotoBrowserViewCell: UICollectionViewCell {
     
+    var tapHandler: RelayCommand?
+    
     var imageView = UIImageView()
     
     var scrollView = UIScrollView()
@@ -125,7 +127,7 @@ class PhotoBrowserViewCell: UICollectionViewCell {
 extension PhotoBrowserViewCell {
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        
+        tapHandler?()
     }
     
     @objc private func handleDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
