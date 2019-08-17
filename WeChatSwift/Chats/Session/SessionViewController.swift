@@ -144,12 +144,24 @@ extension SessionViewController: ASTableDelegate, ASTableDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let readAction = UITableViewRowAction(style: .normal, title: "标记为已读") { (_, _) in
+        var actions: [UITableViewRowAction] = []
+        let deleteAction = UITableViewRowAction(style: .default, title: "删除") { (_, _) in
             
         }
-        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (_, _) in
-            
+        actions.append(deleteAction)
+        
+        let session = indexPath.section == 0 ? topSessions[indexPath.row] : dataSource[indexPath.row]
+        if session.unreadCount > 0 {
+            let readAction = UITableViewRowAction(style: .normal, title: "标记为已读") { (_, _) in
+                
+            }
+            actions.append(readAction)
+        } else {
+            let unReadAction = UITableViewRowAction(style: .normal, title: "标记为未读") { (_, _) in
+                
+            }
+            actions.append(unReadAction)
         }
-        return [deleteAction, readAction]
+        return actions
     }
 }
