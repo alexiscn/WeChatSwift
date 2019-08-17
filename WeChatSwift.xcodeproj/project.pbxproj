@@ -42,6 +42,10 @@
 		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
 		A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */ = {isa = PBXBuildFile; fileRef = A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */; };
+		A33B88342307CFA100D28D57 /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33B88332307CFA100D28D57 /* PhotoBrowserViewController.swift */; };
+		A33B88362307CFCC00D28D57 /* PhotoBrowserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33B88352307CFCC00D28D57 /* PhotoBrowserDataSource.swift */; };
+		A33B88382307D20700D28D57 /* PhotoBrowserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33B88372307D20700D28D57 /* PhotoBrowserViewCell.swift */; };
+		A33B883A2307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33B88392307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift */; };
 		A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1622F2C81C0099927A /* MomentDataSource.swift */; };
 		A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */; };
 		A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */; };
@@ -384,6 +388,10 @@
 		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
 		A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_keyboard.svg; sourceTree = "<group>"; };
+		A33B88332307CFA100D28D57 /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
+		A33B88352307CFCC00D28D57 /* PhotoBrowserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserDataSource.swift; sourceTree = "<group>"; };
+		A33B88372307D20700D28D57 /* PhotoBrowserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewCell.swift; sourceTree = "<group>"; };
+		A33B88392307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		A33D2B1622F2C81C0099927A /* MomentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDataSource.swift; sourceTree = "<group>"; };
 		A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPushAnimator.swift; sourceTree = "<group>"; };
 		A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPopAnimator.swift; sourceTree = "<group>"; };
@@ -781,6 +789,17 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		A33B88322307CF8100D28D57 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				A33B88332307CFA100D28D57 /* PhotoBrowserViewController.swift */,
+				A33B88352307CFCC00D28D57 /* PhotoBrowserDataSource.swift */,
+				A33B88372307D20700D28D57 /* PhotoBrowserViewCell.swift */,
+				A33B88392307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
 		A33DB2C722CCC80F00A11776 = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +821,7 @@
 		A33DB2D222CCC80F00A11776 /* WeChatSwift */ = {
 			isa = PBXGroup;
 			children = (
+				A33B88322307CF8100D28D57 /* PhotoBrowser */,
 				A377F57522F103DE00006F2B /* Navigation */,
 				A3CA51A422CD998C00C67D92 /* AppDelegate */,
 				A3CA51F922CDA87100C67D92 /* Context */,
@@ -1875,6 +1895,7 @@
 				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
 				A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */,
+				A33B88362307CFCC00D28D57 /* PhotoBrowserDataSource.swift in Sources */,
 				A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */,
 				A3476FF822FAA047001B94EC /* ChatRoomContactInfoViewController.swift in Sources */,
 				A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */,
@@ -1997,6 +2018,7 @@
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
+				A33B88382307D20700D28D57 /* PhotoBrowserViewCell.swift in Sources */,
 				A3DE7CC52301094700E73944 /* SessionDatabase.swift in Sources */,
 				A3FB0ABB22F43AA600116329 /* ContactTagListAddTagCellNode.swift in Sources */,
 				A33DB2FC22CCDD0B00A11776 /* Message.swift in Sources */,
@@ -2006,6 +2028,7 @@
 				A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */,
 				A35B21A1230022500057F8FC /* BrandTimelineViewController.swift in Sources */,
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
+				A33B88342307CFA100D28D57 /* PhotoBrowserViewController.swift in Sources */,
 				A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
@@ -2018,6 +2041,7 @@
 				A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */,
 				A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */,
 				A3F6AD022303A9A9007FE74B /* ChatRoomDateFormatter.swift in Sources */,
+				A33B883A2307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift in Sources */,
 				A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */,
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
 				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
