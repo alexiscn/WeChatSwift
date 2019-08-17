@@ -1,5 +1,5 @@
 //
-//  PhotoBrowserDataSource.swift
+//  PhotoBrowserLocalDataSource.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/8/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoBrowserDataSource: NSObject, UICollectionViewDataSource {
+class PhotoBrowserLocalDataSource: NSObject, PhotoBrowserDataSource {
     
     weak var browser: PhotoBrowserViewController?
     

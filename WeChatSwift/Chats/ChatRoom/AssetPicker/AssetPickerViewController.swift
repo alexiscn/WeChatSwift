@@ -240,7 +240,7 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
         let count = dataSource.count
         let assets = dataSource.map { return $0.asset }
         
-        let data = PhotoBrowserDataSource(numberOfItems: { () -> Int in
+        let localDataSource = PhotoBrowserLocalDataSource(numberOfItems: { () -> Int in
             return count
         }) { (index) -> UIImage? in
             let asset = assets[index]
@@ -262,7 +262,7 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
             return cell?.imageViewForZoomTransition
         }
         
-        let browser = PhotoBrowserViewController(dataSource: data, transDelegate: trans)
+        let browser = PhotoBrowserViewController(dataSource: localDataSource, transDelegate: trans)
         browser.show(pageIndex: indexPath.item, in: self)
     }
 }

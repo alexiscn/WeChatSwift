@@ -130,4 +130,11 @@ enum ChatRoomBackgroundAction: WCTableCellModel {
     var wc_title: String {
         return title
     }
+    
+    var wc_cellStyle: WCTableCellStyle {
+        if self == .applyToAllChats {
+            return .centerButton
+        }
+        return .default
+    }
 }

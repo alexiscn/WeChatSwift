@@ -104,6 +104,11 @@ extension SettingPrivacyViewController: ASTableDelegate, ASTableDataSource {
         footerView.addSubview(titleLabel)
         return footerView
     }
+    
+    func tableNode(_ tableNode: ASTableNode, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        return !model.wc_showSwitch
+    }
 }
 
 
