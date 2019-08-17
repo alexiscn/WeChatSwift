@@ -13,6 +13,10 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     
     var tapHandler: RelayCommand?
     
+    var panGestureChangedHandler: ((_ scale: CGFloat) -> Void)?
+    
+    var panGestureReleasedHandler: ((_ downSwipe: Bool) -> Void)?
+    
     var imageView = UIImageView()
     
     var scrollView = UIScrollView()
@@ -24,6 +28,7 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.addSubview(scrollView)
+        scrollView.addSubview(imageView)
         
         scrollView.delegate = self
         scrollView.maximumZoomScale = 2.0
@@ -31,7 +36,7 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
         
-        scrollView.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
@@ -64,25 +69,32 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     }
     
     private var fitSize: CGSize {
-        guard let image = imageView.image else {
-            return bounds.size
-        }
+        guard let imageSize = imageView.image?.size else { return bounds.size }
         var width: CGFloat
         var height: CGFloat
         if scrollView.bounds.width < scrollView.bounds.height {
             // 竖屏
             width = scrollView.bounds.width
-            height = (image.size.height / image.size.width) * width
+            height = (imageSize.height / imageSize.width) * width
         } else {
             // 横屏
             height = scrollView.bounds.height
-            width = (image.size.width / image.size.height) * height
+            width = (imageSize.width / imageSize.height) * height
             if width > scrollView.bounds.width {
                 width = scrollView.bounds.width
-                height = (image.size.height / image.size.width) * width
+                height = (imageSize.height / imageSize.width) * width
             }
         }
         return CGSize(width: width, height: height)
+    }
+    
+    private var resettingCenter: CGPoint {
+        let deltaWidth = bounds.width - scrollView.contentSize.width
+        let offsetX = deltaWidth > 0 ? deltaWidth * 0.5 : 0
+        let deltaHeight = bounds.height - scrollView.contentSize.height
+        let offsetY = deltaHeight > 0 ? deltaHeight * 0.5 : 0
+        return CGPoint(x: scrollView.contentSize.width * 0.5 + offsetX,
+                       y: scrollView.contentSize.height * 0.5 + offsetY)
     }
     
     private var fitFrame: CGRect {
@@ -119,7 +131,15 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     }
     
     private func resetImageView() {
-        
+        let size = fitSize
+        let needResetSize = imageView.bounds.size.width < size.width
+            || imageView.bounds.size.height < size.height
+        UIView.animate(withDuration: 0.25) {
+            self.imageView.center = self.resettingCenter
+            if needResetSize {
+                self.imageView.bounds.size = size
+            }
+        }
     }
 }
 
@@ -131,7 +151,16 @@ extension PhotoBrowserViewCell {
     }
     
     @objc private func handleDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
-        
+        if scrollView.zoomScale == 1.0 {
+            let pointInView = gesture.location(in: imageView)
+            let width = scrollView.bounds.size.width / scrollView.maximumZoomScale
+            let height = scrollView.bounds.size.height / scrollView.maximumZoomScale
+            let x = pointInView.x - (width / 2.0)
+            let y = pointInView.y - (height / 2.0)
+            scrollView.zoom(to: CGRect(x: x, y: y, width: width, height: height), animated: true)
+        } else {
+            scrollView.setZoomScale(1.0, animated: true)
+        }
     }
     
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -146,15 +175,15 @@ extension PhotoBrowserViewCell {
         case .changed:
             let result = panResult(gesture)
             imageView.frame = result.frame
-            
+            panGestureChangedHandler?(result.scale)
         case .ended, .cancelled:
             let result = panResult(gesture)
             imageView.frame = result.frame
             let isDownSwipe = gesture.velocity(in: self).y > 0
+            panGestureReleasedHandler?(isDownSwipe)
             if !isDownSwipe {
                 resetImageView()
             }
-            print("...")
         default:
             resetImageView()
         }
@@ -176,7 +205,7 @@ extension PhotoBrowserViewCell: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        
+        imageView.center = resettingCenter
     }
 }
 

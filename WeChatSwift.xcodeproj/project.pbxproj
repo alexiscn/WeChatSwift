@@ -73,6 +73,7 @@
 		A34139342307E6CC008E0EBF /* PhotoBrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34139332307E6CC008E0EBF /* PhotoBrowserDelegate.swift */; };
 		A34139362307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34139352307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift */; };
 		A34139382307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34139372307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift */; };
+		A341393A230800C0008E0EBF /* PhotoBrowserPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3413939230800C0008E0EBF /* PhotoBrowserPresentationController.swift */; };
 		A341CF0222E5554800F18106 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CEFF22E5554800F18106 /* SettingsViewController.swift */; };
 		A341CF0322E5554800F18106 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0022E5554800F18106 /* AboutViewController.swift */; };
 		A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341CF0422E5555600F18106 /* SettingsTableModel.swift */; };
@@ -427,6 +428,7 @@
 		A34139332307E6CC008E0EBF /* PhotoBrowserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserDelegate.swift; sourceTree = "<group>"; };
 		A34139352307EC5F008E0EBF /* PhotoBrowserTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserTransitioningDelegate.swift; sourceTree = "<group>"; };
 		A34139372307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserZoomTransitioning.swift; sourceTree = "<group>"; };
+		A3413939230800C0008E0EBF /* PhotoBrowserPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserPresentationController.swift; sourceTree = "<group>"; };
 		A341CEFF22E5554800F18106 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A341CF0022E5554800F18106 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A341CF0422E5555600F18106 /* SettingsTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableModel.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 			isa = PBXGroup;
 			children = (
 				A33B88332307CFA100D28D57 /* PhotoBrowserViewController.swift */,
+				A3413939230800C0008E0EBF /* PhotoBrowserPresentationController.swift */,
 				A34139332307E6CC008E0EBF /* PhotoBrowserDelegate.swift */,
 				A33B88352307CFCC00D28D57 /* PhotoBrowserDataSource.swift */,
 				A33B88372307D20700D28D57 /* PhotoBrowserViewCell.swift */,
@@ -1975,6 +1978,7 @@
 				A341CF0722E5555C00F18106 /* AboutTableModel.swift in Sources */,
 				A373D3DD22F6A9A900451515 /* SettingFontSizeStepSlider.swift in Sources */,
 				A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */,
+				A341393A230800C0008E0EBF /* PhotoBrowserPresentationController.swift in Sources */,
 				A37FFB6E22EEB62B0001DD27 /* PublishMomentViewController.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,

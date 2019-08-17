@@ -237,6 +237,56 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
         
+        let count = dataSource.count
+        let assets = dataSource.map { return $0.asset }
         
+        let data = PhotoBrowserDataSource(numberOfItems: { () -> Int in
+            return count
+        }) { (index) -> UIImage? in
+            let asset = assets[index]
+            let size = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+            let options = PHImageRequestOptions()
+            options.deliveryMode = .highQualityFormat
+            options.isNetworkAccessAllowed = true
+            options.isSynchronous = true
+            var resultImage: UIImage?
+            PHCachingImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { (image, _) in
+                resultImage = image
+            }
+            return resultImage
+        }
+        
+        let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
+            let indexPath = IndexPath(item: index, section: 0)
+            let cell = collectionView.cellForItem(at: indexPath) as? AssetPickerCollectionViewCell
+            return cell?.imageViewForZoomTransition
+        }
+        
+        let browser = PhotoBrowserViewController(dataSource: data, transDelegate: trans)
+        browser.show(pageIndex: indexPath.item, in: self)
+    }
+}
+
+
+public protocol PhotoBrowserZoomTransitioningOriginResource {
+    
+    var originResourceView: UIView { get }
+    
+    var originResourceAspectRatio: CGFloat { get }
+}
+
+extension UIImageView: PhotoBrowserZoomTransitioningOriginResource {
+    public var originResourceView: UIView {
+        return self
+    }
+    
+    public var originResourceAspectRatio: CGFloat {
+        if let image = image, image.size.height > 0 {
+            return image.size.width / image.size.height
+        }
+        if bounds.height > 0 {
+            return bounds.width / bounds.height
+        }
+        return 0
     }
 }

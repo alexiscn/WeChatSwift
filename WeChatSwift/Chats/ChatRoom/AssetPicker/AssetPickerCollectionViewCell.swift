@@ -31,6 +31,10 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
     
     private var lengthLabel: UILabel?
     
+    var imageViewForZoomTransition: UIImageView {
+        return imageView
+    }
+    
     override init(frame: CGRect) {
         
         imageView = UIImageView()

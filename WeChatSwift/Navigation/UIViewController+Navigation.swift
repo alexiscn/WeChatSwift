@@ -71,6 +71,7 @@ extension UIViewController {
         swizzleMethod(cls, #selector(UIViewController.viewDidLoad), #selector(UIViewController.wc_viewDidLoad))
         swizzleMethod(cls, #selector(UIViewController.viewWillLayoutSubviews), #selector(UIViewController.wc_viewWillLayoutSubviews))
         swizzleMethod(cls, #selector(UIViewController.viewWillAppear(_:)), #selector(UIViewController.wc_viewWillAppear(_:)))
+        swizzleMethod(cls, #selector(UIViewController.viewDidAppear(_:)), #selector(UIViewController.wc_viewDidAppear(_:)))
     }()
     
     @objc private func wc_viewDidLoad() {
@@ -99,6 +100,16 @@ extension UIViewController {
             view.bringSubviewToFront(wc_navigationBar)
         }
         wc_viewWillAppear(animated)
+    }
+    
+    
+    @objc private func wc_viewDidAppear(_ animated: Bool) {
+        // 修正在TabBarController中使用了返回了手势，导致Push卡死的现象
+        // 当导航栏中只有一个ViewController时禁用返回手势
+        if let navigationController = self.navigationController {
+            navigationController.interactivePopGestureRecognizer?.isEnabled = navigationController.viewControllers.count > 1
+        }
+        wc_viewDidAppear(animated)
     }
 }
 

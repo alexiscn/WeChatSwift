@@ -306,6 +306,8 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
         case .location(let locationMsg):
             let controller = ChatRoomMapViewController(location: locationMsg)
             navigationController?.pushViewController(controller, animated: true)
+        case .image(let imageMsg):
+            print("TODO Preview:\(imageMsg)")
         default:
             break
         }

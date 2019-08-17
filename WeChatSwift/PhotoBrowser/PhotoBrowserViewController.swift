@@ -13,7 +13,7 @@ class PhotoBrowserViewController: UIViewController {
     var pageIndex: Int = 0 {
         didSet {
             if pageIndex != oldValue {
-                
+                delegate.photoBrowser(self, pageIndexDidChanged: pageIndex)
             }
         }
     }
@@ -27,6 +27,7 @@ class PhotoBrowserViewController: UIViewController {
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.backgroundColor = .clear
+        collectionView.decelerationRate = .fast
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
@@ -38,11 +39,21 @@ class PhotoBrowserViewController: UIViewController {
     
     let dataSource: PhotoBrowserDataSource
     
-    init(dataSource: PhotoBrowserDataSource, delegate: PhotoBrowserDelegate) {
+    let transDelegate: PhotoBrowserTransitioningDelegate
+    
+    init(dataSource: PhotoBrowserDataSource,
+         transDelegate: PhotoBrowserZoomTransitioning,
+         delegate: PhotoBrowserDelegate = PhotoBrowserDefaultDelegate()) {
         self.dataSource = dataSource
         self.delegate = delegate
+        self.transDelegate = transDelegate
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .custom
+        self.transitioningDelegate = transDelegate
+        
+        dataSource.browser = self
+        transDelegate.browser = self
+        delegate.browser = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,6 +61,7 @@ class PhotoBrowserViewController: UIViewController {
     }
     
     func show(pageIndex: Int, in viewController: UIViewController) {
+        self.pageIndex = pageIndex
         viewController.present(self, animated: true, completion: nil)
     }
     
@@ -63,11 +75,13 @@ class PhotoBrowserViewController: UIViewController {
         
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
+        collectionView.register(PhotoBrowserViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(PhotoBrowserViewCell.self))
         
+        let index = pageIndex
         setLayout()
         collectionView.reloadData()
         collectionView.layoutIfNeeded()
-        
+        scrollTo(index: index, at: .left, animated: false)
         collectionView.layoutIfNeeded()
     }
     
@@ -77,13 +91,24 @@ class PhotoBrowserViewController: UIViewController {
     }
     
     func setLayout() {
+        flowLayout.minimumLineSpacing = 0
         flowLayout.itemSize = view.bounds.size
         collectionView.frame = view.bounds
-        
+        collectionView.contentInset = .zero
+    }
+    
+    func scrollTo(index: Int, at position: UICollectionView.ScrollPosition, animated: Bool) {
+        let safeIndex = min(max(0, index), itemsCount - 1)
+        let indexPath = IndexPath(item: safeIndex, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: position, animated: animated)
     }
     
     override var shouldAutorotate: Bool {
         return false
+    }
+    
+    var itemsCount: Int {
+        return dataSource.collectionView(collectionView, numberOfItemsInSection: 0)
     }
     
     var transitionZoomView: UIView? {
@@ -92,38 +117,5 @@ class PhotoBrowserViewController: UIViewController {
     
     var displayingContentView: UIView? {
         return delegate.photoBrowser(self, displayingContentViewAt: pageIndex)
-    }
-}
-
-class PhotoBrowserPresentationController: UIPresentationController {
-    
-    var maskView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        return view
-    }()
-    
-    override func presentationTransitionWillBegin() {
-        super.presentationTransitionWillBegin()
-        
-        guard let container = self.containerView else {
-            return
-        }
-        
-        container.addSubview(maskView)
-        maskView.frame = container.bounds
-        maskView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        maskView.alpha = 0.0
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
-            self.maskView.alpha = 1.0
-        }, completion: nil)
-    }
-    
-    override func dismissalTransitionWillBegin() {
-        super.dismissalTransitionWillBegin()
-        
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
-            self.maskView.alpha = 0.0
-        }, completion: nil)
     }
 }
