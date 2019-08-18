@@ -37,14 +37,23 @@ class StorageUsageDetailNode: ASDisplayNode {
         
         descNode.attributedText = NSAttributedString(string: detail.desc, attributes: [
             .font: UIFont.systemFont(ofSize: 14),
-            .foregroundColor: UIColor(hexString: "#F7F7F7")
+            .foregroundColor: UIColor(hexString: "#7F7F7F")
             ])
+        
+        actionButton.setAttributedTitle(detail.action.attributedText(), for: .normal)
+        actionButton.setBackgroundImage(detail.action.backgroundImage, for: .normal)
+        actionButton.setBackgroundImage(detail.action.highlightBackgroundImage, for: .highlighted)
     }
     
     override func didLoad() {
         super.didLoad()
         
         backgroundColor = Colors.white
+        actionButton.addTarget(self, action: #selector(handleActionButtonClicked), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func handleActionButtonClicked() {
+        
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -56,8 +65,13 @@ class StorageUsageDetailNode: ASDisplayNode {
         let insets = UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24)
         let layout = ASInsetLayoutSpec(insets: insets, child: stack)
         
+        actionButton.style.preferredSize = CGSize(width: 57, height: 32)
+        actionButton.style.layoutPosition = CGPoint(x: constrainedSize.max.width - 57.0 - 15.0, y: 16.0)
+        
         return ASAbsoluteLayoutSpec(children: [layout, actionButton])
     }
+    
+    
     
 }
 
