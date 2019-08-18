@@ -12,6 +12,8 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
     
     private let scrollNode = ASScrollNode()
     
+    private let headBackgroundNode = ASDisplayNode()
+    
     private let summaryStorageNode: StorageUsageSummaryNode
     
     private let cacheStorageNode: StorageUsageDetailNode
@@ -30,7 +32,7 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         chatStorageNode = StorageUsageDetailNode(detail: chatStorageDetail)
         
         super.init(node: ASDisplayNode())
-        
+        //node.addSubnode(headBackgroundNode)
         node.addSubnode(scrollNode)
         scrollNode.addSubnode(summaryStorageNode)
         scrollNode.addSubnode(cacheStorageNode)
@@ -44,17 +46,21 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        headBackgroundNode.backgroundColor = Colors.white
+        headBackgroundNode.frame = CGRect(x: 0, y: Constants.topInset + Constants.statusBarHeight - Constants.screenHeight * 2.0, width: Constants.screenWidth, height: Constants.screenHeight * 2.0)
+        
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         
         scrollNode.view.showsVerticalScrollIndicator = false
         scrollNode.view.showsHorizontalScrollIndicator = false
         scrollNode.frame = node.bounds
+        scrollNode.view.delegate = self
         
         summaryStorageNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 230)
         cacheStorageNode.frame = CGRect(x: 0, y: 238, width: Constants.screenWidth, height: 126)
         chatStorageNode.frame = CGRect(x: 0, y: 372, width: Constants.screenWidth, height: 126)
         
-        scrollNode.view.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height - Constants.statusBarHeight - Constants.topInset)
+        scrollNode.view.contentSize = node.bounds.size
         
         navigationItem.title = "存储空间"
     }
@@ -62,4 +68,13 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
     override var wc_navigationBarBackgroundColor: UIColor? {
         return .white
     }
+}
+
+// MARK: - UIScrollViewDelegate
+extension StorageUsageViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        headBackgroundNode.frame.origin.y = Constants.screenHeight * -2.0 - scrollView.contentOffset.y
+    }
+    
 }
