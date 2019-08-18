@@ -20,8 +20,8 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
     
     init() {
         
-        summaryStorageNode = StorageUsageSummaryNode()
-        
+        let summary = StorageUsageSummary(totalSize: 100, remainSize: 50, wechatSize: 30)
+        summaryStorageNode = StorageUsageSummaryNode(summary: summary)
         
         let cacheStorageDetail = StorageUsageDetail(title: "缓存", desc: "缓存是使用微信过程中产生的临时数据，清理缓存不会影响微信的正常使用。", totalSize: 0, action: .clean)
         cacheStorageNode = StorageUsageDetailNode(detail: cacheStorageDetail)
@@ -54,7 +54,7 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         cacheStorageNode.frame = CGRect(x: 0, y: 238, width: Constants.screenWidth, height: 126)
         chatStorageNode.frame = CGRect(x: 0, y: 372, width: Constants.screenWidth, height: 126)
         
-        scrollNode.view.contentSize = node.bounds.size
+        scrollNode.view.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height - Constants.statusBarHeight - Constants.topInset)
         
         navigationItem.title = "存储空间"
     }
