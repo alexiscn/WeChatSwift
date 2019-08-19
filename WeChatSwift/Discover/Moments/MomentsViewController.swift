@@ -308,5 +308,8 @@ extension MomentsViewController: MomentCellNodeDelegate {
         let contactInfoVC = ContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactInfoVC, animated: true)
     }
-    
+ 
+    func momentCellNode(_ cellNode: MomentCellNode, didTapImage index: Int, mulitImage: MomentMultiImage, tappedView: UIView?) {
+        
+    }
 }

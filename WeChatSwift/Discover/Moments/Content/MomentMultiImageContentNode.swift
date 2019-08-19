@@ -8,57 +8,52 @@
 
 import AsyncDisplayKit
 
-extension MomentCellNode {
+class MomentMultiImageContentNode: MomentContentNode {
     
-    class MultiImageContentNode: MomentContentNode {
-        
-        private var imageNodes: [ASNetworkImageNode] = []
-        
-        private let multiImage: MomentMultiImage
-        
-        init(multiImage: MomentMultiImage) {
-            self.multiImage = multiImage
-            super.init()
-            automaticallyManagesSubnodes = true
-            for image in multiImage.images {
-                let node = ASNetworkImageNode()
-                node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-                node.url = image.url
-                imageNodes.append(node)
-            }
+    private var imageNodes: [ASNetworkImageNode] = []
+    
+    private let multiImage: MomentMultiImage
+    
+    init(multiImage: MomentMultiImage) {
+        self.multiImage = multiImage
+        super.init()
+        automaticallyManagesSubnodes = true
+        for image in multiImage.images {
+            let node = ASNetworkImageNode()
+            node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+            node.url = image.url
+            imageNodes.append(node)
         }
-        
-        override func didLoad() {
-            super.didLoad()
-            
-            isUserInteractionEnabled = true
-            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-            self.view.addGestureRecognizer(tap)
-        }
-        
-        @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-            let point = gesture.location(in: self.view)
-            for (index, node) in imageNodes.enumerated() {
-                if node.frame.contains(point) {
-                    print(index)
+    }
+    
+    override func didLoad() {
+        super.didLoad()
+    }
+    
+    override func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: self.view)
+        for (index, node) in imageNodes.enumerated() {
+            if node.frame.contains(point) {
+                if let cellNode = cellNode {
+                    cellNode.delegate?.momentCellNode(cellNode, didTapImage: index, mulitImage: multiImage, tappedView: node.view)
                 }
             }
         }
-        
-        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-            let spacing: CGFloat = 6
-            let itemWidth: CGFloat = 82.0
-            let itemHeight: CGFloat = 82.0
-            for (index, imageNode) in imageNodes.enumerated() {
-                let row = CGFloat(index / 3)
-                let col = CGFloat(index % 3)
-                let x = col * (itemWidth + spacing)
-                let y = row * (itemHeight + spacing)
-                imageNode.style.preferredSize = CGSize(width: itemWidth, height: itemHeight)
-                imageNode.style.layoutPosition = CGPoint(x: x, y: y)
-            }
-            let layoutSpec = ASAbsoluteLayoutSpec(children: imageNodes)
-            return layoutSpec
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let spacing: CGFloat = 6
+        let itemWidth: CGFloat = 82.0
+        let itemHeight: CGFloat = 82.0
+        for (index, imageNode) in imageNodes.enumerated() {
+            let row = CGFloat(index / 3)
+            let col = CGFloat(index % 3)
+            let x = col * (itemWidth + spacing)
+            let y = row * (itemHeight + spacing)
+            imageNode.style.preferredSize = CGSize(width: itemWidth, height: itemHeight)
+            imageNode.style.layoutPosition = CGPoint(x: x, y: y)
         }
+        let layoutSpec = ASAbsoluteLayoutSpec(children: imageNodes)
+        return layoutSpec
     }
 }

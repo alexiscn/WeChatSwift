@@ -51,11 +51,11 @@ class MomentCellNode: ASCellNode {
         
         switch moment.body {
         case .media(let image):
-            contentNode = ImageContentNode(image: image)
+            contentNode = MomentImageContentNode(image: image)
         case .link(let webPage):
-            contentNode = WebpageContentNode(webPage: webPage)
+            contentNode = MomentWebpageContentNode(webPage: webPage)
         case .multi(let multiImage):
-            contentNode = MultiImageContentNode(multiImage: multiImage)
+            contentNode = MomentMultiImageContentNode(multiImage: multiImage)
         default:
             break
         }
@@ -80,6 +80,9 @@ class MomentCellNode: ASCellNode {
         automaticallyManagesSubnodes = true
         backgroundColor = .white
         isUserInteractionEnabled = true
+        
+        contentNode?.isUserInteractionEnabled = true
+        contentNode?.cellNode = self
         
         let user = MockFactory.shared.users.first(where: { $0.identifier == moment.userID })
         let avatar = user?.avatar ?? "DefaultHead_48x48_"
@@ -109,6 +112,10 @@ class MomentCellNode: ASCellNode {
         let point = gesture.location(in: self.view)
         if avatarNode.frame.contains(point) {
             delegate?.momentCellNode(self, didPressedUserAvatar: moment.userID)
+        }
+        
+        if let contentNode = contentNode, contentNode.frame.contains(point) {
+            contentNode.handleTapGesture(gesture)
         }
     }
     
@@ -184,4 +191,5 @@ protocol MomentCellNodeDelegate: class {
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String)
     
+    func momentCellNode(_ cellNode: MomentCellNode, didTapImage index: Int, mulitImage: MomentMultiImage, tappedView: UIView?)
 }

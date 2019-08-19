@@ -8,9 +8,11 @@
 
 import AsyncDisplayKit
 
-extension MomentCellNode {
+class MomentContentNode: ASDisplayNode {
+
+    weak var cellNode: MomentCellNode?
     
-    class MomentContentNode: ASDisplayNode {
+    func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         
     }
 }
