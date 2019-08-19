@@ -74,9 +74,9 @@ enum StorageUsageDetailAction {
 
 struct StorageUsageSummary {
     
-    var totalSize: Int
+    var systemTotalSize: Int
     
-    var remainSize: Int
+    var systemFreeSize: Int
     
     var wechatSize: Int
     

@@ -308,8 +308,25 @@ extension MomentsViewController: MomentCellNodeDelegate {
         let contactInfoVC = ContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactInfoVC, animated: true)
     }
- 
-    func momentCellNode(_ cellNode: MomentCellNode, didTapImage index: Int, mulitImage: MomentMultiImage, tappedView: UIView?) {
+    
+    func momentCellNode(_ cellNode: MomentCellNode, didTapImage image: MomentMedia, thumbImage: UIImage?, tappedView: UIView?) {
         
+        let ds = PhotoBrowserNetworkDataSource(numberOfItems: 1, placeholders: [thumbImage], remoteURLs: [image.url])
+        let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
+            return tappedView
+        }
+        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans)
+        browser.show(pageIndex: 0, in: self)
+    }
+ 
+    func momentCellNode(_ cellNode: MomentCellNode, didTapImage index: Int, mulitImage: MomentMultiImage, thumbs: [UIImage?], tappedView: UIView?) {
+        let count = mulitImage.images.count
+        let imageURLs = mulitImage.images.map { return $0.url }
+        let ds = PhotoBrowserNetworkDataSource(numberOfItems: count, placeholders: thumbs, remoteURLs: imageURLs)
+        let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
+            return tappedView
+        }
+        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans)
+        browser.show(pageIndex: index, in: self)
     }
 }

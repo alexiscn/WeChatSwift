@@ -35,7 +35,8 @@ class MomentMultiImageContentNode: MomentContentNode {
         for (index, node) in imageNodes.enumerated() {
             if node.frame.contains(point) {
                 if let cellNode = cellNode {
-                    cellNode.delegate?.momentCellNode(cellNode, didTapImage: index, mulitImage: multiImage, tappedView: node.view)
+                    let thumbs = imageNodes.map { return $0.image }
+                    cellNode.delegate?.momentCellNode(cellNode, didTapImage: index, mulitImage: multiImage, thumbs: thumbs, tappedView: node.view)
                 }
             }
         }

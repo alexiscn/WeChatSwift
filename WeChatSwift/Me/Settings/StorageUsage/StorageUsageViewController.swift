@@ -20,9 +20,11 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
     
     private let loadingView = StorageUsageLoadingView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 140))
     
+    private let scanner = StorageUsageScanner()
+    
     init() {
         
-        let summary = StorageUsageSummary(totalSize: 100, remainSize: 50, wechatSize: 30)
+        let summary = StorageUsageSummary(systemTotalSize: 100, systemFreeSize: 50, wechatSize: 30)
         summaryStorageNode = StorageUsageSummaryNode(summary: summary)
         
         let cacheStorageDetail = StorageUsageDetail(title: "缓存", desc: "缓存是使用微信过程中产生的临时数据，清理缓存不会影响微信的正常使用。", totalSize: 0, action: .clean)
@@ -60,6 +62,10 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         tableNode.view.tableHeaderView = headerView
         
         navigationItem.title = "存储空间"
+        
+        scanner.startScan { (summary, detail) in
+            
+        }
     }
  
     override var wc_navigationBarBackgroundColor: UIColor? {

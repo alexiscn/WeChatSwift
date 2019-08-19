@@ -14,7 +14,10 @@ class MomentImageContentNode: MomentContentNode {
     
     private var ratio: CGFloat = 1.0
     
+    private let image: MomentMedia
+    
     init(image: MomentMedia) {
+        self.image = image
         super.init()
         
         imageNode.url = image.url
@@ -24,6 +27,12 @@ class MomentImageContentNode: MomentContentNode {
         imageNode.clipsToBounds = true
         imageNode.shouldCacheImage = false
         addSubnode(imageNode)
+    }
+    
+    override func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        if let cellNode = cellNode {
+            cellNode.delegate?.momentCellNode(cellNode, didTapImage: image, thumbImage: imageNode.image, tappedView: imageNode.view)
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

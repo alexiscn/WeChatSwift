@@ -191,5 +191,7 @@ protocol MomentCellNodeDelegate: class {
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String)
     
-    func momentCellNode(_ cellNode: MomentCellNode, didTapImage index: Int, mulitImage: MomentMultiImage, tappedView: UIView?)
+    func momentCellNode(_ cellNode: MomentCellNode, didTapImage image: MomentMedia, thumbImage: UIImage?, tappedView: UIView?)
+    
+    func momentCellNode(_ cellNode: MomentCellNode, didTapImage index: Int, mulitImage: MomentMultiImage, thumbs: [UIImage?], tappedView: UIView?)
 }
