@@ -19,6 +19,12 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [Session] = []
     
+    private lazy var mainSearchViewController: MainSearchViewController = {
+        return MainSearchViewController()
+    }()
+    
+    private var searchViewController: UISearchController?
+    
     init() {
         super.init(node: ASDisplayNode())
         
@@ -47,6 +53,8 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addoutline"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
         navigationItem.rightBarButtonItem = rightButtonItem
         navigationItem.title = "微信"
+        
+//        setupSearchController()
     }
     
     private func loadSessions() {
@@ -68,6 +76,16 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     private func hideMoreMenu(animated: Bool = true) {
         menuFloatView?.hide(animated: animated)
+    }
+    
+    private func setupSearchController() {
+        searchViewController = UISearchController(searchResultsController: mainSearchViewController)
+        searchViewController?.view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+        searchViewController?.searchBar.setBackgroundImage(UIImage(), for: .top, barMetrics: .default)
+        searchViewController?.searchBar.backgroundColor = .clear
+        //searchViewController?.searchResultsUpdater = mainSearchViewController
+        tableNode.view.tableHeaderView = searchViewController?.searchBar
+        tableNode.view.tableHeaderView?.backgroundColor = .clear
     }
 }
 

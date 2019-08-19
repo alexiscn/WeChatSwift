@@ -339,6 +339,9 @@
 		A3E20013230A72D8005B2B70 /* AccountLoginUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20012230A72D8005B2B70 /* AccountLoginUsersViewController.swift */; };
 		A3E20015230A7877005B2B70 /* icons_filled_close.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3E20014230A7877005B2B70 /* icons_filled_close.svg */; };
 		A3E20017230AC4E5005B2B70 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */; };
+		A3E2001A230AD18C005B2B70 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20019230AD18C005B2B70 /* MainSearchViewController.swift */; };
+		A3E2001C230AD206005B2B70 /* MainSearchGuideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2001B230AD205005B2B70 /* MainSearchGuideNode.swift */; };
+		A3E2001E230AD270005B2B70 /* StreamVoiceInputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2001D230AD270005B2B70 /* StreamVoiceInputControl.swift */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */; };
 		A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */; };
@@ -706,6 +709,9 @@
 		A3E20012230A72D8005B2B70 /* AccountLoginUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLoginUsersViewController.swift; sourceTree = "<group>"; };
 		A3E20014230A7877005B2B70 /* icons_filled_close.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_close.svg; sourceTree = "<group>"; };
 		A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		A3E20019230AD18C005B2B70 /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
+		A3E2001B230AD205005B2B70 /* MainSearchGuideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchGuideNode.swift; sourceTree = "<group>"; };
+		A3E2001D230AD270005B2B70 /* StreamVoiceInputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVoiceInputControl.swift; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentRefreshHeaderView.swift; sourceTree = "<group>"; };
 		A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTableHeaderView.swift; sourceTree = "<group>"; };
@@ -907,6 +913,7 @@
 		A33DB2E722CCCA0D00A11776 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				A3E20018230AD179005B2B70 /* Search */,
 				A3C9144323053D1F00B6E077 /* ChatRoomList */,
 				A35B219F230022380057F8FC /* BrandTimeline */,
 				A374862822D4382C002EEC4F /* ChatRoom */,
@@ -1655,6 +1662,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		A3E20018230AD179005B2B70 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A3E20019230AD18C005B2B70 /* MainSearchViewController.swift */,
+				A3E2001B230AD205005B2B70 /* MainSearchGuideNode.swift */,
+				A3E2001D230AD270005B2B70 /* StreamVoiceInputControl.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		A3E58D9B23025B4A00F73763 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1991,6 +2008,7 @@
 				A374863E22D445B6002EEC4F /* TextContentNode.swift in Sources */,
 				A31057E822E8537300856D71 /* GameContentNode.swift in Sources */,
 				A341393C23081DEC008E0EBF /* PhotoBrowserNetworkDataSource.swift in Sources */,
+				A3E2001C230AD206005B2B70 /* MainSearchGuideNode.swift in Sources */,
 				A341CF0222E5554800F18106 /* SettingsViewController.swift in Sources */,
 				A3618A9422F97B50000ACF4D /* ContactSettingViewController.swift in Sources */,
 				A34760AD22E6E8BB0043AE1D /* AssetPickerViewController.swift in Sources */,
@@ -2045,6 +2063,8 @@
 				A373D3DD22F6A9A900451515 /* SettingFontSizeStepSlider.swift in Sources */,
 				A37FFB6422EE8E380001DD27 /* WebBottomToolBar.swift in Sources */,
 				A341393A230800C0008E0EBF /* PhotoBrowserPresentationController.swift in Sources */,
+				A3E2001A230AD18C005B2B70 /* MainSearchViewController.swift in Sources */,
+				A3E2001E230AD270005B2B70 /* StreamVoiceInputControl.swift in Sources */,
 				A37FFB6E22EEB62B0001DD27 /* PublishMomentViewController.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,
