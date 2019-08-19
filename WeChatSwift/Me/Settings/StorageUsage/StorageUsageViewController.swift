@@ -55,6 +55,7 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         tableNode.frame = node.bounds
         tableNode.view.separatorStyle = .none
         tableNode.backgroundColor = .clear
+        tableNode.allowsSelection = false
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 230))
         headerView.addSubnode(summaryStorageNode)

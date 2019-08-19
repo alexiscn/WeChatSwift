@@ -47,9 +47,7 @@ class WebViewController: UIViewController {
     
         let request = URLRequest(url: url)
         webView.load(request)
-    }
-    
-    private func setupNavigationBar() {
+        
         let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
     }

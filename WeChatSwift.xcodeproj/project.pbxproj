@@ -333,6 +333,11 @@
 		A3DE7CCF2301396B00E73944 /* SettingMyAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CCE2301396B00E73944 /* SettingMyAccountInfoViewController.swift */; };
 		A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CD023013A2800E73944 /* SettingMyAccountInfoModel.swift */; };
 		A3E20009230A4B81005B2B70 /* LoadingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20008230A4B81005B2B70 /* LoadingProgressView.swift */; };
+		A3E2000B230A5387005B2B70 /* SessionBannerCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2000A230A5387005B2B70 /* SessionBannerCellNode.swift */; };
+		A3E2000D230A6BCC005B2B70 /* NetworkCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2000C230A6BCC005B2B70 /* NetworkCheckViewController.swift */; };
+		A3E20010230A722F005B2B70 /* AccountMainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2000F230A722F005B2B70 /* AccountMainLoginViewController.swift */; };
+		A3E20013230A72D8005B2B70 /* AccountLoginUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20012230A72D8005B2B70 /* AccountLoginUsersViewController.swift */; };
+		A3E20015230A7877005B2B70 /* icons_filled_close.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3E20014230A7877005B2B70 /* icons_filled_close.svg */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */; };
 		A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */; };
@@ -694,6 +699,11 @@
 		A3DE7CCE2301396B00E73944 /* SettingMyAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountInfoViewController.swift; sourceTree = "<group>"; };
 		A3DE7CD023013A2800E73944 /* SettingMyAccountInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountInfoModel.swift; sourceTree = "<group>"; };
 		A3E20008230A4B81005B2B70 /* LoadingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProgressView.swift; sourceTree = "<group>"; };
+		A3E2000A230A5387005B2B70 /* SessionBannerCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionBannerCellNode.swift; sourceTree = "<group>"; };
+		A3E2000C230A6BCC005B2B70 /* NetworkCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckViewController.swift; sourceTree = "<group>"; };
+		A3E2000F230A722F005B2B70 /* AccountMainLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMainLoginViewController.swift; sourceTree = "<group>"; };
+		A3E20012230A72D8005B2B70 /* AccountLoginUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLoginUsersViewController.swift; sourceTree = "<group>"; };
+		A3E20014230A7877005B2B70 /* icons_filled_close.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_close.svg; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentRefreshHeaderView.swift; sourceTree = "<group>"; };
 		A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTableHeaderView.swift; sourceTree = "<group>"; };
@@ -841,6 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				A3CA51A422CD998C00C67D92 /* AppDelegate */,
+				A3E2000E230A71C2005B2B70 /* Account */,
 				A3CA51F922CDA87100C67D92 /* Context */,
 				A3DE7CC12301084C00E73944 /* Database */,
 				A3CA51F622CDA85600C67D92 /* Service */,
@@ -1252,8 +1263,10 @@
 			children = (
 				A33DB2F622CCDCF500A11776 /* SessionViewController.swift */,
 				A37E73E322D89AFB008019A4 /* SessionCellNode.swift */,
+				A3E2000A230A5387005B2B70 /* SessionBannerCellNode.swift */,
 				A322870422E07C64004E516E /* SessionMoreMenuFloatView.swift */,
 				A3CA520422CDC47100C67D92 /* SessionMoreMenuView.swift */,
+				A3E2000C230A6BCC005B2B70 /* NetworkCheckViewController.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -1453,6 +1466,7 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A3E20014230A7877005B2B70 /* icons_filled_close.svg */,
 				A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */,
 				A3C9145D2305892000B6E077 /* icons_outlined_at.svg */,
 				A3C9145B230588FD00B6E077 /* icons_outlined_location.svg */,
@@ -1621,6 +1635,23 @@
 			path = MyAccount;
 			sourceTree = "<group>";
 		};
+		A3E2000E230A71C2005B2B70 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				A3E20011230A72C0005B2B70 /* Login */,
+				A3E2000F230A722F005B2B70 /* AccountMainLoginViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		A3E20011230A72C0005B2B70 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A3E20012230A72D8005B2B70 /* AccountLoginUsersViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		A3E58D9B23025B4A00F73763 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1777,6 +1808,7 @@
 				A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */,
 				A3CA51E522CD9FD500C67D92 /* icons_outlined_mini-program.svg in Resources */,
 				A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */,
+				A3E20015230A7877005B2B70 /* icons_filled_close.svg in Resources */,
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
 				A3C9142823052D9300B6E077 /* Gilly.jpg in Resources */,
 				A3CCE02322DDECFA0003DC25 /* red_envelopes_bottom_bg.svg in Resources */,
@@ -1967,6 +1999,7 @@
 				A373D3D222F65A5300451515 /* UserSettings.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
+				A3E2000B230A5387005B2B70 /* SessionBannerCellNode.swift in Sources */,
 				A372145822FFC2CB00340023 /* SettingLabTipsCellNode.swift in Sources */,
 				A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */,
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
@@ -1991,8 +2024,10 @@
 				A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */,
 				A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */,
 				A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */,
+				A3E20013230A72D8005B2B70 /* AccountLoginUsersViewController.swift in Sources */,
 				A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */,
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
+				A3E20010230A722F005B2B70 /* AccountMainLoginViewController.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A3C914582305886200B6E077 /* PublishMomentAction.swift in Sources */,
 				A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */,
@@ -2124,6 +2159,7 @@
 				A3C9144E23056CB000B6E077 /* MomentCommentLineNode.swift in Sources */,
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
+				A3E2000D230A6BCC005B2B70 /* NetworkCheckViewController.swift in Sources */,
 				A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */,
 				A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */,
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,
