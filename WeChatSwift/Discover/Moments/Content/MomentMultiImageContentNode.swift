@@ -14,7 +14,10 @@ extension MomentCellNode {
         
         private var imageNodes: [ASNetworkImageNode] = []
         
+        private let multiImage: MomentMultiImage
+        
         init(multiImage: MomentMultiImage) {
+            self.multiImage = multiImage
             super.init()
             automaticallyManagesSubnodes = true
             for image in multiImage.images {
@@ -27,6 +30,19 @@ extension MomentCellNode {
         
         override func didLoad() {
             super.didLoad()
+            
+            isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+            self.view.addGestureRecognizer(tap)
+        }
+        
+        @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+            let point = gesture.location(in: self.view)
+            for (index, node) in imageNodes.enumerated() {
+                if node.frame.contains(point) {
+                    print(index)
+                }
+            }
         }
         
         override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

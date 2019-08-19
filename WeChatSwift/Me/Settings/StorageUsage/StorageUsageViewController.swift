@@ -10,15 +10,15 @@ import AsyncDisplayKit
 
 class StorageUsageViewController: ASViewController<ASDisplayNode> {
     
-    private let scrollNode = ASScrollNode()
+    private let tableNode = ASTableNode(style: .grouped)
     
     private let headBackgroundNode = ASDisplayNode()
     
     private let summaryStorageNode: StorageUsageSummaryNode
     
-    private let cacheStorageNode: StorageUsageDetailNode
+    private var dataSource: [StorageUsageDetail] = []
     
-    private let chatStorageNode: StorageUsageDetailNode
+    private let loadingView = StorageUsageLoadingView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 140))
     
     init() {
         
@@ -26,17 +26,14 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         summaryStorageNode = StorageUsageSummaryNode(summary: summary)
         
         let cacheStorageDetail = StorageUsageDetail(title: "缓存", desc: "缓存是使用微信过程中产生的临时数据，清理缓存不会影响微信的正常使用。", totalSize: 0, action: .clean)
-        cacheStorageNode = StorageUsageDetailNode(detail: cacheStorageDetail)
-        
         let chatStorageDetail = StorageUsageDetail(title: "聊天记录", desc: "可清理聊天中的图片、视频、文件等数据，但不会删除消息。", totalSize: 0, action: .manage)
-        chatStorageNode = StorageUsageDetailNode(detail: chatStorageDetail)
+        dataSource = [cacheStorageDetail, chatStorageDetail]
         
         super.init(node: ASDisplayNode())
-        //node.addSubnode(headBackgroundNode)
-        node.addSubnode(scrollNode)
-        scrollNode.addSubnode(summaryStorageNode)
-        scrollNode.addSubnode(cacheStorageNode)
-        scrollNode.addSubnode(chatStorageNode)
+        node.addSubnode(headBackgroundNode)
+        node.addSubnode(tableNode)
+        tableNode.dataSource = self
+        tableNode.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,16 +48,16 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         
-        scrollNode.view.showsVerticalScrollIndicator = false
-        scrollNode.view.showsHorizontalScrollIndicator = false
-        scrollNode.frame = node.bounds
-        scrollNode.view.delegate = self
+        tableNode.view.showsVerticalScrollIndicator = false
+        tableNode.view.showsHorizontalScrollIndicator = false
+        tableNode.frame = node.bounds
+        tableNode.view.separatorStyle = .none
+        tableNode.backgroundColor = .clear
         
-        summaryStorageNode.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 230)
-        cacheStorageNode.frame = CGRect(x: 0, y: 238, width: Constants.screenWidth, height: 126)
-        chatStorageNode.frame = CGRect(x: 0, y: 372, width: Constants.screenWidth, height: 126)
-        
-        scrollNode.view.contentSize = node.bounds.size
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 230))
+        headerView.addSubnode(summaryStorageNode)
+        summaryStorageNode.frame = headerView.bounds
+        tableNode.view.tableHeaderView = headerView
         
         navigationItem.title = "存储空间"
     }
@@ -77,4 +74,39 @@ extension StorageUsageViewController: UIScrollViewDelegate {
         headBackgroundNode.frame.origin.y = Constants.screenHeight * -2.0 - scrollView.contentOffset.y
     }
     
+}
+
+extension StorageUsageViewController: ASTableDelegate, ASTableDataSource {
+    
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
+        return dataSource.count
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let model = dataSource[indexPath.section]
+        let block: ASCellNodeBlock = {
+            return StorageUsageDetailNode(detail: model)
+        }
+        return block
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
 }

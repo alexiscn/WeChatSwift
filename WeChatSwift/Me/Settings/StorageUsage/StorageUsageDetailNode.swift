@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class StorageUsageDetailNode: ASDisplayNode {
+class StorageUsageDetailNode: ASCellNode {
     
     private let titleNode = ASTextNode()
     

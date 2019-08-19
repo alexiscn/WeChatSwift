@@ -245,7 +245,7 @@ extension MomentsViewController: ASTableDelegate, ASTableDataSource {
 extension MomentsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y = scrollView.contentOffset.y
-        print(y)
+        //print(y)
         
         // 307: TableNode Header Height
         // 70: Avatar Height

@@ -192,6 +192,8 @@
 		A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6922EE95D90001DD27 /* WCWebViewDelegate.swift */; };
 		A37FFB6C22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6B22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift */; };
 		A37FFB6E22EEB62B0001DD27 /* PublishMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FFB6D22EEB62B0001DD27 /* PublishMomentViewController.swift */; };
+		A3804533230A19840001892D /* StorageUsageScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3804532230A19840001892D /* StorageUsageScanner.swift */; };
+		A3804535230A1AFB0001892D /* StorageUsageLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3804534230A1AFB0001892D /* StorageUsageLoadingView.swift */; };
 		A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999C22E969FE00620069 /* EmoticonManageViewController.swift */; };
 		A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */; };
 		A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */; };
@@ -550,6 +552,8 @@
 		A37FFB6922EE95D90001DD27 /* WCWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCWebViewDelegate.swift; sourceTree = "<group>"; };
 		A37FFB6B22EE95F20001DD27 /* WCWebViewScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCWebViewScriptMessageHandler.swift; sourceTree = "<group>"; };
 		A37FFB6D22EEB62B0001DD27 /* PublishMomentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishMomentViewController.swift; sourceTree = "<group>"; };
+		A3804532230A19840001892D /* StorageUsageScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageScanner.swift; sourceTree = "<group>"; };
+		A3804534230A1AFB0001892D /* StorageUsageLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageLoadingView.swift; sourceTree = "<group>"; };
 		A389999C22E969FE00620069 /* EmoticonManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageViewController.swift; sourceTree = "<group>"; };
 		A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreViewController.swift; sourceTree = "<group>"; };
 		A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailViewController.swift; sourceTree = "<group>"; };
@@ -1104,6 +1108,8 @@
 				A352AD222306CB7800332B21 /* StorageUsageDetailNode.swift */,
 				A352AD242306CDA700332B21 /* StorageUsageSummaryNode.swift */,
 				A352AD262306CDB300332B21 /* StorageUsageDetail.swift */,
+				A3804532230A19840001892D /* StorageUsageScanner.swift */,
+				A3804534230A1AFB0001892D /* StorageUsageLoadingView.swift */,
 			);
 			path = StorageUsage;
 			sourceTree = "<group>";
@@ -1934,6 +1940,7 @@
 				A30347F222FCE868003ECF82 /* SettingAutoDownloadViewController.swift in Sources */,
 				A34760AB22E6DE100043AE1D /* MediaAsset.swift in Sources */,
 				A37FFB6622EE8E740001DD27 /* MinimizationTransitionController.swift in Sources */,
+				A3804535230A1AFB0001892D /* StorageUsageLoadingView.swift in Sources */,
 				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A35B21A3230023910057F8FC /* BrandTimelineCellNode.swift in Sources */,
@@ -2088,6 +2095,7 @@
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
 				A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */,
 				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,
+				A3804533230A19840001892D /* StorageUsageScanner.swift in Sources */,
 				A374865222D461C1002EEC4F /* MessageContentNode.swift in Sources */,
 				A374864022D44711002EEC4F /* ImageContentNode.swift in Sources */,
 				A34139302307DB77008E0EBF /* PurchasedEmoticonViewController.swift in Sources */,
