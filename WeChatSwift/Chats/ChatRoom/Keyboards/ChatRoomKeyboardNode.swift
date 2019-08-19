@@ -107,7 +107,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
             self.keyboardType = .emotion
         case .tools:
             self.keyboardType = .tools
-        case .none:
+        default:
             guard let beginFrame = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
                 let endFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
                 let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {
@@ -124,8 +124,6 @@ class ChatRoomKeyboardNode: ASDisplayNode {
             } else if beginFrame.origin.y - endFrame.origin.y < 0 && duration == 0.0 {
                 self.keyboardType = .none
             }
-        default:
-            break
         }
     }
     

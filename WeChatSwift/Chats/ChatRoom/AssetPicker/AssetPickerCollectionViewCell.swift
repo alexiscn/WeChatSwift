@@ -110,10 +110,13 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
         selectionButton.isHidden = !configuration.canSendMultiImage
         selectionImageView.isHidden = !configuration.canSendMultiImage
         
+        removeVideoLogoView()
         if mediaAsset.asset.mediaType == .video {
             addVideoLogoView()
         } else {
-            removeVideoLogoView()
+            if mediaAsset.asset.isGIF {
+                addGifLogoView()
+            }
         }
         
         selectionNumberLabel.text = String(mediaAsset.index)
@@ -161,5 +164,20 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
             lengthLabel?.removeFromSuperview()
             lengthLabel = nil
         }
+    }
+    
+    private func addGifLogoView() {
+        
+        let tagBackgroundView = UIImageView(frame: CGRect(x: 0, y: bounds.height - 28, width: bounds.width, height: 28))
+        tagBackgroundView.image = UIImage(named: "Albumtimeline_video_shadow_4x28_")
+        
+        let gifLabel = UILabel()
+        gifLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        gifLabel.textColor = .white
+        gifLabel.text = "GIF"
+        gifLabel.frame = CGRect(x: 10, y: 0, width: 20, height: 28)
+        tagBackgroundView.addSubview(gifLabel)
+        contentView.addSubview(tagBackgroundView)
+        self.tagBackgroundView = tagBackgroundView
     }
 }

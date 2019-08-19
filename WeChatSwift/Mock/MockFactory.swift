@@ -137,6 +137,20 @@ class MockFactory {
                                         size: CGSize(width: 720.0, height: 450.0)))
         remoteImages.append(RemoteImage(urlString: "https://ws3.sinaimg.cn/large/005BYqpgly1g4uw1spjs2j30b90godio.jpg",
                                         size: CGSize(width: 405.0, height: 600.0)))
+        remoteImages.append(RemoteImage(urlString: "http://tva1.sinaimg.cn/large/0060lm7Tly1g654pqwf2mj31fc0u0amo.jpg",
+                                        size: CGSize(width: 1920.0, height: 1122.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ww2.sinaimg.cn/large/006tNc79ly1g654ryxtuxj30g4096abu.jpg",
+                                        size: CGSize(width: 580.0, height: 330.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ww1.sinaimg.cn/large/006tNc79ly1g654tqkgflj30p00gowft.jpg",
+                                        size: CGSize(width: 900.0, height: 600.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ww4.sinaimg.cn/large/006tNc79ly1g654v23gc1j30go0op42m.jpg",
+                                        size: CGSize(width: 600.0, height: 889.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ww1.sinaimg.cn/large/006tNc79ly1g654xn6obhj30zk0k0q83.jpg",
+                                        size: CGSize(width: 1280.0, height: 720.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ww3.sinaimg.cn/large/006tNc79ly1g654z18022j30k00ba75v.jpg",
+                                        size: CGSize(width: 720.0, height: 406.0)))
+        remoteImages.append(RemoteImage(urlString: "https://ww1.sinaimg.cn/large/006tNc79ly1g6551hfgn8j30xc0ir0vd.jpg",
+                                        size: CGSize(width: 1200.0, height: 675.0)))
     }
     
     private func setupWebPages() {
@@ -202,7 +216,9 @@ class MockFactory {
             msg.senderID = index % 2 == 0 ? user.identifier: myID
             msg.time = randomTime
             if index % 3 == 0 {
-                msg.content = .image(ImageMessage(image: UIImage(named: "Bran.jpg"), size: .zero))
+                let remoteImage = random(of: remoteImages)
+                let imageMsg = ImageMessage(url: URL(string: remoteImage.urlString), size: remoteImage.size)
+                msg.content = .image(imageMsg)
             } else if index % 4 == 0 {
                 msg.content = .voice(VoiceMessage(duration: 4))
             } else if index % 5 == 0 {

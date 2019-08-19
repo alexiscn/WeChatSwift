@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AsyncDisplayKit
 import WXActionSheet
+import PINRemoteImage
 
 class ChatRoomViewController: ASViewController<ASDisplayNode> {
     
@@ -129,11 +130,12 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     }
     
     private func previewImages(imageMsg: ImageMessage, originView: UIView) {
-        let localDataSource = PhotoBrowserLocalDataSource(numberOfItems: 1, images: [imageMsg.image])
+        let thumb = originView.toImage()
+        let ds = PhotoBrowserNetworkDataSource(numberOfItems: 1, placeholders: [thumb], remoteURLs: [imageMsg.url])
         let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
             return originView
         }
-        let browser = PhotoBrowserViewController(dataSource: localDataSource, transDelegate: trans)
+        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans)
         browser.show(pageIndex: 0, in: self)
     }
     
@@ -316,7 +318,8 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
             let controller = ChatRoomMapViewController(location: locationMsg)
             navigationController?.pushViewController(controller, animated: true)
         case .image(let imageMsg):
-            previewImages(imageMsg: imageMsg, originView: cellNode.contentNode.view)
+            let originView = (cellNode.contentNode as? MessageImageContentNode)?.imageView ?? cellNode.contentNode.view
+            previewImages(imageMsg: imageMsg, originView: originView)
         default:
             break
         }

@@ -8,13 +8,17 @@
 
 import AsyncDisplayKit
 
-class ImageContentNode: MessageContentNode {
+class MessageImageContentNode: MessageContentNode {
     
     private let defaultImageSize = CGSize(width: 200, height: 200)
     
     private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
     
     private let imageMsg: ImageMessage
+    
+    var imageView: UIView? {
+        return imageNode.view
+    }
     
     init(message: Message, imageMsg: ImageMessage) {
         self.imageMsg = imageMsg

@@ -84,8 +84,25 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     }()
     
     private lazy var voiceButtonNode: ASButtonNode = {
+        let normalText = NSAttributedString(string: "按住 说话", attributes: [
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+            .foregroundColor: UIColor(hexString: "#565656")
+            ])
+        
+        let highlightText = NSAttributedString(string: "松开 结束", attributes: [
+            .font: UIFont.systemFont(ofSize: 17, weight: .semibold),
+            .foregroundColor: UIColor(hexString: "#565656")
+            ])
+        
+        let normalBackground = UIImage.as_resizableRoundedImage(withCornerRadius: 4, cornerColor: nil, fill: .white)
+        let highlightBackground = UIImage.as_resizableRoundedImage(withCornerRadius: 4, cornerColor: nil, fill: Colors.DEFAULT_BACKGROUND_COLOR)
+        
         let button = ASButtonNode()
-        //button.setAttributedTitle(<#T##title: NSAttributedString?##NSAttributedString?#>, for: .normal)
+        button.setAttributedTitle(normalText, for: .normal)
+        button.setAttributedTitle(highlightText, for: .highlighted)
+        button.setBackgroundImage(normalBackground, for: .normal)
+        button.setBackgroundImage(highlightBackground, for: .highlighted)
+        //button.isUserInteractionEnabled = true
         return button
     }()
     
@@ -96,11 +113,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     override init() {
         super.init()
         
-        addSubnode(voiceNode)
-        addSubnode(textNode)
-        addSubnode(emotionNode)
-        addSubnode(moreNode)
-        
+        automaticallyManagesSubnodes = true
         textNode.delegate = self
     }
     
@@ -160,6 +173,13 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         textNode.style.flexShrink = 1.0
         textNode.style.minHeight = ASDimensionMake(40)
         
+//        voiceButtonNode.style.flexGrow = 1.0
+//        voiceButtonNode.style.flexShrink = 1.0
+//        voiceButtonNode.style.minHeight = ASDimensionMake(40)
+//        voiceButtonNode.style.maxHeight = ASDimensionMake(40)
+        
+        //let element = (keyboard == .voice && voiceNode.isSelected) ? voiceButtonNode: textNode
+        
         let layoutSpec = ASStackLayoutSpec.horizontal()
         layoutSpec.alignItems = .end
         layoutSpec.children = [voiceNode, textNode, emotionNode, moreNode]
@@ -206,6 +226,7 @@ extension ChatRoomToolBarNode {
             return
         }
         keyboard = keyboards[index]
+        //self.setNeedsLayout()
         
         if sender.isSelected {
             if !textNode.isFirstResponder() {

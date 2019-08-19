@@ -338,6 +338,7 @@
 		A3E20010230A722F005B2B70 /* AccountMainLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2000F230A722F005B2B70 /* AccountMainLoginViewController.swift */; };
 		A3E20013230A72D8005B2B70 /* AccountLoginUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20012230A72D8005B2B70 /* AccountLoginUsersViewController.swift */; };
 		A3E20015230A7877005B2B70 /* icons_filled_close.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3E20014230A7877005B2B70 /* icons_filled_close.svg */; };
+		A3E20017230AC4E5005B2B70 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */; };
 		A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */; };
@@ -704,6 +705,7 @@
 		A3E2000F230A722F005B2B70 /* AccountMainLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMainLoginViewController.swift; sourceTree = "<group>"; };
 		A3E20012230A72D8005B2B70 /* AccountLoginUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLoginUsersViewController.swift; sourceTree = "<group>"; };
 		A3E20014230A7877005B2B70 /* icons_filled_close.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_close.svg; sourceTree = "<group>"; };
+		A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentRefreshHeaderView.swift; sourceTree = "<group>"; };
 		A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTableHeaderView.swift; sourceTree = "<group>"; };
@@ -963,6 +965,7 @@
 				A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */,
 				A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */,
 				A3476FF422FA9827001B94EC /* UITabBar+Fix.swift */,
+				A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2146,6 +2149,7 @@
 				A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */,
 				A36CB5332307859C00F993B6 /* EmoticonManageCellNode.swift in Sources */,
 				A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */,
+				A3E20017230AC4E5005B2B70 /* UIView+Extensions.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
 				A34C7B0222F829FB00652B4F /* WCTableCellNode.swift in Sources */,
