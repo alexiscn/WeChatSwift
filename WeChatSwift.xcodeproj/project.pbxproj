@@ -325,6 +325,15 @@
 		A3D897EE22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */; };
 		A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */; };
 		A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */; };
+		A3D9953D230B9D0E00E4F628 /* FTSFeatureCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D9953C230B9D0E00E4F628 /* FTSFeatureCellNode.swift */; };
+		A3D9953F230B9D1E00E4F628 /* FTSMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D9953E230B9D1E00E4F628 /* FTSMessageCellNode.swift */; };
+		A3D99541230B9D3500E4F628 /* FTSWebSearchCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D99540230B9D3500E4F628 /* FTSWebSearchCellNode.swift */; };
+		A3D99543230B9D7B00E4F628 /* FTSMoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D99542230B9D7B00E4F628 /* FTSMoreCellNode.swift */; };
+		A3D99545230B9DAC00E4F628 /* FTSContactCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D99544230B9DAC00E4F628 /* FTSContactCellNode.swift */; };
+		A3D99547230B9DEA00E4F628 /* FTSFavoriteCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D99546230B9DEA00E4F628 /* FTSFavoriteCellNode.swift */; };
+		A3D99549230B9E2000E4F628 /* FTSSearchCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D99548230B9E2000E4F628 /* FTSSearchCellNode.swift */; };
+		A3D9954B230B9E3E00E4F628 /* FTSTitleCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D9954A230B9E3E00E4F628 /* FTSTitleCellNode.swift */; };
+		A3D9954D230BCE9400E4F628 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D9954C230BCE9400E4F628 /* UISearchBar+Extensions.swift */; };
 		A3DE7CC32301086E00E73944 /* BrandMessageDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC22301086E00E73944 /* BrandMessageDatabase.swift */; };
 		A3DE7CC52301094700E73944 /* SessionDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC42301094700E73944 /* SessionDatabase.swift */; };
 		A3DE7CC72301095200E73944 /* MessageDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DE7CC62301095200E73944 /* MessageDatabase.swift */; };
@@ -695,6 +704,15 @@
 		A3D897ED22E1D94100814669 /* EmoticonBoardCameraEntryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardCameraEntryNode.swift; sourceTree = "<group>"; };
 		A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jsb_emoticon_md5.png; sourceTree = "<group>"; };
 		A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_emoticon_md5.png; sourceTree = "<group>"; };
+		A3D9953C230B9D0E00E4F628 /* FTSFeatureCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSFeatureCellNode.swift; sourceTree = "<group>"; };
+		A3D9953E230B9D1E00E4F628 /* FTSMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSMessageCellNode.swift; sourceTree = "<group>"; };
+		A3D99540230B9D3500E4F628 /* FTSWebSearchCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSWebSearchCellNode.swift; sourceTree = "<group>"; };
+		A3D99542230B9D7B00E4F628 /* FTSMoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSMoreCellNode.swift; sourceTree = "<group>"; };
+		A3D99544230B9DAC00E4F628 /* FTSContactCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSContactCellNode.swift; sourceTree = "<group>"; };
+		A3D99546230B9DEA00E4F628 /* FTSFavoriteCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSFavoriteCellNode.swift; sourceTree = "<group>"; };
+		A3D99548230B9E2000E4F628 /* FTSSearchCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSSearchCellNode.swift; sourceTree = "<group>"; };
+		A3D9954A230B9E3E00E4F628 /* FTSTitleCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSTitleCellNode.swift; sourceTree = "<group>"; };
+		A3D9954C230BCE9400E4F628 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		A3DE7CC22301086E00E73944 /* BrandMessageDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandMessageDatabase.swift; sourceTree = "<group>"; };
 		A3DE7CC42301094700E73944 /* SessionDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDatabase.swift; sourceTree = "<group>"; };
 		A3DE7CC62301095200E73944 /* MessageDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDatabase.swift; sourceTree = "<group>"; };
@@ -973,6 +991,7 @@
 				A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */,
 				A3476FF422FA9827001B94EC /* UITabBar+Fix.swift */,
 				A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */,
+				A3D9954C230BCE9400E4F628 /* UISearchBar+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1668,6 +1687,14 @@
 				A3E20019230AD18C005B2B70 /* MainSearchViewController.swift */,
 				A3E2001B230AD205005B2B70 /* MainSearchGuideNode.swift */,
 				A3E2001D230AD270005B2B70 /* StreamVoiceInputControl.swift */,
+				A3D9953C230B9D0E00E4F628 /* FTSFeatureCellNode.swift */,
+				A3D9953E230B9D1E00E4F628 /* FTSMessageCellNode.swift */,
+				A3D99540230B9D3500E4F628 /* FTSWebSearchCellNode.swift */,
+				A3D99542230B9D7B00E4F628 /* FTSMoreCellNode.swift */,
+				A3D99544230B9DAC00E4F628 /* FTSContactCellNode.swift */,
+				A3D99546230B9DEA00E4F628 /* FTSFavoriteCellNode.swift */,
+				A3D99548230B9E2000E4F628 /* FTSSearchCellNode.swift */,
+				A3D9954A230B9E3E00E4F628 /* FTSTitleCellNode.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1963,7 +1990,9 @@
 				A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */,
 				A374865B22D4AE1C002EEC4F /* ChatRoomKeyboardNode.swift in Sources */,
 				A3C9145A2305887000B6E077 /* PublishMomentCellNode.swift in Sources */,
+				A3D99543230B9D7B00E4F628 /* FTSMoreCellNode.swift in Sources */,
 				A33DB2F722CCDCF500A11776 /* SessionViewController.swift in Sources */,
+				A3D9953D230B9D0E00E4F628 /* FTSFeatureCellNode.swift in Sources */,
 				A352AD252306CDA700332B21 /* StorageUsageSummaryNode.swift in Sources */,
 				A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */,
 				A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */,
@@ -2049,6 +2078,7 @@
 				A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */,
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
 				A3E20010230A722F005B2B70 /* AccountMainLoginViewController.swift in Sources */,
+				A3D9954B230B9E3E00E4F628 /* FTSTitleCellNode.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A3C914582305886200B6E077 /* PublishMomentAction.swift in Sources */,
 				A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */,
@@ -2089,8 +2119,10 @@
 				A341394123081E63008E0EBF /* PhotoBrowserLocalDataSource.swift in Sources */,
 				A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */,
 				A3FB0AA922F4057900116329 /* MeHeaderNode.swift in Sources */,
+				A3D9953F230B9D1E00E4F628 /* FTSMessageCellNode.swift in Sources */,
 				A3FB0ABF22F4403300116329 /* ContactTagCreateDetailViewController.swift in Sources */,
 				A3CCEDDF22FBF040008BE41D /* ShakeSettingViewController.swift in Sources */,
+				A3D99545230B9DAC00E4F628 /* FTSContactCellNode.swift in Sources */,
 				A3C914262305092400B6E077 /* RichTextNode.swift in Sources */,
 				A3C9144823053E5900B6E077 /* SayHelloViewController.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
@@ -2123,6 +2155,7 @@
 				A322870322E06299004E516E /* EmoticonManager.swift in Sources */,
 				A3E58DA22302BE4E00F73763 /* CameraScanViewController.swift in Sources */,
 				A32333CB22DF4FEE00B79555 /* MomentWebpageContentNode.swift in Sources */,
+				A3D99541230B9D3500E4F628 /* FTSWebSearchCellNode.swift in Sources */,
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
 				A33D618E22FD15DF00B767F1 /* SettingLabHeaderNode.swift in Sources */,
@@ -2142,6 +2175,7 @@
 				A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */,
 				A35B21A1230022500057F8FC /* BrandTimelineViewController.swift in Sources */,
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
+				A3D9954D230BCE9400E4F628 /* UISearchBar+Extensions.swift in Sources */,
 				A33B88342307CFA100D28D57 /* PhotoBrowserViewController.swift in Sources */,
 				A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
@@ -2185,10 +2219,12 @@
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A3E2000D230A6BCC005B2B70 /* NetworkCheckViewController.swift in Sources */,
 				A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */,
+				A3D99547230B9DEA00E4F628 /* FTSFavoriteCellNode.swift in Sources */,
 				A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */,
 				A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */,
 				A352AD212306CB1E00332B21 /* StorageUsageViewController.swift in Sources */,
 				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
+				A3D99549230B9E2000E4F628 /* FTSSearchCellNode.swift in Sources */,
 				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
 				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,

@@ -54,7 +54,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         navigationItem.rightBarButtonItem = rightButtonItem
         navigationItem.title = "微信"
         
-//        setupSearchController()
+        setupSearchController()
     }
     
     private func loadSessions() {
@@ -79,13 +79,27 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupSearchController() {
+        
         searchViewController = UISearchController(searchResultsController: mainSearchViewController)
+        searchViewController?.delegate = self
         searchViewController?.view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        searchViewController?.searchBar.setBackgroundImage(UIImage(), for: .top, barMetrics: .default)
-        searchViewController?.searchBar.backgroundColor = .clear
-        //searchViewController?.searchResultsUpdater = mainSearchViewController
+        searchViewController?.searchBar.backgroundImage = UIImage()
+        searchViewController?.searchBar.placeholder = "搜索"
+        searchViewController?.searchBar.barTintColor = Colors.DEFAULT_BACKGROUND_COLOR
+        
+        searchViewController?.searchBar.tintColor = Colors.DEFAULT_LINK_COLOR
+        searchViewController?.searchResultsUpdater = mainSearchViewController
         tableNode.view.tableHeaderView = searchViewController?.searchBar
-        tableNode.view.tableHeaderView?.backgroundColor = .clear
+        tableNode.view.backgroundView = UIView()
+        searchViewController?.dimsBackgroundDuringPresentation = false
+        
+        mainSearchViewController.searchBar = searchViewController?.searchBar
+        mainSearchViewController.searchBar?.removeBottomLine()
+        
+        definesPresentationContext = true
+        
+        tableNode.view.contentInsetAdjustmentBehavior = .automatic
+        extendedLayoutIncludesOpaqueBars = false
     }
 }
 
@@ -181,5 +195,32 @@ extension SessionViewController: ASTableDelegate, ASTableDataSource {
             actions.append(unReadAction)
         }
         return actions
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+
+extension SessionViewController: UISearchControllerDelegate {
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        tabBarController?.tabBar.isHidden = true
+        //edgesForExtendedLayout = .bottom
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        tabBarController?.tabBar.isHidden = false
+        //edgesForExtendedLayout = .bottom
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        
+    }
+    
+    func presentSearchController(_ searchController: UISearchController) {
+        searchViewController?.searchResultsController?.view.isHidden = false
     }
 }

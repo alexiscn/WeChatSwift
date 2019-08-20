@@ -21,7 +21,7 @@ class MainSearchGuideNode: ASDisplayNode {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
-        descNode.attributedText = NSAttributedString(string: "", attributes: [
+        descNode.attributedText = NSAttributedString(string: "搜索指定内容", attributes: [
             .font: UIFont.systemFont(ofSize: 15),
             .foregroundColor: UIColor(hexString: "#B1B1B1"),
             .paragraphStyle: paragraphStyle
@@ -59,17 +59,18 @@ class MainSearchGuideNode: ASDisplayNode {
         let itemWidth = (constrainedSize.max.width - padding * 2.0)/3.0
         let itemHeight: CGFloat = 21
         let top: CGFloat = 88.0
+        let spacingY: CGFloat = 20.0
         for (index, element) in elements.enumerated() {
-            let row = CGFloat(index % 3)
-            let col = CGFloat(index / 3)
+            let row = CGFloat(index / 3)
+            let col = CGFloat(index % 3)
             element.style.preferredSize = CGSize(width: itemWidth, height: itemHeight)
-            element.style.layoutPosition = CGPoint(x: padding + itemWidth * col , y: top + row * itemHeight)
+            element.style.layoutPosition = CGPoint(x: padding + itemWidth * col , y: top + row * (itemHeight + spacingY))
             children.append(element)
             if col != 0 {
                 let line = ASDisplayNode()
                 line.backgroundColor = UIColor(hexString: "#DADADA")
                 line.style.preferredSize = CGSize(width: Constants.lineHeight, height: itemHeight)
-                line.style.layoutPosition = CGPoint(x: padding + itemWidth * col , y: top + row * itemHeight)
+                line.style.layoutPosition = CGPoint(x: padding + itemWidth * col , y: top + row * (itemHeight + spacingY))
                 children.append(line)
             }
         }
