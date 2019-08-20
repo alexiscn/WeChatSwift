@@ -13,6 +13,7 @@ class ContactInfoHeaderNode: ASDisplayNode {
     private let contact: Contact
     private let avatarNode = ASImageNode()
     private let nicknameNode = ASTextNode()
+    private let genderNode = ASImageNode()
     private let wechatIDNode = ASTextNode()
     private let regionNode = ASTextNode()
     private let lineNode = ASDisplayNode()
@@ -32,11 +33,14 @@ class ContactInfoHeaderNode: ASDisplayNode {
         ]
         nicknameNode.attributedText = NSAttributedString(string: contact.name, attributes: nameAttributes)
         
+        let genderImage = contact.gender == .male ? "Contact_Male_18x18_" : "Contact_Female_18x18_"
+        genderNode.image = UIImage(named: genderImage)
+        
         let wechatIDAttributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15),
             NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.5)
         ]
-        wechatIDNode.attributedText = NSAttributedString(string: "微信号：", attributes: wechatIDAttributes)
+        wechatIDNode.attributedText = NSAttributedString(string: "微信号：" + contact.wxid, attributes: wechatIDAttributes)
         
         regionNode.attributedText = NSAttributedString(string: "国家：", attributes: wechatIDAttributes)
         
@@ -53,10 +57,18 @@ class ContactInfoHeaderNode: ASDisplayNode {
         avatarNode.style.preferredSize = CGSize(width: 64.0, height: 64.0)
         avatarNode.style.spacingBefore = 21
         
+        genderNode.style.preferredSize = CGSize(width: 18, height: 18)
+        genderNode.isHidden = contact.gender == .unknown
+        
+        let nameStack = ASStackLayoutSpec.horizontal()
+        nameStack.alignItems = .center
+        nameStack.spacing = 6
+        nameStack.children = [nicknameNode, genderNode]
+        
         let vertical = ASStackLayoutSpec.vertical()
         vertical.spacing = 3.0
         vertical.style.spacingAfter = 16
-        vertical.children = [nicknameNode, wechatIDNode, regionNode]
+        vertical.children = [nameStack, wechatIDNode, regionNode]
         
         let horizontal = ASStackLayoutSpec.horizontal()
         horizontal.spacing = 16.0

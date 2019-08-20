@@ -181,10 +181,9 @@ extension MomentsViewController {
     }
     
     private func onHeaderAvatarClicked() {
-        let me = MockFactory.shared.users.first!
-        let contact = Contact()
-        contact.name = me.name
-        contact.avatar = UIImage(named: me.avatar)
+        guard let contact = MockFactory.shared.users.first?.toContact() else {
+            return
+        }
         let contactInfoVC = ContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactInfoVC, animated: true)
     }

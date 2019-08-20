@@ -75,6 +75,10 @@ class Contact {
     var avatar: UIImage? = nil
     
     var letter: String = "#"
+    
+    var gender: MockFactory.Gender = .male
+    
+    var wxid: String = ""
 }
 
 enum ContactInfo {

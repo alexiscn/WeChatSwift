@@ -173,9 +173,7 @@ extension ChatRoomViewController {
     }
     
     @objc private func moreButtonClicked() {
-        let contact = Contact()
-        contact.name = user.name
-        contact.avatar = UIImage.as_imageNamed(user.avatar)
+        let contact = user.toContact()
         let contactVC = ChatRoomContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactVC, animated: true)
     }
@@ -304,10 +302,7 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
         guard let user = MockFactory.shared.users.first(where: { $0.identifier == userID }) else {
             return
         }
-        let contact = Contact()
-        contact.name = user.name
-        contact.avatar = UIImage.as_imageNamed(user.avatar)
-        let contactVC = ContactInfoViewController(contact: contact)
+        let contactVC = ContactInfoViewController(contact: user.toContact())
         navigationController?.pushViewController(contactVC, animated: true)
     }
     

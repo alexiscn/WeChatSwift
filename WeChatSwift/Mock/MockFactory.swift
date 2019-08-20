@@ -12,15 +12,38 @@ import SSZipArchive
 
 class MockFactory {
     
-    struct MockUser {
+    enum Gender {
+        case male
+        case female
+        case unknown
+    }
+    
+    class MockUser {
         var identifier: String
         var name: String
         var avatar: String
+        var gender: Gender
+        
+        let wxid: String
+        
+        init(identifier: String, name: String, avatar: String, gender: Gender) {
+            self.identifier = identifier
+            self.name = name
+            self.avatar = avatar
+            self.gender = gender
+            
+            let length = 14
+            let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            let identifier = String((0..<length).map{ _ in letters.randomElement()! })
+            self.wxid = "wxid_" + identifier
+        }
         
         func toContact() -> Contact {
             let contact = Contact()
             contact.avatar = UIImage.as_imageNamed(avatar)
             contact.name = name
+            contact.gender = gender
+            contact.wxid = wxid
             
             let str = NSMutableString(string: name) as CFMutableString
             if CFStringTransform(str, nil, kCFStringTransformToLatin, false) && CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {
@@ -62,35 +85,33 @@ class MockFactory {
     
     private func setupUsers() {
         // 兰尼斯特
-        users.append(MockUser(identifier: "10001", name: "提利昂·兰尼斯特", avatar: "Tyrion.jpg"))
-        users.append(MockUser(identifier: "10002", name: "詹姆·兰尼斯特", avatar: "Jaime.jpg"))
-        users.append(MockUser(identifier: "10003", name: "瑟曦", avatar: "Cersei.jpg"))
-        users.append(MockUser(identifier: "10004", name: "泰温", avatar: "Tywin.jpg"))
+        users.append(MockUser(identifier: "10001", name: "提利昂·兰尼斯特", avatar: "Tyrion.jpg", gender: .male))
+        users.append(MockUser(identifier: "10002", name: "詹姆·兰尼斯特", avatar: "Jaime.jpg", gender: .male))
+        users.append(MockUser(identifier: "10003", name: "瑟曦", avatar: "Cersei.jpg", gender: .female))
+        users.append(MockUser(identifier: "10004", name: "泰温", avatar: "Tywin.jpg", gender: .male))
         
         // 坦格利安
-        users.append(MockUser(identifier: "20001", name: "丹妮莉丝", avatar: "Daenerys.jpg"))
-        users.append(MockUser(identifier: "20002", name: "琼恩·雪诺", avatar: "JonSnow.jpg"))
-        users.append(MockUser(identifier: "20003", name: "韦赛里斯", avatar: "Viserys.jpg"))
+        users.append(MockUser(identifier: "20001", name: "丹妮莉丝", avatar: "Daenerys.jpg", gender: .female))
+        users.append(MockUser(identifier: "20002", name: "琼恩·雪诺", avatar: "JonSnow.jpg", gender: .male))
+        users.append(MockUser(identifier: "20003", name: "韦赛里斯", avatar: "Viserys.jpg", gender: .male))
         
         // 史塔克
-        users.append(MockUser(identifier: "30001", name: "珊莎", avatar: "Sansa.jpg"))
-        users.append(MockUser(identifier: "30002", name: "艾莉亚", avatar: "Arya.jpg"))
-        users.append(MockUser(identifier: "30003", name: "布兰", avatar: "Bran.jpg"))
-        users.append(MockUser(identifier: "30004", name: "奈德", avatar: "Ned.jpg"))
-        users.append(MockUser(identifier: "30005", name: "凯特琳", avatar: "Catelyn.jpg"))
-        users.append(MockUser(identifier: "30006", name: "罗柏", avatar: "Robb.jpg"))
+        users.append(MockUser(identifier: "30001", name: "珊莎", avatar: "Sansa.jpg", gender: .female))
+        users.append(MockUser(identifier: "30002", name: "艾莉亚", avatar: "Arya.jpg", gender: .female))
+        users.append(MockUser(identifier: "30003", name: "布兰", avatar: "Bran.jpg", gender: .male))
+        users.append(MockUser(identifier: "30004", name: "奈德", avatar: "Ned.jpg", gender: .male))
+        users.append(MockUser(identifier: "30005", name: "凯特琳", avatar: "Catelyn.jpg", gender: .female))
+        users.append(MockUser(identifier: "30006", name: "罗柏", avatar: "Robb.jpg", gender: .male))
         
-        //users.append(MockUser(identifier: "", name: "", avatar: ""))
-        
-        users.append(MockUser(identifier: "80001", name: "波隆", avatar: "Bronn.jpg"))
-        users.append(MockUser(identifier: "80002", name: "瓦里斯", avatar: "Varys.jpg"))
-        users.append(MockUser(identifier: "80003", name: "山姆", avatar: "Samwell.jpg"))
-        users.append(MockUser(identifier: "80004", name: "雪伊", avatar: "Shae.jpg"))
-        users.append(MockUser(identifier: "80005", name: "贾昆", avatar: "Jaqen.jpg"))
-        users.append(MockUser(identifier: "80006", name: "卡奥·卓戈", avatar: "KhalDrogo.jpg"))
-        users.append(MockUser(identifier: "80007", name: "梅丽珊卓", avatar: "Melisandre.jpg"))
-        users.append(MockUser(identifier: "80008", name: "吉莉", avatar: "Gilly.jpg"))
-        users.append(MockUser(identifier: "80009", name: "灰虫子", avatar: "GreyWorm.jpg"))
+        users.append(MockUser(identifier: "80001", name: "波隆", avatar: "Bronn.jpg", gender: .male))
+        users.append(MockUser(identifier: "80002", name: "瓦里斯", avatar: "Varys.jpg", gender: .unknown))
+        users.append(MockUser(identifier: "80003", name: "山姆", avatar: "Samwell.jpg", gender: .male))
+        users.append(MockUser(identifier: "80004", name: "雪伊", avatar: "Shae.jpg", gender: .female))
+        users.append(MockUser(identifier: "80005", name: "贾昆", avatar: "Jaqen.jpg", gender: .male))
+        users.append(MockUser(identifier: "80006", name: "卡奥·卓戈", avatar: "KhalDrogo.jpg", gender: .male))
+        users.append(MockUser(identifier: "80007", name: "梅丽珊卓", avatar: "Melisandre.jpg", gender: .female))
+        users.append(MockUser(identifier: "80008", name: "吉莉", avatar: "Gilly.jpg", gender: .female))
+        users.append(MockUser(identifier: "80009", name: "灰虫子", avatar: "GreyWorm.jpg", gender: .unknown))
         
     }
     
@@ -300,4 +321,6 @@ class MockFactory {
         sections.append(DiscoverSection(models: [DiscoverModel(type: .miniProgram, title: "小程序", icon: "icons_outlined_miniprogram", color: Colors.Purple)]))
         return sections
     }
+    
+    
 }
