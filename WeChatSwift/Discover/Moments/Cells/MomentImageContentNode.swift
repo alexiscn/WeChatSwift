@@ -30,7 +30,8 @@ class MomentImageContentNode: MomentContentNode {
     }
     
     override func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        if let cellNode = cellNode {
+        let point = gesture.location(in: self.view)
+        if let cellNode = cellNode, imageNode.frame.contains(point) {
             cellNode.delegate?.momentCellNode(cellNode, didTapImage: image, thumbImage: imageNode.image, tappedView: imageNode.view)
         }
     }

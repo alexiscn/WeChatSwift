@@ -90,6 +90,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private func setupTapGesture() {
         tableNode.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        tap.delegate = self
         tableNode.view.addGestureRecognizer(tap)
     }
     
@@ -353,10 +354,11 @@ extension MomentsViewController: MomentCellNodeDelegate {
         browser.show(pageIndex: index, in: self)
     }
     
-    func momentCellNodeTapped() {
-        if let menuView = operationMenuView {
-            menuView.hide(animated: true)
-            operationMenuView = nil
-        }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension MomentsViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
