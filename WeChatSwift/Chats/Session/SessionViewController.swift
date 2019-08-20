@@ -95,6 +95,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         
         mainSearchViewController.searchBar = searchViewController?.searchBar
         mainSearchViewController.searchBar?.removeBottomLine()
+        mainSearchViewController.searchBar?.alignmentCenter()
         
         definesPresentationContext = true
         searchViewController?.definesPresentationContext = true
@@ -205,7 +206,6 @@ extension SessionViewController: UISearchControllerDelegate {
     
     func willPresentSearchController(_ searchController: UISearchController) {
         tabBarController?.tabBar.isHidden = true
-        //edgesForExtendedLayout = .bottom
     }
     
     func didPresentSearchController(_ searchController: UISearchController) {
@@ -214,7 +214,7 @@ extension SessionViewController: UISearchControllerDelegate {
     
     func willDismissSearchController(_ searchController: UISearchController) {
         tabBarController?.tabBar.isHidden = false
-        //edgesForExtendedLayout = .bottom
+        searchController.searchBar.alignmentCenter()
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
@@ -223,5 +223,6 @@ extension SessionViewController: UISearchControllerDelegate {
     
     func presentSearchController(_ searchController: UISearchController) {
         searchViewController?.searchResultsController?.view.isHidden = false
+        searchController.searchBar.resetAlignment()
     }
 }

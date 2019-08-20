@@ -288,13 +288,13 @@ extension MomentsViewController: MomentCellNodeDelegate {
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode, moment: Moment) {
         if let menuView = operationMenuView {
-            menuView.hide()
+            menuView.hide(animated: true)
+            operationMenuView = nil
         } else {
             let frame = moreButton.view.convert(moreButton.bounds, to: self.view)
-            let point = CGPoint(x: 0, y: 0)
-            print(frame)
+            let point = CGPoint(x: frame.origin.x - 2, y: frame.origin.y + (frame.height - 39.0)/2.0)
             let menuView = MomentOperationMenuView(frame: CGRect(x: 0, y: 0, width: 180, height: 39))
-            menuView.show(with: moment, at: point)
+            menuView.show(with: moment, at: point, inside: self.view)
             self.operationMenuView = menuView
         }
     }

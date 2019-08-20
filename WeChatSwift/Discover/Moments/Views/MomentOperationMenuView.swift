@@ -67,11 +67,26 @@ class MomentOperationMenuView: UIView {
         
     }
     
-    func hide() {
+    func hide(animated: Bool) {
         
+        if animated {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.frame = CGRect(x: self.frame.origin.x + 180, y: self.frame.origin.y, width: 0, height: self.frame.height)
+            }) { _ in
+                self.removeFromSuperview()
+            }
+        } else {
+            removeFromSuperview()
+        }
     }
     
-    func show(with moment: Moment, at point: CGPoint) {
-        
+    func show(with moment: Moment, at point: CGPoint, inside view: UIView) {
+        view.addSubview(self)
+        self.frame = CGRect(x: point.x - 180, y: point.y, width: 0, height: 39.0)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.frame.size.width = 180
+        }) { _ in
+            
+        }
     }
 }

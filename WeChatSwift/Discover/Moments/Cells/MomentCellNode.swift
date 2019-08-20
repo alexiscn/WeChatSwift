@@ -65,7 +65,8 @@ class MomentCellNode: ASCellNode {
         moreNode = ASButtonNode()
         moreNode.setImage(UIImage.as_imageNamed("AlbumOperateMore_32x20_"), for: .normal)
         moreNode.setImage(UIImage.as_imageNamed("AlbumOperateMoreHL_32x20_"), for: .highlighted)
-        moreNode.style.preferredSize = CGSize(width: 32, height: 20)
+        moreNode.contentEdgeInsets = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
+        moreNode.style.preferredSize = CGSize(width: 44, height: 28)
         
         if moment.comments.count > 0 {
             commentNode = MomentCommentNode(likes: moment.likes, comments: moment.comments)
