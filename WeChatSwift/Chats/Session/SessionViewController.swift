@@ -41,8 +41,8 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        node.view.isUserInteractionEnabled = true
-        tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //node.view.isUserInteractionEnabled = true
+        //tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableNode.view.separatorStyle = .none
         tableNode.frame = view.bounds
         tableNode.backgroundColor = .clear
@@ -83,7 +83,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         searchViewController = UISearchController(searchResultsController: mainSearchViewController)
         searchViewController?.delegate = self
         searchViewController?.view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        searchViewController?.searchBar.backgroundImage = UIImage()
+        searchViewController?.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchViewController?.searchBar.placeholder = "搜索"
         searchViewController?.searchBar.barTintColor = Colors.DEFAULT_BACKGROUND_COLOR
         
@@ -97,6 +97,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         mainSearchViewController.searchBar?.removeBottomLine()
         
         definesPresentationContext = true
+        searchViewController?.definesPresentationContext = true
         
         tableNode.view.contentInsetAdjustmentBehavior = .automatic
         extendedLayoutIncludesOpaqueBars = false

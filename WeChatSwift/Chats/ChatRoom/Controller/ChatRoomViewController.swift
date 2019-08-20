@@ -130,8 +130,14 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     }
     
     private func previewImages(imageMsg: ImageMessage, originView: UIView) {
-        let thumb = originView.toImage()
-        let ds = PhotoBrowserNetworkDataSource(numberOfItems: 1, placeholders: [thumb], remoteURLs: [imageMsg.url])
+        
+        var ds: PhotoBrowserDataSource
+        if let image = imageMsg.image {
+            ds = PhotoBrowserLocalDataSource(numberOfItems: 1, images: [image])
+        } else {
+            let thumb = originView.toImage()
+            ds = PhotoBrowserNetworkDataSource(numberOfItems: 1, placeholders: [thumb], remoteURLs: [imageMsg.url])
+        }
         let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
             return originView
         }
