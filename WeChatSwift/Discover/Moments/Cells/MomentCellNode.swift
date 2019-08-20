@@ -118,6 +118,8 @@ class MomentCellNode: ASCellNode {
         if let contentNode = contentNode, contentNode.frame.contains(point) {
             contentNode.handleTapGesture(gesture)
         }
+        
+        delegate?.momentCellNodeTapped()
     }
     
     @objc private func handleMoreButtonClicked(_ sender: ASButtonNode) {
@@ -195,4 +197,6 @@ protocol MomentCellNodeDelegate: class {
     func momentCellNode(_ cellNode: MomentCellNode, didTapImage image: MomentMedia, thumbImage: UIImage?, tappedView: UIView?)
     
     func momentCellNode(_ cellNode: MomentCellNode, didTapImage index: Int, mulitImage: MomentMultiImage, thumbs: [UIImage?], tappedView: UIView?)
+    
+    func momentCellNodeTapped()
 }

@@ -24,10 +24,16 @@ class MomentOperationMenuView: UIView {
         clipView = UIView()
         clipView.clipsToBounds = true
         
+        let highlightBackgroundImage = UIImage.as_resizableRoundedImage(withCornerRadius: 0, cornerColor: nil, fill: UIColor(white: 0, alpha: 0.5))
+        
         likeButton = UIButton()
         likeButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         likeButton.setTitle("赞", for: .normal)
         likeButton.setTitleColor(.white, for: .normal)
+        likeButton.setImage(UIImage(named: "AlbumLike_20x20_"), for: .normal)
+        likeButton.setImage(UIImage(named: "AlbumLikeHL_20x20_"), for: .highlighted)
+        likeButton.setBackgroundImage(highlightBackgroundImage, for: .highlighted)
+        likeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: -4)
         
         lineView = UIImageView()
         lineView.image = UIImage(named: "AlbumCommentLine_0x24_")
@@ -36,11 +42,15 @@ class MomentOperationMenuView: UIView {
         commentButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         commentButton.setTitle("评论", for: .normal)
         commentButton.setTitleColor(.white, for: .normal)
+        commentButton.setImage(UIImage(named: "AlbumCommentSingleA_20x20_"), for: .normal)
+        commentButton.setImage(UIImage(named: "AlbumCommentSingleAHL_20x20_"), for: .highlighted)
+        commentButton.setBackgroundImage(highlightBackgroundImage, for: .highlighted)
+        commentButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: -4)
         
         super.init(frame: frame)
         
-        addSubview(backgroundImageView)
         addSubview(clipView)
+        clipView.addSubview(backgroundImageView)
         clipView.addSubview(likeButton)
         clipView.addSubview(lineView)
         clipView.addSubview(commentButton)
@@ -53,6 +63,9 @@ class MomentOperationMenuView: UIView {
         
         likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         commentButton.addTarget(self, action: #selector(commentButtonClicked), for: .touchUpInside)
+        clipsToBounds = true
+        layer.cornerRadius = 4
+        layer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,7 +84,7 @@ class MomentOperationMenuView: UIView {
         
         if animated {
             UIView.animate(withDuration: 0.25, animations: {
-                self.frame = CGRect(x: self.frame.origin.x + 180, y: self.frame.origin.y, width: 0, height: self.frame.height)
+                self.clipView.frame.origin.x = self.frame.width
             }) { _ in
                 self.removeFromSuperview()
             }
@@ -82,9 +95,11 @@ class MomentOperationMenuView: UIView {
     
     func show(with moment: Moment, at point: CGPoint, inside view: UIView) {
         view.addSubview(self)
-        self.frame = CGRect(x: point.x - 180, y: point.y, width: 0, height: 39.0)
+        self.frame.origin = point
+        self.clipView.frame.origin.x = self.bounds.width
         UIView.animate(withDuration: 0.2, animations: {
-            self.frame.size.width = 180
+            self.alpha = 1.0
+            self.clipView.frame.origin.x = 0
         }) { _ in
             
         }

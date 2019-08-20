@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons_outlined_comment</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons_outlined_comment" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-22" fill="#000000" fill-rule="nonzero">
+            <path d="M10.5029437,17.8 L20.5,17.8 C20.6656854,17.8 20.8,17.6656854 20.8,17.5 L20.8,5.5 C20.8,5.33431458 20.6656854,5.2 20.5,5.2 L3.5,5.2 C3.33431458,5.2 3.2,5.33431458 3.2,5.5 L3.2,17.5 C3.2,17.6656854 3.33431458,17.8 3.5,17.8 L8.2,17.8 L8.2,20.1029437 L10.5029437,17.8 Z M11,19 L8.70710678,21.2928932 C8.31658249,21.6834175 7.68341751,21.6834175 7.29289322,21.2928932 C7.10535684,21.1053568 7,20.8510029 7,20.5857864 L7,19 L3.5,19 C2.67157288,19 2,18.3284271 2,17.5 L2,5.5 C2,4.67157288 2.67157288,4 3.5,4 L20.5,4 C21.3284271,4 22,4.67157288 22,5.5 L22,17.5 C22,18.3284271 21.3284271,19 20.5,19 L11,19 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

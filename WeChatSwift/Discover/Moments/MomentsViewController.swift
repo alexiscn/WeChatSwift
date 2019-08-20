@@ -61,6 +61,11 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
             self?.onHeaderCoverClicked()
         }
         
+        setupNavigationBar()
+        setupTapGesture()
+    }
+    
+    private func setupNavigationBar() {
         let titleLabel = UILabel()
         titleLabel.text = "朋友圈"
         titleLabel.textColor = .black
@@ -80,6 +85,12 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         rightButton.addGestureRecognizer(longPressGesture)
         
         wc_navigationBar.alpha = 0.0
+    }
+    
+    private func setupTapGesture() {
+        tableNode.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        tableNode.view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -196,6 +207,13 @@ extension MomentsViewController {
         actionSheet.show()
     }
     
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        if let menuView = operationMenuView {
+            menuView.hide(animated: true)
+            operationMenuView = nil
+        }
+    }
+    
 }
 
 // MARK: - ASTableDelegate & ASTableDataSource
@@ -243,6 +261,12 @@ extension MomentsViewController: ASTableDelegate, ASTableDataSource {
 
 extension MomentsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if let menuView = operationMenuView {
+            menuView.hide(animated: false)
+            operationMenuView = nil
+        }
+        
         let y = scrollView.contentOffset.y
         //print(y)
         
@@ -292,7 +316,7 @@ extension MomentsViewController: MomentCellNodeDelegate {
             operationMenuView = nil
         } else {
             let frame = moreButton.view.convert(moreButton.bounds, to: self.view)
-            let point = CGPoint(x: frame.origin.x - 2, y: frame.origin.y + (frame.height - 39.0)/2.0)
+            let point = CGPoint(x: frame.origin.x - 2 - 180.0, y: frame.origin.y + (frame.height - 39.0)/2.0)
             let menuView = MomentOperationMenuView(frame: CGRect(x: 0, y: 0, width: 180, height: 39))
             menuView.show(with: moment, at: point, inside: self.view)
             self.operationMenuView = menuView
@@ -327,5 +351,12 @@ extension MomentsViewController: MomentCellNodeDelegate {
         }
         let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans)
         browser.show(pageIndex: index, in: self)
+    }
+    
+    func momentCellNodeTapped() {
+        if let menuView = operationMenuView {
+            menuView.hide(animated: true)
+            operationMenuView = nil
+        }
     }
 }

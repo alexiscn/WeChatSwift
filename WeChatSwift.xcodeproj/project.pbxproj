@@ -107,6 +107,7 @@
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A34C7B0222F829FB00652B4F /* WCTableCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */; };
+		A34FB570230C32770065DB09 /* icons_outlined_comment.svg in Resources */ = {isa = PBXBuildFile; fileRef = A34FB56F230C32770065DB09 /* icons_outlined_comment.svg */; };
 		A352AD092306492E00332B21 /* MomentCoverCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD082306492E00332B21 /* MomentCoverCustomizeViewController.swift */; };
 		A352AD0D23064CFF00332B21 /* MomentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD0C23064CFF00332B21 /* MomentBackground.swift */; };
 		A352AD0F23064DA500332B21 /* MomentSetBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD0E23064DA500332B21 /* MomentSetBackgroundViewController.swift */; };
@@ -486,6 +487,7 @@
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTableCellNode.swift; sourceTree = "<group>"; };
+		A34FB56F230C32770065DB09 /* icons_outlined_comment.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_comment.svg; sourceTree = "<group>"; };
 		A352AD082306492E00332B21 /* MomentCoverCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverCustomizeViewController.swift; sourceTree = "<group>"; };
 		A352AD0C23064CFF00332B21 /* MomentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentBackground.swift; sourceTree = "<group>"; };
 		A352AD0E23064DA500332B21 /* MomentSetBackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentSetBackgroundViewController.swift; sourceTree = "<group>"; };
@@ -1495,6 +1497,7 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A34FB56F230C32770065DB09 /* icons_outlined_comment.svg */,
 				A3E20014230A7877005B2B70 /* icons_filled_close.svg */,
 				A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */,
 				A3C9145D2305892000B6E077 /* icons_outlined_at.svg */,
@@ -1890,6 +1893,7 @@
 				A3CA51EB22CDA0D000C67D92 /* icons_outlined_addoutline.svg in Resources */,
 				A3CA51D522CD9F8C00C67D92 /* icons_outlined_colorful_moment.svg in Resources */,
 				A3CA51C522CD9C4A00C67D92 /* icons_filled_chats.svg in Resources */,
+				A34FB570230C32770065DB09 /* icons_outlined_comment.svg in Resources */,
 				A3CA522022CDF82A00C67D92 /* Bran.jpg in Resources */,
 				A352AD1C2306980D00332B21 /* MomentCoverBackground.json in Resources */,
 				A3CA521C22CDF73000C67D92 /* Sansa.jpg in Resources */,
