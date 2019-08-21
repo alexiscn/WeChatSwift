@@ -78,4 +78,13 @@ extension ShakeSettingViewController: ASTableDelegate, ASTableDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
     }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let item = dataSource[indexPath.section].items[indexPath.row]
+        return !item.showSwithButton
+    }
 }

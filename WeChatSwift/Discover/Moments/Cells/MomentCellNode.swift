@@ -68,8 +68,8 @@ class MomentCellNode: ASCellNode {
         moreNode.contentEdgeInsets = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
         moreNode.style.preferredSize = CGSize(width: 44, height: 28)
         
-        if moment.comments.count > 0 {
-            commentNode = MomentCommentNode(likes: moment.likes, comments: moment.comments)
+        if moment.likes.count > 0 || moment.comments.count > 0 {
+            commentNode = MomentCommentNode(moment: moment)
             commentNode?.isUserInteractionEnabled = true
         }
         
@@ -104,6 +104,32 @@ class MomentCellNode: ASCellNode {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    func addLike() {
+        if commentNode == nil {
+            commentNode = MomentCommentNode(moment: moment)
+            setNeedsLayout()
+        } else {
+            commentNode?.updateLikes()
+        }
+    }
+    
+    func deleteLike() {
+        commentNode?.updateLikes()
+    }
+    
+    func addComment(_ comment: MomentComment) {
+        if commentNode == nil {
+            commentNode = MomentCommentNode(moment: moment)
+            setNeedsLayout()
+        } else {
+            commentNode?.addComment(comment)
+        }
+    }
+    
+    func deleteComment(_ comment: MomentComment) {
+        commentNode?.deleteComment(comment)
     }
     
     @objc private func handleNameButtonClicked() {

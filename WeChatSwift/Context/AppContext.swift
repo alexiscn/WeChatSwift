@@ -14,10 +14,14 @@ class AppContext {
     
     let userID: String
     
+    let name: String
+    
     let userSettings: UserSettings
     
     private init() {
-        userID = MockFactory.shared.users.first!.identifier
+        let me = MockFactory.shared.users.first!
+        userID = me.identifier
+        name = me.name
         userSettings = UserSettings(userID: userID)
     }
     

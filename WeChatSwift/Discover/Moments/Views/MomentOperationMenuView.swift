@@ -10,13 +10,21 @@ import UIKit
 
 class MomentOperationMenuView: UIView {
     
+    weak var delegate: MomentOperationMenuViewDelegate?
+    
     private let backgroundImageView: UIImageView
     private let clipView: UIView
     private let likeButton: UIButton
     private let lineView: UIImageView
     private let commentButton: UIButton
     
-    override init(frame: CGRect) {
+    private var moment: Moment?
+    
+    private let width: CGFloat = 180
+    
+    private let height: CGFloat = 39.0
+    
+    init() {
         
         backgroundImageView = UIImageView()
         backgroundImageView.image = UIImage(named: "AlbumOperateMoreViewBkg_40x39_")
@@ -30,6 +38,8 @@ class MomentOperationMenuView: UIView {
         likeButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         likeButton.setTitle("赞", for: .normal)
         likeButton.setTitleColor(.white, for: .normal)
+        likeButton.setTitle("取消", for: .selected)
+        likeButton.setTitleColor(.white, for: .selected)
         likeButton.setImage(UIImage(named: "AlbumLike_20x20_"), for: .normal)
         likeButton.setImage(UIImage(named: "AlbumLikeHL_20x20_"), for: .highlighted)
         likeButton.setBackgroundImage(highlightBackgroundImage, for: .highlighted)
@@ -46,6 +56,8 @@ class MomentOperationMenuView: UIView {
         commentButton.setImage(UIImage(named: "AlbumCommentSingleAHL_20x20_"), for: .highlighted)
         commentButton.setBackgroundImage(highlightBackgroundImage, for: .highlighted)
         commentButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: -4)
+        
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
         
         super.init(frame: frame)
         
@@ -73,11 +85,18 @@ class MomentOperationMenuView: UIView {
     }
 
     @objc private func likeButtonClicked() {
+        guard let moment = moment else { return }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            moment.liked = !moment.liked
+            self.updateLikeButton()
+            self.delegate?.operationMenuView(self, onLikeMoment: moment)
+        }
     }
     
     @objc private func commentButtonClicked() {
-        
+        guard let moment = moment else { return }
+        delegate?.operationMenuView(self, onCommentMoment: moment)
     }
     
     func hide(animated: Bool) {
@@ -94,14 +113,31 @@ class MomentOperationMenuView: UIView {
     }
     
     func show(with moment: Moment, at point: CGPoint, inside view: UIView) {
+        self.moment = moment
+        
+        updateLikeButton()
+        
+        self.removeFromSuperview() 
         view.addSubview(self)
         self.frame.origin = point
         self.clipView.frame.origin.x = self.bounds.width
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.2) {
             self.alpha = 1.0
             self.clipView.frame.origin.x = 0
-        }) { _ in
-            
         }
     }
+    
+    private func updateLikeButton() {
+        guard let moment = moment else { return }
+        let title = moment.liked ? "取消": "赞"
+        likeButton.setTitle(title, for: .normal)
+    }
+}
+
+protocol MomentOperationMenuViewDelegate: class {
+    
+    func operationMenuView(_ menuView: MomentOperationMenuView, onLikeMoment moment: Moment)
+    
+    func operationMenuView(_ menuView: MomentOperationMenuView, onCommentMoment moment: Moment)
+    
 }

@@ -25,6 +25,8 @@ class Moment: Equatable {
     
     var comments: [MomentComment] = []
     
+    var liked: Bool = false
+    
     static func == (lhs: Moment, rhs: Moment) -> Bool {
         return lhs.identifier == rhs.identifier
     }

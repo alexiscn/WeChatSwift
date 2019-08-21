@@ -25,6 +25,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private var hasNewMessage: Bool { return newMessage != nil }
     private var isLoadingMoments = false
     private var menuMoment: Moment?
+    private var menuMomentCellNode: MomentCellNode?
     
     init() {
         super.init(node: ASDisplayNode())
@@ -210,9 +211,15 @@ extension MomentsViewController {
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        hideOperationMenu(animated: true)
+    }
+    
+    private func hideOperationMenu(animated: Bool) {
         if let menuView = operationMenuView {
-            menuView.hide(animated: true)
+            menuView.hide(animated: animated)
             operationMenuView = nil
+            menuMoment = nil
+            menuMomentCellNode = nil
         }
     }
     
@@ -265,10 +272,7 @@ extension MomentsViewController: ASTableDelegate, ASTableDataSource {
 extension MomentsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        if let menuView = operationMenuView {
-            menuView.hide(animated: false)
-            operationMenuView = nil
-        }
+        hideOperationMenu(animated: false)
         
         let y = scrollView.contentOffset.y
         //print(y)
@@ -315,21 +319,21 @@ extension MomentsViewController: MomentCellNodeDelegate {
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode, moment: Moment) {
         
-        if let menuView = operationMenuView {
-            menuView.hide(animated: false)
-            operationMenuView = nil
-        }
-        
         if let currentMoment = menuMoment, currentMoment == moment {
-            menuMoment = nil
+            hideOperationMenu(animated: true)
             return
         }
-        menuMoment = moment
+        hideOperationMenu(animated: false)
+        
         let frame = moreButton.view.convert(moreButton.bounds, to: self.view)
         let point = CGPoint(x: frame.origin.x - 2 - 180.0, y: frame.origin.y + (frame.height - 39.0)/2.0)
-        let menuView = MomentOperationMenuView(frame: CGRect(x: 0, y: 0, width: 180, height: 39))
+        let menuView = MomentOperationMenuView()
         menuView.show(with: moment, at: point, inside: self.view)
+        menuView.delegate = self
+        
         self.operationMenuView = menuView
+        self.menuMoment = moment
+        self.menuMomentCellNode = cellNode
     }
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String) {
@@ -362,6 +366,45 @@ extension MomentsViewController: MomentCellNodeDelegate {
         browser.show(pageIndex: index, in: self)
     }
     
+}
+
+// MARK: - MomentOperationMenuViewDelegate
+extension MomentsViewController: MomentOperationMenuViewDelegate {
+    
+    func operationMenuView(_ menuView: MomentOperationMenuView, onLikeMoment moment: Moment) {
+        let myID = AppContext.current.userID
+        guard let me = MockFactory.shared.users.first(where: { $0.identifier == myID }) else {
+            return
+        }
+        if moment.liked {
+            if !moment.likes.contains(where: { $0.userID == myID }) {
+                let user = MomentLikeUser(userID: myID, username: me.name)
+                moment.likes.append(user)
+                menuMomentCellNode?.addLike()
+            }
+        } else {
+            if let index = moment.likes.firstIndex(where: { $0.userID == myID }) {
+                moment.likes.remove(at: index)
+                menuMomentCellNode?.deleteLike()
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.hideOperationMenu(animated: true)
+        }
+    }
+    
+    func operationMenuView(_ menuView: MomentOperationMenuView, onCommentMoment moment: Moment) {
+        // TODO: show comment input panel Check whether should ajust table
+        let comment = MomentComment()
+        comment.commentId = UUID().uuidString
+        comment.content = "哈哈哈哈"
+        comment.userID = AppContext.current.userID
+        comment.nickname = AppContext.current.name
+        menuMomentCellNode?.addComment(comment)
+        
+        hideOperationMenu(animated: true)
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate

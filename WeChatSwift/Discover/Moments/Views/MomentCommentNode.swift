@@ -24,92 +24,119 @@ class MomentCommentNode: ASDisplayNode {
     
     private let kLinkAttributeName = "kLinkAttributeNamekLinkAttributeName"
     
-    init(likes: [MomentLikeUser], comments: [MomentComment]) {
-        
+    private let nameFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
+    private let textColor = UIColor(hexString: "#111111")
+    private let textFont = UIFont.systemFont(ofSize: 15)
+    
+    private let moment: Moment
+    
+    init(moment: Moment) {
+        self.moment = moment
         triangleNode.image = UIImage.as_imageNamed("AlbumTriangleB_45x6_")
         triangleNode.style.preferredSize = CGSize(width: 45, height: 6)
         containerNode.backgroundColor = UIColor(hexString: "#F3F3F5")
+        super.init()
+        automaticallyManagesSubnodes = true
+        likeNode = likesTextNode(with: moment.likes)
+        for comment in moment.comments {
+            let node = commentTextNode(with: comment)
+            commentElements.append(node)
+        }
+        if moment.likes.count > 0 && moment.comments.count > 0 {
+            lineNode = MomentCommentLineNode()
+        }
+    }
+    
+    func likesTextNode(with likes: [MomentLikeUser]) -> ASTextNode? {
         
-        let nameFont = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        let textColor = UIColor(hexString: "#111111")
-        let textFont = UIFont.systemFont(ofSize: 15)
+        guard likes.count > 0 else { return nil }
+        
         let textAttributes = [
             NSAttributedString.Key.font: textFont,
             NSAttributedString.Key.foregroundColor: textColor
         ]
         
-        if likes.count > 0 {
-            let body = NSMutableAttributedString()
-            let attachment = NSTextAttachment()
-            attachment.image = UIImage(named: "AlbumLikeSmall_18x18_")
-            attachment.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
-            
-            body.append(NSAttributedString(attachment: attachment))
-            
-            for (index, user) in likes.enumerated() {
-                body.append(NSAttributedString(string: user.username, attributes: [
-                    .font: nameFont,
-                    .foregroundColor: Colors.DEFAULT_LINK_COLOR,
-                    .underlineColor: UIColor.clear,
-                    NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + user.userID) as Any
-                    ]))
-                if index != likes.count - 1 {
-                    body.append(NSAttributedString(string: ",", attributes: textAttributes))
-                }
-            }
-            likeNode = ASTextNode()
-            likeNode?.highlightStyle = .dark
-            likeNode?.linkAttributeNames = [kLinkAttributeName]
-            likeNode?.isUserInteractionEnabled = true
-            likeNode?.maximumNumberOfLines = 0
-            likeNode?.attributedText = body
-        }
-    
-        for comment in comments {
-            let body = NSMutableAttributedString()
-            body.append(NSAttributedString(string: comment.nickname, attributes: [
+        let body = NSMutableAttributedString()
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(named: "AlbumLikeSmall_18x18_")
+        attachment.bounds = CGRect(x: 0, y: -3, width: 18, height: 18)
+        
+        body.append(NSAttributedString(attachment: attachment))
+        
+        for (index, user) in likes.enumerated() {
+            body.append(NSAttributedString(string: user.username, attributes: [
                 .font: nameFont,
                 .foregroundColor: Colors.DEFAULT_LINK_COLOR,
-                NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + comment.userID) as Any,
+                .underlineColor: UIColor.clear,
+                NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + user.userID) as Any
+                ]))
+            if index != likes.count - 1 {
+                body.append(NSAttributedString(string: ",", attributes: textAttributes))
+            }
+        }
+        let textNode = ASTextNode()
+        textNode.delegate = self
+        textNode.highlightStyle = .dark
+        textNode.linkAttributeNames = [kLinkAttributeName]
+        textNode.isUserInteractionEnabled = true
+        textNode.maximumNumberOfLines = 0
+        textNode.attributedText = body
+        return textNode
+    }
+    
+    func commentTextNode(with comment: MomentComment) -> ASTextNode {
+        let textAttributes = [
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.foregroundColor: textColor
+        ]
+        let body = NSMutableAttributedString()
+        body.append(NSAttributedString(string: comment.nickname, attributes: [
+            .font: nameFont,
+            .foregroundColor: Colors.DEFAULT_LINK_COLOR,
+            NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + comment.userID) as Any,
+            .underlineColor: UIColor.clear
+            ]))
+        
+        if let refName = comment.refUsername, let refUId = comment.refUserId {
+            body.append(NSAttributedString(string: "回复", attributes: textAttributes))
+            
+            body.append(NSAttributedString(string: refName, attributes: [
+                .font: nameFont,
+                .foregroundColor: Colors.DEFAULT_LINK_COLOR,
+                NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + refUId) as Any,
                 .underlineColor: UIColor.clear
                 ]))
-            
-            if let refName = comment.refUsername, let refUId = comment.refUserId {
-                body.append(NSAttributedString(string: "回复", attributes: textAttributes))
-                
-                body.append(NSAttributedString(string: refName, attributes: [
-                    .font: nameFont,
-                    .foregroundColor: Colors.DEFAULT_LINK_COLOR,
-                    NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + refUId) as Any,
-                    .underlineColor: UIColor.clear
-                    ]))
-            }
-            
-            body.append(NSAttributedString(string: ": \(comment.content)", attributes: textAttributes))
-            
-            let textNode = ASTextNode()
-            textNode.highlightStyle = .dark
-            textNode.linkAttributeNames = [kLinkAttributeName]
-            textNode.isUserInteractionEnabled = true
-            textNode.maximumNumberOfLines = 0
-            textNode.attributedText = body
-            commentElements.append(textNode)
         }
         
-        if likes.count > 0 && comments.count > 0 {
-            lineNode = MomentCommentLineNode()
-        }
+        body.append(NSAttributedString(string: ": \(comment.content)", attributes: textAttributes))
         
-        super.init()
-        automaticallyManagesSubnodes = true
+        let textNode = ASTextNode()
+        textNode.highlightStyle = .dark
+        textNode.linkAttributeNames = [kLinkAttributeName]
+        textNode.delegate = self
+        textNode.isUserInteractionEnabled = true
+        textNode.maximumNumberOfLines = 0
+        textNode.attributedText = body
+        return textNode
     }
     
     override func didLoad() {
         super.didLoad()
+    }
+    
+    func addComment(_ comment: MomentComment) {
+        commentElements.append(commentTextNode(with: comment))
+        setNeedsLayout()
+    }
+    
+    func deleteComment(_ comment: MomentComment) {
         
-        likeNode?.delegate = self
-        likeNode?.layer.as_allowsHighlightDrawing = true
-        commentElements.forEach { $0.delegate = self }
+        setNeedsLayout()
+    }
+    
+    func updateLikes() {
+        likeNode = likesTextNode(with: moment.likes)
+        setNeedsLayout()
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

@@ -85,6 +85,7 @@ class ShakeSettingCellNode: ASCellNode {
         
         lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 20, height: Constants.lineHeight)
         lineNode.style.layoutPosition = CGPoint(x: 20, y: 44.0 - Constants.lineHeight)
+        lineNode.isHidden = isLastCell
         
         return ASAbsoluteLayoutSpec(children: [stack, lineNode])
     }
