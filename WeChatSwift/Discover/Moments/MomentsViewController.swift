@@ -24,6 +24,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private var newMessage: MomentNewMessage?
     private var hasNewMessage: Bool { return newMessage != nil }
     private var isLoadingMoments = false
+    private var menuMoment: Moment?
     
     init() {
         super.init(node: ASDisplayNode())
@@ -219,6 +220,7 @@ extension MomentsViewController {
 
 // MARK: - ASTableDelegate & ASTableDataSource
 extension MomentsViewController: ASTableDelegate, ASTableDataSource {
+    
     func numberOfSections(in tableNode: ASTableNode) -> Int {
         return hasNewMessage ? 2: 1
     }
@@ -312,16 +314,22 @@ extension MomentsViewController: UIScrollViewDelegate {
 extension MomentsViewController: MomentCellNodeDelegate {
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode, moment: Moment) {
+        
         if let menuView = operationMenuView {
-            menuView.hide(animated: true)
+            menuView.hide(animated: false)
             operationMenuView = nil
-        } else {
-            let frame = moreButton.view.convert(moreButton.bounds, to: self.view)
-            let point = CGPoint(x: frame.origin.x - 2 - 180.0, y: frame.origin.y + (frame.height - 39.0)/2.0)
-            let menuView = MomentOperationMenuView(frame: CGRect(x: 0, y: 0, width: 180, height: 39))
-            menuView.show(with: moment, at: point, inside: self.view)
-            self.operationMenuView = menuView
         }
+        
+        if let currentMoment = menuMoment, currentMoment == moment {
+            menuMoment = nil
+            return
+        }
+        menuMoment = moment
+        let frame = moreButton.view.convert(moreButton.bounds, to: self.view)
+        let point = CGPoint(x: frame.origin.x - 2 - 180.0, y: frame.origin.y + (frame.height - 39.0)/2.0)
+        let menuView = MomentOperationMenuView(frame: CGRect(x: 0, y: 0, width: 180, height: 39))
+        menuView.show(with: moment, at: point, inside: self.view)
+        self.operationMenuView = menuView
     }
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String) {

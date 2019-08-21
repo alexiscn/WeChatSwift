@@ -24,6 +24,7 @@ class NearbyPeopleViewController: ASViewController<ASDisplayNode> {
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableNode.delegate = self
         tableNode.dataSource = self
+        setupDataSource()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +49,11 @@ class NearbyPeopleViewController: ASViewController<ASDisplayNode> {
         if status == .denied {
             
         }
+    }
+    
+    private func setupDataSource() {
+        let users = MockFactory.shared.users
+        dataSource = users.map { return NearbyPeople(userId: $0.identifier, nickname: $0.name, avatar: $0.avatar, gender: $0.gender) }
     }
 }
 
@@ -94,5 +100,9 @@ extension NearbyPeopleViewController: ASTableDelegate, ASTableDataSource {
             return NearbyPeopleCellNode(people: people)
         }
         return block
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: false)
     }
 }

@@ -26,9 +26,13 @@ class NearbyPeopleCellNode: ASCellNode {
     
     init(people: NearbyPeople) {
         super.init()
-        
+        automaticallyManagesSubnodes = true
         avatarNode.cornerRadius = 4
         avatarNode.cornerRoundingType = .precomposited
+        avatarNode.image = UIImage.as_imageNamed(people.avatar)
+        
+        genderNode.image = people.genderImage
+        genderNode.isHidden = people.gender == .unknown
         
         nicknameNode.attributedText = people.attributedStringForNickname()
         distanceNode.attributedText = people.attributedStringForDistance()
@@ -38,12 +42,15 @@ class NearbyPeopleCellNode: ASCellNode {
     
     override func didLoad() {
         super.didLoad()
+        backgroundColor = Colors.white
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         avatarNode.style.preferredSize = CGSize(width: 46, height: 46)
         avatarNode.style.spacingBefore = 7
+        
+        genderNode.style.preferredSize = CGSize(width: 18.0, height: 18.0)
         
         let nameStack = ASStackLayoutSpec.horizontal()
         nameStack.spacing = 3
@@ -54,6 +61,7 @@ class NearbyPeopleCellNode: ASCellNode {
         descStack.children = [distanceNode, albumIconNode]
         
         let centerVerticalStack = ASStackLayoutSpec.vertical()
+        centerVerticalStack.spacing = 6
         centerVerticalStack.style.spacingBefore = 12
         centerVerticalStack.children = [nameStack, descStack]
         
@@ -76,9 +84,11 @@ class NearbyPeopleCellNode: ASCellNode {
 class NearbyPeople {
     
     
-    var userId: String
+    let userId: String
     
-    var nickname: String
+    let nickname: String
+    
+    let avatar: String
     
     var country: String?
     
@@ -86,12 +96,14 @@ class NearbyPeople {
     
     var distance: String? = nil
     
-    var gender: Int
+    var gender: MockFactory.Gender
     
-    init(userId: String, nickname: String, gender: Int) {
+    init(userId: String, nickname: String, avatar: String, gender: MockFactory.Gender) {
         self.userId = userId
         self.nickname = nickname
+        self.avatar = avatar
         self.gender = gender
+        self.distance = "100米内"
     }
     
     func attributedStringForNickname() -> NSAttributedString {
@@ -109,5 +121,10 @@ class NearbyPeople {
             NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
         ]
         return NSAttributedString(string: distance, attributes: attributes)
+    }
+    
+    var genderImage: UIImage? {
+        let name = gender == .male ? "Contact_Male_18x18_" : "Contact_Female_18x18_"
+        return UIImage(named: name)
     }
 }

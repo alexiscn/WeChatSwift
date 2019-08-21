@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-class Moment {
+class Moment: Equatable {
+    
+    var identifier: String = ""
     
     var userID: String = ""
     
@@ -22,6 +24,10 @@ class Moment {
     var likes: [MomentLikeUser] = []
     
     var comments: [MomentComment] = []
+    
+    static func == (lhs: Moment, rhs: Moment) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
 }
 
 

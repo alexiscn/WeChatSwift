@@ -261,6 +261,7 @@ class MockFactory {
         for index in 0 ..< 20 {
             let user = random(of: users)
             let moment = Moment()
+            moment.identifier = UUID().uuidString
             moment.userID = user.identifier
             moment.content = randomMessage()
             if index % 4 == 0 {
