@@ -127,6 +127,9 @@
 		A352AD2E2306D0B200332B21 /* SettingLanguageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */; };
 		A352AD302306D2FA00332B21 /* icons_filled_done.svg in Resources */ = {isa = PBXBuildFile; fileRef = A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */; };
 		A3542F4F230D5D470034ED82 /* AssetPickerSelectCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3542F4E230D5D470034ED82 /* AssetPickerSelectCheckButton.swift */; };
+		A3542F51230D7E6B0034ED82 /* icons_outlined_share.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3542F50230D7E6B0034ED82 /* icons_outlined_share.svg */; };
+		A3542F53230D7FB30034ED82 /* EmoticonDetailArtistNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3542F52230D7FB30034ED82 /* EmoticonDetailArtistNode.swift */; };
+		A3542F55230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3542F54230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift */; };
 		A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */; };
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
@@ -508,6 +511,9 @@
 		A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLanguageCellNode.swift; sourceTree = "<group>"; };
 		A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_done.svg; sourceTree = "<group>"; };
 		A3542F4E230D5D470034ED82 /* AssetPickerSelectCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerSelectCheckButton.swift; sourceTree = "<group>"; };
+		A3542F50230D7E6B0034ED82 /* icons_outlined_share.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_share.svg; sourceTree = "<group>"; };
+		A3542F52230D7FB30034ED82 /* EmoticonDetailArtistNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailArtistNode.swift; sourceTree = "<group>"; };
+		A3542F54230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailRewardEntranceNode.swift; sourceTree = "<group>"; };
 		A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreCellNode.swift; sourceTree = "<group>"; };
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
@@ -1397,6 +1403,8 @@
 				A34139312307DFB8008E0EBF /* EmoticonManageActionCellNode.swift */,
 				A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */,
 				A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */,
+				A3542F52230D7FB30034ED82 /* EmoticonDetailArtistNode.swift */,
+				A3542F54230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift */,
 				A3485FB822F04949002A804B /* WeChatEmoticonsViewController.swift */,
 				A3485FBA22F049CB002A804B /* WeChatEmoticonsCellNode.swift */,
 				A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */,
@@ -1500,6 +1508,7 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A3542F50230D7E6B0034ED82 /* icons_outlined_share.svg */,
 				A34FB56F230C32770065DB09 /* icons_outlined_comment.svg */,
 				A3E20014230A7877005B2B70 /* icons_filled_close.svg */,
 				A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */,
@@ -1929,6 +1938,7 @@
 				A3CA51B522CD9B0A00C67D92 /* icons_filled_group-detail.svg in Resources */,
 				A31057E022E8532E00856D71 /* dice_5.pic in Resources */,
 				A3CA51C222CD9C1900C67D92 /* icons_outlined_back.svg in Resources */,
+				A3542F51230D7E6B0034ED82 /* icons_outlined_share.svg in Resources */,
 				A3DE7CCC2301155E00E73944 /* icons_outlined_camera.svg in Resources */,
 				A31057E322E8532E00856D71 /* dice_3.pic in Resources */,
 			);
@@ -2120,6 +2130,7 @@
 				A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */,
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
 				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,
+				A3542F53230D7FB30034ED82 /* EmoticonDetailArtistNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
@@ -2199,6 +2210,7 @@
 				A374864422D44C56002EEC4F /* VideoContentNode.swift in Sources */,
 				A3485FB022F021B1002A804B /* QRCodeCardNode.swift in Sources */,
 				A33DB30022CCDDBD00A11776 /* DiscoverViewController.swift in Sources */,
+				A3542F55230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift in Sources */,
 				A3F6AD022303A9A9007FE74B /* ChatRoomDateFormatter.swift in Sources */,
 				A33B883A2307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift in Sources */,
 				A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */,

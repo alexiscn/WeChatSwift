@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons_outlined_share</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons_outlined_share" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon38" fill="#000000" fill-rule="nonzero">
+            <path d="M18.8,8.2 L16,8.2 L16,7 L19.0010434,7 C19.5508697,7 20,7.44583866 20,7.99580851 L20,21.0041915 C20,21.5510798 19.5541613,22 19.0041915,22 L4.99580851,22 C4.44892021,22 4,21.5541613 4,21.0041915 L4,7.99580851 C4,7.44892021 4.44724809,7 4.99895656,7 L8,7 L8,8.2 L5.2,8.2 L5.2,20.8 L18.8,20.8 L18.8,8.2 Z M12.5999939,4.26151638 L12.5999939,13.5 L11.3999939,13.5 L11.3999939,4.26152854 L9.31299427,6.34852817 L8.46446609,5.5 L11.2928932,2.67157288 C11.6834175,2.28104858 12.3165825,2.28104858 12.7071068,2.67157288 L15.5355339,5.5 L14.6870057,6.34852817 L12.5999939,4.26151638 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>
