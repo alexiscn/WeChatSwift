@@ -86,6 +86,8 @@ class MomentCellNode: ASCellNode {
         contentNode?.isUserInteractionEnabled = true
         contentNode?.cellNode = self
         
+        commentNode?.delegate = self
+        
         let user = MockFactory.shared.users.first(where: { $0.identifier == moment.userID })
         let avatar = user?.avatar ?? "DefaultHead_48x48_"
         avatarNode.image = UIImage.as_imageNamed(avatar)
@@ -109,6 +111,7 @@ class MomentCellNode: ASCellNode {
     func addLike() {
         if commentNode == nil {
             commentNode = MomentCommentNode(moment: moment)
+            commentNode?.delegate = self
             setNeedsLayout()
         } else {
             commentNode?.updateLikes()
@@ -122,6 +125,7 @@ class MomentCellNode: ASCellNode {
     func addComment(_ comment: MomentComment) {
         if commentNode == nil {
             commentNode = MomentCommentNode(moment: moment)
+            commentNode?.delegate = self
             setNeedsLayout()
         } else {
             commentNode?.addComment(comment)
@@ -133,17 +137,21 @@ class MomentCellNode: ASCellNode {
     }
     
     @objc private func handleNameButtonClicked() {
-        delegate?.momentCellNode(self, didPressedUserAvatar: moment.userID)
+        delegate?.momentCellNode(self, didPressedUser: moment.userID)
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: self.view)
         if avatarNode.frame.contains(point) {
-            delegate?.momentCellNode(self, didPressedUserAvatar: moment.userID)
+            delegate?.momentCellNode(self, didPressedUser: moment.userID)
         }
-        
+        // Passthrough tap gesture to content node
         if let contentNode = contentNode, contentNode.frame.contains(point) {
             contentNode.handleTapGesture(gesture)
+        }
+        // Passthrough tap gesture to comment node
+        if let commentNode = commentNode, commentNode.frame.contains(point) {
+            commentNode.handleTapGesture(gesture)
         }
     }
     
@@ -213,11 +221,23 @@ class MomentCellNode: ASCellNode {
     }
 }
 
+// MARK: - MomentCommentNodeDelegate
+extension MomentCellNode: MomentCommentNodeDelegate {
+    
+    func momentComment(_ commentNode: MomentCommentNode, tappedLink url: URL?) {
+        
+    }
+    
+    func momentComment(_ commentNode: MomentCommentNode, didTapComment comment: MomentComment) {
+        
+    }
+}
+
 protocol MomentCellNodeDelegate: class {
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedMoreButton moreButton: ASButtonNode, moment: Moment)
     
-    func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String)
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedUser userID: String)
     
     func momentCellNode(_ cellNode: MomentCellNode, didTapImage image: MomentMedia, thumbImage: UIImage?, tappedView: UIView?)
     

@@ -81,6 +81,7 @@ class MomentCommentNode: ASDisplayNode {
         textNode.isUserInteractionEnabled = true
         textNode.maximumNumberOfLines = 0
         textNode.attributedText = body
+        textNode.passthroughNonlinkTouches = true
         return textNode
     }
     
@@ -117,11 +118,25 @@ class MomentCommentNode: ASDisplayNode {
         textNode.isUserInteractionEnabled = true
         textNode.maximumNumberOfLines = 0
         textNode.attributedText = body
+        textNode.passthroughNonlinkTouches = true
         return textNode
     }
     
     override func didLoad() {
         super.didLoad()
+        
+        likeNode?.layer.as_allowsHighlightDrawing = true
+        commentElements.forEach { $0.layer.as_allowsHighlightDrawing = true }
+    }
+    
+    func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: self.view)
+        for (index, node) in commentElements.enumerated() {
+            if node.frame.contains(point) {
+                let comment = moment.comments[index]
+                delegate?.momentComment(self, didTapComment: comment)
+            }
+        }
     }
     
     func addComment(_ comment: MomentComment) {
@@ -184,5 +199,13 @@ extension MomentCommentNode: ASTextNodeDelegate {
 }
 
 protocol MomentCommentNodeDelegate: class {
+    
+    /// Tapp Link In Comment Area, eg: Tap username
+    ///
+    /// - Parameters:
+    ///   - commentNode: Moment Comment Node
+    ///   - url: url
     func momentComment(_ commentNode: MomentCommentNode, tappedLink url: URL?)
+    
+    func momentComment(_ commentNode: MomentCommentNode, didTapComment comment: MomentComment)
 }

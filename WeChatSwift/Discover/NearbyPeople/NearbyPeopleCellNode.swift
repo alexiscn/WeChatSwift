@@ -127,4 +127,9 @@ class NearbyPeople {
         let name = gender == .male ? "Contact_Male_18x18_" : "Contact_Female_18x18_"
         return UIImage(named: name)
     }
+    
+    func toContact() -> Contact {
+        let user = MockFactory.MockUser(identifier: userId, name: nickname, avatar: avatar, gender: gender)
+        return user.toContact()
+    }
 }

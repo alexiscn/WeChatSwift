@@ -104,5 +104,9 @@ extension NearbyPeopleViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let people = dataSource[indexPath.row]
+        let contactInfoVC = ContactInfoViewController(contact: people.toContact())
+        navigationController?.pushViewController(contactInfoVC, animated: true)
     }
 }

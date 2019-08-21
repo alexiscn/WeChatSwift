@@ -336,7 +336,7 @@ extension MomentsViewController: MomentCellNodeDelegate {
         self.menuMomentCellNode = cellNode
     }
     
-    func momentCellNode(_ cellNode: MomentCellNode, didPressedUserAvatar userID: String) {
+    func momentCellNode(_ cellNode: MomentCellNode, didPressedUser userID: String) {
         guard let user = MockFactory.shared.users.first(where: { $0.identifier == userID }) else {
             return
         }
