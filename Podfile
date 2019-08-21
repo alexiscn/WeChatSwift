@@ -2,7 +2,6 @@ platform:ios, '11.0'
 use_frameworks!
 
 target 'WeChatSwift' do
-    pod 'Alamofire'
     pod 'SnapKit'
     pod 'WXActionSheet'
     pod 'MMKV'
