@@ -84,6 +84,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         searchViewController?.delegate = self
         searchViewController?.view.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         searchViewController?.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        searchViewController?.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .defaultPrompt)
         searchViewController?.searchBar.placeholder = "搜索"
         searchViewController?.searchBar.barTintColor = Colors.DEFAULT_BACKGROUND_COLOR
         
@@ -94,7 +95,6 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         searchViewController?.dimsBackgroundDuringPresentation = false
         
         mainSearchViewController.searchBar = searchViewController?.searchBar
-        mainSearchViewController.searchBar?.removeBottomLine()
         mainSearchViewController.searchBar?.alignmentCenter()
         
         definesPresentationContext = true

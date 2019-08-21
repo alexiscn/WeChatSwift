@@ -10,24 +10,6 @@ import UIKit
 
 extension UISearchBar {
     
-    func removeBottomLine() {
-        guard let cls = NSClassFromString("UISearchBarBackground") else {
-            return
-        }
-        guard let views = subviews.first?.subviews else {
-            return
-        }
-        for subView in views {
-            if subView.isKind(of: cls) {
-                //subView.removeFromSuperview()
-                let bg = UIView(frame: CGRect(x: 0, y: 0, width: subView.bounds.width, height: subView.bounds.width + 1))
-                bg.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-                subView.addSubview(bg)
-                break
-            }
-        }
-    }
-    
     func alignmentCenter() {
         guard let textFiled = value(forKey: "searchField") as? UITextField else {
             return
