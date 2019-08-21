@@ -8,6 +8,7 @@
 
 // https://github.com/JiongXing/PhotoBrowser
 import UIKit
+import FLAnimatedImage
 
 class PhotoBrowserViewCell: UICollectionViewCell {
     
@@ -17,7 +18,11 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     
     var panGestureReleasedHandler: ((_ downSwipe: Bool) -> Void)?
     
-    var imageView = UIImageView()
+    //var imageView = UIImageView()
+    
+    var imageView = FLAnimatedImageView()
+    
+    var playButton = UIButton(type: .custom)
     
     var scrollView = UIScrollView()
     
@@ -53,6 +58,10 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         panGesture.delegate = self
         scrollView.addGestureRecognizer(panGesture)
+        
+        playButton.setImage(UIImage.as_imageNamed("MMVideoPreviewPlay_85x85_"), for: .normal)
+        playButton.setImage(UIImage.as_imageNamed("MMVideoPreviewPlayHL_85x85_"), for: .highlighted)
+        //imageView.addSubview(playButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,6 +75,8 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         scrollView.setZoomScale(1.0, animated: false)
         imageView.frame = fitFrame
         scrollView.setZoomScale(1.0, animated: false)
+        
+        playButton.frame = CGRect(x: (bounds.width - 85.0)/2.0, y: (bounds.height - 85.0)/2, width: 85, height: 85)
     }
     
     private var fitSize: CGSize {

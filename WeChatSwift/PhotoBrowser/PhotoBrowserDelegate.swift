@@ -17,11 +17,17 @@ protocol PhotoBrowserDelegate: UICollectionViewDelegate {
     func photoBrowser(_ photoBrowser: PhotoBrowserViewController, transitionViewAt pageIndex: Int) -> UIView?
     
     func photoBrowser(_ photoBrowser: PhotoBrowserViewController, displayingContentViewAt pageIndex: Int) -> UIView?
+    
+    func photoBrowser(_ photoBrowser: PhotoBrowserViewController, viewWillAppear animated: Bool)
+    
+    func photoBrowser(_ photoBrowser: PhotoBrowserViewController, viewWillDisappear animated: Bool)
 }
 
 class PhotoBrowserDefaultDelegate: NSObject, PhotoBrowserDelegate {
     
     weak var browser: PhotoBrowserViewController?
+    
+    var originWindowLevel: UIWindow.Level?
     
     func photoBrowser(_ photoBrowser: PhotoBrowserViewController, pageIndexDidChanged pageIndex: Int) {
         
@@ -37,6 +43,14 @@ class PhotoBrowserDefaultDelegate: NSObject, PhotoBrowserDelegate {
         let indexPath = IndexPath(item: pageIndex, section: 0)
         let cell = browser?.collectionView.cellForItem(at: indexPath) as? PhotoBrowserViewCell
         return cell?.imageView
+    }
+    
+    func photoBrowser(_ photoBrowser: PhotoBrowserViewController, viewWillAppear animated: Bool) {
+        coverStatusBar(true)
+    }
+    
+    func photoBrowser(_ photoBrowser: PhotoBrowserViewController, viewWillDisappear animated: Bool) {
+        coverStatusBar(false)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -68,7 +82,16 @@ class PhotoBrowserDefaultDelegate: NSObject, PhotoBrowserDelegate {
     }
     
     private func coverStatusBar(_ shouldCover: Bool) {
-        
+        guard let window = browser?.view.window ?? UIApplication.shared.keyWindow else {
+            return
+        }
+        if originWindowLevel == nil {
+            originWindowLevel = window.windowLevel
+        }
+        guard let originLevel = originWindowLevel else {
+            return
+        }
+        window.windowLevel = shouldCover ? .statusBar: originLevel
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

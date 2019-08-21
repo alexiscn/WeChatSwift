@@ -12,6 +12,8 @@ class ChatRoomMemberItemNode: ASDisplayNode {
     
     var addButtonHandler: RelayCommand?
     
+    var contactTapHandlder: ((Contact) -> Void)?
+    
     private let avatarNode = ASNetworkImageNode()
     
     private let nameNode = ASTextNode()
@@ -50,7 +52,22 @@ class ChatRoomMemberItemNode: ASDisplayNode {
     override func didLoad() {
         super.didLoad()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        self.view.addGestureRecognizer(tap)
+        
         addButtonNode.addTarget(self, action: #selector(addButtonClicked), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: self.view)
+        if avatarNode.frame.contains(point) {
+            switch memberItem {
+            case .contact(let contact):
+                contactTapHandlder?(contact)
+            default:
+                break
+            }
+        }
     }
     
     @objc private func addButtonClicked() {

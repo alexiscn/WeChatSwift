@@ -126,6 +126,7 @@
 		A352AD2C2306D03C00332B21 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2B2306D03C00332B21 /* AppLanguage.swift */; };
 		A352AD2E2306D0B200332B21 /* SettingLanguageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */; };
 		A352AD302306D2FA00332B21 /* icons_filled_done.svg in Resources */ = {isa = PBXBuildFile; fileRef = A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */; };
+		A3542F4F230D5D470034ED82 /* AssetPickerSelectCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3542F4E230D5D470034ED82 /* AssetPickerSelectCheckButton.swift */; };
 		A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */; };
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
@@ -506,6 +507,7 @@
 		A352AD2B2306D03C00332B21 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
 		A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLanguageCellNode.swift; sourceTree = "<group>"; };
 		A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_done.svg; sourceTree = "<group>"; };
+		A3542F4E230D5D470034ED82 /* AssetPickerSelectCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerSelectCheckButton.swift; sourceTree = "<group>"; };
 		A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreCellNode.swift; sourceTree = "<group>"; };
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
@@ -1065,6 +1067,7 @@
 				A352AD1923065B8900332B21 /* AssetPickerConfiguration.swift */,
 				A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */,
 				A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */,
+				A3542F4E230D5D470034ED82 /* AssetPickerSelectCheckButton.swift */,
 				A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */,
 				A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */,
 				A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */,
@@ -2101,6 +2104,7 @@
 				A3E2001E230AD270005B2B70 /* StreamVoiceInputControl.swift in Sources */,
 				A37FFB6E22EEB62B0001DD27 /* PublishMomentViewController.swift in Sources */,
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
+				A3542F4F230D5D470034ED82 /* AssetPickerSelectCheckButton.swift in Sources */,
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,
 				A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */,
 				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,

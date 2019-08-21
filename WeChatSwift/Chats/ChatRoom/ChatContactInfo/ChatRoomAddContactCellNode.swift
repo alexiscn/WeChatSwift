@@ -13,6 +13,8 @@ class ChatRoomAddContactCellNode: ASCellNode {
     
     var addButtonHandler: RelayCommand?
     
+    var contactTapHandlder: ((Contact) -> Void)?
+    
     private var elements: [ChatRoomMemberItemNode] = []
     
     private let padding: CGFloat = 3.0
@@ -33,7 +35,10 @@ class ChatRoomAddContactCellNode: ASCellNode {
         super.didLoad()
         
         backgroundColor = Colors.white
-        elements.forEach { $0.addButtonHandler = addButtonHandler }
+        elements.forEach {
+            $0.addButtonHandler = addButtonHandler
+            $0.contactTapHandlder = contactTapHandlder
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

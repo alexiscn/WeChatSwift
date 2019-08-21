@@ -90,6 +90,16 @@ class PhotoBrowserViewController: UIViewController {
         setLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate.photoBrowser(self, viewWillAppear: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate.photoBrowser(self, viewWillDisappear: animated)
+    }
+    
     func setLayout() {
         flowLayout.minimumLineSpacing = 0
         flowLayout.itemSize = view.bounds.size

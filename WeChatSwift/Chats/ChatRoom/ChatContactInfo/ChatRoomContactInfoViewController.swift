@@ -57,6 +57,11 @@ class ChatRoomContactInfoViewController: ASViewController<ASDisplayNode> {
         let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
         present(nav, animated: true, completion: nil)
     }
+    
+    private func viewContactInfo(_ contact: Contact) {
+        let contactInfoVC = ContactInfoViewController(contact: contact)
+        navigationController?.pushViewController(contactInfoVC, animated: true)
+    }
 }
 
 // MARK: - ASTableDelegate & ASTableDataSource
@@ -79,6 +84,9 @@ extension ChatRoomContactInfoViewController: ASTableDelegate, ASTableDataSource 
                 let addContactCell = ChatRoomAddContactCellNode(members: members)
                 addContactCell.addButtonHandler = { [weak self] in
                     self?.presentMultiSelectContacts()
+                }
+                addContactCell.contactTapHandlder = { [weak self] contact in
+                    self?.viewContactInfo(contact)
                 }
                 return addContactCell
             } else {

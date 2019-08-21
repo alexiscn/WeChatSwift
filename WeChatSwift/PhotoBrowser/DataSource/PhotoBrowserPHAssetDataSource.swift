@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import FLAnimatedImage
 
 class PhotoBrowserPHAssetDataSource: NSObject, PhotoBrowserDataSource {
     
@@ -33,14 +34,25 @@ class PhotoBrowserPHAssetDataSource: NSObject, PhotoBrowserDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(PhotoBrowserViewCell.self), for: indexPath) as! PhotoBrowserViewCell
         let asset = assets[indexPath.row]
-        let size = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-        let options = PHImageRequestOptions()
-        options.deliveryMode = .highQualityFormat
-        options.isNetworkAccessAllowed = true
-        PHCachingImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { (image, _) in
-            DispatchQueue.main.async {
-                cell.imageView.image = image
-                cell.setNeedsLayout()
+        if asset.isGIF {
+            PHImageManager.default().requestImageData(for: asset, options: nil) { (data, _, _, _) in
+                DispatchQueue.main.async {
+                    if let data = data {
+                        cell.imageView.animatedImage = FLAnimatedImage(animatedGIFData: data)
+                        cell.setNeedsLayout()
+                    }
+                }
+            }
+        } else {
+            let size = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+            let options = PHImageRequestOptions()
+            options.deliveryMode = .highQualityFormat
+            options.isNetworkAccessAllowed = true
+            PHCachingImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { (image, _) in
+                DispatchQueue.main.async {
+                    cell.imageView.image = image
+                    cell.setNeedsLayout()
+                }
             }
         }
         
