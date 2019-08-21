@@ -19,7 +19,10 @@ extension UISearchBar {
         }
         for subView in views {
             if subView.isKind(of: cls) {
-                subView.removeFromSuperview()
+                //subView.removeFromSuperview()
+                let bg = UIView(frame: CGRect(x: 0, y: 0, width: subView.bounds.width, height: subView.bounds.width + 1))
+                bg.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
+                subView.addSubview(bg)
                 break
             }
         }

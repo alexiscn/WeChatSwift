@@ -70,6 +70,7 @@ class MomentCellNode: ASCellNode {
         
         if moment.comments.count > 0 {
             commentNode = MomentCommentNode(likes: moment.likes, comments: moment.comments)
+            commentNode?.isUserInteractionEnabled = true
         }
         
         bottomSeparator = ASImageNode()

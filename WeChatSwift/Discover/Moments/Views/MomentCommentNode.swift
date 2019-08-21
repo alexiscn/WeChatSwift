@@ -51,7 +51,7 @@ class MomentCommentNode: ASDisplayNode {
                     .font: nameFont,
                     .foregroundColor: Colors.DEFAULT_LINK_COLOR,
                     .underlineColor: UIColor.clear,
-                    .link: URL(string: "wechat://WC/" + user.userID) as Any
+                    NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + user.userID) as Any
                     ]))
                 if index != likes.count - 1 {
                     body.append(NSAttributedString(string: ",", attributes: textAttributes))
@@ -59,7 +59,7 @@ class MomentCommentNode: ASDisplayNode {
             }
             likeNode = ASTextNode()
             likeNode?.highlightStyle = .dark
-//            likeNode?.linkAttributeNames = [kLinkAttributeName]
+            likeNode?.linkAttributeNames = [kLinkAttributeName]
             likeNode?.isUserInteractionEnabled = true
             likeNode?.maximumNumberOfLines = 0
             likeNode?.attributedText = body
@@ -70,7 +70,7 @@ class MomentCommentNode: ASDisplayNode {
             body.append(NSAttributedString(string: comment.nickname, attributes: [
                 .font: nameFont,
                 .foregroundColor: Colors.DEFAULT_LINK_COLOR,
-                .link: URL(string: "wechat://WC/" + comment.userID) as Any,
+                NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + comment.userID) as Any,
                 .underlineColor: UIColor.clear
                 ]))
             
@@ -80,7 +80,7 @@ class MomentCommentNode: ASDisplayNode {
                 body.append(NSAttributedString(string: refName, attributes: [
                     .font: nameFont,
                     .foregroundColor: Colors.DEFAULT_LINK_COLOR,
-                    .link: URL(string: "wechat://WC/" + refUId) as Any,
+                    NSAttributedString.Key(rawValue: kLinkAttributeName): URL(string: "wechat://WC/" + refUId) as Any,
                     .underlineColor: UIColor.clear
                     ]))
             }
@@ -89,7 +89,7 @@ class MomentCommentNode: ASDisplayNode {
             
             let textNode = ASTextNode()
             textNode.highlightStyle = .dark
-//            textNode.linkAttributeNames = [kLinkAttributeName]
+            textNode.linkAttributeNames = [kLinkAttributeName]
             textNode.isUserInteractionEnabled = true
             textNode.maximumNumberOfLines = 0
             textNode.attributedText = body
@@ -108,6 +108,7 @@ class MomentCommentNode: ASDisplayNode {
         super.didLoad()
         
         likeNode?.delegate = self
+        likeNode?.layer.as_allowsHighlightDrawing = true
         commentElements.forEach { $0.delegate = self }
     }
     
