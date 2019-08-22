@@ -373,6 +373,8 @@
 		A3F9F17C230E8A300032299C /* SightCameraShotVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F17B230E8A300032299C /* SightCameraShotVideoView.swift */; };
 		A3F9F17E230E94F00032299C /* SightCameraGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F17D230E94F00032299C /* SightCameraGradientView.swift */; };
 		A3F9F180230E983D0032299C /* SightCameraRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F17F230E983D0032299C /* SightCameraRecordView.swift */; };
+		A3F9F182230EA0C50032299C /* SightCameraTouchDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F181230EA0C50032299C /* SightCameraTouchDownView.swift */; };
+		A3F9F184230EA64A0032299C /* SightCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F183230EA64A0032299C /* SightCamera.swift */; };
 		A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA222F3D54500116329 /* VisualEffectView.swift */; };
 		A3FB0AA522F3D9AE00116329 /* PaymentMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA422F3D9AE00116329 /* PaymentMainViewController.swift */; };
 		A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA622F3DA9C00116329 /* MallFunctionActivityNode.swift */; };
@@ -763,6 +765,8 @@
 		A3F9F17B230E8A300032299C /* SightCameraShotVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraShotVideoView.swift; sourceTree = "<group>"; };
 		A3F9F17D230E94F00032299C /* SightCameraGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraGradientView.swift; sourceTree = "<group>"; };
 		A3F9F17F230E983D0032299C /* SightCameraRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraRecordView.swift; sourceTree = "<group>"; };
+		A3F9F181230EA0C50032299C /* SightCameraTouchDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraTouchDownView.swift; sourceTree = "<group>"; };
+		A3F9F183230EA64A0032299C /* SightCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCamera.swift; sourceTree = "<group>"; };
 		A3FB0AA222F3D54500116329 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		A3FB0AA422F3D9AE00116329 /* PaymentMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMainViewController.swift; sourceTree = "<group>"; };
 		A3FB0AA622F3DA9C00116329 /* MallFunctionActivityNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MallFunctionActivityNode.swift; sourceTree = "<group>"; };
@@ -1750,6 +1754,8 @@
 				A3F9F17B230E8A300032299C /* SightCameraShotVideoView.swift */,
 				A3F9F17D230E94F00032299C /* SightCameraGradientView.swift */,
 				A3F9F17F230E983D0032299C /* SightCameraRecordView.swift */,
+				A3F9F181230EA0C50032299C /* SightCameraTouchDownView.swift */,
+				A3F9F183230EA64A0032299C /* SightCamera.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -2095,6 +2101,7 @@
 				A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */,
 				A373D3D222F65A5300451515 /* UserSettings.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
+				A3F9F184230EA64A0032299C /* SightCamera.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
 				A3E2000B230A5387005B2B70 /* SessionBannerCellNode.swift in Sources */,
 				A372145822FFC2CB00340023 /* SettingLabTipsCellNode.swift in Sources */,
@@ -2257,6 +2264,7 @@
 				A3E20017230AC4E5005B2B70 /* UIView+Extensions.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
+				A3F9F182230EA0C50032299C /* SightCameraTouchDownView.swift in Sources */,
 				A34C7B0222F829FB00652B4F /* WCTableCellNode.swift in Sources */,
 				A3485FB322F03E29002A804B /* PayOfflinePayViewController.swift in Sources */,
 				A37221A322D5474A003403D4 /* ChatRoomTool.swift in Sources */,
