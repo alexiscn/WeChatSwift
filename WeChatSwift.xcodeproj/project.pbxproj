@@ -371,6 +371,8 @@
 		A3F9EFFF230E66DD0032299C /* ChatRoomEmoticonPreviewBottomNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9EFFE230E66DD0032299C /* ChatRoomEmoticonPreviewBottomNode.swift */; };
 		A3F9F002230E6F330032299C /* SightCameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F001230E6F330032299C /* SightCameraPreviewView.swift */; };
 		A3F9F17C230E8A300032299C /* SightCameraShotVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F17B230E8A300032299C /* SightCameraShotVideoView.swift */; };
+		A3F9F17E230E94F00032299C /* SightCameraGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F17D230E94F00032299C /* SightCameraGradientView.swift */; };
+		A3F9F180230E983D0032299C /* SightCameraRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F17F230E983D0032299C /* SightCameraRecordView.swift */; };
 		A3FB0AA322F3D54500116329 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA222F3D54500116329 /* VisualEffectView.swift */; };
 		A3FB0AA522F3D9AE00116329 /* PaymentMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA422F3D9AE00116329 /* PaymentMainViewController.swift */; };
 		A3FB0AA722F3DA9C00116329 /* MallFunctionActivityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0AA622F3DA9C00116329 /* MallFunctionActivityNode.swift */; };
@@ -759,6 +761,8 @@
 		A3F9EFFE230E66DD0032299C /* ChatRoomEmoticonPreviewBottomNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewBottomNode.swift; sourceTree = "<group>"; };
 		A3F9F001230E6F330032299C /* SightCameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraPreviewView.swift; sourceTree = "<group>"; };
 		A3F9F17B230E8A300032299C /* SightCameraShotVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraShotVideoView.swift; sourceTree = "<group>"; };
+		A3F9F17D230E94F00032299C /* SightCameraGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraGradientView.swift; sourceTree = "<group>"; };
+		A3F9F17F230E983D0032299C /* SightCameraRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraRecordView.swift; sourceTree = "<group>"; };
 		A3FB0AA222F3D54500116329 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		A3FB0AA422F3D9AE00116329 /* PaymentMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMainViewController.swift; sourceTree = "<group>"; };
 		A3FB0AA622F3DA9C00116329 /* MallFunctionActivityNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MallFunctionActivityNode.swift; sourceTree = "<group>"; };
@@ -1744,6 +1748,8 @@
 				A352AD16230659F400332B21 /* SightCameraViewController.swift */,
 				A3F9F001230E6F330032299C /* SightCameraPreviewView.swift */,
 				A3F9F17B230E8A300032299C /* SightCameraShotVideoView.swift */,
+				A3F9F17D230E94F00032299C /* SightCameraGradientView.swift */,
+				A3F9F17F230E983D0032299C /* SightCameraRecordView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -2033,6 +2039,7 @@
 				A3D9953D230B9D0E00E4F628 /* FTSFeatureCellNode.swift in Sources */,
 				A352AD252306CDA700332B21 /* StorageUsageSummaryNode.swift in Sources */,
 				A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */,
+				A3F9F17E230E94F00032299C /* SightCameraGradientView.swift in Sources */,
 				A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */,
 				A3C914562305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
@@ -2044,6 +2051,7 @@
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
 				A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */,
 				A3CA51AC22CD99FD00C67D92 /* AddContactViewController.swift in Sources */,
+				A3F9F180230E983D0032299C /* SightCameraRecordView.swift in Sources */,
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A34139342307E6CC008E0EBF /* PhotoBrowserDelegate.swift in Sources */,

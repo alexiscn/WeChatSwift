@@ -29,6 +29,10 @@ class SightCameraViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
+        let bgView = SightCameraGradientView(frame: view.bounds)
+        view.addSubview(bgView)
+        
         previewView = SightCameraPreviewView(frame: view.bounds)
         view.addSubview(previewView)
         previewView.session = session
@@ -85,6 +89,10 @@ class SightCameraViewController: ASViewController<ASDisplayNode> {
         
     
         session.commitConfiguration()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 }
 

@@ -247,6 +247,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             present(nav, animated: true, completion: nil)
         case .camera:
             let sightCameraVC = SightCameraViewController()
+            sightCameraVC.modalPresentationCapturesStatusBarAppearance = true
             sightCameraVC.modalTransitionStyle = .coverVertical
             sightCameraVC.modalPresentationStyle = .overCurrentContext
             present(sightCameraVC, animated: true, completion: nil)
