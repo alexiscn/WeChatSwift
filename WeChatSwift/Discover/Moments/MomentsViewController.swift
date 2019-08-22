@@ -401,8 +401,8 @@ extension MomentsViewController: MomentOperationMenuViewDelegate {
         comment.content = "哈哈哈哈"
         comment.userID = AppContext.current.userID
         comment.nickname = AppContext.current.name
+        moment.comments.append(comment)
         menuMomentCellNode?.addComment(comment)
-        
         hideOperationMenu(animated: true)
     }
 }

@@ -191,7 +191,7 @@ extension MomentCommentNode: ASTextNodeDelegate {
     }
     
     func textNode(_ textNode: ASTextNode!, tappedLinkAttribute attribute: String!, value: Any!, at point: CGPoint, textRange: NSRange) {
-        if let value = value as? String, let url = URL(string: value) {
+        if let url = value as? URL {
             delegate?.momentComment(self, tappedLink: url)
         }
     }

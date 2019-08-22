@@ -225,7 +225,12 @@ class MomentCellNode: ASCellNode {
 extension MomentCellNode: MomentCommentNodeDelegate {
     
     func momentComment(_ commentNode: MomentCommentNode, tappedLink url: URL?) {
+        guard let url = url else { return }
         
+        if url.absoluteString.starts(with: "wechat://WC/") {
+            let uid = url.absoluteString.replacingOccurrences(of: "wechat://WC/", with: "")
+            delegate?.momentCellNode(self, didPressedUser: uid)
+        }
     }
     
     func momentComment(_ commentNode: MomentCommentNode, didTapComment comment: MomentComment) {
