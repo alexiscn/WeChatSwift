@@ -15,6 +15,8 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
     
     private let coverNode: ASNetworkImageNode
     
+    private let descNode: EmoticonDetailPackageDescNode
+    
     private let artistNode: EmoticonDetailArtistNode
     
     private let copyRightNode: ASTextNode
@@ -24,6 +26,9 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
         scrollNode = ASScrollNode()
         
         coverNode = ASNetworkImageNode()
+        coverNode.backgroundColor = .red
+        
+        descNode = EmoticonDetailPackageDescNode(string: "11")
         
         copyRightNode = ASTextNode()
         
@@ -34,6 +39,7 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
         node.addSubnode(scrollNode)
         
         scrollNode.addSubnode(coverNode)
+        scrollNode.addSubnode(descNode)
         
     }
     
@@ -48,6 +54,8 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         
+        scrollNode.frame = node.bounds
+        
         navigationItem.title = "小刘鸭第二弹"
         
         let rightButton = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_share"), style: .plain, target: self, action: #selector(handleRightButtonClicked))
@@ -55,6 +63,12 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
     }
     
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        coverNode.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 211)
+        descNode.frame = CGRect(x: 0, y: 211, width: view.bounds.width, height: descNode.frame.height)
+    }
 
 }
 

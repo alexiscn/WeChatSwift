@@ -14,6 +14,8 @@ class EmoticonDetailRewardEntranceNode: ASDisplayNode {
     
     private let rewardButtonNode = ASButtonNode()
     
+    private let donorsCountNode = ASTextNode()
+    
     init(donation: [Int]) {
         super.init()
         automaticallyManagesSubnodes = true

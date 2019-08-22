@@ -16,7 +16,7 @@ extension UISearchBar {
         }
         let iconWidth = textFiled.leftView?.frame.width ?? 0.0
         let placeholderWidth = textFiled.attributedPlaceholder?.size().width ?? 0.0
-        let x = (bounds.width - iconWidth - placeholderWidth)/2.0 - 8.0
+        let x = (bounds.width - iconWidth - placeholderWidth - 8.0)/2.0 - 12
         let offset = UIOffset(horizontal: x, vertical: 0)
         setPositionAdjustment(offset, for: .search)
     }

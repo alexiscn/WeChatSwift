@@ -6,11 +6,11 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 import FLAnimatedImage
 import WXActionSheet
 
-class ChatRoomEmoticonPreviewViewController: UIViewController {
+class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
 
     private var animatedImageView: FLAnimatedImageView!
     
@@ -18,9 +18,13 @@ class ChatRoomEmoticonPreviewViewController: UIViewController {
     
     private let emoticonMsg: EmoticonMessage
     
+    private let bottomNode: ChatRoomEmoticonPreviewBottomNode
+    
     init(emoticon: EmoticonMessage) {
         self.emoticonMsg = emoticon
-        super.init(nibName: nil, bundle: nil)
+        bottomNode = ChatRoomEmoticonPreviewBottomNode(storeEmoticonItem: StoreEmoticonItem(image: nil, title: nil, desc: nil))
+        super.init(node: ASDisplayNode())
+        node.addSubnode(bottomNode)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,14 +34,11 @@ class ChatRoomEmoticonPreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        node.backgroundColor = .white
         
-        setupNavigationBar()
         setupAnimatedImageView()
         setupNameLabel()
-    }
-    
-    private func setupNavigationBar() {
+        
         let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
     }

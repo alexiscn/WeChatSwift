@@ -131,5 +131,10 @@ extension WeChatEmoticonsViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let emoticonItem = emoticons[indexPath.row]
+        
+        let emoticonDetailVC = EmoticonDetailViewController()
+        navigationController?.pushViewController(emoticonDetailVC, animated: true)
     }
 }

@@ -233,7 +233,6 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     func keyboard(_ keyboard: ChatRoomKeyboardNode, didSelectToolItem tool: ChatRoomTool) {
         switch tool {
         case .album:
-            
             let selectionHandler = { [weak self] (selectedAssets: [MediaAsset]) in
                 self?.sendMediaAssets(selectedAssets)
                 self?.dismiss(animated: true, completion: nil)
@@ -246,6 +245,11 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             let nav = WCNavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             present(nav, animated: true, completion: nil)
+        case .camera:
+            let sightCameraVC = SightCameraViewController()
+            sightCameraVC.modalTransitionStyle = .coverVertical
+            sightCameraVC.modalPresentationStyle = .overCurrentContext
+            present(sightCameraVC, animated: true, completion: nil)
         case .location:
             showSendLocationActionSheet()
         default:
