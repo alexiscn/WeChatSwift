@@ -39,4 +39,37 @@ enum PublishMomentAction {
             return nil
         }
     }
+    
+    func attributedStringForTitle() -> NSAttributedString? {
+        guard let title = title else { return nil }
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.9)
+        ]
+        return NSAttributedString(string: title, attributes: attributes)
+    }
+    
+    var topLineSpacingBefore: CGFloat {
+        switch self {
+        case .location:
+            return 36.0
+        case .remind:
+            return 76.0
+        case .permission:
+            return 36.0
+        default:
+            return 0.0
+        }
+    }
+    
+    var bottomLineSpacingBefore: CGFloat {
+        switch self {
+        case .permission:
+            return 36.0
+        default:
+            return 0.0
+        }
+    }
+    
+    var bottomLineHidden: Bool { return self != .permission }
 }

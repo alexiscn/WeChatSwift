@@ -14,6 +14,10 @@ struct Constants {
     
     static let screenWidth = UIScreen.main.bounds.width
     
+    static var screenSize: CGSize {
+        return CGSize(width: screenWidth, height: screenHeight)
+    }
+    
     static let iPhoneX = UIScreen.main.bounds.height >= 812
     
     static let lineHeight = 1/UIScreen.main.scale
