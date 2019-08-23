@@ -323,6 +323,7 @@
 		A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */; };
 		A3D67FBB230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D67FBA230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift */; };
 		A3D67FBD230FC8B900507B5F /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D67FBC230FC8B900507B5F /* GrowingTextView.swift */; };
+		A3D67FBF230FE24E00507B5F /* PublishMomentDragCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D67FBE230FE24E00507B5F /* PublishMomentDragCollectionView.swift */; };
 		A3D897E222E1730B00814669 /* 15031638347220abdd83283a10.json in Resources */ = {isa = PBXBuildFile; fileRef = A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */; };
 		A3D897E422E1733A00814669 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897E322E1733A00814669 /* Sticker.swift */; };
 		A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D897E522E1916300814669 /* EmoticonGridItemNode.swift */; };
@@ -719,6 +720,7 @@
 		A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		A3D67FBA230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraPhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		A3D67FBC230FC8B900507B5F /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
+		A3D67FBE230FE24E00507B5F /* PublishMomentDragCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishMomentDragCollectionView.swift; sourceTree = "<group>"; };
 		A3D897E122E1730B00814669 /* 15031638347220abdd83283a10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 15031638347220abdd83283a10.json; sourceTree = "<group>"; };
 		A3D897E322E1733A00814669 /* Sticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
 		A3D897E522E1916300814669 /* EmoticonGridItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonGridItemNode.swift; sourceTree = "<group>"; };
@@ -1280,6 +1282,7 @@
 				A37FFB6D22EEB62B0001DD27 /* PublishMomentViewController.swift */,
 				A3C914572305886200B6E077 /* PublishMomentAction.swift */,
 				A3C914592305887000B6E077 /* PublishMomentCellNode.swift */,
+				A3D67FBE230FE24E00507B5F /* PublishMomentDragCollectionView.swift */,
 			);
 			path = PublishMoment;
 			sourceTree = "<group>";
@@ -2309,6 +2312,7 @@
 				A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,
+				A3D67FBF230FE24E00507B5F /* PublishMomentDragCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

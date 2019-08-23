@@ -51,6 +51,9 @@ class PublishMomentViewController: ASViewController<ASDisplayNode> {
         tableNode.view.tableHeaderView = headerView
         
         let textView = GrowingTextView(frame: CGRect(x: 18, y: 20, width: view.bounds.width - 36, height: 70))
+        textView.tintColor = Colors.Brand
+        textView.placeholder = "这一刻的想法..."
+        textView.font = UIFont.systemFont(ofSize: 17)
         headerView.addSubview(textView)
         self.growingTextView = textView
         
@@ -69,6 +72,17 @@ class PublishMomentViewController: ASViewController<ASDisplayNode> {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: publishButton)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        switch source {
+        case .text:
+            growingTextView?.becomeFirstResponder()
+        case .media(_):
+            break
+        }
+    }
+    
     private func setupDataSource() {
         dataSource = [.location, .remind, .permission]
     }
@@ -78,10 +92,12 @@ class PublishMomentViewController: ASViewController<ASDisplayNode> {
 extension PublishMomentViewController {
     
     @objc private func handleCancelButtonClicked() {
+        growingTextView?.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     
     @objc private func handlePublishButtonClicked() {
+        growingTextView?.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     

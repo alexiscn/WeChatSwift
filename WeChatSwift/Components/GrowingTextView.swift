@@ -42,6 +42,7 @@ class GrowingTextView: UITextView {
         didSet { setNeedsDisplay() }
     }
     
+    
     private var heightConstraint: NSLayoutConstraint?
     // Calculate and adjust textview's height
     private var oldText: String = ""
