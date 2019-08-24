@@ -35,6 +35,8 @@ class RemarkViewController: ASViewController<ASDisplayNode> {
         tableNode.frame = node.bounds
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
+        tableNode.view.keyboardDismissMode = .interactive
+        tableNode.view.isEditing = true
         
         navigationItem.title = "设置备注和标签"
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
@@ -94,7 +96,7 @@ extension RemarkViewController: ASTableDelegate, ASTableDataSource {
             case .tag:
                 return RemarkTagCellNode()
             case .phoneNumber:
-                return RemarkPhoneNumberCellNode()
+                return RemarkPhoneNumberCellNode(string: "1")
             case .description:
                 return RemarkEditDescriptionCellNode()
             }
@@ -135,6 +137,13 @@ extension RemarkViewController: ASTableDelegate, ASTableDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.section == 2 {
+            return .insert
+        }
+        return .none
     }
 }
 
