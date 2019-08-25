@@ -156,6 +156,9 @@
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
 		A372227C22D62033003403D4 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372227B22D62033003403D4 /* Expression.swift */; };
 		A372228B22D984D9003403D4 /* flutter.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A372228A22D984D9003403D4 /* flutter.jpeg */; };
+		A37343E923129CC10064E510 /* ui-resources_checkbox_unselected.svg in Resources */ = {isa = PBXBuildFile; fileRef = A37343E723129CC10064E510 /* ui-resources_checkbox_unselected.svg */; };
+		A37343EA23129CC10064E510 /* ui-resources_checkbox_selected.svg in Resources */ = {isa = PBXBuildFile; fileRef = A37343E823129CC10064E510 /* ui-resources_checkbox_selected.svg */; };
+		A37343EC23129D000064E510 /* MultiSelectContactsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37343EB23129D000064E510 /* MultiSelectContactsCellNode.swift */; };
 		A373D3CE22F5221000451515 /* ScrollActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3CD22F5221000451515 /* ScrollActionSheet.swift */; };
 		A373D3D022F5815D00451515 /* DiscoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3CF22F5815D00451515 /* DiscoverManager.swift */; };
 		A373D3D222F65A5300451515 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373D3D122F65A5300451515 /* UserSettings.swift */; };
@@ -553,6 +556,9 @@
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
 		A372227B22D62033003403D4 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
 		A372228A22D984D9003403D4 /* flutter.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flutter.jpeg; sourceTree = "<group>"; };
+		A37343E723129CC10064E510 /* ui-resources_checkbox_unselected.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_checkbox_unselected.svg"; sourceTree = "<group>"; };
+		A37343E823129CC10064E510 /* ui-resources_checkbox_selected.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_checkbox_selected.svg"; sourceTree = "<group>"; };
+		A37343EB23129D000064E510 /* MultiSelectContactsCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectContactsCellNode.swift; sourceTree = "<group>"; };
 		A373D3CD22F5221000451515 /* ScrollActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollActionSheet.swift; sourceTree = "<group>"; };
 		A373D3CF22F5815D00451515 /* DiscoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverManager.swift; sourceTree = "<group>"; };
 		A373D3D122F65A5300451515 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -1122,6 +1128,7 @@
 			isa = PBXGroup;
 			children = (
 				A3476FFE22FAD681001B94EC /* MultiSelectContactsViewController.swift */,
+				A37343EB23129D000064E510 /* MultiSelectContactsCellNode.swift */,
 			);
 			path = ContactSelect;
 			sourceTree = "<group>";
@@ -1537,6 +1544,8 @@
 		A3CA51C322CD9C1C00C67D92 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A37343E823129CC10064E510 /* ui-resources_checkbox_selected.svg */,
+				A37343E723129CC10064E510 /* ui-resources_checkbox_unselected.svg */,
 				A3542F50230D7E6B0034ED82 /* icons_outlined_share.svg */,
 				A34FB56F230C32770065DB09 /* icons_outlined_comment.svg */,
 				A3E20014230A7877005B2B70 /* icons_filled_close.svg */,
@@ -1874,10 +1883,12 @@
 				A3CA51DB22CD9FA700C67D92 /* icons_outlined_news.svg in Resources */,
 				A3D897E222E1730B00814669 /* 15031638347220abdd83283a10.json in Resources */,
 				A374865722D4A27C002EEC4F /* icons_outlined_voice.svg in Resources */,
+				A37343E923129CC10064E510 /* ui-resources_checkbox_unselected.svg in Resources */,
 				A3CA522622CE19BE00C67D92 /* icons_filled_camera.svg in Resources */,
 				A3CA51E722CD9FDC00C67D92 /* icons_outlined_miniprogram.svg in Resources */,
 				A3CCE02422DDECFA0003DC25 /* red_envelopes_detail_top_bg.svg in Resources */,
 				A3C9145E2305892000B6E077 /* icons_outlined_at.svg in Resources */,
+				A37343EA23129CC10064E510 /* ui-resources_checkbox_selected.svg in Resources */,
 				A374865F22D4AEF3002EEC4F /* icons_filled_album.svg in Resources */,
 				A3CA51D722CD9F9400C67D92 /* icons_outlined_scan.svg in Resources */,
 				A3FB0AB022F40A2500116329 /* icons_filled_wallet.svg in Resources */,
@@ -2186,6 +2197,7 @@
 				A3542F53230D7FB30034ED82 /* EmoticonDetailArtistNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */,
+				A37343EC23129D000064E510 /* MultiSelectContactsCellNode.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
 				A341394123081E63008E0EBF /* PhotoBrowserLocalDataSource.swift in Sources */,

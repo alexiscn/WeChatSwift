@@ -23,7 +23,7 @@ class RemarkPhoneNumberCellNode: ASCellNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let layout = ASInsetLayoutSpec(insets: .zero, child: inputTextNode)
-        layout.style.preferredSize = CGSize(width: Constants.screenWidth , height: 56)
+        layout.style.preferredSize = CGSize(width: Constants.screenWidth, height: 56)
         return layout
     }
     

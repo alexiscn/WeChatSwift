@@ -41,7 +41,7 @@ class RemarkEditNameCellNode: ASCellNode, ASEditableTextNodeDelegate {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        editNameNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 40, height: 56)
+        editNameNode.style.preferredSize = CGSize(width: Constants.screenWidth - 40, height: 56)
         let insets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return ASInsetLayoutSpec(insets: insets, child: editNameNode)
     }

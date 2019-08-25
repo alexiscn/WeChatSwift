@@ -14,6 +14,8 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
     
     private var doneButton: UIButton?
     
+    private var dataSource: [ContactSection] = []
+    
     init(string: String) {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
@@ -37,21 +39,15 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
         cancelButton.tintColor = .black
         navigationItem.leftBarButtonItem = cancelButton
         
-        let doneButton = UIButton(type: .system)
-        doneButton.layer.cornerRadius = 5
-        doneButton.layer.masksToBounds = true
-        doneButton.frame.size = CGSize(width: 56, height: 30)
-        doneButton.backgroundColor = Colors.Brand
-        doneButton.setBackgroundImage(UIImage(color: Colors.Brand_120), for: .disabled)
-        doneButton.setBackgroundImage(UIImage(color: Colors.Brand), for: .normal)
-        doneButton.setTitle("完成", for: .normal)
-        doneButton.setTitleColor(.white, for: .normal)
-        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        let doneButton = wc_doneBarButton(title: "完成")
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: doneButton)
         doneButton.addTarget(self, action: #selector(doneButtonClicked), for: .touchUpInside)
         self.doneButton = doneButton
     }
     
+    private func setupDataSource() {
+        
+    }
 }
 
 // MARK: - Event Handlers
@@ -71,16 +67,18 @@ extension MultiSelectContactsViewController {
 extension MultiSelectContactsViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 0
+        return dataSource.count
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return dataSource[section].models.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let contact = dataSource[indexPath.section].models[indexPath.row]
+        let isLastCell = indexPath.row == dataSource[indexPath.section].models.count - 1
         let block: ASCellNodeBlock = {
-            return ASCellNode()
+            return MultiSelectContactsCellNode(contact: contact, isLastCell: isLastCell)
         }
         return block
     }

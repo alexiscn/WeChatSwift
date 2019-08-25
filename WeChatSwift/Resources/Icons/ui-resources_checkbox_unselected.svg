@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>ui-rescoures_checkbox_unselected</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="ui-rescoures_checkbox_unselected" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M22.8,12.1481481 C22.8,6.03518614 17.9648139,1.2 11.8518519,1.2 C5.99438304,1.2 1.2,6.07685712 1.2,12.1481481 C1.2,17.9648139 6.03518614,22.8 11.8518519,22.8 C17.9231429,22.8 22.8,18.005617 22.8,12.1481481 Z M24,12.1481481 C24,18.6275556 18.6275556,24 11.8518519,24 C5.37244444,24 0,18.6275556 0,12.1481481 C0,5.37244444 5.37244444,0 11.8518519,0 C18.6275556,0 24,5.37244444 24,12.1481481 Z" id="Fill-3" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

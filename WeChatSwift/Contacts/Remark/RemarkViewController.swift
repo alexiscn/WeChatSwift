@@ -36,7 +36,7 @@ class RemarkViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         tableNode.view.keyboardDismissMode = .interactive
-        tableNode.view.isEditing = true
+        //tableNode.view.setEditing(true, animated: false)
         
         navigationItem.title = "设置备注和标签"
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))

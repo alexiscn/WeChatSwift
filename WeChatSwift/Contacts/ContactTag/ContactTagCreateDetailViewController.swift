@@ -29,9 +29,37 @@ class ContactTagCreateDetailViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = node.bounds
         tableNode.backgroundColor = .clear
+        
+        navigationItem.title = "新建标签"
+        
+        let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(handleCancelButtonClicked))
+        navigationItem.leftBarButtonItem = cancelButton
+        
+        let rightButton = wc_doneBarButton(title: "完成")
+        rightButton.addTarget(self, action: #selector(handleDoneButtonClicked), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+    }
+    
+    private func presentSelectContact() {
+        let multiSelectContactsVC = MultiSelectContactsViewController(string: "11")
+        let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+        present(nav, animated: true, completion: nil)
     }
 }
 
+// MARK: - Event Handlers
+extension ContactTagCreateDetailViewController {
+    
+    @objc private func handleCancelButtonClicked() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func handleDoneButtonClicked() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - ASTableDelegate & ASTableDataSource
 extension ContactTagCreateDetailViewController: ASTableDelegate, ASTableDataSource {
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
