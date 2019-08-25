@@ -18,7 +18,10 @@ class MultiSelectContactsCellNode: ASCellNode {
     
     private let lineNode = ASDisplayNode()
     
+    private let isLastCell: Bool
+    
     init(contact: ContactModel, isLastCell: Bool) {
+        self.isLastCell = isLastCell
         super.init()
         automaticallyManagesSubnodes = true
         
@@ -27,6 +30,9 @@ class MultiSelectContactsCellNode: ASCellNode {
         checkboxButton.setImage(normalImage, for: .normal)
         checkboxButton.setImage(selectedImage, for: .selected)
         
+        avatarImageNode.image = contact.image
+        avatarImageNode.cornerRadius = 4
+        avatarImageNode.cornerRoundingType = .precomposited
         nameNode.attributedText = contact.wc_attributedStringForTitle()
         
         lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
@@ -34,24 +40,26 @@ class MultiSelectContactsCellNode: ASCellNode {
     
     override func didLoad() {
         super.didLoad()
+        backgroundColor = .white
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         checkboxButton.style.spacingBefore = 16
         checkboxButton.style.preferredSize = CGSize(width: 24.0, height: 24.0)
-        
         avatarImageNode.style.preferredSize = CGSize(width: 40.0, height: 40.0)
-        
         nameNode.style.flexGrow = 1.0
         
         let stack = ASStackLayoutSpec.horizontal()
+        stack.spacing = 16.0
         stack.alignItems = .center
         stack.children = [checkboxButton, avatarImageNode, nameNode]
+        stack.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56)
         
-        return ASLayoutSpec()
+        lineNode.isHidden = isLastCell
+        lineNode.style.preferredSize = CGSize(width: constrainedSize.max.width - 108, height: Constants.lineHeight)
+        lineNode.style.layoutPosition = CGPoint(x: 108.0, y: 56.0 - Constants.lineHeight)
+        
+        return ASAbsoluteLayoutSpec(children: [stack, lineNode])
     }
-    
-    //
-    
 }
