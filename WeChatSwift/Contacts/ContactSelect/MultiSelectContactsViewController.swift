@@ -10,13 +10,15 @@ import AsyncDisplayKit
 
 class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
     
+    var selectionHandler: (([MultiSelectContact]) -> Void)?
+    
     private let tableNode = ASTableNode(style: .grouped)
     
     private var doneButton: UIButton?
     
     private var dataSource: [MultiSelectContactSection] = []
     
-    init(string: String) {
+    init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self
@@ -82,6 +84,8 @@ extension MultiSelectContactsViewController {
     }
     
     @objc private func doneButtonClicked() {
+        let contacts = dataSource.flatMap { return $0.models }.filter { return $0.isSelected }
+        selectionHandler?(contacts)
         dismiss(animated: true, completion: nil)
     }
     

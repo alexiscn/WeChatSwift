@@ -47,13 +47,22 @@ class ChatRoomContactInfoViewController: ASViewController<ASDisplayNode> {
         dataSource.append(ChatRoomContactInfoSection(items: [.report]))
     }
     
+    private func updateMembers(selectedContacts: [MultiSelectContact]) {
+        let insert = selectedContacts.map { return AddChatRoomMemberItem.contact($0) }
+        members.insert(contentsOf: insert, at: members.count - 1)
+        tableNode.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .none)
+    }
+    
     private func setupMembers() {
         members.append(.contact(contact))
         members.append(.addButton)
     }
     
     private func presentMultiSelectContacts() {
-        let multiSelectContactsVC = MultiSelectContactsViewController(string: "TODO")
+        let multiSelectContactsVC = MultiSelectContactsViewController()
+        multiSelectContactsVC.selectionHandler = { [weak self] selectedContacts in
+            self?.updateMembers(selectedContacts: selectedContacts)
+        }
         let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
         present(nav, animated: true, completion: nil)
     }

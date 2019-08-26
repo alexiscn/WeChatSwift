@@ -6,7 +6,10 @@
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
+import UIKit
 import AVFoundation
+
+public typealias SightCameraTakePhotoCompletion = (UIImage?) -> Void
 
 public class SightCamera: NSObject {
  
@@ -19,6 +22,8 @@ public class SightCamera: NSObject {
     private var videoOutput: AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
     private var audioOutput: AVCaptureAudioDataOutput?
     private var fileOutput: AVCaptureMovieFileOutput = AVCaptureMovieFileOutput()
+    private var photoCaptureProcessor: SightCameraPhotoCaptureProcessor?
+    private var cameraPosition: AVCaptureDevice.Position = .unspecified
     
     public var isRunning: Bool {
         return false
@@ -99,13 +104,16 @@ public extension SightCamera {
                 if captureSession.canAddInput(deviceInput) {
                     captureSession.addInput(deviceInput)
                     videoInput = deviceInput
+                    cameraPosition = position
                 } else {
                     captureSession.addInput(videoDeviceInput)
+                    cameraPosition = currentVideoDevice.position
                 }
             }
         } catch {
             print(error)
             captureSession.addInput(videoDeviceInput)
+            cameraPosition = currentVideoDevice.position
         }
         captureSession.commitConfiguration()
     }
@@ -151,11 +159,23 @@ public extension SightCamera {
         
     }
     
-    func takePhoto() {
+    func takePhoto(completion: @escaping SightCameraTakePhotoCompletion) {
         let photoSettings = AVCapturePhotoSettings()
-        let size = Constants.screenSize
-        //photoSettings.previewPhotoFormat
-        //photoOutput.capturePhoto(with: <#T##AVCapturePhotoSettings#>, delegate: <#T##AVCapturePhotoCaptureDelegate#>)
+        let previewPixelType = photoSettings.availablePreviewPhotoPixelFormatTypes.first!
+        let previewPhotoFormat: [String: Any] = [
+            kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+            kCVPixelBufferWidthKey as String: Constants.screenWidth,
+            kCVPixelBufferHeightKey as String: Constants.screenHeight
+        ]
+        photoSettings.previewPhotoFormat = previewPhotoFormat
+        photoSettings.isAutoStillImageStabilizationEnabled = true
+        
+        let processor = SightCameraPhotoCaptureProcessor { [weak self] in
+            completion(self?.photoCaptureProcessor?.image)
+        }
+        processor.cameraPosition = cameraPosition
+        self.photoCaptureProcessor = processor
+        photoOutput.capturePhoto(with: photoSettings, delegate: processor)
     }
 }
 

@@ -41,7 +41,10 @@ class ContactTagCreateDetailViewController: ASViewController<ASDisplayNode> {
     }
     
     private func presentSelectContact() {
-        let multiSelectContactsVC = MultiSelectContactsViewController(string: "11")
+        let multiSelectContactsVC = MultiSelectContactsViewController()
+        multiSelectContactsVC.selectionHandler = { selectedContacts in
+            
+        }
         let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
         present(nav, animated: true, completion: nil)
     }
