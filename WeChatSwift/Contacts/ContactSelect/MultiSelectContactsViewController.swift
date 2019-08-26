@@ -14,7 +14,7 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
     
     private var doneButton: UIButton?
     
-    private var dataSource: [ContactSection] = []
+    private var dataSource: [MultiSelectContactSection] = []
     
     init(string: String) {
         super.init(node: ASDisplayNode())
@@ -42,17 +42,35 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
         navigationItem.leftBarButtonItem = cancelButton
         
         let doneButton = wc_doneBarButton(title: "完成")
+        doneButton.isEnabled = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: doneButton)
         doneButton.addTarget(self, action: #selector(doneButtonClicked), for: .touchUpInside)
         self.doneButton = doneButton
     }
     
     private func setupDataSource() {
-        let users = MockFactory.shared.users.map { return $0.toContact() }
+        let users = MockFactory.shared.users.map { return $0.toMultiSelectContact() }
         let groupingDict = Dictionary(grouping: users, by: { $0.letter })
-        var contacts = groupingDict.map { return ContactSection(title: $0.key, models: $0.value.map { return ContactModel.contact($0) }) }
+        var contacts = groupingDict.map { return MultiSelectContactSection(title: $0.key, models: $0.value) }
         contacts.sort(by: { $0.title < $1.title })
         dataSource.append(contentsOf: contacts)
+    }
+    
+    private func updateRightButton() {
+        let count = dataSource.flatMap { return $0.models }.filter { return $0.isSelected }.count
+        UIView.performWithoutAnimation {
+            if count == 0 {
+                doneButton?.setTitle("完成", for: .normal)
+                doneButton?.isEnabled = false
+                doneButton?.frame.size = CGSize(width: 56.0, height: 32.0)
+            } else {
+                doneButton?.isEnabled = true
+                doneButton?.setTitle("完成(\(count))", for: .normal)
+                doneButton?.frame.size = CGSize(width: 78.0, height: 32.0)
+            }
+            doneButton?.setNeedsLayout()
+            doneButton?.layoutIfNeeded()
+        }
     }
 }
 
@@ -91,6 +109,11 @@ extension MultiSelectContactsViewController: ASTableDelegate, ASTableDataSource 
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let contact = dataSource[indexPath.section].models[indexPath.row]
+        contact.isSelected.toggle()
+        tableNode.reloadRows(at: [indexPath], with: .none)
+        updateRightButton()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

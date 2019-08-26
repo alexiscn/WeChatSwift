@@ -362,6 +362,7 @@
 		A3E2001A230AD18C005B2B70 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E20019230AD18C005B2B70 /* MainSearchViewController.swift */; };
 		A3E2001C230AD206005B2B70 /* MainSearchGuideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2001B230AD205005B2B70 /* MainSearchGuideNode.swift */; };
 		A3E2001E230AD270005B2B70 /* StreamVoiceInputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2001D230AD270005B2B70 /* StreamVoiceInputControl.swift */; };
+		A3E3C5B72313D715001869CE /* MultiSelectContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E3C5B62313D715001869CE /* MultiSelectContact.swift */; };
 		A3E58D2D22E72CC8006C362F /* AssetPickerBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */; };
 		A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */; };
 		A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */; };
@@ -762,6 +763,7 @@
 		A3E20019230AD18C005B2B70 /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		A3E2001B230AD205005B2B70 /* MainSearchGuideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchGuideNode.swift; sourceTree = "<group>"; };
 		A3E2001D230AD270005B2B70 /* StreamVoiceInputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVoiceInputControl.swift; sourceTree = "<group>"; };
+		A3E3C5B62313D715001869CE /* MultiSelectContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectContact.swift; sourceTree = "<group>"; };
 		A3E58D2C22E72CC8006C362F /* AssetPickerBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerBottomBar.swift; sourceTree = "<group>"; };
 		A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentRefreshHeaderView.swift; sourceTree = "<group>"; };
 		A3E58D9E23025CE500F73763 /* RefreshTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTableHeaderView.swift; sourceTree = "<group>"; };
@@ -1129,6 +1131,7 @@
 			children = (
 				A3476FFE22FAD681001B94EC /* MultiSelectContactsViewController.swift */,
 				A37343EB23129D000064E510 /* MultiSelectContactsCellNode.swift */,
+				A3E3C5B62313D715001869CE /* MultiSelectContact.swift */,
 			);
 			path = ContactSelect;
 			sourceTree = "<group>";
@@ -2155,6 +2158,7 @@
 				A3E58D9D23025B6A00F73763 /* MomentRefreshHeaderView.swift in Sources */,
 				A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */,
 				A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */,
+				A3E3C5B72313D715001869CE /* MultiSelectContact.swift in Sources */,
 				A3E20013230A72D8005B2B70 /* AccountLoginUsersViewController.swift in Sources */,
 				A33D2B1722F2C81C0099927A /* MomentDataSource.swift in Sources */,
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,

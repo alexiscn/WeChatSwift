@@ -52,6 +52,20 @@ class MockFactory {
             
             return contact
         }
+        
+        func toMultiSelectContact() -> MultiSelectContact {
+            let contact = MultiSelectContact()
+            contact.avatar = UIImage.as_imageNamed(avatar)
+            contact.name = name
+            contact.gender = gender
+            contact.wxid = wxid
+            
+            let str = NSMutableString(string: name) as CFMutableString
+            if CFStringTransform(str, nil, kCFStringTransformToLatin, false) && CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {
+                contact.letter = String(((str as NSString) as String).first!).uppercased()
+            }
+            return contact
+        }
     }
     
     struct RemoteImage {

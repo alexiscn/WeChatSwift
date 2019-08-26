@@ -138,7 +138,7 @@ extension UIViewController {
         doneButton.backgroundColor = Colors.Brand
         doneButton.setBackgroundImage(UIImage(color: Colors.Brand_120), for: .disabled)
         doneButton.setBackgroundImage(UIImage(color: Colors.Brand), for: .normal)
-        doneButton.setTitle("完成", for: .normal)
+        doneButton.setTitle(title, for: .normal)
         doneButton.setTitleColor(.white, for: .normal)
         doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         return doneButton

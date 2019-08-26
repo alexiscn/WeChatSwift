@@ -20,21 +20,21 @@ class MultiSelectContactsCellNode: ASCellNode {
     
     private let isLastCell: Bool
     
-    init(contact: ContactModel, isLastCell: Bool) {
+    init(contact: MultiSelectContact, isLastCell: Bool) {
         self.isLastCell = isLastCell
         super.init()
         automaticallyManagesSubnodes = true
         
-        let normalImage = UIImage.SVGImage(named: "ui-resources_checkbox_unselected", fillColor: Colors.DEFAULT_TEXT_DARK_COLOR)
+        let normalImage = UIImage.SVGImage(named: "ui-resources_checkbox_unselected", fillColor: Colors.DEFAULT_TEXT_DISABLED_COLOR)
         let selectedImage = UIImage.SVGImage(named: "ui-resources_checkbox_selected", fillColor: Colors.Brand)
         checkboxButton.setImage(normalImage, for: .normal)
         checkboxButton.setImage(selectedImage, for: .selected)
+        checkboxButton.isSelected = contact.isSelected
         
-        avatarImageNode.image = contact.image
+        avatarImageNode.image = contact.avatar
         avatarImageNode.cornerRadius = 4
         avatarImageNode.cornerRoundingType = .precomposited
-        nameNode.attributedText = contact.wc_attributedStringForTitle()
-        
+        nameNode.attributedText = contact.attributedTextForName()
         lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
     }
     
