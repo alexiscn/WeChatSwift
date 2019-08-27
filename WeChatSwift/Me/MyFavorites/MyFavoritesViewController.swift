@@ -69,10 +69,31 @@ extension MyFavoritesViewController: ASTableDataSource, ASTableDelegate {
 
 struct FavoriteItem {
     
+    var type: FavoriteType
+    
     var fromUserID: String?
     
     var toUserID: String?
     
+    var time: Int
+    
+    func attributedStringForTime() -> NSAttributedString {
+        let timeString = "Today"
+        return NSAttributedString(string: timeString, attributes: [
+            .font: UIFont.systemFont(ofSize: 11),
+            .foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
+        ])
+    }
+    
+    func attributedStringForAuthor() -> NSAttributedString? {
+        guard let fromUserID = fromUserID else {
+            return nil
+        }
+        return NSAttributedString(string: fromUserID, attributes: [
+            .font: UIFont.systemFont(ofSize: 11),
+            .foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR
+        ])
+    }
 }
 
 enum FavoriteType {
