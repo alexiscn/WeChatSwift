@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ScrollActionSheetDelegate: class {
+    func scrollActionSheetDidPressedItem(_ item: ScrollActionSheetItem)
+}
+
 class ScrollActionSheet: UIView {
+    
+    weak var delegate: ScrollActionSheetDelegate?
     
     private let containerView = UIView()
     private let backgroundView = UIView()
@@ -51,7 +57,7 @@ class ScrollActionSheet: UIView {
         }
     }
     
-    private func hide() {
+    public func hide() {
         UIView.animate(withDuration: 0.3, animations: {
             self.backgroundView.alpha = 0.0
             let y = UIScreen.main.bounds.height
@@ -59,10 +65,6 @@ class ScrollActionSheet: UIView {
         }) { _ in
             self.removeFromSuperview()
         }
-    }
-    
-    public func reloadItems() {
-        
     }
 }
 
@@ -101,25 +103,25 @@ extension ScrollActionSheet {
         titleLabel.textAlignment = .center
         containerView.addSubview(titleLabel)
         
-        let topScrollView = ScrollActionSheetScrollView(items: items)
-        topScrollView.itemDelegate = self
-        topScrollView.frame = CGRect(x: 0, y: 54, width: bounds.width, height: 108)
+        let topScrollViewFrame = CGRect(x: 0, y: 54, width: bounds.width, height: 108)
+        let topScrollView = ScrollActionSheetScrollView(items: items, frame: topScrollViewFrame)
+        topScrollView.itemDelegate = delegate
         containerView.addSubview(topScrollView)
         
         offsetY = 54.0 + 108.0
         
         if bottomItems.count > 0 {
             
-            let sep = UIView()
-            sep.frame = CGRect(x: 12.0, y: offsetY, width: bounds.width - 24.0, height: Constants.lineHeight)
-            sep.backgroundColor = UIColor(white: 0, alpha: 0.1)
-            containerView.addSubview(sep)
+            let separtorLine = UIView()
+            separtorLine.frame = CGRect(x: 12.0, y: offsetY, width: bounds.width - 24.0, height: Constants.lineHeight)
+            separtorLine.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            containerView.addSubview(separtorLine)
             
             offsetY += 15
             
-            let bottomScrollView = ScrollActionSheetScrollView(items: bottomItems)
-            bottomScrollView.itemDelegate = self
-            bottomScrollView.frame = CGRect(x: 0, y: offsetY, width: bounds.width, height: 108.0)
+            let bottomScrollViewFrame = CGRect(x: 0, y: offsetY, width: bounds.width, height: 108.0)
+            let bottomScrollView = ScrollActionSheetScrollView(items: bottomItems, frame: bottomScrollViewFrame)
+            bottomScrollView.itemDelegate = delegate
             containerView.addSubview(bottomScrollView)
             
             offsetY += 108.0
@@ -133,6 +135,7 @@ extension ScrollActionSheet {
         cancelButton.setTitleColor(UIColor(white: 0, alpha: 0.9), for: .normal)
         containerView.addSubview(cancelButton)
         cancelButton.frame = CGRect(x: 0, y: offsetY, width: bounds.width, height: 56.0 + Constants.bottomInset)
+        cancelButton.addTarget(self, action: #selector(handleCancelButtonClicked), for: .touchUpInside)
         
         offsetY += (56.0 + Constants.bottomInset)
         if Constants.iPhoneX {
@@ -147,6 +150,10 @@ extension ScrollActionSheet {
         containerView.addSubview(blurView)
         containerView.sendSubviewToBack(blurView)
     }
+    
+    @objc private func handleCancelButtonClicked() {
+        hide()
+    }
 }
 
 // MARK: - UIGestureRecognizerDelegate
@@ -156,13 +163,5 @@ extension ScrollActionSheet: UIGestureRecognizerDelegate {
             return false
         }
         return true
-    }
-}
-
-// MARK: - ScrollActionSheetItemViewDelegate
-extension ScrollActionSheet: ScrollActionSheetItemViewDelegate {
-    
-    func scrollActionSheetItemViewDidPressed(_ item: ScrollActionSheetItem) {
-        
     }
 }

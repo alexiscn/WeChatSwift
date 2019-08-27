@@ -107,7 +107,10 @@ extension WebViewController {
             ScrollActionSheetItem(action: .searchInPage, title: "搜索页面内容", iconImage: UIImage(named: "Action_SearchInPage_60x60_")),
             ScrollActionSheetItem(action: .adjustFont, title: "调整字体", iconImage: UIImage(named: "Action_Font_60x60_")),
         ]
-        let title = "此网页由 www.baidu.com 提供"
+        var title: String = ""
+        if let host = webView.url?.host {
+            title = "此网页由 \(host) 提供"
+        }
         let actionSheet = ScrollActionSheet(title: title, items: items, bottomItems: bottomItems)
         actionSheet.show()
     }

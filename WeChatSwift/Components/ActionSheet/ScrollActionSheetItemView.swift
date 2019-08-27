@@ -9,13 +9,9 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol ScrollActionSheetItemViewDelegate: class {
-    func scrollActionSheetItemViewDidPressed(_ item: ScrollActionSheetItem)
-}
-
 class ScrollActionSheetItemView: UIView {
     
-    weak var delegate: ScrollActionSheetItemViewDelegate?
+    weak var delegate: ScrollActionSheetDelegate?
     
     private let iconButton: UIButton
     
@@ -33,7 +29,7 @@ class ScrollActionSheetItemView: UIView {
         iconButton.setBackgroundImage(UIImage.as_imageNamed("Action_Tap_56x56_"), for: .highlighted)
         
         titleLabel = UILabel()
-        titleLabel.frame = CGRect(x: 2.0, y: 64.0, width: 52.0, height: 12.0)
+        titleLabel.frame = CGRect(x: 0, y: 64.0, width: 56.0, height: 12.0)
         titleLabel.font = UIFont.systemFont(ofSize: 10)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor(white: 0, alpha: 0.5)
@@ -52,6 +48,6 @@ class ScrollActionSheetItemView: UIView {
     }
     
     @objc private func handleIconButtonClicked() {
-        delegate?.scrollActionSheetItemViewDidPressed(item)
+        delegate?.scrollActionSheetDidPressedItem(item)
     }
 }
