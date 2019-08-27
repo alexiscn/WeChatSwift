@@ -92,7 +92,24 @@ class WebViewController: UIViewController {
 extension WebViewController {
     
     @objc private func moreButtonClicked() {
+        let items = [
+            ScrollActionSheetItem(action: .sendToFriend, title: "发送给朋友", iconImage: UIImage(named: "Action_Share_60x60_")),
+            ScrollActionSheetItem(action: .sendToMoment, title: "发送到朋友圈", iconImage: UIImage(named: "Action_Moments_60x60_")),
+            ScrollActionSheetItem(action: .favorite, title: "收藏", iconImage: UIImage(named: "Action_MyFavAdd_60x60_")),
+            ScrollActionSheetItem(action: .openInSafari, title: "在Safari中打开", iconImage: UIImage(named: "AS_safari_60x60_"))
+        ]
         
+        let bottomItems = [
+            ScrollActionSheetItem(action: .floating, title: "浮窗", iconImage: UIImage(named: "Action_Expose_60x60_")),
+            ScrollActionSheetItem(action: .report, title: "投诉", iconImage: UIImage(named: "Action_Expose_60x60_")),
+            ScrollActionSheetItem(action: .copyLink, title: "复制链接", iconImage: UIImage(named: "Action_Copy_60x60_")),
+            ScrollActionSheetItem(action: .floating, title: "刷新", iconImage: UIImage(named: "Action_Refresh_60x60_")),
+            ScrollActionSheetItem(action: .searchInPage, title: "搜索页面内容", iconImage: UIImage(named: "Action_SearchInPage_60x60_")),
+            ScrollActionSheetItem(action: .adjustFont, title: "调整字体", iconImage: UIImage(named: "Action_Font_60x60_")),
+        ]
+        let title = "此网页由 www.baidu.com 提供"
+        let actionSheet = ScrollActionSheet(title: title, items: items, bottomItems: bottomItems)
+        actionSheet.show()
     }
     
 }
