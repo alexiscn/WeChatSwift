@@ -65,6 +65,7 @@ public enum MessageContent {
     case none
     case text(String)
     case image(ImageMessage)
+    case video(VideoMessage)
     case location(LocationMessage)
     case link(AppURLMessage)
     case voice(VoiceMessage)
@@ -103,6 +104,28 @@ public struct ImageMessage {
     public init(url: URL?, size: CGSize) {
         self.url = url
         self.size = size
+    }
+}
+
+public struct VideoMessage {
+    
+    var url: URL? = nil
+    
+    var thumb: UIImage? = nil
+    
+    var size: CGSize = .zero
+    
+    var fileSize: Int = 0
+    
+    var duration: Float = 0.0
+    
+    func attributedStringForVideoLength() -> NSAttributedString {
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10),
+            NSAttributedString.Key.foregroundColor: Colors.white
+        ]
+        let length = Constants.formatDuration(TimeInterval(duration))
+        return NSAttributedString(string: length, attributes: attributes)
     }
 }
 

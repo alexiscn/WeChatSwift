@@ -238,36 +238,67 @@ class MockFactory {
     func messages(with user: MockUser, count: Int = 30) -> [Message] {
         var messages: [Message] = []
         let myID = AppContext.current.userID
-        let stickerPackages = AppContext.current.emoticonMgr.allStickers
-        let stickerDescPackages = AppContext.current.emoticonMgr.allStickerPackageDesc
         let now = Int(Date().timeIntervalSince1970)
         let past = 1560493108
         for index in 0 ..< count {
-            
             let randomTime = Int(arc4random_uniform(UInt32(now - past))) + past
-            
             let msg = Message()
             msg.chatID = user.identifier
             msg.senderID = index % 2 == 0 ? user.identifier: myID
             msg.time = randomTime
-            if index % 3 == 0 {
-                let remoteImage = random(of: remoteImages)
-                let imageMsg = ImageMessage(url: URL(string: remoteImage.urlString), size: remoteImage.size)
-                msg.content = .image(imageMsg)
-            } else if index % 4 == 0 {
-                msg.content = .voice(VoiceMessage(duration: 4))
-            } else if index % 5 == 0 {
-                let package = random(of: stickerPackages)
-                let sticker = random(of: package.emoticons)
-                let title = stickerDescPackages.first(where: { $0.packageID == package.packageID })?.stickers.first(where: { $0.key == sticker })?.value.title
-                msg.content = .emoticon(EmoticonMessage(md5: sticker, packageID: package.packageID, title: title))
-            } else {
-                msg.content = .text(randomMessage())
+            let r = Int.random(in: 0 ..< 5)
+            switch r {
+            case 0:
+                msg.content = randomTextMessage()
+            case 1:
+                msg.content = randomImageMessage()
+            case 2:
+                msg.content = randomVoiceMessage()
+            case 3:
+                msg.content = randomEmoticonMessage()
+            case 4:
+                msg.content = randomVideoMessage()
+            default:
+                msg.content = randomTextMessage()
             }
             messages.append(msg)
         }
         messages.sort(by: { $0.time < $1.time })
         return messages
+    }
+    
+    private func randomImageMessage() -> MessageContent {
+        let remoteImage = random(of: remoteImages)
+        let msg = ImageMessage(url: URL(string: remoteImage.urlString), size: remoteImage.size)
+        return .image(msg)
+    }
+    
+    private func randomVideoMessage() -> MessageContent {
+        let remoteImage = random(of: remoteImages)
+        let msg = VideoMessage(url: URL(string: remoteImage.urlString), thumb: nil, size: remoteImage.size, fileSize: 0, duration: 6)
+        return .video(msg)
+    }
+    
+    private func randomVoiceMessage() -> MessageContent {
+        let msg = VoiceMessage(duration: 4)
+        return .voice(msg)
+    }
+    
+    private func randomEmoticonMessage() -> MessageContent {
+        let stickerPackages = AppContext.current.emoticonMgr.allStickers
+        let stickerDescPackages = AppContext.current.emoticonMgr.allStickerPackageDesc
+        let package = random(of: stickerPackages)
+        let sticker = random(of: package.emoticons)
+        let title = stickerDescPackages.first(where: { $0.packageID == package.packageID })?.stickers.first(where: { $0.key == sticker })?.value.title
+        let msg = EmoticonMessage(md5: sticker, packageID: package.packageID, title: title)
+        return .emoticon(msg)
+    }
+    
+    private func randomTextMessage() -> MessageContent {
+        let count = messages.count
+        let index = Int(arc4random_uniform(UInt32(count)))
+        let msg = messages[index]
+        return .text(msg)
     }
     
     func moments() -> [Moment] {

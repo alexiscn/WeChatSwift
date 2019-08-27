@@ -17,6 +17,8 @@ final class ChatRoomCellNodeFactory {
             contentNode = TextContentNode(message: message, text: txtMsg)
         case .image(let imageMsg):
             contentNode = MessageImageContentNode(message: message, imageMsg: imageMsg)
+        case .video(let videoMsg):
+            contentNode = VideoContentNode(message: message, videoMsg: videoMsg)
         case .emoticon(let emoticonMsg):
             contentNode = EmoticonContentNode(message: message, emoticon: emoticonMsg)
         case .voice(let voiceMsg):
