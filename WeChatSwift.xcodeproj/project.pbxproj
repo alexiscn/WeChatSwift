@@ -109,6 +109,7 @@
 		A34B89B422EC1BE8005E2B20 /* ChatRoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */; };
 		A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B89B522EC6612005E2B20 /* LinkTextParser.swift */; };
 		A34C7B0222F829FB00652B4F /* WCTableCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */; };
+		A34CD64B23165FFB006B0262 /* MomentKeyboardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34CD64A23165FFB006B0262 /* MomentKeyboardNode.swift */; };
 		A34FB570230C32770065DB09 /* icons_outlined_comment.svg in Resources */ = {isa = PBXBuildFile; fileRef = A34FB56F230C32770065DB09 /* icons_outlined_comment.svg */; };
 		A352AD092306492E00332B21 /* MomentCoverCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD082306492E00332B21 /* MomentCoverCustomizeViewController.swift */; };
 		A352AD0D23064CFF00332B21 /* MomentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD0C23064CFF00332B21 /* MomentBackground.swift */; };
@@ -303,6 +304,7 @@
 		A3CA523022CE1CBE00C67D92 /* icons_outlined_album.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA522F22CE1CBE00C67D92 /* icons_outlined_album.svg */; };
 		A3CA523222CE1D0000C67D92 /* icons_outlined_sticker.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA523122CE1D0000C67D92 /* icons_outlined_sticker.svg */; };
 		A3CA523422CE1D7B00C67D92 /* icons_outlined_setting.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA523322CE1D7B00C67D92 /* icons_outlined_setting.svg */; };
+		A3CAA70D23162370004384EB /* SettingMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CAA70C23162370004384EB /* SettingMyProfileViewController.swift */; };
 		A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE01422DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg */; };
 		A3CCE01722DDA0DF0003DC25 /* icons_outlined_like.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE01622DDA0DE0003DC25 /* icons_outlined_like.svg */; };
 		A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE01822DDD3D10003DC25 /* Emoticon.swift */; };
@@ -511,6 +513,7 @@
 		A34B89B322EC1BE8005E2B20 /* ChatRoomMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomMapViewController.swift; sourceTree = "<group>"; };
 		A34B89B522EC6612005E2B20 /* LinkTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextParser.swift; sourceTree = "<group>"; };
 		A34C7B0122F829FB00652B4F /* WCTableCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCTableCellNode.swift; sourceTree = "<group>"; };
+		A34CD64A23165FFB006B0262 /* MomentKeyboardNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentKeyboardNode.swift; sourceTree = "<group>"; };
 		A34FB56F230C32770065DB09 /* icons_outlined_comment.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_comment.svg; sourceTree = "<group>"; };
 		A352AD082306492E00332B21 /* MomentCoverCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverCustomizeViewController.swift; sourceTree = "<group>"; };
 		A352AD0C23064CFF00332B21 /* MomentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentBackground.swift; sourceTree = "<group>"; };
@@ -705,6 +708,7 @@
 		A3CA522F22CE1CBE00C67D92 /* icons_outlined_album.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_album.svg; sourceTree = "<group>"; };
 		A3CA523122CE1D0000C67D92 /* icons_outlined_sticker.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_sticker.svg; sourceTree = "<group>"; };
 		A3CA523322CE1D7B00C67D92 /* icons_outlined_setting.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_setting.svg; sourceTree = "<group>"; };
+		A3CAA70C23162370004384EB /* SettingMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyProfileViewController.swift; sourceTree = "<group>"; };
 		A3CCE01422DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_takephoto_nor.svg; sourceTree = "<group>"; };
 		A3CCE01622DDA0DE0003DC25 /* icons_outlined_like.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_like.svg; sourceTree = "<group>"; };
 		A3CCE01822DDD3D10003DC25 /* Emoticon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoticon.swift; sourceTree = "<group>"; };
@@ -1016,6 +1020,7 @@
 		A33DB2E922CCCA1F00A11776 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				A3CAA70B2316234A004384EB /* SettingMyProfile */,
 				A3DE7CC82301140D00E73944 /* Story */,
 				A372144F22FFB17700340023 /* MyFavorites */,
 				A36BE2C922E3F56C003F334B /* Settings */,
@@ -1680,6 +1685,14 @@
 			path = Avatars;
 			sourceTree = "<group>";
 		};
+		A3CAA70B2316234A004384EB /* SettingMyProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A3CAA70C23162370004384EB /* SettingMyProfileViewController.swift */,
+			);
+			path = SettingMyProfile;
+			sourceTree = "<group>";
+		};
 		A3CCEDD422FBBCC9008BE41D /* NearbyPeople */ = {
 			isa = PBXGroup;
 			children = (
@@ -1774,6 +1787,7 @@
 				A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */,
 				A3E58D9C23025B6A00F73763 /* MomentRefreshHeaderView.swift */,
 				A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */,
+				A34CD64A23165FFB006B0262 /* MomentKeyboardNode.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2149,6 +2163,7 @@
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
 				A3DE7CC32301086E00E73944 /* BrandMessageDatabase.swift in Sources */,
 				A3DE7CCF2301396B00E73944 /* SettingMyAccountInfoViewController.swift in Sources */,
+				A3CAA70D23162370004384EB /* SettingMyProfileViewController.swift in Sources */,
 				A3F9F188230EAC7F0032299C /* SightMovieWriter.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
 				A36CB5352308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift in Sources */,
@@ -2284,6 +2299,7 @@
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
 				A34139382307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
+				A34CD64B23165FFB006B0262 /* MomentKeyboardNode.swift in Sources */,
 				A373D3D522F668AC00451515 /* ChatRoomBackgroundEntranceViewController.swift in Sources */,
 				A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */,
 				A3804533230A19840001892D /* StorageUsageScanner.swift in Sources */,
