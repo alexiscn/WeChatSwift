@@ -124,7 +124,7 @@ class WCTableCellNode: ASCellNode {
         } else {
             // Append Arrow
             arrowNode.style.preferredSize = CGSize(width: 12, height: 24)
-            arrowNode.style.spacingBefore = 16
+            arrowNode.style.spacingBefore = 10
             arrowNode.style.spacingAfter = 16
             arrowNode.isHidden = !model.wc_showArrow
             elements.append(arrowNode)

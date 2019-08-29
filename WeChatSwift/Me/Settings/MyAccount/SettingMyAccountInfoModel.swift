@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AsyncDisplayKit
 
 struct SettingMyAccountInfoSection {
     
@@ -51,5 +52,41 @@ enum SettingMyAccountInfoModel: WCTableCellModel {
         case .securityCenter:
             return "微信安全中心"
         }
+    }
+    
+    var wc_accessoryNode: ASDisplayNode? {
+        switch self {
+        case .wechatId:
+            return valueTextNode("wxid_dhsfg912nds")
+        case .phoneNumber:
+            let textNode = ASTextNode()
+            let body = NSMutableAttributedString()
+            let attachment = NSTextAttachment()
+            attachment.image = UIImage(named: "ProfileLockOn_17x17_")
+            attachment.bounds = CGRect(x: 0, y: -3, width: 17, height: 17)
+            body.append(NSAttributedString(attachment: attachment))
+            body.append(NSAttributedString(string: "123456789101", attributes: [
+                .font: UIFont.systemFont(ofSize: 17),
+                .foregroundColor: UIColor(white: 0, alpha: 0.5)
+            ]))
+            textNode.attributedText = body
+            return textNode
+        case .wechatPassword:
+            return valueTextNode("已设置")
+        case .voicePassword:
+            return valueTextNode("未设置")
+        default:
+            return nil
+        }
+    }
+    
+    func valueTextNode(_ value: String) -> ASTextNode {
+        let textNode = ASTextNode()
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.5)
+        ]
+        textNode.attributedText = NSAttributedString(string: value, attributes: attributes)
+        return textNode
     }
 }

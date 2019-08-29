@@ -120,9 +120,12 @@ public struct VideoMessage {
     var duration: Float = 0.0
     
     func attributedStringForVideoLength() -> NSAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .right
         let attributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10),
-            NSAttributedString.Key.foregroundColor: Colors.white
+            NSAttributedString.Key.foregroundColor: Colors.white,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
         ]
         let length = Constants.formatDuration(TimeInterval(duration))
         return NSAttributedString(string: length, attributes: attributes)
