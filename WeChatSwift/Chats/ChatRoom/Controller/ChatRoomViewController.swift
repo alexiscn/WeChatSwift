@@ -26,6 +26,8 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
+    internal var menuMessage: Message?
+    
     init(sessionID: String) {
         self.sessionID = sessionID
         self.dataSource = ChatRoomDataSource(sessionID: sessionID)
@@ -82,13 +84,25 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     
     func sendMediaAssets(_ assets: [MediaAsset]) {
         for mediaAsset in assets {
-            // TODO
             if mediaAsset.asset.mediaType == .image {
                 let thumbImage = mediaAsset.asset.thumbImage(with: CGSize(width: 500, height: 500))
                 let imageMsg = ImageMessage(image: thumbImage, size: mediaAsset.asset.pixelSize)
                 let message = Message()
                 message.chatID = sessionID
                 message.content = .image(imageMsg)
+                message.senderID = AppContext.current.userID
+                message.localMsgID = UUID().uuidString
+                message.time = Int(Date().timeIntervalSinceNow)
+                dataSource.append(message)
+            } else if mediaAsset.asset.mediaType == .video {
+                // TODO
+                let thumbImage = mediaAsset.asset.thumbImage(with: CGSize(width: 500, height: 500))
+                let duration = mediaAsset.asset.duration
+                let size = mediaAsset.asset.pixelSize
+                let videoMsg = VideoMessage(url: nil, thumb: thumbImage, size: size, fileSize: 0, duration: Float(duration))
+                let message = Message()
+                message.chatID = sessionID
+                message.content = .video(videoMsg)
                 message.senderID = AppContext.current.userID
                 message.localMsgID = UUID().uuidString
                 message.time = Int(Date().timeIntervalSinceNow)
@@ -130,7 +144,6 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     }
     
     private func previewImages(imageMsg: ImageMessage, originView: UIView) {
-        
         var ds: PhotoBrowserDataSource
         if let image = imageMsg.image {
             ds = PhotoBrowserLocalDataSource(numberOfItems: 1, images: [image])
@@ -145,16 +158,13 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         browser.show(pageIndex: 0, in: self)
     }
     
+    private func previewVideo(videoMsg: VideoMessage, originView: UIView) {
+        print("TODO")
+    }
+    
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    
-//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-//        if action == #selector(onMenuAction) {
-//            return true
-//        }
-//        return false
-//    }
 }
 
 // MARK: - Event Handlers
@@ -178,9 +188,7 @@ extension ChatRoomViewController {
         navigationController?.pushViewController(contactVC, animated: true)
     }
     
-    @objc private func onMenuAction() {
-        print("onMenuAction")
-    }
+    
 }
 
 // MARK: - ASTableDataSource & ASTableDelegate
@@ -326,6 +334,9 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
         case .image(let imageMsg):
             let originView = (cellNode.contentNode as? MessageImageContentNode)?.imageView ?? cellNode.contentNode.view
             previewImages(imageMsg: imageMsg, originView: originView)
+        case .video(let videoMsg):
+            let originView = (cellNode.contentNode as? VideoContentNode)?.imageView ?? cellNode.contentNode.view
+            previewVideo(videoMsg: videoMsg, originView: originView)
         default:
             break
         }
@@ -340,16 +351,8 @@ extension ChatRoomViewController: MessageCellNodeDelegate {
     }
     
     func messageCell(_ cellNode: MessageCellNode, showMenus menus: [MessageMenuAction], message: Message, targetRect: CGRect, targetView: UIView) {
-        becomeFirstResponder()
-        let menuController = UIMenuController()
-        menuController.arrowDirection = .down
-        var menuItems: [UIMenuItem] = []
-        for menu in menus {
-            let menuItem = UIMenuItem(title: menu.title, action: #selector(onMenuAction))
-            menuItems.append(menuItem)
-        }
-        menuController.menuItems = menuItems
-        menuController.setTargetRect(targetRect, in: targetView)
-        menuController.setMenuVisible(true, animated: true)
+        self.becomeFirstResponder()
+        self.menuMessage = message
+        showMenus(menus, targetRect: targetRect, targetView: targetView)
     }
 }

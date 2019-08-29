@@ -4,7 +4,7 @@
       "resizing" : {
         "mode" : "3-part-horizontal",
         "center" : {
-          "mode" : "tile",
+          "mode" : "stretch",
           "width" : 1
         },
         "cap-insets" : {
