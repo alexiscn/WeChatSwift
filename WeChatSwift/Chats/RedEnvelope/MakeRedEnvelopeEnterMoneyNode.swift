@@ -26,10 +26,26 @@ class MakeRedEnvelopeEnterMoneyNode: ASDisplayNode {
             .foregroundColor: Colors.black
         ])
         
-        trailingTextNode.attributedText = NSAttributedString(string: "", attributes: [
+        trailingTextNode.attributedText = NSAttributedString(string: "元", attributes: [
             .font: UIFont.systemFont(ofSize: 17),
             .foregroundColor: Colors.black
         ])
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .right
+        
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(white: 0, alpha: 0.1),
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
+        ]
+        inputTextNode.keyboardType = .numberPad
+        inputTextNode.attributedPlaceholderText = NSAttributedString(string: "0.00", attributes: attributes)
+        inputTextNode.typingAttributes = [
+            NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor.rawValue: Colors.black,
+            NSAttributedString.Key.paragraphStyle.rawValue: paragraphStyle
+        ]
     }
     
     override func didLoad() {
@@ -37,14 +53,15 @@ class MakeRedEnvelopeEnterMoneyNode: ASDisplayNode {
         
         backgroundColor = .white
         cornerRadius = 5
-        cornerRoundingType = .precomposited
-        
-        inputTextNode.view.semanticContentAttribute = .forceRightToLeft
+        cornerRoundingType = .defaultSlowCALayer
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         
         inputTextNode.style.flexGrow = 1.0
+        inputTextNode.style.flexShrink = 1.0
+        
+        trailingTextNode.style.spacingBefore = 10
         
         let stack = ASStackLayoutSpec.horizontal()
         stack.alignItems = .center
@@ -54,4 +71,8 @@ class MakeRedEnvelopeEnterMoneyNode: ASDisplayNode {
         return ASInsetLayoutSpec(insets: insets, child: stack)
     }
     
+    @discardableResult
+    override func resignFirstResponder() -> Bool {
+        return inputTextNode.resignFirstResponder()
+    }
 }

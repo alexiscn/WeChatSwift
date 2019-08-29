@@ -26,11 +26,23 @@ class MakeRedEnvelopeEnterDescNode: ASDisplayNode {
         
         backgroundColor = .white
         cornerRadius = 5
-        cornerRoundingType = .precomposited
+        cornerRoundingType = .defaultSlowCALayer
+        
+        addEmoticonButton.addTarget(self, action: #selector(handleAddEmoticonButtonClicked), forControlEvents: .touchUpInside)
+    }
+    
+    @objc private func handleAddEmoticonButtonClicked() {
+        
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASLayoutSpec()
+        
+        addEmoticonButton.style.preferredSize = CGSize(width: 29.0, height: 29.0)
+        addEmoticonButton.style.layoutPosition = CGPoint(x: constrainedSize.max.width - 29.0 - 20.0, y: 17.5)
+        
+        let layout = ASAbsoluteLayoutSpec(children: [addEmoticonButton])
+        layout.style.preferredSize = CGSize(width: constrainedSize.max.width, height: 56.0)
+        return layout
     }
     
 }
