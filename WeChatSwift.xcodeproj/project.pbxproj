@@ -376,6 +376,16 @@
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
 		A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */; };
 		A3EE12322317B4A0000F287C /* ChatRoomViewController+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EE12312317B4A0000F287C /* ChatRoomViewController+Menu.swift */; };
+		A3EE12352317CABF000F287C /* MakeRedEnvelopeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EE12342317CABF000F287C /* MakeRedEnvelopeViewController.swift */; };
+		A3EE123D2317CF68000F287C /* WeChatSansSuperscript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3EE12372317CF67000F287C /* WeChatSansSuperscript-Regular.ttf */; };
+		A3EE123E2317CF68000F287C /* WeChatSansSuperscript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3EE12382317CF67000F287C /* WeChatSansSuperscript-Bold.ttf */; };
+		A3EE123F2317CF68000F287C /* WeChatSansSuperscript-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3EE12392317CF68000F287C /* WeChatSansSuperscript-Medium.ttf */; };
+		A3EE12402317CF68000F287C /* WeChatSansStd-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3EE123A2317CF68000F287C /* WeChatSansStd-Regular.ttf */; };
+		A3EE12412317CF68000F287C /* WeChatSansStd-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3EE123B2317CF68000F287C /* WeChatSansStd-Medium.ttf */; };
+		A3EE12422317CF68000F287C /* WeChatSansStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3EE123C2317CF68000F287C /* WeChatSansStd-Bold.ttf */; };
+		A3EE12442317D00D000F287C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EE12432317D00D000F287C /* Fonts.swift */; };
+		A3EE12462317DE16000F287C /* MakeRedEnvelopeEnterMoneyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EE12452317DE16000F287C /* MakeRedEnvelopeEnterMoneyNode.swift */; };
+		A3EE12482317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EE12472317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift */; };
 		A3F6AD022303A9A9007FE74B /* ChatRoomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F6AD012303A9A9007FE74B /* ChatRoomDateFormatter.swift */; };
 		A3F6AD042303E248007FE74B /* MessageTimeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F6AD032303E248007FE74B /* MessageTimeNode.swift */; };
 		A3F9EFFD230E362A0032299C /* EmoticonDetailPackageDescNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9EFFC230E362A0032299C /* EmoticonDetailPackageDescNode.swift */; };
@@ -781,6 +791,16 @@
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
 		A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewViewController.swift; sourceTree = "<group>"; };
 		A3EE12312317B4A0000F287C /* ChatRoomViewController+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRoomViewController+Menu.swift"; sourceTree = "<group>"; };
+		A3EE12342317CABF000F287C /* MakeRedEnvelopeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRedEnvelopeViewController.swift; sourceTree = "<group>"; };
+		A3EE12372317CF67000F287C /* WeChatSansSuperscript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeChatSansSuperscript-Regular.ttf"; sourceTree = "<group>"; };
+		A3EE12382317CF67000F287C /* WeChatSansSuperscript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeChatSansSuperscript-Bold.ttf"; sourceTree = "<group>"; };
+		A3EE12392317CF68000F287C /* WeChatSansSuperscript-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeChatSansSuperscript-Medium.ttf"; sourceTree = "<group>"; };
+		A3EE123A2317CF68000F287C /* WeChatSansStd-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeChatSansStd-Regular.ttf"; sourceTree = "<group>"; };
+		A3EE123B2317CF68000F287C /* WeChatSansStd-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeChatSansStd-Medium.ttf"; sourceTree = "<group>"; };
+		A3EE123C2317CF68000F287C /* WeChatSansStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WeChatSansStd-Bold.ttf"; sourceTree = "<group>"; };
+		A3EE12432317D00D000F287C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		A3EE12452317DE16000F287C /* MakeRedEnvelopeEnterMoneyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRedEnvelopeEnterMoneyNode.swift; sourceTree = "<group>"; };
+		A3EE12472317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRedEnvelopeEnterDescNode.swift; sourceTree = "<group>"; };
 		A3F6AD012303A9A9007FE74B /* ChatRoomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDateFormatter.swift; sourceTree = "<group>"; };
 		A3F6AD032303E248007FE74B /* MessageTimeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTimeNode.swift; sourceTree = "<group>"; };
 		A3F9EFFC230E362A0032299C /* EmoticonDetailPackageDescNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailPackageDescNode.swift; sourceTree = "<group>"; };
@@ -994,6 +1014,7 @@
 		A33DB2E722CCCA0D00A11776 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				A3EE12332317CA9B000F287C /* RedEnvelope */,
 				A3E20018230AD179005B2B70 /* Search */,
 				A3C9144323053D1F00B6E077 /* ChatRoomList */,
 				A35B219F230022380057F8FC /* BrandTimeline */,
@@ -1039,6 +1060,7 @@
 				A33DB2F422CCD92E00A11776 /* Colors.swift */,
 				A341CF0822E55A6E00F18106 /* ExpressionParser.swift */,
 				A34B89B522EC6612005E2B20 /* LinkTextParser.swift */,
+				A3EE12432317D00D000F287C /* Fonts.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1550,6 +1572,7 @@
 		A3CA51B122CD9ACE00C67D92 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A3EE12362317CF54000F287C /* Fonts */,
 				A3C9144F23056DB500B6E077 /* Games */,
 				A3FB0AAC22F407BE00116329 /* Emoticons */,
 				A3CA521022CDE9C500C67D92 /* Avatars */,
@@ -1815,6 +1838,29 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		A3EE12332317CA9B000F287C /* RedEnvelope */ = {
+			isa = PBXGroup;
+			children = (
+				A3EE12342317CABF000F287C /* MakeRedEnvelopeViewController.swift */,
+				A3EE12452317DE16000F287C /* MakeRedEnvelopeEnterMoneyNode.swift */,
+				A3EE12472317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift */,
+			);
+			path = RedEnvelope;
+			sourceTree = "<group>";
+		};
+		A3EE12362317CF54000F287C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A3EE123C2317CF68000F287C /* WeChatSansStd-Bold.ttf */,
+				A3EE123B2317CF68000F287C /* WeChatSansStd-Medium.ttf */,
+				A3EE123A2317CF68000F287C /* WeChatSansStd-Regular.ttf */,
+				A3EE12382317CF67000F287C /* WeChatSansSuperscript-Bold.ttf */,
+				A3EE12392317CF68000F287C /* WeChatSansSuperscript-Medium.ttf */,
+				A3EE12372317CF67000F287C /* WeChatSansSuperscript-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A3F9F000230E66E90032299C /* ChatRoomEmoticonPreview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1923,6 +1969,7 @@
 				A374865F22D4AEF3002EEC4F /* icons_filled_album.svg in Resources */,
 				A3CA51D722CD9F9400C67D92 /* icons_outlined_scan.svg in Resources */,
 				A3FB0AB022F40A2500116329 /* icons_filled_wallet.svg in Resources */,
+				A3EE123E2317CF68000F287C /* WeChatSansSuperscript-Bold.ttf in Resources */,
 				A3CCE01B22DDD9150003DC25 /* Emoticons.json in Resources */,
 				A3CA51B722CD9B1E00C67D92 /* icons_filled_scan.svg in Resources */,
 				A31057DF22E8532E00856D71 /* dice_6.pic in Resources */,
@@ -1954,11 +2001,14 @@
 				A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */,
 				A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */,
 				A3CA521A22CDF5FA00C67D92 /* JonSnow.jpg in Resources */,
+				A3EE12422317CF68000F287C /* WeChatSansStd-Bold.ttf in Resources */,
+				A3EE123D2317CF68000F287C /* WeChatSansSuperscript-Regular.ttf in Resources */,
 				A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */,
 				A31057D522E852FA00856D71 /* JSB_J.pic in Resources */,
 				A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */,
 				A3CA51E522CD9FD500C67D92 /* icons_outlined_mini-program.svg in Resources */,
 				A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */,
+				A3EE123F2317CF68000F287C /* WeChatSansSuperscript-Medium.ttf in Resources */,
 				A3E20015230A7877005B2B70 /* icons_filled_close.svg in Resources */,
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
 				A3C9142823052D9300B6E077 /* Gilly.jpg in Resources */,
@@ -2020,7 +2070,9 @@
 				A3CCE01722DDA0DF0003DC25 /* icons_outlined_like.svg in Resources */,
 				A3C914302305309A00B6E077 /* Shae.jpg in Resources */,
 				A3CA521622CDF4EF00C67D92 /* Cersei.jpg in Resources */,
+				A3EE12402317CF68000F287C /* WeChatSansStd-Regular.ttf in Resources */,
 				A3CA51FF22CDAF1400C67D92 /* icons_filled_radar.svg in Resources */,
+				A3EE12412317CF68000F287C /* WeChatSansStd-Medium.ttf in Resources */,
 				A3CA520722CDC90F00C67D92 /* icons_filled_add-friends.svg in Resources */,
 				A374866922D4B04F002EEC4F /* icons_filled_transfer.svg in Resources */,
 				A3CA51E922CDA03F00C67D92 /* icons_outlined_arrow.svg in Resources */,
@@ -2102,6 +2154,7 @@
 				A3D9953D230B9D0E00E4F628 /* FTSFeatureCellNode.swift in Sources */,
 				A352AD252306CDA700332B21 /* StorageUsageSummaryNode.swift in Sources */,
 				A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */,
+				A3EE12352317CABF000F287C /* MakeRedEnvelopeViewController.swift in Sources */,
 				A3F9F17E230E94F00032299C /* SightCameraGradientView.swift in Sources */,
 				A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */,
 				A3C914562305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift in Sources */,
@@ -2248,6 +2301,7 @@
 				A3D67FBB230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
 				A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */,
+				A3EE12462317DE16000F287C /* MakeRedEnvelopeEnterMoneyNode.swift in Sources */,
 				A34139322307DFB8008E0EBF /* EmoticonManageActionCellNode.swift in Sources */,
 				A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */,
 				A32333C822DF4E7700B79555 /* MomentCommentNode.swift in Sources */,
@@ -2321,6 +2375,7 @@
 				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
 				A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */,
 				A352AD0D23064CFF00332B21 /* MomentBackground.swift in Sources */,
+				A3EE12442317D00D000F287C /* Fonts.swift in Sources */,
 				A33DB2D422CCC80F00A11776 /* AppDelegate.swift in Sources */,
 				A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */,
 				A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */,
@@ -2343,6 +2398,7 @@
 				A3C9144E23056CB000B6E077 /* MomentCommentLineNode.swift in Sources */,
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
+				A3EE12482317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift in Sources */,
 				A3F9F186230EAC6D0032299C /* SightMovieRecorder.swift in Sources */,
 				A3E2000D230A6BCC005B2B70 /* NetworkCheckViewController.swift in Sources */,
 				A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */,

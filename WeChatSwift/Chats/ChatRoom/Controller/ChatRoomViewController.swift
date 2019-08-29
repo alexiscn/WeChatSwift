@@ -261,6 +261,10 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             present(sightCameraVC, animated: true, completion: nil)
         case .location:
             showSendLocationActionSheet()
+        case .redPacket:
+            let makeRedEnvelopeVC = MakeRedEnvelopeViewController()
+            let nav = WCNavigationController(rootViewController: makeRedEnvelopeVC)
+            present(nav, animated: true, completion: nil)
         default:
             break
         }

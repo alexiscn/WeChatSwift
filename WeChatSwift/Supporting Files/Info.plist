@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>WeChatSansStd-Bold.ttf</string>
+		<string>WeChatSansStd-Medium.ttf</string>
+		<string>WeChatSansStd-Regular.ttf</string>
+		<string>WeChatSansSuperscript-Bold.ttf</string>
+		<string>WeChatSansSuperscript-Regular.ttf</string>
+		<string>WeChatSansSuperscript-Medium.ttf</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

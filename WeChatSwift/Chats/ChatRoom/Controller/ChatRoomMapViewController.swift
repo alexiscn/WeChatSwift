@@ -48,6 +48,7 @@ class ChatRoomMapViewController: UIViewController {
         
         setupInformationView()
         setupMyLocationButton()
+        fixNavigationSwipeGesture()
     }
     
     private func setupMyLocationButton() {
@@ -114,11 +115,17 @@ class ChatRoomMapViewController: UIViewController {
         }
     }
     
+    private func fixNavigationSwipeGesture() {
+        let transparent = UIView()
+        transparent.backgroundColor = .clear
+        transparent.frame = CGRect(x: 0, y: 0, width: 16, height: view.bounds.height)
+        view.addSubview(transparent)
+    }
+    
     override var wc_navigationBarBackgroundColor: UIColor? {
         return .clear
     }
     
-
 }
 
 // MARK: - Event Handlers
