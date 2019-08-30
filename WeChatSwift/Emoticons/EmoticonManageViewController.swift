@@ -16,6 +16,9 @@ class EmoticonManageViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [EmoticonManageGroup] = []
     
+    private var cancelButtonItem: UIBarButtonItem?
+    private var backButtonItem: UIBarButtonItem?
+    
     init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
@@ -40,6 +43,9 @@ class EmoticonManageViewController: ASViewController<ASDisplayNode> {
         
         let sortButton = UIBarButtonItem(title: "排序", style: .plain, target: self, action: #selector(handleSortButtonClicked))
         navigationItem.rightBarButtonItem = sortButton
+        
+        cancelButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(handleCancelButtonClicked))
+        backButtonItem = navigationItem.leftBarButtonItem
     }
 
     private func setupDataSource() {
@@ -54,11 +60,13 @@ class EmoticonManageViewController: ASViewController<ASDisplayNode> {
 extension EmoticonManageViewController {
     
     @objc private func handleSortButtonClicked() {
+        navigationItem.leftBarButtonItem = cancelButtonItem
         tableNode.view.setEditing(true, animated: true)
     }
     
     @objc private func handleCancelButtonClicked() {
-        tableNode.view.endEditing(true)
+        navigationItem.leftBarButtonItem = backButtonItem
+        tableNode.view.setEditing(false, animated: true)
     }
     
     @objc private func handleDoneButtonClicked() {
@@ -110,6 +118,26 @@ extension EmoticonManageViewController: ASTableDelegate, ASTableDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        switch model {
+        case .emoticons(_):
+            return .delete
+        default:
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        let model = dataSource[indexPath.section].items[indexPath.row]
+        switch model {
+        case .emoticons(_):
+            return true
+        default:
+            return false
+        }
     }
 }
 

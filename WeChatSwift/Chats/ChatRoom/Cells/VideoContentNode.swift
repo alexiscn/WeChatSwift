@@ -56,7 +56,7 @@ class VideoContentNode: MessageContentNode {
             height = maxWidth
         } else {
             width = maxWidth
-            height = maxWidth / ratio
+            height = maxWidth * ratio
         }
         width = max(width, 60.0)
         height = max(height, 60.0)

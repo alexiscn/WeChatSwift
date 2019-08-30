@@ -132,6 +132,14 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         present(nav, animated: true, completion: nil)
     }
     
+    private func presentSightCameraViewController() {
+        let sightCameraVC = SightCameraViewController()
+        sightCameraVC.modalPresentationCapturesStatusBarAppearance = true
+        sightCameraVC.modalTransitionStyle = .coverVertical
+        sightCameraVC.modalPresentationStyle = .overCurrentContext
+        present(sightCameraVC, animated: true, completion: nil)
+    }
+    
     private func presentPickAssetViewController() {
         let selectionHandler = { [weak self] (selectedAssets: [MediaAsset]) in
             self?.dismiss(animated: true, completion: nil)
@@ -179,8 +187,8 @@ extension MomentsViewController {
     
     @objc private func handleRightBarButtonTapped(_ sender: Any) {
         let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
-        actionSheet.add(WXActionSheetItem(title: "拍摄", desc: "照片或视频", handler: { _ in
-            
+        actionSheet.add(WXActionSheetItem(title: "拍摄", desc: "照片或视频", handler: { [weak self] _ in
+            self?.presentSightCameraViewController()
         }))
         actionSheet.add(WXActionSheetItem(title: "从手机相册中选择", handler: { [weak self] _ in
             self?.presentPickAssetViewController()
