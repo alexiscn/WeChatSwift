@@ -152,11 +152,22 @@ extension Moment {
     
     func contentAttributedText() -> NSAttributedString? {
         guard let content = content else { return nil }
+        
+        let textFont = UIFont.systemFont(ofSize: 17)
+        let lineHeight = textFont.lineHeight
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        paragraphStyle.lineSpacing = 3
+        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.minimumLineHeight = lineHeight
+        
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Colors.DEFAULT_TEXT_COLOR,
-            .font: UIFont.systemFont(ofSize: 17)
+            .font: UIFont.systemFont(ofSize: 17),
+            .paragraphStyle: paragraphStyle
         ]
-        return NSAttributedString(string: content, attributes: attributes)
+        let attributedText = NSAttributedString(string: content, attributes: attributes)
+        return ExpressionParser.shared?.attributedText(with: attributedText)
     }
     
 }
