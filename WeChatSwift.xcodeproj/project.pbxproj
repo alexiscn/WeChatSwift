@@ -152,6 +152,7 @@
 		A36EC0BF22FFCFC5004FD6B2 /* ContactSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */; };
 		A3709222231A6CB4003DA42D /* SelectSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3709221231A6CB4003DA42D /* SelectSessionViewController.swift */; };
 		A3709224231A7E01003DA42D /* SelectSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3709223231A7E01003DA42D /* SelectSessionModel.swift */; };
+		A3709226231A8B28003DA42D /* MomentVideoContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3709225231A8B28003DA42D /* MomentVideoContentNode.swift */; };
 		A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */; };
 		A372145122FFB19D00340023 /* MyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145022FFB19D00340023 /* MyFavoritesViewController.swift */; };
 		A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */; };
@@ -569,6 +570,7 @@
 		A36EC0BE22FFCFC5004FD6B2 /* ContactSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingModel.swift; sourceTree = "<group>"; };
 		A3709221231A6CB4003DA42D /* SelectSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionViewController.swift; sourceTree = "<group>"; };
 		A3709223231A7E01003DA42D /* SelectSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionModel.swift; sourceTree = "<group>"; };
+		A3709225231A8B28003DA42D /* MomentVideoContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentVideoContentNode.swift; sourceTree = "<group>"; };
 		A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
 		A372145022FFB19D00340023 /* MyFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesViewController.swift; sourceTree = "<group>"; };
 		A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesCellNode.swift; sourceTree = "<group>"; };
@@ -1335,6 +1337,7 @@
 				A32333CA22DF4FEE00B79555 /* MomentWebpageContentNode.swift */,
 				A32333CC22DF501900B79555 /* MomentImageContentNode.swift */,
 				A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */,
+				A3709225231A8B28003DA42D /* MomentVideoContentNode.swift */,
 				A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */,
 			);
 			path = Cells;
@@ -2415,6 +2418,7 @@
 				A33D2B1F22F2FB630099927A /* MMPushAnimator.swift in Sources */,
 				A374863022D43BB2002EEC4F /* ChatRoomCellNodeFactory.swift in Sources */,
 				A3EE12482317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift in Sources */,
+				A3709226231A8B28003DA42D /* MomentVideoContentNode.swift in Sources */,
 				A3F9F186230EAC6D0032299C /* SightMovieRecorder.swift in Sources */,
 				A3E2000D230A6BCC005B2B70 /* NetworkCheckViewController.swift in Sources */,
 				A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */,

@@ -37,6 +37,7 @@ enum MomentBody {
     case none
     case link(MomentWebpage)
     case media(MomentMedia)
+    case video(MomentVideo)
     case multi(MomentMultiImage)
 }
 
@@ -56,6 +57,24 @@ class MomentMedia {
     init(image: UIImage?, size: CGSize = CGSize(width: 1.0, height: 1.0)) {
         self.image = image
         self.size = size
+    }
+}
+
+class MomentVideo {
+    
+    var url: URL?
+    
+    var thumb: UIImage?
+    
+    var size: CGSize
+    
+    var length: TimeInterval
+    
+    init(url: URL?, thumb: UIImage?, size: CGSize, length: TimeInterval) {
+        self.url = url
+        self.thumb = thumb
+        self.size = size
+        self.length = length
     }
 }
 

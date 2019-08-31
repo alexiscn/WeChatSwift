@@ -303,45 +303,68 @@ class MockFactory {
     
     func moments() -> [Moment] {
         var moments: [Moment] = []
-        for index in 0 ..< 20 {
+        for _ in 0 ..< 20 {
             let user = random(of: users)
             let moment = Moment()
             moment.identifier = UUID().uuidString
             moment.userID = user.identifier
             moment.content = randomMessage()
-            if index % 4 == 0 {
-                let remoteImage = random(of: remoteImages)
-                let body = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
-                moment.body = MomentBody.media(body)
+            
+            let r = Int.random(in: 0 ... 4)
+            if r == 0 {
+                moment.body = randomMomentImage()
+                moment.comments = [randomMomentComment(of: user)]
+                moment.likes = [randomMomentLike(of: user)]
+            } else if r == 1 {
+                moment.body = randomMomentMultiImage()
+            } else if r == 2 {
+                moment.body = randomMomentWebpages()
+            } else {
                 
-                let comment = MomentComment()
-                comment.nickname = user.name
-                comment.content = "还不错哦还不错哦还不错哦还不错哦还不错哦还不错哦"
-                comment.userID = user.identifier
-                moment.comments = [comment]
-                
-                let like = MomentLikeUser(userID: user.identifier, username: user.name)
-                moment.likes = [like]
-            } else if index % 6 == 0 {
-                let link = random(of: webPages)
-                let webPage = MomentWebpage(url: URL(string: link.urlString),
-                                            title: link.title,
-                                            thumbImage: link.thumbImage,
-                                            thumbImageURL: nil)
-                moment.body = .link(webPage)
-            } else if index % 7 == 0 {
-                var images: [MomentMedia] = []
-                for _ in 0 ..< 9 {
-                    let remoteImage = random(of: remoteImages)
-                    let image = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
-                    images.append(image)
-                }
-                let body = MomentMultiImage(images: images)
-                moment.body = MomentBody.multi(body)
             }
+            
             moments.append(moment)
         }
         return moments
+    }
+    
+    func randomMomentImage() -> MomentBody {
+        let remoteImage = random(of: remoteImages)
+        let body = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
+        return MomentBody.media(body)
+    }
+    
+    func randomMomentMultiImage() -> MomentBody {
+        var images: [MomentMedia] = []
+        for _ in 0 ..< 9 {
+            let remoteImage = random(of: remoteImages)
+            let image = MomentMedia(url: URL(string: remoteImage.urlString), size: remoteImage.size)
+            images.append(image)
+        }
+        let multiImages = MomentMultiImage(images: images)
+        return MomentBody.multi(multiImages)
+    }
+    
+    func randomMomentWebpages() -> MomentBody {
+        let link = random(of: webPages)
+        let webPage = MomentWebpage(url: URL(string: link.urlString),
+                                    title: link.title,
+                                    thumbImage: link.thumbImage,
+                                    thumbImageURL: nil)
+        return MomentBody.link(webPage)
+    }
+    
+    func randomMomentComment(of user: MockUser) -> MomentComment {
+        let comment = MomentComment()
+        comment.nickname = user.name
+        comment.content = "还不错哦还不错哦还不错哦还不错哦还不错哦还不错哦"
+        comment.userID = user.identifier
+        return comment
+    }
+    
+    func randomMomentLike(of user: MockUser) -> MomentLikeUser {
+        let like = MomentLikeUser(userID: user.identifier, username: user.name)
+        return like
     }
     
     func discoverEntrance() -> [DiscoverSection] {
