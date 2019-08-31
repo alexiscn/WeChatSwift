@@ -143,6 +143,26 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         dataSource.append(message)
     }
     
+    private func showLongPressImageActionSheet(imageMsg: ImageMessage) {
+        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        actionSheet.add(WXActionSheetItem(title: "发送给朋友", handler: { _ in
+            
+        }))
+        actionSheet.add(WXActionSheetItem(title: "收藏", handler: { _ in
+            
+        }))
+        actionSheet.add(WXActionSheetItem(title: "保存图片", handler: { _ in
+            
+        }))
+        actionSheet.add(WXActionSheetItem(title: "编辑", handler: { _ in
+            
+        }))
+        actionSheet.add(WXActionSheetItem(title: "定位到聊天", handler: { _ in
+            
+        }))
+        actionSheet.show()
+    }
+    
     private func previewImages(imageMsg: ImageMessage, originView: UIView) {
         var ds: PhotoBrowserDataSource
         if let image = imageMsg.image {
@@ -154,7 +174,11 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
         let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
             return originView
         }
-        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans)
+        let delegate = PhotoBrowserDefaultDelegate()
+        delegate.longPressedHandler = { [weak self] (browser, index, image, gesture) in
+            self?.showLongPressImageActionSheet(imageMsg: imageMsg)
+        }
+        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans, delegate: delegate)
         browser.show(pageIndex: 0, in: self)
     }
     

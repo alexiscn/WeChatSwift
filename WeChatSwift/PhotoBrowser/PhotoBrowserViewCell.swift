@@ -18,6 +18,8 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     
     var panGestureReleasedHandler: ((_ downSwipe: Bool) -> Void)?
     
+    var longPressedHandler: ((_ gesture: UILongPressGestureRecognizer) -> Void)?
+    
     //var imageView = UIImageView()
     
     var imageView = FLAnimatedImageView()
@@ -202,7 +204,7 @@ extension PhotoBrowserViewCell {
     
     @objc private func handleLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
-            print("")
+            longPressedHandler?(gesture)
         }
     }
     

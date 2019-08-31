@@ -43,7 +43,7 @@ class PhotoBrowserViewController: UIViewController {
     
     init(dataSource: PhotoBrowserDataSource,
          transDelegate: PhotoBrowserZoomTransitioning,
-         delegate: PhotoBrowserDelegate = PhotoBrowserDefaultDelegate()) {
+         delegate: PhotoBrowserDelegate) {
         self.dataSource = dataSource
         self.delegate = delegate
         self.transDelegate = transDelegate

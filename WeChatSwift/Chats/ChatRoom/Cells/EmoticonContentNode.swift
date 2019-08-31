@@ -29,6 +29,7 @@ class EmoticonContentNode: MessageContentNode {
         setViewBlock { [weak self] () -> UIView in
             return self?.animatedImageView ?? UIView()
         }
+        supportedMenus = [.addToSticker, .followShoot, .viewStickerAlbum, .multiSelect, .delete, .remind]
     }
     
     override func didLoad() {

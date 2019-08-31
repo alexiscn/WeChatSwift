@@ -244,7 +244,8 @@ extension AssetPickerViewController: UICollectionViewDataSource, UICollectionVie
             let cell = collectionView.cellForItem(at: indexPath) as? AssetPickerCollectionViewCell
             return cell?.imageViewForZoomTransition
         }
-        let browser = PhotoBrowserViewController(dataSource: assetDataSource, transDelegate: trans)
+        let delegate = PhotoBrowserDefaultDelegate()
+        let browser = PhotoBrowserViewController(dataSource: assetDataSource, transDelegate: trans, delegate: delegate)
         browser.show(pageIndex: indexPath.item, in: self)
     }
 }

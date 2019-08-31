@@ -43,6 +43,10 @@ extension ChatRoomViewController {
                 selector = #selector(onMenuActionTranslate)
             case .viewStickerAlbum:
                 selector = #selector(onMenuActionViewStickerAlbum)
+            case .playMuted:
+                selector = #selector(onMenuActionPlayMuted)
+            case .playWithEarphone:
+                selector = #selector(onMenuActionPlayWithEarphone)
             }
             
             let menuItem = UIMenuItem(title: menu.title, action: selector)
@@ -114,6 +118,12 @@ extension ChatRoomViewController {
         
     }
     
+    @objc private func onMenuActionPlayMuted() {
+        
+    }
     
+    @objc private func onMenuActionPlayWithEarphone() {
+        
+    }
     
 }

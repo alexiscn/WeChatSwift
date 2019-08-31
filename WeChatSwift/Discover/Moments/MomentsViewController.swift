@@ -359,7 +359,8 @@ extension MomentsViewController: MomentCellNodeDelegate {
         let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
             return tappedView
         }
-        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans)
+        let delegate = PhotoBrowserDefaultDelegate()
+        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans, delegate: delegate)
         browser.show(pageIndex: 0, in: self)
     }
  
@@ -370,7 +371,8 @@ extension MomentsViewController: MomentCellNodeDelegate {
         let trans = PhotoBrowserZoomTransitioning { (browser, index, view) -> UIView? in
             return tappedView
         }
-        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans)
+        let delegate = PhotoBrowserDefaultDelegate()
+        let browser = PhotoBrowserViewController(dataSource: ds, transDelegate: trans, delegate: delegate)
         browser.show(pageIndex: index, in: self)
     }
     

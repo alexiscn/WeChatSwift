@@ -41,6 +41,8 @@ class VideoContentNode: MessageContentNode {
         videoInfoBackgroundNode.cornerRoundingType = .precomposited
         
         videoLengthNode.attributedText = videoMsg.attributedStringForVideoLength()
+        
+        supportedMenus = [.playMuted, .forward, .addFavorite, .multiSelect, .delete, .remind]
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

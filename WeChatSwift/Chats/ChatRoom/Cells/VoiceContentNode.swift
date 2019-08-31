@@ -36,6 +36,8 @@ class VoiceContentNode: MessageContentNode {
         unreadNode.image = UIImage.as_imageNamed("VoiceNodeUnread_8x8_")
         unreadNode.style.preferredSize = CGSize(width: 8, height: 8)
         durationNode.attributedText = voiceMsg.attributedStringForDuration()
+        
+        supportedMenus = [.playWithEarphone, .addFavorite, .translate, .multiSelect, .delete, .remind]
     }
  
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

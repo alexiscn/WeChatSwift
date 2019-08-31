@@ -180,6 +180,8 @@ enum MessageMenuAction: Int {
     case followShoot
     case viewStickerAlbum
     case edit
+    case playMuted
+    case playWithEarphone
     
     var title: String {
         switch self {
@@ -209,6 +211,10 @@ enum MessageMenuAction: Int {
             return "查看专辑"
         case .edit:
             return "编辑"
+        case .playMuted:
+            return "静音播放"
+        case .playWithEarphone:
+            return "听筒播放"
         }
     }
 }

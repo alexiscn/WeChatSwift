@@ -29,6 +29,8 @@ class PhotoBrowserDefaultDelegate: NSObject, PhotoBrowserDelegate {
     
     var originWindowLevel: UIWindow.Level?
     
+    var longPressedHandler: ((PhotoBrowserViewController, Int, UIImage?, UILongPressGestureRecognizer) -> Void)?
+    
     func photoBrowser(_ photoBrowser: PhotoBrowserViewController, pageIndexDidChanged pageIndex: Int) {
         
     }
@@ -73,6 +75,11 @@ class PhotoBrowserDefaultDelegate: NSObject, PhotoBrowserDelegate {
             } else {
                 self?.browser?.transDelegate.maskAlpha = 1.0
                 self?.coverStatusBar(true)
+            }
+        }
+        cell.longPressedHandler = { [weak self, weak cell] gesture in
+            if let browser = self?.browser {
+                self?.longPressedHandler?(browser, indexPath.item, cell?.imageView.image, gesture)
             }
         }
     }
