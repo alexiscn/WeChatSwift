@@ -10,4 +10,12 @@ import WCDBSwift
 
 class MessageDatabase {
     
+    func addMessage(_ msg: Message) {
+        
+    }
+    
+    func addMessages(_ msgs: [Message]) {
+        
+    }
+    
 }
