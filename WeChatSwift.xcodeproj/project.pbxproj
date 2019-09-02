@@ -375,6 +375,7 @@
 		A3E58DA22302BE4E00F73763 /* CameraScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58DA12302BE4E00F73763 /* CameraScanViewController.swift */; };
 		A3E58DA42302C88800F73763 /* CameraScanBottomNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58DA32302C88800F73763 /* CameraScanBottomNode.swift */; };
 		A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E58DA52302CF0500F73763 /* CameraScanType.swift */; };
+		A3E840D4231CF07B00EAC4CE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E840D3231CF07B00EAC4CE /* AppConfiguration.swift */; };
 		A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */; };
 		A3EA973B22EAB11C008F94E4 /* PHAsset+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */; };
 		A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */; };
@@ -793,6 +794,7 @@
 		A3E58DA12302BE4E00F73763 /* CameraScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanViewController.swift; sourceTree = "<group>"; };
 		A3E58DA32302C88800F73763 /* CameraScanBottomNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanBottomNode.swift; sourceTree = "<group>"; };
 		A3E58DA52302CF0500F73763 /* CameraScanType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanType.swift; sourceTree = "<group>"; };
+		A3E840D3231CF07B00EAC4CE /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		A3EA973822EA9A93008F94E4 /* UIImage+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Compression.swift"; sourceTree = "<group>"; };
 		A3EA973A22EAB11C008F94E4 /* PHAsset+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Extensions.swift"; sourceTree = "<group>"; };
 		A3EA973E22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewViewController.swift; sourceTree = "<group>"; };
@@ -1695,6 +1697,7 @@
 			children = (
 				A3CA51FA22CDA87D00C67D92 /* AppContext.swift */,
 				A373D3D122F65A5300451515 /* UserSettings.swift */,
+				A3E840D3231CF07B00EAC4CE /* AppConfiguration.swift */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -2156,6 +2159,7 @@
 				A3476FF522FA9827001B94EC /* UITabBar+Fix.swift in Sources */,
 				A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */,
 				A352AD092306492E00332B21 /* MomentCoverCustomizeViewController.swift in Sources */,
+				A3E840D4231CF07B00EAC4CE /* AppConfiguration.swift in Sources */,
 				A3476FFC22FAABBF001B94EC /* ChatRoomMemberItemNode.swift in Sources */,
 				A37FFB6222EE8D310001DD27 /* WebViewController.swift in Sources */,
 				A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */,

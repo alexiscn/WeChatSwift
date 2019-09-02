@@ -367,6 +367,11 @@ class MockFactory {
         return like
     }
     
+    private func randomMomentVideo() -> MomentBody {
+        //TODO
+        return MomentBody.none
+    }
+    
     func discoverEntrance() -> [DiscoverSection] {
         var sections: [DiscoverSection] = []
         var moment = DiscoverModel(type: .moment, title: "朋友圈", icon: "icons_outlined_colorful_moment")

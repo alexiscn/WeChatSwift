@@ -10,5 +10,7 @@ target 'WeChatSwift' do
     pod 'SSZipArchive'
     pod 'PINRemoteImage', '3.0.0-beta.13'
     
+    pod 'FLEX', :configurations => ['Debug']
+    
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'
 end

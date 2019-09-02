@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import AsyncDisplayKit
+import FLEX
 
 typealias RelayCommand = () -> Void
 
@@ -34,11 +35,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         setupTaBar()
-        
+        injectLongPressGestureToStatusBar()
         AppContext.current.doHeavySetup()
         
         UIView.fixTabBarButtonFrame()
         return true
+    }
+    
+    private func injectLongPressGestureToStatusBar() {
+        if let statusBarWindow = UIApplication.shared.value(forKey: "statusBarWindow") as? UIWindow {
+            let statusBar = statusBarWindow.subviews.first
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressStatusBar(_:)))
+            statusBar?.addGestureRecognizer(longPress)
+        }
+    }
+    
+    @objc private func handleLongPressStatusBar(_ gesture: UILongPressGestureRecognizer) {
+        if AppConfiguration.current() == .debug && gesture.state == .began {
+            FLEXManager.shared()?.showExplorer()
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

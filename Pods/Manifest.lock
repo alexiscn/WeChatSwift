@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (4.8.2)
   - CocoaLumberjack (3.5.3):
     - CocoaLumberjack/Core (= 3.5.3)
   - CocoaLumberjack/Core (3.5.3)
   - FLAnimatedImage (1.0.12)
+  - FLEX (3.0.0)
   - MMKV (1.0.22)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
@@ -59,7 +59,7 @@ PODS:
   - WXActionSheet (0.2.1)
 
 DEPENDENCIES:
-  - Alamofire
+  - FLEX
   - MMKV
   - PINRemoteImage (= 3.0.0-beta.13)
   - SnapKit
@@ -71,9 +71,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
     - CocoaLumberjack
     - FLAnimatedImage
+    - FLEX
     - MMKV
     - PINCache
     - PINOperation
@@ -91,9 +91,9 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/SVGKit
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
   MMKV: 99b05c376c0eb412b468ba1d3e6813502edeaa24
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
@@ -107,6 +107,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: f142359aec657ef7fcff8da50418caa4c2caf462
 
-PODFILE CHECKSUM: 2d8a3370a01e3b1e393cf3f61f7f54661b8a53f0
+PODFILE CHECKSUM: 381c882e14bd4df7453726a38b0b8225a2faea4b
 
 COCOAPODS: 1.7.5

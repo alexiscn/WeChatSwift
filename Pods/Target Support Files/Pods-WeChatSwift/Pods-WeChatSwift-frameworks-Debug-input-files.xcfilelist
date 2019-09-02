@@ -1,7 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-WeChatSwift/Pods-WeChatSwift-frameworks.sh
-${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework
 ${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework
+${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework
 ${BUILT_PRODUCTS_DIR}/MMKV/MMKV.framework
 ${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework
 ${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework
