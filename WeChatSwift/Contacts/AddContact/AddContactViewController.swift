@@ -12,6 +12,8 @@ class AddContactViewController: ASViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
+    private var dataSource: [AddContactSource] = []
+    
     init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
@@ -23,8 +25,6 @@ class AddContactViewController: ASViewController<ASDisplayNode> {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private var dataSource: [AddContactSource] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,5 +75,14 @@ extension AddContactViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let model = dataSource[indexPath.row]
+        switch model {
+        case .radar:
+            let radarSearchVC = RadarSearchViewController()
+            navigationController?.pushViewController(radarSearchVC, animated: true)
+        default:
+            break
+        }
     }
 }

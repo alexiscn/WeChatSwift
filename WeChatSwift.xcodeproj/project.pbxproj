@@ -210,6 +210,7 @@
 		A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999C22E969FE00620069 /* EmoticonManageViewController.swift */; };
 		A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */; };
 		A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */; };
+		A3993A702323A90B000C86D9 /* RadarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */; };
 		A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888D23004A3F007273CD /* RemarkViewController.swift */; };
 		A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */; };
 		A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889123004D14007273CD /* RemarkTagCellNode.swift */; };
@@ -629,6 +630,7 @@
 		A389999C22E969FE00620069 /* EmoticonManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageViewController.swift; sourceTree = "<group>"; };
 		A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreViewController.swift; sourceTree = "<group>"; };
 		A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailViewController.swift; sourceTree = "<group>"; };
+		A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSearchViewController.swift; sourceTree = "<group>"; };
 		A3B6888D23004A3F007273CD /* RemarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkViewController.swift; sourceTree = "<group>"; };
 		A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditNameCellNode.swift; sourceTree = "<group>"; };
 		A3B6889123004D14007273CD /* RemarkTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkTagCellNode.swift; sourceTree = "<group>"; };
@@ -1036,6 +1038,7 @@
 		A33DB2E822CCCA1200A11776 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				A3993A6E2323A8F2000C86D9 /* Radar */,
 				A3C9144623053E4100B6E077 /* SayHello */,
 				A3B6888C230049B0007273CD /* Remark */,
 				A30347F722FF995C003ECF82 /* BrandContacts */,
@@ -1512,6 +1515,14 @@
 				A341392F2307DB77008E0EBF /* PurchasedEmoticonViewController.swift */,
 			);
 			path = Emoticons;
+			sourceTree = "<group>";
+		};
+		A3993A6E2323A8F2000C86D9 /* Radar */ = {
+			isa = PBXGroup;
+			children = (
+				A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */,
+			);
+			path = Radar;
 			sourceTree = "<group>";
 		};
 		A3B6888C230049B0007273CD /* Remark */ = {
@@ -2339,6 +2350,7 @@
 				A3D67FBD230FC8B900507B5F /* GrowingTextView.swift in Sources */,
 				A3C9145423056FFA00B6E077 /* MomentCommentListCellNode.swift in Sources */,
 				A374864222D44C48002EEC4F /* LocationContentNode.swift in Sources */,
+				A3993A702323A90B000C86D9 /* RadarSearchViewController.swift in Sources */,
 				A30347F622FE57B1003ECF82 /* WCTableCellModel.swift in Sources */,
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
 				A3476FFF22FAD681001B94EC /* MultiSelectContactsViewController.swift in Sources */,
