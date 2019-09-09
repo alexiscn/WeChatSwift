@@ -14,7 +14,7 @@ class MomentCellNode: ASCellNode {
     
     private let moment: Moment
     
-    private let avatarNode: ASImageNode
+    private let avatarNode: ASNetworkImageNode
     
     private let nameNode: ASButtonNode
     
@@ -35,7 +35,7 @@ class MomentCellNode: ASCellNode {
     init(moment: Moment) {
         self.moment = moment
         
-        avatarNode = ASImageNode()
+        avatarNode = ASNetworkImageNode()
         avatarNode.contentMode = .scaleAspectFill
         avatarNode.style.preferredSize = CGSize(width: 40, height: 40)
         avatarNode.cornerRoundingType = .precomposited
@@ -88,9 +88,9 @@ class MomentCellNode: ASCellNode {
         
         commentNode?.delegate = self
         
-        let user = MockFactory.shared.users.first(where: { $0.identifier == moment.userID })
-        let avatar = user?.avatar ?? "DefaultHead_48x48_"
-        avatarNode.image = UIImage.as_imageNamed(avatar)
+        let user = MockFactory.shared.user(with: moment.userID)
+        avatarNode.defaultImage = UIImage.as_imageNamed("DefaultHead_48x48_")
+        avatarNode.url = user?.avatar
         
         let name = user?.name ?? ""
         nameNode.setAttributedTitle(moment.attributedStringForUsername(with: name), for: .normal)

@@ -12,7 +12,7 @@ class MultiSelectContactsCellNode: ASCellNode {
     
     private let checkboxButton = ASButtonNode()
     
-    private let avatarImageNode = ASImageNode()
+    private let avatarImageNode = ASNetworkImageNode()
     
     private let nameNode = ASTextNode()
     
@@ -31,7 +31,7 @@ class MultiSelectContactsCellNode: ASCellNode {
         checkboxButton.setImage(selectedImage, for: .selected)
         checkboxButton.isSelected = contact.isSelected
         
-        avatarImageNode.image = contact.avatar
+        avatarImageNode.url = contact.avatarURL
         avatarImageNode.cornerRadius = 4
         avatarImageNode.cornerRoundingType = .precomposited
         nameNode.attributedText = contact.attributedTextForName()

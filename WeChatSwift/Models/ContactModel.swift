@@ -49,8 +49,8 @@ enum ContactModel {
             return UIImage(named: "Contact_icon_ContactTag_36x36_")
         case .officialAccounts:
             return UIImage(named: "add_friend_icon_offical_36x36_")
-        case .contact(let user):
-            return user.avatar
+        case .contact(_):
+            return nil
         }
     }
 }
@@ -60,6 +60,15 @@ extension ContactModel: WCTableCellModel {
     var wc_title: String { return name }
     
     var wc_image: UIImage? { return image }
+    
+    var wc_imageURL: URL? {
+        switch self {
+        case .contact(let contact):
+            return contact.avatarURL
+        default:
+            return nil
+        }
+    }
     
     var wc_imageLayoutSize: CGSize { return CGSize(width: 40, height: 40) }
     
@@ -72,11 +81,11 @@ class Contact {
     
     var name: String = ""
     
-    var avatar: UIImage? = nil
+    var avatarURL: URL? = nil
     
     var letter: String = "#"
     
-    var gender: MockFactory.Gender = .male
+    var gender: MockData.Gender = .male
     
     var wxid: String = ""
 }

@@ -203,9 +203,7 @@ extension MomentsViewController {
     }
     
     private func onHeaderAvatarClicked() {
-        guard let contact = MockFactory.shared.users.first?.toContact() else {
-            return
-        }
+        let contact = AppContext.current.me.toContact()
         let contactInfoVC = ContactInfoViewController(contact: contact)
         navigationController?.pushViewController(contactInfoVC, animated: true)
     }
@@ -345,7 +343,7 @@ extension MomentsViewController: MomentCellNodeDelegate {
     }
     
     func momentCellNode(_ cellNode: MomentCellNode, didPressedUser userID: String) {
-        guard let user = MockFactory.shared.users.first(where: { $0.identifier == userID }) else {
+        guard let user = MockFactory.shared.user(with: userID) else {
             return
         }
         let contact = user.toContact()
@@ -382,18 +380,15 @@ extension MomentsViewController: MomentCellNodeDelegate {
 extension MomentsViewController: MomentOperationMenuViewDelegate {
     
     func operationMenuView(_ menuView: MomentOperationMenuView, onLikeMoment moment: Moment) {
-        let myID = AppContext.current.userID
-        guard let me = MockFactory.shared.users.first(where: { $0.identifier == myID }) else {
-            return
-        }
+        let me = AppContext.current.me
         if moment.liked {
-            if !moment.likes.contains(where: { $0.userID == myID }) {
-                let user = MomentLikeUser(userID: myID, username: me.name)
+            if !moment.likes.contains(where: { $0.userID == me.identifier }) {
+                let user = MomentLikeUser(userID: me.identifier, username: me.name)
                 moment.likes.append(user)
                 menuMomentCellNode?.addLike()
             }
         } else {
-            if let index = moment.likes.firstIndex(where: { $0.userID == myID }) {
+            if let index = moment.likes.firstIndex(where: { $0.userID == me.identifier }) {
                 moment.likes.remove(at: index)
                 menuMomentCellNode?.deleteLike()
             }

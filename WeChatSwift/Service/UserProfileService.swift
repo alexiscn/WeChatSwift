@@ -10,8 +10,5 @@ import Foundation
 
 class UserProfileService {
     
-    func getUser(with uid: String) -> MockFactory.MockUser? {
-        return MockFactory.shared.users.first(where: { $0.identifier == uid })
-    }
     
 }

@@ -18,7 +18,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     
     private let dataSource: ChatRoomDataSource
     
-    private let user: MockFactory.MockUser
+    private let user: MockData.User
     
     private let inputNode = ChatRoomKeyboardNode()
     
@@ -31,7 +31,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     init(sessionID: String) {
         self.sessionID = sessionID
         self.dataSource = ChatRoomDataSource(sessionID: sessionID)
-        self.user = MockFactory.shared.users.first(where: { $0.identifier == sessionID })!
+        self.user = MockFactory.shared.user(with: sessionID)!
         
         super.init(node: ASDisplayNode())
 
@@ -95,7 +95,6 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
                 message.time = Int(Date().timeIntervalSinceNow)
                 dataSource.append(message)
             } else if mediaAsset.asset.mediaType == .video {
-                // TODO
                 let thumbImage = mediaAsset.asset.thumbImage(with: CGSize(width: 500, height: 500))
                 let duration = mediaAsset.asset.duration
                 let size = mediaAsset.asset.pixelSize
@@ -340,7 +339,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
 extension ChatRoomViewController: MessageCellNodeDelegate {
     
     func messageCell(_ cellNode: MessageCellNode, didTapAvatar userID: String) {
-        guard let user = MockFactory.shared.users.first(where: { $0.identifier == userID }) else {
+        guard let user = MockFactory.shared.user(with: userID) else {
             return
         }
         let contactVC = ContactInfoViewController(contact: user.toContact())

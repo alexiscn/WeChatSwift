@@ -16,7 +16,7 @@ class WCTableCellNode: ASCellNode {
     
     var valueChangedHandler: ((Bool) -> Void)?
     
-    private let iconNode = ASImageNode()
+    private let iconNode = ASNetworkImageNode()
     private let titleNode = ASTextNode()
     private let arrowNode = ASImageNode()
     private let lineNode = ASDisplayNode()
@@ -37,7 +37,11 @@ class WCTableCellNode: ASCellNode {
         self.isLastCell = isLastCell
         super.init()
         automaticallyManagesSubnodes = true
-        iconNode.image = model.wc_image
+        if model.wc_imageURL != nil {
+            iconNode.url = model.wc_imageURL
+        } else {
+            iconNode.image = model.wc_image
+        }
         titleNode.attributedText = model.wc_attributedStringForTitle()
         lineNode.backgroundColor = Colors.DEFAULT_SEPARTOR_LINE_COLOR
         arrowNode.image = UIImage.SVGImage(named: "icons_outlined_arrow")
@@ -87,7 +91,7 @@ class WCTableCellNode: ASCellNode {
         var leading: CGFloat = 0.0
         
         // Append Image
-        if model.wc_image != nil {
+        if model.wc_image != nil || model.wc_imageURL != nil {
             iconNode.style.spacingBefore = 16
             iconNode.style.preferredSize = model.wc_imageLayoutSize
             elements.append(iconNode)

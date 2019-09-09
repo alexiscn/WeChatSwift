@@ -45,7 +45,7 @@ class ContactsViewController: ASViewController<ASDisplayNode> {
         let searchSection = ContactSection(title: "", models: [.newFriends, .groupChats, .tags, .officialAccounts])
         dataSource.append(searchSection)
         
-        let users = MockFactory.shared.users.map { return $0.toContact() }
+        let users = MockFactory.shared.contacts()
         let groupingDict = Dictionary(grouping: users, by: { $0.letter })
         var contacts = groupingDict.map { return ContactSection(title: $0.key, models: $0.value.map { return ContactModel.contact($0) }) }
         contacts.sort(by: { $0.title < $1.title })

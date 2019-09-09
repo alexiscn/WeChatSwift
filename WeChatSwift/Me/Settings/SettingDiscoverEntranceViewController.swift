@@ -19,7 +19,7 @@ class SettingDiscoverEntranceViewController: ASViewController<ASDisplayNode> {
         node.addSubnode(tableNode)
         tableNode.dataSource = self
         tableNode.delegate = self
-        dataSource = MockFactory.shared.discoverEntrance().flatMap { return $0.models }
+        dataSource = DiscoverManager.shared.discoverEntrance().flatMap { return $0.models }
     }
     
     required init?(coder aDecoder: NSCoder) {

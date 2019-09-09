@@ -29,10 +29,9 @@ class NearbyPeopleCellNode: ASCellNode {
         automaticallyManagesSubnodes = true
         avatarNode.cornerRadius = 4
         avatarNode.cornerRoundingType = .precomposited
-        avatarNode.image = UIImage.as_imageNamed(people.avatar)
+        avatarNode.url = people.avatar
         
         genderNode.image = people.genderImage
-        genderNode.isHidden = people.gender == .unknown
         
         nicknameNode.attributedText = people.attributedStringForNickname()
         distanceNode.attributedText = people.attributedStringForDistance()
@@ -83,12 +82,11 @@ class NearbyPeopleCellNode: ASCellNode {
 
 class NearbyPeople {
     
-    
     let userId: String
     
     let nickname: String
     
-    let avatar: String
+    let avatar: URL?
     
     var country: String?
     
@@ -96,9 +94,9 @@ class NearbyPeople {
     
     var distance: String? = nil
     
-    var gender: MockFactory.Gender
+    var gender: MockData.Gender
     
-    init(userId: String, nickname: String, avatar: String, gender: MockFactory.Gender) {
+    init(userId: String, nickname: String, avatar: URL?, gender: MockData.Gender) {
         self.userId = userId
         self.nickname = nickname
         self.avatar = avatar
@@ -129,7 +127,6 @@ class NearbyPeople {
     }
     
     func toContact() -> Contact {
-        let user = MockFactory.MockUser(identifier: userId, name: nickname, avatar: avatar, gender: gender)
-        return user.toContact()
+        return MockFactory.shared.user(with: userId)!.toContact()
     }
 }

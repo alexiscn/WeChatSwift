@@ -12,7 +12,7 @@ class SessionCellNode: ASCellNode {
     
     private let session: Session
     
-    private let avatarNode = ASImageNode()
+    private let avatarNode = ASNetworkImageNode()
     
     private let badgeNode = BadgeNode()
     
@@ -34,10 +34,14 @@ class SessionCellNode: ASCellNode {
         
         automaticallyManagesSubnodes = true
         
-        let avatar = session.avatar ?? "DefaultHead_48x48_"
         avatarNode.cornerRadius = 4.0
         avatarNode.cornerRoundingType = .precomposited
-        avatarNode.image = UIImage.as_imageNamed(avatar)
+        avatarNode.defaultImage = UIImage.as_imageNamed("DefaultHead_48x48_")
+        if session.avatarImage != nil {
+            avatarNode.image = session.avatarImage
+        } else {
+            avatarNode.url = session.avatar
+        }
         
         titleNode.attributedText = session.attributedStringForTitle()
         titleNode.maximumNumberOfLines = 1

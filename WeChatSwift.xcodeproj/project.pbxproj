@@ -219,20 +219,6 @@
 		A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B68897230055C6007273CD /* ContactTagViewController.swift */; };
 		A3B6889A2300E62C007273CD /* AboutFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B688992300E62C007273CD /* AboutFooterNode.swift */; };
 		A3C914262305092400B6E077 /* RichTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C914252305092400B6E077 /* RichTextNode.swift */; };
-		A3C9142823052D9300B6E077 /* Gilly.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142723052D9300B6E077 /* Gilly.jpg */; };
-		A3C9142A23052F1600B6E077 /* Melisandre.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142923052F1600B6E077 /* Melisandre.jpg */; };
-		A3C9142C23052F9900B6E077 /* KhalDrogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142B23052F9900B6E077 /* KhalDrogo.jpg */; };
-		A3C9142E2305303E00B6E077 /* Jaqen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142D2305303E00B6E077 /* Jaqen.jpg */; };
-		A3C914302305309A00B6E077 /* Shae.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9142F2305309A00B6E077 /* Shae.jpg */; };
-		A3C914322305311D00B6E077 /* Samwell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C914312305311D00B6E077 /* Samwell.jpg */; };
-		A3C91434230531C400B6E077 /* Varys.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C91433230531C300B6E077 /* Varys.jpg */; };
-		A3C914362305328500B6E077 /* Bronn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C914352305328500B6E077 /* Bronn.jpg */; };
-		A3C91438230532E600B6E077 /* Ned.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C91437230532E600B6E077 /* Ned.jpg */; };
-		A3C9143A2305338E00B6E077 /* Catelyn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C914392305338E00B6E077 /* Catelyn.jpg */; };
-		A3C9143C2305340300B6E077 /* Robb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143B2305340300B6E077 /* Robb.jpg */; };
-		A3C9143E2305347800B6E077 /* Viserys.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143D2305347800B6E077 /* Viserys.jpg */; };
-		A3C914402305353D00B6E077 /* Tywin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9143F2305353D00B6E077 /* Tywin.jpg */; };
-		A3C91442230535E800B6E077 /* GreyWorm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3C91441230535E800B6E077 /* GreyWorm.jpg */; };
 		A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144423053D3600B6E077 /* ChatRoomListViewController.swift */; };
 		A3C9144823053E5900B6E077 /* SayHelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144723053E5900B6E077 /* SayHelloViewController.swift */; };
 		A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9144B23054B4800B6E077 /* ChatRoomListItemModel.swift */; };
@@ -292,14 +278,6 @@
 		A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA520A22CDD58800C67D92 /* Constants.swift */; };
 		A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA520C22CDD5F400C67D92 /* ui-resources_badge_dot.svg */; };
 		A3CA520F22CDD5F400C67D92 /* ui-resources_badge_count.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA520D22CDD5F400C67D92 /* ui-resources_badge_count.svg */; };
-		A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521122CDE9D900C67D92 /* Tyrion.jpg */; };
-		A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521322CDEADF00C67D92 /* Jaime.jpg */; };
-		A3CA521622CDF4EF00C67D92 /* Cersei.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521522CDF4EF00C67D92 /* Cersei.jpg */; };
-		A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521722CDF59800C67D92 /* Daenerys.jpg */; };
-		A3CA521A22CDF5FA00C67D92 /* JonSnow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521922CDF5FA00C67D92 /* JonSnow.jpg */; };
-		A3CA521C22CDF73000C67D92 /* Sansa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521B22CDF73000C67D92 /* Sansa.jpg */; };
-		A3CA521E22CDF76B00C67D92 /* Arya.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521D22CDF76A00C67D92 /* Arya.jpg */; };
-		A3CA522022CDF82A00C67D92 /* Bran.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA521F22CDF82A00C67D92 /* Bran.jpg */; };
 		A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA522322CE196100C67D92 /* ChatDetailViewController.swift */; };
 		A3CA522622CE19BE00C67D92 /* icons_filled_camera.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA522522CE19BE00C67D92 /* icons_filled_camera.svg */; };
 		A3CA522822CE1A8A00C67D92 /* MeTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA522722CE1A8A00C67D92 /* MeTableModel.swift */; };
@@ -331,6 +309,8 @@
 		A3CCEDE722FC0C50008BE41D /* ShakeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE622FC0C50008BE41D /* ShakeType.swift */; };
 		A3CCEDE922FC0C78008BE41D /* ShakeSettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */; };
 		A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */; };
+		A3D5DC092325F4590096849F /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = A3D5DC082325F4590096849F /* MockData.json */; };
+		A3D5DC0B2326420E0096849F /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5DC0A2326420E0096849F /* MockData.swift */; };
 		A3D67FBB230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D67FBA230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift */; };
 		A3D67FBD230FC8B900507B5F /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D67FBC230FC8B900507B5F /* GrowingTextView.swift */; };
 		A3D67FBF230FE24E00507B5F /* PublishMomentDragCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D67FBE230FE24E00507B5F /* PublishMomentDragCollectionView.swift */; };
@@ -639,20 +619,6 @@
 		A3B68897230055C6007273CD /* ContactTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTagViewController.swift; sourceTree = "<group>"; };
 		A3B688992300E62C007273CD /* AboutFooterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFooterNode.swift; sourceTree = "<group>"; };
 		A3C914252305092400B6E077 /* RichTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextNode.swift; sourceTree = "<group>"; };
-		A3C9142723052D9300B6E077 /* Gilly.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gilly.jpg; sourceTree = "<group>"; };
-		A3C9142923052F1600B6E077 /* Melisandre.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Melisandre.jpg; sourceTree = "<group>"; };
-		A3C9142B23052F9900B6E077 /* KhalDrogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = KhalDrogo.jpg; sourceTree = "<group>"; };
-		A3C9142D2305303E00B6E077 /* Jaqen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Jaqen.jpg; sourceTree = "<group>"; };
-		A3C9142F2305309A00B6E077 /* Shae.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Shae.jpg; sourceTree = "<group>"; };
-		A3C914312305311D00B6E077 /* Samwell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Samwell.jpg; sourceTree = "<group>"; };
-		A3C91433230531C300B6E077 /* Varys.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Varys.jpg; sourceTree = "<group>"; };
-		A3C914352305328500B6E077 /* Bronn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bronn.jpg; sourceTree = "<group>"; };
-		A3C91437230532E600B6E077 /* Ned.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ned.jpg; sourceTree = "<group>"; };
-		A3C914392305338E00B6E077 /* Catelyn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Catelyn.jpg; sourceTree = "<group>"; };
-		A3C9143B2305340300B6E077 /* Robb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Robb.jpg; sourceTree = "<group>"; };
-		A3C9143D2305347800B6E077 /* Viserys.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Viserys.jpg; sourceTree = "<group>"; };
-		A3C9143F2305353D00B6E077 /* Tywin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tywin.jpg; sourceTree = "<group>"; };
-		A3C91441230535E800B6E077 /* GreyWorm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GreyWorm.jpg; sourceTree = "<group>"; };
 		A3C9144423053D3600B6E077 /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
 		A3C9144723053E5900B6E077 /* SayHelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayHelloViewController.swift; sourceTree = "<group>"; };
 		A3C9144B23054B4800B6E077 /* ChatRoomListItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListItemModel.swift; sourceTree = "<group>"; };
@@ -712,14 +678,6 @@
 		A3CA520A22CDD58800C67D92 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A3CA520C22CDD5F400C67D92 /* ui-resources_badge_dot.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_badge_dot.svg"; sourceTree = "<group>"; };
 		A3CA520D22CDD5F400C67D92 /* ui-resources_badge_count.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_badge_count.svg"; sourceTree = "<group>"; };
-		A3CA521122CDE9D900C67D92 /* Tyrion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tyrion.jpg; sourceTree = "<group>"; };
-		A3CA521322CDEADF00C67D92 /* Jaime.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Jaime.jpg; sourceTree = "<group>"; };
-		A3CA521522CDF4EF00C67D92 /* Cersei.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Cersei.jpg; sourceTree = "<group>"; };
-		A3CA521722CDF59800C67D92 /* Daenerys.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Daenerys.jpg; sourceTree = "<group>"; };
-		A3CA521922CDF5FA00C67D92 /* JonSnow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JonSnow.jpg; sourceTree = "<group>"; };
-		A3CA521B22CDF73000C67D92 /* Sansa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sansa.jpg; sourceTree = "<group>"; };
-		A3CA521D22CDF76A00C67D92 /* Arya.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Arya.jpg; sourceTree = "<group>"; };
-		A3CA521F22CDF82A00C67D92 /* Bran.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bran.jpg; sourceTree = "<group>"; };
 		A3CA522322CE196100C67D92 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 		A3CA522522CE19BE00C67D92 /* icons_filled_camera.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_camera.svg; sourceTree = "<group>"; };
 		A3CA522722CE1A8A00C67D92 /* MeTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeTableModel.swift; sourceTree = "<group>"; };
@@ -751,6 +709,8 @@
 		A3CCEDE622FC0C50008BE41D /* ShakeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeType.swift; sourceTree = "<group>"; };
 		A3CCEDE822FC0C78008BE41D /* ShakeSettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeSettingItem.swift; sourceTree = "<group>"; };
 		A3D5399F22EF258A006B4FCD /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
+		A3D5DC082325F4590096849F /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
+		A3D5DC0A2326420E0096849F /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		A3D67FBA230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraPhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		A3D67FBC230FC8B900507B5F /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 		A3D67FBE230FE24E00507B5F /* PublishMomentDragCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishMomentDragCollectionView.swift; sourceTree = "<group>"; };
@@ -1586,6 +1546,8 @@
 			isa = PBXGroup;
 			children = (
 				A3CA51A222CD997000C67D92 /* MockFactory.swift */,
+				A3D5DC082325F4590096849F /* MockData.json */,
+				A3D5DC0A2326420E0096849F /* MockData.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -1605,7 +1567,6 @@
 				A3EE12362317CF54000F287C /* Fonts */,
 				A3C9144F23056DB500B6E077 /* Games */,
 				A3FB0AAC22F407BE00116329 /* Emoticons */,
-				A3CA521022CDE9C500C67D92 /* Avatars */,
 				A3CA51C322CD9C1C00C67D92 /* Icons */,
 				A372227922D6154C003403D4 /* Expressions.json */,
 				A372228A22D984D9003403D4 /* flutter.jpeg */,
@@ -1711,35 +1672,6 @@
 				A3E840D3231CF07B00EAC4CE /* AppConfiguration.swift */,
 			);
 			path = Context;
-			sourceTree = "<group>";
-		};
-		A3CA521022CDE9C500C67D92 /* Avatars */ = {
-			isa = PBXGroup;
-			children = (
-				A3CA521122CDE9D900C67D92 /* Tyrion.jpg */,
-				A3CA521322CDEADF00C67D92 /* Jaime.jpg */,
-				A3CA521522CDF4EF00C67D92 /* Cersei.jpg */,
-				A3CA521722CDF59800C67D92 /* Daenerys.jpg */,
-				A3CA521922CDF5FA00C67D92 /* JonSnow.jpg */,
-				A3CA521B22CDF73000C67D92 /* Sansa.jpg */,
-				A3CA521D22CDF76A00C67D92 /* Arya.jpg */,
-				A3CA521F22CDF82A00C67D92 /* Bran.jpg */,
-				A3C91441230535E800B6E077 /* GreyWorm.jpg */,
-				A3C9143F2305353D00B6E077 /* Tywin.jpg */,
-				A3C914352305328500B6E077 /* Bronn.jpg */,
-				A3C9143D2305347800B6E077 /* Viserys.jpg */,
-				A3C9143B2305340300B6E077 /* Robb.jpg */,
-				A3C91437230532E600B6E077 /* Ned.jpg */,
-				A3C914392305338E00B6E077 /* Catelyn.jpg */,
-				A3C91433230531C300B6E077 /* Varys.jpg */,
-				A3C914312305311D00B6E077 /* Samwell.jpg */,
-				A3C9142F2305309A00B6E077 /* Shae.jpg */,
-				A3C9142D2305303E00B6E077 /* Jaqen.jpg */,
-				A3C9142B23052F9900B6E077 /* KhalDrogo.jpg */,
-				A3C9142923052F1600B6E077 /* Melisandre.jpg */,
-				A3C9142723052D9300B6E077 /* Gilly.jpg */,
-			);
-			path = Avatars;
 			sourceTree = "<group>";
 		};
 		A3CAA70B2316234A004384EB /* SettingMyProfile */ = {
@@ -2016,33 +1948,26 @@
 				A3C9145C230588FD00B6E077 /* icons_outlined_location.svg in Resources */,
 				A3D897F222E1FDD700814669 /* dice_emoticon_md5.png in Resources */,
 				A3CA51DD22CD9FAF00C67D92 /* icons_filled_search-logo.svg in Resources */,
-				A3C9143C2305340300B6E077 /* Robb.jpg in Resources */,
 				A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */,
 				A374866122D4AF68002EEC4F /* icons_filled_location.svg in Resources */,
 				A36B735C22EFBDBF00A30E4E /* icons_outlined_videocall.svg in Resources */,
-				A3C9143A2305338E00B6E077 /* Catelyn.jpg in Resources */,
 				A3D897EB22E1D14500814669 /* 153716293386e633a27b0f3d76.png in Resources */,
 				A3CA522E22CE1C5F00C67D92 /* icons_outlined_colorful_favorites.svg in Resources */,
 				A3CA51D922CD9FA000C67D92 /* icons_outlined_shake.svg in Resources */,
-				A3C91442230535E800B6E077 /* GreyWorm.jpg in Resources */,
 				A372228B22D984D9003403D4 /* flutter.jpeg in Resources */,
 				A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */,
-				A3C914322305311D00B6E077 /* Samwell.jpg in Resources */,
 				A31057E122E8532E00856D71 /* dice_4.pic in Resources */,
 				A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */,
 				A3CA520E22CDD5F400C67D92 /* ui-resources_badge_dot.svg in Resources */,
-				A3CA521A22CDF5FA00C67D92 /* JonSnow.jpg in Resources */,
 				A3EE12422317CF68000F287C /* WeChatSansStd-Bold.ttf in Resources */,
 				A3EE123D2317CF68000F287C /* WeChatSansSuperscript-Regular.ttf in Resources */,
 				A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */,
 				A31057D522E852FA00856D71 /* JSB_J.pic in Resources */,
-				A3CA521822CDF59800C67D92 /* Daenerys.jpg in Resources */,
 				A3CA51E522CD9FD500C67D92 /* icons_outlined_mini-program.svg in Resources */,
 				A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */,
 				A3EE123F2317CF68000F287C /* WeChatSansSuperscript-Medium.ttf in Resources */,
 				A3E20015230A7877005B2B70 /* icons_filled_close.svg in Resources */,
 				A3CA51C922CD9C5C00C67D92 /* icons_filled_me.svg in Resources */,
-				A3C9142823052D9300B6E077 /* Gilly.jpg in Resources */,
 				A3CCE02322DDECFA0003DC25 /* red_envelopes_bottom_bg.svg in Resources */,
 				A352AD302306D2FA00332B21 /* icons_filled_done.svg in Resources */,
 				A3CA51D122CD9C8500C67D92 /* icons_outlined_contacts.svg in Resources */,
@@ -2051,42 +1976,31 @@
 				A3FB0AB222F40C6C00116329 /* icons_outlined_pay.svg in Resources */,
 				A3CA522C22CE1BCF00C67D92 /* icons_outlined_wechatpay.svg in Resources */,
 				A3CA51D322CD9C9300C67D92 /* icons_outlined_chats.svg in Resources */,
-				A3CA521422CDEADF00C67D92 /* Jaime.jpg in Resources */,
 				A3CA51DF22CD9FB900C67D92 /* icons_outlined_nearby.svg in Resources */,
 				A31057DE22E8532E00856D71 /* dice_1.pic in Resources */,
 				A3FB0AAB22F406E100116329 /* icons_outlined_qr-code.svg in Resources */,
 				A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */,
 				A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,
-				A3C91438230532E600B6E077 /* Ned.jpg in Resources */,
 				A31057E222E8532E00856D71 /* dice_2.pic in Resources */,
 				A31057E422E8532E00856D71 /* dice.pic in Resources */,
 				A3CA520222CDAFD100C67D92 /* icon_filled_timelineophl.svg in Resources */,
-				A3CA521222CDE9D900C67D92 /* Tyrion.jpg in Resources */,
 				A3FB0AAE22F40A1B00116329 /* icons_outlined_wallet.svg in Resources */,
 				A3D897F022E1FDCF00814669 /* jsb_emoticon_md5.png in Resources */,
-				A3C914362305328500B6E077 /* Bronn.jpg in Resources */,
-				A3C91434230531C400B6E077 /* Varys.jpg in Resources */,
 				A3CA51E322CD9FCA00C67D92 /* icons_outlined_colorful_game.svg in Resources */,
-				A3C9142C23052F9900B6E077 /* KhalDrogo.jpg in Resources */,
-				A3C9142A23052F1600B6E077 /* Melisandre.jpg in Resources */,
 				A374866722D4B031002EEC4F /* icons_filled_sticker.svg in Resources */,
 				A3CA51B322CD9AF900C67D92 /* icons_outlined_radar.svg in Resources */,
 				A3CA51EB22CDA0D000C67D92 /* icons_outlined_addoutline.svg in Resources */,
 				A3CA51D522CD9F8C00C67D92 /* icons_outlined_colorful_moment.svg in Resources */,
 				A3CA51C522CD9C4A00C67D92 /* icons_filled_chats.svg in Resources */,
 				A34FB570230C32770065DB09 /* icons_outlined_comment.svg in Resources */,
-				A3CA522022CDF82A00C67D92 /* Bran.jpg in Resources */,
 				A352AD1C2306980D00332B21 /* MomentCoverBackground.json in Resources */,
-				A3CA521C22CDF73000C67D92 /* Sansa.jpg in Resources */,
-				A3CA521E22CDF76B00C67D92 /* Arya.jpg in Resources */,
 				A3CA51CF22CD9C7B00C67D92 /* icons_outlined_me.svg in Resources */,
 				A3CA51C722CD9C5400C67D92 /* icons_filled_contacts.svg in Resources */,
-				A3C9142E2305303E00B6E077 /* Jaqen.jpg in Resources */,
+				A3D5DC092325F4590096849F /* MockData.json in Resources */,
 				A32333B922DF091D00B79555 /* icons_outlined_mute.svg in Resources */,
 				A3D897EC22E1D14900814669 /* 15031638347220abdd83283a10.png in Resources */,
 				A3CA523222CE1D0000C67D92 /* icons_outlined_sticker.svg in Resources */,
-				A3C914402305353D00B6E077 /* Tywin.jpg in Resources */,
 				A374866322D4AFCE002EEC4F /* icons_filled_folder.svg in Resources */,
 				A374866522D4AFE4002EEC4F /* icons_filled_favorites.svg in Resources */,
 				A3CA523422CE1D7B00C67D92 /* icons_outlined_setting.svg in Resources */,
@@ -2097,10 +2011,7 @@
 				A3CCE02522DDECFA0003DC25 /* red_envelopes_top_bg.svg in Resources */,
 				A3CA520F22CDD5F400C67D92 /* ui-resources_badge_count.svg in Resources */,
 				A372227A22D6154C003403D4 /* Expressions.json in Resources */,
-				A3C9143E2305347800B6E077 /* Viserys.jpg in Resources */,
 				A3CCE01722DDA0DF0003DC25 /* icons_outlined_like.svg in Resources */,
-				A3C914302305309A00B6E077 /* Shae.jpg in Resources */,
-				A3CA521622CDF4EF00C67D92 /* Cersei.jpg in Resources */,
 				A3EE12402317CF68000F287C /* WeChatSansStd-Regular.ttf in Resources */,
 				A3CA51FF22CDAF1400C67D92 /* icons_filled_radar.svg in Resources */,
 				A3EE12412317CF68000F287C /* WeChatSansStd-Medium.ttf in Resources */,
@@ -2406,6 +2317,7 @@
 				A3F6AD022303A9A9007FE74B /* ChatRoomDateFormatter.swift in Sources */,
 				A33B883A2307D89200D28D57 /* PhotoBrowserCollectionFlowLayout.swift in Sources */,
 				A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */,
+				A3D5DC0B2326420E0096849F /* MockData.swift in Sources */,
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
 				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
 				A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */,

@@ -15,7 +15,9 @@ public class Session {
     
     var name: String
     
-    var avatar: String?
+    var avatarImage: UIImage?
+    
+    var avatar: URL?
     
     var content: String? = nil
     

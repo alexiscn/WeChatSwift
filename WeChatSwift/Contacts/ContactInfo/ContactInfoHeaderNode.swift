@@ -11,7 +11,7 @@ import AsyncDisplayKit
 class ContactInfoHeaderNode: ASDisplayNode {
     
     private let contact: Contact
-    private let avatarNode = ASImageNode()
+    private let avatarNode = ASNetworkImageNode()
     private let nicknameNode = ASTextNode()
     private let genderNode = ASImageNode()
     private let wechatIDNode = ASTextNode()
@@ -23,7 +23,7 @@ class ContactInfoHeaderNode: ASDisplayNode {
         super.init()
         automaticallyManagesSubnodes = true
         
-        avatarNode.image = contact.avatar
+        avatarNode.url = contact.avatarURL
         avatarNode.cornerRoundingType = .precomposited
         avatarNode.cornerRadius = 6
         
@@ -58,7 +58,6 @@ class ContactInfoHeaderNode: ASDisplayNode {
         avatarNode.style.spacingBefore = 21
         
         genderNode.style.preferredSize = CGSize(width: 18, height: 18)
-        genderNode.isHidden = contact.gender == .unknown
         
         let nameStack = ASStackLayoutSpec.horizontal()
         nameStack.alignItems = .center

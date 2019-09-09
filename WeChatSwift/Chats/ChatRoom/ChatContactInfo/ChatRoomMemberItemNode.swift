@@ -35,7 +35,7 @@ class ChatRoomMemberItemNode: ASDisplayNode {
             addButtonNode.setImage(UIImage(named: "AddGroupMemberBtn_50x50_"), for: .normal)
             addButtonNode.setImage(UIImage(named: "AddGroupMemberBtnHL_50x50_"), for: .highlighted)
         case .contact(let contact):
-            avatarNode.image = contact.avatar
+            avatarNode.url = contact.avatarURL
             avatarNode.cornerRoundingType = .precomposited
             avatarNode.cornerRadius = 4
             let paragraphStyle = NSMutableParagraphStyle()

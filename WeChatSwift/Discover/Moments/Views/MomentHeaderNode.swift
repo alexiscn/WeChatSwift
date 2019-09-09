@@ -19,16 +19,16 @@ class MomentHeaderNode: ASDisplayNode {
     
     private let tipsNode = ASTextNode()
     
-    private let avatarNode = ASImageNode()
+    private let avatarNode = ASNetworkImageNode()
     
     override init() {
         super.init()
         automaticallyManagesSubnodes = true
         
-        let user = MockFactory.shared.users.first!
+        let user = AppContext.current.me
         
         coverNode.image = UIImage.as_imageNamed("AlbumListViewBkg_320x320_")
-        avatarNode.image = UIImage(named: user.avatar)
+        avatarNode.url = user.avatar
         avatarNode.cornerRadius = 6
         avatarNode.cornerRoundingType = .defaultSlowCALayer
         

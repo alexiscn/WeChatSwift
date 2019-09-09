@@ -21,7 +21,7 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
     
     private let copyRightNode: ASTextNode
     
-    init() {
+    init(emoticon: StoreEmoticonItem) {
         
         scrollNode = ASScrollNode()
         
@@ -32,7 +32,7 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
         
         copyRightNode = ASTextNode()
         
-        artistNode = EmoticonDetailArtistNode(artist: MockFactory.shared.users.last!.toContact())
+        artistNode = EmoticonDetailArtistNode(artist: MockFactory.shared.contacts().first!)
         
         super.init(node: ASDisplayNode())
         

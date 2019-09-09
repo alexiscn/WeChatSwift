@@ -26,7 +26,7 @@ final class ChatRoomDataSource {
     init(sessionID: String) {
         self.sessionID = sessionID
         
-        let user = MockFactory.shared.users.first(where: { $0.identifier == sessionID })!
+        let user = MockFactory.shared.user(with: sessionID)!
         messages = MockFactory.shared.messages(with: user)
         formatTime()
     }

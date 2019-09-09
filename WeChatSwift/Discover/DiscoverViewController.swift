@@ -43,7 +43,7 @@ class DiscoverViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        dataSource = MockFactory.shared.discoverEntrance()
+        dataSource = DiscoverManager.shared.discoverEntrance()
     }
 }
 

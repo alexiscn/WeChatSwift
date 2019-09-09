@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct User {
-    
-    var uid: String
-    
-    var name: String
-    
-    var avatar: String
-    
-    var gender: String?
-    
-}
+//struct User {
+//    
+//    var uid: String
+//    
+//    var name: String
+//    
+//    var avatar: String
+//    
+//    var gender: String?
+//    
+//}

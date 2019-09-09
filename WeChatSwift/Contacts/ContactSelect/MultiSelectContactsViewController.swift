@@ -51,7 +51,7 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        let users = MockFactory.shared.users.map { return $0.toMultiSelectContact() }
+        let users = MockFactory.shared.multiSelectContacts()
         let groupingDict = Dictionary(grouping: users, by: { $0.letter })
         var contacts = groupingDict.map { return MultiSelectContactSection(title: $0.key, models: $0.value) }
         contacts.sort(by: { $0.title < $1.title })

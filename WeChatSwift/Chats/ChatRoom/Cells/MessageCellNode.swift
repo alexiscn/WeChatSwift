@@ -59,9 +59,8 @@ public class MessageCellNode: ASCellNode {
         if let node = bottomTextNode { addSubnode(node) }
         
         selectionStyle = .none
-        let user = MockFactory.shared.users.first(where: { $0.identifier == message.senderID })
-        let avatar = user?.avatar ?? "DefaultHead_48x48_"
-        avatarNode.image = UIImage.as_imageNamed(avatar)
+        let avatar = MockFactory.shared.user(with: message.senderID)?.avatar
+        avatarNode.url = avatar
         avatarNode.cornerRadius = 6.0
         avatarNode.cornerRoundingType = .precomposited
         

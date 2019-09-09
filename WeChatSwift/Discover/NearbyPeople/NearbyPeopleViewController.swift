@@ -52,8 +52,7 @@ class NearbyPeopleViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        let users = MockFactory.shared.users
-        dataSource = users.map { return NearbyPeople(userId: $0.identifier, nickname: $0.name, avatar: $0.avatar, gender: $0.gender) }
+        dataSource = MockFactory.shared.nearbys()
     }
 }
 

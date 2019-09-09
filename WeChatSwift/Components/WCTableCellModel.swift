@@ -25,6 +25,8 @@ protocol WCTableCellModel {
     /// Icon Image, default nil
     var wc_image: UIImage? { get }
     
+    var wc_imageURL: URL? { get }
+    
     var wc_imageLayoutSize: CGSize { get }
     
     var wc_imageCornerRadius: CGFloat { get }
@@ -47,6 +49,8 @@ protocol WCTableCellModel {
 extension WCTableCellModel {
     
     var wc_image: UIImage? { return nil }
+    
+    var wc_imageURL: URL? { return nil }
     
     var wc_badgeCount: Int { return 0 }
     

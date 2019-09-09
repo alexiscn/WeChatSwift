@@ -22,7 +22,7 @@ class EmoticonDetailArtistNode: ASDisplayNode {
         super.init()
         automaticallyManagesSubnodes = true
         
-        avatarNode.image = artist.avatar
+        avatarNode.url = artist.avatarURL
         
         nameNode.attributedText = NSAttributedString(string: artist.name, attributes: [
             .font: UIFont.systemFont(ofSize: 17),
