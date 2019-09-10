@@ -92,7 +92,7 @@ class ExpressionParser {
     
 }
 
-fileprivate extension String {
+extension String {
     func subStringInRange(_ range: NSRange) -> String {
         let start = self.index(startIndex, offsetBy: range.location)
         let end = self.index(start, offsetBy: range.length)

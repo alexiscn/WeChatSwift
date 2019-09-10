@@ -51,25 +51,25 @@ enum ChatRoomTool: CaseIterable {
     var title: String {
         switch self {
         case .album:
-            return "照片"
+            return LocalizedString("MessageToolView_MediaBrowser")
         case .camera:
-            return "拍摄"
+            return LocalizedString("MessageToolView_CameraController")
         case .videoCall:
-            return "视频通话"
+            return LocalizedString("MessageToolView_VideoVoip")
         case .location:
-            return "位置"
+            return LocalizedString("MessageToolView_Location")
         case .redPacket:
-            return "红包"
+            return LocalizedString("WCCard_RedEnvelopes")
         case .transfer:
             return "转账"
         case .voice:
-            return "语音输入"
+            return LocalizedString("MessageToolView_VoiceInput")
         case .favorites:
-            return "收藏"
+            return LocalizedString("MessageToolView_MyFavorites")
         case .contactCard:
-            return "个人名片"
+            return LocalizedString("MessageToolView_ShareCard")
         case .files:
-            return "文件"
+            return LocalizedString("MessageToolView_FileBrowser")
         case .coupons:
             return "折扣"
         }

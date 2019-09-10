@@ -255,7 +255,26 @@ extension ChatRoomKeyboardNode: EmoticonBoardNodeDelegate {
     }
     
     func emoticonBoardPressedDeleteButton() {
-        
+        guard let text = toolBar.text, text.count > 0 else {
+            return
+        }
+        if text.hasSuffix("]") {
+            var startLocation: Int = -1
+            for index in 0 ..< text.count {
+                let offset = text.count - 1 - index
+                let range = NSRange(location: offset, length: 1)
+                let char = text.subStringInRange(range)
+                if char == "[" {
+                    startLocation = offset
+                    break
+                }
+            }
+            if startLocation >= 0 {
+                toolBar.text = text.subStringInRange(NSRange(location: 0, length: startLocation))
+            }
+        } else {
+            toolBar.text = text.subStringInRange(NSRange(location: 0, length: text.count - 1))
+        }
     }
     
     func emoticonBoardPressedSettingButton() {

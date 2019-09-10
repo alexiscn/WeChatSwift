@@ -1,0 +1,6 @@
+framework module SFVideoPlayer {
+  umbrella header "SFVideoPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}

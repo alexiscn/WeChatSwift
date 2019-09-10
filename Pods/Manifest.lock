@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.8.2)
   - CocoaLumberjack (3.5.3):
     - CocoaLumberjack/Core (= 3.5.3)
   - CocoaLumberjack/Core (3.5.3)
@@ -26,6 +27,8 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.13):
     - PINCache (= 3.0.1-beta.6)
     - PINRemoteImage/Core
+  - SFVideoPlayer (0.0.1):
+    - Alamofire
   - SnapKit (5.0.1)
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
@@ -62,6 +65,7 @@ DEPENDENCIES:
   - FLEX
   - MMKV
   - PINRemoteImage (= 3.0.0-beta.13)
+  - SFVideoPlayer (from `DevelopmentPods/SFVideoPlayer`)
   - SnapKit
   - SSZipArchive
   - SVGKit (from `DevelopmentPods/SVGKit`)
@@ -71,6 +75,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - CocoaLumberjack
     - FLAnimatedImage
     - FLEX
@@ -87,10 +92,13 @@ SPEC REPOS:
     - WXActionSheet
 
 EXTERNAL SOURCES:
+  SFVideoPlayer:
+    :path: DevelopmentPods/SFVideoPlayer
   SVGKit:
     :path: DevelopmentPods/SVGKit
 
 SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FLEX: d66c759bce0f6ebbbf472c742380874d846f2883
@@ -98,6 +106,7 @@ SPEC CHECKSUMS:
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
+  SFVideoPlayer: 1711cf67ba0c21aa3ba4e05828b5f1cc56882898
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
@@ -107,6 +116,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: f142359aec657ef7fcff8da50418caa4c2caf462
 
-PODFILE CHECKSUM: 381c882e14bd4df7453726a38b0b8225a2faea4b
+PODFILE CHECKSUM: 6de6973f0800903acfa5a4c357b41ea14cde186b
 
 COCOAPODS: 1.7.5

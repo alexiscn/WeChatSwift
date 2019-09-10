@@ -107,7 +107,17 @@ final class ChatRoomToolBarNode: ASDisplayNode {
     }()
     
     var text: String? {
-        return textNode.attributedText?.string
+        get {
+            return textNode.attributedText?.string
+        }
+        set {
+            let attributedText = NSMutableAttributedString()
+            attributedText.append(NSAttributedString(string: newValue ?? "", attributes: [
+                .font: UIFont.systemFont(ofSize: 15),
+                .foregroundColor: Colors.DEFAULT_TEXT_COLOR
+                ]))
+            textNode.attributedText = attributedText
+        }
     }
     
     override init() {

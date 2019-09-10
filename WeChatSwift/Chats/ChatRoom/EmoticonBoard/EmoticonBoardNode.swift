@@ -104,6 +104,9 @@ extension EmoticonBoardNode: ASCollectionDelegate, ASCollectionDataSource {
             cell.didTapEmoticon = { [weak self] emoticon in
                 self?.delegate?.emoticonBoardDidTapEmoticon(emoticon, viewModel: sectionModel)
             }
+            cell.didTapDeleteButton = { [weak self] in
+                self?.delegate?.emoticonBoardPressedDeleteButton()
+            }
             return cell
         }
         return block
@@ -138,10 +141,6 @@ extension EmoticonBoardNode: EmoticonBoardTabBarNodeDelegate {
     
     func emoticonBoardTabBarPressedSendButton() {
         delegate?.emoticonBoardPressedSendButton()
-    }
-    
-    func emoticonBoardTabBarPressedDeleteButton() {
-        delegate?.emoticonBoardPressedDeleteButton()
     }
     
     func emoticonBoardTabBarPressedSettingButton() {

@@ -13,4 +13,5 @@ target 'WeChatSwift' do
     pod 'FLEX', :configurations => ['Debug']
     
     pod 'SVGKit', :path => 'DevelopmentPods/SVGKit'
+    pod 'SFVideoPlayer', :path => 'DevelopmentPods/SFVideoPlayer'
 end

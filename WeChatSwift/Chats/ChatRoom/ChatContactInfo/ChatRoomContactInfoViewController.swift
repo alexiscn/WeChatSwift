@@ -35,7 +35,7 @@ class ChatRoomContactInfoViewController: ASViewController<ASDisplayNode> {
         tableNode.frame = view.bounds
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
-        navigationItem.title = "聊天详情"
+        navigationItem.title = LocalizedString("MessageContent_Title")
     }
     
     private func setupDataSource() {
@@ -170,15 +170,15 @@ enum ChatRoomContactInfoModel: WCTableCellModel {
         case .addContactToChatRoom:
             return ""
         case .searchChatHistory:
-            return "查找聊天内容"
+            return LocalizedString("ChatRoomSetting_EditAndSearch")
         case .mute:
             return "消息免打扰"
         case .stickToTop:
-            return "置顶聊天"
+            return LocalizedString("MessageContent_TopSession")
         case .forceNotify:
             return "强提醒"
         case .chatBackground:
-            return "设置当前聊天背景"
+            return LocalizedString("MessageRoomContent_ChangeChatBackground")
         case .clearChat:
             return "清空聊天消息"
         case .report:

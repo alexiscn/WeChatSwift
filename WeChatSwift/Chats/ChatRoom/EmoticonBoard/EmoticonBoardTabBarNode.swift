@@ -11,7 +11,6 @@ import AsyncDisplayKit
 protocol EmoticonBoardTabBarNodeDelegate: class {
     func emoticonBoardTabBarPressedAddButton()
     func emoticonBoardTabBarPressedSendButton()
-    func emoticonBoardTabBarPressedDeleteButton()
     func emoticonBoardTabBarPressedSettingButton()
     func emoticonBoardTabBarDidSelected(at indexPath: IndexPath)
 }
@@ -155,10 +154,6 @@ extension EmoticonBoardTabBarNode {
     
     @objc private func handleTapSendButton(_ sender: Any) {
         delegate?.emoticonBoardTabBarPressedSendButton()
-    }
-    
-    @objc private func handleTapDeleteButton(_ sender: Any) {
-        delegate?.emoticonBoardTabBarPressedDeleteButton()
     }
     
     @objc private func handleTapSettingButton(_ sender: Any) {

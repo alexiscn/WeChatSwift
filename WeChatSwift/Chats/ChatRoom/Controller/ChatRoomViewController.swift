@@ -324,6 +324,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     
     func keyboardEmoticonSettingsButtonPressed() {
         let emoticonManageVC = EmoticonManageViewController()
+        emoticonManageVC.isPresented = true
         let nav = WCNavigationController(rootViewController: emoticonManageVC)
         present(nav, animated: true, completion: nil)
     }

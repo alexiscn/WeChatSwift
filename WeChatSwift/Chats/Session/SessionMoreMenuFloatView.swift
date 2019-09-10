@@ -24,11 +24,22 @@ class SessionMoreFrameFloatView: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let groupChatMenu = SessionMoreItem(type: .groupChats, title: "发起群聊", icon: "icons_filled_chats")
-        let addFriendMenu = SessionMoreItem(type: .addFriends,title: "添加朋友", icon: "icons_filled_add-friends")
-        let scanMenu = SessionMoreItem(type: .scan,title: "扫一扫", icon: "icons_filled_scan")
-        let payMenu = SessionMoreItem(type: .money,title: "收付款", icon: "icons_filled_pay")
+        let groupChatMenu = SessionMoreItem(type: .groupChats,
+                                            title: LocalizedString("MainFrame_RBtnCreateChat"),
+                                            icon: "icons_filled_chats")
+        let addFriendMenu = SessionMoreItem(type: .addFriends,
+                                            title: LocalizedString("MainFrame_RBtnAddFriend"),
+                                            icon: "icons_filled_add-friends")
+        let scanMenu = SessionMoreItem(type: .scan,
+                                       title: LocalizedString("MainFrame_RBtnScan"),
+                                       icon: "icons_filled_scan")
+        let payMenu = SessionMoreItem(type: .money,
+                                      title: LocalizedString("WCPay_FacingReceiveMoney_OfflinePay_Title"),
+                                      icon: "icons_filled_pay")
         menus = [groupChatMenu, addFriendMenu, scanMenu, payMenu]
+        
+        let longestTitle = menus.sorted(by: { $0.title > $1.title }).first!.title
+        print(longestTitle)
         
         let menuWidth: CGFloat = 160.0
         let menuHeight: CGFloat = 56.0

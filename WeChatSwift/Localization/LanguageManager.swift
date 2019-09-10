@@ -10,6 +10,10 @@ import Foundation
 
 fileprivate var bundleKey: UInt8 = 0
 
+func LocalizedString(_ key: String) -> String {
+    return LanguageManager.shared.getLocalizedString(key)
+}
+
 enum Language: String, CaseIterable {
     case none
     case en = "en"
@@ -42,7 +46,7 @@ class LanguageManager {
         return Language.allCases
     }
     
-    func getLocalizedString(_ key: String) -> String? {
+    func getLocalizedString(_ key: String) -> String {
         return NSLocalizedString(key, comment: "")
     }
 }

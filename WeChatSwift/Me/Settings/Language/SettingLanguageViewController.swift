@@ -36,7 +36,7 @@ class SettingLanguageViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "设置语言"
+        navigationItem.title = LocalizedString("Setting_LanguageTitle")
         
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
         navigationItem.leftBarButtonItem = cancelButton

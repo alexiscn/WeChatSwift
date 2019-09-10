@@ -39,12 +39,15 @@ class EmoticonManageViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         tableNode.backgroundColor = .clear
         
-        navigationItem.title = "我的表情"
+        navigationItem.title = LocalizedString("EmoticonManageTitle")
         
         let sortButton = UIBarButtonItem(title: "排序", style: .plain, target: self, action: #selector(handleSortButtonClicked))
         navigationItem.rightBarButtonItem = sortButton
         
         cancelButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(handleCancelButtonClicked))
+        if isPresented {
+            navigationItem.leftBarButtonItem = cancelButtonItem
+        }
         backButtonItem = navigationItem.leftBarButtonItem
     }
 
@@ -65,8 +68,12 @@ extension EmoticonManageViewController {
     }
     
     @objc private func handleCancelButtonClicked() {
-        navigationItem.leftBarButtonItem = backButtonItem
-        tableNode.view.setEditing(false, animated: true)
+        if isPresented {
+            dismiss(animated: true, completion: nil)
+        } else {
+            navigationItem.leftBarButtonItem = backButtonItem
+            tableNode.view.setEditing(false, animated: true)
+        }
     }
     
     @objc private func handleDoneButtonClicked() {

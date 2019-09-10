@@ -12,6 +12,8 @@ class EmoticonGridCellNode: ASCellNode {
     
     var didTapEmoticon: ((_ emoticon: Emoticon) -> Void)?
     
+    var didTapDeleteButton: (() -> Void)?
+    
     private var nodes: [EmoticonGridItemNode] = []
     
     private let viewModel: EmoticonViewModel
@@ -88,7 +90,7 @@ class EmoticonGridCellNode: ASCellNode {
 extension EmoticonGridCellNode {
     
     @objc private func deleteEmoticonButtonClicked() {
-        
+        didTapDeleteButton?()
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
