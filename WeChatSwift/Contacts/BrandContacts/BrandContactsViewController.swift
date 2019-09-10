@@ -31,7 +31,7 @@ class BrandContactsViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "公众号"
+        navigationItem.title = LocalizedString("Contacts_App")
         let addButton = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_filled_add"), style: .plain, target: self, action: #selector(addButtonClicked))
         navigationItem.rightBarButtonItem = addButton
     }

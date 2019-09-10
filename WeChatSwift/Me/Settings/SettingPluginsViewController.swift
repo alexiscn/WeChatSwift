@@ -34,12 +34,12 @@ class SettingPluginsViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "辅助功能"
+        navigationItem.title = LocalizedString("Setting_PluginsTitle")
     }
     
     private func setupDataSource() {
-        dataSource.append(SettingPluginSection(title: "已启用的功能", items: [.groupMessageAssistant]))
-        dataSource.append(SettingPluginSection(title: "未启用的功能", items: [.news, .qqMail, .weSport]))
+        dataSource.append(SettingPluginSection(title: LocalizedString("Plugin_HasOpenPlugins"), items: [.groupMessageAssistant]))
+        dataSource.append(SettingPluginSection(title: LocalizedString("Plugin_NotOpenPlugins"), items: [.news, .qqMail, .weSport]))
     }
 }
 

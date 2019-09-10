@@ -38,7 +38,7 @@ class RemarkViewController: ASViewController<ASDisplayNode> {
         tableNode.view.keyboardDismissMode = .interactive
         //tableNode.view.setEditing(true, animated: false)
         
-        navigationItem.title = "设置备注和标签"
+        navigationItem.title = LocalizedString("Contacts_Remark_Set")
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
         cancelButton.tintColor = .black
         navigationItem.leftBarButtonItem = cancelButton

@@ -108,23 +108,23 @@ enum SettingGeneral {
         case .font:
             return "字体"
         case .backgroundImage:
-            return "聊天背景"
+            return LocalizedString("Setting_ChatBackgroundConfig")
         case .emoticon:
             return "我的表情"
         case .files:
-            return "照片、视频和文件"
+            return LocalizedString("Setting_Photos_And_Videos_And_Files")
         case .earmode:
             return "听筒模式"
         case .discover:
-            return "发现页管理"
+            return LocalizedString("Setting_DiscoverEntranceTitle")
         case .plugins:
-            return "辅助功能"
+            return LocalizedString("Setting_PluginsTitle")
         case .backup:
-            return "聊天记录备份与迁移"
+            return LocalizedString("Setting_ChatLog")
         case .storage:
-            return "存储空间"
+            return LocalizedString("Setting_StorageUsageVC_Title")
         case .clearChatHistory:
-            return "清空聊天记录"
+            return LocalizedString("Setting_ClearLocalData")
         }
     }
     

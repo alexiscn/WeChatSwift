@@ -19,9 +19,9 @@ enum AddContactSource {
     var titles: (String, String) {
         switch self {
         case .radar:
-            return ("雷达加朋友", "添加身边的朋友")
+            return (LocalizedString("RadarSearch_Cell"), LocalizedString("RadarSearch_Cell_Detail"))
         case .faceToFaceGroup:
-            return ("面对面建群", "与身边的朋友进入同一个群聊")
+            return (LocalizedString("RadarSearch_CreateRoom_Title"), LocalizedString("RadarSearch_CreateRoomCell_FindFriend_Detail"))
         case .scan:
             return ("扫一扫", "扫描二维码名片")
         case .phoneContacts:

@@ -44,7 +44,7 @@ class SettingLabViewController: ASViewController<ASDisplayNode> {
         }
         tableNode.addSubnode(footerNode)
         
-        navigationItem.title = "插件"
+        navigationItem.title = LocalizedString("Wechat_Labs_Title")
     }
     
     private func navigateToAgreement() {

@@ -32,32 +32,32 @@ class SettingsViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         tableNode.frame = view.bounds
         tableNode.backgroundColor = .clear
-        navigationItem.title = "设置"
+        navigationItem.title = LocalizedString("Setting_Title")
         setupDataSource()
         tableNode.reloadData()
     }
     
     private func setupDataSource() {
-        let accountModel = SettingsTableModel(type: .accountAndSecurity, title: "账号与安全")
+        let accountModel = SettingsTableModel(type: .accountAndSecurity, title: LocalizedString("Setting_AccountSectionTitle"))
         dataSource.append(SettingsTableGroupModel(models: [accountModel]))
         
-        let messageModel = SettingsTableModel(type: .newMessageNotification, title: "新消息通知")
-        let privacyModel = SettingsTableModel(type: .privacy, title: "隐私")
-        let generalModel = SettingsTableModel(type: .general, title: "通用")
+        let messageModel = SettingsTableModel(type: .newMessageNotification, title: LocalizedString("Setting_NotificationSectionTitle"))
+        let privacyModel = SettingsTableModel(type: .privacy, title: LocalizedString("Setting_Other_PrivateConfigEx"))
+        let generalModel = SettingsTableModel(type: .general, title: LocalizedString("Setting_GeneralTitle"))
         dataSource.append(SettingsTableGroupModel(models: [messageModel, privacyModel, generalModel]))
         
-        let helpModel = SettingsTableModel(type: .helpAndFeedback, title: "帮助与反馈")
-        var aboutModel = SettingsTableModel(type: .about, title: "关于微信")
+        let helpModel = SettingsTableModel(type: .helpAndFeedback, title: LocalizedString("Setting_QA"))
+        var aboutModel = SettingsTableModel(type: .about, title: LocalizedString("Setting_Other_AboutMM"))
         aboutModel.value = "版本7.0.5"
         dataSource.append(SettingsTableGroupModel(models: [helpModel, aboutModel]))
         
-        let pluginModel = SettingsTableModel(type: .plugins, title: "插件")
+        let pluginModel = SettingsTableModel(type: .plugins, title: LocalizedString("Wechat_Labs_Title"))
         dataSource.append(SettingsTableGroupModel(models: [pluginModel]))
         
-        let switchAccountModel = SettingsTableModel(type: .switchAccount, title: "切换账号")
+        let switchAccountModel = SettingsTableModel(type: .switchAccount, title: LocalizedString("Login_LoginInfo_Mgr"))
         dataSource.append(SettingsTableGroupModel(models: [switchAccountModel]))
         
-        let logoutModel = SettingsTableModel(type: .logout, title: "退出登录")
+        let logoutModel = SettingsTableModel(type: .logout, title: LocalizedString("Setting_Quit_Title"))
         dataSource.append(SettingsTableGroupModel(models: [logoutModel]))
     }
 }

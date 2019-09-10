@@ -27,13 +27,13 @@ enum ContactModel {
     var name: String {
         switch self {
         case .newFriends:
-            return "新的朋友"
+            return LocalizedString("Contacts_Plugin_FriendAssist_Nickname")
         case .groupChats:
             return "群聊"
         case .tags:
             return "标签"
         case .officialAccounts:
-            return "公众号"
+            return LocalizedString("Contacts_App")
         case .contact(let user):
             return user.name
         }
@@ -100,7 +100,7 @@ enum ContactInfo {
     var title: String {
         switch self {
         case .remark:
-            return "设置备注和标签"
+            return LocalizedString("Contacts_Remark_Set")
         case .moments:
             return "朋友圈"
         case .more:

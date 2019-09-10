@@ -34,15 +34,15 @@ class SettingPrivacyViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "隐私"
+        navigationItem.title = LocalizedString("Setting_Other_PrivateConfigEx")
     }
     
     private func setupDataSource() {
         dataSource.append(SettingPrivacySection(header: nil, items: [.enableVerifyWhenAddMe(true)], footer: nil))
-        dataSource.append(SettingPrivacySection(header: nil, items: [.wayToAddMe, .enableAdressbookContacts(true)], footer: "开启后，为你推荐已经开通微信的手机联系人"))
+        dataSource.append(SettingPrivacySection(header: nil, items: [.wayToAddMe, .enableAdressbookContacts(true)], footer: LocalizedString("Contacts_RecommendPhone_Footer")))
         dataSource.append(SettingPrivacySection(header: nil, items: [.blacklist], footer: nil))
         dataSource.append(SettingPrivacySection(header: "朋友圈和视频动态", items: [.momentForbidden, .momentIgnore, .momentTime("全部"), .momentAllowStranger(true)], footer: nil))
-        dataSource.append(SettingPrivacySection(header: nil, items: [.momentUpdateNotify(true)], footer: "关闭后，有朋友发表朋友圈时，界面下发的“发现”切换按钮上不再有红点提示。"))
+        dataSource.append(SettingPrivacySection(header: nil, items: [.momentUpdateNotify(true)], footer: LocalizedString("Album_Notification_ShowInMainTab_Explain")))
         dataSource.append(SettingPrivacySection(header: nil, items: [.authorization], footer: nil))
     }
 }

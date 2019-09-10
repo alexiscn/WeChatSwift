@@ -34,7 +34,7 @@ class SettingDiscoverEntranceViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         tableNode.view.allowsSelection = false
-        navigationItem.title = "发现页管理"
+        navigationItem.title = LocalizedString("Setting_DiscoverEntranceTitle")
         
         setupTableHeader()
         setupTableFooter()
@@ -44,7 +44,7 @@ class SettingDiscoverEntranceViewController: ASViewController<ASDisplayNode> {
         let headerView = UIView(frame: CGRect(x: 0, y: 1, width: view.bounds.width, height: 37))
         let headerLabel = UILabel()
         headerLabel.numberOfLines = 0
-        headerLabel.text = "打开 / 关闭发现页的入口"
+        headerLabel.text = LocalizedString("Setting_DiscoverEntrance_SectionHeader")
         headerLabel.textColor = Colors.DEFAULT_TEXT_GRAY_COLOR
         headerLabel.font = UIFont.systemFont(ofSize: 14)
         headerLabel.frame = CGRect(x: 16, y: 16, width: headerView.bounds.width - 32, height: 17)
@@ -56,7 +56,7 @@ class SettingDiscoverEntranceViewController: ASViewController<ASDisplayNode> {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 46))
         let footerLabel = UILabel()
         footerLabel.numberOfLines = 0
-        footerLabel.text = "关闭后，仅隐藏“发现”中该功能的入口，不会清空任何历史数据。"
+        footerLabel.text = LocalizedString("Setting_DiscoverEntrance_SectionFooter")
         footerLabel.textColor = Colors.DEFAULT_TEXT_GRAY_COLOR
         footerLabel.font = UIFont.systemFont(ofSize: 14)
         footerLabel.frame = CGRect(x: 16, y: 4, width: footerView.bounds.width - 32, height: 34)

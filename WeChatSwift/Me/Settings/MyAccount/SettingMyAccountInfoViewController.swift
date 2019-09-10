@@ -34,7 +34,7 @@ class SettingMyAccountInfoViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "账号与安全"
+        navigationItem.title = LocalizedString("Setting_AccountSectionTitle")
     }
     
     private func setupDataSource() {

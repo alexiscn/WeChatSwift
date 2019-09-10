@@ -38,19 +38,19 @@ enum SettingMyAccountInfoModel: WCTableCellModel {
         case .phoneNumber:
             return "手机号"
         case .wechatPassword:
-            return "微信密码"
+            return LocalizedString("Setting_Account_Password_Set")
         case .voicePassword:
-            return "声音锁"
+            return LocalizedString("Setting_Account_VoicePrintPassword_Set")
         case .emergencyContact:
-            return "应急联系人"
+            return LocalizedString("Setting_Account_TrustedFriends")
         case .deviceManagement:
-            return "登录设备管理"
+            return LocalizedString("AccountSafe_Device")
         case .moreSecuritySettings:
-            return "更多安全设置"
+            return LocalizedString("Setting_Account_More")
         case .freezeAccount:
-            return "帮朋友冻结微信"
+            return LocalizedString("Contacts_Setting_HelpFrozen")
         case .securityCenter:
-            return "微信安全中心"
+            return LocalizedString("Setting_Account_SecurityCenter")
         }
     }
     
@@ -72,9 +72,9 @@ enum SettingMyAccountInfoModel: WCTableCellModel {
             textNode.attributedText = body
             return textNode
         case .wechatPassword:
-            return valueTextNode("已设置")
+            return valueTextNode(LocalizedString("Setting_Account_Password_Set_Tip"))
         case .voicePassword:
-            return valueTextNode("未设置")
+            return valueTextNode(LocalizedString("Setting_Account_Password_Set_NoTip"))
         default:
             return nil
         }

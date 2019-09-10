@@ -62,7 +62,7 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         summaryStorageNode.frame = headerView.bounds
         tableNode.view.tableHeaderView = headerView
         
-        navigationItem.title = "存储空间"
+        navigationItem.title = LocalizedString("Setting_StorageUsageVC_Title")
         
         scanner.startScan { (summary, detail) in
             

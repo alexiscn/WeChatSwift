@@ -33,7 +33,7 @@ class SettingGeneralViewController: ASViewController<ASDisplayNode> {
         tableNode.frame = view.bounds
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
-        navigationItem.title = "通用"
+        navigationItem.title = LocalizedString("Setting_GeneralTitle")
         
         setupDataSource()
     }

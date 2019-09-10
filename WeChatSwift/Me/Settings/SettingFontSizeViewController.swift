@@ -37,7 +37,7 @@ class SettingFontSizeViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "设置字体大小"
+        navigationItem.title = LocalizedString("Setting_FontSize_Title")
         let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(handleCancelButtonTapped(_:)))
         cancelButton.tintColor = .black
         navigationItem.leftBarButtonItem = cancelButton

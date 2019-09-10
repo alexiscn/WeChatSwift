@@ -31,7 +31,7 @@ class SayHelloViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "新的朋友"
+        navigationItem.title = LocalizedString("Contacts_Plugin_FriendAssist_Nickname")
         
         let rightButton = UIBarButtonItem(title: "添加朋友", style: .plain, target: self, action: #selector(handleRightButtonClicked))
         navigationItem.rightBarButtonItem = rightButton

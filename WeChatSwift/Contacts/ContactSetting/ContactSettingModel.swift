@@ -26,7 +26,7 @@ enum ContactSettingModel: WCTableCellModel {
     var wc_title: String {
         switch self {
         case .remakAndTag:
-            return "设置备注和标签"
+            return LocalizedString("Contacts_Remark_Set")
         case .recommendToFriend:
             return "把她推荐给朋友"
         case .markAsStarFriend(_):

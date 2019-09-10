@@ -39,7 +39,7 @@ class DiscoverViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "发现"
+        navigationItem.title = LocalizedString("TabBar_FindFriendTitle")
     }
     
     private func setupDataSource() {
