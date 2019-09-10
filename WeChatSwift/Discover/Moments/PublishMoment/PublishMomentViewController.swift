@@ -132,7 +132,9 @@ extension PublishMomentViewController: ASTableDelegate, ASTableDataSource {
         case .remind:
             print("TODO")
         case .permission:
-            print("TODO")
+            let momentGroupTagVC = MomentGroupTagViewController()
+            let nav = WCNavigationController(rootViewController: momentGroupTagVC)
+            present(nav, animated: true, completion: nil)
         default:
             break
         }

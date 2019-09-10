@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 class MomentWebpageContentNode: MomentContentNode {
     
-    private let imageNode: ASNetworkImageNode = ASNetworkImageNode()
+    private let imageNode = ASNetworkImageNode()
     
     private let textNode: ASTextNode = ASTextNode()
     
@@ -27,8 +27,11 @@ class MomentWebpageContentNode: MomentContentNode {
         
         addSubnode(imageNode)
         addSubnode(textNode)
-        
-        imageNode.image = webPage.thumbImage
+        if webPage.thumbImage != nil {
+            imageNode.image = webPage.thumbImage
+        } else if webPage.thumbImageURL != nil {
+            imageNode.url = webPage.thumbImageURL
+        }
         textNode.attributedText = webPage.attributedStringForTitle()
     }
     

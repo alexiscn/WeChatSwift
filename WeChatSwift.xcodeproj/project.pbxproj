@@ -133,6 +133,28 @@
 		A3542F51230D7E6B0034ED82 /* icons_outlined_share.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3542F50230D7E6B0034ED82 /* icons_outlined_share.svg */; };
 		A3542F53230D7FB30034ED82 /* EmoticonDetailArtistNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3542F52230D7FB30034ED82 /* EmoticonDetailArtistNode.swift */; };
 		A3542F55230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3542F54230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift */; };
+		A354CE8E232741B900A2B35C /* MomentGroupTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE8D232741B900A2B35C /* MomentGroupTagViewController.swift */; };
+		A354CE902327427E00A2B35C /* MomentGroupTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE8F2327427E00A2B35C /* MomentGroupTag.swift */; };
+		A354CE922327434900A2B35C /* MomentGroupTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE912327434900A2B35C /* MomentGroupTagCellNode.swift */; };
+		A354CE9523274FB300A2B35C /* LocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE9423274FB300A2B35C /* LocalizationStrings.swift */; };
+		A354CE972327510600A2B35C /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE962327510600A2B35C /* LanguageManager.swift */; };
+		A354CE9923275F5A00A2B35C /* LocalizationStrings+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE9823275F5A00A2B35C /* LocalizationStrings+Account.swift */; };
+		A354CE9B23275F6A00A2B35C /* LocalizationStrings+AddFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE9A23275F6A00A2B35C /* LocalizationStrings+AddFriend.swift */; };
+		A354CE9D23275FD600A2B35C /* LocalizationStrings+Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE9C23275FD600A2B35C /* LocalizationStrings+Album.swift */; };
+		A354CE9F23275FF700A2B35C /* LocalizationStrings+Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CE9E23275FF700A2B35C /* LocalizationStrings+Backup.swift */; };
+		A354CEA12327603600A2B35C /* LocalizationStrings+BindPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEA02327603600A2B35C /* LocalizationStrings+BindPhone.swift */; };
+		A354CEA32327606400A2B35C /* LocalizationStrings+GroupPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEA22327606400A2B35C /* LocalizationStrings+GroupPay.swift */; };
+		A354CEA5232760B400A2B35C /* LocalizationStrings+AppleSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEA4232760B400A2B35C /* LocalizationStrings+AppleSearch.swift */; };
+		A354CEA7232760DD00A2B35C /* LocalizationStrings+Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEA6232760DD00A2B35C /* LocalizationStrings+Brand.swift */; };
+		A354CEA9232762AA00A2B35C /* LocalizationStrings+MessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEA8232762AA00A2B35C /* LocalizationStrings+MessageContent.swift */; };
+		A354CEAB232762DB00A2B35C /* LocalizationStrings+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEAA232762DB00A2B35C /* LocalizationStrings+Message.swift */; };
+		A354CEAD232762F800A2B35C /* LocalizationStrings+MainFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEAC232762F800A2B35C /* LocalizationStrings+MainFrame.swift */; };
+		A354CEAF2327632C00A2B35C /* LocalizationStrings+Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEAE2327632C00A2B35C /* LocalizationStrings+Setting.swift */; };
+		A354CEB12327637C00A2B35C /* LocalizationStrings+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEB02327637C00A2B35C /* LocalizationStrings+Common.swift */; };
+		A354CEB3232763A000A2B35C /* LocalizationStrings+Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEB2232763A000A2B35C /* LocalizationStrings+Contacts.swift */; };
+		A354CEB5232763D500A2B35C /* LocalizationStrings+ContactVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEB4232763D500A2B35C /* LocalizationStrings+ContactVerify.swift */; };
+		A354CEB7232764A400A2B35C /* LocalizationStrings+WeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEB6232764A400A2B35C /* LocalizationStrings+WeApp.swift */; };
+		A354CEB92327652900A2B35C /* LocalizationStrings+WeNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354CEB82327652900A2B35C /* LocalizationStrings+WeNote.swift */; };
 		A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */; };
 		A355AA7022F1A1CA006A70AF /* MomentNewMessageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */; };
 		A355AA7222F1A85D006A70AF /* MomentHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */; };
@@ -161,7 +183,6 @@
 		A37221A522D568AB003403D4 /* MomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37221A422D568AB003403D4 /* MomentCellNode.swift */; };
 		A372227A22D6154C003403D4 /* Expressions.json in Resources */ = {isa = PBXBuildFile; fileRef = A372227922D6154C003403D4 /* Expressions.json */; };
 		A372227C22D62033003403D4 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372227B22D62033003403D4 /* Expression.swift */; };
-		A372228B22D984D9003403D4 /* flutter.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A372228A22D984D9003403D4 /* flutter.jpeg */; };
 		A37343E923129CC10064E510 /* ui-resources_checkbox_unselected.svg in Resources */ = {isa = PBXBuildFile; fileRef = A37343E723129CC10064E510 /* ui-resources_checkbox_unselected.svg */; };
 		A37343EA23129CC10064E510 /* ui-resources_checkbox_selected.svg in Resources */ = {isa = PBXBuildFile; fileRef = A37343E823129CC10064E510 /* ui-resources_checkbox_selected.svg */; };
 		A37343EC23129D000064E510 /* MultiSelectContactsCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37343EB23129D000064E510 /* MultiSelectContactsCellNode.swift */; };
@@ -533,6 +554,28 @@
 		A3542F50230D7E6B0034ED82 /* icons_outlined_share.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_share.svg; sourceTree = "<group>"; };
 		A3542F52230D7FB30034ED82 /* EmoticonDetailArtistNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailArtistNode.swift; sourceTree = "<group>"; };
 		A3542F54230D81810034ED82 /* EmoticonDetailRewardEntranceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailRewardEntranceNode.swift; sourceTree = "<group>"; };
+		A354CE8D232741B900A2B35C /* MomentGroupTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentGroupTagViewController.swift; sourceTree = "<group>"; };
+		A354CE8F2327427E00A2B35C /* MomentGroupTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentGroupTag.swift; sourceTree = "<group>"; };
+		A354CE912327434900A2B35C /* MomentGroupTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentGroupTagCellNode.swift; sourceTree = "<group>"; };
+		A354CE9423274FB300A2B35C /* LocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationStrings.swift; sourceTree = "<group>"; };
+		A354CE962327510600A2B35C /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		A354CE9823275F5A00A2B35C /* LocalizationStrings+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Account.swift"; sourceTree = "<group>"; };
+		A354CE9A23275F6A00A2B35C /* LocalizationStrings+AddFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+AddFriend.swift"; sourceTree = "<group>"; };
+		A354CE9C23275FD600A2B35C /* LocalizationStrings+Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Album.swift"; sourceTree = "<group>"; };
+		A354CE9E23275FF700A2B35C /* LocalizationStrings+Backup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Backup.swift"; sourceTree = "<group>"; };
+		A354CEA02327603600A2B35C /* LocalizationStrings+BindPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+BindPhone.swift"; sourceTree = "<group>"; };
+		A354CEA22327606400A2B35C /* LocalizationStrings+GroupPay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+GroupPay.swift"; sourceTree = "<group>"; };
+		A354CEA4232760B400A2B35C /* LocalizationStrings+AppleSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+AppleSearch.swift"; sourceTree = "<group>"; };
+		A354CEA6232760DD00A2B35C /* LocalizationStrings+Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Brand.swift"; sourceTree = "<group>"; };
+		A354CEA8232762AA00A2B35C /* LocalizationStrings+MessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+MessageContent.swift"; sourceTree = "<group>"; };
+		A354CEAA232762DB00A2B35C /* LocalizationStrings+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Message.swift"; sourceTree = "<group>"; };
+		A354CEAC232762F800A2B35C /* LocalizationStrings+MainFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+MainFrame.swift"; sourceTree = "<group>"; };
+		A354CEAE2327632C00A2B35C /* LocalizationStrings+Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Setting.swift"; sourceTree = "<group>"; };
+		A354CEB02327637C00A2B35C /* LocalizationStrings+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Common.swift"; sourceTree = "<group>"; };
+		A354CEB2232763A000A2B35C /* LocalizationStrings+Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+Contacts.swift"; sourceTree = "<group>"; };
+		A354CEB4232763D500A2B35C /* LocalizationStrings+ContactVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+ContactVerify.swift"; sourceTree = "<group>"; };
+		A354CEB6232764A400A2B35C /* LocalizationStrings+WeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+WeApp.swift"; sourceTree = "<group>"; };
+		A354CEB82327652900A2B35C /* LocalizationStrings+WeNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizationStrings+WeNote.swift"; sourceTree = "<group>"; };
 		A355AA6D22F13C0E006A70AF /* EmoticonStoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreCellNode.swift; sourceTree = "<group>"; };
 		A355AA6F22F1A1CA006A70AF /* MomentNewMessageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentNewMessageCellNode.swift; sourceTree = "<group>"; };
 		A355AA7122F1A85D006A70AF /* MomentHeaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderNode.swift; sourceTree = "<group>"; };
@@ -561,7 +604,6 @@
 		A37221A422D568AB003403D4 /* MomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCellNode.swift; sourceTree = "<group>"; };
 		A372227922D6154C003403D4 /* Expressions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Expressions.json; sourceTree = "<group>"; };
 		A372227B22D62033003403D4 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
-		A372228A22D984D9003403D4 /* flutter.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flutter.jpeg; sourceTree = "<group>"; };
 		A37343E723129CC10064E510 /* ui-resources_checkbox_unselected.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_checkbox_unselected.svg"; sourceTree = "<group>"; };
 		A37343E823129CC10064E510 /* ui-resources_checkbox_selected.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ui-resources_checkbox_selected.svg"; sourceTree = "<group>"; };
 		A37343EB23129D000064E510 /* MultiSelectContactsCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectContactsCellNode.swift; sourceTree = "<group>"; };
@@ -939,6 +981,7 @@
 				A3E58DA02302BE3600F73763 /* Camera */,
 				A33DB2EB22CCCA3200A11776 /* Extensions */,
 				A389999B22E969CA00620069 /* Emoticons */,
+				A354CE9323274F8700A2B35C /* Localization */,
 				A3485FB122F03E04002A804B /* Payment */,
 				A33DB2E722CCCA0D00A11776 /* Chats */,
 				A33DB2E822CCCA1200A11776 /* Contacts */,
@@ -970,6 +1013,7 @@
 		A33DB2E622CCC9FE00A11776 /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				A354CE8C2327419A00A2B35C /* MomentGroupTag */,
 				A352AD072306490E00332B21 /* MomentCover */,
 				A3C9145023056EB700B6E077 /* CommentList */,
 				A3E58D9B23025B4A00F73763 /* Views */,
@@ -1213,6 +1257,42 @@
 				A352AD2B2306D03C00332B21 /* AppLanguage.swift */,
 			);
 			path = Language;
+			sourceTree = "<group>";
+		};
+		A354CE8C2327419A00A2B35C /* MomentGroupTag */ = {
+			isa = PBXGroup;
+			children = (
+				A354CE8D232741B900A2B35C /* MomentGroupTagViewController.swift */,
+				A354CE912327434900A2B35C /* MomentGroupTagCellNode.swift */,
+				A354CE8F2327427E00A2B35C /* MomentGroupTag.swift */,
+			);
+			path = MomentGroupTag;
+			sourceTree = "<group>";
+		};
+		A354CE9323274F8700A2B35C /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				A354CE962327510600A2B35C /* LanguageManager.swift */,
+				A354CE9423274FB300A2B35C /* LocalizationStrings.swift */,
+				A354CE9823275F5A00A2B35C /* LocalizationStrings+Account.swift */,
+				A354CE9A23275F6A00A2B35C /* LocalizationStrings+AddFriend.swift */,
+				A354CE9C23275FD600A2B35C /* LocalizationStrings+Album.swift */,
+				A354CEA4232760B400A2B35C /* LocalizationStrings+AppleSearch.swift */,
+				A354CE9E23275FF700A2B35C /* LocalizationStrings+Backup.swift */,
+				A354CEA02327603600A2B35C /* LocalizationStrings+BindPhone.swift */,
+				A354CEA6232760DD00A2B35C /* LocalizationStrings+Brand.swift */,
+				A354CEB02327637C00A2B35C /* LocalizationStrings+Common.swift */,
+				A354CEB2232763A000A2B35C /* LocalizationStrings+Contacts.swift */,
+				A354CEB4232763D500A2B35C /* LocalizationStrings+ContactVerify.swift */,
+				A354CEA22327606400A2B35C /* LocalizationStrings+GroupPay.swift */,
+				A354CEAC232762F800A2B35C /* LocalizationStrings+MainFrame.swift */,
+				A354CEAA232762DB00A2B35C /* LocalizationStrings+Message.swift */,
+				A354CEA8232762AA00A2B35C /* LocalizationStrings+MessageContent.swift */,
+				A354CEAE2327632C00A2B35C /* LocalizationStrings+Setting.swift */,
+				A354CEB6232764A400A2B35C /* LocalizationStrings+WeApp.swift */,
+				A354CEB82327652900A2B35C /* LocalizationStrings+WeNote.swift */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		A35B219F230022380057F8FC /* BrandTimeline */ = {
@@ -1569,7 +1649,6 @@
 				A3FB0AAC22F407BE00116329 /* Emoticons */,
 				A3CA51C322CD9C1C00C67D92 /* Icons */,
 				A372227922D6154C003403D4 /* Expressions.json */,
-				A372228A22D984D9003403D4 /* flutter.jpeg */,
 				A3D897F122E1FDD700814669 /* dice_emoticon_md5.png */,
 				A3D897EF22E1FDCF00814669 /* jsb_emoticon_md5.png */,
 				A352AD1B2306980D00332B21 /* MomentCoverBackground.json */,
@@ -1954,7 +2033,6 @@
 				A3D897EB22E1D14500814669 /* 153716293386e633a27b0f3d76.png in Resources */,
 				A3CA522E22CE1C5F00C67D92 /* icons_outlined_colorful_favorites.svg in Resources */,
 				A3CA51D922CD9FA000C67D92 /* icons_outlined_shake.svg in Resources */,
-				A372228B22D984D9003403D4 /* flutter.jpeg in Resources */,
 				A33DB2DB22CCC81100A11776 /* Assets.xcassets in Resources */,
 				A31057E122E8532E00856D71 /* dice_4.pic in Resources */,
 				A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */,
@@ -2085,6 +2163,7 @@
 				A3476FFC22FAABBF001B94EC /* ChatRoomMemberItemNode.swift in Sources */,
 				A37FFB6222EE8D310001DD27 /* WebViewController.swift in Sources */,
 				A3E58D9F23025CE500F73763 /* RefreshTableHeaderView.swift in Sources */,
+				A354CE9523274FB300A2B35C /* LocalizationStrings.swift in Sources */,
 				A3CA520522CDC47100C67D92 /* SessionMoreMenuView.swift in Sources */,
 				A352AD1A23065B8900332B21 /* AssetPickerConfiguration.swift in Sources */,
 				A3EA973F22EAEA1E008F94E4 /* ChatRoomEmoticonPreviewViewController.swift in Sources */,
@@ -2100,6 +2179,7 @@
 				A3EE12352317CABF000F287C /* MakeRedEnvelopeViewController.swift in Sources */,
 				A3F9F17E230E94F00032299C /* SightCameraGradientView.swift in Sources */,
 				A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */,
+				A354CE902327427E00A2B35C /* MomentGroupTag.swift in Sources */,
 				A3C914562305707D00B6E077 /* MomentCommentLoadHistoryCellNode.swift in Sources */,
 				A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */,
 				A352AD272306CDB300332B21 /* StorageUsageDetail.swift in Sources */,
@@ -2135,11 +2215,13 @@
 				A3476FF822FAA047001B94EC /* ChatRoomContactInfoViewController.swift in Sources */,
 				A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */,
 				A373D3D722F668F900451515 /* ChatRoomBackgroundSettingViewController.swift in Sources */,
+				A354CE9923275F5A00A2B35C /* LocalizationStrings+Account.swift in Sources */,
 				A35EDF5A22FD777200C56CAC /* UIViewController+Navigation.swift in Sources */,
 				A3FB0AA522F3D9AE00116329 /* PaymentMainViewController.swift in Sources */,
 				A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */,
 				A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */,
 				A352AD232306CB7800332B21 /* StorageUsageDetailNode.swift in Sources */,
+				A354CEA7232760DD00A2B35C /* LocalizationStrings+Brand.swift in Sources */,
 				A374863E22D445B6002EEC4F /* TextContentNode.swift in Sources */,
 				A31057E822E8537300856D71 /* GameContentNode.swift in Sources */,
 				A341393C23081DEC008E0EBF /* PhotoBrowserNetworkDataSource.swift in Sources */,
@@ -2154,23 +2236,28 @@
 				A3485FAC22EFF77D002A804B /* AddContactCellNode.swift in Sources */,
 				A373D3D222F65A5300451515 /* UserSettings.swift in Sources */,
 				A32333C222DF1EB500B79555 /* EmoticonBoardNode.swift in Sources */,
+				A354CEB3232763A000A2B35C /* LocalizationStrings+Contacts.swift in Sources */,
 				A3F9F184230EA64A0032299C /* SightCamera.swift in Sources */,
 				A3D897E622E1916300814669 /* EmoticonGridItemNode.swift in Sources */,
 				A3E2000B230A5387005B2B70 /* SessionBannerCellNode.swift in Sources */,
 				A372145822FFC2CB00340023 /* SettingLabTipsCellNode.swift in Sources */,
+				A354CEA5232760B400A2B35C /* LocalizationStrings+AppleSearch.swift in Sources */,
 				A3CCEDE322FBF217008BE41D /* ShakeTypeBarNode.swift in Sources */,
 				A3485FBB22F049CB002A804B /* WeChatEmoticonsCellNode.swift in Sources */,
 				A3CA522422CE196100C67D92 /* ChatDetailViewController.swift in Sources */,
 				A3DE7CC32301086E00E73944 /* BrandMessageDatabase.swift in Sources */,
 				A3DE7CCF2301396B00E73944 /* SettingMyAccountInfoViewController.swift in Sources */,
 				A3CAA70D23162370004384EB /* SettingMyProfileViewController.swift in Sources */,
+				A354CEB5232763D500A2B35C /* LocalizationStrings+ContactVerify.swift in Sources */,
 				A3F9F188230EAC7F0032299C /* SightMovieWriter.swift in Sources */,
 				A32333C022DF1CB000B79555 /* EmoticonBoardTabBarNode.swift in Sources */,
 				A36CB5352308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift in Sources */,
 				A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */,
+				A354CEAD232762F800A2B35C /* LocalizationStrings+MainFrame.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
 				A352AD132306505700332B21 /* MomentCoverCustomizeSource.swift in Sources */,
+				A354CE9F23275FF700A2B35C /* LocalizationStrings+Backup.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
 				A37E73E422D89AFB008019A4 /* SessionCellNode.swift in Sources */,
 				A33D619422FD499D00B767F1 /* SettingPrivacyModel.swift in Sources */,
@@ -2189,6 +2276,7 @@
 				A374864822D44CA6002EEC4F /* MiniProgramContentNode.swift in Sources */,
 				A3E20010230A722F005B2B70 /* AccountMainLoginViewController.swift in Sources */,
 				A3D9954B230B9E3E00E4F628 /* FTSTitleCellNode.swift in Sources */,
+				A354CE8E232741B900A2B35C /* MomentGroupTagViewController.swift in Sources */,
 				A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */,
 				A3C914582305886200B6E077 /* PublishMomentAction.swift in Sources */,
 				A30807FD2314DB6700964126 /* ScrollActionSheetScrollView.swift in Sources */,
@@ -2210,6 +2298,7 @@
 				A3CCE01922DDD3D10003DC25 /* Emoticon.swift in Sources */,
 				A3542F4F230D5D470034ED82 /* AssetPickerSelectCheckButton.swift in Sources */,
 				A341CF0922E55A6E00F18106 /* ExpressionParser.swift in Sources */,
+				A354CEAB232762DB00A2B35C /* LocalizationStrings+Message.swift in Sources */,
 				A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */,
 				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,
 				A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */,
@@ -2217,17 +2306,20 @@
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
+				A354CEA32327606400A2B35C /* LocalizationStrings+GroupPay.swift in Sources */,
 				A372227C22D62033003403D4 /* Expression.swift in Sources */,
 				A352AD2A2306CE9500332B21 /* SettingLanguageViewController.swift in Sources */,
 				A30347F922FF9983003ECF82 /* BrandContactsViewController.swift in Sources */,
 				A36E1B4922FA47F300C5DD32 /* ChatRoomBackgroundSettingCellNode.swift in Sources */,
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
 				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,
+				A354CEB7232764A400A2B35C /* LocalizationStrings+WeApp.swift in Sources */,
 				A3542F53230D7FB30034ED82 /* EmoticonDetailArtistNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A30807F92314DAE100964126 /* ScrollActionSheetItem.swift in Sources */,
 				A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */,
 				A30807FF2314DB9B00964126 /* ScrollActionSheet.swift in Sources */,
+				A354CEA9232762AA00A2B35C /* LocalizationStrings+MessageContent.swift in Sources */,
 				A37343EC23129D000064E510 /* MultiSelectContactsCellNode.swift in Sources */,
 				A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */,
 				A374864622D44C74002EEC4F /* EmoticonContentNode.swift in Sources */,
@@ -2243,6 +2335,7 @@
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3D67FBB230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift in Sources */,
+				A354CE9D23275FD600A2B35C /* LocalizationStrings+Album.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
 				A3B68898230055C6007273CD /* ContactTagViewController.swift in Sources */,
 				A3709224231A7E01003DA42D /* SelectSessionModel.swift in Sources */,
@@ -2266,7 +2359,9 @@
 				A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */,
 				A3476FFF22FAD681001B94EC /* MultiSelectContactsViewController.swift in Sources */,
 				A341393F23081E4A008E0EBF /* PhotoBrowserDataSource.swift in Sources */,
+				A354CEB92327652900A2B35C /* LocalizationStrings+WeNote.swift in Sources */,
 				A3FB0AC122F455B200116329 /* SettingGeneralViewController.swift in Sources */,
+				A354CEA12327603600A2B35C /* LocalizationStrings+BindPhone.swift in Sources */,
 				A352AD1E23069D5D00332B21 /* MomentSetBackgroundHeaderNode.swift in Sources */,
 				A374865D22D4AE3A002EEC4F /* ChatRoomToolPanelNode.swift in Sources */,
 				A3F9F17C230E8A300032299C /* SightCameraShotVideoView.swift in Sources */,
@@ -2279,6 +2374,7 @@
 				A3D99541230B9D3500E4F628 /* FTSWebSearchCellNode.swift in Sources */,
 				A341CF0522E5555600F18106 /* SettingsTableModel.swift in Sources */,
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
+				A354CEAF2327632C00A2B35C /* LocalizationStrings+Setting.swift in Sources */,
 				A33D618E22FD15DF00B767F1 /* SettingLabHeaderNode.swift in Sources */,
 				A3485FA522EFF5C2002A804B /* ContactInfoHeaderNode.swift in Sources */,
 				A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */,
@@ -2298,8 +2394,10 @@
 				A3CCEDD822FBBD15008BE41D /* NearbyPeopleCellNode.swift in Sources */,
 				A3D9954D230BCE9400E4F628 /* UISearchBar+Extensions.swift in Sources */,
 				A33B88342307CFA100D28D57 /* PhotoBrowserViewController.swift in Sources */,
+				A354CE972327510600A2B35C /* LanguageManager.swift in Sources */,
 				A3C9144523053D3600B6E077 /* ChatRoomListViewController.swift in Sources */,
 				A3EE12322317B4A0000F287C /* ChatRoomViewController+Menu.swift in Sources */,
+				A354CE9B23275F6A00A2B35C /* LocalizationStrings+AddFriend.swift in Sources */,
 				A33D619222FD365A00B767F1 /* SettingPrivacyViewController.swift in Sources */,
 				A34139382307F2C0008E0EBF /* PhotoBrowserZoomTransitioning.swift in Sources */,
 				A3485FB922F04949002A804B /* WeChatEmoticonsViewController.swift in Sources */,
@@ -2328,6 +2426,7 @@
 				A3C9144C23054B4800B6E077 /* ChatRoomListItemModel.swift in Sources */,
 				A36CB5332307859C00F993B6 /* EmoticonManageCellNode.swift in Sources */,
 				A3DE7CD123013A2800E73944 /* SettingMyAccountInfoModel.swift in Sources */,
+				A354CE922327434900A2B35C /* MomentGroupTagCellNode.swift in Sources */,
 				A3E20017230AC4E5005B2B70 /* UIView+Extensions.swift in Sources */,
 				A374862C22D43A6A002EEC4F /* ChatRoomDataSource.swift in Sources */,
 				A33DB2FA22CCDD0400A11776 /* Session.swift in Sources */,
@@ -2360,6 +2459,7 @@
 				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,
 				A3CCEDDD22FBEED3008BE41D /* ShakeViewController.swift in Sources */,
+				A354CEB12327637C00A2B35C /* LocalizationStrings+Common.swift in Sources */,
 				A33D618C22FD142400B767F1 /* SettingLabViewController.swift in Sources */,
 				A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,

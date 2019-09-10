@@ -1,0 +1,67 @@
+//
+//  LocalizationStrings+MainFrame.swift
+//  WeChatSwift
+//
+//  Created by xu.shuifeng on 2019/9/10.
+//  Copyright © 2019 alexiscn. All rights reserved.
+//
+
+import Foundation
+
+extension LocalizationStrings {
+    static let MainFrame_AccessibilityValue = "MainFrame_AccessibilityValue"
+    static let MainFrame_BackupURL = "MainFrame_BackupURL"
+    static let MainFrame_Banner_BindPhone = "MainFrame_Banner_BindPhone"
+    static let MainFrame_Banner_OpenAutoAdd = "MainFrame_Banner_OpenAutoAdd"
+    static let MainFrame_Banner_OpenGame = "MainFrame_Banner_OpenGame"
+    static let MainFrame_Banner_OpenMassSend = "MainFrame_Banner_OpenMassSend"
+    static let MainFrame_Banner_OpenMoment = "MainFrame_Banner_OpenMoment"
+    static let MainFrame_Banner_OpenStickerShop = "MainFrame_Banner_OpenStickerShop"
+    static let MainFrame_BindPhone = "MainFrame_BindPhone"
+    static let MainFrame_BrandServiceUnsubscribeTitle = "MainFrame_BrandServiceUnsubscribeTitle"
+    static let MainFrame_CantConnect = "MainFrame_CantConnect"
+    static let MainFrame_CellContent_AccessibilityLabel_HasReadCount = "MainFrame_CellContent_AccessibilityLabel_HasReadCount"
+    static let MainFrame_CellContent_AccessibilityLabel_HasRedCot = "MainFrame_CellContent_AccessibilityLabel_HasRedCot"
+    static let MainFrame_CellContent_AccessibilityLabel_NoReadCount = "MainFrame_CellContent_AccessibilityLabel_NoReadCount"
+    static let MainFrame_CheckNetwork = "MainFrame_CheckNetwork"
+    static let MainFrame_ConfirmDeleteNotSaveCharroom = "MainFrame_ConfirmDeleteNotSaveCharroom"
+    static let MainFrame_DeleteBrandSessionMsgTip = "MainFrame_DeleteBrandSessionMsgTip"
+    static let MainFrame_DeleteSession = "MainFrame_DeleteSession"
+    static let MainFrame_DeleteSessionTip = "MainFrame_DeleteSessionTip"
+    static let MainFrame_FirstDeleteNotSaveChatroom_Title = "MainFrame_FirstDeleteNotSaveChatroom_Title"
+    static let MainFrame_InitFail = "MainFrame_InitFail"
+    static let MainFrame_Initing = "MainFrame_Initing"
+    static let MainFrame_NetworkFail = "MainFrame_NetworkFail"
+    static let MainFrame_RBtnAddFriend = "MainFrame_RBtnAddFriend"
+    static let MainFrame_RBtnCreateChat = "MainFrame_RBtnCreateChat"
+    static let MainFrame_RBtnFloatBottle = "MainFrame_RBtnFloatBottle"
+    static let MainFrame_RBtnGame = "MainFrame_RBtnGame"
+    static let MainFrame_RBtnMassSend = "MainFrame_RBtnMassSend"
+    static let MainFrame_RBtnMyFavourite = "MainFrame_RBtnMyFavourite"
+    static let MainFrame_RBtnMyPay = "MainFrame_RBtnMyPay"
+    static let MainFrame_RBtnMyQRCode = "MainFrame_RBtnMyQRCode"
+    static let MainFrame_RBtnMyWC = "MainFrame_RBtnMyWC"
+    static let MainFrame_RBtnNearby = "MainFrame_RBtnNearby"
+    static let MainFrame_RBtnQRCode = "MainFrame_RBtnQRCode"
+    static let MainFrame_RBtnRadar = "MainFrame_RBtnRadar"
+    static let MainFrame_RBtnRadarCreateRoom = "MainFrame_RBtnRadarCreateRoom"
+    static let MainFrame_RBtnScan = "MainFrame_RBtnScan"
+    static let MainFrame_RBtnShake = "MainFrame_RBtnShake"
+    static let MainFrame_RBtnSNS = "MainFrame_RBtnSNS"
+    static let MainFrame_RBtnStore = "MainFrame_RBtnStore"
+    static let MainFrame_RBtnTakePhoto = "MainFrame_RBtnTakePhoto"
+    static let MainFrame_RBtnVideoVOIP = "MainFrame_RBtnVideoVOIP"
+    static let MainFrame_RBtnVoiceVOIP = "MainFrame_RBtnVoiceVOIP"
+    static let MainFrame_RBtnWebWX = "MainFrame_RBtnWebWX"
+    static let MainFrame_RBtnWeChatOut = "MainFrame_RBtnWeChatOut"
+    static let MainFrame_Recommand_Surrounding = "MainFrame_Recommand_Surrounding"
+    static let MainFrame_SearchPlageHolder = "MainFrame_SearchPlageHolder"
+    static let MainFrame_SetHeader = "MainFrame_SetHeader"
+    static let MainFrame_SetHeaderTitle = "MainFrame_SetHeaderTitle"
+    static let MainFrame_SetReadTitle = "MainFrame_SetReadTitle"
+    static let MainFrame_SetUnreadTitle = "MainFrame_SetUnreadTitle"
+    static let MainFrame_Title = "MainFrame_Title"
+    static let MainFrame_TitleFormat = "MainFrame_TitleFormat"
+    static let MainFrame_UploadContacts = "MainFrame_UploadContacts"
+    static let MainFrame_WebOnlineTitle = "MainFrame_WebOnlineTitle"
+}

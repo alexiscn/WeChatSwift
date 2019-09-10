@@ -306,7 +306,8 @@
     "webpages": [
         {
             "url": "https://mp.weixin.qq.com/s/WZruGVpOpen2f4NNiSu7cw",
-            "title": "Flutter 1.7 版正式发布"
+            "title": "Flutter 1.7 版正式发布",
+            "thumb_url": "https://tva1.sinaimg.cn/large/006y8mN6ly1g6u7hks9ygj30u00hawgb.jpg"
         }
     ],
     "messages": [
