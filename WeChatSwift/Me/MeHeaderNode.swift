@@ -10,7 +10,7 @@ import AsyncDisplayKit
 
 class MeHeaderNode: ASButtonNode {
     
-    private let avatarNode = ASImageNode()
+    private let avatarNode = ASNetworkImageNode()
     
     private let nameNode = ASTextNode()
     
@@ -25,9 +25,9 @@ class MeHeaderNode: ASButtonNode {
         
         avatarNode.cornerRadius = 10
         avatarNode.cornerRoundingType = .precomposited
-        avatarNode.image = UIImage.as_imageNamed("JonSnow.jpg")
+        avatarNode.url = AppContext.current.me.avatar
         
-        nameNode.attributedText = NSAttributedString(string: "这是一个昵称", attributes: [
+        nameNode.attributedText = NSAttributedString(string: AppContext.current.me.name, attributes: [
             .font: UIFont.systemFont(ofSize: 21, weight: .medium),
             .foregroundColor: UIColor.black
             ])

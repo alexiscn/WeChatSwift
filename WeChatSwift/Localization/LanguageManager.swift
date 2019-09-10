@@ -41,6 +41,10 @@ class LanguageManager {
     func supportedLanguages() -> [Language] {
         return Language.allCases
     }
+    
+    func getLocalizedString(_ key: String) -> String? {
+        return NSLocalizedString(key, comment: "")
+    }
 }
 
 fileprivate class LanguageBundle: Bundle {
