@@ -67,7 +67,7 @@ class VoiceContentNode: MessageContentNode {
         let layout = ASStackLayoutSpec.horizontal()
         layout.alignItems = .center
         layout.spacing = 10
-        layout.children = [backgroundSpec, unreadNode]
+        layout.children = message.isOutgoing ? [backgroundSpec] : [backgroundSpec, unreadNode]
         return ASInsetLayoutSpec(insets: .zero, child: layout)
     }
 }

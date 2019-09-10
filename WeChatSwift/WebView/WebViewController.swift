@@ -54,10 +54,16 @@ class WebViewController: UIViewController {
     
     private func setupWebView() {
         let configuration = WKWebViewConfiguration()
+        let javascript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);"
+        let script = WKUserScript(source: javascript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let usercontroller = WKUserContentController()
+        usercontroller.addUserScript(script)
+        configuration.userContentController = usercontroller
         
         webView = WCWebView(frame: view.bounds, configuration: configuration)
         webView.delegate = self
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        webView.scrollView.contentInsetAdjustmentBehavior = .always
         view.addSubview(webView)
         webView.scrollView.backgroundColor = .clear
     }
@@ -72,11 +78,11 @@ class WebViewController: UIViewController {
     }
 
     private func setupProgressBar() {
-        let frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 3)
+        let frame = CGRect(x: 0, y: Constants.topInset + Constants.statusBarHeight, width: Constants.screenWidth, height: 3)
         progressBar = UIProgressView(frame: frame)
         progressBar.backgroundColor = UIColor(hexString: "#00BF12")
         progressBar.progressTintColor = UIColor(hexString: "#00BF12")
-        progressBar.progress = 0.6
+        progressBar.progress = 0
         view.addSubview(progressBar)
     }
     
