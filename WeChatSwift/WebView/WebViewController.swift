@@ -60,10 +60,9 @@ class WebViewController: UIViewController {
         usercontroller.addUserScript(script)
         configuration.userContentController = usercontroller
         
-        webView = WCWebView(frame: view.bounds, configuration: configuration)
+        webView = WCWebView(frame: .zero, configuration: configuration)
         webView.delegate = self
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        webView.scrollView.contentInsetAdjustmentBehavior = .always
         view.addSubview(webView)
         webView.scrollView.backgroundColor = .clear
     }
@@ -91,6 +90,13 @@ class WebViewController: UIViewController {
             self?.progressBar.progress = Float(webView.estimatedProgress)
             self?.progressBar.isHidden = webView.estimatedProgress == 1.0
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let y = Constants.topInset + Constants.statusBarHeight
+        webView.frame = CGRect(x: 0, y: y, width: view.bounds.width, height: view.bounds.height - y)
     }
 }
 
