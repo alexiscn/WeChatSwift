@@ -17,13 +17,13 @@ enum AboutTableModel: CaseIterable {
     var title: String {
         switch self {
         case .review:
-            return "去评分"
+            return LocalizedString("Setting_Score_ScoreWeixin")
         case .introduction:
-            return "功能介绍"
+            return LocalizedString("Whatsnew_text_AboutVersion")
         case .report:
-            return "投诉"
+            return LocalizedString("Setting_Expose")
         case .updateVersion:
-            return "版本更新"
+            return LocalizedString("Setting_Other_Update_Version")
         }
     }
     

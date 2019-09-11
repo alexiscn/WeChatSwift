@@ -58,6 +58,7 @@ class PhotoBrowserPHAssetDataSource: NSObject, PhotoBrowserDataSource {
         
         let thumbSize = asset.pixelSizeFitToScreen
         let scale = UIScreen.main.scale
+        cell.localAsset = asset
         cell.imageView.image = asset.thumbImage(with: CGSize(width: thumbSize.width/scale, height: thumbSize.height/scale))
         cell.playButton.isHidden = asset.mediaType != .video
         cell.setNeedsLayout()

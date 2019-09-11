@@ -41,7 +41,7 @@ class AboutFooterNode: ASDisplayNode {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         paragraphStyle.lineSpacing = 3
-        let copyRight = "腾讯公司 版权所有\nCopyright © 2011-2019 Tencent.All Rights Reserved."
+        let copyRight = LocalizedString("Setting_Other_AboutMMText")
         copyRightNode.attributedText = NSAttributedString(string: copyRight, attributes: [
             .font: UIFont.systemFont(ofSize: 12),
             .foregroundColor: UIColor(white: 0, alpha: 0.3),

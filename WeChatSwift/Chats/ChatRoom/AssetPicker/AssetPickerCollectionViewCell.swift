@@ -142,7 +142,7 @@ class AssetPickerCollectionViewCell: UICollectionViewCell {
         let lengthLabel = UILabel()
         lengthLabel.font = UIFont.systemFont(ofSize: 12)
         lengthLabel.textColor = UIColor.white
-        lengthLabel.text = "00:05" //mediaAsset.asset.duration
+        lengthLabel.text = Constants.formatDuration(mediaAsset?.asset.duration ?? 0)
         lengthLabel.frame = CGRect(x: 39, y: 5, width: 34, height: 15)
         
         tagBackgroundView.addSubview(videoLogoView)

@@ -9,6 +9,9 @@
 // https://github.com/JiongXing/PhotoBrowser
 import UIKit
 import FLAnimatedImage
+import SFVideoPlayer
+import AVFoundation
+import Photos
 
 class PhotoBrowserViewCell: UICollectionViewCell {
     
@@ -33,11 +36,17 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         return container.snapshotView(afterScreenUpdates: true)
     }
     
+    weak var localAsset: PHAsset?
+    
     var imageView = FLAnimatedImageView()
     
     var playButton = UIButton(type: .custom)
     
     var scrollView = UIScrollView()
+    
+    private var isPlaying: Bool = false
+    private var videoPlayer: AVPlayer?
+    private var videoPlayerLayer: AVPlayerLayer?
     
     private var beganFrame: CGRect = .zero
     private var beganTouch: CGPoint = .zero
@@ -96,6 +105,11 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         playButton.isHidden = true
+        videoPlayer?.pause()
+        videoPlayer = nil
+        videoPlayerLayer?.removeFromSuperlayer()
+        videoPlayerLayer = nil
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
     private var fitSize: CGSize {
@@ -173,15 +187,72 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Video Relate
+extension PhotoBrowserViewCell {
+    
+    private func playVideo() {
+        if videoPlayer == nil {
+            
+            guard let asset = localAsset else { return }
+            var videoPlayerItem: AVPlayerItem?
+            let semaphore = DispatchSemaphore(value: 0)
+            PHImageManager.default().requestPlayerItem(forVideo: asset, options: nil) { (playerItem, _) in
+                semaphore.signal()
+                videoPlayerItem = playerItem
+            }
+            semaphore.wait()
+            
+            videoPlayer = AVPlayer(playerItem: videoPlayerItem)
+            let playerLayer = AVPlayerLayer(player: videoPlayer)
+            playerLayer.frame = imageView.bounds
+            imageView.layer.addSublayer(playerLayer)
+            self.videoPlayerLayer = playerLayer
+            
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { [weak self] _ in
+                self?.isPlaying = false
+                self?.showPlayButton()
+                self?.videoPlayer?.seek(to: .zero)
+            }
+        }
+        isPlaying = true
+        videoPlayer?.play()
+        hidePlayButton()
+    }
+    
+    private func pauseVideo() {
+        isPlaying = false
+        videoPlayer?.pause()
+        showPlayButton()
+    }
+    
+    private func showPlayButton() {
+        UIView.animate(withDuration: 0.2) {
+            self.playButton.alpha = 1.0
+        }
+    }
+    
+    private func hidePlayButton() {
+        UIView.animate(withDuration: 0.2) {
+            self.playButton.alpha = 0.0
+        }
+    }
+}
+
 // MARK: - Event Handlers
 extension PhotoBrowserViewCell {
     
     @objc private func handlePlayButtonTapped(_ sender: UIButton) {
-        print("TODO")
+        isPlaying = true
+        playVideo()
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        tapHandler?()
+        if isPlaying {
+            pauseVideo()
+        } else {
+            tapHandler?()
+        }
     }
     
     @objc private func handleDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
