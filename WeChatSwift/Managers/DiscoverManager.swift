@@ -33,10 +33,16 @@ class DiscoverManager {
             ]))
         
         sections.append(DiscoverSection(models: [DiscoverModel(type: .nearby, title: LocalizedString("FF_Entry_PeopleNearBy"), icon: "icons_outlined_nearby", color: Colors.Indigo)]))
+        
+        if LanguageManager.shared.current == .zhHans {
         sections.append(DiscoverSection(models: [
             DiscoverModel(type: .shop, title: "购物", icon: "icons_outlined_shop", color: Colors.Orange),
-            DiscoverModel(type: .game, title: "游戏", icon: "icons_outlined_colorful_game")]))
-        sections.append(DiscoverSection(models: [DiscoverModel(type: .miniProgram, title: "小程序", icon: "icons_outlined_miniprogram", color: Colors.Purple)]))
+            DiscoverModel(type: .game, title: LocalizedString("MainFrame_RBtnGame"), icon: "icons_outlined_colorful_game")]))
+        } else {
+            sections.append(DiscoverSection(models: [ DiscoverModel(type: .game, title: LocalizedString("MainFrame_RBtnGame"), icon: "icons_outlined_colorful_game")]))
+        }
+        
+        sections.append(DiscoverSection(models: [DiscoverModel(type: .miniProgram, title: LocalizedString("WCAppBrand_Name"), icon: "icons_outlined_miniprogram", color: Colors.Purple)]))
         return sections
     }
 }
