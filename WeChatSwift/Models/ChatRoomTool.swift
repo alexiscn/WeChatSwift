@@ -61,7 +61,7 @@ enum ChatRoomTool: CaseIterable {
         case .redPacket:
             return LocalizedString("WCCard_RedEnvelopes")
         case .transfer:
-            return "转账"
+            return LocalizedString("WCPay_TransferMoney_BtnTips")
         case .voice:
             return LocalizedString("MessageToolView_VoiceInput")
         case .favorites:

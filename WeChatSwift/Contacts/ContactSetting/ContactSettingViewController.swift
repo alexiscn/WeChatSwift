@@ -32,7 +32,7 @@ class ContactSettingViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "资料设置"
+        navigationItem.title = LocalizedString("Contacts_ContactInfoSetting")
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         tableNode.frame = view.bounds
         tableNode.backgroundColor = .clear
@@ -40,12 +40,29 @@ class ContactSettingViewController: ASViewController<ASDisplayNode> {
     }
     
     private func setupDataSource() {
-        dataSource.append(ContactSettingSection(title: nil, items: [.remakAndTag]))
-        dataSource.append(ContactSettingSection(title: nil, items: [.recommendToFriend]))
-        dataSource.append(ContactSettingSection(title: nil, items: [.markAsStarFriend(false)]))
-        dataSource.append(ContactSettingSection(title: "朋友圈和视频动态", items: [.momentForbidden(false), .momentIgnore(false)]))
-        dataSource.append(ContactSettingSection(title: nil, items: [.addToBlackList(false), .report]))
-        dataSource.append(ContactSettingSection(title: nil, items: [.delete]))
+        dataSource.append(ContactSettingSection(title: nil, items: [ContactSettingModel(type: .remakAndTag, wc_title: LocalizedString("Contacts_Remark_Set"))]))
+        
+        let gender = contact.gender
+        let recommentToFriendTitle = gender == .male ? LocalizedString("Contacts_Setting_Share_Male"): LocalizedString("Contacts_Setting_Share_Female")
+        let recommendToFriend = ContactSettingModel(type: .recommendToFriend, wc_title: recommentToFriendTitle)
+        dataSource.append(ContactSettingSection(title: nil, items: [recommendToFriend]))
+        
+        dataSource.append(ContactSettingSection(title: nil, items: [
+            ContactSettingModel(type: .markAsStarFriend(false), wc_title: LocalizedString("Contacts_Setting_Favour"))]))
+        
+        let momentForbiddenTitle = gender == .male ? LocalizedString("Contacts_Setting_WC_Outsider_Male"): LocalizedString("Contacts_Setting_WC_Outsider_Female")
+        let momentIgnoreTitle = gender == .male ? LocalizedString("Contacts_WCAddBlacklist_Male"): LocalizedString("Contacts_WCAddBlacklist_Female")
+        
+        dataSource.append(ContactSettingSection(title: LocalizedString("Contacts_Setting_WC_Title"), items: [
+            ContactSettingModel(type: .momentForbidden(false), wc_title: momentForbiddenTitle),
+            ContactSettingModel(type: .momentIgnore(false), wc_title: momentIgnoreTitle)]))
+        
+        dataSource.append(ContactSettingSection(title: nil, items: [
+            ContactSettingModel(type: .addToBlackList(false), wc_title: LocalizedString("Contacts_Setting_AddToBlack")),
+            ContactSettingModel(type: .report, wc_title: LocalizedString("Expose"))]))
+        
+        dataSource.append(ContactSettingSection(title: nil, items: [
+            ContactSettingModel(type: .delete, wc_title: LocalizedString("Contacts_Delete"))]))
     }
 }
 
@@ -72,7 +89,7 @@ extension ContactSettingViewController: ASTableDelegate, ASTableDataSource {
         tableNode.deselectRow(at: indexPath, animated: false)
         
         let model = dataSource[indexPath.section].items[indexPath.row]
-        switch model {
+        switch model.type {
         case .remakAndTag:
             let remarkVC = RemarkViewController()
             let nav = WCNavigationController(rootViewController: remarkVC)

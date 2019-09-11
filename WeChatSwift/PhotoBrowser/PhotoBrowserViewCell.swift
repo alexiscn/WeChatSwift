@@ -20,7 +20,18 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     
     var longPressedHandler: ((_ gesture: UILongPressGestureRecognizer) -> Void)?
     
-    //var imageView = UIImageView()
+    var transitionView: UIView? {
+        let container = UIView(frame: imageView.bounds)
+        let transitionImageView = UIImageView(image: imageView.image)
+        transitionImageView.frame = container.bounds
+        let transitionPlayButton = UIImageView(image: UIImage.as_imageNamed("MMVideoPreviewPlay_85x85_"))
+        
+        transitionPlayButton.frame = CGRect(x: (container.bounds.width - 85.0)/2.0,
+                                            y: (container.bounds.height - 85)/2.0, width: 85.0, height: 85.0)
+        container.addSubview(transitionImageView)
+        container.addSubview(transitionPlayButton)
+        return container.snapshotView(afterScreenUpdates: true)
+    }
     
     var imageView = FLAnimatedImageView()
     
@@ -61,9 +72,12 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         panGesture.delegate = self
         scrollView.addGestureRecognizer(panGesture)
         
+        playButton.frame = CGRect(x: (Constants.screenWidth - 85.0)/2.0, y: (Constants.screenHeight - 85.0)/2, width: 85, height: 85)
         playButton.setImage(UIImage.as_imageNamed("MMVideoPreviewPlay_85x85_"), for: .normal)
         playButton.setImage(UIImage.as_imageNamed("MMVideoPreviewPlayHL_85x85_"), for: .highlighted)
-        //imageView.addSubview(playButton)
+        addSubview(playButton)
+        
+        playButton.addTarget(self, action: #selector(handlePlayButtonTapped(_:)), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,8 +91,11 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         scrollView.setZoomScale(1.0, animated: false)
         imageView.frame = fitFrame
         scrollView.setZoomScale(1.0, animated: false)
-        
-        playButton.frame = CGRect(x: (bounds.width - 85.0)/2.0, y: (bounds.height - 85.0)/2, width: 85, height: 85)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        playButton.isHidden = true
     }
     
     private var fitSize: CGSize {
@@ -159,6 +176,10 @@ class PhotoBrowserViewCell: UICollectionViewCell {
 // MARK: - Event Handlers
 extension PhotoBrowserViewCell {
     
+    @objc private func handlePlayButtonTapped(_ sender: UIButton) {
+        print("TODO")
+    }
+    
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         tapHandler?()
     }
@@ -185,6 +206,9 @@ extension PhotoBrowserViewCell {
         case .began:
             beganFrame = imageView.frame
             beganTouch = gesture.location(in: scrollView)
+            UIView.animate(withDuration: 0.05) {
+                self.playButton.alpha = 0.0
+            }
         case .changed:
             let result = panResult(gesture)
             imageView.frame = result.frame
@@ -196,6 +220,9 @@ extension PhotoBrowserViewCell {
             panGestureReleasedHandler?(isDownSwipe)
             if !isDownSwipe {
                 resetImageView()
+                UIView.animate(withDuration: 0.2) {
+                    self.playButton.alpha = 1.0
+                }
             }
         default:
             resetImageView()

@@ -39,6 +39,7 @@ class PhotoBrowserDefaultDelegate: NSObject, PhotoBrowserDelegate {
         let indexPath = IndexPath(item: pageIndex, section: 0)
         let cell = browser?.collectionView.cellForItem(at: indexPath) as? PhotoBrowserViewCell
         return UIImageView(image: cell?.imageView.image)
+        //return cell?.transitionView
     }
     
     func photoBrowser(_ photoBrowser: PhotoBrowserViewController, displayingContentViewAt pageIndex: Int) -> UIView? {

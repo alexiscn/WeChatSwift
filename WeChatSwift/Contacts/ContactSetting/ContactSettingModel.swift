@@ -13,39 +13,25 @@ struct ContactSettingSection {
     var items: [ContactSettingModel]
 }
 
-enum ContactSettingModel: WCTableCellModel {
-    case remakAndTag
-    case recommendToFriend
-    case markAsStarFriend(Bool)
-    case momentForbidden(Bool)
-    case momentIgnore(Bool)
-    case addToBlackList(Bool)
-    case report
-    case delete
+struct ContactSettingModel: WCTableCellModel {
     
-    var wc_title: String {
-        switch self {
-        case .remakAndTag:
-            return LocalizedString("Contacts_Remark_Set")
-        case .recommendToFriend:
-            return "把她推荐给朋友"
-        case .markAsStarFriend(_):
-            return "设为星标朋友"
-        case .momentForbidden(_):
-            return "不让她看"
-        case .momentIgnore(_):
-            return "不看她"
-        case .addToBlackList(_):
-            return "加入黑名单"
-        case .report:
-            return "投诉"
-        case .delete:
-            return "删除"
-        }
+    enum ContactSettingType {
+        case remakAndTag
+        case recommendToFriend
+        case markAsStarFriend(Bool)
+        case momentForbidden(Bool)
+        case momentIgnore(Bool)
+        case addToBlackList(Bool)
+        case report
+        case delete
     }
     
+    var type: ContactSettingType
+    
+    var wc_title: String = ""
+    
     var wc_showSwitch: Bool {
-        switch self {
+        switch type {
         case .markAsStarFriend(_), .momentForbidden(_), .momentIgnore(_), .addToBlackList(_):
             return true
         default:
@@ -54,7 +40,7 @@ enum ContactSettingModel: WCTableCellModel {
     }
     
     var wc_switchValue: Bool {
-        switch self {
+        switch type {
         case .markAsStarFriend(let isOn):
             return isOn
         case .momentForbidden(let isOn):
@@ -69,7 +55,7 @@ enum ContactSettingModel: WCTableCellModel {
     }
     
     var wc_cellStyle: WCTableCellStyle {
-        switch self {
+        switch type {
         case .delete:
             return .destructiveButton
         default:
