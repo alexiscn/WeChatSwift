@@ -23,13 +23,13 @@ enum AddContactSource {
         case .faceToFaceGroup:
             return (LocalizedString("RadarSearch_CreateRoom_Title"), LocalizedString("RadarSearch_CreateRoomCell_FindFriend_Detail"))
         case .scan:
-            return ("扫一扫", "扫描二维码名片")
+            return (LocalizedString("FF_Entry_QRCode_InAdd"), LocalizedString("FF_Entry_QRCode_InAdd_Detail"))
         case .phoneContacts:
-            return ("手机联系人", "添加通讯录中的朋友")
+            return (LocalizedString("FF_Entry_AddFriendList"), LocalizedString("FF_Entry_AddFriendList_Detail"))
         case .officialAccounts:
-            return ("公众号", "获取更多资讯和服务")
+            return (LocalizedString("FF_Entry_StarList"), LocalizedString("FF_Entry_StarList_Detail"))
         case .enterpriseContacts:
-            return ("企业微信联系人", "通过手机号搜索企业微信用户")
+            return (LocalizedString("FF_Entry_AddFriendList_OpenIM"), LocalizedString("FF_Entry_AddFriendList_OpenIM_Detail"))
         }
     }
     

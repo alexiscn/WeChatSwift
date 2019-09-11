@@ -16,6 +16,7 @@ extension UIViewController {
         static var barBarTintColor = "barBarTintColor"
         static var barTintColor = "barTintColor"
         static var titleTextAttributes = "titleTextAttributes"
+        static var useSystemBlurNavBar = "useSystemBlurNavBar"
     }
     
     /// Fake NavigationBar
@@ -38,15 +39,21 @@ extension UIViewController {
         return color
     }
     
+    @objc var wc_useSystemBlurNavBar: Bool {
+        if let use = objc_getAssociatedObject(self, &AssociatedKeys.useSystemBlurNavBar) as? Bool {
+            return use
+        }
+        let use = false
+        objc_setAssociatedObject(self, &AssociatedKeys.useSystemBlurNavBar, use, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return use
+    }
+    
     @objc var wc_barBarTintColor: UIColor? {
         if let barBarTintColor = objc_getAssociatedObject(self, &AssociatedKeys.barBarTintColor) as? UIColor {
             return barBarTintColor
         }
         objc_setAssociatedObject(self, &AssociatedKeys.barBarTintColor, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return nil
-//        let barBarTintColor = Colors.black
-//        objc_setAssociatedObject(self, &AssociatedKeys.barBarTintColor, barBarTintColor, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-//        return barBarTintColor
     }
     
     @objc var wc_barTintColor: UIColor? {
@@ -79,6 +86,15 @@ extension UIViewController {
         if navigationController != nil {
             wc_navigationBar.backgroundColor = wc_navigationBarBackgroundColor
             view.addSubview(wc_navigationBar)
+            
+            if wc_useSystemBlurNavBar {
+                wc_navigationBar.backgroundColor = .clear
+                let navigationBarHeight: CGFloat = Constants.iPhoneX ? 88: 64 // TODO
+                let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+                blurView.frame = CGRect(origin: .zero, size: CGSize(width: Constants.screenWidth, height: navigationBarHeight))
+                blurView.contentView.backgroundColor = UIColor(hexString: "#E5E5E5", alpha: 0.5)
+                wc_navigationBar.addSubview(blurView)
+            }
         }
         
         wc_viewDidLoad()

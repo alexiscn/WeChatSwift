@@ -103,6 +103,10 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         tableNode.view.contentInsetAdjustmentBehavior = .automatic
         extendedLayoutIncludesOpaqueBars = false
     }
+    
+    override var wc_useSystemBlurNavBar: Bool {
+        return true
+    }
 }
 
 // MARK: - Event Handlers

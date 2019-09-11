@@ -16,22 +16,22 @@ extension AppDelegate {
         
         chatsVC.tabBarItem.selectedImage = HomeTab.chats.selectedImage
         chatsVC.tabBarItem.image = HomeTab.chats.image
-        chatsVC.tabBarItem.title = LanguageManager.shared.getLocalizedString("TabBar_MainFrameTitle")
+        chatsVC.tabBarItem.title = LocalizedString("TabBar_MainFrameTitle")
         chatsVC.tabBarItem.tag = 0
         
         contactsVC.tabBarItem.selectedImage = HomeTab.contacts.selectedImage
         contactsVC.tabBarItem.image = HomeTab.contacts.image
-        contactsVC.tabBarItem.title = LanguageManager.shared.getLocalizedString("TabBar_ContactsTitle")
+        contactsVC.tabBarItem.title = LocalizedString("TabBar_ContactsTitle")
         contactsVC.tabBarItem.tag = 1
         
         discoverVC.tabBarItem.selectedImage = HomeTab.discover.selectedImage
         discoverVC.tabBarItem.image = HomeTab.discover.image
-        discoverVC.tabBarItem.title = LanguageManager.shared.getLocalizedString("TabBar_FindFriendTitle")
+        discoverVC.tabBarItem.title = LocalizedString("TabBar_FindFriendTitle")
         discoverVC.tabBarItem.tag = 2
         
         meVC.tabBarItem.selectedImage = HomeTab.me.selectedImage
         meVC.tabBarItem.image = HomeTab.me.image
-        meVC.tabBarItem.title = LanguageManager.shared.getLocalizedString("TabBar_MoreTitle")
+        meVC.tabBarItem.title = LocalizedString("TabBar_MoreTitle")
         meVC.tabBarItem.tag = 3
         
         tabBarVC = ASTabBarController()

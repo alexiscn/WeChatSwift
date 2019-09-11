@@ -38,7 +38,7 @@ class ContactsViewController: ASViewController<ASDisplayNode> {
         
         let rightButtonItem = UIBarButtonItem(image: UIImage.SVGImage(named: "icons_outlined_addfriends"), style: .done, target: self, action: #selector(handleRightBarButtonTapped(_:)))
         navigationItem.rightBarButtonItem = rightButtonItem
-        navigationItem.title = "通讯录"
+        navigationItem.title = LocalizedString("TabBar_ContactsTitle")
     }
     
     private func setupDataSource() {

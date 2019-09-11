@@ -81,6 +81,7 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         panGesture.delegate = self
         scrollView.addGestureRecognizer(panGesture)
         
+        playButton.isHidden = true
         playButton.frame = CGRect(x: (Constants.screenWidth - 85.0)/2.0, y: (Constants.screenHeight - 85.0)/2, width: 85, height: 85)
         playButton.setImage(UIImage.as_imageNamed("MMVideoPreviewPlay_85x85_"), for: .normal)
         playButton.setImage(UIImage.as_imageNamed("MMVideoPreviewPlayHL_85x85_"), for: .highlighted)

@@ -29,7 +29,7 @@ class AddContactViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "添加朋友"
+        navigationItem.title = LocalizedString("FF_Entry_AddFriend") //"添加朋友"
         
         let tableHeader = UIView()
         tableHeader.frame = CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 108)
