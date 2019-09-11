@@ -123,12 +123,14 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private func presentPublishMomentViewController() {
         let publishMomentVC = PublishMomentViewController(source: .text)
         let nav = WCNavigationController(rootViewController: publishMomentVC)
+        nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     
     private func presentPublishMediaMomentViewController(_ assets: [MediaAsset]) {
         let publishMomentVC = PublishMomentViewController(source: .media(assets))
         let nav = WCNavigationController(rootViewController: publishMomentVC)
+        nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     
@@ -153,6 +155,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         assetPickerVC.selectionHandler = selectionHandler
         let nav = WCNavigationController()
         nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
+        nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     

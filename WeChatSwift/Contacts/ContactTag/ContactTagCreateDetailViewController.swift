@@ -46,6 +46,7 @@ class ContactTagCreateDetailViewController: ASViewController<ASDisplayNode> {
             
         }
         let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+        nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
 }

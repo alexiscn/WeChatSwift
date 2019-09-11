@@ -93,6 +93,7 @@ extension ChatRoomViewController {
     @objc private func onMenuActionForward() {
         let selectSessionVC = SelectSessionViewController()
         let nav = WCNavigationController(rootViewController: selectSessionVC)
+        nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     

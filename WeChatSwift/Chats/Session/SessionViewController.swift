@@ -138,6 +138,7 @@ extension SessionViewController: SessionMoreMenuViewDelegate {
                 
             }
             let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+            nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         }
         hideMoreMenu(animated: false)

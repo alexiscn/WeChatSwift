@@ -123,6 +123,7 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
         case .remark:
             let remarkVC = RemarkViewController()
             let nav = WCNavigationController(rootViewController: remarkVC)
+            nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         default:
             break

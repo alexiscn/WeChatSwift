@@ -81,10 +81,12 @@ extension MomentCoverCustomizeViewController: ASTableDelegate, ASTableDataSource
             assetPickerVC.selectionHandler = selectionHandler
             let nav = WCNavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
+            nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         case .takePhoto:
             let sightCameraVC = SightCameraViewController()
             let nav = WCNavigationController(rootViewController: sightCameraVC)
+            nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         case .chooseFromWorks:
             let momentSetBackgroundVC = MomentSetBackgroundViewController()

@@ -73,6 +73,7 @@ extension ChatRoomBackgroundEntranceViewController: ASTableDelegate, ASTableData
         case .pick:
             let backgroundSettingVC = ChatRoomBackgroundSettingViewController()
             let nav = WCNavigationController(rootViewController: backgroundSettingVC)
+            nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         default:
             break

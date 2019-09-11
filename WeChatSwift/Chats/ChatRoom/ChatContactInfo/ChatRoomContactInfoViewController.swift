@@ -64,6 +64,7 @@ class ChatRoomContactInfoViewController: ASViewController<ASDisplayNode> {
             self?.updateMembers(selectedContacts: selectedContacts)
         }
         let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+        nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     

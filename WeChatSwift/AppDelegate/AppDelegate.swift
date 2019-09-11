@@ -35,7 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         setupTaBar()
-        injectLongPressGestureToStatusBar()
+//        if #available(iOS 13, *) {
+//            
+//        } else {
+//          injectLongPressGestureToStatusBar()
+//        }
         AppContext.current.doHeavySetup()
         
         UIView.fixTabBarButtonFrame()

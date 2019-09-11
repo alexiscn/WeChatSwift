@@ -134,6 +134,7 @@ extension PublishMomentViewController: ASTableDelegate, ASTableDataSource {
         case .permission:
             let momentGroupTagVC = MomentGroupTagViewController()
             let nav = WCNavigationController(rootViewController: momentGroupTagVC)
+            nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         default:
             break
