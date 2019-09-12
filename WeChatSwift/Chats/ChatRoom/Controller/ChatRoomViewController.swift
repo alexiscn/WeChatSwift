@@ -121,7 +121,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     }
     
     private func showSendLocationActionSheet() {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "发送位置", handler: { [weak self] _ in
             self?.sendLocation()
         }))
@@ -143,7 +143,7 @@ class ChatRoomViewController: ASViewController<ASDisplayNode> {
     }
     
     private func showLongPressImageActionSheet(imageMsg: ImageMessage) {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "发送给朋友", handler: { _ in
             
         }))

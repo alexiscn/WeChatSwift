@@ -24,7 +24,7 @@ class ContactTagViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         navigationItem.title = "设置标签"
         
-        let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
+        let cancelButton = UIBarButtonItem(title: LanguageManager.Common.cancel(), style: .plain, target: self, action: #selector(cancelButtonClicked))
         navigationItem.leftBarButtonItem = cancelButton
         
         let okButton = wc_doneBarButton(title: "确定")

@@ -39,7 +39,7 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
         tableNode.view.separatorStyle = .none
         navigationItem.title = "选择联系人"
         
-        let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
+        let cancelButton = UIBarButtonItem(title: LanguageManager.Common.cancel(), style: .plain, target: self, action: #selector(cancelButtonClicked))
         cancelButton.tintColor = .black
         navigationItem.leftBarButtonItem = cancelButton
         

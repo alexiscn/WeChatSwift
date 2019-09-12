@@ -140,7 +140,7 @@ extension ChatRoomMapViewController {
     }
     
     @objc private func moreButtonClicked() {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "发送给朋友", handler: { _ in
             
         }))

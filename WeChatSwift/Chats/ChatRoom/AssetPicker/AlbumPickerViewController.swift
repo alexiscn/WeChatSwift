@@ -48,7 +48,7 @@ class AlbumPickerViewController: UIViewController {
     private func configureNavigationBar() {
         navigationItem.title = "照片"
         navigationController?.navigationBar.tintColor = .black
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelButtonClicked))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: LanguageManager.Common.cancel(), style: .plain, target: self, action: #selector(cancelButtonClicked))
     }
     
     @objc private func cancelButtonClicked() {

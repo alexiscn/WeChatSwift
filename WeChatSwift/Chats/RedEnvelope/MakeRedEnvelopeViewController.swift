@@ -97,7 +97,7 @@ class MakeRedEnvelopeViewController: ASViewController<ASDisplayNode> {
         
         navigationItem.title = "发红包"
         
-        let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(handleCancelButtonClicked))
+        let cancelButton = UIBarButtonItem(title: LanguageManager.Common.cancel(), style: .plain, target: self, action: #selector(handleCancelButtonClicked))
         navigationItem.leftBarButtonItem = cancelButton
         
         let moreItem = UIBarButtonItem(image: Constants.moreImage, style: .plain, target: self, action: #selector(handleMoreButtonClicked))
@@ -128,7 +128,7 @@ extension MakeRedEnvelopeViewController {
     @objc private func handleMoreButtonClicked() {
         dismissKeyboard()
         
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "红包记录", handler: { _ in
             
         }))

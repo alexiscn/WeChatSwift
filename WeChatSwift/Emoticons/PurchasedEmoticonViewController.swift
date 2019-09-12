@@ -44,7 +44,7 @@ class PurchasedEmoticonViewController: ASViewController<ASDisplayNode> {
 extension PurchasedEmoticonViewController {
     
     @objc private func handleRightButtonClicked() {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "恢复购买记录", handler: { _ in
             
         }))

@@ -76,7 +76,7 @@ class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
 extension EmoticonDetailViewController {
  
     @objc private func handleRightButtonClicked() {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "分享给好友", handler: { _ in
             
         }))

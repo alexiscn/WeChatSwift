@@ -68,7 +68,7 @@ class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
     }
  
     @objc private func moreButtonClicked() {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "投诉", handler: { _ in
             
         }))

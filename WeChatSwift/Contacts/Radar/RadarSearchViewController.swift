@@ -29,7 +29,7 @@ class RadarSearchViewController: ASViewController<ASDisplayNode> {
         node.addSubnode(radarLightNode)
         node.addSubnode(closeButtonNode)
         
-        let closeText = NSAttributedString(string: "取消", attributes: [
+        let closeText = NSAttributedString(string: LanguageManager.Common.cancel(), attributes: [
             .font: UIFont.systemFont(ofSize: 14, weight: .semibold),
             .foregroundColor: UIColor.white
         ])

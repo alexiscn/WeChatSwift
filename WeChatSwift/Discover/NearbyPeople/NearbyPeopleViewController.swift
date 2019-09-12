@@ -61,20 +61,30 @@ class NearbyPeopleViewController: ASViewController<ASDisplayNode> {
 extension NearbyPeopleViewController {
     
     @objc private func moreButtonClicked() {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
-        actionSheet.add(WXActionSheetItem(title: "只看女生", handler: { _ in
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
+        // 只看女生
+        let girlOnlyTitle = LocalizedString("LBS_Clear_MyLBS_Data_Button_Girl")
+        actionSheet.add(WXActionSheetItem(title: girlOnlyTitle, handler: { _ in
             
         }))
-        actionSheet.add(WXActionSheetItem(title: "只看男生", handler: { _ in
+        // 只看男生
+        let boyOnlyTitle = LocalizedString("LBS_Clear_MyLBS_Data_Button_Boy")
+        actionSheet.add(WXActionSheetItem(title: boyOnlyTitle, handler: { _ in
             
         }))
-        actionSheet.add(WXActionSheetItem(title: "查看全部", handler: { _ in
+        // 查看全部
+        let allTitle = LocalizedString("LBS_Clear_MyLBS_Data_Button_All")
+        actionSheet.add(WXActionSheetItem(title: allTitle, handler: { _ in
             
         }))
-        actionSheet.add(WXActionSheetItem(title: "附近打招呼的人", handler: { _ in
+        // 附近打招呼的人
+        let sayHelloTitle = LocalizedString("LBS_SayHello_MyLBS_Data_Button_All")
+        actionSheet.add(WXActionSheetItem(title: sayHelloTitle, handler: { _ in
             
         }))
-        actionSheet.add(WXActionSheetItem(title: "清除位置信息并退出", handler: { _ in
+        // 清除位置信息并退出
+        let clearTitle = LocalizedString("LBS_Clear_MyLBS_Data_Button_Text")
+        actionSheet.add(WXActionSheetItem(title: clearTitle, handler: { _ in
             
         }))
         actionSheet.show()

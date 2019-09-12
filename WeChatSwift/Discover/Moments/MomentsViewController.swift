@@ -189,7 +189,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
 extension MomentsViewController {
     
     @objc private func handleRightBarButtonTapped(_ sender: Any) {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "拍摄", desc: "照片或视频", handler: { [weak self] _ in
             self?.presentSightCameraViewController()
         }))
@@ -212,7 +212,7 @@ extension MomentsViewController {
     }
     
     private func onHeaderCoverClicked() {
-        let actionSheet = WXActionSheet(cancelButtonTitle: "取消")
+        let actionSheet = WXActionSheet(cancelButtonTitle: LanguageManager.Common.cancel())
         actionSheet.add(WXActionSheetItem(title: "更换相册封面", handler: { [weak self] _ in
             self?.navigateToPickCover()
         }))
