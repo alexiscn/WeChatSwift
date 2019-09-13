@@ -10,8 +10,17 @@ import AsyncDisplayKit
 
 extension ChatRoomViewController {
     
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if !self.isFirstResponder {
+            if action == #selector(paste(_:)) {
+                return true
+            }
+        }
+        return super.canPerformAction(action, withSender: sender)
+    }
+    
     internal func showMenus(_ menus: [MessageMenuAction], targetRect: CGRect, targetView: UIView) {
-        let menuController = UIMenuController()
+        let menuController = UIMenuController.shared
         menuController.arrowDirection = .down
         var menuItems: [UIMenuItem] = []
         for menu in menus {
