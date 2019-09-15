@@ -12,9 +12,9 @@ class SettingLanguageViewController: ASViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
-    private var dataSource: [LanguageModel] = []
+    private var dataSource: [SettingLanguageModel] = []
     
-    private var selectedLanguage: AppLanguage?
+    private var selectedLanguage: Language?
     
     init() {
         super.init(node: ASDisplayNode())
@@ -22,7 +22,7 @@ class SettingLanguageViewController: ASViewController<ASDisplayNode> {
         tableNode.dataSource = self
         tableNode.delegate = self
         
-        dataSource = AppLanguage.allCases.map { return LanguageModel(language: $0) }
+        dataSource = Language.allCases.map { return SettingLanguageModel(language: $0) }
         dataSource.first(where: { $0.language == LanguageManager.shared.current } )?.isSelected = true
     }
     

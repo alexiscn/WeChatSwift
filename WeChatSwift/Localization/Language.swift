@@ -1,5 +1,5 @@
 //
-//  AppLanguage.swift
+//  Language.swift
 //  WeChatSwift
 //
 //  Created by xu.shuifeng on 2019/8/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AppLanguage: String, CaseIterable, Equatable {
+enum Language: String, CaseIterable, Equatable {
     case simplefiedChinese = "zh-Hans"
     case tranditionalTWChinese = "zh-Tw"
     case tranditionalHKChinese = "zh-HK"
@@ -36,18 +36,9 @@ enum AppLanguage: String, CaseIterable, Equatable {
         }
     }
     
-    static func == (lhs: AppLanguage, rhs: AppLanguage) -> Bool {
+    static func == (lhs: Language, rhs: Language) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }
 
-class LanguageModel {
-    
-    var language: AppLanguage
-    
-    var isSelected: Bool = false
-    
-    init(language: AppLanguage) {
-        self.language = language
-    }
-}
+

@@ -18,10 +18,10 @@ class LanguageManager {
     
     static let shared = LanguageManager()
     
-    var current: AppLanguage {
+    var current: Language {
         get {
             if let list = UserDefaults.standard.value(forKey: "AppleLanguages") as? [String], let lang = list.first {
-                return AppLanguage(rawValue: lang) ?? .english
+                return Language(rawValue: lang) ?? .english
             }
             return .english
         }
@@ -37,8 +37,8 @@ class LanguageManager {
     
     private init() { }
     
-    func supportedLanguages() -> [AppLanguage] {
-        return AppLanguage.allCases
+    func supportedLanguages() -> [Language] {
+        return Language.allCases
     }
     
     func getLocalizedString(_ key: String) -> String {

@@ -386,6 +386,12 @@ extension MomentsViewController: MomentCellNodeDelegate {
         browser.show(pageIndex: index, in: self)
     }
     
+    func momentCellNode(_ cellNode: MomentCellNode, didTapWebPage webpage: MomentWebpage) {
+        guard let url = webpage.url else { return }
+        
+        let webVC = WebViewController(url: url)
+        navigationController?.pushViewController(webVC, animated: true)
+    }
 }
 
 // MARK: - MomentOperationMenuViewDelegate

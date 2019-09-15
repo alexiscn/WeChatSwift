@@ -18,9 +18,9 @@ class SettingLanguageCellNode: ASCellNode {
     
     private let isLastCell: Bool
     
-    private let model: LanguageModel
+    private let model: SettingLanguageModel
     
-    init(model: LanguageModel, isLastCell: Bool) {
+    init(model: SettingLanguageModel, isLastCell: Bool) {
         self.model = model
         self.isLastCell = isLastCell
         super.init()

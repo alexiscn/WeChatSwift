@@ -35,6 +35,12 @@ class MomentWebpageContentNode: MomentContentNode {
         textNode.attributedText = webPage.attributedStringForTitle()
     }
     
+    override func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        if let cellNode = cellNode {
+            cellNode.delegate?.momentCellNode(cellNode, didTapWebPage: webPage)
+        }
+    }
+    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         imageNode.style.preferredSize = CGSize(width: 40, height: 40)
         

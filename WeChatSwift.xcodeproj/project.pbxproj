@@ -27,6 +27,7 @@
 		A31057E622E8533C00856D71 /* JSB.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057E522E8533C00856D71 /* JSB.pic */; };
 		A31057E822E8537300856D71 /* GameContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31057E722E8537300856D71 /* GameContentNode.swift */; };
 		A3105D43232E035E0038D775 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3105D42232E035E0038D775 /* Notification+Extensions.swift */; };
+		A3105D45232E46940038D775 /* SettingLanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3105D44232E46940038D775 /* SettingLanguageModel.swift */; };
 		A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32286FD22E04C56004E516E /* icons_filled_add.svg */; };
 		A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */; };
 		A322870322E06299004E516E /* EmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322870222E06299004E516E /* EmoticonManager.swift */; };
@@ -128,7 +129,7 @@
 		A352AD252306CDA700332B21 /* StorageUsageSummaryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD242306CDA700332B21 /* StorageUsageSummaryNode.swift */; };
 		A352AD272306CDB300332B21 /* StorageUsageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD262306CDB300332B21 /* StorageUsageDetail.swift */; };
 		A352AD2A2306CE9500332B21 /* SettingLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD292306CE9500332B21 /* SettingLanguageViewController.swift */; };
-		A352AD2C2306D03C00332B21 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2B2306D03C00332B21 /* AppLanguage.swift */; };
+		A352AD2C2306D03C00332B21 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2B2306D03C00332B21 /* Language.swift */; };
 		A352AD2E2306D0B200332B21 /* SettingLanguageCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */; };
 		A352AD302306D2FA00332B21 /* icons_filled_done.svg in Resources */ = {isa = PBXBuildFile; fileRef = A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */; };
 		A3542F4F230D5D470034ED82 /* AssetPickerSelectCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3542F4E230D5D470034ED82 /* AssetPickerSelectCheckButton.swift */; };
@@ -431,6 +432,7 @@
 		A31057E522E8533C00856D71 /* JSB.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB.pic; sourceTree = "<group>"; };
 		A31057E722E8537300856D71 /* GameContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentNode.swift; sourceTree = "<group>"; };
 		A3105D42232E035E0038D775 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
+		A3105D44232E46940038D775 /* SettingLanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLanguageModel.swift; sourceTree = "<group>"; };
 		A32286FD22E04C56004E516E /* icons_filled_add.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_add.svg; sourceTree = "<group>"; };
 		A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardTabBarCellNode.swift; sourceTree = "<group>"; };
 		A322870222E06299004E516E /* EmoticonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManager.swift; sourceTree = "<group>"; };
@@ -536,7 +538,7 @@
 		A352AD242306CDA700332B21 /* StorageUsageSummaryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageSummaryNode.swift; sourceTree = "<group>"; };
 		A352AD262306CDB300332B21 /* StorageUsageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUsageDetail.swift; sourceTree = "<group>"; };
 		A352AD292306CE9500332B21 /* SettingLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLanguageViewController.swift; sourceTree = "<group>"; };
-		A352AD2B2306D03C00332B21 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		A352AD2B2306D03C00332B21 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLanguageCellNode.swift; sourceTree = "<group>"; };
 		A352AD2F2306D2FA00332B21 /* icons_filled_done.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_done.svg; sourceTree = "<group>"; };
 		A3542F4E230D5D470034ED82 /* AssetPickerSelectCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerSelectCheckButton.swift; sourceTree = "<group>"; };
@@ -1229,7 +1231,7 @@
 			children = (
 				A352AD292306CE9500332B21 /* SettingLanguageViewController.swift */,
 				A352AD2D2306D0B200332B21 /* SettingLanguageCellNode.swift */,
-				A352AD2B2306D03C00332B21 /* AppLanguage.swift */,
+				A3105D44232E46940038D775 /* SettingLanguageModel.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -1247,6 +1249,7 @@
 		A354CE9323274F8700A2B35C /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				A352AD2B2306D03C00332B21 /* Language.swift */,
 				A354CE962327510600A2B35C /* LanguageManager.swift */,
 				A34B7D472327774F006BA84E /* Localizable.strings */,
 			);
@@ -2256,7 +2259,7 @@
 				A3E58DA62302CF0500F73763 /* CameraScanType.swift in Sources */,
 				A32333C622DF296600B79555 /* EmoticonGridCellNode.swift in Sources */,
 				A3485FA922EFF5F9002A804B /* ContactInfoCellNode.swift in Sources */,
-				A352AD2C2306D03C00332B21 /* AppLanguage.swift in Sources */,
+				A352AD2C2306D03C00332B21 /* Language.swift in Sources */,
 				A33DB2ED22CCCB4D00A11776 /* UIImage+SVG.swift in Sources */,
 				A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */,
 				A374864E22D44D46002EEC4F /* NoticeContentNode.swift in Sources */,
@@ -2284,6 +2287,7 @@
 				A3C914262305092400B6E077 /* RichTextNode.swift in Sources */,
 				A3C9144823053E5900B6E077 /* SayHelloViewController.swift in Sources */,
 				A3D539A022EF258A006B4FCD /* ContactInfoViewController.swift in Sources */,
+				A3105D45232E46940038D775 /* SettingLanguageModel.swift in Sources */,
 				A3CA51AE22CD9A1500C67D92 /* AddContactSource.swift in Sources */,
 				A3D67FBB230FB4D100507B5F /* SightCameraPhotoCaptureProcessor.swift in Sources */,
 				A3EA973922EA9A93008F94E4 /* UIImage+Compression.swift in Sources */,
