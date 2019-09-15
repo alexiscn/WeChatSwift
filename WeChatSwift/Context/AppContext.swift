@@ -20,11 +20,14 @@ class AppContext {
     
     let userSettings: UserSettings
     
+    let momentCoverManager: MomentCoverManager
+    
     private init() {
         me = MockFactory.shared.user(with: "10001")!
         userID = me.identifier
         name = me.name
         userSettings = UserSettings(userID: userID)
+        momentCoverManager =  MomentCoverManager(userID: userID)
     }
     
     var userProfileService = UserProfileService()

@@ -22,7 +22,7 @@ class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
     
     init(emoticon: EmoticonMessage) {
         self.emoticonMsg = emoticon
-        bottomNode = ChatRoomEmoticonPreviewBottomNode(storeEmoticonItem: StoreEmoticonItem(image: nil, title: nil, desc: nil))
+        bottomNode = ChatRoomEmoticonPreviewBottomNode(storeEmoticonItem: StoreEmoticonItem(image: nil, title: "22223", desc: nil))
         super.init(node: ASDisplayNode())
         node.addSubnode(bottomNode)
     }
@@ -41,6 +41,8 @@ class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
         
         let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
+        
+        bottomNode.frame = CGRect(x: 0, y: view.bounds.height - 90, width: view.bounds.width, height: 90)
     }
     
     private func setupAnimatedImageView() {

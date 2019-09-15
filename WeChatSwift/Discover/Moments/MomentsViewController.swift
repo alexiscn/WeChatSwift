@@ -65,6 +65,11 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         
         setupNavigationBar()
         setupTapGesture()
+        registerNotifications()
+    }
+    
+    private func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCoverDidUpdatedNotification(_:)), name: .momentCoverDidUpdated, object: nil)
     }
     
     private func setupNavigationBar() {
@@ -232,6 +237,10 @@ extension MomentsViewController {
         }
     }
     
+    @objc private func handleCoverDidUpdatedNotification(_ notification: Notification) {
+        guard let image = notification.object as? UIImage else { return }
+        header.updateCover(image)
+    }
 }
 
 // MARK: - ASTableDelegate & ASTableDataSource

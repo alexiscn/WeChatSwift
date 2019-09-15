@@ -41,10 +41,10 @@ class EmoticonManageViewController: ASViewController<ASDisplayNode> {
         
         navigationItem.title = LocalizedString("EmoticonManageTitle")
         
-        let sortButton = UIBarButtonItem(title: "排序", style: .plain, target: self, action: #selector(handleSortButtonClicked))
+        let sortButton = UIBarButtonItem(title: LocalizedString("Emoticon_Manage_Sort"), style: .plain, target: self, action: #selector(handleSortButtonClicked))
         navigationItem.rightBarButtonItem = sortButton
         
-        cancelButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(handleCancelButtonClicked))
+        cancelButtonItem = UIBarButtonItem(title: LanguageManager.Common.cancel(), style: .plain, target: self, action: #selector(handleCancelButtonClicked))
         if isPresented {
             navigationItem.leftBarButtonItem = cancelButtonItem
         }
@@ -157,11 +157,11 @@ enum EmoticonManageItem {
     var title: String? {
         switch self {
         case .addHistory:
-            return "整套表情添加记录"
+            return LocalizedString("PurchasedEmoticonRecordTitle")
         case .addSingleEmoticon:
-            return "添加的单个表情"
+            return LocalizedString("CustomEmoticonTitle")
         case .selfieEmoticon:
-            return "我的自拍表情"
+            return LocalizedString("CameraEmoticonTitle")
         default:
             return nil
         }

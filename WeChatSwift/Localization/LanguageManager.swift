@@ -64,6 +64,8 @@ class LanguageManager {
         
         static func clearAll() -> String { return LocalizedString("Common_ClearAll") }
         
+        static func close() -> String { return LocalizedString("Common_Close") }
+        
         static func commit() -> String { return LocalizedString("Common_Commit") }
         
         static func confirm() -> String { return LocalizedString("Common_Confirm") }

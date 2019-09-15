@@ -7,6 +7,7 @@
 //
 
 import AsyncDisplayKit
+import PINRemoteImage
 
 class MomentSetBackgroundViewController: ASViewController<ASDisplayNode> {
     
@@ -76,10 +77,29 @@ extension MomentSetBackgroundViewController: ASTableDelegate, ASTableDataSource 
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let group = dataSource[indexPath.row]
-        let block: ASCellNodeBlock = {
-            return MomentSetBackgroundCellNode(group: group)
+        let block: ASCellNodeBlock = { [weak self] in
+            let cellNode = MomentSetBackgroundCellNode(group: group)
+            cellNode.delegate = self
+            return cellNode
         }
         return block
     }
     
+}
+
+// MARK: - MomentSetBackgroundCellNodeDelegate
+extension MomentSetBackgroundViewController: MomentSetBackgroundCellNodeDelegate {
+    
+    func momentSetBackgroundCellDidSelectBackground(_ background: MomentBackground, images: [MomentBackground]) {
+        print(background)
+        // TODO: - Preview
+        guard let url = background.url else { return }
+        PINRemoteImageManager.shared().downloadImage(with: url) { result in
+            DispatchQueue.main.async {
+                if let image = result.image {
+                    AppContext.current.momentCoverManager.update(cover: image)
+                }
+            }
+        }
+    }
 }

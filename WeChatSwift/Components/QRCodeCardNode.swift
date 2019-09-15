@@ -59,7 +59,7 @@ class QRCodeCardNode: ASDisplayNode {
             NSAttributedString.Key.foregroundColor: Colors.DEFAULT_TEXT_GRAY_COLOR,
             NSAttributedString.Key.paragraphStyle: bottomTextParagraph
         ]
-        bottomTextNode.attributedText = NSAttributedString(string: "扫一扫上面的二维码图案，加我微信", attributes: bottomTextAttributes)
+        bottomTextNode.attributedText = NSAttributedString(string: LocalizedString("FF_QRCode_MyQRCodeIntro"), attributes: bottomTextAttributes)
     }
     
     required init?(coder aDecoder: NSCoder) {

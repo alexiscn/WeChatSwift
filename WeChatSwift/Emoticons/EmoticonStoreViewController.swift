@@ -41,7 +41,10 @@ class EmoticonStoreViewController: ASViewController<ASDisplayNode> {
     
     private func setupNavigationBar() {
         
-        segmentControl = UISegmentedControl(items: ["朋友表情", "更多表情"])
+        let friendsEmoticonTitle = LocalizedString("Emotion_Store_Segment_Friends_Emoticon")
+        let moreEmoticonTitle = LocalizedString("Emotion_Store_Segment_Individual")
+        
+        segmentControl = UISegmentedControl(items: [friendsEmoticonTitle, moreEmoticonTitle])
         segmentControl.frame = CGRect(x: 0, y: 0, width: 191.0, height: 29.0)
         segmentControl.selectedSegmentIndex = 0
         segmentControl.tintColor = UIColor(hexString: "#181818")
@@ -53,7 +56,7 @@ class EmoticonStoreViewController: ASViewController<ASDisplayNode> {
         navigationItem.rightBarButtonItem = rightButton
         
         if presented {
-            let closeButton = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(handleCloseButtonTapped(_:)))
+            let closeButton = UIBarButtonItem(title: LanguageManager.Common.close(), style: .plain, target: self, action: #selector(handleCloseButtonTapped(_:)))
             closeButton.tintColor = UIColor(hexString: "#181818") //Colors.black
             navigationItem.leftBarButtonItem = closeButton
         }

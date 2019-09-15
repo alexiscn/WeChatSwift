@@ -8,16 +8,24 @@
 
 import AsyncDisplayKit
 
+protocol MomentSetBackgroundCellNodeDelegate: class {
+    func momentSetBackgroundCellDidSelectBackground(_ background: MomentBackground, images: [MomentBackground])
+}
+
 class MomentSetBackgroundCellNode: ASCellNode {
+    
+    weak var delegate: MomentSetBackgroundCellNodeDelegate?
     
     private let nameNode = ASTextNode()
     
     private let imageGridNode: MomentCoverImageGridNode
     
+    private let backgroundGroup: MomentBackgroundGroup
+    
     init(group: MomentBackgroundGroup) {
         
         imageGridNode = MomentCoverImageGridNode(images: group.items)
-        
+        backgroundGroup = group
         super.init()
         automaticallyManagesSubnodes = true
         nameNode.attributedText = group.attributedStringForName()
@@ -25,6 +33,12 @@ class MomentSetBackgroundCellNode: ASCellNode {
     
     override func didLoad() {
         super.didLoad()
+        
+        imageGridNode.didTapBackgroundHandler = { [weak self] background in
+            if let strongSelf = self {
+                strongSelf.delegate?.momentSetBackgroundCellDidSelectBackground(background, images: strongSelf.backgroundGroup.items)
+            }
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -51,6 +65,8 @@ class MomentSetBackgroundCellNode: ASCellNode {
 
 class MomentCoverImageGridNode: ASDisplayNode {
     
+    var didTapBackgroundHandler: ((MomentBackground) -> Void)?
+    
     private let itemWidth: CGFloat = 75.0
     
     private let itemHeight: CGFloat = 75.0
@@ -61,7 +77,10 @@ class MomentCoverImageGridNode: ASDisplayNode {
     
     private var elements: [ASNetworkImageNode] = []
     
+    private let images: [MomentBackground]
+    
     init(images: [MomentBackground]) {
+        self.images = images
         super.init()
         
         automaticallyManagesSubnodes = true
@@ -75,6 +94,20 @@ class MomentCoverImageGridNode: ASDisplayNode {
     
     override func didLoad() {
         super.didLoad()
+        
+        isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: self.view)
+        for (index, element) in elements.enumerated() {
+            if element.frame.contains(point) {
+                didTapBackgroundHandler?(images[index])
+                break
+            }
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

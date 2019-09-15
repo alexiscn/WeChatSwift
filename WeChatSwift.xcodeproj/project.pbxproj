@@ -26,6 +26,7 @@
 		A31057E422E8532E00856D71 /* dice.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057DD22E8532E00856D71 /* dice.pic */; };
 		A31057E622E8533C00856D71 /* JSB.pic in Resources */ = {isa = PBXBuildFile; fileRef = A31057E522E8533C00856D71 /* JSB.pic */; };
 		A31057E822E8537300856D71 /* GameContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31057E722E8537300856D71 /* GameContentNode.swift */; };
+		A3105D43232E035E0038D775 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3105D42232E035E0038D775 /* Notification+Extensions.swift */; };
 		A32286FE22E04C56004E516E /* icons_filled_add.svg in Resources */ = {isa = PBXBuildFile; fileRef = A32286FD22E04C56004E516E /* icons_filled_add.svg */; };
 		A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */; };
 		A322870322E06299004E516E /* EmoticonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322870222E06299004E516E /* EmoticonManager.swift */; };
@@ -158,6 +159,7 @@
 		A3709222231A6CB4003DA42D /* SelectSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3709221231A6CB4003DA42D /* SelectSessionViewController.swift */; };
 		A3709224231A7E01003DA42D /* SelectSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3709223231A7E01003DA42D /* SelectSessionModel.swift */; };
 		A3709226231A8B28003DA42D /* MomentVideoContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3709225231A8B28003DA42D /* MomentVideoContentNode.swift */; };
+		A3720B24232E013F00AEA354 /* MomentCoverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3720B23232E013F00AEA354 /* MomentCoverManager.swift */; };
 		A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */; };
 		A372145122FFB19D00340023 /* MyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145022FFB19D00340023 /* MyFavoritesViewController.swift */; };
 		A372145322FFB32A00340023 /* MyFavoritesCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */; };
@@ -428,6 +430,7 @@
 		A31057DD22E8532E00856D71 /* dice.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice.pic; sourceTree = "<group>"; };
 		A31057E522E8533C00856D71 /* JSB.pic */ = {isa = PBXFileReference; lastKnownFileType = file; path = JSB.pic; sourceTree = "<group>"; };
 		A31057E722E8537300856D71 /* GameContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContentNode.swift; sourceTree = "<group>"; };
+		A3105D42232E035E0038D775 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		A32286FD22E04C56004E516E /* icons_filled_add.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_add.svg; sourceTree = "<group>"; };
 		A32286FF22E0514A004E516E /* EmoticonBoardTabBarCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonBoardTabBarCellNode.swift; sourceTree = "<group>"; };
 		A322870222E06299004E516E /* EmoticonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManager.swift; sourceTree = "<group>"; };
@@ -564,6 +567,7 @@
 		A3709221231A6CB4003DA42D /* SelectSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionViewController.swift; sourceTree = "<group>"; };
 		A3709223231A7E01003DA42D /* SelectSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionModel.swift; sourceTree = "<group>"; };
 		A3709225231A8B28003DA42D /* MomentVideoContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentVideoContentNode.swift; sourceTree = "<group>"; };
+		A3720B23232E013F00AEA354 /* MomentCoverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCoverManager.swift; sourceTree = "<group>"; };
 		A372144D22FFA0F400340023 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
 		A372145022FFB19D00340023 /* MyFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesViewController.swift; sourceTree = "<group>"; };
 		A372145222FFB32A00340023 /* MyFavoritesCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesCellNode.swift; sourceTree = "<group>"; };
@@ -1063,6 +1067,7 @@
 				A3476FF422FA9827001B94EC /* UITabBar+Fix.swift */,
 				A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */,
 				A3D9954C230BCE9400E4F628 /* UISearchBar+Extensions.swift */,
+				A3105D42232E035E0038D775 /* Notification+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1702,6 +1707,7 @@
 				A3CA51FA22CDA87D00C67D92 /* AppContext.swift */,
 				A373D3D122F65A5300451515 /* UserSettings.swift */,
 				A3E840D3231CF07B00EAC4CE /* AppConfiguration.swift */,
+				A3720B23232E013F00AEA354 /* MomentCoverManager.swift */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -2141,6 +2147,7 @@
 				A374863322D43C11002EEC4F /* MessageCellNode.swift in Sources */,
 				A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */,
 				A373D3DB22F6A72300451515 /* SettingFontSizeViewController.swift in Sources */,
+				A3105D43232E035E0038D775 /* Notification+Extensions.swift in Sources */,
 				A3F9F002230E6F330032299C /* SightCameraPreviewView.swift in Sources */,
 				A33DB30222CCDDE200A11776 /* DiscoverModel.swift in Sources */,
 				A33D2B2122F2FC3B0099927A /* MMPopAnimator.swift in Sources */,
@@ -2317,6 +2324,7 @@
 				A3FB0AC522F45B5800116329 /* SettingDiscoverEntranceCellNode.swift in Sources */,
 				A33D618E22FD15DF00B767F1 /* SettingLabHeaderNode.swift in Sources */,
 				A3485FA522EFF5C2002A804B /* ContactInfoHeaderNode.swift in Sources */,
+				A3720B24232E013F00AEA354 /* MomentCoverManager.swift in Sources */,
 				A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
 				A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */,

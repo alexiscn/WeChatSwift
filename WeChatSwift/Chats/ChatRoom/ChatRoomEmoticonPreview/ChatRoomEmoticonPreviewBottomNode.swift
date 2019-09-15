@@ -73,7 +73,7 @@ class ChatRoomEmoticonPreviewBottomNode: ASDisplayNode {
         stack.children = [iconNode, nameSpec, actionButtonNode]
         
         let layout = ASStackLayoutSpec.vertical()
-        layout.children = [stack, lineNode]
+        layout.children = [lineNode, stack]
         
         return layout
     }

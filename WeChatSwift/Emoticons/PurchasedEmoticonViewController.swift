@@ -32,7 +32,7 @@ class PurchasedEmoticonViewController: ASViewController<ASDisplayNode> {
         tableNode.backgroundColor = .clear
         tableNode.view.separatorStyle = .none
         
-        navigationItem.title = "整套表情添加记录"
+        navigationItem.title = LocalizedString("PurchasedEmoticonRecordTitle")
         
         let rightButton = UIBarButtonItem(image: Constants.moreImage, style: .plain, target: self, action: #selector(handleRightButtonClicked))
         navigationItem.rightBarButtonItem = rightButton

@@ -27,7 +27,7 @@ class MomentHeaderNode: ASDisplayNode {
         
         let user = AppContext.current.me
         
-        coverNode.image = UIImage.as_imageNamed("AlbumListViewBkg_320x320_")
+        coverNode.image = AppContext.current.momentCoverManager.cover() //UIImage.as_imageNamed("AlbumListViewBkg_320x320_")
         avatarNode.url = user.avatar
         avatarNode.cornerRadius = 6
         avatarNode.cornerRoundingType = .defaultSlowCALayer
@@ -56,6 +56,10 @@ class MomentHeaderNode: ASDisplayNode {
     
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    func updateCover(_ cover: UIImage?) {
+        coverNode.image = cover
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
