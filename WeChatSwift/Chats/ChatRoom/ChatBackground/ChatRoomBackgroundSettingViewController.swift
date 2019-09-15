@@ -50,22 +50,13 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASDisplayNode> {
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         collectionNode.frame = view.bounds
         collectionNode.backgroundColor = .clear
-        navigationItem.title = "选择背景图"
+        navigationItem.title = LocalizedString("ChatBackground_SelectBackground")
         
         let cancelButton = UIBarButtonItem(title: LanguageManager.Common.cancel(), style: .plain, target: self, action: #selector(cancelButtonClicked))
         cancelButton.tintColor = .black
         navigationItem.leftBarButtonItem = cancelButton
         
-        let doneButton = UIButton(type: .system)
-        doneButton.layer.cornerRadius = 5
-        doneButton.layer.masksToBounds = true
-        doneButton.frame.size = CGSize(width: 56, height: 30)
-        doneButton.backgroundColor = Colors.Brand
-        doneButton.setBackgroundImage(UIImage(color: Colors.Brand_120), for: .disabled)
-        doneButton.setBackgroundImage(UIImage(color: Colors.Brand), for: .normal)
-        doneButton.setTitle("完成", for: .normal)
-        doneButton.setTitleColor(.white, for: .normal)
-        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        let doneButton = wc_doneBarButton()
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: doneButton)
         doneButton.addTarget(self, action: #selector(doneButtonClicked), for: .touchUpInside)
         self.doneButton = doneButton

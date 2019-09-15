@@ -22,7 +22,7 @@ class AssetPickerConfiguration {
     
     var maximumImageCount: Int = 9
     
-    var doneButtonTitle: String = "完成"
+    var doneButtonTitle: String = LanguageManager.Common.done()
     
     var showBottomBar: Bool = true
     
@@ -43,7 +43,7 @@ class AssetPickerConfiguration {
         configuration.canSendMultiImage = true
         configuration.canSendOriginImage = true
         configuration.showBottomBar = true
-        configuration.doneButtonTitle = "完成"
+        configuration.doneButtonTitle = LanguageManager.Common.done()
         return configuration
     }
     
@@ -54,7 +54,7 @@ class AssetPickerConfiguration {
         configuration.canSendMultiImage = false
         configuration.canSendOriginImage = false
         configuration.showBottomBar = false
-        configuration.doneButtonTitle = "完成"
+        configuration.doneButtonTitle = LanguageManager.Common.done()
         return configuration
     }
     
@@ -64,7 +64,17 @@ class AssetPickerConfiguration {
         configuration.canSendMultiImage = true
         configuration.canSendOriginImage = true
         configuration.canSendVideo = true
-        configuration.doneButtonTitle = "完成"
+        configuration.doneButtonTitle = LanguageManager.Common.done()
+        return configuration
+    }
+    
+    static func configurationForChatBackground() -> AssetPickerConfiguration {
+        let configuration = AssetPickerConfiguration()
+        configuration.canSendGif = false
+        configuration.canSendMultiImage = false
+        configuration.canSendOriginImage = false
+        configuration.canSendVideo = false
+        configuration.showBottomBar = false
         return configuration
     }
 }

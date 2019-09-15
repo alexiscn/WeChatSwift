@@ -203,7 +203,7 @@ enum MessageMenuAction: Int {
         case .recall:
             return "撤回"
         case .addToSticker:
-            return "添加到表情"
+            return LocalizedString("Emoticon_Add")
         case .followShoot:
             return "跟拍"
         case .viewStickerAlbum:

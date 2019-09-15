@@ -80,7 +80,8 @@ class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
         actionSheet.add(WXActionSheetItem(title: "发送给朋友", handler: { _ in
             
         }))
-        actionSheet.add(WXActionSheetItem(title: "添加到表情", handler: { _ in
+        // 添加到表情
+        actionSheet.add(WXActionSheetItem(title: LocalizedString("Emoticon_Add"), handler: { _ in
             
         }))
         actionSheet.show()

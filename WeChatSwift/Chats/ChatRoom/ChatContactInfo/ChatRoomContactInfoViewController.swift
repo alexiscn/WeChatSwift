@@ -181,7 +181,7 @@ enum ChatRoomContactInfoModel: WCTableCellModel {
         case .chatBackground:
             return LocalizedString("MessageRoomContent_ChangeChatBackground")
         case .clearChat:
-            return "清空聊天消息"
+            return LocalizedString("ChatRoomSetting_ClearAll")
         case .report:
             return "投诉"
         }

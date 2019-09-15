@@ -75,6 +75,26 @@ extension ChatRoomBackgroundEntranceViewController: ASTableDelegate, ASTableData
             let nav = WCNavigationController(rootViewController: backgroundSettingVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
+        case .pickFromAlbum:
+            let selectionHandler = { [weak self] (selectedAssets: [MediaAsset]) in
+                print(selectedAssets.count)
+                self?.dismiss(animated: true, completion: nil)
+            }
+            let configuration = AssetPickerConfiguration.configurationForChatBackground()
+            let albumPickerVC = AlbumPickerViewController(configuration: configuration)
+            albumPickerVC.selectionHandler = selectionHandler
+            let assetPickerVC = AssetPickerViewController(configuration: configuration)
+            assetPickerVC.selectionHandler = selectionHandler
+            let nav = WCNavigationController()
+            nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
+        case .takeFromCamera:
+            let sightCameraVC = SightCameraViewController()
+            sightCameraVC.modalPresentationCapturesStatusBarAppearance = true
+            sightCameraVC.modalTransitionStyle = .coverVertical
+            sightCameraVC.modalPresentationStyle = .overCurrentContext
+            present(sightCameraVC, animated: true, completion: nil)
         default:
             break
         }
@@ -110,13 +130,13 @@ enum ChatRoomBackgroundAction: WCTableCellModel {
     var title: String {
         switch self {
         case .pick:
-            return "选择背景图"
+            return LocalizedString("ChatBackground_SelectBackground")
         case .pickFromAlbum:
-            return "从手机相册选择"
+            return LocalizedString("ChatBackground_SelectFromAlbum")
         case .takeFromCamera:
-            return "拍一张"
+            return LocalizedString("ChatBackground_TakePhoto")
         case .applyToAllChats:
-            return "将背景应用到所有聊天场景"
+            return LocalizedString("ChatBackground_ApplyToAllChat")
         }
     }
     
