@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum AppLanguage: CaseIterable {
-    case simplefiedChinese
-    case tranditionalTWChinese
-    case tranditionalHKChinese
-    case japanese
-    case english
-    case deutsch
+enum AppLanguage: String, CaseIterable, Equatable {
+    case simplefiedChinese = "zh-Hans"
+    case tranditionalTWChinese = "zh-Tw"
+    case tranditionalHKChinese = "zh-HK"
+    case japanese = "jp"
+    case english = "en"
+    case deutsch = "de"
     case southKorea
     
     var title: String {
@@ -35,12 +35,19 @@ enum AppLanguage: CaseIterable {
             return "Deutsch"
         }
     }
+    
+    static func == (lhs: AppLanguage, rhs: AppLanguage) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
 }
 
-struct LanguageModel {
+class LanguageModel {
     
     var language: AppLanguage
     
-    var isSelected: Bool
+    var isSelected: Bool = false
     
+    init(language: AppLanguage) {
+        self.language = language
+    }
 }

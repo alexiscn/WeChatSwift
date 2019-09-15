@@ -104,17 +104,17 @@ enum SettingGeneral {
     var title: String {
         switch self {
         case .language:
-            return "多语言"
+            return LocalizedString("Setting_Language")
         case .font:
-            return "字体"
+            return LocalizedString("Setting_FontSize")
         case .backgroundImage:
             return LocalizedString("Setting_ChatBackgroundConfig")
         case .emoticon:
-            return "我的表情"
+            return LocalizedString("EmoticonManageTitle")
         case .files:
             return LocalizedString("Setting_Photos_And_Videos_And_Files")
         case .earmode:
-            return "听筒模式"
+            return LocalizedString("EARPIECE_AUTOSWITCH")
         case .discover:
             return LocalizedString("Setting_DiscoverEntranceTitle")
         case .plugins:

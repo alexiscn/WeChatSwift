@@ -14,14 +14,16 @@ class SettingLanguageViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [LanguageModel] = []
     
+    private var selectedLanguage: AppLanguage?
+    
     init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self
         tableNode.delegate = self
         
-        dataSource = AppLanguage.allCases.map { return LanguageModel(language: $0, isSelected: false) }
-        dataSource[0].isSelected = true
+        dataSource = AppLanguage.allCases.map { return LanguageModel(language: $0) }
+        dataSource.first(where: { $0.language == LanguageManager.shared.current } )?.isSelected = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,7 +57,18 @@ extension SettingLanguageViewController {
     }
 
     @objc private func doneButtonClicked() {
-        dismiss(animated: true, completion: nil)
+        
+        if let selected = selectedLanguage, selected != LanguageManager.shared.current {
+            LanguageManager.shared.current = selected
+        }
+        dismiss(animated: true) {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.setupTaBar()
+            appDelegate?.tabBarVC.selectedIndex = 3
+            
+            let settingsVC = SettingsViewController()
+            appDelegate?.meVC.navigationController?.pushViewController(settingsVC, animated: true)
+        }
     }
 }
 
@@ -81,5 +94,8 @@ extension SettingLanguageViewController: ASTableDelegate, ASTableDataSource {
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: false)
+        
+        let model = dataSource[indexPath.row]
+        selectedLanguage = model.language
     }
 }

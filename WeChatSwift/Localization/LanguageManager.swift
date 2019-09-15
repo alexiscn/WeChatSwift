@@ -14,36 +14,31 @@ func LocalizedString(_ key: String) -> String {
     return LanguageManager.shared.getLocalizedString(key)
 }
 
-enum Language: String, CaseIterable {
-    case none
-    case en = "en"
-    case zhHans = "zh-Hans"
-}
-
 class LanguageManager {
     
     static let shared = LanguageManager()
     
-    var current: Language {
+    var current: AppLanguage {
         get {
             if let list = UserDefaults.standard.value(forKey: "AppleLanguages") as? [String], let lang = list.first {
-                return Language(rawValue: lang) ?? .none
+                return AppLanguage(rawValue: lang) ?? .english
             }
-            return .none
+            return .english
         }
         set {
-            if newValue == .none {
+            if newValue == .english {
                 UserDefaults.standard.setValue(nil, forKey: "AppleLanguages")
             } else {
                 UserDefaults.standard.setValue([newValue.rawValue], forKey: "AppleLanguages")
             }
+            Bundle.setLanguage(newValue.rawValue)
         }
     }
     
     private init() { }
     
-    func supportedLanguages() -> [Language] {
-        return Language.allCases
+    func supportedLanguages() -> [AppLanguage] {
+        return AppLanguage.allCases
     }
     
     func getLocalizedString(_ key: String) -> String {
@@ -127,44 +122,60 @@ class LanguageManager {
         static func productName() -> String { return LocalizedString("Common_ProductName") }
         
         static func refresh() -> String { return LocalizedString("Common_Refresh") }
-//
-//        "Common_Reply" = "回复";
-//
-//        "Common_Resend" = "重发";
-//
-//        "Common_Retry" = "重试";
-//
-//        "Common_Return" = "返回";
-//
-//        "Common_Save" = "保存";
-//
-//        "Common_Select" = "选择";
-//
-//        "Common_SelectAll" = "全选";
-//
-//        "Common_Send" = "发送";
-//
-//        "Common_Set" = "设置";
-//
-//        "Common_Share" = "分享";
-//
-//        "Common_Skip" = "跳过";
-//
-//        "Common_Submit" = "提交";
-//
-//        "Common_TipTitle" = "提示";
-//
-//        "Common_TipTitle_WenXing" = "提示";
-//
-//        "Common_Undo" = "撤销";
-//
-//        "Common_UnSave" = "不保存";
-//
-//        "Common_Use" = "使用";
-//
-//        "Common_Wait" = "请稍候…";
-//
-//        "Common_Yes" = "是";
+        
+        /// 回复
+        static func reply() -> String { return LocalizedString("Common_Reply") }
+        
+        /// 重发
+        static func resend() -> String { return LocalizedString("Common_Resend") }
+        
+        /// 重试
+        static func retry() -> String { return LocalizedString("Common_Retry") }
+        
+        /// 返回
+        static func `return`() -> String { return LocalizedString("Common_Return") }
+        
+        /// 保存
+        static func save() -> String { return LocalizedString("Common_Save") }
+        
+        /// 选择
+        static func select() -> String { return LocalizedString("Common_Select") }
+        
+        /// 全选
+        static func selectAll() -> String { return LocalizedString("Common_SelectAll") }
+        
+        /// 发送
+        static func send() -> String { return LocalizedString("Common_Send") }
+        
+        /// 设置
+        static func set() -> String { return LocalizedString("Common_Set") }
+        
+        /// 分享
+        static func share() -> String { return LocalizedString("Common_Share") }
+        
+        /// 跳过
+        static func skip() -> String { return LocalizedString("Common_Skip") }
+        
+        /// 提交
+        static func submit() -> String { return LocalizedString("Common_Submit") }
+        
+        /// 提示
+        static func tipTitle() -> String { return LocalizedString("Common_TipTitle") }
+        
+        /// 撤销
+        static func undo() -> String { return LocalizedString("Common_Undo") }
+        
+        /// 不保存
+        static func unSave() -> String { return LocalizedString("Common_UnSave") }
+        
+        /// 使用
+        static func use() -> String { return LocalizedString("Common_Use") }
+
+        /// 请稍候…
+        static func wait() -> String { return LocalizedString("Common_Wait") }
+        
+        /// 是
+        static func yes() -> String { return LocalizedString("Common_Yes") }
     }
 }
 

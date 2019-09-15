@@ -34,7 +34,7 @@ class DiscoverManager {
         
         sections.append(DiscoverSection(models: [DiscoverModel(type: .nearby, title: LocalizedString("FF_Entry_PeopleNearBy"), icon: "icons_outlined_nearby", color: Colors.Indigo)]))
         
-        if LanguageManager.shared.current == .zhHans {
+        if LanguageManager.shared.current == .simplefiedChinese {
         sections.append(DiscoverSection(models: [
             DiscoverModel(type: .shop, title: "购物", icon: "icons_outlined_shop", color: Colors.Orange),
             DiscoverModel(type: .game, title: LocalizedString("MainFrame_RBtnGame"), icon: "icons_outlined_colorful_game")]))
