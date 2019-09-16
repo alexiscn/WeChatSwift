@@ -14,7 +14,9 @@ class RadarSearchViewController: ASViewController<ASDisplayNode> {
     
     private let radarLightNode = ASImageNode()
     
-    private let myAvatarNode = ASImageNode()
+    private let avatarBackgroundNode = ASImageNode()
+    
+    private let avatarNode = ASNetworkImageNode()
     
     private let closeButtonNode = ASButtonNode()
     
@@ -34,6 +36,14 @@ class RadarSearchViewController: ASViewController<ASDisplayNode> {
             .foregroundColor: UIColor.white
         ])
         closeButtonNode.setAttributedTitle(closeText, for: .normal)
+        
+        avatarBackgroundNode.image = UIImage(named: "Radar_Avatar_bg_130x130_")
+        avatarNode.url = AppContext.current.me.avatar
+        avatarNode.cornerRadius = 39.0
+        avatarNode.cornerRoundingType = .defaultSlowCALayer
+        node.addSubnode(avatarBackgroundNode)
+        avatarBackgroundNode.addSubnode(avatarNode)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,6 +59,8 @@ class RadarSearchViewController: ASViewController<ASDisplayNode> {
         
         radarLightNode.frame = CGRect(x: (node.bounds.width - 615)/2.0, y: (node.bounds.height - 615)/2.0, width: 615, height: 615)
         closeButtonNode.frame = CGRect(x: 15, y: 30, width: 49, height: 60)
+        avatarBackgroundNode.frame = CGRect(x: (node.bounds.width - 130.0)/2.0, y: (node.bounds.height - 130)/2.0, width: 130, height: 130)
+        avatarNode.frame = CGRect(x: 26, y: 24, width: 78, height: 78)
         
         let closeButtonImageView = UIImageView(image: UIImage(named: "LineBigbuttonDisable_20x35_"))
         closeButtonImageView.frame = CGRect(x: 0, y: 15, width: 49, height: 30)

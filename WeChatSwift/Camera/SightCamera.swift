@@ -14,7 +14,7 @@ public typealias SightCameraTakePhotoCompletion = (UIImage?) -> Void
 public class SightCamera: NSObject {
  
     private let sessionQueue = DispatchQueue(label: "me.shuifeng.WeChatSwift.SightCamera")
-    private let captureSession: AVCaptureSession
+    let captureSession: AVCaptureSession
     private var inputCamera: AVCaptureDevice? { return videoInput?.device }
     private var videoInput: AVCaptureDeviceInput?
     private var audioInput: AVCaptureDeviceInput?

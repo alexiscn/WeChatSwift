@@ -27,11 +27,11 @@ class SightCameraShotVideoView: UIView {
     
     override init(frame: CGRect) {
         
-        topBarView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 44))
+        topBarView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 44 + Constants.topInset))
         switchCameraButton = UIButton(type: .custom)
         switchCameraButton.setImage(UIImage(named: "sight_camera_switch_40x40_"), for: .normal)
         
-        touchDownView = SightCameraTouchDownView(frame: CGRect(x: 0, y: 44, width: frame.width, height: frame.height - 44 - 194.0))
+        touchDownView = SightCameraTouchDownView(frame: CGRect(x: 0, y: 44 + Constants.topInset, width: frame.width, height: frame.height - 44 - Constants.topInset - 194.0))
         
         bottomBarView = UIView(frame: CGRect(x: 0, y: frame.height - 194, width: frame.width, height: 194))
         closeButton = UIButton(type: .custom)
@@ -41,10 +41,10 @@ class SightCameraShotVideoView: UIView {
         
         super.init(frame: frame)
         
+        addSubview(touchDownView)
+        
         addSubview(topBarView)
         topBarView.addSubview(switchCameraButton)
-        
-        addSubview(touchDownView)
         
         addSubview(bottomBarView)
         bottomBarView.addSubview(closeButton)
@@ -87,7 +87,7 @@ class SightCameraShotVideoView: UIView {
     }
     
     @objc private func handleSwitchCameraButtonClicked() {
-        
+        delegate?.cameraShotVideoViewDidTapSwitchButton()
     }
     
     @objc private func onCaptureButtonDragInside(_ sender: UIButton) {
@@ -124,4 +124,5 @@ protocol SightCameraShotVideoViewDelegate: class {
     
     func cameraShotVideoViewDidTapCloseButton()
     
+    func cameraShotVideoViewDidTapSwitchButton()
 }

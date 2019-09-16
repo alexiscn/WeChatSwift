@@ -10,11 +10,7 @@ import AsyncDisplayKit
 
 class SightCameraViewController: ASViewController<ASDisplayNode> {
     
-    private let sessionQueue = DispatchQueue(label: "me.shuifeng.WeChatSwift.SightCamera")
-    private let metadataOutput = AVCaptureMetadataOutput()
-    private let session = AVCaptureSession()
-    private var videoDeviceInput: AVCaptureDeviceInput?
-    private var capturePhotoOutput: AVCapturePhotoOutput?
+    private let camera = SightCamera(sessionPreset: .high, frameRate: 60)
     
     private var previewView: SightCameraPreviewView!
     
@@ -35,15 +31,13 @@ class SightCameraViewController: ASViewController<ASDisplayNode> {
         
         previewView = SightCameraPreviewView(frame: view.bounds)
         view.addSubview(previewView)
-        previewView.session = session
+        previewView.session = camera.captureSession
         
         let shotView = SightCameraShotVideoView(frame: view.bounds)
         shotView.delegate = self
         view.addSubview(shotView)
-        
-        sessionQueue.async {
-            self.configureSession()
-        }
+    
+        camera.configureSession()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,43 +46,12 @@ class SightCameraViewController: ASViewController<ASDisplayNode> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        sessionQueue.async {
-            if !self.session.isRunning {
-                self.session.startRunning()
-            }
-        }
+        camera.startRunning()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        session.stopRunning()
-    }
-    
-    private func configureSession() {
-        session.beginConfiguration()
-        session.sessionPreset = .high
-        
-        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .unspecified),
-            let deviceInput = try? AVCaptureDeviceInput(device: device) {
-            if session.canAddInput(deviceInput) {
-                session.addInput(deviceInput)
-                self.videoDeviceInput = deviceInput
-            }
-        }
-        
-        if session.canAddOutput(metadataOutput) {
-            session.addOutput(metadataOutput)
-        }
-        
-        capturePhotoOutput = AVCapturePhotoOutput()
-        capturePhotoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
-        if let capturePhotoOutput = capturePhotoOutput, session.canAddOutput(capturePhotoOutput) {
-            session.addOutput(capturePhotoOutput)
-        }
-        
-    
-        session.commitConfiguration()
+        camera.stopRunning()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -119,5 +82,7 @@ extension SightCameraViewController: SightCameraShotVideoViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    
+    func cameraShotVideoViewDidTapSwitchButton() {
+        camera.switchCamera()
+    }
 }

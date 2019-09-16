@@ -61,9 +61,18 @@ class GrowingTextView: UITextView {
     
     private func commonInit() {
         contentMode = .redraw
+        
         associateConstraints()
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidEndEditing), name: UITextView.textDidEndEditingNotification, object: self)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChange),
+                                               name: UITextView.textDidChangeNotification,
+                                               object: self)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidEndEditing),
+                                               name: UITextView.textDidEndEditingNotification,
+                                               object: self)
     }
     
     override var intrinsicContentSize: CGSize {
