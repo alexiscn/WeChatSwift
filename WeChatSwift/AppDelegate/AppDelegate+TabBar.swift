@@ -42,15 +42,8 @@ extension AppDelegate {
         
         let viewControllers = [chatNav, contactsNav, discoverNav, meNav]
         tabBarVC.viewControllers = viewControllers
-        for vc in [chatsVC, contactsVC, discoverVC, meVC] {
-            vc.tabBarItem.setTitleTextAttributes([
-                .foregroundColor: Colors.tintColor,
-                .font: UIFont.systemFont(ofSize: 10.5, weight: .thin)], for: .selected)
-            vc.tabBarItem.setTitleTextAttributes([
-                .foregroundColor: Colors.black,
-                .font: UIFont.systemFont(ofSize: 10.5, weight: .thin)], for: .normal)
-        }
-          
+        tabBarVC.tabBar.tintColor = Colors.tintColor
+
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
         
         window?.rootViewController = tabBarVC
