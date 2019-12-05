@@ -7,7 +7,7 @@ a WeChat liked ActionSheet for iOS
 
 * iOS 11.0+
 * Xcode 10.0+
-* Swift 4.2+
+* Swift 5.0+
 
 # Installation
 
@@ -63,7 +63,7 @@ actionSheet.add(WXActionSheetItem(title: "清除位置并退出", handler: { _ i
 actionSheet.show()
 ```
 
-You can configure styles globally
+You can also configure styles globally:
 
 ```swift
 WXActionSheet.Preferences.ButtonHeight = 44.0

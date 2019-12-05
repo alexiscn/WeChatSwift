@@ -53,8 +53,10 @@ public class WXActionSheet: UIView {
     }
     
     public func show() {
-        let windows = UIApplication.shared.windows.filter { NSStringFromClass($0.classForCoder) != "UIRemoteKeyboardWindow" }
-        guard let win = windows.last else { return }
+        let windows = UIApplication.shared.windows.filter { NSStringFromClass($0.classForCoder) != "UIRemoteKeyboardWindow" }.reversed()
+        guard let win = windows.first(where: { $0.isHidden == false }) else {
+            return
+        }
         buildUI()
         UIView.animate(withDuration: 0.1, animations: {
             win.addSubview(self)

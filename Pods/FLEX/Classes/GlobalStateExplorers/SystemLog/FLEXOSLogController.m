@@ -40,7 +40,7 @@ static uint8_t (*OSLogGetType)(void *);
 
 + (void)load
 {
-    // Persist logs when the app launches on iOS 10 if we have persitent logs turned on
+    // Persist logs when the app launches on iOS 10 if we have persistent logs turned on
     if (FLEXOSLogAvailable()) {
         BOOL persistent = [[NSUserDefaults standardUserDefaults] boolForKey:kFLEXiOSPersistentOSLogKey];
         if (persistent) {
@@ -73,7 +73,7 @@ static uint8_t (*OSLogGetType)(void *);
 
     self = [super init];
     if (self) {
-        _filterPid = [NSProcessInfo processInfo].processIdentifier;
+        _filterPid = NSProcessInfo.processInfo.processIdentifier;
         _levelInfo = NO;
         _subsystemInfo = NO;
     }
@@ -178,9 +178,11 @@ static uint8_t (*OSLogGetType)(void *);
             if (entry->log_message.format && !(strcmp(entry->log_message.format, messageText))) {
                 messageText = (char *)entry->log_message.format;
             }
+            // move messageText from stack to heap
+            NSString *msg = [NSString stringWithUTF8String:messageText];
 
             dispatch_async(dispatch_get_main_queue(), ^{
-                FLEXSystemLogMessage *message = [FLEXSystemLogMessage logMessageFromDate:date text:@(messageText)];
+                FLEXSystemLogMessage *message = [FLEXSystemLogMessage logMessageFromDate:date text:msg];
                 if (self.persistent) {
                     [self.messages addObject:message];
                 }
