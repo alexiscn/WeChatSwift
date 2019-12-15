@@ -69,8 +69,9 @@ extension UIViewController {
         if let attributes = objc_getAssociatedObject(self, &AssociatedKeys.titleTextAttributes) as? [NSAttributedString.Key: Any] {
             return attributes
         }
-        objc_setAssociatedObject(self, &AssociatedKeys.titleTextAttributes, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return nil
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.black]
+        objc_setAssociatedObject(self, &AssociatedKeys.titleTextAttributes, attributes, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return attributes
     }
     
     static let swizzle: Void = {

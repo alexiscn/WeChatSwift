@@ -18,6 +18,7 @@ class WCNavigationController: UINavigationController {
         
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
         
         navigationBar.setBackgroundImage(backgroundImage, for: .default)
         navigationBar.backIndicatorImage = UIImage.SVGImage(named: "icons_outlined_back")

@@ -27,7 +27,5 @@ class MMPushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         shadowMask.alpha = 0
         containerView.addSubview(shadowMask)
         containerView.addSubview(toVC.view)
-        
-        
     }
 }
