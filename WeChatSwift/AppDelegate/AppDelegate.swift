@@ -18,30 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var tabBarVC: ASTabBarController!
+    var rootViewController: RootViewController!
     
-    var chatsVC = SessionViewController()
-    var contactsVC = ContactsViewController()
-    var discoverVC = DiscoverViewController()
-    var meVC = MeViewController()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UIViewController.swizzle
+        rootViewController = RootViewController()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
-        
-        setupTaBar()
         if #available(iOS 13, *) {
             
         } else {
           injectLongPressGestureToStatusBar()
         }
-        AppContext.current.doHeavySetup()
+        //AppContext.current.doHeavySetup()
         
+        UIViewController.swizzle
         UIView.fixTabBarButtonFrame()
         return true
     }

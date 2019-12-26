@@ -1,52 +1,62 @@
 //
-//  AppDelegate+TabBar.swift
+//  RootViewController.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/4.
+//  Created by xu.shuifeng on 2019/12/26.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
+import UIKit
 import AsyncDisplayKit
-import SVGKit
 
-extension AppDelegate {
+class RootViewController: ASTabBarController {
+
+    private var chatsVC: SessionViewController!
     
-    func setupTaBar() {
+    private var contactsVC: ContactsViewController!
+    
+    private var discoverVC: DiscoverViewController!
+    
+    private var meVC: MeViewController!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         ASDisableLogging()
         
+        // Do any additional setup after loading the view.
+        chatsVC = SessionViewController()
         chatsVC.tabBarItem.selectedImage = HomeTab.chats.selectedImage
         chatsVC.tabBarItem.image = HomeTab.chats.image
         chatsVC.tabBarItem.title = LocalizedString("TabBar_MainFrameTitle")
         chatsVC.tabBarItem.tag = 0
-        
+
+        contactsVC = ContactsViewController()
         contactsVC.tabBarItem.selectedImage = HomeTab.contacts.selectedImage
         contactsVC.tabBarItem.image = HomeTab.contacts.image
         contactsVC.tabBarItem.title = LocalizedString("TabBar_ContactsTitle")
         contactsVC.tabBarItem.tag = 1
-        
+
+        discoverVC = DiscoverViewController()
         discoverVC.tabBarItem.selectedImage = HomeTab.discover.selectedImage
         discoverVC.tabBarItem.image = HomeTab.discover.image
         discoverVC.tabBarItem.title = LocalizedString("TabBar_FindFriendTitle")
         discoverVC.tabBarItem.tag = 2
-        
+
+        meVC = MeViewController()
         meVC.tabBarItem.selectedImage = HomeTab.me.selectedImage
         meVC.tabBarItem.image = HomeTab.me.image
         meVC.tabBarItem.title = LocalizedString("TabBar_MoreTitle")
         meVC.tabBarItem.tag = 3
         
-        tabBarVC = ASTabBarController()
         let chatNav = MMNavigationController(rootViewController: chatsVC)
         let contactsNav = MMNavigationController(rootViewController: contactsVC)
         let discoverNav = MMNavigationController(rootViewController: discoverVC)
         let meNav = MMNavigationController(rootViewController: meVC)
         
-        let viewControllers = [chatNav, contactsNav, discoverNav, meNav]
-        tabBarVC.viewControllers = viewControllers
-        tabBarVC.tabBar.tintColor = Colors.tintColor
-
+        viewControllers = [chatNav, contactsNav, discoverNav, meNav]
+        tabBar.tintColor = Colors.tintColor
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
-        
-        window?.rootViewController = tabBarVC
     }
 }
 
@@ -70,4 +80,3 @@ enum HomeTab: String {
         }
     }
 }
-

@@ -27,10 +27,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     init() {
         super.init(node: ASDisplayNode())
-        
         node.addSubnode(tableNode)
-        tableNode.dataSource = self
-        tableNode.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,12 +38,13 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         super.viewDidLoad()
         
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
-        //node.view.isUserInteractionEnabled = true
-        //tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableNode.view.separatorStyle = .none
         tableNode.frame = view.bounds
         tableNode.backgroundColor = .clear
         tableNode.view.allowsMultipleSelectionDuringEditing = false
+        tableNode.dataSource = self
+        tableNode.delegate = self
+        
         loadSessions()
         tableNode.reloadData()
         

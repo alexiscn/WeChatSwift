@@ -218,6 +218,7 @@
 		A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */; };
 		A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */; };
 		A3993A702323A90B000C86D9 /* RadarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */; };
+		A3B0443123B45CAC0045E9E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B0443023B45CAC0045E9E5 /* RootViewController.swift */; };
 		A3B39C0D2398DB990062788D /* ASGrowingTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */; };
 		A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888D23004A3F007273CD /* RemarkViewController.swift */; };
 		A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */; };
@@ -248,7 +249,6 @@
 		A3CA51B722CD9B1E00C67D92 /* icons_filled_scan.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51B622CD9B1E00C67D92 /* icons_filled_scan.svg */; };
 		A3CA51B922CD9B2800C67D92 /* icons_filled_mobile-contacts.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51B822CD9B2800C67D92 /* icons_filled_mobile-contacts.svg */; };
 		A3CA51BB22CD9B3C00C67D92 /* icons_filled_official-accounts.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51BA22CD9B3B00C67D92 /* icons_filled_official-accounts.svg */; };
-		A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51BF22CD9BB200C67D92 /* AppDelegate+TabBar.swift */; };
 		A3CA51C222CD9C1900C67D92 /* icons_outlined_back.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51C122CD9C1900C67D92 /* icons_outlined_back.svg */; };
 		A3CA51C522CD9C4A00C67D92 /* icons_filled_chats.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51C422CD9C4A00C67D92 /* icons_filled_chats.svg */; };
 		A3CA51C722CD9C5400C67D92 /* icons_filled_contacts.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51C622CD9C5400C67D92 /* icons_filled_contacts.svg */; };
@@ -628,6 +628,7 @@
 		A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreViewController.swift; sourceTree = "<group>"; };
 		A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailViewController.swift; sourceTree = "<group>"; };
 		A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSearchViewController.swift; sourceTree = "<group>"; };
+		A3B0443023B45CAC0045E9E5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASGrowingTextNode.swift; sourceTree = "<group>"; };
 		A3B6888D23004A3F007273CD /* RemarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkViewController.swift; sourceTree = "<group>"; };
 		A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditNameCellNode.swift; sourceTree = "<group>"; };
@@ -658,7 +659,6 @@
 		A3CA51B622CD9B1E00C67D92 /* icons_filled_scan.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_scan.svg; sourceTree = "<group>"; };
 		A3CA51B822CD9B2800C67D92 /* icons_filled_mobile-contacts.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "icons_filled_mobile-contacts.svg"; sourceTree = "<group>"; };
 		A3CA51BA22CD9B3B00C67D92 /* icons_filled_official-accounts.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "icons_filled_official-accounts.svg"; sourceTree = "<group>"; };
-		A3CA51BF22CD9BB200C67D92 /* AppDelegate+TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+TabBar.swift"; sourceTree = "<group>"; };
 		A3CA51C122CD9C1900C67D92 /* icons_outlined_back.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_back.svg; sourceTree = "<group>"; };
 		A3CA51C422CD9C4A00C67D92 /* icons_filled_chats.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_chats.svg; sourceTree = "<group>"; };
 		A3CA51C622CD9C5400C67D92 /* icons_filled_contacts.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_contacts.svg; sourceTree = "<group>"; };
@@ -1600,7 +1600,7 @@
 			isa = PBXGroup;
 			children = (
 				A33DB2D322CCC80F00A11776 /* AppDelegate.swift */,
-				A3CA51BF22CD9BB200C67D92 /* AppDelegate+TabBar.swift */,
+				A3B0443023B45CAC0045E9E5 /* RootViewController.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -2334,6 +2334,7 @@
 				A3720B24232E013F00AEA354 /* MomentCoverManager.swift in Sources */,
 				A372144E22FFA0F400340023 /* SettingNotificationViewController.swift in Sources */,
 				A3499F6E22F06689005DDD55 /* MoreEmoticonsViewController.swift in Sources */,
+				A3B0443123B45CAC0045E9E5 /* RootViewController.swift in Sources */,
 				A3CCEDE122FBF0AF008BE41D /* ShakeMessageListViewController.swift in Sources */,
 				A3CCE01F22DDEADE0003DC25 /* RedPacketContentNode.swift in Sources */,
 				A33B88382307D20700D28D57 /* PhotoBrowserViewCell.swift in Sources */,
@@ -2372,7 +2373,6 @@
 				A3CCEDE522FC066C008BE41D /* ShakeSettingCellNode.swift in Sources */,
 				A3D5DC0B2326420E0096849F /* MockData.swift in Sources */,
 				A37FFB6A22EE95D90001DD27 /* WCWebViewDelegate.swift in Sources */,
-				A3CA51C022CD9BB200C67D92 /* AppDelegate+TabBar.swift in Sources */,
 				A33D618A22FD0A6400B767F1 /* SettingPluginsViewController.swift in Sources */,
 				A352AD0D23064CFF00332B21 /* MomentBackground.swift in Sources */,
 				A3EE12442317D00D000F287C /* Fonts.swift in Sources */,

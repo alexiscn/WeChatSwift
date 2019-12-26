@@ -63,11 +63,11 @@ extension SettingLanguageViewController {
         }
         dismiss(animated: true) {
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.setupTaBar()
-            appDelegate?.tabBarVC.selectedIndex = 3
-            
-            let settingsVC = SettingsViewController()
-            appDelegate?.meVC.navigationController?.pushViewController(settingsVC, animated: true)
+//            appDelegate?.setupTaBar()
+//            appDelegate?.tabBarVC.selectedIndex = 3
+//            
+//            let settingsVC = SettingsViewController()
+//            appDelegate?.meVC.navigationController?.pushViewController(settingsVC, animated: true)
         }
     }
 }
