@@ -105,6 +105,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
         switch toolBar.keyboard {
         case .emotion:
             self.keyboardType = .emotion
+            
         case .tools:
             self.keyboardType = .tools
         default:
