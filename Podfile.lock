@@ -1,11 +1,11 @@
 PODS:
-  - Alamofire (4.9.1)
-  - CocoaLumberjack (3.6.0):
-    - CocoaLumberjack/Core (= 3.6.0)
-  - CocoaLumberjack/Core (3.6.0)
+  - Alamofire (5.0.2)
+  - CocoaLumberjack (3.6.1):
+    - CocoaLumberjack/Core (= 3.6.1)
+  - CocoaLumberjack/Core (3.6.1)
   - FLAnimatedImage (1.0.12)
-  - FLEX (3.1.0)
-  - MMKV (1.0.23)
+  - FLEX (3.1.2)
+  - MMKV (1.0.24)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
     - PINCache/Core (= 3.0.1-beta.6)
@@ -98,11 +98,11 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/SVGKit
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FLEX: e7a0cc5ca79419d3b0cf0d39fa7a46cb39cec7fd
-  MMKV: 031ae51aedc0af1b250922f7ed8a6b6ee2f94c4c
+  FLEX: e13e805fc3eec8732cc227d1f7508770d46e9587
+  MMKV: 758b2edee46b08bdd958db4169191afb9a6d4ebd
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
@@ -118,4 +118,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6de6973f0800903acfa5a4c357b41ea14cde186b
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0
