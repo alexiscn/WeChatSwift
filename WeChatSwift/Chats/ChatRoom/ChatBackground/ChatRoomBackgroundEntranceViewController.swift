@@ -93,7 +93,7 @@ extension ChatRoomBackgroundEntranceViewController: ASTableDelegate, ASTableData
             let sightCameraVC = SightCameraViewController()
             sightCameraVC.modalPresentationCapturesStatusBarAppearance = true
             sightCameraVC.modalTransitionStyle = .coverVertical
-            sightCameraVC.modalPresentationStyle = .overCurrentContext
+            sightCameraVC.modalPresentationStyle = .fullScreen
             present(sightCameraVC, animated: true, completion: nil)
         default:
             break
