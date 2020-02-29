@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import AsyncDisplayKit
 import FLEX
 import WXNavigationBar

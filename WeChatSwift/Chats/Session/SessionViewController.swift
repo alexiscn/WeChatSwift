@@ -90,7 +90,6 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         searchViewController?.searchResultsUpdater = mainSearchViewController
         tableNode.view.tableHeaderView = searchViewController?.searchBar
         tableNode.view.backgroundView = UIView()
-        searchViewController?.dimsBackgroundDuringPresentation = false
         
         mainSearchViewController.searchBar = searchViewController?.searchBar
         mainSearchViewController.searchBar?.alignmentCenter()

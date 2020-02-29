@@ -4,7 +4,6 @@ use_frameworks!
 target 'WeChatSwift' do
   
   pod 'WXNavigationBar'
-  pod 'SnapKit'
   pod 'WXActionSheet'
   pod 'MMKV'
   pod 'WCDB.swift'

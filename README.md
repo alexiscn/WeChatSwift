@@ -14,10 +14,11 @@ Requirements
 Dependency
 ==
 
-- [SnapKit](https://github.com/SnapKit/SnapKit)
 - [MMKV](https://github.com/tencent/mmkv)
 - [WXActionSheet](https://github.com/alexiscn/WXActionSheet)
 - [WXNavigationBar](https://github.com/alexiscn/WXNavigationBar)
+- [WCDB.swift](https://github.com/tencent/wcdb)
+- [SSZipArchive](https://github.com/ZipArchive/ZipArchive)
 
 
 Features
