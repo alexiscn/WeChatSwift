@@ -177,22 +177,20 @@ extension UIViewController {
     }()
     
     @objc private func wx_viewDidLoad() {
+        
         if navigationController != nil {
-            navigationController?.configureNavigationBar()
-            // configure fake navigationBar
+            navigationController?.configure()
             wx_navigationBar.backgroundColor = wx_navigationBarBackgroundColor
             wx_navigationBar.shadowImageView.image = wx_shadowImage
             wx_navigationBar.backgroundImageView.image = wx_navigationBarBackgroundImage
-            wx_navigationBar.frame = CGRect(x: 0,
-                                            y: 0,
-                                            width: view.bounds.width,
-                                            height: Utility.navigationBarHeight)
+            view.addSubview(wx_navigationBar)
+            wx_navigationBar.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: Utility.navigationBarHeight)
+            
             if wx_useSystemBlurNavBar {
                 wx_navigationBar.backgroundColor = .clear
                 wx_navigationBar.backgroundImageView.isHidden = true
                 wx_navigationBar.visualEffectView.isHidden = false
             }
-            view.addSubview(wx_navigationBar)
             
             navigationController?.navigationBar.frameUpdatedHandler = { [weak self] newFrame in
                 

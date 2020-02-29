@@ -63,7 +63,7 @@ class ChatRoomContactInfoViewController: ASViewController<ASDisplayNode> {
         multiSelectContactsVC.selectionHandler = { [weak self] selectedContacts in
             self?.updateMembers(selectedContacts: selectedContacts)
         }
-        let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+        let nav = UINavigationController(rootViewController: multiSelectContactsVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }

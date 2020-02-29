@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import AsyncDisplayKit
 import FLEX
+import WXNavigationBar
 
 typealias RelayCommand = () -> Void
 
@@ -36,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         AppContext.current.doHeavySetup()
         
-        UIViewController.swizzle
         UIView.fixTabBarButtonFrame()
         return true
     }

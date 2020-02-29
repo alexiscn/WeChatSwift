@@ -273,7 +273,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             albumPickerVC.selectionHandler = selectionHandler
             let assetPickerVC = AssetPickerViewController(configuration: configuration)
             assetPickerVC.selectionHandler = selectionHandler
-            let nav = WCNavigationController()
+            let nav = UINavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
@@ -287,7 +287,7 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
             showSendLocationActionSheet()
         case .redPacket:
             let makeRedEnvelopeVC = MakeRedEnvelopeViewController()
-            let nav = WCNavigationController(rootViewController: makeRedEnvelopeVC)
+            let nav = UINavigationController(rootViewController: makeRedEnvelopeVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         default:
@@ -327,14 +327,14 @@ extension ChatRoomViewController: ChatRoomKeyboardNodeDelegate {
     func keyboardEmoticonSettingsButtonPressed() {
         let emoticonManageVC = EmoticonManageViewController()
         emoticonManageVC.isPresented = true
-        let nav = WCNavigationController(rootViewController: emoticonManageVC)
+        let nav = UINavigationController(rootViewController: emoticonManageVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     
     func keyboardEmoticonAddButtonPressed() {
         let emoticonStoreVC = EmoticonStoreViewController(presented: true)
-        let nav = WCNavigationController(rootViewController: emoticonStoreVC)
+        let nav = UINavigationController(rootViewController: emoticonStoreVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }

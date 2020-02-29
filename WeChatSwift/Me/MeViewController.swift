@@ -79,7 +79,7 @@ class MeViewController: ASViewController<ASDisplayNode> {
         dataSource.append(MeTableSection(items: [settings]))
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .clear
     }
 }

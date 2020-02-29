@@ -7,8 +7,8 @@ Requirements
 
 - [Texture](https://github.com/TextureGroup/Texture)
 - Swift 5.0 +
-- Xcode 10.2 +
-- iOS 11.0 +
+- Xcode 11.0 +
+- iOS 12.0 +
 
 
 Dependency
@@ -17,7 +17,7 @@ Dependency
 - [SnapKit](https://github.com/SnapKit/SnapKit)
 - [MMKV](https://github.com/tencent/mmkv)
 - [WXActionSheet](https://github.com/alexiscn/WXActionSheet)
-
+- [WXNavigationBar](https://github.com/alexiscn/WXNavigationBar)
 
 
 Features

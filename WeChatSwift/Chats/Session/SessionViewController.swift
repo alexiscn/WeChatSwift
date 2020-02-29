@@ -101,10 +101,6 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         tableNode.view.contentInsetAdjustmentBehavior = .automatic
         extendedLayoutIncludesOpaqueBars = false
     }
-    
-    override var wc_useSystemBlurNavBar: Bool {
-        return true
-    }
 }
 
 // MARK: - Event Handlers
@@ -139,7 +135,7 @@ extension SessionViewController: SessionMoreMenuViewDelegate {
             multiSelectContactsVC.selectionHandler = { selectedContacts in
                 
             }
-            let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+            let nav = UINavigationController(rootViewController: multiSelectContactsVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         }

@@ -57,15 +57,15 @@ class SettingLabViewController: ASViewController<ASDisplayNode> {
         return .lightContent
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return UIColor(hexString: "#F1A555")
     }
     
-    override var wc_titleTextAttributes: [NSAttributedString.Key : Any]? {
+    override var wx_titleTextAttributes: [NSAttributedString.Key : Any]? {
         return [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
-    override var wc_barTintColor: UIColor? {
+    override var wx_barTintColor: UIColor? {
         return .white
     }
 }

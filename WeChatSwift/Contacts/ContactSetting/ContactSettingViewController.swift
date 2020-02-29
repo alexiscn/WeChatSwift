@@ -92,7 +92,7 @@ extension ContactSettingViewController: ASTableDelegate, ASTableDataSource {
         switch model.type {
         case .remakAndTag:
             let remarkVC = RemarkViewController()
-            let nav = WCNavigationController(rootViewController: remarkVC)
+            let nav = UINavigationController(rootViewController: remarkVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         case .recommendToFriend:

@@ -122,7 +122,7 @@ class ChatRoomMapViewController: UIViewController {
         view.addSubview(transparent)
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .clear
     }
     

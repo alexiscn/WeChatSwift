@@ -69,11 +69,11 @@ class PayOfflinePayViewController: ASViewController<ASDisplayNode> {
         scrollNode.view.contentSize = CGSize(width: Constants.screenWidth, height: 505 + height + Constants.bottomInset)
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return UIColor(hexString: "#439057")
     }
     
-    override var wc_barTintColor: UIColor? {
+    override var wx_barTintColor: UIColor? {
         return UIColor.white
     }
     
@@ -81,7 +81,7 @@ class PayOfflinePayViewController: ASViewController<ASDisplayNode> {
         return .lightContent
     }
     
-    override var wc_titleTextAttributes: [NSAttributedString.Key : Any]? {
+    override var wx_titleTextAttributes: [NSAttributedString.Key : Any]? {
         return [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }

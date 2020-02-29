@@ -39,13 +39,17 @@ extension UINavigationController {
         swizzleMethod(cls, #selector(UINavigationController.pushViewController(_:animated:)), #selector(UINavigationController.wx_pushViewController(_:animated:)))
     }()
     
-    func configureNavigationBar() {
+    open override var childForStatusBarStyle: UIViewController? {
+        return topViewController
+    }
+    
+    func configure() {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
         
         wx_gestureDelegate = _WXNavigationGestureRecognizerDelegate(navigationController: self)
-        interactivePopGestureRecognizer?.delegate = wx_gestureDelegate
+        self.interactivePopGestureRecognizer?.delegate = wx_gestureDelegate
     }
     
     @objc private func wx_pushViewController(_ viewController: UIViewController, animated: Bool) {
@@ -62,9 +66,5 @@ extension UINavigationController {
     
     @objc private func backButtonClicked() {
         popViewController(animated: true)
-    }
-    
-    open override var childForStatusBarStyle: UIViewController? {
-        return topViewController
     }
 }

@@ -72,7 +72,7 @@ extension ChatRoomBackgroundEntranceViewController: ASTableDelegate, ASTableData
         switch action {
         case .pick:
             let backgroundSettingVC = ChatRoomBackgroundSettingViewController()
-            let nav = WCNavigationController(rootViewController: backgroundSettingVC)
+            let nav = UINavigationController(rootViewController: backgroundSettingVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         case .pickFromAlbum:
@@ -85,7 +85,7 @@ extension ChatRoomBackgroundEntranceViewController: ASTableDelegate, ASTableData
             albumPickerVC.selectionHandler = selectionHandler
             let assetPickerVC = AssetPickerViewController(configuration: configuration)
             assetPickerVC.selectionHandler = selectionHandler
-            let nav = WCNavigationController()
+            let nav = UINavigationController()
             nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)

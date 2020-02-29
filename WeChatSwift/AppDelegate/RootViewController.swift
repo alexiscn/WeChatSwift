@@ -49,10 +49,10 @@ class RootViewController: ASTabBarController {
         meVC.tabBarItem.title = LocalizedString("TabBar_MoreTitle")
         meVC.tabBarItem.tag = 3
         
-        let chatNav = MMNavigationController(rootViewController: chatsVC)
-        let contactsNav = MMNavigationController(rootViewController: contactsVC)
-        let discoverNav = MMNavigationController(rootViewController: discoverVC)
-        let meNav = MMNavigationController(rootViewController: meVC)
+        let chatNav = UINavigationController(rootViewController: chatsVC)
+        let contactsNav = UINavigationController(rootViewController: contactsVC)
+        let discoverNav = UINavigationController(rootViewController: discoverVC)
+        let meNav = UINavigationController(rootViewController: meVC)
         
         viewControllers = [chatNav, contactsNav, discoverNav, meNav]
         tabBar.tintColor = Colors.tintColor

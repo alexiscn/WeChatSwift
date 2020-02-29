@@ -60,6 +60,7 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
   - WXActionSheet (0.3.0)
+  - WXNavigationBar (1.5.1)
 
 DEPENDENCIES:
   - FLEX
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - Texture
   - WCDB.swift
   - WXActionSheet
+  - WXNavigationBar (= 1.5.1)
 
 SPEC REPOS:
   trunk:
@@ -90,6 +92,7 @@ SPEC REPOS:
     - WCDB.swift
     - WCDBOptimizedSQLCipher
     - WXActionSheet
+    - WXNavigationBar
 
 EXTERNAL SOURCES:
   SFVideoPlayer:
@@ -115,7 +118,8 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: 8a1817ad641a892b17b53e157b6ec15ca7d1ff95
+  WXNavigationBar: 143f963fb873249a55e61b5bce4f9624a2e98c76
 
-PODFILE CHECKSUM: 6de6973f0800903acfa5a4c357b41ea14cde186b
+PODFILE CHECKSUM: 968645153abfdbef7aba34cb22f6e7ab7c81de67
 
 COCOAPODS: 1.9.0
