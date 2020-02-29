@@ -45,6 +45,7 @@
 		A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333D022DF507600B79555 /* MomentContentNode.swift */; };
 		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
+		A3340617240A66F4007C02F2 /* icons_debug.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3340616240A66F4007C02F2 /* icons_debug.svg */; };
 		A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */ = {isa = PBXBuildFile; fileRef = A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */; };
 		A33B88342307CFA100D28D57 /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33B88332307CFA100D28D57 /* PhotoBrowserViewController.swift */; };
 		A33B88382307D20700D28D57 /* PhotoBrowserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33B88372307D20700D28D57 /* PhotoBrowserViewCell.swift */; };
@@ -451,6 +452,7 @@
 		A32333D022DF507600B79555 /* MomentContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentContentNode.swift; sourceTree = "<group>"; };
 		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
+		A3340616240A66F4007C02F2 /* icons_debug.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_debug.svg; sourceTree = "<group>"; };
 		A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_keyboard.svg; sourceTree = "<group>"; };
 		A33B88332307CFA100D28D57 /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		A33B88372307D20700D28D57 /* PhotoBrowserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewCell.swift; sourceTree = "<group>"; };
@@ -1646,6 +1648,7 @@
 				A3CCE01422DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg */,
 				A328C25C22D590670060C391 /* icons_filled_more.svg */,
 				A374866822D4B04F002EEC4F /* icons_filled_transfer.svg */,
+				A3340616240A66F4007C02F2 /* icons_debug.svg */,
 				A374866622D4B031002EEC4F /* icons_filled_sticker.svg */,
 				A374866422D4AFE3002EEC4F /* icons_filled_favorites.svg */,
 				A374866222D4AFCE002EEC4F /* icons_filled_folder.svg */,
@@ -2024,6 +2027,7 @@
 				A3CA51DF22CD9FB900C67D92 /* icons_outlined_nearby.svg in Resources */,
 				A31057DE22E8532E00856D71 /* dice_1.pic in Resources */,
 				A3FB0AAB22F406E100116329 /* icons_outlined_qr-code.svg in Resources */,
+				A3340617240A66F4007C02F2 /* icons_debug.svg in Resources */,
 				A355AA7422F1BBA2006A70AF /* icons_filled_back.svg in Resources */,
 				A3CCE01522DDA0C20003DC25 /* icons_outlined_takephoto_nor.svg in Resources */,
 				A3CA51E122CD9FC200C67D92 /* icons_outlined_shop.svg in Resources */,

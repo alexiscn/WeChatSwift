@@ -38,9 +38,6 @@ class SessionMoreFrameFloatView: UIButton {
                                       icon: "icons_filled_pay")
         menus = [groupChatMenu, addFriendMenu, scanMenu, payMenu]
         
-        let longestTitle = menus.sorted(by: { $0.title > $1.title }).first!.title
-        print(longestTitle)
-        
         let menuWidth: CGFloat = 160.0
         let menuHeight: CGFloat = 56.0
         let paddingTop: CGFloat = 0.0
