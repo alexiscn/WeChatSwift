@@ -59,7 +59,7 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
   - WXActionSheet (0.3.0)
-  - WXNavigationBar (1.5.1)
+  - WXNavigationBar (1.8.0)
 
 DEPENDENCIES:
   - FLEX
@@ -114,7 +114,7 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: 8a1817ad641a892b17b53e157b6ec15ca7d1ff95
-  WXNavigationBar: 143f963fb873249a55e61b5bce4f9624a2e98c76
+  WXNavigationBar: 6019612592f4d7e633f16cce2ba8e2547748138c
 
 PODFILE CHECKSUM: c57e9358893eab2e7059e1478b690b1290c2f2c7
 

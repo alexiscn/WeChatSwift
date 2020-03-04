@@ -14,7 +14,7 @@ public class WXNavigationBar: UIView {
         
         /// Back Image for Navigation Bar
         /// If you want to customize for each view controller,  use `wx_backImage` in view controller
-        public static var backImage: UIImage? = Utility.image(named: "wx_nav_back")
+        public static var backImage: UIImage? = Utility.backImage
         
         /// Background Image for NavigationBar
         public static var backgroundImage: UIImage? = nil
@@ -28,6 +28,8 @@ public class WXNavigationBar: UIView {
         /// Shadow Image for NavigationBar
         public static var shadowImage: UIImage? = UIImage()
         
+        /// A Boolean value indicating whether fullscreen pop gesture is enabled.
+        public static var fullscreenPopGestureEnabled = false
     }
     
     /// Bottom line

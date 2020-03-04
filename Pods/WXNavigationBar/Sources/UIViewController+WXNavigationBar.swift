@@ -22,7 +22,8 @@ extension UIViewController {
         static var shadowImage = "WXNavigationBar_shadowImage"
         static var backImage = "WXNavigationBar_backImage"
         
-        static var interactivePopDisabled = "WXNavigationBar_interactivePopDisabled"
+        static var interactiveEnabled = "WXNavigationBar_interactivePopEnabled"
+        static var interactivePopMaxAllowedInitialDistanceToLeftEdge = "WXNavigationBar_interactivePopMaxAllowedInitialDistanceToLeftEdge"
         
         // For internal usage
         static var willDisappear = "WXNavigationBar_willDisappear"
@@ -145,14 +146,29 @@ extension UIViewController {
         return backImage
     }
     
-    @objc open var wx_interactivePopDisabled: Bool {
+    /// A Boolean value indicating whether fullscreen pop gesture is enabled.
+    /// The default value of this property is `WXNavigationBar.NavBar.fullscreenPopGestureEnabled`.
+    @objc open var wx_interactivePopEnabled: Bool {
+        if let interactivePopEnabled = objc_getAssociatedObject(self, &AssociatedKeys.interactiveEnabled) as? Bool {
+            return interactivePopEnabled
+        }
+        let interactivePopEnabled = WXNavigationBar.NavBar.fullscreenPopGestureEnabled
+        objc_setAssociatedObject(self,
+                                 &AssociatedKeys.interactiveEnabled,
+                                 interactivePopEnabled,
+                                 .OBJC_ASSOCIATION_ASSIGN)
+        return interactivePopEnabled
+    }
+    
+    @objc open var wx_interactivePopMaxAllowedInitialDistanceToLeftEdge: CGFloat {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.interactivePopDisabled) as? Bool ?? false
+            return objc_getAssociatedObject(self, &AssociatedKeys.interactivePopMaxAllowedInitialDistanceToLeftEdge) as? CGFloat ?? 0.0
         }
         set {
             objc_setAssociatedObject(self,
-                                     &AssociatedKeys.interactivePopDisabled,
-                                     newValue, .OBJC_ASSOCIATION_ASSIGN)
+                                     &AssociatedKeys.interactivePopMaxAllowedInitialDistanceToLeftEdge,
+                                     newValue,
+                                     .OBJC_ASSOCIATION_ASSIGN)
         }
     }
     

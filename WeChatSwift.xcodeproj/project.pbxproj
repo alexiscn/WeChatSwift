@@ -90,7 +90,6 @@
 		A34760AD22E6E8BB0043AE1D /* AssetPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */; };
 		A34760AF22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */; };
 		A34760B122E6EEF00043AE1D /* AlbumPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */; };
-		A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B222E6F02E0043AE1D /* WCNavigationController.swift */; };
 		A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */; };
 		A3476FF522FA9827001B94EC /* UITabBar+Fix.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FF422FA9827001B94EC /* UITabBar+Fix.swift */; };
 		A3476FF822FAA047001B94EC /* ChatRoomContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3476FF722FAA047001B94EC /* ChatRoomContactInfoViewController.swift */; };
@@ -148,7 +147,6 @@
 		A35B21A1230022500057F8FC /* BrandTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B21A0230022500057F8FC /* BrandTimelineViewController.swift */; };
 		A35B21A3230023910057F8FC /* BrandTimelineCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B21A2230023910057F8FC /* BrandTimelineCellNode.swift */; };
 		A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EDF5722FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift */; };
-		A35EDF5A22FD777200C56CAC /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EDF5922FD777200C56CAC /* UIViewController+Navigation.swift */; };
 		A35EDF5C22FD78C300C56CAC /* PayOfflinePayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EDF5B22FD78C300C56CAC /* PayOfflinePayButtonNode.swift */; };
 		A35EDF5F22FD7A1200C56CAC /* PayOfflinePayAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EDF5E22FD7A1200C56CAC /* PayOfflinePayAction.swift */; };
 		A3618A9422F97B50000ACF4D /* ContactSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3618A9322F97B50000ACF4D /* ContactSettingViewController.swift */; };
@@ -382,6 +380,7 @@
 		A3EE12482317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EE12472317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift */; };
 		A3F6AD022303A9A9007FE74B /* ChatRoomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F6AD012303A9A9007FE74B /* ChatRoomDateFormatter.swift */; };
 		A3F6AD042303E248007FE74B /* MessageTimeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F6AD032303E248007FE74B /* MessageTimeNode.swift */; };
+		A3F89C43240F823100202710 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F89C42240F823100202710 /* UIViewController+Extensions.swift */; };
 		A3F9EFFD230E362A0032299C /* EmoticonDetailPackageDescNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9EFFC230E362A0032299C /* EmoticonDetailPackageDescNode.swift */; };
 		A3F9EFFF230E66DD0032299C /* ChatRoomEmoticonPreviewBottomNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9EFFE230E66DD0032299C /* ChatRoomEmoticonPreviewBottomNode.swift */; };
 		A3F9F002230E6F330032299C /* SightCameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F9F001230E6F330032299C /* SightCameraPreviewView.swift */; };
@@ -499,7 +498,6 @@
 		A34760AC22E6E8BB0043AE1D /* AssetPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerViewController.swift; sourceTree = "<group>"; };
 		A34760AE22E6ECB00043AE1D /* AssetPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		A34760B022E6EEF00043AE1D /* AlbumPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerViewController.swift; sourceTree = "<group>"; };
-		A34760B222E6F02E0043AE1D /* WCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCNavigationController.swift; sourceTree = "<group>"; };
 		A34760B522E6F2450043AE1D /* AlbumPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPickerTableViewCell.swift; sourceTree = "<group>"; };
 		A3476FF422FA9827001B94EC /* UITabBar+Fix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+Fix.swift"; sourceTree = "<group>"; };
 		A3476FF722FAA047001B94EC /* ChatRoomContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomContactInfoViewController.swift; sourceTree = "<group>"; };
@@ -559,7 +557,6 @@
 		A35B21A0230022500057F8FC /* BrandTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTimelineViewController.swift; sourceTree = "<group>"; };
 		A35B21A2230023910057F8FC /* BrandTimelineCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTimelineCellNode.swift; sourceTree = "<group>"; };
 		A35EDF5722FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayQRCodeNode.swift; sourceTree = "<group>"; };
-		A35EDF5922FD777200C56CAC /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
 		A35EDF5B22FD78C300C56CAC /* PayOfflinePayButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayButtonNode.swift; sourceTree = "<group>"; };
 		A35EDF5E22FD7A1200C56CAC /* PayOfflinePayAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOfflinePayAction.swift; sourceTree = "<group>"; };
 		A3618A9322F97B50000ACF4D /* ContactSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingViewController.swift; sourceTree = "<group>"; };
@@ -793,6 +790,7 @@
 		A3EE12472317E62B000F287C /* MakeRedEnvelopeEnterDescNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRedEnvelopeEnterDescNode.swift; sourceTree = "<group>"; };
 		A3F6AD012303A9A9007FE74B /* ChatRoomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomDateFormatter.swift; sourceTree = "<group>"; };
 		A3F6AD032303E248007FE74B /* MessageTimeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTimeNode.swift; sourceTree = "<group>"; };
+		A3F89C42240F823100202710 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		A3F9EFFC230E362A0032299C /* EmoticonDetailPackageDescNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailPackageDescNode.swift; sourceTree = "<group>"; };
 		A3F9EFFE230E66DD0032299C /* ChatRoomEmoticonPreviewBottomNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomEmoticonPreviewBottomNode.swift; sourceTree = "<group>"; };
 		A3F9F001230E6F330032299C /* SightCameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightCameraPreviewView.swift; sourceTree = "<group>"; };
@@ -969,7 +967,7 @@
 				A33DB2E522CCC9F200A11776 /* Discover */,
 				A33DB2E922CCCA1F00A11776 /* Me */,
 				A33DB2F822CCDCF900A11776 /* Models */,
-				A377F57522F103DE00006F2B /* Navigation */,
+				A377F57522F103DE00006F2B /* Animator */,
 				A33B88322307CF8100D28D57 /* PhotoBrowser */,
 				A322870122E0627F004E516E /* Managers */,
 				A3CA51A122CD995C00C67D92 /* Mock */,
@@ -1075,6 +1073,7 @@
 				A3E20016230AC4E5005B2B70 /* UIView+Extensions.swift */,
 				A3D9954C230BCE9400E4F628 /* UISearchBar+Extensions.swift */,
 				A3105D42232E035E0038D775 /* Notification+Extensions.swift */,
+				A3F89C42240F823100202710 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1478,15 +1477,13 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		A377F57522F103DE00006F2B /* Navigation */ = {
+		A377F57522F103DE00006F2B /* Animator */ = {
 			isa = PBXGroup;
 			children = (
-				A34760B222E6F02E0043AE1D /* WCNavigationController.swift */,
 				A33D2B1E22F2FB630099927A /* MMPushAnimator.swift */,
 				A33D2B2022F2FC3B0099927A /* MMPopAnimator.swift */,
-				A35EDF5922FD777200C56CAC /* UIViewController+Navigation.swift */,
 			);
-			path = Navigation;
+			path = Animator;
 			sourceTree = "<group>";
 		};
 		A37FFB6022EE8D200001DD27 /* WebView */ = {
@@ -2187,7 +2184,6 @@
 				A3476FF822FAA047001B94EC /* ChatRoomContactInfoViewController.swift in Sources */,
 				A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */,
 				A373D3D722F668F900451515 /* ChatRoomBackgroundSettingViewController.swift in Sources */,
-				A35EDF5A22FD777200C56CAC /* UIViewController+Navigation.swift in Sources */,
 				A3FB0AA522F3D9AE00116329 /* PaymentMainViewController.swift in Sources */,
 				A37E73DE22D8245B008019A4 /* GridPageLayoutDelegate.swift in Sources */,
 				A32333B722DF070500B79555 /* WCTabBarItem.swift in Sources */,
@@ -2414,11 +2410,11 @@
 				A352AD212306CB1E00332B21 /* StorageUsageViewController.swift in Sources */,
 				A3485FA722EFF5E0002A804B /* ContactInfoButtonCellNode.swift in Sources */,
 				A3D99549230B9E2000E4F628 /* FTSSearchCellNode.swift in Sources */,
-				A34760B322E6F02E0043AE1D /* WCNavigationController.swift in Sources */,
 				A3FB0AB922F43A1100116329 /* ContactTagListCellNode.swift in Sources */,
 				A355AA6E22F13C0E006A70AF /* EmoticonStoreCellNode.swift in Sources */,
 				A3CCEDDD22FBEED3008BE41D /* ShakeViewController.swift in Sources */,
 				A33D618C22FD142400B767F1 /* SettingLabViewController.swift in Sources */,
+				A3F89C43240F823100202710 /* UIViewController+Extensions.swift in Sources */,
 				A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,

@@ -6,8 +6,7 @@
 //
 
 import Foundation
-
-
+import UIKit
 
 func swizzleMethod(_ cls: AnyClass, _ originSelector: Selector, _ newSelector: Selector) {
     guard let oriMethod = class_getInstanceMethod(cls, originSelector),
@@ -25,17 +24,15 @@ func swizzleMethod(_ cls: AnyClass, _ originSelector: Selector, _ newSelector: S
 
 class Utility {
     
-    static var bundle: Bundle? = {
-        let current = Bundle(for: Utility.self)
-        if let path = current.path(forResource: "Resources", ofType: "bundle") {
-            return Bundle(path: path)
+    static var backImage: UIImage? = {
+       
+        let backImageBase64 = "iVBORw0KGgoAAAANSUhEUgAAABIAAAAkCAYAAACE7WrnAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAJAAAAAC0yP9zAAABSElEQVRIDa2WO0oEQRCGF99vT+AewQN4DXNBUFQwMDAw2GADgw0MBGMjwUAQBEVBFEQRBPEUnsPH1zA/DIUIf281/FQVU/11T/d09XQ6SW10SM4J/bvoYxjOMZ1/0DfaqAUdNZACKjqtAQ0C5Ix4xAUdBsg5sb3O/QC5qIH0AuSSeAxZ7YBsLWqxV2jcIpC8j9qQG+IJF7IXIHfEky5kN0DuiadcyHaAPBJPu5BNOpRPXuvyhD+DrLZOdhvyQjxrEUheQ19IM3nFn0NWWyW7DXkjXrAITfInVjN5x1+sgdin9r9B0l6tDJKy2Jpt3P5nHtjbL1jKBynYDo52sdiqIyJYyqEVLJaRWx7YZUSwWNiueWAXNsFSSq1gKcVfsD5OezerriPBUi5Iwf68su3rFtoDmkcrDXkZu9T4VSblt0Yjlx+tLQUp9heUA33Up/m/hAAAAABJRU5ErkJggg=="
+        
+        if let data = Data(base64Encoded: backImageBase64, options: .ignoreUnknownCharacters) {
+            return UIImage(data: data, scale: 2.0)
         }
         return nil
     }()
-    
-    class func image(named name: String) -> UIImage? {
-        return UIImage(named: name, in: bundle, compatibleWith: nil)
-    }
     
     static var navigationBarHeight: CGFloat {
         let top = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
