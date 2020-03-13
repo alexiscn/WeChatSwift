@@ -31,7 +31,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     private let toolsPanel = ChatRoomToolPanelNode(tools: ChatRoomTool.allCases)
     private let bottomNode = ASDisplayNode()
     
-    private let barHeight: CGFloat
+    private var barHeight: CGFloat
     private let panelHeight: CGFloat
     private let bottomInset: CGFloat
     
@@ -148,7 +148,7 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
 
-        toolBar.style.preferredSize = CGSize(width: Constants.screenWidth, height: toolBar.bounds.height)
+        //toolBar.style.preferredSize = CGSize(width: Constants.screenWidth, height: toolBar.bounds.height)
         let additionLayout = ASOverlayLayoutSpec(child: toolsPanel, overlay: emoticonBoardNode)
         additionLayout.style.preferredSize = CGSize(width: Constants.screenWidth, height: panelHeight)
         
@@ -177,9 +177,8 @@ class ChatRoomKeyboardNode: ASDisplayNode {
     
     override func animateLayoutTransition(_ context: ASContextTransitioning) {
         
-        let containerHeight = Constants.screenHeight //- Constants.statusBarHeight - 44
-        let toolBarHeight = toolBar.bounds.height
-        print("toolBar Height:\(toolBarHeight)")
+        let containerHeight = Constants.screenHeight
+        barHeight = toolBar.bounds.height
         
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
             self.lastKeyboardOffsetY = self.frame.origin.y
@@ -236,6 +235,10 @@ extension ChatRoomKeyboardNode: ChatRoomToolBarNodeDelegate {
     
     func toolBar(_ toolBar: ChatRoomToolBarNode, keyboardTypeChanged keyboard: ChatRoomKeyboardType) {
         self.keyboardType = keyboard
+    }
+    
+    func toolBarFrameUpdated() {
+        transitionLayout()
     }
 }
 
