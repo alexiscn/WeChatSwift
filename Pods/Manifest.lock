@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.0.2)
+  - Alamofire (5.0.4)
   - CocoaLumberjack (3.6.1):
     - CocoaLumberjack/Core (= 3.6.1)
   - CocoaLumberjack/Core (3.6.1)
@@ -59,7 +59,7 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
   - WXActionSheet (0.3.0)
-  - WXNavigationBar (1.8.0)
+  - WXNavigationBar (2.0.0)
 
 DEPENDENCIES:
   - FLEX
@@ -98,7 +98,7 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/SVGKit
 
 SPEC CHECKSUMS:
-  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  Alamofire: 0fe5fd24b4298dc377a6550da7d5f1b30e286fcb
   CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FLEX: e13e805fc3eec8732cc227d1f7508770d46e9587
@@ -114,8 +114,8 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: 8a1817ad641a892b17b53e157b6ec15ca7d1ff95
-  WXNavigationBar: 6019612592f4d7e633f16cce2ba8e2547748138c
+  WXNavigationBar: 3ff0a3bdf52ac6fc21d1338ee8fc55ec95e1f751
 
 PODFILE CHECKSUM: c57e9358893eab2e7059e1478b690b1290c2f2c7
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.1

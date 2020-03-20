@@ -16,6 +16,10 @@ public class WXNavigationBar: UIView {
         /// If you want to customize for each view controller,  use `wx_backImage` in view controller
         public static var backImage: UIImage? = Utility.backImage
         
+        /// Use custom view to create back button.
+        /// Note: You do not need to add tap event to custom view. It's handled in WXNavigationBar.
+        public static var backButtonCustomView: UIView? = nil
+        
         /// Background Image for NavigationBar
         public static var backgroundImage: UIImage? = nil
         
@@ -85,5 +89,13 @@ public class WXNavigationBar: UIView {
                                        y: bounds.height - lineHeight,
                                        width: bounds.width,
                                        height: lineHeight)
+    }
+    
+    func enableBlurEffect(_ enabled: Bool) {
+        if enabled {
+            backgroundColor = .clear
+            backgroundImageView.isHidden = true
+            visualEffectView.isHidden = false
+        }
     }
 }

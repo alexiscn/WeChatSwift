@@ -7,35 +7,26 @@
 
 import UIKit
 
-typealias NavigationBarFrameUpdatedHandler = (CGRect) -> Void
+typealias NavigationBarFrameDidUpdated = (CGRect) -> Void
 
-// Expericemental
 extension UINavigationBar {
     
     private struct AssociatedKeys {
-        static var frameUpdatedHandler = "WXNavigationBar_frameUpdatedHandler"
+        static var frameDidUpdated = "frameDidUpdated"
     }
     
-    static let wx_swizzle: Void = {
+    static let swizzleNavigationBarOnce: Void = {
         let cls = UINavigationBar.self
         swizzleMethod(cls, #selector(UINavigationBar.layoutSubviews), #selector(UINavigationBar.wx_layoutSubviews))
     }()
     
-    var frameUpdatedHandler: NavigationBarFrameUpdatedHandler? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.frameUpdatedHandler) as? NavigationBarFrameUpdatedHandler
-        }
-        set {
-            objc_setAssociatedObject(self,
-                                     &AssociatedKeys.frameUpdatedHandler,
-                                     newValue,
-                                     .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        }
+    var frameDidUpdated: NavigationBarFrameDidUpdated? {
+        get { return objc_getAssociatedObject(self, &AssociatedKeys.frameDidUpdated) as? NavigationBarFrameDidUpdated }
+        set { objc_setAssociatedObject(self, &AssociatedKeys.frameDidUpdated, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
     }
 
     @objc private func wx_layoutSubviews() {
-        frameUpdatedHandler?(frame)
+        frameDidUpdated?(frame)
         wx_layoutSubviews()
     }
-    
 }
