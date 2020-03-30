@@ -12,15 +12,23 @@
 //  which Flying Meat Inc. licenses this file to you.
 
 #import <Foundation/Foundation.h>
+#import "FLEXSQLResult.h"
 
 @protocol FLEXDatabaseManager <NSObject>
 
 @required
-- (instancetype)initWithPath:(NSString*)path;
+
++ (instancetype)managerForDatabase:(NSString *)path;
 
 - (BOOL)open;
-- (NSArray<NSDictionary<NSString *, id> *> *)queryAllTables;
-- (NSArray<NSString *> *)queryAllColumnsWithTableName:(NSString *)tableName;
-- (NSArray<NSDictionary<NSString *, id> *> *)queryAllDataWithTableName:(NSString *)tableName;
+
+/// @return a list of all table names
+- (NSArray<NSString *> *)queryAllTables;
+- (NSArray<NSString *> *)queryAllColumnsOfTable:(NSString *)tableName;
+- (NSArray<NSArray *> *)queryAllDataInTable:(NSString *)tableName;
+
+@optional
+
+- (FLEXSQLResult *)executeStatement:(NSString *)SQLStatement;
 
 @end

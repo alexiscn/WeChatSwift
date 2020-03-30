@@ -1,11 +1,13 @@
 PODS:
-  - Alamofire (5.0.4)
+  - Alamofire (5.0.5)
   - CocoaLumberjack (3.6.1):
     - CocoaLumberjack/Core (= 3.6.1)
   - CocoaLumberjack/Core (3.6.1)
   - FLAnimatedImage (1.0.12)
-  - FLEX (3.1.2)
-  - MMKV (1.0.24)
+  - FLEX (4.0.0)
+  - MMKV (1.1.0):
+    - MMKVCore (~> 1.1.0)
+  - MMKVCore (1.1.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
     - PINCache/Core (= 3.0.1-beta.6)
@@ -59,7 +61,7 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
   - WXActionSheet (0.3.0)
-  - WXNavigationBar (2.0.0)
+  - WXNavigationBar (2.0.1)
 
 DEPENDENCIES:
   - FLEX
@@ -80,6 +82,7 @@ SPEC REPOS:
     - FLAnimatedImage
     - FLEX
     - MMKV
+    - MMKVCore
     - PINCache
     - PINOperation
     - PINRemoteImage
@@ -98,11 +101,12 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/SVGKit
 
 SPEC CHECKSUMS:
-  Alamofire: 0fe5fd24b4298dc377a6550da7d5f1b30e286fcb
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FLEX: e13e805fc3eec8732cc227d1f7508770d46e9587
-  MMKV: 758b2edee46b08bdd958db4169191afb9a6d4ebd
+  FLEX: 3fb1e8096b230a08a5d4d5f3c2992b84399a6abf
+  MMKV: 7bb6c30f9ff2ea45bc2398c86e66dd1cb63cfe20
+  MMKVCore: f1e0aad4fc330e7cbfbdff16720017bf0973db5a
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
@@ -114,7 +118,7 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: 8a1817ad641a892b17b53e157b6ec15ca7d1ff95
-  WXNavigationBar: 3ff0a3bdf52ac6fc21d1338ee8fc55ec95e1f751
+  WXNavigationBar: 4c19edb8ae8fa39e67b09df7d987fca08c8e58d4
 
 PODFILE CHECKSUM: c57e9358893eab2e7059e1478b690b1290c2f2c7
 

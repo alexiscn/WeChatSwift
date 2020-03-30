@@ -25,9 +25,12 @@ Features
 ==
 
 - Wechat UI
+- UINavigationBar similar to WeChat
 - Support Text、Image、Voice Message Types
 - Moments
 - Settings
+
+
 
 
 Screenshots

@@ -74,7 +74,7 @@ WeChat NavigationBar
 ```bash
 use_frameworks!
 
-pod 'WXNavigationBar', '~> 2.0.0'
+pod 'WXNavigationBar', '~> 2.0.1'
 ```
 
 ### Carthage
@@ -93,7 +93,7 @@ Once you have your Swift package set up, adding WXNavigationBar as a dependency 
 
 ```
 dependencies: [
-    .package(url: "https://github.com/alexiscn/WXNavigationBar.git", .upToNextMajor(from: "2.0.0"))
+    .package(url: "https://github.com/alexiscn/WXNavigationBar.git", .upToNextMajor(from: "2.0.1"))
 ]
 ```
 
@@ -109,7 +109,19 @@ So you use navigation bar as usual. when you want to handle the display things, 
 
 ## Getting Started
 
-There is no setup needed for using `WXNavigationBar`. However you can customize `WXNavigationBar` if needed. There are two ways to configure WXNavigationBar: via `WXNavigationBar.NavBar` or via `UIViewController` properties.
+In your `AppDelegate.swift`
+
+```swift
+import WXNavigationBar
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    // ...    
+    WXNavigationBar.setup()
+}
+
+```
+
+You can customize `WXNavigationBar` if needed. There are two ways to configure WXNavigationBar: via `WXNavigationBar.NavBar` or via `UIViewController` properties.
 
 ### UINavigationController based configuration
 

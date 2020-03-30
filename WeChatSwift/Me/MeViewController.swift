@@ -142,7 +142,7 @@ extension MeViewController: ASTableDelegate, ASTableDataSource {
             let emoticonStoreViewController = EmoticonStoreViewController()
             navigationController?.pushViewController(emoticonStoreViewController, animated: true)
         case .debug:
-            FLEXManager.shared()?.showExplorer()
+            FLEXManager.shared.showExplorer()
         default:
             break
         }

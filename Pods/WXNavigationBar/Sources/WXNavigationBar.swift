@@ -98,4 +98,8 @@ public class WXNavigationBar: UIView {
             visualEffectView.isHidden = false
         }
     }
+    
+    public static func setup() {
+        UIApplication.runOnce
+    }
 }

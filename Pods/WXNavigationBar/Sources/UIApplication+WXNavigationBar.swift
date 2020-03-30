@@ -9,15 +9,16 @@ import UIKit
 
 extension UIApplication {
     
-    private static let runOnce: Void = {
+    static let runOnce: Void = {
         UINavigationController.swizzleNavigationControllerOnce
         UIViewController.swizzleUIViewControllerOnce
         UINavigationBar.swizzleNavigationBarOnce
     }()
     
-    override open var next: UIResponder? {
-        // Called before applicationDidFinishLaunching
-        UIApplication.runOnce
-        return super.next
-    }
+// Not working when debuging with Xcode 11.4 on iOS 13.4
+//    override open var next: UIResponder? {
+//        // Called before applicationDidFinishLaunching
+//        UIApplication.runOnce
+//        return super.next
+//    }
 }
