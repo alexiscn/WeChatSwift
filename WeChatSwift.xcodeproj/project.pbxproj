@@ -43,7 +43,6 @@
 		A32333CD22DF501900B79555 /* MomentImageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CC22DF501900B79555 /* MomentImageContentNode.swift */; };
 		A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */; };
 		A32333D122DF507600B79555 /* MomentContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32333D022DF507600B79555 /* MomentContentNode.swift */; };
-		A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326847A22D6DCD300F1EC91 /* PageControl.swift */; };
 		A328C25D22D590680060C391 /* icons_filled_more.svg in Resources */ = {isa = PBXBuildFile; fileRef = A328C25C22D590670060C391 /* icons_filled_more.svg */; };
 		A3340617240A66F4007C02F2 /* icons_debug.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3340616240A66F4007C02F2 /* icons_debug.svg */; };
 		A339DF1A22DC2B8E0064B1F3 /* icons_outlined_keyboard.svg in Resources */ = {isa = PBXBuildFile; fileRef = A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */; };
@@ -216,6 +215,7 @@
 		A389999D22E969FE00620069 /* EmoticonManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999C22E969FE00620069 /* EmoticonManageViewController.swift */; };
 		A389999F22E96A2300620069 /* EmoticonStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */; };
 		A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */; };
+		A3913E97242726FD0083E7D3 /* WXColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3913E96242726FD0083E7D3 /* WXColor.swift */; };
 		A3993A702323A90B000C86D9 /* RadarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */; };
 		A3B0443123B45CAC0045E9E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B0443023B45CAC0045E9E5 /* RootViewController.swift */; };
 		A3B39C0D2398DB990062788D /* ASGrowingTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */; };
@@ -273,7 +273,6 @@
 		A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */; };
 		A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */; };
 		A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F422CDA66E00C67D92 /* Moment.swift */; };
-		A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */; };
 		A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51FA22CDA87D00C67D92 /* AppContext.swift */; };
 		A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51FC22CDAD1D00C67D92 /* User.swift */; };
 		A3CA51FF22CDAF1400C67D92 /* icons_filled_radar.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51FE22CDAF1400C67D92 /* icons_filled_radar.svg */; };
@@ -449,7 +448,6 @@
 		A32333CC22DF501900B79555 /* MomentImageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentImageContentNode.swift; sourceTree = "<group>"; };
 		A32333CE22DF504C00B79555 /* MomentMultiImageContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentMultiImageContentNode.swift; sourceTree = "<group>"; };
 		A32333D022DF507600B79555 /* MomentContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentContentNode.swift; sourceTree = "<group>"; };
-		A326847A22D6DCD300F1EC91 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		A328C25C22D590670060C391 /* icons_filled_more.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_more.svg; sourceTree = "<group>"; };
 		A3340616240A66F4007C02F2 /* icons_debug.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_debug.svg; sourceTree = "<group>"; };
 		A339DF1922DC2B8E0064B1F3 /* icons_outlined_keyboard.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_keyboard.svg; sourceTree = "<group>"; };
@@ -626,6 +624,7 @@
 		A389999C22E969FE00620069 /* EmoticonManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonManageViewController.swift; sourceTree = "<group>"; };
 		A389999E22E96A2300620069 /* EmoticonStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonStoreViewController.swift; sourceTree = "<group>"; };
 		A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailViewController.swift; sourceTree = "<group>"; };
+		A3913E96242726FD0083E7D3 /* WXColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXColor.swift; sourceTree = "<group>"; };
 		A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSearchViewController.swift; sourceTree = "<group>"; };
 		A3B0443023B45CAC0045E9E5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASGrowingTextNode.swift; sourceTree = "<group>"; };
@@ -683,7 +682,6 @@
 		A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
 		A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentOperationMenuView.swift; sourceTree = "<group>"; };
 		A3CA51F422CDA66E00C67D92 /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
-		A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		A3CA51FA22CDA87D00C67D92 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		A3CA51FC22CDAD1D00C67D92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3CA51FE22CDAF1400C67D92 /* icons_filled_radar.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_radar.svg; sourceTree = "<group>"; };
@@ -898,7 +896,6 @@
 			isa = PBXGroup;
 			children = (
 				A30807F72314DACC00964126 /* ActionSheet */,
-				A326847A22D6DCD300F1EC91 /* PageControl.swift */,
 				A37E73DD22D8245B008019A4 /* GridPageLayoutDelegate.swift */,
 				A32333B622DF070500B79555 /* WCTabBarItem.swift */,
 				A32333BC22DF0F6A00B79555 /* BadgeNode.swift */,
@@ -954,7 +951,6 @@
 				A3E2000E230A71C2005B2B70 /* Account */,
 				A3CA51F922CDA87100C67D92 /* Context */,
 				A3DE7CC12301084C00E73944 /* Database */,
-				A3CA51F622CDA85600C67D92 /* Service */,
 				A33DB2EA22CCCA2A00A11776 /* Common */,
 				A326847922D6DCBD00F1EC91 /* Components */,
 				A3E58DA02302BE3600F73763 /* Camera */,
@@ -1056,6 +1052,7 @@
 				A341CF0822E55A6E00F18106 /* ExpressionParser.swift */,
 				A34B89B522EC6612005E2B20 /* LinkTextParser.swift */,
 				A3EE12432317D00D000F287C /* Fonts.swift */,
+				A3913E96242726FD0083E7D3 /* WXColor.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1699,14 +1696,6 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
-		A3CA51F622CDA85600C67D92 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		A3CA51F922CDA87100C67D92 /* Context */ = {
 			isa = PBXGroup;
 			children = (
@@ -2175,7 +2164,6 @@
 				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A35B21A3230023910057F8FC /* BrandTimelineCellNode.swift in Sources */,
-				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
@@ -2273,7 +2261,6 @@
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
 				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,
 				A3542F53230D7FB30034ED82 /* EmoticonDetailArtistNode.swift in Sources */,
-				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A30807F92314DAE100964126 /* ScrollActionSheetItem.swift in Sources */,
 				A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */,
 				A30807FF2314DB9B00964126 /* ScrollActionSheet.swift in Sources */,
@@ -2418,6 +2405,7 @@
 				A3B6889423004D2C007273CD /* RemarkPhoneNumberCellNode.swift in Sources */,
 				A374862A22D4383F002EEC4F /* ChatRoomViewController.swift in Sources */,
 				A34760B622E6F2450043AE1D /* AlbumPickerTableViewCell.swift in Sources */,
+				A3913E97242726FD0083E7D3 /* WXColor.swift in Sources */,
 				A3D67FBF230FE24E00507B5F /* PublishMomentDragCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

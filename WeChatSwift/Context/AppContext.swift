@@ -22,6 +22,8 @@ class AppContext {
     
     let momentCoverManager: MomentCoverManager
     
+    let emoticonMgr = EmoticonManager()
+    
     private init() {
         me = MockFactory.shared.user(with: "10001")!
         userID = me.identifier
@@ -29,10 +31,6 @@ class AppContext {
         userSettings = UserSettings(userID: userID)
         momentCoverManager =  MomentCoverManager(userID: userID)
     }
-    
-    var userProfileService = UserProfileService()
-    
-    var emoticonMgr = EmoticonManager()
     
     func doHeavySetup() {
         DispatchQueue.global(qos: .background).async {
