@@ -238,6 +238,7 @@
 		A3C9145A2305887000B6E077 /* PublishMomentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C914592305887000B6E077 /* PublishMomentCellNode.swift */; };
 		A3C9145C230588FD00B6E077 /* icons_outlined_location.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9145B230588FD00B6E077 /* icons_outlined_location.svg */; };
 		A3C9145E2305892000B6E077 /* icons_outlined_at.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3C9145D2305892000B6E077 /* icons_outlined_at.svg */; };
+		A3C9E21C2435A0CF002F82D9 /* ObjcExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9E21B2435A0CF002F82D9 /* ObjcExtensions.swift */; };
 		A3CA51A322CD997000C67D92 /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A222CD997000C67D92 /* MockFactory.swift */; };
 		A3CA51A622CD99B200C67D92 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A522CD99B200C67D92 /* ContactModel.swift */; };
 		A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */; };
@@ -647,6 +648,7 @@
 		A3C914592305887000B6E077 /* PublishMomentCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishMomentCellNode.swift; sourceTree = "<group>"; };
 		A3C9145B230588FD00B6E077 /* icons_outlined_location.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_location.svg; sourceTree = "<group>"; };
 		A3C9145D2305892000B6E077 /* icons_outlined_at.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_outlined_at.svg; sourceTree = "<group>"; };
+		A3C9E21B2435A0CF002F82D9 /* ObjcExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjcExtensions.swift; sourceTree = "<group>"; };
 		A3CA51A222CD997000C67D92 /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		A3CA51A522CD99B200C67D92 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		A3CA51A722CD99CF00C67D92 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -1071,6 +1073,7 @@
 				A3D9954C230BCE9400E4F628 /* UISearchBar+Extensions.swift */,
 				A3105D42232E035E0038D775 /* Notification+Extensions.swift */,
 				A3F89C42240F823100202710 /* UIViewController+Extensions.swift */,
+				A3C9E21B2435A0CF002F82D9 /* ObjcExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2205,6 +2208,7 @@
 				A36CB5352308378200F993B6 /* PhotoBrowserPHAssetDataSource.swift in Sources */,
 				A35EDF5822FD76DF00C56CAC /* PayOfflinePayQRCodeNode.swift in Sources */,
 				A34B89B622EC6612005E2B20 /* LinkTextParser.swift in Sources */,
+				A3C9E21C2435A0CF002F82D9 /* ObjcExtensions.swift in Sources */,
 				A32333BD22DF0F6A00B79555 /* BadgeNode.swift in Sources */,
 				A352AD132306505700332B21 /* MomentCoverCustomizeSource.swift in Sources */,
 				A3CA51A822CD99CF00C67D92 /* ContactsViewController.swift in Sources */,
