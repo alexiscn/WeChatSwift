@@ -91,4 +91,12 @@ extension SightCameraViewController: SightCameraShotVideoViewDelegate {
     func cameraShotVideoViewDidTapSwitchButton() {
         camera.switchCamera()
     }
+    
+    func cameraShotVideoViewDidTakePhoto() {
+        camera.takePhoto { image in
+            if let img = image {
+                print(img)
+            }
+        }
+    }
 }

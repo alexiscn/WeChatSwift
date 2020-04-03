@@ -16,11 +16,21 @@ public class SightCamera: NSObject {
     private let sessionQueue = DispatchQueue(label: "me.shuifeng.WeChatSwift.SightCamera")
     let captureSession: AVCaptureSession
     private var inputCamera: AVCaptureDevice? { return videoInput?.device }
+    
+    private var pipelineRunningTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
+    
     private var videoInput: AVCaptureDeviceInput?
-    private var audioInput: AVCaptureDeviceInput?
-    private var photoOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
     private var videoOutput: AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
-    private var audioOutput: AVCaptureAudioDataOutput?
+    private var videoConnection: AVCaptureConnection?
+    private var videoOutputFormatDescription: CMFormatDescription?
+    private var videoDimensions: CMVideoDimensions = CMVideoDimensions(width: 0, height: 0)
+    
+    private var photoOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
+    
+    private var audioInput: AVCaptureDeviceInput?
+    private var audioOutput: AVCaptureAudioDataOutput = AVCaptureAudioDataOutput()
+    private var audioConnection: AVCaptureConnection?
+    
     private var fileOutput: AVCaptureMovieFileOutput = AVCaptureMovieFileOutput()
     private var photoCaptureProcessor: SightCameraPhotoCaptureProcessor?
     private var cameraPosition: AVCaptureDevice.Position = .unspecified
@@ -54,6 +64,7 @@ public class SightCamera: NSObject {
             if captureSession.canAddOutput(videoOutput) {
                 captureSession.addOutput(videoOutput)
             }
+            videoConnection = videoOutput.connection(with: .video)
             
             photoOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
             if captureSession.canAddOutput(photoOutput) {
@@ -64,6 +75,19 @@ public class SightCamera: NSObject {
             if captureSession.canAddOutput(fileOutput) {
                 captureSession.addOutput(fileOutput)
             }
+        }
+        if audioInput == nil {
+            if let audioDevice = AVCaptureDevice.default(for: .audio),
+                let audioDeviceInput = try? AVCaptureDeviceInput(device: audioDevice) {
+                if captureSession.canAddInput(audioDeviceInput) {
+                    captureSession.addInput(audioDeviceInput)
+                }
+            }
+            
+            if captureSession.canAddOutput(audioOutput) {
+                captureSession.addOutput(audioOutput)
+            }
+            audioConnection = audioOutput.connection(with: .audio)
         }
         captureSession.commitConfiguration()
     }
@@ -177,12 +201,43 @@ public extension SightCamera {
         self.photoCaptureProcessor = processor
         photoOutput.capturePhoto(with: photoSettings, delegate: processor)
     }
+    
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate & AVCaptureAudioDataOutputSampleBufferDelegate
 extension SightCamera: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate {
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer) else { return }
+        
+        if connection == audioConnection {
+            
+        } else if connection == videoConnection {
+            if videoOutputFormatDescription == nil {
+                videoPipelineWillStartRunning()
+                videoDimensions = CMVideoFormatDescriptionGetDimensions(formatDescription)
+                videoOutputFormatDescription = formatDescription
+            } else {
+                renderVideoSampleBuffer(sampleBuffer)
+            }
+        }
+    }
+}
+
+// MARK: - Private Work
+extension SightCamera {
+    
+    private func videoPipelineWillStartRunning() {
+        pipelineRunningTask = UIApplication.shared.beginBackgroundTask (expirationHandler: {
+            print("video capture pipeline background task expired")
+        })
+    }
+    
+    private func videoPipelineDidFinishRunning() {
+        pipelineRunningTask = .invalid
+    }
+    
+    private func renderVideoSampleBuffer(_ sampleBuffer: CMSampleBuffer) {
         
     }
 }

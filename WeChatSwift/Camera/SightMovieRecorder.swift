@@ -275,7 +275,20 @@ extension SightMovieRecorder {
     }
     
     private func setupAudioInput() throws {
-        
+        if audioSettings.isEmpty {
+            audioSettings = [AVFormatIDKey : UInt(kAudioFormatMPEG4AAC)]
+        }
+        let canApply = assetWriter?.canApply(outputSettings: audioSettings, forMediaType: .audio) ?? false
+        if canApply {
+            let input = AVAssetWriterInput(mediaType: .audio, outputSettings: audioSettings, sourceFormatHint: audioFormatDescription)
+            input.expectsMediaDataInRealTime = true
+            
+            let canAdd = assetWriter?.canAdd(input) ?? false
+            if canAdd {
+                assetWriter?.add(input)
+                audioInput = input
+            }
+        }
     }
     
     private func transitionToStatus(_ newStatus: SightMovieRecorderStatus, error: Error?) {

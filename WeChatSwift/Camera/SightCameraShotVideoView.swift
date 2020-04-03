@@ -125,4 +125,6 @@ protocol SightCameraShotVideoViewDelegate: class {
     func cameraShotVideoViewDidTapCloseButton()
     
     func cameraShotVideoViewDidTapSwitchButton()
+    
+    func cameraShotVideoViewDidTakePhoto()
 }
