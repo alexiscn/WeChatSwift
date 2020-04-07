@@ -23,7 +23,6 @@ public class Session {
     
     var unreadCount: Int = 0
     
-    /// 是否显示红点
     var showUnreadAsRedDot = false
     
     var stickTop: Bool = false
@@ -36,10 +35,8 @@ public class Session {
     
     var draft: String? = nil
 
-    /// 强制提醒
     var forceNotify: Bool = false
     
-    /// 聊天背景
     var chatBackground: String? = nil
     
     public init(sessionID: String, name: String) {

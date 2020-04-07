@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
           injectLongPressGestureToStatusBar()
         }
-        //AppContext.current.doHeavySetup()
+        AppContext.current.doHeavySetup()
         
         UIViewController.swizzle
         UIView.fixTabBarButtonFrame()

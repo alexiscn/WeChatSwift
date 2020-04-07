@@ -219,6 +219,7 @@
 		A38999A122E96A3600620069 /* EmoticonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */; };
 		A3993A702323A90B000C86D9 /* RadarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */; };
 		A3B0443123B45CAC0045E9E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B0443023B45CAC0045E9E5 /* RootViewController.swift */; };
+		A3B0443623B4822E0045E9E5 /* ChatInputPanelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B0443523B4822E0045E9E5 /* ChatInputPanelNode.swift */; };
 		A3B39C0D2398DB990062788D /* ASGrowingTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */; };
 		A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888D23004A3F007273CD /* RemarkViewController.swift */; };
 		A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */; };
@@ -274,7 +275,6 @@
 		A3CA51EF22CDA29000C67D92 /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */; };
 		A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */; };
 		A3CA51F522CDA66E00C67D92 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F422CDA66E00C67D92 /* Moment.swift */; };
-		A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */; };
 		A3CA51FB22CDA87D00C67D92 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51FA22CDA87D00C67D92 /* AppContext.swift */; };
 		A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA51FC22CDAD1D00C67D92 /* User.swift */; };
 		A3CA51FF22CDAF1400C67D92 /* icons_filled_radar.svg in Resources */ = {isa = PBXBuildFile; fileRef = A3CA51FE22CDAF1400C67D92 /* icons_filled_radar.svg */; };
@@ -629,6 +629,7 @@
 		A38999A022E96A3600620069 /* EmoticonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonDetailViewController.swift; sourceTree = "<group>"; };
 		A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSearchViewController.swift; sourceTree = "<group>"; };
 		A3B0443023B45CAC0045E9E5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		A3B0443523B4822E0045E9E5 /* ChatInputPanelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputPanelNode.swift; sourceTree = "<group>"; };
 		A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASGrowingTextNode.swift; sourceTree = "<group>"; };
 		A3B6888D23004A3F007273CD /* RemarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkViewController.swift; sourceTree = "<group>"; };
 		A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditNameCellNode.swift; sourceTree = "<group>"; };
@@ -684,7 +685,6 @@
 		A3CA51EE22CDA29000C67D92 /* MomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
 		A3CA51F222CDA33C00C67D92 /* MomentOperationMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentOperationMenuView.swift; sourceTree = "<group>"; };
 		A3CA51F422CDA66E00C67D92 /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
-		A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		A3CA51FA22CDA87D00C67D92 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		A3CA51FC22CDAD1D00C67D92 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3CA51FE22CDAF1400C67D92 /* icons_filled_radar.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = icons_filled_radar.svg; sourceTree = "<group>"; };
@@ -954,7 +954,6 @@
 				A3E2000E230A71C2005B2B70 /* Account */,
 				A3CA51F922CDA87100C67D92 /* Context */,
 				A3DE7CC12301084C00E73944 /* Database */,
-				A3CA51F622CDA85600C67D92 /* Service */,
 				A33DB2EA22CCCA2A00A11776 /* Common */,
 				A326847922D6DCBD00F1EC91 /* Components */,
 				A3E58DA02302BE3600F73763 /* Camera */,
@@ -1418,6 +1417,7 @@
 		A374862822D4382C002EEC4F /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				A3B0443423B4820C0045E9E5 /* ChatInputPanels */,
 				A3F9F000230E66E90032299C /* ChatRoomEmoticonPreview */,
 				A3476FF622FAA015001B94EC /* ChatContactInfo */,
 				A373D3D322F6687F00451515 /* ChatBackground */,
@@ -1527,6 +1527,22 @@
 				A3993A6F2323A90B000C86D9 /* RadarSearchViewController.swift */,
 			);
 			path = Radar;
+			sourceTree = "<group>";
+		};
+		A3B0443423B4820C0045E9E5 /* ChatInputPanels */ = {
+			isa = PBXGroup;
+			children = (
+				A3B0443723B482680045E9E5 /* TextInput */,
+				A3B0443523B4822E0045E9E5 /* ChatInputPanelNode.swift */,
+			);
+			path = ChatInputPanels;
+			sourceTree = "<group>";
+		};
+		A3B0443723B482680045E9E5 /* TextInput */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TextInput;
 			sourceTree = "<group>";
 		};
 		A3B6888C230049B0007273CD /* Remark */ = {
@@ -1697,14 +1713,6 @@
 				A3CA51B222CD9AF900C67D92 /* icons_outlined_radar.svg */,
 			);
 			path = Icons;
-			sourceTree = "<group>";
-		};
-		A3CA51F622CDA85600C67D92 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				A3CA51F722CDA86B00C67D92 /* UserProfileService.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		A3CA51F922CDA87100C67D92 /* Context */ = {
@@ -2174,7 +2182,6 @@
 				A3FB0AB722F439A600116329 /* ContactTagListViewController.swift in Sources */,
 				A374864A22D44CB8002EEC4F /* VoiceContentNode.swift in Sources */,
 				A35B21A3230023910057F8FC /* BrandTimelineCellNode.swift in Sources */,
-				A3CA51F822CDA86B00C67D92 /* UserProfileService.swift in Sources */,
 				A33DB2F122CCCBA800A11776 /* UIColor+Extensions.swift in Sources */,
 				A322870022E0514A004E516E /* EmoticonBoardTabBarCellNode.swift in Sources */,
 				A3CA51FD22CDAD1D00C67D92 /* User.swift in Sources */,
@@ -2273,6 +2280,7 @@
 				A322870522E07C64004E516E /* SessionMoreMenuFloatView.swift in Sources */,
 				A32333CF22DF504C00B79555 /* MomentMultiImageContentNode.swift in Sources */,
 				A3542F53230D7FB30034ED82 /* EmoticonDetailArtistNode.swift in Sources */,
+				A3B0443623B4822E0045E9E5 /* ChatInputPanelNode.swift in Sources */,
 				A326847B22D6DCD300F1EC91 /* PageControl.swift in Sources */,
 				A30807F92314DAE100964126 /* ScrollActionSheetItem.swift in Sources */,
 				A3485FBF22F05435002A804B /* WeChatEmoticonBannerCellNode.swift in Sources */,

@@ -58,6 +58,12 @@ class RootViewController: ASTabBarController {
         tabBar.tintColor = Colors.tintColor
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage.imageFromColor(.clear), for: .normal, barMetrics: .default)
     }
+    
+    func handleLanguageDidChanged() {
+        selectedIndex = 3
+        let settingsVC = SettingsViewController()
+        navigationController?.pushViewController(settingsVC, animated: true)
+    }
 }
 
 enum HomeTab: String {
