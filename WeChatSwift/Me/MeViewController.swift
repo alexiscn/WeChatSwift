@@ -7,6 +7,7 @@
 //
 
 import AsyncDisplayKit
+import FLEX
 
 class MeViewController: ASViewController<ASDisplayNode> {
 
@@ -77,9 +78,12 @@ class MeViewController: ASViewController<ASDisplayNode> {
         
         let settings = MeTableModel(type: .settings, title: LocalizedString("Setting_Title"), icon: "icons_outlined_setting", color: Colors.Indigo)
         dataSource.append(MeTableSection(items: [settings]))
+        
+        let debug = MeTableModel(type: .debug, title: "Debug", icon: "icons_debug", color: Colors.Orange)
+        dataSource.append(MeTableSection(items: [debug]))
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .clear
     }
 }
@@ -137,6 +141,8 @@ extension MeViewController: ASTableDelegate, ASTableDataSource {
         case .sticker:
             let emoticonStoreViewController = EmoticonStoreViewController()
             navigationController?.pushViewController(emoticonStoreViewController, animated: true)
+        case .debug:
+            FLEXManager.shared.showExplorer()
         default:
             break
         }

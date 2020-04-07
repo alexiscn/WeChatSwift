@@ -8,64 +8,59 @@
 
 #import "FLEXCookiesTableViewController.h"
 #import "FLEXObjectExplorerFactory.h"
+#import "FLEXMutableListSection.h"
 #import "FLEXUtility.h"
 
 @interface FLEXCookiesTableViewController ()
-
-@property (nonatomic) NSArray<NSHTTPCookie *> *cookies;
-
+@property (nonatomic, readonly) FLEXMutableListSection<NSHTTPCookie *> *cookies;
+@property (nonatomic) NSString *headerTitle;
 @end
 
 @implementation FLEXCookiesTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    
-    if (self) {
-        self.title = @"Cookies";
+#pragma mark - Overrides
 
-        NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-        _cookies = [NSHTTPCookieStorage.sharedHTTPCookieStorage.cookies sortedArrayUsingDescriptors:@[nameSortDescriptor]];
-    }
-    
-    return self;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.title = @"Cookies";
 }
 
-- (NSHTTPCookie *)cookieForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.cookies[indexPath.row];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.cookies.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.textLabel.font = [FLEXUtility defaultTableViewCellLabelFont];
-        cell.detailTextLabel.font = [FLEXUtility defaultTableViewCellLabelFont];
-        cell.detailTextLabel.textColor = UIColor.grayColor;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+- (NSArray<FLEXTableViewSection *> *)makeSections {
+    NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc]
+        initWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)
+    ];
+    NSArray *cookies = [NSHTTPCookieStorage.sharedHTTPCookieStorage.cookies
+       sortedArrayUsingDescriptors:@[nameSortDescriptor]
+    ];
     
-    NSHTTPCookie *cookie = [self cookieForRowAtIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", cookie.name, cookie.value];
-    cell.detailTextLabel.text = cookie.domain;
+    _cookies = [FLEXMutableListSection list:cookies
+        cellConfiguration:^(UITableViewCell *cell, NSHTTPCookie *cookie, NSInteger row) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = [cookie.name stringByAppendingFormat:@" (%@)", cookie.value];
+            cell.detailTextLabel.text = [cookie.domain stringByAppendingFormat:@" — %@", cookie.path];
+        } filterMatcher:^BOOL(NSString *filterText, NSHTTPCookie *cookie) {
+            return [cookie.name localizedCaseInsensitiveContainsString:filterText] ||
+                [cookie.value localizedCaseInsensitiveContainsString:filterText] ||
+                [cookie.domain localizedCaseInsensitiveContainsString:filterText] ||
+                [cookie.path localizedCaseInsensitiveContainsString:filterText];
+        }
+    ];
     
-    return cell;
+    self.cookies.selectionHandler = ^(UIViewController *host, NSHTTPCookie *cookie) {
+        [host.navigationController pushViewController:[
+            FLEXObjectExplorerFactory explorerViewControllerForObject:cookie
+        ] animated:YES];
+    };
+    
+    return @[self.cookies];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSHTTPCookie *cookie = [self cookieForRowAtIndexPath:indexPath];
-    UIViewController *cookieViewController = (UIViewController *)[FLEXObjectExplorerFactory explorerViewControllerForObject:cookie];
-    
-    [self.navigationController pushViewController:cookieViewController animated:YES];
+- (void)reloadData {
+    self.headerTitle = [NSString stringWithFormat:
+        @"%@ cookies", @(self.cookies.filteredList.count)
+    ];
+    [super reloadData];
 }
 
 #pragma mark - FLEXGlobalsEntry

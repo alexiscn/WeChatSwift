@@ -74,7 +74,7 @@ class EmoticonStoreViewController: ASViewController<ASDisplayNode> {
             removeController(wechatEmoticonsVC)
             addController(moreEmoticonsVC)
         }
-        view.bringSubviewToFront(wc_navigationBar)
+        view.bringSubviewToFront(wx_navigationBar)
     }
     
     private func addController(_ controller: UIViewController) {

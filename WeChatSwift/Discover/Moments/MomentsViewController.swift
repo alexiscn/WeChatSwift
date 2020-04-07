@@ -91,7 +91,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressRightBarButtonGesture(_:)))
         rightButton.addGestureRecognizer(longPressGesture)
         
-        wc_navigationBar.alpha = 0.0
+        wx_navigationBar.alpha = 0.0
     }
     
     private func setupTapGesture() {
@@ -127,14 +127,14 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     
     private func presentPublishMomentViewController() {
         let publishMomentVC = PublishMomentViewController(source: .text)
-        let nav = WCNavigationController(rootViewController: publishMomentVC)
+        let nav = UINavigationController(rootViewController: publishMomentVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     
     private func presentPublishMediaMomentViewController(_ assets: [MediaAsset]) {
         let publishMomentVC = PublishMomentViewController(source: .media(assets))
-        let nav = WCNavigationController(rootViewController: publishMomentVC)
+        let nav = UINavigationController(rootViewController: publishMomentVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
@@ -158,7 +158,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         albumPickerVC.selectionHandler = selectionHandler
         let assetPickerVC = AssetPickerViewController(configuration: configuration)
         assetPickerVC.selectionHandler = selectionHandler
-        let nav = WCNavigationController()
+        let nav = UINavigationController()
         nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
@@ -187,7 +187,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
         return statusBarStyle
     }
     
-    override var wc_barTintColor: UIColor? { return barTintColor }
+    override var wx_barTintColor: UIColor? { return barTintColor }
 }
 
 // MARK: - Event Handlers
@@ -303,7 +303,7 @@ extension MomentsViewController: UIScrollViewDelegate {
         let threshold: CGFloat = 307.0 - 70 - 30 - barHeight - Constants.statusBarHeight
         //print("threshold:\(threshold)")
         if y < threshold {
-            wc_navigationBar.alpha = 0.0
+            wx_navigationBar.alpha = 0.0
             updateStatusBarStyle(.lightContent)
             titleView?.alpha = 0
             titleView?.isHidden = true
@@ -319,7 +319,7 @@ extension MomentsViewController: UIScrollViewDelegate {
         } else {
             let progress = (y - threshold - barHeight)/barHeight
             let alpha = max(0, min(progress, 1))
-            wc_navigationBar.alpha = alpha
+            wx_navigationBar.alpha = alpha
             titleView?.alpha = alpha
             titleView?.isHidden = alpha == 0.0
             updateStatusBarStyle(.default)

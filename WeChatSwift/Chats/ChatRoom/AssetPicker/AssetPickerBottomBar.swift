@@ -63,22 +63,26 @@ class AssetPickerBottomBar: UIView {
         containerView.addSubview(originButton)
         containerView.addSubview(sendButton)
         
-        previewButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(6)
-            make.height.equalTo(20)
-            make.centerY.equalToSuperview()
-        }
+        previewButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            previewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 6),
+            previewButton.heightAnchor.constraint(equalToConstant: 20),
+            previewButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
         
-        originButton.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
+        originButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            originButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            originButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
         
-        sendButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.width.equalTo(60)
-            make.height.equalTo(30)
-            make.trailing.equalToSuperview().offset(-15)
-        }
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sendButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            sendButton.widthAnchor.constraint(equalToConstant: 60),
+            sendButton.heightAnchor.constraint(equalToConstant: 30),
+            sendButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
+        ])
         
         previewButton.addTarget(self, action: #selector(previewButtonClicked), for: .touchUpInside)
         originButton.addTarget(self, action: #selector(originButtonClicked), for: .touchUpInside)

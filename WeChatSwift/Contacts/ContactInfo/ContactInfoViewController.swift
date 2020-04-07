@@ -59,7 +59,7 @@ class ContactInfoViewController: ASViewController<ASDisplayNode> {
         dataSource.append(ContactInfoGroup(items: [.sendMessage, .voip]))
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .white
     }
 }
@@ -122,7 +122,7 @@ extension ContactInfoViewController: ASTableDelegate, ASTableDataSource {
         switch info {
         case .remark:
             let remarkVC = RemarkViewController()
-            let nav = WCNavigationController(rootViewController: remarkVC)
+            let nav = UINavigationController(rootViewController: remarkVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         default:

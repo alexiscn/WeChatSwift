@@ -21,6 +21,7 @@ struct MeTableModel {
         case cards
         case sticker
         case settings
+        case debug
     }
     
     var type: MeType

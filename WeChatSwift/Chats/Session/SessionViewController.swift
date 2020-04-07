@@ -90,7 +90,6 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         searchViewController?.searchResultsUpdater = mainSearchViewController
         tableNode.view.tableHeaderView = searchViewController?.searchBar
         tableNode.view.backgroundView = UIView()
-        searchViewController?.dimsBackgroundDuringPresentation = false
         
         mainSearchViewController.searchBar = searchViewController?.searchBar
         mainSearchViewController.searchBar?.alignmentCenter()
@@ -100,10 +99,6 @@ class SessionViewController: ASViewController<ASDisplayNode> {
         
         tableNode.view.contentInsetAdjustmentBehavior = .automatic
         extendedLayoutIncludesOpaqueBars = false
-    }
-    
-    override var wc_useSystemBlurNavBar: Bool {
-        return true
     }
 }
 
@@ -139,7 +134,7 @@ extension SessionViewController: SessionMoreMenuViewDelegate {
             multiSelectContactsVC.selectionHandler = { selectedContacts in
                 
             }
-            let nav = WCNavigationController(rootViewController: multiSelectContactsVC)
+            let nav = UINavigationController(rootViewController: multiSelectContactsVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         }

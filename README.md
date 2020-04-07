@@ -7,26 +7,30 @@ Requirements
 
 - [Texture](https://github.com/TextureGroup/Texture)
 - Swift 5.0 +
-- Xcode 10.2 +
-- iOS 11.0 +
+- Xcode 11.0 +
+- iOS 12.0 +
 
 
 Dependency
 ==
 
-- [SnapKit](https://github.com/SnapKit/SnapKit)
 - [MMKV](https://github.com/tencent/mmkv)
 - [WXActionSheet](https://github.com/alexiscn/WXActionSheet)
-
+- [WXNavigationBar](https://github.com/alexiscn/WXNavigationBar)
+- [WCDB.swift](https://github.com/tencent/wcdb)
+- [SSZipArchive](https://github.com/ZipArchive/ZipArchive)
 
 
 Features
 ==
 
 - Wechat UI
+- UINavigationBar similar to WeChat
 - Support Text、Image、Voice Message Types
 - Moments
 - Settings
+
+
 
 
 Screenshots

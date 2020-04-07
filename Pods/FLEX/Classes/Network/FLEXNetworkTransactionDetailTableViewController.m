@@ -3,7 +3,7 @@
 //  Flipboard
 //
 //  Created by Ryan Olson on 2/10/15.
-//  Copyright (c) 2015 Flipboard. All rights reserved.
+//  Copyright (c) 2020 Flipboard. All rights reserved.
 //
 
 #import "FLEXColor.h"
@@ -16,6 +16,8 @@
 #import "FLEXMultilineTableViewCell.h"
 #import "FLEXUtility.h"
 #import "FLEXManager+Private.h"
+#import "FLEXTableView.h"
+#import "UIBarButtonItem+FLEX.h"
 
 typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
 
@@ -50,26 +52,32 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
 
 @implementation FLEXNetworkTransactionDetailTableViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     // Force grouped style
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(handleTransactionUpdatedNotification:) name:kFLEXNetworkRecorderTransactionUpdatedNotification object:nil];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Copy curl" style:UIBarButtonItemStylePlain target:self action:@selector(copyButtonPressed:)];
+        [NSNotificationCenter.defaultCenter addObserver:self
+            selector:@selector(handleTransactionUpdatedNotification:)
+            name:kFLEXNetworkRecorderTransactionUpdatedNotification
+            object:nil
+        ];
+        self.toolbarItems = @[
+            UIBarButtonItem.flex_flexibleSpace,
+            [UIBarButtonItem
+                itemWithTitle:@"Copy curl" target:self action:@selector(copyButtonPressed:)
+            ]
+        ];
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.tableView registerClass:[FLEXMultilineTableViewCell class] forCellReuseIdentifier:kFLEXMultilineTableViewCellIdentifier];
+    [self.tableView registerClass:[FLEXMultilineTableViewCell class] forCellReuseIdentifier:kFLEXMultilineCell];
 }
 
-- (void)setTransaction:(FLEXNetworkTransaction *)transaction
-{
+- (void)setTransaction:(FLEXNetworkTransaction *)transaction {
     if (![_transaction isEqual:transaction]) {
         _transaction = transaction;
         self.title = [transaction.request.URL lastPathComponent];
@@ -77,17 +85,15 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     }
 }
 
-- (void)setSections:(NSArray<FLEXNetworkDetailSection *> *)sections
-{
+- (void)setSections:(NSArray<FLEXNetworkDetailSection *> *)sections {
     if (![_sections isEqual:sections]) {
         _sections = [sections copy];
         [self.tableView reloadData];
     }
 }
 
-- (void)rebuildTableSections
-{
-    NSMutableArray<FLEXNetworkDetailSection *> *sections = [NSMutableArray array];
+- (void)rebuildTableSections {
+    NSMutableArray<FLEXNetworkDetailSection *> *sections = [NSMutableArray new];
 
     FLEXNetworkDetailSection *generalSection = [[self class] generalSectionForTransaction:self.transaction];
     if (generalSection.rows.count > 0) {
@@ -113,41 +119,35 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     self.sections = sections;
 }
 
-- (void)handleTransactionUpdatedNotification:(NSNotification *)notification
-{
+- (void)handleTransactionUpdatedNotification:(NSNotification *)notification {
     FLEXNetworkTransaction *transaction = [[notification userInfo] objectForKey:kFLEXNetworkRecorderUserInfoTransactionKey];
     if (transaction == self.transaction) {
         [self rebuildTableSections];
     }
 }
 
-- (void)copyButtonPressed:(id)sender
-{
+- (void)copyButtonPressed:(id)sender {
     [UIPasteboard.generalPasteboard setString:[FLEXNetworkCurlLogger curlCommandString:_transaction.request]];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.sections.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     FLEXNetworkDetailSection *sectionModel = self.sections[section];
     return sectionModel.rows.count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     FLEXNetworkDetailSection *sectionModel = self.sections[section];
     return sectionModel.title;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    FLEXMultilineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFLEXMultilineTableViewCellIdentifier forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FLEXMultilineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFLEXMultilineCell forIndexPath:indexPath];
 
     FLEXNetworkDetailRow *rowModel = [self rowModelAtIndexPath:indexPath];
 
@@ -158,8 +158,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     FLEXNetworkDetailRow *rowModel = [self rowModelAtIndexPath:indexPath];
 
     UIViewController *viewController = nil;
@@ -176,48 +175,74 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     FLEXNetworkDetailRow *row = [self rowModelAtIndexPath:indexPath];
     NSAttributedString *attributedText = [[self class] attributedTextForRow:row];
     BOOL showsAccessory = row.selectionFuture != nil;
-    return [FLEXMultilineTableViewCell preferredHeightWithAttributedText:attributedText inTableViewWidth:self.tableView.bounds.size.width style:UITableViewStyleGrouped showsAccessory:showsAccessory];
+    return [FLEXMultilineTableViewCell
+        preferredHeightWithAttributedText:attributedText
+        maxWidth:tableView.bounds.size.width
+        style:tableView.style
+        showsAccessory:showsAccessory
+    ];
 }
 
-- (FLEXNetworkDetailRow *)rowModelAtIndexPath:(NSIndexPath *)indexPath
-{
+- (FLEXNetworkDetailRow *)rowModelAtIndexPath:(NSIndexPath *)indexPath {
     FLEXNetworkDetailSection *sectionModel = self.sections[indexPath.section];
     return sectionModel.rows[indexPath.row];
 }
 
 #pragma mark - Cell Copying
 
-- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
-{
+- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
     return action == @selector(copy:);
 }
 
-- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
-{
+- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
     if (action == @selector(copy:)) {
         FLEXNetworkDetailRow *row = [self rowModelAtIndexPath:indexPath];
-        [UIPasteboard.generalPasteboard setString:row.detailText];
+        UIPasteboard.generalPasteboard.string = row.detailText;
     }
 }
 
+#if FLEX_AT_LEAST_IOS13_SDK
+
+- (UIContextMenuConfiguration *)tableView:(UITableView *)tableView contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath point:(CGPoint)point __IOS_AVAILABLE(13.0) {
+    return [UIContextMenuConfiguration
+        configurationWithIdentifier:nil
+        previewProvider:nil
+        actionProvider:^UIMenu *(NSArray<UIMenuElement *> *suggestedActions) {
+            UIAction *copy = [UIAction
+                actionWithTitle:@"Copy"
+                image:nil
+                identifier:nil
+                handler:^(__kindof UIAction *action) {
+                    FLEXNetworkDetailRow *row = [self rowModelAtIndexPath:indexPath];
+                    UIPasteboard.generalPasteboard.string = row.detailText;
+                }
+            ];
+            return [UIMenu
+                menuWithTitle:@"" image:nil identifier:nil
+                options:UIMenuOptionsDisplayInline
+                children:@[copy]
+            ];
+        }
+    ];
+}
+
+#endif
+
 #pragma mark - View Configuration
 
-+ (NSAttributedString *)attributedTextForRow:(FLEXNetworkDetailRow *)row
-{
++ (NSAttributedString *)attributedTextForRow:(FLEXNetworkDetailRow *)row {
     NSDictionary<NSString *, id> *titleAttributes = @{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Medium" size:12.0],
                                                        NSForegroundColorAttributeName : [UIColor colorWithWhite:0.5 alpha:1.0] };
-    NSDictionary<NSString *, id> *detailAttributes = @{ NSFontAttributeName : [FLEXUtility defaultTableViewCellLabelFont],
-                                                        NSForegroundColorAttributeName : [FLEXColor primaryTextColor] };
+    NSDictionary<NSString *, id> *detailAttributes = @{ NSFontAttributeName : UIFont.flex_defaultTableCellFont,
+                                                        NSForegroundColorAttributeName : FLEXColor.primaryTextColor };
 
     NSString *title = [NSString stringWithFormat:@"%@: ", row.title];
     NSString *detailText = row.detailText ?: @"";
@@ -230,9 +255,8 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
 
 #pragma mark - Table Data Generation
 
-+ (FLEXNetworkDetailSection *)generalSectionForTransaction:(FLEXNetworkTransaction *)transaction
-{
-    NSMutableArray<FLEXNetworkDetailRow *> *rows = [NSMutableArray array];
++ (FLEXNetworkDetailSection *)generalSectionForTransaction:(FLEXNetworkTransaction *)transaction {
+    NSMutableArray<FLEXNetworkDetailRow *> *rows = [NSMutableArray new];
 
     FLEXNetworkDetailRow *requestURLRow = [FLEXNetworkDetailRow new];
     requestURLRow.title = @"Request URL";
@@ -297,7 +321,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
 
     FLEXNetworkDetailRow *responseBodyRow = [FLEXNetworkDetailRow new];
     responseBodyRow.title = @"Response Body";
-    NSData *responseData = [[FLEXNetworkRecorder defaultRecorder] cachedResponseBodyForTransaction:transaction];
+    NSData *responseData = [FLEXNetworkRecorder.defaultRecorder cachedResponseBodyForTransaction:transaction];
     if (responseData.length > 0) {
         responseBodyRow.detailText = @"tap to view";
 
@@ -353,7 +377,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     startTimeFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
 
     FLEXNetworkDetailRow *localStartTimeRow = [FLEXNetworkDetailRow new];
-    localStartTimeRow.title = [NSString stringWithFormat:@"Start Time (%@)", [[NSTimeZone localTimeZone] abbreviationForDate:transaction.startTime]];
+    localStartTimeRow.title = [NSString stringWithFormat:@"Start Time (%@)", [NSTimeZone.localTimeZone abbreviationForDate:transaction.startTime]];
     localStartTimeRow.detailText = [startTimeFormatter stringFromDate:transaction.startTime];
     [rows addObject:localStartTimeRow];
 
@@ -386,8 +410,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return generalSection;
 }
 
-+ (FLEXNetworkDetailSection *)requestHeadersSectionForTransaction:(FLEXNetworkTransaction *)transaction
-{
++ (FLEXNetworkDetailSection *)requestHeadersSectionForTransaction:(FLEXNetworkTransaction *)transaction {
     FLEXNetworkDetailSection *requestHeadersSection = [FLEXNetworkDetailSection new];
     requestHeadersSection.title = @"Request Headers";
     requestHeadersSection.rows = [self networkDetailRowsFromDictionary:transaction.request.allHTTPHeaderFields];
@@ -395,8 +418,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return requestHeadersSection;
 }
 
-+ (FLEXNetworkDetailSection *)postBodySectionForTransaction:(FLEXNetworkTransaction *)transaction
-{
++ (FLEXNetworkDetailSection *)postBodySectionForTransaction:(FLEXNetworkTransaction *)transaction {
     FLEXNetworkDetailSection *postBodySection = [FLEXNetworkDetailSection new];
     postBodySection.title = @"Request Body Parameters";
     if (transaction.cachedRequestBody.length > 0) {
@@ -409,8 +431,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return postBodySection;
 }
 
-+ (FLEXNetworkDetailSection *)queryParametersSectionForTransaction:(FLEXNetworkTransaction *)transaction
-{
++ (FLEXNetworkDetailSection *)queryParametersSectionForTransaction:(FLEXNetworkTransaction *)transaction {
     NSArray<NSURLQueryItem *> *queries = [FLEXUtility itemsFromQueryString:transaction.request.URL.query];
     FLEXNetworkDetailSection *querySection = [FLEXNetworkDetailSection new];
     querySection.title = @"Query Parameters";
@@ -419,8 +440,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return querySection;
 }
 
-+ (FLEXNetworkDetailSection *)responseHeadersSectionForTransaction:(FLEXNetworkTransaction *)transaction
-{
++ (FLEXNetworkDetailSection *)responseHeadersSectionForTransaction:(FLEXNetworkTransaction *)transaction {
     FLEXNetworkDetailSection *responseHeadersSection = [FLEXNetworkDetailSection new];
     responseHeadersSection.title = @"Response Headers";
     if ([transaction.response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -430,8 +450,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return responseHeadersSection;
 }
 
-+ (NSArray<FLEXNetworkDetailRow *> *)networkDetailRowsFromDictionary:(NSDictionary<NSString *, id> *)dictionary
-{
++ (NSArray<FLEXNetworkDetailRow *> *)networkDetailRowsFromDictionary:(NSDictionary<NSString *, id> *)dictionary {
     NSMutableArray<FLEXNetworkDetailRow *> *rows = [NSMutableArray new];
     NSArray<NSString *> *sortedKeys = [dictionary.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     
@@ -446,8 +465,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return rows.copy;
 }
 
-+ (NSArray<FLEXNetworkDetailRow *> *)networkDetailRowsFromQueryItems:(NSArray<NSURLQueryItem *> *)items
-{
++ (NSArray<FLEXNetworkDetailRow *> *)networkDetailRowsFromQueryItems:(NSArray<NSURLQueryItem *> *)items {
     // Sort the items by name
     items = [items sortedArrayUsingComparator:^NSComparisonResult(NSURLQueryItem *item1, NSURLQueryItem *item2) {
         return [item1.name caseInsensitiveCompare:item2.name];
@@ -464,9 +482,8 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return [rows copy];
 }
 
-+ (UIViewController *)detailViewControllerForMIMEType:(NSString *)mimeType data:(NSData *)data
-{
-    FLEXCustomContentViewerFuture makeCustomViewer = [FLEXManager sharedManager].customContentTypeViewers[mimeType.lowercaseString];
++ (UIViewController *)detailViewControllerForMIMEType:(NSString *)mimeType data:(NSData *)data {
+    FLEXCustomContentViewerFuture makeCustomViewer = FLEXManager.sharedManager.customContentTypeViewers[mimeType.lowercaseString];
 
     if (makeCustomViewer) {
         UIViewController *viewer = makeCustomViewer(data);
@@ -485,7 +502,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
         }
     } else if ([mimeType hasPrefix:@"image/"]) {
         UIImage *image = [UIImage imageWithData:data];
-        detailViewController = [[FLEXImagePreviewViewController alloc] initWithImage:image];
+        detailViewController = [FLEXImagePreviewViewController forImage:image];
     } else if ([mimeType isEqual:@"application/x-plist"]) {
         id propertyList = [NSPropertyListSerialization propertyListWithData:data options:0 format:NULL error:NULL];
         detailViewController = [[FLEXWebViewController alloc] initWithText:[propertyList description]];
@@ -501,8 +518,7 @@ typedef UIViewController *(^FLEXNetworkDetailRowSelectionFuture)(void);
     return detailViewController;
 }
 
-+ (NSData *)postBodyDataForTransaction:(FLEXNetworkTransaction *)transaction
-{
++ (NSData *)postBodyDataForTransaction:(FLEXNetworkTransaction *)transaction {
     NSData *bodyData = transaction.cachedRequestBody;
     if (bodyData.length > 0) {
         NSString *contentEncoding = [transaction.request valueForHTTPHeaderField:@"Content-Encoding"];

@@ -111,7 +111,7 @@ extension RemarkViewController: ASTableDelegate, ASTableDataSource {
         
         if model.type == .tag {
             let contactTagVC = ContactTagViewController()
-            let nav = WCNavigationController(rootViewController: contactTagVC)
+            let nav = UINavigationController(rootViewController: contactTagVC)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
         }

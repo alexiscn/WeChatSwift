@@ -69,7 +69,7 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
         }
     }
  
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .white
     }
 }

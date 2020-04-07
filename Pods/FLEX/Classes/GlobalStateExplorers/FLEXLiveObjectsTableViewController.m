@@ -3,14 +3,15 @@
 //  Flipboard
 //
 //  Created by Ryan Olson on 5/28/14.
-//  Copyright (c) 2014 Flipboard. All rights reserved.
+//  Copyright (c) 2020 Flipboard. All rights reserved.
 //
 
 #import "FLEXLiveObjectsTableViewController.h"
 #import "FLEXHeapEnumerator.h"
-#import "FLEXInstancesTableViewController.h"
+#import "FLEXObjectListViewController.h"
 #import "FLEXUtility.h"
 #import "FLEXScopeCarousel.h"
+#import "FLEXTableView.h"
 #import <objc/runtime.h>
 
 static const NSInteger kFLEXLiveObjectsSortAlphabeticallyIndex = 0;
@@ -23,15 +24,15 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
 @property (nonatomic) NSDictionary<NSString *, NSNumber *> *instanceSizesForClassNames;
 @property (nonatomic, readonly) NSArray<NSString *> *allClassNames;
 @property (nonatomic) NSArray<NSString *> *filteredClassNames;
+@property (nonatomic) NSString *headerTitle;
 
 @end
 
 @implementation FLEXLiveObjectsTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.showsSearchBar = YES;
     self.searchBarDebounceInterval = kFLEXDebounceInstant;
     self.showsCarousel = YES;
@@ -43,13 +44,11 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
     [self reloadTableData];
 }
 
-- (NSArray<NSString *> *)allClassNames
-{
+- (NSArray<NSString *> *)allClassNames {
     return self.instanceCountsForClassNames.allKeys;
 }
 
-- (void)reloadTableData
-{
+- (void)reloadTableData {
     // Set up a CFMutableDictionary with class pointer keys and NSUInteger values.
     // We abuse CFMutableDictionary a little to have primitive keys through judicious casting, but it gets the job done.
     // The dictionary is intialized with a 0 count for each class so that it doesn't have to expand during enumeration.
@@ -71,8 +70,8 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
     }];
     
     // Convert our CF primitive dictionary into a nicer mapping of class name strings to counts that we will use as the table's model.
-    NSMutableDictionary<NSString *, NSNumber *> *mutableCountsForClassNames = [NSMutableDictionary dictionary];
-    NSMutableDictionary<NSString *, NSNumber *> *mutableSizesForClassNames = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSNumber *> *mutableCountsForClassNames = [NSMutableDictionary new];
+    NSMutableDictionary<NSString *, NSNumber *> *mutableSizesForClassNames = [NSMutableDictionary new];
     for (unsigned int i = 0; i < classCount; i++) {
         Class class = classes[i];
         NSUInteger instanceCount = (NSUInteger)CFDictionaryGetValue(mutableCountsForClasses, (__bridge const void *)(class));
@@ -90,41 +89,46 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
     [self updateSearchResults:nil];
 }
 
-- (void)refreshControlDidRefresh:(id)sender
-{
+- (void)refreshControlDidRefresh:(id)sender {
     [self reloadTableData];
     [self.refreshControl endRefreshing];
 }
 
-- (void)updateTitle
-{
-    NSString *title = @"Live Objects";
-    
+- (void)updateHeaderTitle {
     NSUInteger totalCount = 0;
     NSUInteger totalSize = 0;
     for (NSString *className in self.allClassNames) {
-        NSUInteger count = [self.instanceCountsForClassNames[className] unsignedIntegerValue];
+        NSUInteger count = self.instanceCountsForClassNames[className].unsignedIntegerValue;
         totalCount += count;
-        totalSize += count * [self.instanceSizesForClassNames[className] unsignedIntegerValue];
+        totalSize += count * self.instanceSizesForClassNames[className].unsignedIntegerValue;
     }
+
     NSUInteger filteredCount = 0;
     NSUInteger filteredSize = 0;
     for (NSString *className in self.filteredClassNames) {
-        NSUInteger count = [self.instanceCountsForClassNames[className] unsignedIntegerValue];
+        NSUInteger count = self.instanceCountsForClassNames[className].unsignedIntegerValue;
         filteredCount += count;
-        filteredSize += count * [self.instanceSizesForClassNames[className] unsignedIntegerValue];
+        filteredSize += count * self.instanceSizesForClassNames[className].unsignedIntegerValue;
     }
     
     if (filteredCount == totalCount) {
         // Unfiltered
-        title = [title stringByAppendingFormat:@" (%lu, %@)", (unsigned long)totalCount,
-              [NSByteCountFormatter stringFromByteCount:totalSize countStyle:NSByteCountFormatterCountStyleFile]];
+        self.headerTitle = [NSString
+            stringWithFormat:@"%@ objects, %@",
+            @(totalCount), [NSByteCountFormatter
+                stringFromByteCount:totalSize
+                countStyle:NSByteCountFormatterCountStyleFile
+            ]
+        ];
     } else {
-        title = [title stringByAppendingFormat:@" (filtered, %lu, %@)", (unsigned long)filteredCount,
-              [NSByteCountFormatter stringFromByteCount:filteredSize countStyle:NSByteCountFormatterCountStyleFile]];
+        self.headerTitle = [NSString
+            stringWithFormat:@"%@ of %@ objects, %@",
+            @(filteredCount), @(totalCount), [NSByteCountFormatter
+                stringFromByteCount:filteredSize
+                countStyle:NSByteCountFormatterCountStyleFile
+            ]
+        ];
     }
-    
-    self.title = title;
 }
 
 
@@ -135,14 +139,16 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
 }
 
 + (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
-    return [self new];
+    FLEXLiveObjectsTableViewController *liveObjectsViewController = [self new];
+    liveObjectsViewController.title = [self globalsEntryTitle:row];
+
+    return liveObjectsViewController;
 }
 
 
 #pragma mark - Search bar
 
-- (void)updateSearchResults:(NSString *)filter
-{
+- (void)updateSearchResults:(NSString *)filter {
     NSInteger selectedScope = self.selectedScope;
     
     if (filter.length) {
@@ -172,50 +178,53 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
         }];
     }
     
-    [self updateTitle];
+    [self updateHeaderTitle];
     [self.tableView reloadData];
 }
 
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredClassNames.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.font = [FLEXUtility defaultTableViewCellLabelFont];
-    }
-    
+- (UITableViewCell *)tableView:(__kindof UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView
+        dequeueReusableCellWithIdentifier:kFLEXDefaultCell
+        forIndexPath:indexPath
+    ];
+
     NSString *className = self.filteredClassNames[indexPath.row];
     NSNumber *count = self.instanceCountsForClassNames[className];
     NSNumber *size = self.instanceSizesForClassNames[className];
     unsigned long totalSize = count.unsignedIntegerValue * size.unsignedIntegerValue;
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld, %@)", className, (long)[count integerValue],
-        [NSByteCountFormatter stringFromByteCount:totalSize countStyle:NSByteCountFormatterCountStyleFile]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld, %@)",
+        className, (long)[count integerValue],
+        [NSByteCountFormatter
+            stringFromByteCount:totalSize
+            countStyle:NSByteCountFormatterCountStyleFile
+        ]
+    ];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.headerTitle;
 }
 
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *className = self.filteredClassNames[indexPath.row];
-    FLEXInstancesTableViewController *instancesViewController = [FLEXInstancesTableViewController instancesTableViewControllerForClassName:className];
+    FLEXObjectListViewController *instancesViewController = [FLEXObjectListViewController instancesOfClassWithName:className];
     [self.navigationController pushViewController:instancesViewController animated:YES];
 }
 

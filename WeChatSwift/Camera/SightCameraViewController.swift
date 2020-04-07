@@ -25,6 +25,8 @@ class SightCameraViewController: ASViewController<ASDisplayNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        modalPresentationCapturesStatusBarAppearance = true
+        
         view.backgroundColor = .black
         let bgView = SightCameraGradientView(frame: view.bounds)
         view.addSubview(bgView)
@@ -57,6 +59,10 @@ class SightCameraViewController: ASViewController<ASDisplayNode> {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    override var wx_navigationBarBackgroundColor: UIColor? {
+        return .clear
+    }
 }
 
 // MARK: - Event Handlers
@@ -84,5 +90,13 @@ extension SightCameraViewController: SightCameraShotVideoViewDelegate {
     
     func cameraShotVideoViewDidTapSwitchButton() {
         camera.switchCamera()
+    }
+    
+    func cameraShotVideoViewDidTakePhoto() {
+        camera.takePhoto { image in
+            if let img = image {
+                print(img)
+            }
+        }
     }
 }

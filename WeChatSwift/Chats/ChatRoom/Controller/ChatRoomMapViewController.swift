@@ -77,42 +77,49 @@ class ChatRoomMapViewController: UIViewController {
         informationView = UIView()
         informationView.backgroundColor = Colors.white
         view.addSubview(informationView)
-        informationView.snp.makeConstraints { make in
-            make.leading.bottom.trailing.equalToSuperview()
-            make.height.equalTo(height)
-        }
+        informationView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            informationView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            informationView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            informationView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            informationView.heightAnchor.constraint(equalToConstant: height)
+        ])
         
         let locationLabel = UILabel()
         locationLabel.font = UIFont.systemFont(ofSize: 21)
         locationLabel.textColor = Colors.black
         locationLabel.text = location.title
         informationView.addSubview(locationLabel)
-        locationLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.centerY.equalToSuperview().offset(-10)
-            make.trailing.equalToSuperview().offset(-70)
-        }
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            locationLabel.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 15),
+            locationLabel.centerYAnchor.constraint(equalTo: informationView.centerYAnchor, constant: -10),
+            locationLabel.trailingAnchor.constraint(equalTo: informationView.trailingAnchor, constant: -70)
+        ])
         
         let addressLabel = UILabel()
         addressLabel.font = UIFont.systemFont(ofSize: 12)
         addressLabel.textColor = Colors.DEFAULT_TEXT_GRAY_COLOR
         addressLabel.text = location.subTitle
         informationView.addSubview(addressLabel)
-        addressLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.top.equalTo(locationLabel.snp.bottom).offset(3)
-            make.trailing.equalToSuperview().offset(-70)
-        }
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addressLabel.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 15),
+            addressLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 3),
+            addressLabel.trailingAnchor.constraint(equalTo: informationView.trailingAnchor, constant: -70)
+        ])
         
         let directionButton = UIButton(type: .custom)
         directionButton.setImage(UIImage(named: "locationSharing_navigate_icon_new_50x50_"), for: .normal)
         directionButton.setImage(UIImage(named: "locationSharing_navigate_icon_HL_new_50x50_"), for: .highlighted)
         informationView.addSubview(directionButton)
-        directionButton.snp.makeConstraints { make in
-            make.height.width.equalTo(50)
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-16)
-        }
+        directionButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            directionButton.widthAnchor.constraint(equalToConstant: 50),
+            directionButton.heightAnchor.constraint(equalToConstant: 50),
+            directionButton.centerYAnchor.constraint(equalTo: informationView.centerYAnchor),
+            directionButton.trailingAnchor.constraint(equalTo: informationView.trailingAnchor, constant: -16)
+        ])
     }
     
     private func fixNavigationSwipeGesture() {
@@ -122,7 +129,7 @@ class ChatRoomMapViewController: UIViewController {
         view.addSubview(transparent)
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .clear
     }
     

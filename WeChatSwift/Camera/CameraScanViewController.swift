@@ -211,15 +211,15 @@ class CameraScanViewController: ASViewController<ASDisplayNode> {
         return .lightContent
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .clear
     }
     
-    override var wc_barTintColor: UIColor? {
+    override var wx_barTintColor: UIColor? {
         return .white
     }
     
-    override var wc_titleTextAttributes: [NSAttributedString.Key : Any]? {
+    override var wx_titleTextAttributes: [NSAttributedString.Key : Any]? {
         return [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }
@@ -238,7 +238,7 @@ extension CameraScanViewController {
         albumPickerVC.selectionHandler = selectionHandler
         let assetPickerVC = AssetPickerViewController(configuration: configuration)
         assetPickerVC.selectionHandler = selectionHandler
-        let nav = WCNavigationController()
+        let nav = UINavigationController()
         nav.setViewControllers([albumPickerVC, assetPickerVC], animated: false)
         present(nav, animated: true, completion: nil)
     }

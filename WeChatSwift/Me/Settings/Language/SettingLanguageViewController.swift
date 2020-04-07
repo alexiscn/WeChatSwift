@@ -61,10 +61,7 @@ extension SettingLanguageViewController {
         if let selected = selectedLanguage, selected != LanguageManager.shared.current {
             LanguageManager.shared.current = selected
         }
-        dismiss(animated: true) {
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.rootViewController.handleLanguageDidChanged()
-        }
+        dismiss(animated: true, completion: nil)
     }
 }
 

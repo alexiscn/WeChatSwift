@@ -3,7 +3,7 @@
 //  Flipboard
 //
 //  Created by Ryan Olson on 5/28/14.
-//  Copyright (c) 2014 Flipboard. All rights reserved.
+//  Copyright (c) 2020 Flipboard. All rights reserved.
 //
 
 #import "FLEXHeapEnumerator.h"
@@ -20,8 +20,7 @@ typedef struct {
 
 @implementation FLEXHeapEnumerator
 
-static void range_callback(task_t task, void *context, unsigned type, vm_range_t *ranges, unsigned rangeCount)
-{
+static void range_callback(task_t task, void *context, unsigned type, vm_range_t *ranges, unsigned rangeCount) {
     if (!context) {
         return;
     }
@@ -44,14 +43,12 @@ static void range_callback(task_t task, void *context, unsigned type, vm_range_t
     }
 }
 
-static kern_return_t reader(__unused task_t remote_task, vm_address_t remote_address, __unused vm_size_t size, void **local_memory)
-{
+static kern_return_t reader(__unused task_t remote_task, vm_address_t remote_address, __unused vm_size_t size, void **local_memory) {
     *local_memory = (void *)remote_address;
     return KERN_SUCCESS;
 }
 
-+ (void)enumerateLiveObjectsUsingBlock:(flex_object_enumeration_block_t)block
-{
++ (void)enumerateLiveObjectsUsingBlock:(flex_object_enumeration_block_t)block {
     if (!block) {
         return;
     }
@@ -71,12 +68,10 @@ static kern_return_t reader(__unused task_t remote_task, vm_address_t remote_add
         for (unsigned int i = 0; i < zoneCount; i++) {
             malloc_zone_t *zone = (malloc_zone_t *)zones[i];
             malloc_introspection_t *introspection = zone->introspect;
-            NSString *zoneName = @(zone->zone_name);
 
-            // We only need to look at the default malloc zone.
             // This may explain why some zone functions are
             // sometimes invalid; perhaps not all zones support them?
-            if (![zoneName isEqualToString:@"DefaultMallocZone"] || !introspection) {
+            if (!introspection) {
                 continue;
             }
 
@@ -114,15 +109,11 @@ static kern_return_t reader(__unused task_t remote_task, vm_address_t remote_add
                 introspection->enumerator(TASK_NULL, (void *)&callback, MALLOC_PTR_IN_USE_RANGE_TYPE, (vm_address_t)zone, reader, &range_callback);
                 unlock_zone(zone);
             }
-
-            // Only one zone to enumerate
-            break;
         }
     }
 }
 
-+ (void)updateRegisteredClasses
-{
++ (void)updateRegisteredClasses {
     if (!registeredClasses) {
         registeredClasses = CFSetCreateMutable(NULL, 0, NULL);
     } else {

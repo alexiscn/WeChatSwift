@@ -44,7 +44,7 @@ class MomentSetBackgroundViewController: ASViewController<ASDisplayNode> {
         guard let path = Bundle.main.path(forResource: "MomentCoverBackground", ofType: "json"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
             return
-        }
+        } 
         
         do {
             let model = try JSONDecoder().decode(MomentBackgroundModel.self, from: data)

@@ -78,21 +78,21 @@ class ShakeViewController: ASViewController<ASDisplayNode> {
         super.motionEnded(motion, with: event)
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return UIColor(hexString: "#2E3132")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
-    override var wc_titleTextAttributes: [NSAttributedString.Key : Any]? {
+    override var wx_titleTextAttributes: [NSAttributedString.Key : Any]? {
         return [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
-    override var wc_barTintColor: UIColor {
+    override var wx_barTintColor: UIColor {
         return UIColor.white
     }
     
-    override var wc_barBarTintColor: UIColor? {
+    override var wx_barBarTintColor: UIColor? {
         return UIColor.white
     }
 }

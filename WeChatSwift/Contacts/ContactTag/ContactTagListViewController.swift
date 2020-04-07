@@ -63,7 +63,7 @@ class ContactTagListViewController: ASViewController<ASDisplayNode> {
     
     private func presentCreateTagViewController() {
         let createTagDetailVC = ContactTagCreateDetailViewController()
-        let nav = WCNavigationController(rootViewController: createTagDetailVC)
+        let nav = UINavigationController(rootViewController: createTagDetailVC)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }

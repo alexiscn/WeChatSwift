@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import SnapKit
 import AsyncDisplayKit
 import FLEX
+import WXNavigationBar
 
 typealias RelayCommand = () -> Void
 
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        WXNavigationBar.setup()
         rootViewController = RootViewController()
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         AppContext.current.doHeavySetup()
         
-        UIViewController.swizzle
         UIView.fixTabBarButtonFrame()
         return true
     }
@@ -51,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     @objc private func handleLongPressStatusBar(_ gesture: UILongPressGestureRecognizer) {
         if AppConfiguration.current() == .debug && gesture.state == .began {
-            FLEXManager.shared()?.showExplorer()
+            FLEXManager.shared.showExplorer()
         }
     }
 

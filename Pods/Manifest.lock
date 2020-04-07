@@ -1,11 +1,13 @@
 PODS:
-  - Alamofire (4.9.1)
-  - CocoaLumberjack (3.6.0):
-    - CocoaLumberjack/Core (= 3.6.0)
-  - CocoaLumberjack/Core (3.6.0)
+  - Alamofire (5.0.5)
+  - CocoaLumberjack (3.6.1):
+    - CocoaLumberjack/Core (= 3.6.1)
+  - CocoaLumberjack/Core (3.6.1)
   - FLAnimatedImage (1.0.12)
-  - FLEX (3.1.0)
-  - MMKV (1.0.23)
+  - FLEX (4.0.0)
+  - MMKV (1.1.0):
+    - MMKVCore (~> 1.1.0)
+  - MMKVCore (1.1.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
     - PINCache/Core (= 3.0.1-beta.6)
@@ -29,7 +31,6 @@ PODS:
     - PINRemoteImage/Core
   - SFVideoPlayer (0.0.1):
     - Alamofire
-  - SnapKit (5.0.1)
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - SSZipArchive (2.2.2)
@@ -60,18 +61,19 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
   - WXActionSheet (0.3.0)
+  - WXNavigationBar (2.0.1)
 
 DEPENDENCIES:
   - FLEX
   - MMKV
   - PINRemoteImage (= 3.0.0-beta.13)
   - SFVideoPlayer (from `DevelopmentPods/SFVideoPlayer`)
-  - SnapKit
   - SSZipArchive
   - SVGKit (from `DevelopmentPods/SVGKit`)
   - Texture
   - WCDB.swift
   - WXActionSheet
+  - WXNavigationBar
 
 SPEC REPOS:
   trunk:
@@ -80,16 +82,17 @@ SPEC REPOS:
     - FLAnimatedImage
     - FLEX
     - MMKV
+    - MMKVCore
     - PINCache
     - PINOperation
     - PINRemoteImage
-    - SnapKit
     - SQLiteRepairKit
     - SSZipArchive
     - Texture
     - WCDB.swift
     - WCDBOptimizedSQLCipher
     - WXActionSheet
+    - WXNavigationBar
 
 EXTERNAL SOURCES:
   SFVideoPlayer:
@@ -98,16 +101,16 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/SVGKit
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FLEX: e7a0cc5ca79419d3b0cf0d39fa7a46cb39cec7fd
-  MMKV: 031ae51aedc0af1b250922f7ed8a6b6ee2f94c4c
+  FLEX: 3fb1e8096b230a08a5d4d5f3c2992b84399a6abf
+  MMKV: 7bb6c30f9ff2ea45bc2398c86e66dd1cb63cfe20
+  MMKVCore: f1e0aad4fc330e7cbfbdff16720017bf0973db5a
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   SFVideoPlayer: 1711cf67ba0c21aa3ba4e05828b5f1cc56882898
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   SVGKit: eb32a7710074d7c543d70a745634a4358bda66ee
@@ -115,7 +118,8 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: 8a1817ad641a892b17b53e157b6ec15ca7d1ff95
+  WXNavigationBar: 4c19edb8ae8fa39e67b09df7d987fca08c8e58d4
 
-PODFILE CHECKSUM: 6de6973f0800903acfa5a4c357b41ea14cde186b
+PODFILE CHECKSUM: c57e9358893eab2e7059e1478b690b1290c2f2c7
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

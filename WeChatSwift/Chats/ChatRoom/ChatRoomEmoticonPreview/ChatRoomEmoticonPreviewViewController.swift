@@ -50,11 +50,13 @@ class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
         animatedImageView.pin_setImage(from: emoticonMsg.url)
         view.addSubview(animatedImageView)
         let width = Constants.screenWidth * 0.4
-        animatedImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(width)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-60)
-        }
+        animatedImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            animatedImageView.widthAnchor.constraint(equalToConstant: width),
+            animatedImageView.heightAnchor.constraint(equalToConstant: width),
+            animatedImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            animatedImageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -60)
+        ])
     }
     
     private func setupNameLabel() {
@@ -63,10 +65,11 @@ class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
         nameLabel.font = UIFont.systemFont(ofSize: 16)
         nameLabel.text = emoticonMsg.title
         view.addSubview(nameLabel)
-        nameLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(animatedImageView.snp.bottom).offset(16)
-        }
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: animatedImageView.bottomAnchor, constant: 16)
+        ])
     }
  
     @objc private func moreButtonClicked() {

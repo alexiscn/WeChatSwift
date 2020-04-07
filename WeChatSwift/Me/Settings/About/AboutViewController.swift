@@ -49,7 +49,7 @@ class AboutViewController: ASViewController<ASDisplayNode> {
         tableNode.reloadData()
     }
     
-    override var wc_navigationBarBackgroundColor: UIColor? {
+    override var wx_navigationBarBackgroundColor: UIColor? {
         return .white
     }
 }

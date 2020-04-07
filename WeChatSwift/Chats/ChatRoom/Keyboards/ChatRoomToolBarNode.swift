@@ -19,6 +19,7 @@ enum ChatRoomKeyboardType {
 protocol ChatRoomToolBarNodeDelegate {
     func toolBar(_ toolBar: ChatRoomToolBarNode, didSendText text: String)
     func toolBar(_ toolBar: ChatRoomToolBarNode, keyboardTypeChanged keyboard: ChatRoomKeyboardType)
+    func toolBarFrameUpdated()
 }
 
 final class ChatRoomToolBarNode: ASDisplayNode {
@@ -133,6 +134,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         textNode.layer.cornerRadius = 6
         textNode.layer.masksToBounds = true
         textNode.maximumLinesToDisplay = 4
+        textNode.style.minHeight = ASDimensionMake(40)
     
         let buttonNodes = [voiceNode, emotionNode, moreNode]
         buttonNodes.forEach { $0.addTarget(self, action: #selector(tapToolBarButtonNode(_:)), forControlEvents: .touchUpInside) }
@@ -181,7 +183,6 @@ final class ChatRoomToolBarNode: ASDisplayNode {
             
         textNode.style.flexGrow = 1.0
         textNode.style.flexShrink = 1.0
-        textNode.style.minHeight = ASDimensionMake(40)
         
 //        voiceButtonNode.style.flexGrow = 1.0
 //        voiceButtonNode.style.flexShrink = 1.0
@@ -191,6 +192,7 @@ final class ChatRoomToolBarNode: ASDisplayNode {
         //let element = (keyboard == .voice && voiceNode.isSelected) ? voiceButtonNode: textNode
         
         let layoutSpec = ASStackLayoutSpec.horizontal()
+        layoutSpec.style.flexGrow = 1.0
         layoutSpec.alignItems = .end
         layoutSpec.children = [voiceNode, textNode, emotionNode, moreNode]
         
@@ -219,7 +221,29 @@ extension ChatRoomToolBarNode: ASEditableTextNodeDelegate {
     func editableTextNodeDidUpdateText(_ editableTextNode: ASEditableTextNode) {
 //        let frame = editableTextNode.frame(forTextRange: NSRange(location: 0, length: editableTextNode.textView.text.count))
 //        print(frame)
-        setNeedsLayout()
+        
+        guard let lineHeight = editableTextNode.textView.font?.lineHeight else {
+            return
+        }
+        
+        let maxHeight = ceil(lineHeight * CGFloat(4)
+            + editableTextNode.textView.textContainerInset.top
+            + editableTextNode.textView.textContainerInset.bottom)
+        let sizeToFit = CGSize(width: editableTextNode.textView.bounds.width,
+                               height: UIView.layoutFittingExpandedSize.height)
+        let contentHeight = ceil(editableTextNode.textView.sizeThatFits(sizeToFit).height)
+        editableTextNode.textView.isScrollEnabled = contentHeight > maxHeight
+        let newHeight = min(contentHeight, maxHeight)
+        let diff = abs(newHeight - editableTextNode.textView.frame.height)
+        if diff > 0.1 {
+            editableTextNode.textView.frame.size.height = newHeight
+            textNode.style.preferredSize.height = newHeight
+            setNeedsLayout()
+            layoutIfNeeded()
+            DispatchQueue.main.async {
+                self.delegate?.toolBarFrameUpdated()
+            }
+        }
     }
 }
 
