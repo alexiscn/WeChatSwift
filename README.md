@@ -1,5 +1,8 @@
 # WeChatSwift
-iOS WeChat App Written in Swift 5.0 and [Texture](https://github.com/TextureGroup/Texture)
+
+iOS WeChat App Written in Swift 5.0 and [Texture](https://github.com/TextureGroup/Texture). 
+
+Also there is an experimental project build top on SwiftUI [WeChatUI](https://github.com/alexiscn/WeChatUI).
 
 
 Requirements
