@@ -5,6 +5,7 @@ target 'WeChatSwift' do
   
   pod 'WXNavigationBar'
   pod 'WXActionSheet'
+  pod 'WXGrowingTextView'
   pod 'MMKV'
   pod 'WCDB.swift'
   pod 'Texture'

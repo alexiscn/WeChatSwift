@@ -61,6 +61,7 @@ PODS:
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
   - WXActionSheet (0.3.0)
+  - WXGrowingTextView (0.0.3)
   - WXNavigationBar (2.0.1)
 
 DEPENDENCIES:
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - Texture
   - WCDB.swift
   - WXActionSheet
+  - WXGrowingTextView
   - WXNavigationBar
 
 SPEC REPOS:
@@ -92,6 +94,7 @@ SPEC REPOS:
     - WCDB.swift
     - WCDBOptimizedSQLCipher
     - WXActionSheet
+    - WXGrowingTextView
     - WXNavigationBar
 
 EXTERNAL SOURCES:
@@ -118,8 +121,9 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   WXActionSheet: 8a1817ad641a892b17b53e157b6ec15ca7d1ff95
+  WXGrowingTextView: f5fac8c9b151fd0a630c4f949b7cba775f2692d6
   WXNavigationBar: 4c19edb8ae8fa39e67b09df7d987fca08c8e58d4
 
-PODFILE CHECKSUM: c57e9358893eab2e7059e1478b690b1290c2f2c7
+PODFILE CHECKSUM: f6ba9923b5baf2aacf3479dc9e43253da652d9c8
 
 COCOAPODS: 1.9.1
