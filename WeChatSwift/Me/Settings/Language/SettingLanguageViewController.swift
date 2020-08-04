@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class SettingLanguageViewController: ASViewController<ASDisplayNode> {
+class SettingLanguageViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
@@ -16,7 +16,7 @@ class SettingLanguageViewController: ASViewController<ASDisplayNode> {
     
     private var selectedLanguage: Language?
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

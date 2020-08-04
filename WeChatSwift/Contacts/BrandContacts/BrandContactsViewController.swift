@@ -8,11 +8,11 @@
 
 import AsyncDisplayKit
 
-class BrandContactsViewController: ASViewController<ASDisplayNode> {
+class BrandContactsViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.delegate = self

@@ -99,7 +99,10 @@ open class WXGrowingTextView: UIView {
     
     open var attributedText: NSAttributedString? {
         get { return textView.attributedText }
-        set { textView.attributedText = newValue }
+        set {
+            textView.attributedText = newValue
+            textViewDidChange(textView)
+        }
     }
     
     open var isScrollEnabled: Bool {
@@ -254,6 +257,12 @@ extension WXGrowingTextView {
     open var placeholderColor: UIColor {
         get { return textView.placeholderColor }
         set { textView.placeholderColor = newValue }
+    }
+    
+    /// The text font of the placeholder.  The default value is UIFont.systemFont(ofSize: 15) .
+    open var placeholderFont: UIFont {
+        get { return textView.placeholderFont }
+        set { textView.placeholderFont = newValue }
     }
 }
 

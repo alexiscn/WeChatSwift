@@ -23,9 +23,7 @@
 #ifdef  __cplusplus
 
 #include "MMBuffer.h"
-#include "MMKVPredef.h"
 #include <cstdint>
-#include <vector>
 
 namespace mmkv {
 class CodedOutputData;
@@ -50,20 +48,25 @@ enum MMKVMode : uint32_t {
 
 class MMKV {
 #ifndef MMKV_ANDROID
-    MMKV(const std::string &mmapID, MMKVMode mode, std::string *cryptKey, MMKVPath_t *relativePath);
     std::string m_mmapKey;
+    MMKV(const std::string &mmapID, MMKVMode mode, std::string *cryptKey, MMKVPath_t *rootPath);
 #else // defined(MMKV_ANDROID)
-    MMKV(const std::string &mmapID, int size, MMKVMode mode, std::string *cryptKey, MMKVPath_t *relativePath);
+    mmkv::FileLock *m_fileModeLock;
+    mmkv::InterProcessLock *m_sharedProcessModeLock;
+    mmkv::InterProcessLock *m_exclusiveProcessModeLock;
+
+    MMKV(const std::string &mmapID, int size, MMKVMode mode, std::string *cryptKey, MMKVPath_t *rootPath);
 
     MMKV(const std::string &mmapID, int ashmemFD, int ashmemMetaFd, std::string *cryptKey = nullptr);
 #endif
 
     ~MMKV();
 
-    mmkv::MMKVMap m_dic;
     std::string m_mmapID;
     MMKVPath_t m_path;
     MMKVPath_t m_crcPath;
+    mmkv::MMKVMap *m_dic;
+    mmkv::MMKVMapCrypt *m_dicCrypt;
 
     mmkv::MemoryFile *m_file;
     size_t m_actualSize;
@@ -83,7 +86,7 @@ class MMKV {
     mmkv::InterProcessLock *m_sharedProcessLock;
     mmkv::InterProcessLock *m_exclusiveProcessLock;
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
     using MMKVKey_t = NSString *__unsafe_unretained;
     static bool isKeyEmpty(MMKVKey_t key) { return key.length <= 0; }
 #else
@@ -115,34 +118,40 @@ class MMKV {
 
     bool ensureMemorySize(size_t newSize);
 
-    bool fullWriteback();
+    bool fullWriteback(mmkv::AESCrypt *newCrypter = nullptr);
 
-    bool doFullWriteBack(mmkv::MMBuffer &&allData);
+    bool doFullWriteBack(std::pair<mmkv::MMBuffer, size_t> preparedData, mmkv::AESCrypt *newCrypter);
 
-    const mmkv::MMBuffer &getDataForKey(MMKVKey_t key);
+    mmkv::MMBuffer getDataForKey(MMKVKey_t key);
 
-    bool setDataForKey(mmkv::MMBuffer &&data, MMKVKey_t key);
+    // isDataHolder: avoid memory copying
+    bool setDataForKey(mmkv::MMBuffer &&data, MMKVKey_t key, bool isDataHolder = false);
 
     bool removeDataForKey(MMKVKey_t key);
 
-    bool appendDataWithKey(const mmkv::MMBuffer &data, MMKVKey_t key);
+    using KVHolderRet_t = std::pair<bool, mmkv::KeyValueHolder>;
+    // isDataHolder: avoid memory copying
+    KVHolderRet_t doAppendDataWithKey(const mmkv::MMBuffer &data, const mmkv::MMBuffer &key, bool isDataHolder, uint32_t keyLength);
+    KVHolderRet_t appendDataWithKey(const mmkv::MMBuffer &data, MMKVKey_t key, bool isDataHolder = false);
+    KVHolderRet_t appendDataWithKey(const mmkv::MMBuffer &data, const mmkv::KeyValueHolder &kvHolder, bool isDataHolder = false);
+#ifdef MMKV_APPLE
+    KVHolderRet_t appendDataWithKey(const mmkv::MMBuffer &data,
+                                    MMKVKey_t key,
+                                    const mmkv::KeyValueHolderCrypt &kvHolder,
+                                    bool isDataHolder = false);
+#endif
 
     void notifyContentChanged();
 
-#ifdef MMKV_ANDROID
+#if defined(MMKV_ANDROID) && !defined(MMKV_DISABLE_CRYPT)
     void checkReSetCryptKey(int fd, int metaFD, std::string *cryptKey);
-#endif
-
-#ifdef MMKV_IOS
-    typedef void (^WriteBlock)(mmkv::CodedOutputData *output);
-    bool protectFromBackgroundWriting(size_t size, WriteBlock block);
 #endif
 
 public:
     // call this before getting any MMKV instance
     static void initializeMMKV(const MMKVPath_t &rootDir, MMKVLogLevel logLevel = MMKVLogInfo);
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
     // protect from some old code that don't call initializeMMKV()
     static void minimalInit(MMKVPath_t defaultRootDir);
 #endif
@@ -158,7 +167,7 @@ public:
     static MMKV *mmkvWithID(const std::string &mmapID,
                             MMKVMode mode = MMKV_SINGLE_PROCESS,
                             std::string *cryptKey = nullptr,
-                            MMKVPath_t *relativePath = nullptr);
+                            MMKVPath_t *rootPath = nullptr);
 
 #else // defined(MMKV_ANDROID)
 
@@ -169,7 +178,7 @@ public:
                             int size = mmkv::DEFAULT_MMAP_SIZE,
                             MMKVMode mode = MMKV_SINGLE_PROCESS,
                             std::string *cryptKey = nullptr,
-                            MMKVPath_t *relativePath = nullptr);
+                            MMKVPath_t *rootPath = nullptr);
 
     static MMKV *mmkvWithAshmemFD(const std::string &mmapID, int fd, int metaFD, std::string *cryptKey = nullptr);
 
@@ -177,6 +186,7 @@ public:
 
     int ashmemMetaFD();
 
+    bool checkProcessMode();
 #endif // MMKV_ANDROID
 
     // you can call this on application termination, it's totally fine if you don't call
@@ -186,6 +196,7 @@ public:
 
     const bool m_isInterProcess;
 
+#ifndef MMKV_DISABLE_CRYPT
     std::string cryptKey();
 
     // transform plain text into encrypted text, or vice versa with empty cryptKey
@@ -195,6 +206,7 @@ public:
     // just reset cryptKey (will not encrypt or decrypt anything)
     // usually you should call this method after other process reKey() the multi-process mmkv
     void checkReSetCryptKey(const std::string *cryptKey);
+#endif
 
     bool set(bool value, MMKVKey_t key);
 
@@ -214,11 +226,11 @@ public:
     template <typename T>
     bool set(T value, MMKVKey_t key) = delete;
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
     bool set(NSObject<NSCoding> *__unsafe_unretained obj, MMKVKey_t key);
 
     NSObject *getObject(MMKVKey_t key, Class cls);
-#else  // !defined(MMKV_IOS_OR_MAC)
+#else  // !defined(MMKV_APPLE)
     bool set(const char *value, MMKVKey_t key);
 
     bool set(const std::string &value, MMKVKey_t key);
@@ -232,7 +244,7 @@ public:
     mmkv::MMBuffer getBytes(MMKVKey_t key);
 
     bool getVector(MMKVKey_t key, std::vector<std::string> &result);
-#endif // MMKV_IOS_OR_MAC
+#endif // MMKV_APPLE
 
     bool getBool(MMKVKey_t key, bool defaultValue = false);
 
@@ -264,7 +276,7 @@ public:
 
     size_t actualSize();
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
     NSArray *allKeys();
 
     void removeValuesForKeys(NSArray *arrKeys);
@@ -274,12 +286,13 @@ public:
 
 #    ifdef MMKV_IOS
     static void setIsInBackground(bool isInBackground);
+    static bool isInBackground();
 #    endif
-#else  // !defined(MMKV_IOS_OR_MAC)
+#else  // !defined(MMKV_APPLE)
     std::vector<std::string> allKeys();
 
     void removeValuesForKeys(const std::vector<std::string> &arrKeys);
-#endif // MMKV_IOS_OR_MAC
+#endif // MMKV_APPLE
 
     void removeValueForKey(MMKVKey_t key);
 

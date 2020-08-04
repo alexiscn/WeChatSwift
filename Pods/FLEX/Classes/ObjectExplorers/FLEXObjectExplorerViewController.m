@@ -73,6 +73,7 @@
         kFLEXDefaultsHidePropertyIvarsKey,
         kFLEXDefaultsHidePropertyMethodsKey,
         kFLEXDefaultsHideMethodOverridesKey,
+        kFLEXDefaultsHideVariablePreviewsKey,
     ];
 }
 
@@ -101,7 +102,7 @@
     
     // ... button for extra options
     [self addToolbarItems:@[[UIBarButtonItem
-        itemWithImage:FLEXResources.moreIcon target:self action:@selector(moreButtonPressed)
+        itemWithImage:FLEXResources.moreIcon target:self action:@selector(moreButtonPressed:)
     ]]];
 
     // Swipe gestures to swipe between classes in the hierarchy
@@ -122,12 +123,7 @@
     //
     // "If your app targets iOS 9.0 and later or macOS 10.11 and later,
     // you don't need to unregister an observer in its dealloc method."
-    NSArray<NSString *> *observedNotifications = @[
-        kFLEXDefaultsHidePropertyIvarsKey,
-        kFLEXDefaultsHidePropertyMethodsKey,
-        kFLEXDefaultsHideMethodOverridesKey,
-    ];
-    for (NSString *pref in observedNotifications) {
+    for (NSString *pref in self.observedNotifications) {
         [NSNotificationCenter.defaultCenter
             addObserver:self
             selector:@selector(fullyReloadData)
@@ -221,7 +217,7 @@
     [super reloadData];
 }
 
-- (void)shareButtonPressed {
+- (void)shareButtonPressed:(UIBarButtonItem *)sender {
     [FLEXAlert makeSheet:^(FLEXAlert *make) {
         make.button(@"Add to Bookmarks").handler(^(NSArray<NSString *> *strings) {
             [FLEXBookmarkManager.bookmarks addObject:self.object];
@@ -233,7 +229,7 @@
             UIPasteboard.generalPasteboard.string = [FLEXUtility addressOfObject:self.object];
         });
         make.button(@"Cancel").cancelStyle();
-    } showFrom:self];
+    } showFrom:self source:sender];
 }
 
 
@@ -289,13 +285,14 @@
     return YES;
 }
     
-- (void)moreButtonPressed {
+- (void)moreButtonPressed:(UIBarButtonItem *)sender {
     NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
     // Maps preference keys to a description of what they affect
     NSDictionary<NSString *, NSString *> *explorerToggles = @{
-        kFLEXDefaultsHidePropertyIvarsKey:   @"Property-Backing Ivars",
-        kFLEXDefaultsHidePropertyMethodsKey: @"Property-Backing Methods",
-        kFLEXDefaultsHideMethodOverridesKey: @"Method Overrides",
+        kFLEXDefaultsHidePropertyIvarsKey:    @"Property-Backing Ivars",
+        kFLEXDefaultsHidePropertyMethodsKey:  @"Property-Backing Methods",
+        kFLEXDefaultsHideMethodOverridesKey:  @"Method Overrides",
+        kFLEXDefaultsHideVariablePreviewsKey: @"Variable Previews"
     };
     
     // Maps the key of the action itself to a map of a description
@@ -303,9 +300,10 @@
     //
     // So keys that are hidden by default have NO mapped to "Show"
     NSDictionary<NSString *, NSDictionary *> *nextStateDescriptions = @{
-        kFLEXDefaultsHidePropertyIvarsKey:   @{ @NO: @"Hide ", @YES: @"Show " },
-        kFLEXDefaultsHidePropertyMethodsKey: @{ @NO: @"Hide ", @YES: @"Show " },
-        kFLEXDefaultsHideMethodOverridesKey: @{ @NO: @"Show ", @YES: @"Hide " },
+        kFLEXDefaultsHidePropertyIvarsKey:    @{ @NO: @"Hide ", @YES: @"Show " },
+        kFLEXDefaultsHidePropertyMethodsKey:  @{ @NO: @"Hide ", @YES: @"Show " },
+        kFLEXDefaultsHideMethodOverridesKey:  @{ @NO: @"Show ", @YES: @"Hide " },
+        kFLEXDefaultsHideVariablePreviewsKey: @{ @NO: @"Hide ", @YES: @"Show " },
     };
     
     [FLEXAlert makeSheet:^(FLEXAlert *make) {
@@ -323,7 +321,7 @@
         }
         
         make.button(@"Cancel").cancelStyle();
-    } showFrom:self];
+    } showFrom:self source:sender];
 }
 
 #pragma mark - Description

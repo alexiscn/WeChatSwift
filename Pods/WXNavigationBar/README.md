@@ -43,6 +43,7 @@ WeChat NavigationBar
      * [background color](#background-color-1)
    * [Dynamic update navigation bar](#dynamic-update-navigation-bar)
    * [wx_navigationBar](#wx_navigationbar)
+   * [Handle back button event](#handle-back-button-event)
 * [Notes](#notes)
    * [Child View Controller](#child_view_controller)
 * [License](#license)
@@ -74,7 +75,7 @@ WeChat NavigationBar
 ```bash
 use_frameworks!
 
-pod 'WXNavigationBar', '~> 2.0.1'
+pod 'WXNavigationBar', '~> 2.3.1'
 ```
 
 ### Carthage
@@ -93,7 +94,7 @@ Once you have your Swift package set up, adding WXNavigationBar as a dependency 
 
 ```
 dependencies: [
-    .package(url: "https://github.com/alexiscn/WXNavigationBar.git", .upToNextMajor(from: "2.0.1"))
+    .package(url: "https://github.com/alexiscn/WXNavigationBar.git", .upToNextMajor(from: "2.3.1"))
 ]
 ```
 
@@ -335,6 +336,23 @@ See `MomentViewController` for details.
 
 `wx_navigationBar` is a subclass of UIView, so you can do anything with `wx_navigationBar` that can be done with UIView.
 
+
+### Handle back button event
+
+If you want to do something when user tap back button, you can override `wx_backButtonClicked` in your view controller. For example, you can present alert when user tap back button. 
+
+```swift
+override func wx_backButtonClicked() {
+    let alert = UIAlertController(title: "Are you sure to exit", message: nil, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+        self?.navigationController?.popViewController(animated: true)
+    }))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        
+    }))
+    present(alert, animated: true, completion: nil)
+}
+```
 
 ## Notes
 

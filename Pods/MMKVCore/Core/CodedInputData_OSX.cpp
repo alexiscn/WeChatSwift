@@ -20,7 +20,7 @@
 
 #include "CodedInputData.h"
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
 
 #    include "PBUtility.h"
 #    include <stdexcept>
@@ -50,6 +50,27 @@ NSString *CodedInputData::readString() {
     }
 }
 
+NSString *CodedInputData::readString(KeyValueHolder &kvHolder) {
+    kvHolder.offset = static_cast<uint32_t>(m_position);
+
+    int32_t size = this->readRawVarint32();
+    if (size < 0) {
+        throw length_error("InvalidProtocolBuffer negativeSize");
+    }
+
+    auto s_size = static_cast<size_t>(size);
+    if (s_size <= m_size - m_position) {
+        kvHolder.keySize = static_cast<uint16_t>(s_size);
+
+        auto ptr = m_ptr + m_position;
+        NSString *result = [[NSString alloc] initWithBytes:ptr length:s_size encoding:NSUTF8StringEncoding];
+        m_position += s_size;
+        return [result autorelease];
+    } else {
+        throw out_of_range("InvalidProtocolBuffer truncatedMessage");
+    }
+}
+
 NSData *CodedInputData::readNSData() {
     int32_t size = this->readRawVarint32();
     if (size < 0) {
@@ -68,4 +89,4 @@ NSData *CodedInputData::readNSData() {
 
 } // namespace mmkv
 
-#endif // MMKV_IOS_OR_MAC
+#endif // MMKV_APPLE

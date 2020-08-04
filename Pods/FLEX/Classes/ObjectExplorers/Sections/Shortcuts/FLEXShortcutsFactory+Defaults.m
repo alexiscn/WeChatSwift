@@ -9,7 +9,7 @@
 #import "FLEXShortcutsFactory+Defaults.h"
 #import "FLEXShortcut.h"
 #import "FLEXRuntimeUtility.h"
-#import "NSObject+Reflection.h"
+#import "NSObject+FLEX_Reflection.h"
 
 #pragma mark - Views
 
@@ -90,6 +90,13 @@
         @"currentTitle", @"currentImage", @"enabled", @"frame",
         @"superview", @"subviews"
     ]).forClass(UIButton.class);
+    
+    // UIImageView
+    self.append.properties(@[
+        @"image", @"animationImages", @"frame", @"bounds", @"center",
+        @"transform", @"alpha", @"hidden", @"clipsToBounds",
+        @"userInteractionEnabled", @"layer", @"superview", @"subviews",
+    ]).forClass(UIImageView.class);
 }
 
 @end

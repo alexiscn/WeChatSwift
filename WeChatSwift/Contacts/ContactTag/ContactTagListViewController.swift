@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class ContactTagListViewController: ASViewController<ASDisplayNode> {
+class ContactTagListViewController: ASDKViewController<ASDisplayNode> {
     
     private var placeholder: ContactTagListPlacehoderNode?
     
@@ -16,7 +16,7 @@ class ContactTagListViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [ContactTag] = []
     
-    init() {
+    override init() {
         
         tableNode = ASTableNode(style: .plain)
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]

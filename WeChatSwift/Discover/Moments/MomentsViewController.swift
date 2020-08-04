@@ -9,7 +9,7 @@
 import AsyncDisplayKit
 import WXActionSheet
 
-class MomentsViewController: ASViewController<ASDisplayNode> {
+class MomentsViewController: ASDKViewController<ASDisplayNode> {
 
     // View
     private let tableNode: ASTableNode = ASTableNode(style: .plain)
@@ -27,7 +27,7 @@ class MomentsViewController: ASViewController<ASDisplayNode> {
     private var menuMoment: Moment?
     private var menuMomentCellNode: MomentCellNode?
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         
         node.addSubnode(tableNode)

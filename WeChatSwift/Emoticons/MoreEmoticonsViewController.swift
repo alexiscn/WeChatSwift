@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
+class MoreEmoticonsViewController: ASDKViewController<ASDisplayNode> {
     
     private let bannerHeight = CGFloat(ceilf(Float(Constants.screenWidth * 0.375)))
     private let bannerNode: ASPagerNode
@@ -18,7 +18,7 @@ class MoreEmoticonsViewController: ASViewController<ASDisplayNode> {
     
     private var emoticons: [StoreEmoticonItem] = []
     
-    init() {
+    override init() {
         
         let spacing: CGFloat = 15.0
         let itemWidth: CGFloat = (Constants.screenWidth - spacing * 4.0)/3

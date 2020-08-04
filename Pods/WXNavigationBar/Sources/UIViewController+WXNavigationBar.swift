@@ -195,7 +195,7 @@ extension UIViewController {
     }()
     
     @objc private func wx_viewDidLoad() {
-        if navigationController != nil {
+        if navigationController != nil && navigationController!.wx_enableWXNavigationBar {
             navigationController?.configureNavigationBar()
             // configure fake navigationBar
             wx_navigationBar.backgroundColor = wx_navigationBarBackgroundColor
@@ -224,22 +224,22 @@ extension UIViewController {
     }
     
     @objc private func wx_viewWillAppear(_ animated: Bool) {
-        if navigationController != nil {
+        if navigationController != nil && navigationController!.wx_enableWXNavigationBar {
             navigationController?.navigationBar.barTintColor = wx_barBarTintColor
             navigationController?.navigationBar.tintColor = wx_barTintColor
             navigationController?.navigationBar.titleTextAttributes = wx_titleTextAttributes
             view.bringSubviewToFront(wx_navigationBar)
-        }
-        
-        navigationController?.navigationBar.frameDidUpdated = { [weak self] frame in
-            guard let self = self else { return }
-            // Avoid navigationBar frame updated when swipe back from view controller
-            // with large title mode to view controller with normal navigationBar
-            if self.wx_viewWillDisappear {
-                return
+            
+            navigationController?.navigationBar.frameDidUpdated = { [weak self] frame in
+                guard let self = self else { return }
+                // Avoid navigationBar frame updated when swipe back from view controller
+                // with large title mode to view controller with normal navigationBar
+                if self.wx_viewWillDisappear {
+                    return
+                }
+                let newFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + frame.origin.y)
+                self.wx_navigationBar.frame = newFrame
             }
-            let newFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height + frame.origin.y)
-            self.wx_navigationBar.frame = newFrame
         }
         wx_viewWillDisappear = false
         wx_viewWillAppear(animated)
@@ -251,10 +251,17 @@ extension UIViewController {
     }
     
     @objc private func wx_viewDidAppear(_ animated: Bool) {
-        if let navigationController = self.navigationController {
+        if let navigationController = self.navigationController, navigationController.wx_enableWXNavigationBar {
             let interactivePopGestureRecognizerEnabled = navigationController.viewControllers.count > 1
             navigationController.interactivePopGestureRecognizer?.isEnabled = interactivePopGestureRecognizerEnabled
         }
         wx_viewDidAppear(animated)
+    }
+    
+    
+    /// Do additional logics when user tap back button.
+    /// Note: if your override this function. Do not call super.wx_backButtonClicked() and manage `popViewController` yourself.
+    @objc open func wx_backButtonClicked() {
+        navigationController?.popViewController(animated: true)
     }
 }

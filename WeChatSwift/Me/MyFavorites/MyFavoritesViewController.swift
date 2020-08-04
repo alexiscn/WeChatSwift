@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class MyFavoritesViewController: ASViewController<ASDisplayNode> {
+class MyFavoritesViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
     private var dataSource: [FavoriteItem] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

@@ -8,11 +8,11 @@
 
 import AsyncDisplayKit
 
-class SayHelloViewController: ASViewController<ASDisplayNode> {
+class SayHelloViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

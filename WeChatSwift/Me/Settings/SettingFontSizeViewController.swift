@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class SettingFontSizeViewController: ASViewController<ASDisplayNode> {
+class SettingFontSizeViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode: ASTableNode
     
     private var dataSource: [Message] = []
     
-    init() {
+    override init() {
         
         tableNode = ASTableNode(style: .plain)
         

@@ -9,13 +9,23 @@
 #import "FLEXObjectExplorer.h"
 #import "FLEXUtility.h"
 #import "FLEXRuntimeUtility.h"
-#import "NSObject+Reflection.h"
+#import "NSObject+FLEX_Reflection.h"
 #import "FLEXRuntime+Compare.h"
 #import "FLEXRuntime+UIKitHelpers.h"
 #import "FLEXPropertyAttributes.h"
-#import "NSObject+Reflection.h"
 #import "FLEXMetadataSection.h"
 #import "NSUserDefaults+FLEX.h"
+
+@implementation FLEXObjectExplorerDefaults
+
++ (instancetype)canEdit:(BOOL)editable wantsPreviews:(BOOL)showPreviews {
+    FLEXObjectExplorerDefaults *defaults = [self new];
+    defaults->_isEditable = editable;
+    defaults->_wantsDynamicPreviews = showPreviews;
+    return defaults;
+}
+
+@end
 
 @interface FLEXObjectExplorer () {
     NSMutableArray<NSArray<FLEXProperty *> *> *_allProperties;
@@ -54,6 +64,24 @@
 
 
 #pragma mark - Public
+
++ (void)configureDefaultsForItems:(NSArray<id<FLEXObjectExplorerItem>> *)items {
+    BOOL hidePreviews = NSUserDefaults.standardUserDefaults.flex_explorerHidesVariablePreviews;
+    FLEXObjectExplorerDefaults *mutable = [FLEXObjectExplorerDefaults
+        canEdit:YES wantsPreviews:!hidePreviews
+    ];
+    FLEXObjectExplorerDefaults *immutable = [FLEXObjectExplorerDefaults
+        canEdit:NO wantsPreviews:!hidePreviews
+    ];
+
+    // .tag is used to cache whether the value of .isEditable;
+    // This could change at runtime so it is important that
+    // it is cached every time shortcuts are requeted and not
+    // just once at as shortcuts are initially registered
+    for (id<FLEXObjectExplorerItem> metadata in items) {
+        metadata.defaults = metadata.isEditable ? mutable : immutable;
+    }
+}
 
 - (NSString *)objectDescription {
     if (!_objectDescription) {
@@ -224,9 +252,7 @@
     // because no other metadata types support editing.
     for (NSArray *matrix in @[_allProperties, _allIvars, /* _allMethods, _allClassMethods, _allConformedProtocols */]) {
         for (NSArray *metadataByClass in matrix) {
-            for (id<FLEXRuntimeMetadata> metadata in metadataByClass) {
-                metadata.tag = metadata.isEditable ? @YES : nil;
-            }
+            [FLEXObjectExplorer configureDefaultsForItems:metadataByClass];
         }
     }
     

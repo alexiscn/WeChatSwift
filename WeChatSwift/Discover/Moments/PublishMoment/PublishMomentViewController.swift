@@ -13,7 +13,7 @@ enum PublishMomentSource {
     case media([MediaAsset])
 }
 
-class PublishMomentViewController: ASViewController<ASDisplayNode> {
+class PublishMomentViewController: ASDKViewController<ASDisplayNode> {
 
     private let tableNode = ASTableNode(style: .plain)
     

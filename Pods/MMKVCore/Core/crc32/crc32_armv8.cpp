@@ -20,18 +20,37 @@
 
 #include "Checksum.h"
 
-#ifdef __aarch64__
+#ifdef MMKV_USE_ARMV8_CRC32
 
-#    include <zlib.h>
+#    if MMKV_EMBED_ZLIB
 
-static inline uint32_t _crc32Wrap(uint32_t crc, const unsigned char *buf, size_t len) {
+static inline uint32_t _crc32Wrap(uint32_t crc, const uint8_t *buf, size_t len) {
+    return static_cast<uint32_t>(zlib::crc32(crc, buf, static_cast<uInt>(len)));
+}
+
+CRC32_Func_t CRC32 = _crc32Wrap;
+
+#    else
+#        include <zlib.h>
+
+static inline uint32_t _crc32Wrap(uint32_t crc, const uint8_t *buf, size_t len) {
     return static_cast<uint32_t>(::crc32(crc, buf, static_cast<uInt>(len)));
 }
 
 CRC32_Func_t CRC32 = _crc32Wrap;
 
+#    endif
+
 // targeting armv8 with crc instruction extension
+#if defined(__GNUC__) && !defined(__clang__)
+#    define TARGET_ARM_CRC __attribute__((target("+crc")))
+#    define __builtin_arm_crc32b(a, b) __builtin_aarch64_crc32b(a, b)
+#    define __builtin_arm_crc32h(a, b) __builtin_aarch64_crc32h(a, b)
+#    define __builtin_arm_crc32w(a, b) __builtin_aarch64_crc32w(a, b)
+#    define __builtin_arm_crc32d(a, b) __builtin_aarch64_crc32x(a, b)
+#else
 #    define TARGET_ARM_CRC __attribute__((target("crc")))
+#endif
 
 TARGET_ARM_CRC static inline uint32_t __crc32b(uint32_t a, uint8_t b) {
     return __builtin_arm_crc32b(a, b);
@@ -49,7 +68,7 @@ TARGET_ARM_CRC static inline uint32_t __crc32d(uint32_t a, uint64_t b) {
     return __builtin_arm_crc32d(a, b);
 }
 
-TARGET_ARM_CRC static inline uint32_t armv8_crc32_small(uint32_t crc, const unsigned char *buf, size_t len) {
+TARGET_ARM_CRC static inline uint32_t armv8_crc32_small(uint32_t crc, const uint8_t *buf, size_t len) {
     if (len >= sizeof(uint32_t)) {
         crc = __crc32w(crc, *(const uint32_t *) buf);
         buf += sizeof(uint32_t);
@@ -69,7 +88,7 @@ TARGET_ARM_CRC static inline uint32_t armv8_crc32_small(uint32_t crc, const unsi
 
 namespace mmkv {
 
-TARGET_ARM_CRC uint32_t armv8_crc32(uint32_t crc, const unsigned char *buf, size_t len) {
+TARGET_ARM_CRC uint32_t armv8_crc32(uint32_t crc, const uint8_t *buf, size_t len) {
 
     crc = crc ^ 0xffffffffUL;
 
@@ -102,7 +121,7 @@ TARGET_ARM_CRC uint32_t armv8_crc32(uint32_t crc, const unsigned char *buf, size
     }
 
     if (len) {
-        crc = armv8_crc32_small(crc, (const unsigned char *) ptr64, len);
+        crc = armv8_crc32_small(crc, (const uint8_t *) ptr64, len);
     }
 
     return crc ^ 0xffffffffUL;
@@ -110,4 +129,4 @@ TARGET_ARM_CRC uint32_t armv8_crc32(uint32_t crc, const unsigned char *buf, size
 
 } // namespace mmkv
 
-#endif // __aarch64__
+#endif // MMKV_USE_ARMV8_CRC32

@@ -10,34 +10,26 @@ import UIKit
 
 public class WXActionSheet: UIView {
     
-    /// WXActionSheet defaults, you can override it globally
-    public struct Preferences {
-        
-        /// Height for buttons, defaults 56.0
-        public static var ButtonHeight: CGFloat = 56.0
-        
-        public static var ButtonNormalBackgroundColor = UIColor(white: 1, alpha: 1)
-        
-        public static var ButtonHighlightBackgroundColor = UIColor(white: 248.0/255, alpha: 1)
-        
-        /// Title color for normal buttons, default to UIColor.black
-        public static var ButtonTitleColor = UIColor.black
-        
-        /// Title color for destructive button, default to UIColor.red
-        public static var DestructiveButtonTitleColor = UIColor.red
-        
-        /// Separator backgroundColor between CancelButton and other buttons
-        public static var SeparatorColor = UIColor(white: 242.0/255, alpha: 1.0)
-    }
+    public var style: WXActionSheetStyle = {
+        if #available(iOS 13, *) {
+            return .system
+        } else {
+            return .light
+        }
+    }()
     
     public var titleView: UIView?
     
     public var roundTopCorners: Bool = true
     
     private let containerView = UIView()
+    
     private let backgroundView = UIView()
+    
     private var items: [WXActionSheetItem] = []
+    
     private let LineHeight: CGFloat = 1.0/UIScreen.main.scale
+    
     private var cancelButtonTitle: String?
     
     public init(cancelButtonTitle: String? = nil) {
@@ -91,13 +83,13 @@ extension WXActionSheet {
     private func commonInit() {
         backgroundView.frame = bounds
         backgroundView.alpha = 0.0
-        backgroundView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        backgroundView.backgroundColor = style.appearance.dimmingBackgroundColor
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         tapGesture.delegate = self
         backgroundView.addGestureRecognizer(tapGesture)
         addSubview(backgroundView)
         
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = style.appearance.containerBackgroundColor
         addSubview(containerView)
     }
     
@@ -110,10 +102,11 @@ extension WXActionSheet {
     
     private func buildUI() {
         
-        var y: CGFloat = 0.0 // used to calculate container's height
+        // used to calculate container's height
+        var y: CGFloat = 0.0
         
         if let titleView = titleView {
-            titleView.backgroundColor = Preferences.ButtonNormalBackgroundColor
+            titleView.backgroundColor = style.appearance.buttonNormalBackgroundColor
             titleView.frame = CGRect(origin: .zero, size: CGSize(width: bounds.width, height: titleView.frame.height))
             containerView.addSubview(titleView)
             y = titleView.frame.height + LineHeight
@@ -123,26 +116,26 @@ extension WXActionSheet {
             items.append(WXActionSheetItem(title: cancelTitle, handler: nil, type: .cancel))
         }
         
-        let highlightBackgroundImage = UIImage.imageWithColor(Preferences.ButtonHighlightBackgroundColor)
-        let backgroundImage = UIImage.imageWithColor(Preferences.ButtonNormalBackgroundColor)
+        let highlightBGImage = UIImage.imageWithColor(style.appearance.buttonHighlightBackgroundColor)
+        let normalBGImage = UIImage.imageWithColor(style.appearance.buttonNormalBackgroundColor)
         
         let x = bounds.minX
         let width = bounds.width
-        var height = Preferences.ButtonHeight
+        var height = style.appearance.buttonHeight
         
         for (index, item) in items.enumerated() {
             
-            height = item.desc == nil ? Preferences.ButtonHeight: 62.0
+            height = item.desc == nil ? style.appearance.buttonHeight: 62.0
             let isLastItem = index == items.count - 1
-            let itemView = actionItemView(item: item, at: index, isLastItem: isLastItem, backgroundImage: backgroundImage, highlightBackgroundImage: highlightBackgroundImage)
+            let itemView = actionItemView(item: item, at: index, isLastItem: isLastItem, backgroundImage: normalBGImage, highlightBackgroundImage: highlightBGImage)
             if isLastItem {
                 if item.type == .cancel {
                     let separator = UIView(frame: CGRect(x: 0, y: y , width: width, height: 7.0))
-                    separator.backgroundColor = Preferences.SeparatorColor
+                    separator.backgroundColor = style.appearance.separatorColor
                     containerView.addSubview(separator)
                     y += separator.bounds.height
                 }
-                height = Preferences.ButtonHeight + safeInsets.bottom
+                height = style.appearance.buttonHeight + safeInsets.bottom
             }
             
             itemView.frame = CGRect(x: x, y: y, width: width, height: height)
@@ -152,7 +145,7 @@ extension WXActionSheet {
             if !isLastItem {
                 let line = UIView()
                 line.frame = CGRect(x: x, y: y, width: width, height: LineHeight)
-                line.backgroundColor = UIColor(white: 0, alpha: 0.1)
+                line.backgroundColor = style.appearance.separatorLineColor
                 containerView.addSubview(line)
                 y += LineHeight
             }
@@ -165,11 +158,12 @@ extension WXActionSheet {
             containerView.layer.masksToBounds = true
             containerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
-        
-        let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
-        effectView.frame = containerView.bounds
-        containerView.addSubview(effectView)
-        containerView.sendSubviewToBack(effectView)
+        if style.appearance.enableBlurEffect {
+            let effectView = UIVisualEffectView(effect: style.appearance.effect)
+            effectView.frame = containerView.bounds
+            containerView.addSubview(effectView)
+            containerView.sendSubviewToBack(effectView)
+        }
     }
     
     fileprivate func actionItemView(item: WXActionSheetItem, at index: Int, isLastItem: Bool, backgroundImage: UIImage?, highlightBackgroundImage: UIImage?) -> UIView {
@@ -185,13 +179,17 @@ extension WXActionSheet {
             button.imageEdgeInsets = item.imageEdgeInsets
             button.titleEdgeInsets = isLastItem ? UIEdgeInsets(top: -safeInsets.bottom/2, left: 0, bottom: safeInsets.bottom/2, right: 0) : item.titleEdgeInsets
             button.titleLabel?.font = item.font
-            let titleColor = item.type == .destructive ? Preferences.DestructiveButtonTitleColor: item.titleColor
+            let titleColor: UIColor
+            if item.type == .destructive {
+                titleColor = style.appearance.destructiveButtonTitleColor
+            } else {
+                titleColor = item.titleColor ?? style.appearance.buttonTitleColor
+            }
             button.setTitleColor(titleColor, for: .normal)
             button.addTarget(self, action: #selector(handleButtonTapped(_:)), for: .touchUpInside)
             return button
         } else {
             let view = UIView()
-            
             let button = UIButton()
             button.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 62)
             button.tag = index
@@ -209,7 +207,7 @@ extension WXActionSheet {
             let descLabel = UILabel()
             descLabel.textAlignment = .center
             descLabel.text = item.desc
-            descLabel.textColor = item.descColor
+            descLabel.textColor = item.descColor ?? style.appearance.titleColor
             descLabel.font = UIFont.systemFont(ofSize: 12)
             descLabel.frame = CGRect(x: 0, y: 36, width: bounds.width, height: 15)
             
@@ -242,17 +240,4 @@ extension WXActionSheet: UIGestureRecognizerDelegate {
         }
         return true
     }
-}
-
-fileprivate extension UIImage {
-    
-    class func imageWithColor(_ color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(CGRect(origin: .zero, size: size))
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-    
 }

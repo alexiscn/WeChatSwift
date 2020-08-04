@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class MomentGroupTagViewController: ASViewController<ASDisplayNode> {
+class MomentGroupTagViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
     private var dataSource: [MomentGroupTag] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.delegate = self

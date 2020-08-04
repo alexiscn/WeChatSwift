@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class AccountLoginUsersViewController: ASViewController<ASDisplayNode> {
+class AccountLoginUsersViewController: ASDKViewController<ASDisplayNode> {
     
     private let iconNode = ASImageNode()
     
@@ -16,7 +16,7 @@ class AccountLoginUsersViewController: ASViewController<ASDisplayNode> {
     
     private let lineNode = ASDisplayNode()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         
         iconNode.image = UIImage(named: "ChatListBackgroundLogo_50x50_")

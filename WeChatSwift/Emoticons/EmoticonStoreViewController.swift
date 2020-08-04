@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class EmoticonStoreViewController: ASViewController<ASDisplayNode> {
+class EmoticonStoreViewController: ASDKViewController<ASDisplayNode> {
 
     private var segmentControl: UISegmentedControl!
     

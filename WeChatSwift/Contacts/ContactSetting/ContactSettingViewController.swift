@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class ContactSettingViewController: ASViewController<ASDisplayNode> {
+class ContactSettingViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     

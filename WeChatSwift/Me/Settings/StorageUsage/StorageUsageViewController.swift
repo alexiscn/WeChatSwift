@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class StorageUsageViewController: ASViewController<ASDisplayNode> {
+class StorageUsageViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
@@ -22,7 +22,7 @@ class StorageUsageViewController: ASViewController<ASDisplayNode> {
     
     private let scanner = StorageUsageScanner()
     
-    init() {
+    override init() {
         
         let summary = StorageUsageSummary(systemTotalSize: 100, systemFreeSize: 50, wechatSize: 30)
         summaryStorageNode = StorageUsageSummaryNode(summary: summary)

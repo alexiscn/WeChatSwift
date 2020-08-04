@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class ShakeViewController: ASViewController<ASDisplayNode> {
+class ShakeViewController: ASDKViewController<ASDisplayNode> {
     
     private let shakeLogoUpNode = ASImageNode()
     

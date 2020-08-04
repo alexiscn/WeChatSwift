@@ -8,11 +8,11 @@
 
 import AsyncDisplayKit
 
-class ShakeMessageListViewController: ASViewController<ASDisplayNode> {
+class ShakeMessageListViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

@@ -17,19 +17,25 @@ public class WXActionSheetItem {
         case destructive
         case cancel
     }
-    
+
     public var title: String?
+    
     public var titleEdgeInsets: UIEdgeInsets = .zero
-    public var titleColor: UIColor = WXActionSheet.Preferences.ButtonTitleColor
+    
+    public var titleColor: UIColor?
+    
     public var font: UIFont = UIFont.systemFont(ofSize: 17)
     
     public var desc: String?
-    public var descColor: UIColor = UIColor(white: 0, alpha: 0.4)
+    
+    public var descColor: UIColor?
     
     public var iconImage: UIImage?
+    
     public var imageEdgeInsets: UIEdgeInsets = .zero
     
     public var type: ItemType = .default
+    
     public var handler: WXActionSheetHandler? = nil
     
     public convenience init(title: String) {

@@ -9,7 +9,7 @@
 import AsyncDisplayKit
 import AVFoundation
 
-class CameraScanViewController: ASViewController<ASDisplayNode> {
+class CameraScanViewController: ASDKViewController<ASDisplayNode> {
     
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
@@ -19,7 +19,7 @@ class CameraScanViewController: ASViewController<ASDisplayNode> {
     
     private let bottomButtons: CameraScanBottomNode
     
-    init() {
+    override init() {
         
         bottomButtons = CameraScanBottomNode(scanTypes: [.qrCode, .book, .street, .word])
         

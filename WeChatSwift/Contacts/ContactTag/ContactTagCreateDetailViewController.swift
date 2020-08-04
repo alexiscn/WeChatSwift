@@ -8,11 +8,11 @@
 
 import AsyncDisplayKit
 
-class ContactTagCreateDetailViewController: ASViewController<ASDisplayNode> {
+class ContactTagCreateDetailViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
-    init() {
+    override init() {
         super.init(node: tableNode)
         node.addSubnode(tableNode)
         tableNode.dataSource = self

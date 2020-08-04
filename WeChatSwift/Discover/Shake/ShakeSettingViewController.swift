@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class ShakeSettingViewController: ASViewController<ASDisplayNode> {
+class ShakeSettingViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [ShakeSettingSection] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

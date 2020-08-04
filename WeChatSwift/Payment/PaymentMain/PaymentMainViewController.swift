@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class PaymentMainViewController: ASViewController<ASDisplayNode> {
+class PaymentMainViewController: ASDKViewController<ASDisplayNode> {
  
     private let scrollNode = ASScrollNode()
     
@@ -24,7 +24,7 @@ class PaymentMainViewController: ASViewController<ASDisplayNode> {
     
     private let mallCellHeight: CGFloat = 117.0
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         
         node.addSubnode(scrollNode)

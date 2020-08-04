@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class ChatRoomBackgroundEntranceViewController: ASViewController<ASDisplayNode> {
+class ChatRoomBackgroundEntranceViewController: ASDKViewController<ASDisplayNode> {
     
     private var isFromGeneralSettings = false
     

@@ -39,6 +39,9 @@ public class WXNavigationBar: UIView {
     /// Bottom line
     public let shadowImageView: UIImageView
     
+    /// Container View where you put your custom view
+    public let containerView: UIView
+    
     /// Background ImageView
     public let backgroundImageView: UIImageView
     
@@ -53,6 +56,8 @@ public class WXNavigationBar: UIView {
         shadowImageView = UIImageView()
         shadowImageView.contentMode = .scaleAspectFill
         shadowImageView.clipsToBounds = true
+        
+        containerView = UIView()
         
         let effect: UIBlurEffect
         if #available(iOS 13, *) {
@@ -70,6 +75,7 @@ public class WXNavigationBar: UIView {
         addSubview(backgroundImageView)
         addSubview(visualEffectView)
         addSubview(shadowImageView)
+        addSubview(containerView)
         
         backgroundImageView.image = WXNavigationBar.NavBar.backgroundImage
     }
@@ -84,6 +90,12 @@ public class WXNavigationBar: UIView {
         visualEffectView.frame = bounds
         backgroundImageView.frame = bounds
         
+        var safeAreaTop: CGFloat = 20.0
+        if #available(iOS 11, *) {
+            safeAreaTop = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 44.0
+        }
+        containerView.frame = CGRect(x: 0, y: safeAreaTop, width: bounds.width, height: bounds.height - safeAreaTop)
+        
         let lineHeight = 1 / UIScreen.main.scale
         shadowImageView.frame = CGRect(x: 0,
                                        y: bounds.height - lineHeight,
@@ -97,6 +109,11 @@ public class WXNavigationBar: UIView {
             backgroundImageView.isHidden = true
             visualEffectView.isHidden = false
         }
+    }
+    
+    /// Add subview to containerView
+    public func add(_ subView: UIView) {
+        containerView.addSubview(subView)
     }
     
     public static func setup() {

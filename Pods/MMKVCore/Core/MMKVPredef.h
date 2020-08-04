@@ -21,10 +21,19 @@
 #ifndef MMKV_SRC_MMKVPREDEF_H
 #define MMKV_SRC_MMKVPREDEF_H
 
+// disable encryption & decryption to reduce some code
+//#define MMKV_DISABLE_CRYPT
+
+// using POSIX implementation
+//#define FORCE_POSIX
+
 #ifdef __cplusplus
 
 #include <string>
+#include <vector>
 #include <unordered_map>
+
+constexpr auto MMKV_VERSION = "v1.2.2";
 
 #ifdef __ANDROID__
 #    define MMKV_ANDROID
@@ -32,12 +41,11 @@
 #    ifdef FORCE_POSIX
 #        define MMKV_POSIX
 #    else
-#        define MMKV_IOS_OR_MAC
+#        define MMKV_APPLE
 #        ifdef __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__
 #            define MMKV_IOS
-#           if __has_feature(attribute_availability_app_extension)
-#               define MMKV_IOS_EXTENSION
-#           endif
+#        elif __ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__
+#            define MMKV_WATCH
 #        else
 #            define MMKV_MAC
 #        endif
@@ -86,7 +94,7 @@ using MMKVPath_t = std::string;
 
 #endif // MMKV_WIN32
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
 #    import <Foundation/Foundation.h>
 #    define MMKV_NAMESPACE_BEGIN namespace mmkv {
 #    define MMKV_NAMESPACE_END }
@@ -97,7 +105,7 @@ using MMKVLog_t = NSString *;
 #    define MMKV_NAMESPACE_END
 #    define MMKV_NAMESPACE_PREFIX
 using MMKVLog_t = const std::string &;
-#endif // MMKV_IOS_OR_MAC
+#endif // MMKV_APPLE
 
 MMKV_NAMESPACE_BEGIN
 
@@ -139,8 +147,15 @@ extern size_t DEFAULT_MMAP_SIZE;
 #define DEFAULT_MMAP_ID "mmkv.default"
 
 class MMBuffer;
+struct KeyValueHolder;
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_DISABLE_CRYPT
+using KeyValueHolderCrypt = KeyValueHolder;
+#else
+struct KeyValueHolderCrypt;
+#endif
+
+#ifdef MMKV_APPLE
 struct KeyHasher {
     size_t operator()(NSString *key) const { return key.hash; }
 };
@@ -154,13 +169,20 @@ struct KeyEqualer {
     }
 };
 
-using MMKVMap = std::unordered_map<NSString *, mmkv::MMBuffer, KeyHasher, KeyEqualer>;
+using MMKVVector = std::vector<std::pair<NSString *, mmkv::MMBuffer>>;
+using MMKVMap = std::unordered_map<NSString *, mmkv::KeyValueHolder, KeyHasher, KeyEqualer>;
+using MMKVMapCrypt = std::unordered_map<NSString *, mmkv::KeyValueHolderCrypt, KeyHasher, KeyEqualer>;
 #else
-using MMKVMap = std::unordered_map<std::string, mmkv::MMBuffer>;
-#endif // MMKV_IOS_OR_MAC
+using MMKVVector = std::vector<std::pair<std::string, mmkv::MMBuffer>>;
+using MMKVMap = std::unordered_map<std::string, mmkv::KeyValueHolder>;
+using MMKVMapCrypt = std::unordered_map<std::string, mmkv::KeyValueHolderCrypt>;
+#endif // MMKV_APPLE
 
 template <typename T>
 void unused(const T &) {}
+
+constexpr size_t AES_KEY_LEN = 16;
+constexpr size_t AES_KEY_BITSET_LEN = 128;
 
 } // namespace mmkv
 

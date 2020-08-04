@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class SettingDiscoverEntranceViewController: ASViewController<ASDisplayNode> {
+class SettingDiscoverEntranceViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode()
     
     private var dataSource: [DiscoverModel] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

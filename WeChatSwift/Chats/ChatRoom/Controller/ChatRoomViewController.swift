@@ -12,7 +12,7 @@ import AsyncDisplayKit
 import WXActionSheet
 import PINRemoteImage
 
-class ChatRoomViewController: ASViewController<ASDisplayNode> {
+class ChatRoomViewController: ASDKViewController<ASDisplayNode> {
     
     private let sessionID: String
     

@@ -9,7 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 
-class SessionViewController: ASViewController<ASDisplayNode> {
+class SessionViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
@@ -25,7 +25,7 @@ class SessionViewController: ASViewController<ASDisplayNode> {
     
     private var searchViewController: UISearchController?
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
     }

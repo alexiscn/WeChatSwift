@@ -10,7 +10,7 @@ import AsyncDisplayKit
 import WXActionSheet
 import CoreLocation
 
-class NearbyPeopleViewController: ASViewController<ASDisplayNode> {
+class NearbyPeopleViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
@@ -18,7 +18,7 @@ class NearbyPeopleViewController: ASViewController<ASDisplayNode> {
     
     private var errorPlaceholder: NearbyPeopleErrorPlaceholder?
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]

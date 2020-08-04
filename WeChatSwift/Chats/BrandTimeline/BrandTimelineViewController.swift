@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class BrandTimelineViewController: ASViewController<ASDisplayNode> {
+class BrandTimelineViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [BrandTimelineGroup] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.delegate = self

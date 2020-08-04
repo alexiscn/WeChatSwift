@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class SettingPluginsViewController: ASViewController<ASDisplayNode> {
+class SettingPluginsViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingPluginSection] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

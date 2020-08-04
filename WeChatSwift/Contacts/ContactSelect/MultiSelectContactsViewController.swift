@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
+class MultiSelectContactsViewController: ASDKViewController<ASDisplayNode> {
     
     var selectionHandler: (([MultiSelectContact]) -> Void)?
     
@@ -18,7 +18,7 @@ class MultiSelectContactsViewController: ASViewController<ASDisplayNode> {
     
     private var dataSource: [MultiSelectContactSection] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

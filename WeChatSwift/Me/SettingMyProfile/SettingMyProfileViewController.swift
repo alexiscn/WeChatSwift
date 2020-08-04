@@ -8,11 +8,11 @@
 
 import AsyncDisplayKit
 
-class SettingMyProfileViewController: ASViewController<ASDisplayNode> {
+class SettingMyProfileViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]

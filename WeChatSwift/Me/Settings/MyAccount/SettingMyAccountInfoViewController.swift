@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class SettingMyAccountInfoViewController: ASViewController<ASDisplayNode> {
+class SettingMyAccountInfoViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingMyAccountInfoSection] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.delegate = self

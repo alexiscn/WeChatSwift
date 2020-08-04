@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class EmoticonManageViewController: ASViewController<ASDisplayNode> {
+class EmoticonManageViewController: ASDKViewController<ASDisplayNode> {
 
     var isPresented: Bool = false
     
@@ -19,7 +19,7 @@ class EmoticonManageViewController: ASViewController<ASDisplayNode> {
     private var cancelButtonItem: UIBarButtonItem?
     private var backButtonItem: UIBarButtonItem?
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class StoryTakePhotoTeachViewController: ASViewController<ASDisplayNode> {
+class StoryTakePhotoTeachViewController: ASDKViewController<ASDisplayNode> {
 
     var cancelHandler: RelayCommand?
     
@@ -18,7 +18,7 @@ class StoryTakePhotoTeachViewController: ASViewController<ASDisplayNode> {
 
     private let takeButton = ASButtonNode()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(cancelButton)
         node.addSubnode(backgroundImageNode)

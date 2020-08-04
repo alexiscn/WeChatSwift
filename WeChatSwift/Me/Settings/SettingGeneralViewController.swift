@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class SettingGeneralViewController: ASViewController<ASDisplayNode> {
+class SettingGeneralViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingGeneralGroup] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]

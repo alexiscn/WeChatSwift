@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class RemarkViewController: ASViewController<ASDisplayNode> {
+class RemarkViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
@@ -16,7 +16,7 @@ class RemarkViewController: ASViewController<ASDisplayNode> {
     
     private var editNameNode: RemarkEditNameCellNode?
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

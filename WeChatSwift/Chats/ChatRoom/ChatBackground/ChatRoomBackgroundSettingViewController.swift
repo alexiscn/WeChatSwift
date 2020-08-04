@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class ChatRoomBackgroundSettingViewController: ASViewController<ASDisplayNode> {
+class ChatRoomBackgroundSettingViewController: ASDKViewController<ASDisplayNode> {
     
     private var dataSource: [ChatRoomBackgroundItem] = []
     
@@ -18,7 +18,7 @@ class ChatRoomBackgroundSettingViewController: ASViewController<ASDisplayNode> {
     
     private let collectionNode: ASCollectionNode
     
-    init() {
+    override init() {
         
         let padding: CGFloat = 8.0
         let spacing: CGFloat = 4.0

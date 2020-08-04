@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class SightCameraEditorViewController: ASViewController<ASDisplayNode> {
+class SightCameraEditorViewController: ASDKViewController<ASDisplayNode> {
     
     override func viewDidLoad() {
         super.viewDidLoad()

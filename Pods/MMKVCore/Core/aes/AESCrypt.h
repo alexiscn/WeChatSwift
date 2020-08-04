@@ -20,9 +20,18 @@
 
 #ifndef AES_CRYPT_H_
 #define AES_CRYPT_H_
-#ifdef  __cplusplus
+#ifdef __cplusplus
 
+#include "MMKVPredef.h"
 #include <cstddef>
+
+#ifdef MMKV_DISABLE_CRYPT
+
+namespace mmkv {
+class AESCrypt;
+}
+
+#else
 
 namespace openssl {
 struct AES_KEY;
@@ -30,20 +39,35 @@ struct AES_KEY;
 
 namespace mmkv {
 
-constexpr size_t AES_KEY_LEN = 16;
-constexpr size_t AES_KEY_BITSET_LEN = 128;
+#pragma pack(push, 1)
+
+struct AESCryptStatus {
+    uint8_t m_number;
+    uint8_t m_vector[AES_KEY_LEN];
+};
+
+#pragma pack(pop)
+
+class CodedInputDataCrypt;
 
 // a AES CFB-128 encrypt-decrypt full-duplex wrapper
 class AESCrypt {
-    unsigned char m_key[AES_KEY_LEN] = {};
+    bool m_isClone = false;
+    uint32_t m_number = 0;
     openssl::AES_KEY *m_aesKey = nullptr;
-    int m_number = 0;
+    openssl::AES_KEY *m_aesRollbackKey = nullptr;
+    uint8_t m_key[AES_KEY_LEN] = {};
 
 public:
-    unsigned char m_vector[AES_KEY_LEN] = {};
+    uint8_t m_vector[AES_KEY_LEN] = {};
+
+private:
+    // for cloneWithStatus()
+    AESCrypt(const AESCrypt &other, const AESCryptStatus &status);
 
 public:
     AESCrypt(const void *key, size_t keyLength, const void *iv = nullptr, size_t ivLength = 0);
+    AESCrypt(AESCrypt &&other) = default;
 
     ~AESCrypt();
 
@@ -51,7 +75,13 @@ public:
 
     void decrypt(const void *input, void *output, size_t length);
 
+    void getCurStatus(AESCryptStatus &status);
+    void statusBeforeDecrypt(const void *input, const void *output, size_t length, AESCryptStatus &status);
+
+    AESCrypt cloneWithStatus(const AESCryptStatus &status) const;
+
     void resetIV(const void *iv = nullptr, size_t ivLength = 0);
+    void resetStatus(const AESCryptStatus &status);
 
     // output must have [AES_KEY_LEN] space
     void getKey(void *output) const;
@@ -61,16 +91,17 @@ public:
     // just forbid it for possibly misuse
     explicit AESCrypt(const AESCrypt &other) = delete;
     AESCrypt &operator=(const AESCrypt &other) = delete;
-};
+
+    friend CodedInputDataCrypt;
 
 #ifndef NDEBUG
-
-// check if AESCrypt is encrypt-decrypt full-duplex
-void testAESCrypt();
-
+    // check if AESCrypt is encrypt-decrypt full-duplex
+    static void testAESCrypt();
 #endif
+};
 
 } // namespace mmkv
 
-#endif
+#endif // MMKV_DISABLE_CRYPT
+#endif // __cplusplus
 #endif /* AES_CRYPT_H_ */

@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class SelectSessionViewController: ASViewController<ASDisplayNode> {
+class SelectSessionViewController: ASDKViewController<ASDisplayNode> {
     
     private var closeButtonItem: UIBarButtonItem?
     private var cancelButtonItem: UIBarButtonItem?
@@ -18,7 +18,7 @@ class SelectSessionViewController: ASViewController<ASDisplayNode> {
     private let tableNode = ASTableNode()
     private var dataSource: [SelectSessionModel] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

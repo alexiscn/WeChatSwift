@@ -9,7 +9,7 @@
 import AsyncDisplayKit
 import FLEX
 
-class MeViewController: ASViewController<ASDisplayNode> {
+class MeViewController: ASDKViewController<ASDisplayNode> {
 
     private let backgroundNode = ASDisplayNode()
     
@@ -21,7 +21,7 @@ class MeViewController: ASViewController<ASDisplayNode> {
     
     private let storyTeachVC = StoryTakePhotoTeachViewController()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         backgroundNode.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         node.addSubnode(backgroundNode)

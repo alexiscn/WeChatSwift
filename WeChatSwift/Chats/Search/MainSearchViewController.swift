@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class MainSearchViewController: ASViewController<ASDisplayNode> {
+class MainSearchViewController: ASDKViewController<ASDisplayNode> {
     
     var searchBar: UISearchBar?
     
@@ -18,7 +18,7 @@ class MainSearchViewController: ASViewController<ASDisplayNode> {
     
     private let searchGuideNode: MainSearchGuideNode
     
-    init() {
+    override init() {
         
         searchGuideNode = MainSearchGuideNode()
         

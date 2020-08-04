@@ -9,7 +9,7 @@
 import AsyncDisplayKit
 import WXActionSheet
 
-class MakeRedEnvelopeViewController: ASViewController<ASDisplayNode> {
+class MakeRedEnvelopeViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode()
     
@@ -23,7 +23,7 @@ class MakeRedEnvelopeViewController: ASViewController<ASDisplayNode> {
     
     private let redEnvelopeButton: ASButtonNode
     
-    init() {
+    override init() {
         
         errorTextNode = ASTextNode()
         errorTextNode.attributedText = NSAttributedString(string: "单个红包金额不可超过200元", attributes: [

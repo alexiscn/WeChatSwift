@@ -13,6 +13,7 @@ extension UINavigationController {
         static var gestureDelegate = "gestureDelegate"
         static var fullscreenPopGestureDelegate = "fullscreenPopGestureDelegate"
         static var fullscreenPopGestureRecognizer = "fullscreenPopGestureRecognizer"
+        static var enableWXNavigationBar = "enableWXNavigationBar"
     }
     
     private var wx_gestureDelegate: WXNavigationGestureRecognizerDelegate? {
@@ -45,9 +46,22 @@ extension UINavigationController {
         return fullscreenPopGR
     }
     
+    /// Enable WXNavigationBar on UINavigationController, `true` by default.
+    /// You can use this property to specify special navigationController to not use WXNavigationBar.
+    /// eg:
+    /// let rootViewController = RootViewController()
+    /// let rootNav = FLNavigationController(rootViewController: rootViewController)
+    /// rootNav.wx_enableWXNavigationBar = false
+    /// present(rootNav, animated: true)
+    @objc open var wx_enableWXNavigationBar: Bool {
+        get { return (objc_getAssociatedObject(self, &AssociatedKeys.enableWXNavigationBar) as? Bool) ?? true }
+        set { objc_setAssociatedObject(self, &AssociatedKeys.enableWXNavigationBar, newValue, .OBJC_ASSOCIATION_ASSIGN) }
+    }
+    
     static let swizzleNavigationControllerOnce: Void = {
         let cls = UINavigationController.self
         swizzleMethod(cls, #selector(UINavigationController.pushViewController(_:animated:)), #selector(UINavigationController.wx_pushViewController(_:animated:)))
+        swizzleMethod(cls, #selector(UINavigationController.setViewControllers(_:animated:)), #selector(UINavigationController.wx_setViewControllers(_:animated:)))
     }()
     
     func configureNavigationBar() {
@@ -84,6 +98,36 @@ extension UINavigationController {
         wx_pushViewController(viewController, animated: animated)
     }
     
+    @objc private func wx_setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+        
+        if viewControllers.count > 1 {
+            for (index, viewController) in viewControllers.enumerated() {
+                if index != 0 {
+                    viewController.hidesBottomBarWhenPushed = true
+                    
+                    let backButtonItem: UIBarButtonItem
+                    if let customView = viewController.wx_backButtonCustomView {
+                        backButtonItem = UIBarButtonItem(customView: customView)
+                        let tap = UITapGestureRecognizer(target: self, action: #selector(backButtonClicked))
+                        customView.isUserInteractionEnabled = true
+                        customView.addGestureRecognizer(tap)
+                    } else {
+                        let backImage = viewController.wx_backImage
+                        backButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backButtonClicked))
+                    }
+                    viewController.navigationItem.leftBarButtonItem = backButtonItem
+                }
+                
+                if viewController.wx_fullScreenInteractivePopEnabled {
+                    enableFullscreenPopGesture()
+                }
+            }
+        }
+        
+        wx_setViewControllers(viewControllers, animated: animated)
+        
+    }
+    
     private func enableFullscreenPopGesture() {
         guard let gestureRecognizers = interactivePopGestureRecognizer?.view?.gestureRecognizers else {
             return
@@ -100,7 +144,7 @@ extension UINavigationController {
     }
     
     @objc private func backButtonClicked() {
-        popViewController(animated: true)
+        topViewController?.wx_backButtonClicked()
     }
     
     open override var childForStatusBarStyle: UIViewController? {

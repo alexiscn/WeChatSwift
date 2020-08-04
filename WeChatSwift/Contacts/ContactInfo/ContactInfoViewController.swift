@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class ContactInfoViewController: ASViewController<ASDisplayNode> {
+class ContactInfoViewController: ASDKViewController<ASDisplayNode> {
     
     private let contact: Contact
     

@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class NetworkCheckViewController: ASViewController<ASDisplayNode> {
+class NetworkCheckViewController: ASDKViewController<ASDisplayNode> {
     
     private let iconImageView = ASImageNode()
     
@@ -18,7 +18,7 @@ class NetworkCheckViewController: ASViewController<ASDisplayNode> {
     
     private let closeButtonNode = ASButtonNode()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         
         iconImageView.image = UIImage(named: "checkingnetwork_76x135_")

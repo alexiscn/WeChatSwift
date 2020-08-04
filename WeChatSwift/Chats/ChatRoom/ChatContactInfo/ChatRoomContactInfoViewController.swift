@@ -8,11 +8,12 @@
 
 import AsyncDisplayKit
 
-class ChatRoomContactInfoViewController: ASViewController<ASDisplayNode> {
+class ChatRoomContactInfoViewController: ASDKViewController<ASDisplayNode> {
     private let tableNode = ASTableNode(style: .grouped)
     private var dataSource: [ChatRoomContactInfoSection] = []
     private var members: [AddChatRoomMemberItem] = []
     private let contact: Contact
+    
     init(contact: Contact) {
         self.contact = contact
         super.init(node: ASDisplayNode())

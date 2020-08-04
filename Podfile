@@ -10,7 +10,8 @@ target 'WeChatSwift' do
   pod 'WCDB.swift'
   pod 'Texture'
   pod 'SSZipArchive'
-  pod 'PINRemoteImage', '3.0.0-beta.13'
+  pod 'PINRemoteImage'
+  pod 'FLAnimatedImage'
     
   pod 'FLEX', :configurations => ['Debug']
     

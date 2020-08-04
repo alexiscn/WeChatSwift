@@ -8,9 +8,9 @@
 
 import AsyncDisplayKit
 
-class ContactTagViewController: ASViewController<ASDisplayNode> {
+class ContactTagViewController: ASDKViewController<ASDisplayNode> {
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
     }
     

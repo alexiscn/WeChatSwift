@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class SightCameraViewController: ASViewController<ASDisplayNode> {
+class SightCameraViewController: ASDKViewController<ASDisplayNode> {
     
     private let camera = SightCamera(sessionPreset: .high, frameRate: 60)
     
     private var previewView: SightCameraPreviewView!
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
     }
     

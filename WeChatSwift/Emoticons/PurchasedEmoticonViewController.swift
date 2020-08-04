@@ -9,11 +9,11 @@
 import AsyncDisplayKit
 import WXActionSheet
 
-class PurchasedEmoticonViewController: ASViewController<ASDisplayNode> {
+class PurchasedEmoticonViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.delegate = self

@@ -1,73 +1,70 @@
 PODS:
-  - Alamofire (5.0.5)
-  - CocoaLumberjack (3.6.1):
-    - CocoaLumberjack/Core (= 3.6.1)
-  - CocoaLumberjack/Core (3.6.1)
+  - Alamofire (5.2.2)
+  - CocoaLumberjack (3.6.2):
+    - CocoaLumberjack/Core (= 3.6.2)
+  - CocoaLumberjack/Core (3.6.2)
   - FLAnimatedImage (1.0.12)
-  - FLEX (4.0.0)
-  - MMKV (1.1.0):
-    - MMKVCore (~> 1.1.0)
-  - MMKVCore (1.1.0)
-  - PINCache (3.0.1-beta.6):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
-    - PINCache/Core (= 3.0.1-beta.6)
-  - PINCache/Arc-exception-safe (3.0.1-beta.6):
+  - FLEX (4.1.1)
+  - MMKV (1.2.2):
+    - MMKVCore (~> 1.2.2)
+  - MMKVCore (1.2.2)
+  - PINCache (3.0.1-beta.8):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.8)
+    - PINCache/Core (= 3.0.1-beta.8)
+  - PINCache/Arc-exception-safe (3.0.1-beta.8):
     - PINCache/Core
-  - PINCache/Core (3.0.1-beta.6):
-    - PINOperation (~> 1.1.0)
+  - PINCache/Core (3.0.1-beta.8):
+    - PINOperation (~> 1.1.1)
   - PINOperation (1.1.2)
-  - PINRemoteImage (3.0.0-beta.13):
-    - PINRemoteImage/FLAnimatedImage (= 3.0.0-beta.13)
-    - PINRemoteImage/PINCache (= 3.0.0-beta.13)
-  - PINRemoteImage/Core (3.0.0-beta.13):
+  - PINRemoteImage (3.0.0):
+    - PINRemoteImage/PINCache (= 3.0.0)
+  - PINRemoteImage/Core (3.0.0):
     - PINOperation
-  - PINRemoteImage/FLAnimatedImage (3.0.0-beta.13):
-    - FLAnimatedImage (>= 1.0)
+  - PINRemoteImage/iOS (3.0.0):
     - PINRemoteImage/Core
-  - PINRemoteImage/iOS (3.0.0-beta.13):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.13):
-    - PINCache (= 3.0.1-beta.6)
+  - PINRemoteImage/PINCache (3.0.0):
+    - PINCache (= 3.0.1-beta.8)
     - PINRemoteImage/Core
   - SFVideoPlayer (0.0.1):
     - Alamofire
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
-  - SSZipArchive (2.2.2)
+  - SSZipArchive (2.2.3)
   - SVGKit (2.1.0):
     - CocoaLumberjack (~> 3.0)
-  - Texture (2.8.1):
-    - Texture/AssetsLibrary (= 2.8.1)
-    - Texture/Core (= 2.8.1)
-    - Texture/MapKit (= 2.8.1)
-    - Texture/Photos (= 2.8.1)
-    - Texture/PINRemoteImage (= 2.8.1)
-    - Texture/Video (= 2.8.1)
-  - Texture/AssetsLibrary (2.8.1):
+  - Texture (3.0.0):
+    - Texture/AssetsLibrary (= 3.0.0)
+    - Texture/Core (= 3.0.0)
+    - Texture/MapKit (= 3.0.0)
+    - Texture/Photos (= 3.0.0)
+    - Texture/PINRemoteImage (= 3.0.0)
+    - Texture/Video (= 3.0.0)
+  - Texture/AssetsLibrary (3.0.0):
     - Texture/Core
-  - Texture/Core (2.8.1)
-  - Texture/MapKit (2.8.1):
+  - Texture/Core (3.0.0)
+  - Texture/MapKit (3.0.0):
     - Texture/Core
-  - Texture/Photos (2.8.1):
+  - Texture/Photos (3.0.0):
     - Texture/Core
-  - Texture/PINRemoteImage (2.8.1):
-    - PINRemoteImage/iOS (= 3.0.0-beta.13)
+  - Texture/PINRemoteImage (3.0.0):
+    - PINRemoteImage/iOS (~> 3.0.0)
     - PINRemoteImage/PINCache
     - Texture/Core
-  - Texture/Video (2.8.1):
+  - Texture/Video (3.0.0):
     - Texture/Core
   - WCDB.swift (1.0.8.2):
     - SQLiteRepairKit (~> 1.2.0)
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
-  - WXActionSheet (0.3.0)
-  - WXGrowingTextView (0.0.3)
-  - WXNavigationBar (2.0.1)
+  - WXActionSheet (0.6.0)
+  - WXGrowingTextView (0.0.6)
+  - WXNavigationBar (2.3.1)
 
 DEPENDENCIES:
+  - FLAnimatedImage
   - FLEX
   - MMKV
-  - PINRemoteImage (= 3.0.0-beta.13)
+  - PINRemoteImage
   - SFVideoPlayer (from `DevelopmentPods/SFVideoPlayer`)
   - SSZipArchive
   - SVGKit (from `DevelopmentPods/SVGKit`)
@@ -104,26 +101,26 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/SVGKit
 
 SPEC CHECKSUMS:
-  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
-  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  CocoaLumberjack: bd155f2dd06c0e0b03f876f7a3ee55693122ec94
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  FLEX: 3fb1e8096b230a08a5d4d5f3c2992b84399a6abf
-  MMKV: 7bb6c30f9ff2ea45bc2398c86e66dd1cb63cfe20
-  MMKVCore: f1e0aad4fc330e7cbfbdff16720017bf0973db5a
-  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
+  FLEX: 81096107977a09836eb440173010ceeef01105d6
+  MMKV: b14909757d8b70e2aa89ff1c6d56a7b239e10a29
+  MMKVCore: 6225324fe5006026bc86ef8641d567e00c6582f3
+  PINCache: 534fd41d358d828dfdf227a0d327f3673a65e20b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
-  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
+  PINRemoteImage: e2b89e19fb6e77ffc099f9d9f3b3fe1745e3f9f9
   SFVideoPlayer: 1711cf67ba0c21aa3ba4e05828b5f1cc56882898
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
-  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVGKit: eb32a7710074d7c543d70a745634a4358bda66ee
-  Texture: 8ecf6984065a1e54f06bf97b349ecca28582acd7
+  Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
-  WXActionSheet: 8a1817ad641a892b17b53e157b6ec15ca7d1ff95
-  WXGrowingTextView: f5fac8c9b151fd0a630c4f949b7cba775f2692d6
-  WXNavigationBar: 4c19edb8ae8fa39e67b09df7d987fca08c8e58d4
+  WXActionSheet: d8cc37cfac84c69c5ed201899b9e4912858008f9
+  WXGrowingTextView: 483849294508784a755212c925b70811f257f2db
+  WXNavigationBar: 5fbb301eb2686fadedab0a7f5ae0a4d7ea0a7a6d
 
-PODFILE CHECKSUM: f6ba9923b5baf2aacf3479dc9e43253da652d9c8
+PODFILE CHECKSUM: ee8f6893803673c7e6f4e9fb3cafc6a7ca7fbbf3
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

@@ -8,11 +8,11 @@
 
 import AsyncDisplayKit
 
-class PayOfflinePayViewController: ASViewController<ASDisplayNode> {
+class PayOfflinePayViewController: ASDKViewController<ASDisplayNode> {
     
     private let scrollNode = ASScrollNode()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(scrollNode)
     }

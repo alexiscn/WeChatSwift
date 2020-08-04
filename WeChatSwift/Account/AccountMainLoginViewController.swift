@@ -8,9 +8,9 @@
 
 import AsyncDisplayKit
 
-class AccountMainLoginViewController: ASViewController<ASDisplayNode> {
+class AccountMainLoginViewController: ASDKViewController<ASDisplayNode> {
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
     }
     

@@ -8,11 +8,11 @@
 
 import AsyncDisplayKit
 
-class SettingLabViewController: ASViewController<ASDisplayNode> {
+class SettingLabViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

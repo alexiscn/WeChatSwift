@@ -9,7 +9,7 @@
 import AsyncDisplayKit
 import WXActionSheet
 
-class EmoticonDetailViewController: ASViewController<ASDisplayNode> {
+class EmoticonDetailViewController: ASDKViewController<ASDisplayNode> {
 
     private let scrollNode: ASScrollNode
     

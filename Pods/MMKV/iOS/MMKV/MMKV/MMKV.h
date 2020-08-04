@@ -68,15 +68,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// @param mmapID any unique ID (com.tencent.xin.pay, etc), if you want a per-user mmkv, you could merge user-id within mmapID
 /// @param relativePath custom path of the file, `NSDocumentDirectory/mmkv` by default
-+ (nullable instancetype)mmkvWithID:(NSString *)mmapID relativePath:(nullable NSString *)relativePath NS_SWIFT_NAME(init(mmapID:relativePath:));
++ (nullable instancetype)mmkvWithID:(NSString *)mmapID relativePath:(nullable NSString *)relativePath NS_SWIFT_NAME(init(mmapID:relativePath:)) __attribute__((deprecated("use +mmkvWithID:rootPath: instead")));
+
+/// @param mmapID any unique ID (com.tencent.xin.pay, etc), if you want a per-user mmkv, you could merge user-id within mmapID
+/// @param rootPath custom path of the file, `NSDocumentDirectory/mmkv` by default
++ (nullable instancetype)mmkvWithID:(NSString *)mmapID rootPath:(nullable NSString *)rootPath NS_SWIFT_NAME(init(mmapID:rootPath:));
 
 /// @param mmapID any unique ID (com.tencent.xin.pay, etc), if you want a per-user mmkv, you could merge user-id within mmapID
 /// @param cryptKey 16 bytes at most
 /// @param relativePath custom path of the file, `NSDocumentDirectory/mmkv` by default
-+ (nullable instancetype)mmkvWithID:(NSString *)mmapID cryptKey:(nullable NSData *)cryptKey relativePath:(nullable NSString *)relativePath NS_SWIFT_NAME(init(mmapID:cryptKey:relativePath:));
++ (nullable instancetype)mmkvWithID:(NSString *)mmapID cryptKey:(nullable NSData *)cryptKey relativePath:(nullable NSString *)relativePath NS_SWIFT_NAME(init(mmapID:cryptKey:relativePath:)) __attribute__((deprecated("use +mmkvWithID:cryptKey:rootPath: instead")));
+
+/// @param mmapID any unique ID (com.tencent.xin.pay, etc), if you want a per-user mmkv, you could merge user-id within mmapID
+/// @param cryptKey 16 bytes at most
+/// @param rootPath custom path of the file, `NSDocumentDirectory/mmkv` by default
++ (nullable instancetype)mmkvWithID:(NSString *)mmapID cryptKey:(nullable NSData *)cryptKey rootPath:(nullable NSString *)rootPath NS_SWIFT_NAME(init(mmapID:cryptKey:rootPath:));
 
 // you can call this on applicationWillTerminate, it's totally fine if you don't call
-+ (void)onExit;
++ (void)onAppTerminate;
 
 + (NSString *)mmkvBasePath;
 
@@ -185,6 +194,13 @@ NS_ASSUME_NONNULL_BEGIN
 // any subsequent call to the instance will load all key-values from file again
 - (void)clearMemoryCache;
 
+// enable auto cleanup items that not been accessed recently
+// disable by default
+// note: if an item is strong referenced by outside, it won't be cleanup
++ (void)enableAutoCleanUp:(uint32_t)maxIdleMinutes NS_SWIFT_NAME(enableAutoCleanUp(maxIdleMinutes:));
+
++ (void)disableAutoCleanUp;
+
 // you don't need to call this, really, I mean it
 // unless you worry about running out of battery
 - (void)sync;
@@ -206,7 +222,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // for CrashProtected Only
 + (BOOL)isFileValid:(NSString *)mmapID NS_SWIFT_NAME(isFileValid(for:));
-+ (BOOL)isFileValid:(NSString *)mmapID relativePath:(nullable NSString *)path NS_SWIFT_NAME(isFileValid(for:relativePath:));
++ (BOOL)isFileValid:(NSString *)mmapID rootPath:(nullable NSString *)path NS_SWIFT_NAME(isFileValid(for:rootPath:));
 
 NS_ASSUME_NONNULL_END
 

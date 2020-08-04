@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
+class WeChatEmoticonsViewController: ASDKViewController<ASDisplayNode> {
     
     private let bannerNode: ASPagerNode
     
@@ -20,7 +20,7 @@ class WeChatEmoticonsViewController: ASViewController<ASDisplayNode> {
     
     private var emoticons: [StoreEmoticonItem] = []
     
-    init() {
+    override init() {
         let bannerLayout = ASPagerFlowLayout()
         bannerLayout.minimumLineSpacing = 0
         bannerLayout.minimumInteritemSpacing = 0

@@ -9,13 +9,13 @@
 import AsyncDisplayKit
 import PINRemoteImage
 
-class MomentSetBackgroundViewController: ASViewController<ASDisplayNode> {
+class MomentSetBackgroundViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .plain)
     
     private var dataSource: [MomentBackgroundGroup] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

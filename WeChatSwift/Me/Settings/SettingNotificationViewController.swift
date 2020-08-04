@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class SettingNotificationViewController: ASViewController<ASDisplayNode> {
+class SettingNotificationViewController: ASDKViewController<ASDisplayNode> {
  
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [SettingNotificationSection] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

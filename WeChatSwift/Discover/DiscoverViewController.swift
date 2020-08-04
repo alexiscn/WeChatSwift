@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class DiscoverViewController: ASViewController<ASDisplayNode> {
+class DiscoverViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
@@ -18,7 +18,7 @@ class DiscoverViewController: ASViewController<ASDisplayNode> {
         return MomentsViewController()
     }()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.dataSource = self

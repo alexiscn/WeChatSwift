@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class AddContactViewController: ASViewController<ASDisplayNode> {
+class AddContactViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode(style: .grouped)
     
     private var dataSource: [AddContactSource] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         node.addSubnode(tableNode)
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]

@@ -1,6 +1,6 @@
 [![license](https://img.shields.io/badge/license-BSD_3-brightgreen.svg?style=flat)](https://github.com/Tencent/MMKV/blob/master/LICENSE.TXT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tencent/MMKV/pulls)
-[![Release Version](https://img.shields.io/badge/release-1.1.0-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
+[![Release Version](https://img.shields.io/badge/release-1.2.2-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
 [![Platform](https://img.shields.io/badge/Platform-%20Android%20%7C%20iOS%2FmacOS%20%7C%20Win32%20%7C%20POSIX-brightgreen.svg)](https://github.com/Tencent/MMKV/wiki/home)
 
 中文版本请参看[这里](./readme_cn.md)
@@ -28,8 +28,8 @@ Add the following lines to `build.gradle` on your app module:
 
 ```gradle
 dependencies {
-    implementation 'com.tencent:mmkv-static:1.1.0'
-    // replace "1.1.0" with any available version
+    implementation 'com.tencent:mmkv-static:1.2.2'
+    // replace "1.2.2" with any available version
 }
 ```
 
@@ -37,11 +37,11 @@ For other installation options, see [Android Setup](https://github.com/Tencent/M
 
 ### Quick Tutorial
 You can use MMKV as you go. All changes are saved immediately, no `sync`, no `apply` calls needed.  
-Setup MMKV on App startup, say your `MainActivity`, add these lines:
+Setup MMKV on App startup, say your `Application` class, add these lines:
 
 ```Java
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+public void onCreate() {
+    super.onCreate();
 
     String rootDir = MMKV.initialize(this);
     System.out.println("mmkv root: " + rootDir);

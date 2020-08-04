@@ -8,13 +8,13 @@
 
 import AsyncDisplayKit
 
-class ChatRoomListViewController: ASViewController<ASDisplayNode> {
+class ChatRoomListViewController: ASDKViewController<ASDisplayNode> {
     
     private let tableNode = ASTableNode()
     
     private var dataSource: [ChatRoomListItemModel] = []
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         
         node.addSubnode(tableNode)

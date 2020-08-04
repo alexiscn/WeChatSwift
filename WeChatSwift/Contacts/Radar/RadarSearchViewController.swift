@@ -8,7 +8,7 @@
 
 import AsyncDisplayKit
 
-class RadarSearchViewController: ASViewController<ASDisplayNode> {
+class RadarSearchViewController: ASDKViewController<ASDisplayNode> {
     
     private let backgroundNode = ASImageNode()
     
@@ -20,7 +20,7 @@ class RadarSearchViewController: ASViewController<ASDisplayNode> {
     
     private let closeButtonNode = ASButtonNode()
     
-    init() {
+    override init() {
         super.init(node: ASDisplayNode())
         
         backgroundNode.image = UIImage(named: "SkyBg01_320x490_")

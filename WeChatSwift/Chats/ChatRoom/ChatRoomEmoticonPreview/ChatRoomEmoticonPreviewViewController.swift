@@ -10,7 +10,7 @@ import AsyncDisplayKit
 import FLAnimatedImage
 import WXActionSheet
 
-class ChatRoomEmoticonPreviewViewController: ASViewController<ASDisplayNode> {
+class ChatRoomEmoticonPreviewViewController: ASDKViewController<ASDisplayNode> {
 
     private var animatedImageView: FLAnimatedImageView!
     

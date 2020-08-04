@@ -22,11 +22,11 @@
 #include "PBUtility.h"
 #include <stdexcept>
 
-#ifdef MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
 #    if __has_feature(objc_arc)
 #        error This file must be compiled with MRC. Use -fno-objc-arc flag.
 #    endif
-#endif // MMKV_IOS_OR_MAC
+#endif // MMKV_APPLE
 
 using namespace std;
 
@@ -35,6 +35,13 @@ namespace mmkv {
 CodedInputData::CodedInputData(const void *oData, size_t length)
     : m_ptr((uint8_t *) oData), m_size(length), m_position(0) {
     MMKV_ASSERT(m_ptr);
+}
+
+void CodedInputData::seek(size_t addedSize) {
+    if (m_position + addedSize > m_size) {
+        throw out_of_range("OutOfSpace");
+    }
+    m_position += addedSize;
 }
 
 double CodedInputData::readDouble() {
@@ -71,15 +78,11 @@ uint32_t CodedInputData::readUInt32() {
     return static_cast<uint32_t>(readRawVarint32());
 }
 
-int32_t CodedInputData::readFixed32() {
-    return this->readRawLittleEndian32();
-}
-
 bool CodedInputData::readBool() {
     return this->readRawVarint32() != 0;
 }
 
-#ifndef MMKV_IOS_OR_MAC
+#ifndef MMKV_APPLE
 
 string CodedInputData::readString() {
     int32_t size = readRawVarint32();
@@ -89,6 +92,27 @@ string CodedInputData::readString() {
 
     auto s_size = static_cast<size_t>(size);
     if (s_size <= m_size - m_position) {
+        string result((char *) (m_ptr + m_position), s_size);
+        m_position += s_size;
+        return result;
+    } else {
+        throw out_of_range("InvalidProtocolBuffer truncatedMessage");
+    }
+}
+
+string CodedInputData::readString(KeyValueHolder &kvHolder) {
+    kvHolder.offset = static_cast<uint32_t>(m_position);
+
+    int32_t size = this->readRawVarint32();
+    if (size < 0) {
+        throw length_error("InvalidProtocolBuffer negativeSize");
+    }
+
+    auto s_size = static_cast<size_t>(size);
+    if (s_size <= m_size - m_position) {
+        kvHolder.keySize = static_cast<uint16_t>(s_size);
+
+        auto ptr = m_ptr + m_position;
         string result((char *) (m_ptr + m_position), s_size);
         m_position += s_size;
         return result;
@@ -110,6 +134,23 @@ MMBuffer CodedInputData::readData() {
         MMBuffer data(((int8_t *) m_ptr) + m_position, s_size);
         m_position += s_size;
         return data;
+    } else {
+        throw out_of_range("InvalidProtocolBuffer truncatedMessage");
+    }
+}
+
+void CodedInputData::readData(KeyValueHolder &kvHolder) {
+    int32_t size = this->readRawVarint32();
+    if (size < 0) {
+        throw length_error("InvalidProtocolBuffer negativeSize");
+    }
+
+    auto s_size = static_cast<size_t>(size);
+    if (s_size <= m_size - m_position) {
+        kvHolder.computedKVSize = static_cast<uint16_t>(m_position - kvHolder.offset);
+        kvHolder.valueSize = static_cast<uint32_t>(s_size);
+
+        m_position += s_size;
     } else {
         throw out_of_range("InvalidProtocolBuffer truncatedMessage");
     }
@@ -181,7 +222,7 @@ int8_t CodedInputData::readRawByte() {
     return bytes[m_position++];
 }
 
-#ifdef MMKV_IOS_OR_MAC
-#endif // MMKV_IOS_OR_MAC
+#ifdef MMKV_APPLE
+#endif // MMKV_APPLE
 
 } // namespace mmkv
