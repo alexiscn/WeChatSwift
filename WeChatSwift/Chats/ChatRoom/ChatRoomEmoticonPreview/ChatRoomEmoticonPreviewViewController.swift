@@ -7,12 +7,12 @@
 //
 
 import AsyncDisplayKit
-import FLAnimatedImage
 import WXActionSheet
+import PINRemoteImage
 
 class ChatRoomEmoticonPreviewViewController: ASDKViewController<ASDisplayNode> {
 
-    private var animatedImageView: FLAnimatedImageView!
+    private var animatedImageView: PINAnimatedImageView!
     
     private var nameLabel: UILabel!
     
@@ -46,7 +46,7 @@ class ChatRoomEmoticonPreviewViewController: ASDKViewController<ASDisplayNode> {
     }
     
     private func setupAnimatedImageView() {
-        animatedImageView = FLAnimatedImageView(frame: CGRect(x: 0, y: 0, width: 180, height: 180))
+        animatedImageView = PINAnimatedImageView(frame: CGRect(x: 0, y: 0, width: 180, height: 180))
         animatedImageView.pin_setImage(from: emoticonMsg.url)
         view.addSubview(animatedImageView)
         let width = Constants.screenWidth * 0.4

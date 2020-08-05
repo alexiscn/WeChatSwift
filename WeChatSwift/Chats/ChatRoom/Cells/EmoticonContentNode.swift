@@ -7,7 +7,7 @@
 //
 
 import AsyncDisplayKit
-import FLAnimatedImage
+import PINRemoteImage
 
 class EmoticonContentNode: MessageContentNode {
     
@@ -15,8 +15,8 @@ class EmoticonContentNode: MessageContentNode {
     
     private let emoticon: EmoticonMessage
     
-    private lazy var animatedImageView: FLAnimatedImageView = {
-        let animatedImage = FLAnimatedImageView()
+    private lazy var animatedImageView: PINAnimatedImageView = {
+        let animatedImage = PINAnimatedImageView()
         return animatedImage
     }()
     
@@ -36,9 +36,6 @@ class EmoticonContentNode: MessageContentNode {
         super.didLoad()
         
         animatedImageView.pin_setImage(from: emoticon.url)
-//        if let url = emoticon.url, let data = try? Data(contentsOf: url) {
-//            animatedImageView.animatedImage = FLAnimatedImage(animatedGIFData: data)
-//        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

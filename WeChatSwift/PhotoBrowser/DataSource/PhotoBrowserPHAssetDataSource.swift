@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-import FLAnimatedImage
+import PINRemoteImage
 
 class PhotoBrowserPHAssetDataSource: NSObject, PhotoBrowserDataSource {
     
@@ -38,7 +38,7 @@ class PhotoBrowserPHAssetDataSource: NSObject, PhotoBrowserDataSource {
             PHImageManager.default().requestImageData(for: asset, options: nil) { (data, _, _, _) in
                 DispatchQueue.main.async {
                     if let data = data {
-                        cell.imageView.animatedImage = FLAnimatedImage(animatedGIFData: data)
+                        cell.imageView.animatedImage = PINCachedAnimatedImage(animatedImageData: data)
                         cell.setNeedsLayout()
                     }
                 }

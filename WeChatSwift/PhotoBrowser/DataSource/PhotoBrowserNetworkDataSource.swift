@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FLAnimatedImage
 
 class PhotoBrowserNetworkDataSource: NSObject, PhotoBrowserDataSource {
     

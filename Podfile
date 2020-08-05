@@ -11,7 +11,6 @@ target 'WeChatSwift' do
   pod 'Texture'
   pod 'SSZipArchive'
   pod 'PINRemoteImage'
-  pod 'FLAnimatedImage'
     
   pod 'FLEX', :configurations => ['Debug']
     

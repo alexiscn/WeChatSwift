@@ -3,7 +3,6 @@ PODS:
   - CocoaLumberjack (3.6.2):
     - CocoaLumberjack/Core (= 3.6.2)
   - CocoaLumberjack/Core (3.6.2)
-  - FLAnimatedImage (1.0.12)
   - FLEX (4.1.1)
   - MMKV (1.2.2):
     - MMKVCore (~> 1.2.2)
@@ -61,7 +60,6 @@ PODS:
   - WXNavigationBar (2.3.1)
 
 DEPENDENCIES:
-  - FLAnimatedImage
   - FLEX
   - MMKV
   - PINRemoteImage
@@ -78,7 +76,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - CocoaLumberjack
-    - FLAnimatedImage
     - FLEX
     - MMKV
     - MMKVCore
@@ -103,7 +100,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   CocoaLumberjack: bd155f2dd06c0e0b03f876f7a3ee55693122ec94
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   MMKV: b14909757d8b70e2aa89ff1c6d56a7b239e10a29
   MMKVCore: 6225324fe5006026bc86ef8641d567e00c6582f3
@@ -121,6 +117,6 @@ SPEC CHECKSUMS:
   WXGrowingTextView: 483849294508784a755212c925b70811f257f2db
   WXNavigationBar: 5fbb301eb2686fadedab0a7f5ae0a4d7ea0a7a6d
 
-PODFILE CHECKSUM: ee8f6893803673c7e6f4e9fb3cafc6a7ca7fbbf3
+PODFILE CHECKSUM: 0ce057e1b0b19326c19819e0653a2ba7684cabf6
 
 COCOAPODS: 1.9.3

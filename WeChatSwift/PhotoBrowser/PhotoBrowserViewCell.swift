@@ -8,7 +8,7 @@
 
 // https://github.com/JiongXing/PhotoBrowser
 import UIKit
-import FLAnimatedImage
+import PINRemoteImage
 import SFVideoPlayer
 import AVFoundation
 import Photos
@@ -38,7 +38,7 @@ class PhotoBrowserViewCell: UICollectionViewCell {
     
     weak var localAsset: PHAsset?
     
-    var imageView = FLAnimatedImageView()
+    var imageView = PINAnimatedImageView()
     
     var playButton = UIButton(type: .custom)
     
