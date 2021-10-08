@@ -29,6 +29,8 @@
 	<string>Allow WeChat Use your Camera when in use.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow WeChat Use your Location when in use.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>WeChat需要使用您的麦克风来录制视频</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>WeChat需要使用您的相册来发送照片</string>
 	<key>UIAppFonts</key>
@@ -48,8 +50,6 @@
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -61,5 +61,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

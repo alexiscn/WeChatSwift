@@ -27,6 +27,7 @@ extension UIViewController {
         static var disableInteractivePopGesture = "disableInteractivePopGesture"
         static var fullScreenInteractiveEnabled = "fullScreenInteractivePopEnabled"
         static var interactivePopMaxAllowedDistanceToLeftEdge = "interactivePopMaxAllowedDistanceToLeftEdge"
+        static var automaticallyHideWXNavBarInChildViewController = "automaticallyHideWXNavBarInChildViewController"
         
         // For internal usage
         static var viewWillDisappear = "viewWillDisappear"
@@ -176,6 +177,20 @@ extension UIViewController {
         get { return objc_getAssociatedObject(self, &AssociatedKeys.interactivePopMaxAllowedDistanceToLeftEdge) as? CGFloat ?? 0.0 }
         set { objc_setAssociatedObject(self, &AssociatedKeys.interactivePopMaxAllowedDistanceToLeftEdge, newValue, .OBJC_ASSOCIATION_ASSIGN) }
     }
+    
+    /// A Boolean value indicating whether hide     `WXNavigationBar` in Chid View Controller. By default is `true`.
+    /// Note: `WXNavigationBar` should be managed by the parent view controller.
+    @objc open var wx_automaticallyHideWXNavBarInChildViewController: Bool {
+        if let hide = objc_getAssociatedObject(self, &AssociatedKeys.automaticallyHideWXNavBarInChildViewController) as? Bool {
+            return hide
+        }
+        let automaticallyHideWXNavBarInChildViewController = true
+        objc_setAssociatedObject(self,
+                                 &AssociatedKeys.automaticallyHideWXNavBarInChildViewController,
+                                 automaticallyHideWXNavBarInChildViewController,
+                                 .OBJC_ASSOCIATION_ASSIGN)
+        return automaticallyHideWXNavBarInChildViewController
+    }
 }
 
 // MARK: - Private Work
@@ -210,13 +225,18 @@ extension UIViewController {
                                             height: Utility.navigationBarHeight)
             wx_navigationBar.enableBlurEffect(wx_useSystemBlurNavBar)
             
-            // Fix when ViewController is UITableViewController.
-            // wx_navigationBar will layout strange when the root view is UITableView.
+            // Fix when the view of ViewController is UIScrollView.
+            // wx_navigationBar will layout strange when the root view is UIScrollView.
             // So we add wx_navigationBar to navigationController
-            if view is UITableView {
+            if view is UIScrollView {
                 navigationController?.view.insertSubview(wx_navigationBar, at: 1)
             } else {
                 view.addSubview(wx_navigationBar)
+            }
+            
+            // When view controller is child view controller, automatically hide wx_navigationBar.
+            if let parent = parent, !(parent is UINavigationController)  && wx_automaticallyHideWXNavBarInChildViewController {
+                wx_navigationBar.isHidden = true
             }
         }
         

@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## Alamofire
 
-Copyright (c) 2014-2020 Alamofire Software Foundation (http://alamofire.org/)
+Copyright (c) 2014-2021 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ THE SOFTWARE.
 
 BSD 3-Clause License
 
-Copyright (c) 2010-2020, Deusty, LLC
+Copyright (c) 2010-2021, Deusty, LLC
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -60,6 +60,9 @@ are permitted provided that the following conditions are met:
 * Neither the name of Flipboard nor the names of its
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
+
+* You must NOT include this project in an application to be submitted
+  to the App Store™, as this project uses too many private APIs.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -253,6 +256,10 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 
 
+Open Source Software Licensed Under the BSD 3-Clause License: 
+----------------------------------------------------------------------------------------
+1. pybind11 v2.5.0
+Copyright (c) 2016 Wenzel Jakob <wenzel.jakob@epfl.ch>, All rights reserved.
 
 Terms of the BSD 3-Clause License:
 --------------------------------------------------------------------
@@ -446,6 +453,10 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 
 
+Open Source Software Licensed Under the BSD 3-Clause License: 
+----------------------------------------------------------------------------------------
+1. pybind11 v2.5.0
+Copyright (c) 2016 Wenzel Jakob <wenzel.jakob@epfl.ch>, All rights reserved.
 
 Terms of the BSD 3-Clause License:
 --------------------------------------------------------------------
@@ -1445,7 +1456,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 ## SSZipArchive
 
-Copyright (c) 2010-2015, Sam Soffes, https://soff.es
+Copyright (c) 2013-2021, ZipArchive, https://github.com/ZipArchive
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

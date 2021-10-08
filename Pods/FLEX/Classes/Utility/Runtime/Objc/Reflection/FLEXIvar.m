@@ -4,13 +4,15 @@
 //
 //  Derived from MirrorKit.
 //  Created by Tanner on 6/30/15.
-//  Copyright (c) 2015 Tanner Bennett. All rights reserved.
+//  Copyright (c) 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXIvar.h"
 #import "FLEXRuntimeUtility.h"
 #import "FLEXRuntimeSafety.h"
 #import "FLEXTypeEncodingParser.h"
+#import "NSString+FLEX.h"
+#include "FLEXObjcInternal.h"
 #include <dlfcn.h>
 
 @interface FLEXIvar () {
@@ -35,19 +37,20 @@
 }
 
 + (instancetype)named:(NSString *)name onClass:(Class)cls {
-    Ivar ivar = class_getInstanceVariable(cls, name.UTF8String);
+    Ivar _Nullable ivar = class_getInstanceVariable(cls, name.UTF8String);
+    NSAssert(ivar, @"Cannot find ivar with name %@ on class %@", name, cls);
     return [self ivar:ivar];
 }
 
 - (id)initWithIvar:(Ivar)ivar {
     NSParameterAssert(ivar);
-    
+
     self = [super init];
     if (self) {
         _objc_ivar = ivar;
         [self examine];
     }
-    
+
     return self;
 }
 
@@ -71,7 +74,7 @@
     _name         = @(ivar_getName(self.objc_ivar) ?: "(nil)");
     _offset       = ivar_getOffset(self.objc_ivar);
     _typeEncoding = @(ivar_getTypeEncoding(self.objc_ivar) ?: "");
-    
+
     NSString *typeForDetails = _typeEncoding;
     NSString *sizeForDetails = nil;
     if (_typeEncoding.length) {
@@ -83,7 +86,7 @@
         typeForDetails = @"no type info";
         sizeForDetails = @"unknown size";
     }
-    
+
     Dl_info exeInfo;
     if (dladdr(_objc_ivar, &exeInfo)) {
         _imagePath = exeInfo.dli_fname ? @(exeInfo.dli_fname) : nil;
@@ -97,7 +100,9 @@
 
 - (id)getValue:(id)target {
     id value = nil;
-    if (!FLEXIvarIsSafe(_objc_ivar) || _type == FLEXTypeEncodingNull) {
+    if (!FLEXIvarIsSafe(_objc_ivar) ||
+        _type == FLEXTypeEncodingNull ||
+        FLEXPointerIsTaggedPointer(target)) {
         return nil;
     }
 
@@ -147,9 +152,14 @@
 }
 
 - (id)getPotentiallyUnboxedValue:(id)target {
+    NSString *type = self.typeEncoding;
+    if (type.flex_typeIsNonObjcPointer && type.flex_pointeeType != FLEXTypeEncodingVoid) {
+        return [self getValue:target];
+    }
+
     return [FLEXRuntimeUtility
         potentiallyUnwrapBoxedPointer:[self getValue:target]
-        type:self.typeEncoding.UTF8String
+        type:type.UTF8String
     ];
 }
 

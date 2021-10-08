@@ -3,7 +3,7 @@
 //  Flipboard
 //
 //  Created by Ryan Olson on 6/10/14.
-//  Copyright (c) 2020 Flipboard. All rights reserved.
+//  Copyright (c) 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXWebViewController.h"
@@ -25,7 +25,7 @@
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
 
         if (@available(iOS 10.0, *)) {
-            configuration.dataDetectorTypes = UIDataDetectorTypeLink;
+            configuration.dataDetectorTypes = WKDataDetectorTypeLink;
         }
 
         self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];

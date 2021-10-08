@@ -18,6 +18,12 @@
 @interface FLEXFileBrowserTableViewCell : UITableViewCell
 @end
 
+typedef NS_ENUM(NSUInteger, FLEXFileBrowserSortAttribute) {
+    FLEXFileBrowserSortAttributeNone = 0,
+    FLEXFileBrowserSortAttributeName,
+    FLEXFileBrowserSortAttributeCreationDate,
+};
+
 @interface FLEXFileBrowserController () <FLEXFileBrowserSearchOperationDelegate>
 
 @property (nonatomic, copy) NSString *path;
@@ -27,6 +33,7 @@
 @property (nonatomic) NSNumber *searchPathsSize;
 @property (nonatomic) NSOperationQueue *operationQueue;
 @property (nonatomic) UIDocumentInteractionController *documentController;
+@property (nonatomic) FLEXFileBrowserSortAttribute sortAttribute;
 
 @end
 
@@ -47,9 +54,8 @@
         self.title = [path lastPathComponent];
         self.operationQueue = [NSOperationQueue new];
         
-        
-        //computing path size
-        FLEXFileBrowserController *__weak weakSelf = self;
+        // Compute path size
+        weakify(self)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSFileManager *fileManager = NSFileManager.defaultManager;
             NSDictionary<NSString *, id> *attributes = [fileManager attributesOfItemAtPath:path error:NULL];
@@ -59,16 +65,15 @@
                 attributes = [fileManager attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:NULL];
                 totalSize += [attributes fileSize];
 
-                // Bail if the interested view controller has gone away.
-                if (!weakSelf) {
+                // Bail if the interested view controller has gone away
+                if (!self) {
                     return;
                 }
             }
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                FLEXFileBrowserController *__strong strongSelf = weakSelf;
-                strongSelf.recursiveSize = @(totalSize);
-                [strongSelf.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{ strongify(self)
+                self.recursiveSize = @(totalSize);
+                [self.tableView reloadData];
             });
         });
 
@@ -84,6 +89,39 @@
     
     self.showsSearchBar = YES;
     self.searchBarDebounceInterval = kFLEXDebounceForAsyncSearch;
+    [self addToolbarItems:@[
+        [[UIBarButtonItem alloc] initWithTitle:@"Sort"
+                                         style:UIBarButtonItemStylePlain
+                                        target:self
+                                        action:@selector(sortDidTouchUpInside:)]
+    ]];
+}
+
+- (void)sortDidTouchUpInside:(UIBarButtonItem *)sortButton {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sort"
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"None"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [self sortWithAttribute:FLEXFileBrowserSortAttributeNone];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Name"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [self sortWithAttribute:FLEXFileBrowserSortAttributeName];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Creation Date"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [self sortWithAttribute:FLEXFileBrowserSortAttributeCreationDate];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)sortWithAttribute:(FLEXFileBrowserSortAttribute)attribute {
+    self.sortAttribute = attribute;
+    [self reloadDisplayedPaths];
 }
 
 #pragma mark - FLEXGlobalsEntry
@@ -318,43 +356,42 @@
     // Since our actions are outside of that protocol, we need to manually handle the action forwarding from the cells.
 }
 
-#if FLEX_AT_LEAST_IOS13_SDK
-
-- (UIContextMenuConfiguration *)tableView:(UITableView *)tableView contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath point:(CGPoint)point __IOS_AVAILABLE(13.0) {
-    __weak typeof(self) weakSelf = self;
-    return [UIContextMenuConfiguration configurationWithIdentifier:nil
-                                                   previewProvider:nil
-                                                    actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> * _Nonnull suggestedActions) {
-        UITableViewCell * const cell = [tableView cellForRowAtIndexPath:indexPath];
-        UIAction *rename = [UIAction actionWithTitle:@"Rename"
-                                               image:nil
-                                          identifier:@"Rename"
-                                             handler:^(__kindof UIAction * _Nonnull action) {
-            [weakSelf fileBrowserRename:cell];
-        }];
-        UIAction *delete = [UIAction actionWithTitle:@"Delete"
-                                               image:nil
-                                          identifier:@"Delete"
-                                             handler:^(__kindof UIAction * _Nonnull action) {
-            [weakSelf fileBrowserDelete:cell];
-        }];
-        UIAction *copyPath = [UIAction actionWithTitle:@"Copy Path"
-                                                 image:nil
-                                            identifier:@"Copy Path"
-                                               handler:^(__kindof UIAction * _Nonnull action) {
-            [weakSelf fileBrowserCopyPath:cell];
-        }];
-        UIAction *share = [UIAction actionWithTitle:@"Share"
-                                              image:nil
-                                         identifier:@"Share"
-                                            handler:^(__kindof UIAction * _Nonnull action) {
-            [weakSelf fileBrowserShare:cell];
-        }];
-        return [UIMenu menuWithTitle:@"Manage File" image:nil identifier:@"Manage File" options:UIMenuOptionsDisplayInline children:@[rename, delete, copyPath, share]];
-    }];
+- (UIContextMenuConfiguration *)tableView:(UITableView *)tableView
+contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath
+                                    point:(CGPoint)point __IOS_AVAILABLE(13.0) {
+    weakify(self)
+    return [UIContextMenuConfiguration configurationWithIdentifier:nil previewProvider:nil
+        actionProvider:^UIMenu *(NSArray<UIMenuElement *> *suggestedActions) {
+            UITableViewCell * const cell = [tableView cellForRowAtIndexPath:indexPath];
+            UIAction *rename = [UIAction actionWithTitle:@"Rename" image:nil identifier:@"Rename"
+                handler:^(UIAction *action) { strongify(self)
+                    [self fileBrowserRename:cell];
+                }
+            ];
+            UIAction *delete = [UIAction actionWithTitle:@"Delete" image:nil identifier:@"Delete"
+                handler:^(UIAction *action) { strongify(self)
+                    [self fileBrowserDelete:cell];
+                }
+            ];
+            UIAction *copyPath = [UIAction actionWithTitle:@"Copy Path" image:nil identifier:@"Copy Path"
+                handler:^(UIAction *action) { strongify(self)
+                    [self fileBrowserCopyPath:cell];
+                }
+            ];
+            UIAction *share = [UIAction actionWithTitle:@"Share" image:nil identifier:@"Share"
+                handler:^(UIAction *action) { strongify(self)
+                    [self fileBrowserShare:cell];
+                }
+            ];
+            
+            return [UIMenu menuWithTitle:@"Manage File" image:nil
+                identifier:@"Manage File"
+                options:UIMenuOptionsDisplayInline
+                children:@[rename, delete, copyPath, share]
+            ];
+        }
+    ];
 }
-
-#endif
 
 - (void)openFileController:(NSString *)fullPath {
     UIDocumentInteractionController *controller = [UIDocumentInteractionController new];
@@ -433,6 +470,9 @@
     } else {
         // Share sheet for files
         UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[filePath] applicationActivities:nil];
+        if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            shareSheet.popoverPresentationController.sourceView = sender;
+        }
         [self presentViewController:shareSheet animated:true completion:nil];
     }
 }
@@ -451,6 +491,27 @@
     NSArray<NSString *> *subpaths = [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.path error:NULL];
     for (NSString *subpath in subpaths) {
         [childPaths addObject:[self.path stringByAppendingPathComponent:subpath]];
+    }
+    if (self.sortAttribute != FLEXFileBrowserSortAttributeNone) {
+        [childPaths sortUsingComparator:^NSComparisonResult(NSString *path1, NSString *path2) {
+            switch (self.sortAttribute) {
+                case FLEXFileBrowserSortAttributeNone:
+                    // invalid state
+                    return NSOrderedSame;
+                case FLEXFileBrowserSortAttributeName:
+                    return [path1 compare:path2];
+                case FLEXFileBrowserSortAttributeCreationDate: {
+                    NSDictionary<NSFileAttributeKey, id> *path1Attributes = [NSFileManager.defaultManager attributesOfItemAtPath:path1
+                                                                                                                           error:NULL];
+                    NSDictionary<NSFileAttributeKey, id> *path2Attributes = [NSFileManager.defaultManager attributesOfItemAtPath:path2
+                                                                                                                           error:NULL];
+                    NSDate *path1Date = path1Attributes[NSFileCreationDate];
+                    NSDate *path2Date = path2Attributes[NSFileCreationDate];
+
+                    return [path1Date compare:path2Date];
+                }
+            }
+        }];
     }
     self.childPaths = childPaths;
 }

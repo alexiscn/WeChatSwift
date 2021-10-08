@@ -3,7 +3,7 @@
 //  FLEX
 //
 //  Created by Ryan Olson on 1/19/15.
-//  Copyright (c) 2015 f. All rights reserved.
+//  Copyright (c) 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXSystemLogViewController.h"
@@ -46,7 +46,7 @@ static BOOL my_os_log_shim_enabled(void *addr) {
     if (!NSUserDefaults.standardUserDefaults.flex_disableOSLog) {
         return;
     }
-    
+
     // Thanks to @Ram4096 on GitHub for telling me that
     // os_log is conditionally enabled by the SDK version
     void *addr = __builtin_return_address(0);
@@ -61,23 +61,23 @@ static BOOL my_os_log_shim_enabled(void *addr) {
         (void *)my_os_log_shim_enabled,
         (void **)&orig_os_log_shim_enabled
     }}, 1) == 0;
-    
+
     if (FLEXDidHookNSLog && orig_os_log_shim_enabled != nil) {
         // Check if our rebinding worked
         FLEXNSLogHookWorks = my_os_log_shim_enabled(addr) == NO;
     }
-    
+
     // So, just because we rebind the lazily loaded symbol for
     // this function doesn't mean it's even going to be used.
     // While it seems to be sufficient for the simulator, for
     // whatever reason it is not sufficient on-device. We need
     // to actually hook the function with something like Substrate.
-    
+
     // Check if we have substrate, and if so use that instead
     void *handle = dlopen("/usr/lib/libsubstrate.dylib", RTLD_LAZY);
     if (handle) {
         MSHookFunction = dlsym(handle, "MSHookFunction");
-        
+
         if (MSHookFunction) {
             // Set the hook and check if it worked
             void *unused;
@@ -96,16 +96,15 @@ static BOOL my_os_log_shim_enabled(void *addr) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.showsSearchBar = YES;
     self.showSearchBarInitially = NO;
 
-    __weak __typeof(self) weakSelf = self;
-    id logHandler = ^(NSArray<FLEXSystemLogMessage *> *newMessages) {
-        __strong __typeof(weakSelf) self = weakSelf;
+    weakify(self)
+    id logHandler = ^(NSArray<FLEXSystemLogMessage *> *newMessages) { strongify(self)
         [self handleUpdateWithNewMessages:newMessages];
     };
-    
+
     if (FLEXOSLogAvailable() && !FLEXNSLogHookWorks) {
         _logController = [FLEXOSLogController withUpdateHandler:logHandler];
     } else {
@@ -114,20 +113,20 @@ static BOOL my_os_log_shim_enabled(void *addr) {
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"Waiting for Logs...";
-    
+
     // Toolbar buttons //
-    
+
     UIBarButtonItem *scrollDown = [UIBarButtonItem
-        itemWithImage:FLEXResources.scrollToBottomIcon
+        flex_itemWithImage:FLEXResources.scrollToBottomIcon
         target:self
         action:@selector(scrollToLastRow)
     ];
     UIBarButtonItem *settings = [UIBarButtonItem
-        itemWithImage:FLEXResources.gearIcon
+        flex_itemWithImage:FLEXResources.gearIcon
         target:self
         action:@selector(showLogSettings)
     ];
-    
+
     [self addToolbarItems:@[scrollDown, settings]];
 }
 
@@ -137,12 +136,14 @@ static BOOL my_os_log_shim_enabled(void *addr) {
     [self.logController startMonitoring];
 }
 
-- (NSArray<FLEXTableViewSection *> *)makeSections {
+- (NSArray<FLEXTableViewSection *> *)makeSections { weakify(self)
     _logMessages = [FLEXMutableListSection list:@[]
         cellConfiguration:^(FLEXSystemLogCell *cell, FLEXSystemLogMessage *message, NSInteger row) {
+            strongify(self)
+        
             cell.logMessage = message;
             cell.highlightedText = self.filterText;
-            
+
             if (row % 2 == 0) {
                 cell.backgroundColor = FLEXColor.primaryBackgroundColor;
             } else {
@@ -153,11 +154,11 @@ static BOOL my_os_log_shim_enabled(void *addr) {
             return [displayedText localizedCaseInsensitiveContainsString:filterText];
         }
     ];
-    
+
     self.logMessages.cellRegistrationMapping = @{
         kFLEXSystemLogCellIdentifier : [FLEXSystemLogCell class]
     };
-    
+
     return @[self.logMessages];
 }
 
@@ -198,29 +199,29 @@ static BOOL my_os_log_shim_enabled(void *addr) {
 
     NSString *aslToggle = disableOSLog ? @"Enable os_log (default)" : @"Disable os_log";
     NSString *persistence = persistent ? @"Disable persistent logging" : @"Enable persistent logging";
-    
+
     NSString *title = @"System Log Settings";
     NSString *body = @"In iOS 10 and up, ASL has been replaced by os_log. "
     "The os_log API is much more limited. Below, you can opt-into the old behavior "
     "if you want cleaner, more reliable logs within FLEX, but this will break "
     "anything that expects os_log to be working, such as Console.app. "
     "This setting requires the app to restart to take effect. \n\n"
-    
+
     "To get as close to the old behavior as possible with os_log enabled, logs must "
     "be collected manually at launch and stored. This setting has no effect "
     "on iOS 9 and below, or if os_log is disabled. "
     "You should only enable persistent logging when you need it.";
-    
+
     FLEXOSLogController *logController = (FLEXOSLogController *)self.logController;
-    
+
     [FLEXAlert makeAlert:^(FLEXAlert *make) {
         make.title(title).message(body);
         make.button(aslToggle).destructiveStyle().handler(^(NSArray<NSString *> *strings) {
-            [defaults toggleBoolForKey:kFLEXDefaultsDisableOSLogForceASLKey];
+            [defaults flex_toggleBoolForKey:kFLEXDefaultsDisableOSLogForceASLKey];
         });
-        
+
         make.button(persistence).handler(^(NSArray<NSString *> *strings) {
-            [defaults toggleBoolForKey:kFLEXDefaultsiOSPersistentOSLogKey];
+            [defaults flex_toggleBoolForKey:kFLEXDefaultsiOSPersistentOSLogKey];
             logController.persistent = !persistent;
             [logController.messages addObjectsFromArray:self.logMessages.list];
         });
@@ -261,8 +262,26 @@ static BOOL my_os_log_shim_enabled(void *addr) {
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
     if (action == @selector(copy:)) {
         // We usually only want to copy the log message itself, not any metadata associated with it.
-        UIPasteboard.generalPasteboard.string = self.logMessages.filteredList[indexPath.row].messageText;
+        UIPasteboard.generalPasteboard.string = self.logMessages.filteredList[indexPath.row].messageText ?: @"";
     }
+}
+
+- (UIContextMenuConfiguration *)tableView:(UITableView *)tableView
+contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath
+                                    point:(CGPoint)point __IOS_AVAILABLE(13.0) {
+    weakify(self)
+    return [UIContextMenuConfiguration configurationWithIdentifier:nil previewProvider:nil
+        actionProvider:^UIMenu *(NSArray<UIMenuElement *> *suggestedActions) {
+            UIAction *copy = [UIAction actionWithTitle:@"Copy"
+                                                 image:nil
+                                            identifier:@"Copy"
+                                               handler:^(UIAction *action) { strongify(self)
+                // We usually only want to copy the log message itself, not any metadata associated with it.
+                UIPasteboard.generalPasteboard.string = self.logMessages.filteredList[indexPath.row].messageText ?: @"";
+            }];
+            return [UIMenu menuWithTitle:@"" image:nil identifier:nil options:UIMenuOptionsDisplayInline children:@[copy]];
+        }
+    ];
 }
 
 @end

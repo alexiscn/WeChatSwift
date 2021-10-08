@@ -35,6 +35,7 @@
 #import "ASDisplayNode+Yoga.h"
 #import "ASDisplayNode.h"
 #import "ASDisplayNodeExtras.h"
+#import "ASDKNavigationController.h"
 #import "ASDKViewController.h"
 #import "ASEditableTextNode.h"
 #import "ASExperimentalFeatures.h"
@@ -43,7 +44,6 @@
 #import "ASMainThreadDeallocation.h"
 #import "ASMapNode.h"
 #import "ASMultiplexImageNode.h"
-#import "ASNavigationController.h"
 #import "ASNetworkImageLoadInfo.h"
 #import "ASNetworkImageNode.h"
 #import "ASNodeController+Beta.h"
@@ -163,6 +163,11 @@
 #import "AsyncDisplayKit+Tips.h"
 #import "ASTextNodeTypes.h"
 #import "ASTextKitComponents.h"
+#import "ASTextDebugOption.h"
+#import "ASTextInput.h"
+#import "ASTextLayout.h"
+#import "ASTextLine.h"
+#import "ASTextAttribute.h"
 
 FOUNDATION_EXPORT double AsyncDisplayKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char AsyncDisplayKitVersionString[];

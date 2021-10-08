@@ -3,12 +3,13 @@
 //  FLEX
 //
 //  Created by Tanner Bennett on 12/12/19.
-//  Copyright © 2019 Flipboard. All rights reserved.
+//  Copyright © 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXBundleShortcuts.h"
 #import "FLEXShortcut.h"
 #import "FLEXAlert.h"
+#import "FLEXMacros.h"
 #import "FLEXRuntimeExporter.h"
 #import "FLEXTableListViewController.h"
 #import "FLEXFileBrowserController.h"
@@ -17,7 +18,7 @@
 @implementation FLEXBundleShortcuts
 #pragma mark Overrides
 
-+ (instancetype)forObject:(NSBundle *)bundle {
++ (instancetype)forObject:(NSBundle *)bundle { weakify(self)
     return [self forObject:bundle additionalRows:@[
         [FLEXActionShortcut
             title:@"Browse Bundle Directory" subtitle:nil
@@ -29,7 +30,7 @@
             }
         ],
         [FLEXActionShortcut title:@"Browse Bundle as Database…" subtitle:nil
-            selectionHandler:^(UIViewController *host, NSBundle *bundle) {
+            selectionHandler:^(UIViewController *host, NSBundle *bundle) { strongify(self)
                 [self promptToExportBundleAsDatabase:bundle host:host];
             }
             accessoryType:^UITableViewCellAccessoryType(NSBundle *bundle) {
@@ -62,22 +63,22 @@
 
 + (void)browseBundleAsDatabase:(NSBundle *)bundle host:(UIViewController *)host name:(NSString *)name {
     NSParameterAssert(name.length);
-    
+
     UIAlertController *progress = [FLEXAlert makeAlert:^(FLEXAlert *make) {
         make.title(@"Generating Database");
         // Some iOS version glitch out of there is
         // no initial message and you add one later
         make.message(@"…");
     }];
-    
+
     [host presentViewController:progress animated:YES completion:^{
         // Generate path to store db
         NSString *path = [NSSearchPathForDirectoriesInDomains(
             NSLibraryDirectory, NSUserDomainMask, YES
         )[0] stringByAppendingPathComponent:name];
-        
+
         progress.message = [path stringByAppendingString:@"\n\nCreating database…"];
-        
+
         // Generate db and show progress
         [FLEXRuntimeExporter createRuntimeDatabaseAtPath:path
             forImages:@[bundle.executablePath]

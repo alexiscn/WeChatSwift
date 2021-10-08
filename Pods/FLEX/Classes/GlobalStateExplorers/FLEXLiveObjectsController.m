@@ -3,7 +3,7 @@
 //  Flipboard
 //
 //  Created by Ryan Olson on 5/28/14.
-//  Copyright (c) 2020 Flipboard. All rights reserved.
+//  Copyright (c) 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXLiveObjectsController.h"
@@ -34,6 +34,8 @@ static const NSInteger kFLEXLiveObjectsSortBySizeIndex = 2;
     [super viewDidLoad];
 
     self.showsSearchBar = YES;
+    self.showSearchBarInitially = YES;
+    self.activatesSearchBarAutomatically = YES;
     self.searchBarDebounceInterval = kFLEXDebounceInstant;
     self.showsCarousel = YES;
     self.carousel.items = @[@"A→Z", @"Count", @"Size"];

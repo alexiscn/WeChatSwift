@@ -7,16 +7,16 @@
 
 /*
  * Copyright (c) 2005-2007 Apple Inc.  All Rights Reserved.
- * 
+ *
  * @APPLE_LICENSE_HEADER_START@
- * 
+ *
  * This file contains Original Code and/or Modifications of Original Code
  * as defined in and that are subject to the Apple Public Source License
  * Version 2.0 (the 'License'). You may not use this file except in
  * compliance with the License. Please obtain a copy of the License at
  * http://www.opensource.apple.com/apsl/ and read it before using this
  * file.
- * 
+ *
  * The Original Code and all software distributed under the License are
  * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
  * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
@@ -24,7 +24,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
  * Please see the License for the specific language governing rights and
  * limitations under the License.
- * 
+ *
  * @APPLE_LICENSE_HEADER_END@
  */
 
@@ -34,6 +34,10 @@
 #import <malloc/malloc.h>
 // For vm_region_64
 #include <mach/mach.h>
+
+#if __arm64e__
+#include <ptrauth.h>
+#endif
 
 #define ALWAYS_INLINE inline __attribute__((always_inline))
 #define NEVER_INLINE inline __attribute__((noinline))
@@ -49,34 +53,7 @@
 // objc-internal.h //
 /////////////////////
 
-#if __LP64__
-#define OBJC_HAVE_TAGGED_POINTERS 1
-#endif
-
 #if OBJC_HAVE_TAGGED_POINTERS
-
-#if TARGET_OS_OSX && __x86_64__
-// 64-bit Mac - tag bit is LSB
-#   define OBJC_MSB_TAGGED_POINTERS 0
-#else
-// Everything else - tag bit is MSB
-#   define OBJC_MSB_TAGGED_POINTERS 1
-#endif
-
-#if OBJC_MSB_TAGGED_POINTERS
-#   define _OBJC_TAG_MASK (1UL<<63)
-#   define _OBJC_TAG_EXT_MASK (0xfUL<<60)
-#else
-#   define _OBJC_TAG_MASK 1UL
-#   define _OBJC_TAG_EXT_MASK 0xfUL
-#endif
-
-//////////////////////////////////////
-// originally _objc_isTaggedPointer //
-//////////////////////////////////////
-static BOOL flex_isTaggedPointer(const void *ptr)  {
-    return ((uintptr_t)ptr & _OBJC_TAG_MASK) == _OBJC_TAG_MASK;
-}
 
 ///////////////////
 // objc-object.h //
@@ -85,11 +62,11 @@ static BOOL flex_isTaggedPointer(const void *ptr)  {
 ////////////////////////////////////////////////
 // originally objc_object::isExtTaggedPointer //
 ////////////////////////////////////////////////
-static BOOL flex_isExtTaggedPointer(const void *ptr)  {
+NS_INLINE BOOL flex_isExtTaggedPointer(const void *ptr)  {
     return ((uintptr_t)ptr & _OBJC_TAG_EXT_MASK) == _OBJC_TAG_EXT_MASK;
 }
 
-#endif
+#endif // OBJC_HAVE_TAGGED_POINTERS
 
 /////////////////////////////////////
 // FLEXObjectInternal              //
@@ -98,11 +75,16 @@ static BOOL flex_isExtTaggedPointer(const void *ptr)  {
 
 extern "C" {
 
-static BOOL FLEXPointerIsReadable(const void *inPtr) {
+BOOL FLEXPointerIsReadable(const void *inPtr) {
     kern_return_t error = KERN_SUCCESS;
 
     vm_size_t vmsize;
+#if __arm64e__
+    // On arm64e, we need to strip the PAC from the pointer so the adress is readable
+    vm_address_t address = (vm_address_t)ptrauth_strip(inPtr, ptrauth_key_function_pointer);
+#else
     vm_address_t address = (vm_address_t)inPtr;
+#endif
     vm_region_basic_info_data_t info;
     mach_msg_type_number_t info_count = VM_REGION_BASIC_INFO_COUNT_64;
     memory_object_name_t object;
@@ -127,7 +109,11 @@ static BOOL FLEXPointerIsReadable(const void *inPtr) {
     // Read the memory
     vm_offset_t readMem = 0;
     mach_msg_type_number_t size = 0;
+#if __arm64e__
+    address = (vm_address_t)ptrauth_strip(inPtr, ptrauth_key_function_pointer);
+#else
     address = (vm_address_t)inPtr;
+#endif
     error = vm_read(mach_task_self(), address, sizeof(uintptr_t), &readMem, &size);
     if (error != KERN_SUCCESS) {
         // vm_read returned an error
@@ -194,5 +180,5 @@ BOOL FLEXPointerIsValidObjcObject(const void *ptr) {
     return NO;
 }
 
-    
+
 } // End extern "C"

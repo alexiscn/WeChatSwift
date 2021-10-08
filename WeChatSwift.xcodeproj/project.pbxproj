@@ -221,6 +221,7 @@
 		A3B0443123B45CAC0045E9E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B0443023B45CAC0045E9E5 /* RootViewController.swift */; };
 		A3B0443623B4822E0045E9E5 /* ChatInputPanelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B0443523B4822E0045E9E5 /* ChatInputPanelNode.swift */; };
 		A3B39C0D2398DB990062788D /* ASGrowingTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */; };
+		A3B49BE824DBE541002C32CC /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B49BE724DBE541002C32CC /* String+Extensions.swift */; };
 		A3B6888E23004A3F007273CD /* RemarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888D23004A3F007273CD /* RemarkViewController.swift */; };
 		A3B6889023004CFB007273CD /* RemarkEditNameCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */; };
 		A3B6889223004D14007273CD /* RemarkTagCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B6889123004D14007273CD /* RemarkTagCellNode.swift */; };
@@ -635,6 +636,7 @@
 		A3B0443023B45CAC0045E9E5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A3B0443523B4822E0045E9E5 /* ChatInputPanelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputPanelNode.swift; sourceTree = "<group>"; };
 		A3B39C0C2398DB990062788D /* ASGrowingTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASGrowingTextNode.swift; sourceTree = "<group>"; };
+		A3B49BE724DBE541002C32CC /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A3B6888D23004A3F007273CD /* RemarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkViewController.swift; sourceTree = "<group>"; };
 		A3B6888F23004CFB007273CD /* RemarkEditNameCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkEditNameCellNode.swift; sourceTree = "<group>"; };
 		A3B6889123004D14007273CD /* RemarkTagCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkTagCellNode.swift; sourceTree = "<group>"; };
@@ -1082,6 +1084,7 @@
 				A3105D42232E035E0038D775 /* Notification+Extensions.swift */,
 				A3F89C42240F823100202710 /* UIViewController+Extensions.swift */,
 				A3C9E21B2435A0CF002F82D9 /* ObjcExtensions.swift */,
+				A3B49BE724DBE541002C32CC /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2192,6 +2195,7 @@
 				A3CA520B22CDD58800C67D92 /* Constants.swift in Sources */,
 				A3CA51F322CDA33C00C67D92 /* MomentOperationMenuView.swift in Sources */,
 				A34139342307E6CC008E0EBF /* PhotoBrowserDelegate.swift in Sources */,
+				A3B49BE824DBE541002C32CC /* String+Extensions.swift in Sources */,
 				A3CCE02922DDEEBC0003DC25 /* AppURLContentNode.swift in Sources */,
 				A3FB0AC322F4594A00116329 /* SettingDiscoverEntranceViewController.swift in Sources */,
 				A352AD2E2306D0B200332B21 /* SettingLanguageCellNode.swift in Sources */,

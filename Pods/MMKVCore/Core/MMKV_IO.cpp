@@ -35,6 +35,7 @@
 #include "aes/openssl/openssl_md5.h"
 #include "crc32/Checksum.h"
 #include <algorithm>
+#include <cassert>
 #include <cstring>
 
 #ifdef MMKV_IOS
@@ -953,6 +954,7 @@ bool MMKV::reKey(const string &cryptKey) {
                 // change encryption key
                 MMKVInfo("reKey with new aes key");
                 auto newCrypt = new AESCrypt(cryptKey.data(), cryptKey.length());
+                m_hasFullWriteback = false;
                 ret = fullWriteback(newCrypt);
                 if (ret) {
                     delete m_crypter;
@@ -964,6 +966,7 @@ bool MMKV::reKey(const string &cryptKey) {
         } else {
             // decryption to plain text
             MMKVInfo("reKey to no aes key");
+            m_hasFullWriteback = false;
             ret = fullWriteback(InvalidCryptPtr);
             if (ret) {
                 delete m_crypter;
@@ -977,6 +980,7 @@ bool MMKV::reKey(const string &cryptKey) {
         if (cryptKey.length() > 0) {
             // transform plain text to encrypted text
             MMKVInfo("reKey to a aes key");
+            m_hasFullWriteback = false;
             auto newCrypt = new AESCrypt(cryptKey.data(), cryptKey.length());
             ret = fullWriteback(newCrypt);
             if (ret) {

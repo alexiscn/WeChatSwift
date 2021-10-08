@@ -25,19 +25,13 @@ struct SettingPrivacySection {
         
         if let header = header {
             let maxSize = CGSize(width: Constants.screenWidth - 32, height: .greatestFiniteMagnitude)
-            let size = (header as NSString).boundingRect(with: maxSize,
-                                                         options: [.usesFontLeading, .usesLineFragmentOrigin],
-                                                         attributes: [.font: UIFont.systemFont(ofSize: 14)],
-                                                         context: nil).size
+            let size = header.boundingSize(with: maxSize, font: UIFont.systemFont(ofSize: 14))
             heightForHeader = size.height + 12
         }
         
         if let footer = footer {
             let maxSize = CGSize(width: Constants.screenWidth - 32, height: .greatestFiniteMagnitude)
-            let size = (footer as NSString).boundingRect(with: maxSize,
-                                                         options: [.usesFontLeading, .usesLineFragmentOrigin],
-                                                         attributes: [ .font: UIFont.systemFont(ofSize: 14)],
-                                                         context: nil).size
+            let size = footer.boundingSize(with: maxSize, font: UIFont.systemFont(ofSize: 14))
             heightForFooter = size.height + 12
         }
     }

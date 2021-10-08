@@ -99,7 +99,10 @@ static BOOL g_hasCalledInitializeMMKV = NO;
     }
     g_hasCalledInitializeMMKV = YES;
 
-    g_basePath = (rootDir != nil) ? [rootDir retain] : [self mmkvBasePath];
+    if (rootDir != nil) {
+        [g_basePath release];
+        g_basePath = [rootDir retain];
+    }
     mmkv::MMKV::initializeMMKV(g_basePath.UTF8String, (mmkv::MMKVLogLevel) logLevel);
 
     return [self mmkvBasePath];
@@ -117,6 +120,10 @@ static BOOL g_hasCalledInitializeMMKV = NO;
 // a generic purpose instance
 + (instancetype)defaultMMKV {
     return [MMKV mmkvWithID:(@"" DEFAULT_MMAP_ID) cryptKey:nil rootPath:nil mode:MMKVSingleProcess];
+}
+
++ (nullable instancetype)defaultMMKVWithCryptKey:(nullable NSData *)cryptKey {
+    return [MMKV mmkvWithID:(@"" DEFAULT_MMAP_ID) cryptKey:cryptKey rootPath:nil mode:MMKVSingleProcess];
 }
 
 // any unique ID (com.tencent.xin.pay, etc)
@@ -206,7 +213,7 @@ static BOOL g_hasCalledInitializeMMKV = NO;
         if (!m_mmkv) {
             return self;
         }
-        m_mmapID = [NSString stringWithUTF8String:m_mmkv->mmapID().c_str()];
+        m_mmapID = [[NSString alloc] initWithUTF8String:m_mmkv->mmapID().c_str()];
 
 #if defined(MMKV_IOS) && !defined(MMKV_IOS_EXTENSION)
         if (!g_isRunningInAppExtension) {
@@ -225,7 +232,19 @@ static BOOL g_hasCalledInitializeMMKV = NO;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
+    MMKVInfo("dealloc %@", m_mmapID);
+    [m_mmapID release];
+
+    if (m_mmkv) {
+        m_mmkv->close();
+        m_mmkv = nullptr;
+    }
+
     [super dealloc];
+}
+
+- (NSString *)mmapID {
+    return m_mmapID;
 }
 
 #pragma mark - Application state
@@ -261,9 +280,6 @@ static BOOL g_hasCalledInitializeMMKV = NO;
 - (void)close {
     SCOPED_LOCK(g_lock);
     MMKVInfo("closing %@", m_mmapID);
-
-    m_mmkv->close();
-    m_mmkv = nullptr;
 
     [g_instanceDic removeObjectForKey:m_mmapKey];
 }
@@ -457,8 +473,8 @@ static BOOL g_hasCalledInitializeMMKV = NO;
     return valueData;
 }
 
-- (size_t)getValueSizeForKey:(NSString *)key {
-    return m_mmkv->getValueSize(key, false);
+- (size_t)getValueSizeForKey:(NSString *)key actualSize:(BOOL)actualSize {
+    return m_mmkv->getValueSize(key, actualSize);
 }
 
 - (int32_t)writeValueForKey:(NSString *)key toBuffer:(NSMutableData *)buffer {
@@ -481,6 +497,14 @@ static BOOL g_hasCalledInitializeMMKV = NO;
 
 - (size_t)actualSize {
     return m_mmkv->actualSize();
+}
+
++ (size_t)pageSize {
+    return mmkv::DEFAULT_MMAP_SIZE;
+}
+
++ (NSString *)version {
+    return [NSString stringWithCString:MMKV_VERSION encoding:NSASCIIStringEncoding];
 }
 
 - (void)enumerateKeys:(void (^)(NSString *key, BOOL *stop))block {
@@ -514,6 +538,10 @@ static BOOL g_hasCalledInitializeMMKV = NO;
 + (void)onAppTerminate {
     g_lock->lock();
 
+    // make sure no further call will go into m_mmkv
+    [g_instanceDic enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, MMKV *_Nonnull mmkv, BOOL *_Nonnull stop) {
+        mmkv->m_mmkv = nullptr;
+    }];
     [g_instanceDic release];
     g_instanceDic = nil;
 

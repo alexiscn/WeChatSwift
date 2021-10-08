@@ -8,6 +8,8 @@
 
 import UIKit
 
+let LineHeight: CGFloat = 1.0/UIScreen.main.scale
+
 public class WXActionSheet: UIView {
     
     public var style: WXActionSheetStyle = {
@@ -28,8 +30,6 @@ public class WXActionSheet: UIView {
     
     private var items: [WXActionSheetItem] = []
     
-    private let LineHeight: CGFloat = 1.0/UIScreen.main.scale
-    
     private var cancelButtonTitle: String?
     
     public init(cancelButtonTitle: String? = nil) {
@@ -46,7 +46,7 @@ public class WXActionSheet: UIView {
     
     public func show() {
         let windows = UIApplication.shared.windows.filter { NSStringFromClass($0.classForCoder) != "UIRemoteKeyboardWindow" }.reversed()
-        guard let win = windows.first(where: { $0.isHidden == false }) else {
+        guard let win = windows.first(where: { $0.isKeyWindow }) else {
             return
         }
         buildUI()
@@ -83,14 +83,13 @@ extension WXActionSheet {
     private func commonInit() {
         backgroundView.frame = bounds
         backgroundView.alpha = 0.0
-        backgroundView.backgroundColor = style.appearance.dimmingBackgroundColor
+        addSubview(backgroundView)
+        
+        addSubview(containerView)
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         tapGesture.delegate = self
         backgroundView.addGestureRecognizer(tapGesture)
-        addSubview(backgroundView)
-        
-        containerView.backgroundColor = style.appearance.containerBackgroundColor
-        addSubview(containerView)
     }
     
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
@@ -151,6 +150,8 @@ extension WXActionSheet {
             }
         }
         
+        backgroundView.backgroundColor = style.appearance.dimmingBackgroundColor
+        containerView.backgroundColor = style.appearance.containerBackgroundColor
         containerView.frame = CGRect(x: x, y: bounds.height, width: width, height: y)
         
         if roundTopCorners {

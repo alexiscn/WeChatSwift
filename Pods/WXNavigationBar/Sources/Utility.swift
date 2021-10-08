@@ -36,8 +36,10 @@ class Utility {
     
     static var navigationBarHeight: CGFloat {
         if #available(iOS 11.0, *) {
-            let top = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
-            return top > 20.0 ? 88.0 : 64.0
+            if let top = UIApplication.shared.keyWindow?.safeAreaInsets.top {
+                return top + 44.0
+            }
+            return 64.0
         } else {
             return 64.0
         }

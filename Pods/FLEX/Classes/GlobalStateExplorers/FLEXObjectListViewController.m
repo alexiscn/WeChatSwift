@@ -3,7 +3,7 @@
 //  Flipboard
 //
 //  Created by Ryan Olson on 5/28/14.
-//  Copyright (c) 2020 Flipboard. All rights reserved.
+//  Copyright (c) 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXObjectListViewController.h"
@@ -20,11 +20,25 @@
 #import <malloc/malloc.h>
 
 
+typedef NS_ENUM(NSUInteger, FLEXObjectReferenceSection) {
+    FLEXObjectReferenceSectionMain,
+    FLEXObjectReferenceSectionAutoLayout,
+    FLEXObjectReferenceSectionKVO,
+    FLEXObjectReferenceSectionFLEX,
+    
+    FLEXObjectReferenceSectionCount
+};
+
 @interface FLEXObjectListViewController ()
+
+@property (nonatomic, readonly, class) NSArray<NSPredicate *> *defaultPredicates;
+@property (nonatomic, readonly, class) NSArray<NSString *> *defaultSectionTitles;
+
+
 @property (nonatomic, copy) NSArray<FLEXMutableListSection *> *sections;
 @property (nonatomic, copy) NSArray<FLEXMutableListSection *> *allSections;
 
-@property (nonatomic, readonly) NSArray<FLEXObjectRef *> *references;
+@property (nonatomic, readonly, nullable) NSArray<FLEXObjectRef *> *references;
 @property (nonatomic, readonly) NSArray<NSPredicate *> *predicates;
 @property (nonatomic, readonly) NSArray<NSString *> *sectionTitles;
 
@@ -38,7 +52,7 @@
 + (NSPredicate *)defaultPredicateForSection:(NSInteger)section {
     // These are the types of references that we typically don't care about.
     // We want this list of "object-ivar pairs" split into two sections.
-    BOOL(^isObserver)(FLEXObjectRef *, NSDictionary *) = ^BOOL(FLEXObjectRef *ref, NSDictionary *bindings) {
+    BOOL(^isKVORelated)(FLEXObjectRef *, NSDictionary *) = ^BOOL(FLEXObjectRef *ref, NSDictionary *bindings) {
         NSString *row = ref.reference;
         return [row isEqualToString:@"__NSObserver object"] ||
                [row isEqualToString:@"_CFXNotificationObjcObserverRegistration _object"];
@@ -65,34 +79,50 @@
                ([row hasPrefix:@"_NSAutoresizingMask"] && [row hasSuffix:@" _referenceItem"]) ||
                [ignored containsObject:row];
     };
+    
+    /// These are FLEX classes and usually you aren't looking for FLEX references inside FLEX itself
+    BOOL(^isFLEXClass)(FLEXObjectRef *, NSDictionary *) = ^BOOL(FLEXObjectRef *ref, NSDictionary *bindings) {
+        return [ref.reference hasPrefix:@"FLEX"];
+    };
 
     BOOL(^isEssential)(FLEXObjectRef *, NSDictionary *) = ^BOOL(FLEXObjectRef *ref, NSDictionary *bindings) {
-        return !(isObserver(ref, bindings) || isConstraintRelated(ref, bindings));
+        return !(
+            isKVORelated(ref, bindings) ||
+            isConstraintRelated(ref, bindings) ||
+            isFLEXClass(ref, bindings)
+        );
     };
 
     switch (section) {
-        case 0: return [NSPredicate predicateWithBlock:isEssential];
-        case 1: return [NSPredicate predicateWithBlock:isConstraintRelated];
-        case 2: return [NSPredicate predicateWithBlock:isObserver];
+        case FLEXObjectReferenceSectionMain:
+            return [NSPredicate predicateWithBlock:isEssential];
+        case FLEXObjectReferenceSectionAutoLayout:
+            return [NSPredicate predicateWithBlock:isConstraintRelated];
+        case FLEXObjectReferenceSectionKVO:
+            return [NSPredicate predicateWithBlock:isKVORelated];
+        case FLEXObjectReferenceSectionFLEX:
+            return [NSPredicate predicateWithBlock:isFLEXClass];
 
         default: return nil;
     }
 }
 
 + (NSArray<NSPredicate *> *)defaultPredicates {
-    return @[[self defaultPredicateForSection:0],
-             [self defaultPredicateForSection:1],
-             [self defaultPredicateForSection:2]];
+    return [NSArray flex_forEachUpTo:FLEXObjectReferenceSectionCount map:^id(NSUInteger i) {
+        return [self defaultPredicateForSection:i];
+    }];
 }
 
 + (NSArray<NSString *> *)defaultSectionTitles {
-    return @[@"", @"AutoLayout", @"Trivial"];
+    return @[
+        @"", @"AutoLayout", @"Key-Value Observing", @"FLEX"
+    ];
 }
 
 
 #pragma mark - Initialization
 
-- (id)initWithReferences:(NSArray<FLEXObjectRef *> *)references {
+- (id)initWithReferences:(nullable NSArray<FLEXObjectRef *> *)references {
     return [self initWithReferences:references predicates:nil sectionTitles:nil];
 }
 
@@ -125,14 +155,14 @@
             }
         }
     }];
-    
+
     NSArray<FLEXObjectRef *> *references = [FLEXObjectRef referencingAll:instances];
     if (references.count == 1) {
         return [FLEXObjectExplorerFactory
                 explorerViewControllerForObject:references.firstObject.object
         ];
     }
-    
+
     FLEXObjectListViewController *controller = [[self alloc] initWithReferences:references];
     controller.title = [NSString stringWithFormat:@"%@ (%lu)", className, (unsigned long)instances.count];
     return controller;
@@ -145,7 +175,7 @@
     controller.title = [NSString stringWithFormat:@"Subclasses of %@ (%lu)",
         className, (unsigned long)classes.count
     ];
-    
+
     return controller;
 }
 
@@ -158,7 +188,7 @@
             SwiftObjectClass = NSClassFromString(@"Swift._SwiftObject");
         }
     });
-    
+
     NSMutableArray<FLEXObjectRef *> *instances = [NSMutableArray new];
     [FLEXHeapEnumerator enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id tryObject, __unsafe_unretained Class actualClass) {
         // Get all the ivars on the object. Start with the class and and travel up the inheritance chain.
@@ -167,15 +197,15 @@
         while (tryClass) {
             unsigned int ivarCount = 0;
             Ivar *ivars = class_copyIvarList(tryClass, &ivarCount);
-            
+
             for (unsigned int ivarIndex = 0; ivarIndex < ivarCount; ivarIndex++) {
                 Ivar ivar = ivars[ivarIndex];
                 NSString *typeEncoding = @(ivar_getTypeEncoding(ivar) ?: "");
-                
+
                 if (typeEncoding.flex_typeIsObjectOrClass) {
                     ptrdiff_t offset = ivar_getOffset(ivar);
                     uintptr_t *fieldPointer = (__bridge void *)tryObject + offset;
-                    
+
                     if (*fieldPointer == (uintptr_t)(__bridge void *)object) {
                         NSString *ivarName = @(ivar_getName(ivar) ?: "???");
                         [instances addObject:[FLEXObjectRef referencing:tryObject ivar:ivarName]];
@@ -183,20 +213,19 @@
                     }
                 }
             }
-            
+
+            free(ivars);
             tryClass = class_getSuperclass(tryClass);
         }
     }];
 
-    NSArray<NSPredicate *> *predicates = [self defaultPredicates];
-    NSArray<NSString *> *sectionTitles = [self defaultSectionTitles];
     FLEXObjectListViewController *viewController = [[self alloc]
         initWithReferences:instances
-        predicates:predicates
-        sectionTitles:sectionTitles
+        predicates:self.defaultPredicates
+        sectionTitles:self.defaultSectionTitles
     ];
     viewController.title = [NSString stringWithFormat:@"Referencing %@ %p",
-        NSStringFromClass(object_getClass(object)), object
+        [FLEXRuntimeUtility safeClassNameForObject:object], object
     ];
     return viewController;
 }
@@ -206,7 +235,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.showsSearchBar = YES;
 }
 
@@ -224,14 +253,14 @@
 - (NSArray *)buildSections:(NSArray<NSString *> *)titles predicates:(NSArray<NSPredicate *> *)predicates {
     NSParameterAssert(titles.count == predicates.count);
     NSParameterAssert(titles); NSParameterAssert(predicates);
-    
+
     return [NSArray flex_forEachUpTo:titles.count map:^id(NSUInteger i) {
         NSArray *rows = [self.references filteredArrayUsingPredicate:predicates[i]];
         return [self makeSection:rows title:titles[i]];
     }];
 }
 
-- (FLEXMutableListSection *)makeSection:(NSArray *)rows title:(NSString *)title {
+- (FLEXMutableListSection *)makeSection:(NSArray *)rows title:(NSString *)title { weakify(self)
     FLEXMutableListSection *section = [FLEXMutableListSection list:rows
         cellConfiguration:^(FLEXTableViewCell *cell, FLEXObjectRef *ref, NSInteger row) {
             cell.textLabel.text = ref.reference;
@@ -241,18 +270,18 @@
             if (ref.summary && [ref.summary localizedCaseInsensitiveContainsString:filterText]) {
                 return YES;
             }
-            
+
             return [ref.reference localizedCaseInsensitiveContainsString:filterText];
         }
     ];
-    
-    section.selectionHandler = ^(__kindof UIViewController *host, FLEXObjectRef *ref) {
+
+    section.selectionHandler = ^(UIViewController *host, FLEXObjectRef *ref) { strongify(self)
         [self.navigationController pushViewController:[
             FLEXObjectExplorerFactory explorerViewControllerForObject:ref.object
         ] animated:YES];
     };
 
-    section.customTitle = title;    
+    section.customTitle = title;
     return section;
 }
 

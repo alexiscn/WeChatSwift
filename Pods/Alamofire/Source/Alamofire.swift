@@ -1,7 +1,7 @@
 //
 //  Alamofire.swift
 //
-//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014-2021 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,14 @@
 //  THE SOFTWARE.
 //
 
+import Dispatch
+import Foundation
+#if canImport(FoundationNetworking)
+@_exported import FoundationNetworking
+#endif
+
 /// Reference to `Session.default` for quick bootstrapping and examples.
 public let AF = Session.default
 
 /// Current Alamofire version. Necessary since SPM doesn't use dynamic libraries. Plus this will be more accurate.
-let version = "5.2.2"
+let version = "5.4.4"

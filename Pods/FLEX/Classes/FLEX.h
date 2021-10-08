@@ -4,7 +4,7 @@
 //
 //  Created by Eric Horacek on 7/18/15.
 //  Modified by Tanner Bennett on 3/12/20.
-//  Copyright (c) 2020 Flipboard. All rights reserved.
+//  Copyright (c) 2020 FLEX Team. All rights reserved.
 //
 
 #import <FLEX/FLEXManager.h>
@@ -20,6 +20,5 @@
 #import <FLEX/FLEX-Categories.h>
 #import <FLEX/FLEX-ObjectExploring.h>
 
-#import <FLEX/FLEXMacros.h>
 #import <FLEX/FLEXAlert.h>
 #import <FLEX/FLEXResources.h>

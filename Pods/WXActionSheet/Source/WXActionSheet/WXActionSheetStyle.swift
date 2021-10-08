@@ -38,7 +38,8 @@ public enum WXActionSheetStyle {
         }
     }
     
-    static var lightAppearance: Appearance = {
+    /// The default dark appearance for light style. You can change any property to create new light style.
+    public static var lightAppearance: Appearance = {
         var appearance = Appearance()
         appearance.dimmingBackgroundColor = UIColor(white: 0, alpha: 0.5)
         appearance.containerBackgroundColor = .white
@@ -54,7 +55,9 @@ public enum WXActionSheetStyle {
         return appearance
     }()
     
-    static var darkAppearance: Appearance = {
+    
+    /// The default dark appearance for dark style. You can change any property to create new dark style.
+    public static var darkAppearance: Appearance = {
         var appearance = Appearance()
         appearance.dimmingBackgroundColor = UIColor(white: 0, alpha: 0.8)
         appearance.containerBackgroundColor = UIColor(white: 44.0/255.0, alpha: 1.0)

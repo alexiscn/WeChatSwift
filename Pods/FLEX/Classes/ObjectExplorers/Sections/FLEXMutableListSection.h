@@ -3,7 +3,7 @@
 //  FLEX
 //
 //  Created by Tanner on 3/9/20.
-//  Copyright © 2020 Flipboard. All rights reserved.
+//  Copyright © 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXCollectionContentSection.h"
@@ -36,7 +36,7 @@ typedef void (^FLEXMutableListCellForElement)(__kindof UITableViewCell *cell, id
 
 /// By default, rows are not selectable. If you want rows
 /// to be selectable, provide a selection handler here.
-@property (nonatomic) void (^selectionHandler)(__kindof UIViewController * host, id element);
+@property (nonatomic, copy) void (^selectionHandler)(__kindof UIViewController *host, id element);
 
 /// The objects representing all possible rows in the section.
 @property (nonatomic) NSArray<ObjectType> *list;

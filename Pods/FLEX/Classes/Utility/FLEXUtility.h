@@ -3,7 +3,7 @@
 //  Flipboard
 //
 //  Created by Ryan Olson on 4/18/14.
-//  Copyright (c) 2020 Flipboard. All rights reserved.
+//  Copyright (c) 2020 FLEX Team. All rights reserved.
 //
 
 #import <Availability.h>
@@ -15,12 +15,7 @@
 #import "FLEXAlert.h"
 #import "NSArray+FLEX.h"
 #import "UIFont+FLEX.h"
-#import "NSMapTable+FLEX_Subscripting.h"
 #import "FLEXMacros.h"
-
-#if !FLEX_AT_LEAST_IOS13_SDK
-@class UIWindowScene;
-#endif
 
 @interface FLEXUtility : NSObject
 

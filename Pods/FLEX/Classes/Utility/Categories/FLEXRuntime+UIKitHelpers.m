@@ -3,7 +3,7 @@
 //  FLEX
 //
 //  Created by Tanner Bennett on 12/16/19.
-//  Copyright © 2019 Flipboard. All rights reserved.
+//  Copyright © 2020 FLEX Team. All rights reserved.
 //
 
 #import "FLEXRuntime+UIKitHelpers.h"
@@ -13,6 +13,7 @@
 #import "FLEXObjectExplorerFactory.h"
 #import "FLEXFieldEditorViewController.h"
 #import "FLEXMethodCallingViewController.h"
+#import "FLEXObjectListViewController.h"
 #import "FLEXTableView.h"
 #import "FLEXUtility.h"
 #import "NSArray+FLEX.h"
@@ -91,9 +92,11 @@ FLEXObjectExplorerDefaultsImpl
     return [FLEXObjectExplorerFactory explorerViewControllerForObject:value];
 }
 
-- (UIViewController *)editorWithTarget:(id)object {
+- (UIViewController *)editorWithTarget:(id)object section:(FLEXTableViewSection *)section {
     id target = [self appropriateTargetForPropertyType:object];
-    return [FLEXFieldEditorViewController target:target property:self];
+    return [FLEXFieldEditorViewController target:target property:self commitHandler:^{
+        [section reloadData:YES];
+    }];
 }
 
 - (UITableViewCellAccessoryType)suggestedAccessoryTypeWithTarget:(id)object {
@@ -126,18 +129,38 @@ FLEXObjectExplorerDefaultsImpl
 
 - (NSString *)reuseIdentifierWithTarget:(id)object { return nil; }
 
-#if FLEX_AT_LEAST_IOS13_SDK
-
 - (NSArray<UIAction *> *)additionalActionsWithTarget:(id)object sender:(UIViewController *)sender __IOS_AVAILABLE(13.0) {
-    Class propertyClass = self.attributes.typeEncoding.flex_typeClass;
+    BOOL returnsObject = self.attributes.typeEncoding.flex_typeIsObjectOrClass;
+    BOOL targetNotNil = [self appropriateTargetForPropertyType:object] != nil;
     
     // "Explore PropertyClass" for properties with a concrete class name
-    if (propertyClass) {
-        NSString *title = [NSString stringWithFormat:@"Explore %@", NSStringFromClass(propertyClass)];
-        return @[[UIAction actionWithTitle:title image:nil identifier:nil handler:^(UIAction *action) {
-            UIViewController *explorer = [FLEXObjectExplorerFactory explorerViewControllerForObject:propertyClass];
-            [sender.navigationController pushViewController:explorer animated:YES];
-        }]];
+    if (returnsObject) {
+        NSMutableArray<UIAction *> *actions = [NSMutableArray new];
+        
+        // Action for exploring class of this property
+        Class propertyClass = self.attributes.typeEncoding.flex_typeClass;
+        if (propertyClass) {
+            NSString *title = [NSString stringWithFormat:@"Explore %@", NSStringFromClass(propertyClass)];
+            [actions addObject:[UIAction actionWithTitle:title image:nil identifier:nil handler:^(UIAction *action) {
+                UIViewController *explorer = [FLEXObjectExplorerFactory explorerViewControllerForObject:propertyClass];
+                [sender.navigationController pushViewController:explorer animated:YES];
+            }]];
+        }
+        
+        // Action for exploring references to this object
+        if (targetNotNil) {
+            // Since the property holder is not nil, check if the property value is nil
+            id value = [self currentValueBeforeUnboxingWithTarget:object];
+            if (value) {
+                NSString *title = @"List all references";
+                [actions addObject:[UIAction actionWithTitle:title image:nil identifier:nil handler:^(UIAction *action) {
+                    UIViewController *list = [FLEXObjectListViewController objectsWithReferencesToObject:value];
+                    [sender.navigationController pushViewController:list animated:YES];
+                }]];
+            }
+        }
+        
+        return actions;
     }
     
     return nil;
@@ -156,7 +179,7 @@ FLEXObjectExplorerDefaultsImpl
     if (targetNotNil) {
         id value = [self currentValueBeforeUnboxingWithTarget:object];
         [items addObjectsFromArray:@[
-            @"Value Preview",         [self previewWithTarget:object],
+            @"Value Preview",         [self previewWithTarget:object] ?: @"",
             @"Value Address",         returnsObject ? [FLEXUtility addressOfObject:value] : @"",
         ]];
     }
@@ -181,8 +204,6 @@ FLEXObjectExplorerDefaultsImpl
     
     return nil;
 }
-
-#endif
 
 @end
 
@@ -226,9 +247,11 @@ FLEXObjectExplorerDefaultsImpl
     return [FLEXObjectExplorerFactory explorerViewControllerForObject:value];
 }
 
-- (UIViewController *)editorWithTarget:(id)object {
+- (UIViewController *)editorWithTarget:(id)object section:(FLEXTableViewSection *)section {
     NSAssert(!object_isClass(object), @"Unreachable state: editing ivar on class object");
-    return [FLEXFieldEditorViewController target:object ivar:self];
+    return [FLEXFieldEditorViewController target:object ivar:self commitHandler:^{
+        [section reloadData:YES];
+    }];
 }
 
 - (UITableViewCellAccessoryType)suggestedAccessoryTypeWithTarget:(id)object {
@@ -257,8 +280,6 @@ FLEXObjectExplorerDefaultsImpl
 }
 
 - (NSString *)reuseIdentifierWithTarget:(id)object { return nil; }
-
-#if FLEX_AT_LEAST_IOS13_SDK
 
 - (NSArray<UIAction *> *)additionalActionsWithTarget:(id)object sender:(UIViewController *)sender __IOS_AVAILABLE(13.0) {
     Class ivarClass = self.typeEncoding.flex_typeClass;
@@ -310,8 +331,6 @@ FLEXObjectExplorerDefaultsImpl
     return nil;
 }
 
-#endif
-
 @end
 
 
@@ -342,7 +361,7 @@ FLEXObjectExplorerDefaultsImpl
     return nil;
 }
 
-- (UIViewController *)editorWithTarget:(id)object {
+- (UIViewController *)editorWithTarget:(id)object section:(FLEXTableViewSection *)section {
     // Methods cannot be edited
     @throw NSInternalInconsistencyException;
     return nil;
@@ -355,8 +374,6 @@ FLEXObjectExplorerDefaultsImpl
 }
 
 - (NSString *)reuseIdentifierWithTarget:(id)object { return nil; }
-
-#if FLEX_AT_LEAST_IOS13_SDK
 
 - (NSArray<UIAction *> *)additionalActionsWithTarget:(id)object sender:(UIViewController *)sender __IOS_AVAILABLE(13.0) {
     return nil;
@@ -373,8 +390,6 @@ FLEXObjectExplorerDefaultsImpl
 - (NSString *)contextualSubtitleWithTarget:(id)object {
     return nil;
 }
-
-#endif
 
 @end
 
@@ -441,7 +456,9 @@ FLEXObjectExplorerDefaultsImpl
     return [FLEXObjectExplorerFactory explorerViewControllerForObject:self];
 }
 
-- (UIViewController *)editorWithTarget:(id)object {
+- (UIViewController *)editorWithTarget:(id)object section:(FLEXTableViewSection *)section {
+    // Protocols cannot be edited
+    @throw NSInternalInconsistencyException;
     return nil;
 }
 
@@ -450,8 +467,6 @@ FLEXObjectExplorerDefaultsImpl
 }
 
 - (NSString *)reuseIdentifierWithTarget:(id)object { return nil; }
-
-#if FLEX_AT_LEAST_IOS13_SDK
 
 - (NSArray<UIAction *> *)additionalActionsWithTarget:(id)object sender:(UIViewController *)sender __IOS_AVAILABLE(13.0) {
     return nil;
@@ -462,15 +477,13 @@ FLEXObjectExplorerDefaultsImpl
     NSString *conformances = [conformanceNames componentsJoinedByString:@"\n"];
     return @[
         @"Name",         self.name ?: @"",
-        @"Conformances", conformances,
+        @"Conformances", conformances ?: @"",
     ];
 }
 
 - (NSString *)contextualSubtitleWithTarget:(id)object {
     return nil;
 }
-
-#endif
 
 @end
 
@@ -553,15 +566,15 @@ FLEXObjectExplorerDefaultsImpl
     return nil;
 }
 
-- (UIViewController *)editorWithTarget:(id)object {
+- (UIViewController *)editorWithTarget:(id)object section:(FLEXTableViewSection *)section {
+    // Static metadata cannot be edited
+    @throw NSInternalInconsistencyException;
     return nil;
 }
 
 - (UITableViewCellAccessoryType)suggestedAccessoryTypeWithTarget:(id)object {
     return UITableViewCellAccessoryNone;
 }
-
-#if FLEX_AT_LEAST_IOS13_SDK
 
 - (NSArray<UIAction *> *)additionalActionsWithTarget:(id)object sender:(UIViewController *)sender __IOS_AVAILABLE(13.0) {
     return nil;
@@ -574,8 +587,6 @@ FLEXObjectExplorerDefaultsImpl
 - (NSString *)contextualSubtitleWithTarget:(id)object {
     return nil;
 }
-
-#endif
 
 @end
 

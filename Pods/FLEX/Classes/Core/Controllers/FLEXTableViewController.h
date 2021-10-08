@@ -3,7 +3,7 @@
 //  FLEX
 //
 //  Created by Tanner on 7/5/19.
-//  Copyright © 2019 Flipboard. All rights reserved.
+//  Copyright © 2020 FLEX Team. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -67,6 +67,10 @@ extern CGFloat const kFLEXDebounceForExpensiveIO;
 /// Setting this to YES will make the search bar appear whenever the view appears.
 /// Otherwise, iOS will only show the search bar when you scroll up.
 @property (nonatomic) BOOL showSearchBarInitially;
+/// Defaults to NO.
+///
+/// Setting this to YES will make the search bar activate whenever the view appears.
+@property (nonatomic) BOOL activatesSearchBarAutomatically;
 
 /// nil unless showsSearchBar is set to YES.
 ///
@@ -89,7 +93,7 @@ extern CGFloat const kFLEXDebounceForExpensiveIO;
 /// or it will not be respsected. Use this instead.
 /// Defaults to NO.
 @property (nonatomic) BOOL pinSearchBar;
-/// By default, we will show the search bar's cancel button when 
+/// By default, we will show the search bar's cancel button when
 /// search becomes active and hide it when search is dismissed.
 ///
 /// Do not set the showsCancelButton property on the searchController's
@@ -102,11 +106,11 @@ extern CGFloat const kFLEXDebounceForExpensiveIO;
 /// Otherwise, this is the selected index of the carousel, or NSNotFound if using neither.
 @property (nonatomic) NSInteger selectedScope;
 /// self.searchController.searchBar.text
-@property (nonatomic, readonly) NSString *searchText;
+@property (nonatomic, readonly, copy) NSString *searchText;
 
 /// A totally optional delegate to forward search results updater calls to.
-/// If a delegate is set, updateSearchResults: is not called on this view controller. 
-@property (nonatomic, weak    ) id<FLEXSearchResultsUpdating> searchResultsUpdater;
+/// If a delegate is set, updateSearchResults: is not called on this view controller.
+@property (nonatomic, weak) id<FLEXSearchResultsUpdating> searchResultsUpdater;
 
 /// self.view.window as a \c FLEXWindow
 @property (nonatomic, readonly) FLEXWindow *window;
