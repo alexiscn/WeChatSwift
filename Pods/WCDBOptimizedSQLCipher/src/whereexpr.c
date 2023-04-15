@@ -194,18 +194,18 @@ static int isLikeOrGlob(
   int *pisComplete, /* True if the only wildcard is % in the last character */
   int *pnoCase      /* True if uppercase is equivalent to lowercase */
 ){
-  const char *z = 0;         /* String on RHS of LIKE operator */
+  const u8 *z = 0;           /* String on RHS of LIKE operator */
   Expr *pRight, *pLeft;      /* Right and left size of LIKE operator */
   ExprList *pList;           /* List of operands to the LIKE operator */
-  int c;                     /* One character in z[] */
+  u8 c;                      /* One character in z[] */
   int cnt;                   /* Number of non-wildcard prefix characters */
-  char wc[3];                /* Wildcard characters */
+  u8 wc[4];                  /* Wildcard characters */
   sqlite3 *db = pParse->db;  /* Database connection */
   sqlite3_value *pVal = 0;
   int op;                    /* Opcode of pRight */
   int rc;                    /* Result code to return */
 
-  if( !sqlite3IsLikeFunction(db, pExpr, pnoCase, wc) ){
+  if( !sqlite3IsLikeFunction(db, pExpr, pnoCase, (char*)wc) ){
     return 0;
   }
 #ifdef SQLITE_EBCDIC
@@ -213,41 +213,86 @@ static int isLikeOrGlob(
 #endif
   pList = pExpr->x.pList;
   pLeft = pList->a[1].pExpr;
-  if( pLeft->op!=TK_COLUMN 
-   || sqlite3ExprAffinity(pLeft)!=SQLITE_AFF_TEXT 
-   || IsVirtual(pLeft->pTab)  /* Value might be numeric */
-  ){
-    /* IMP: R-02065-49465 The left-hand side of the LIKE or GLOB operator must
-    ** be the name of an indexed column with TEXT affinity. */
-    return 0;
-  }
-  assert( pLeft->iColumn!=(-1) ); /* Because IPK never has AFF_TEXT */
 
   pRight = sqlite3ExprSkipCollate(pList->a[0].pExpr);
   op = pRight->op;
-  if( op==TK_VARIABLE ){
+  if( op==TK_VARIABLE && (db->flags & SQLITE_EnableQPSG)==0 ){
     Vdbe *pReprepare = pParse->pReprepare;
     int iCol = pRight->iColumn;
     pVal = sqlite3VdbeGetBoundValue(pReprepare, iCol, SQLITE_AFF_BLOB);
     if( pVal && sqlite3_value_type(pVal)==SQLITE_TEXT ){
-      z = (char *)sqlite3_value_text(pVal);
+      z = sqlite3_value_text(pVal);
     }
     sqlite3VdbeSetVarmask(pParse->pVdbe, iCol);
     assert( pRight->op==TK_VARIABLE || pRight->op==TK_REGISTER );
   }else if( op==TK_STRING ){
-    z = pRight->u.zToken;
+    z = (u8*)pRight->u.zToken;
   }
   if( z ){
+
+    /* Count the number of prefix characters prior to the first wildcard */
     cnt = 0;
     while( (c=z[cnt])!=0 && c!=wc[0] && c!=wc[1] && c!=wc[2] ){
       cnt++;
+      if( c==wc[3] && z[cnt]!=0 ) cnt++;
     }
-    if( cnt!=0 && 255!=(u8)z[cnt-1] ){
+
+    /* The optimization is possible only if (1) the pattern does not begin
+    ** with a wildcard and if (2) the non-wildcard prefix does not end with
+    ** an (illegal 0xff) character, or (3) the pattern does not consist of
+    ** a single escape character. The second condition is necessary so
+    ** that we can increment the prefix key to find an upper bound for the
+    ** range search. The third is because the caller assumes that the pattern
+    ** consists of at least one character after all escapes have been
+    ** removed.  */
+    if( cnt!=0 && 255!=(u8)z[cnt-1] && (cnt>1 || z[0]!=wc[3]) ){
       Expr *pPrefix;
+
+      /* A "complete" match if the pattern ends with "*" or "%" */
       *pisComplete = c==wc[0] && z[cnt+1]==0;
-      pPrefix = sqlite3Expr(db, TK_STRING, z);
-      if( pPrefix ) pPrefix->u.zToken[cnt] = 0;
+
+      /* Get the pattern prefix.  Remove all escapes from the prefix. */
+      pPrefix = sqlite3Expr(db, TK_STRING, (char*)z);
+      if( pPrefix ){
+        int iFrom, iTo;
+        char *zNew = pPrefix->u.zToken;
+        zNew[cnt] = 0;
+        for(iFrom=iTo=0; iFrom<cnt; iFrom++){
+          if( zNew[iFrom]==wc[3] ) iFrom++;
+          zNew[iTo++] = zNew[iFrom];
+        }
+        zNew[iTo] = 0;
+
+        /* If the RHS begins with a digit or a minus sign, then the LHS must be
+        ** an ordinary column (not a virtual table column) with TEXT affinity.
+        ** Otherwise the LHS might be numeric and "lhs >= rhs" would be false
+        ** even though "lhs LIKE rhs" is true.  But if the RHS does not start
+        ** with a digit or '-', then "lhs LIKE rhs" will always be false if
+        ** the LHS is numeric and so the optimization still works.
+        **
+        ** 2018-09-10 ticket c94369cae9b561b1f996d0054bfab11389f9d033
+        ** The RHS pattern must not be '/%' because the termination condition
+        ** will then become "x<'0'" and if the affinity is numeric, will then
+        ** be converted into "x<0", which is incorrect.
+        */
+        if( sqlite3Isdigit(zNew[0])
+         || zNew[0]=='-'
+         || (zNew[0]+1=='0' && iTo==1)
+        ){
+          if( pLeft->op!=TK_COLUMN 
+           || sqlite3ExprAffinity(pLeft)!=SQLITE_AFF_TEXT 
+           || IsVirtual(pLeft->y.pTab)  /* Value might be numeric */
+          ){
+            sqlite3ExprDelete(db, pPrefix);
+            sqlite3ValueFree(pVal);
+            return 0;
+          }
+        }
+      }
       *ppPrefix = pPrefix;
+
+      /* If the RHS pattern is a bound parameter, make arrangements to
+      ** reprepare the statement when that parameter is rebound */
       if( op==TK_VARIABLE ){
         Vdbe *v = pParse->pVdbe;
         sqlite3VdbeSetVarmask(v, pRight->iColumn);
@@ -278,48 +323,123 @@ static int isLikeOrGlob(
 
 #ifndef SQLITE_OMIT_VIRTUALTABLE
 /*
-** Check to see if the given expression is of the form
+** Check to see if the pExpr expression is a form that needs to be passed
+** to the xBestIndex method of virtual tables.  Forms of interest include:
 **
-**         column OP expr
+**          Expression                   Virtual Table Operator
+**          -----------------------      ---------------------------------
+**      1.  column MATCH expr            SQLITE_INDEX_CONSTRAINT_MATCH
+**      2.  column GLOB expr             SQLITE_INDEX_CONSTRAINT_GLOB
+**      3.  column LIKE expr             SQLITE_INDEX_CONSTRAINT_LIKE
+**      4.  column REGEXP expr           SQLITE_INDEX_CONSTRAINT_REGEXP
+**      5.  column != expr               SQLITE_INDEX_CONSTRAINT_NE
+**      6.  expr != column               SQLITE_INDEX_CONSTRAINT_NE
+**      7.  column IS NOT expr           SQLITE_INDEX_CONSTRAINT_ISNOT
+**      8.  expr IS NOT column           SQLITE_INDEX_CONSTRAINT_ISNOT
+**      9.  column IS NOT NULL           SQLITE_INDEX_CONSTRAINT_ISNOTNULL
 **
-** where OP is one of MATCH, GLOB, LIKE or REGEXP and "column" is a 
-** column of a virtual table.
+** In every case, "column" must be a column of a virtual table.  If there
+** is a match, set *ppLeft to the "column" expression, set *ppRight to the 
+** "expr" expression (even though in forms (6) and (8) the column is on the
+** right and the expression is on the left).  Also set *peOp2 to the
+** appropriate virtual table operator.  The return value is 1 or 2 if there
+** is a match.  The usual return is 1, but if the RHS is also a column
+** of virtual table in forms (5) or (7) then return 2.
 **
-** If it is then return TRUE.  If not, return FALSE.
+** If the expression matches none of the patterns above, return 0.
 */
-static int isMatchOfColumn(
+static int isAuxiliaryVtabOperator(
+  sqlite3 *db,                    /* Parsing context */
   Expr *pExpr,                    /* Test this expression */
-  unsigned char *peOp2            /* OUT: 0 for MATCH, or else an op2 value */
+  unsigned char *peOp2,           /* OUT: 0 for MATCH, or else an op2 value */
+  Expr **ppLeft,                  /* Column expression to left of MATCH/op2 */
+  Expr **ppRight                  /* Expression to left of MATCH/op2 */
 ){
-  static const struct Op2 {
-    const char *zOp;
-    unsigned char eOp2;
-  } aOp[] = {
-    { "match",  SQLITE_INDEX_CONSTRAINT_MATCH },
-    { "glob",   SQLITE_INDEX_CONSTRAINT_GLOB },
-    { "like",   SQLITE_INDEX_CONSTRAINT_LIKE },
-    { "regexp", SQLITE_INDEX_CONSTRAINT_REGEXP }
-  };
-  ExprList *pList;
-  Expr *pCol;                     /* Column reference */
-  int i;
+  if( pExpr->op==TK_FUNCTION ){
+    static const struct Op2 {
+      const char *zOp;
+      unsigned char eOp2;
+    } aOp[] = {
+      { "match",  SQLITE_INDEX_CONSTRAINT_MATCH },
+      { "glob",   SQLITE_INDEX_CONSTRAINT_GLOB },
+      { "like",   SQLITE_INDEX_CONSTRAINT_LIKE },
+      { "regexp", SQLITE_INDEX_CONSTRAINT_REGEXP }
+    };
+    ExprList *pList;
+    Expr *pCol;                     /* Column reference */
+    int i;
 
-  if( pExpr->op!=TK_FUNCTION ){
-    return 0;
-  }
-  pList = pExpr->x.pList;
-  if( pList==0 || pList->nExpr!=2 ){
-    return 0;
-  }
-  pCol = pList->a[1].pExpr;
-  if( pCol->op!=TK_COLUMN || !IsVirtual(pCol->pTab) ){
-    return 0;
-  }
-  for(i=0; i<ArraySize(aOp); i++){
-    if( sqlite3StrICmp(pExpr->u.zToken, aOp[i].zOp)==0 ){
-      *peOp2 = aOp[i].eOp2;
-      return 1;
+    pList = pExpr->x.pList;
+    if( pList==0 || pList->nExpr!=2 ){
+      return 0;
     }
+
+    /* Built-in operators MATCH, GLOB, LIKE, and REGEXP attach to a
+    ** virtual table on their second argument, which is the same as
+    ** the left-hand side operand in their in-fix form.
+    **
+    **       vtab_column MATCH expression
+    **       MATCH(expression,vtab_column)
+    */
+    pCol = pList->a[1].pExpr;
+    if( pCol->op==TK_COLUMN && IsVirtual(pCol->y.pTab) ){
+      for(i=0; i<ArraySize(aOp); i++){
+        if( sqlite3StrICmp(pExpr->u.zToken, aOp[i].zOp)==0 ){
+          *peOp2 = aOp[i].eOp2;
+          *ppRight = pList->a[0].pExpr;
+          *ppLeft = pCol;
+          return 1;
+        }
+      }
+    }
+
+    /* We can also match against the first column of overloaded
+    ** functions where xFindFunction returns a value of at least
+    ** SQLITE_INDEX_CONSTRAINT_FUNCTION.
+    **
+    **      OVERLOADED(vtab_column,expression)
+    **
+    ** Historically, xFindFunction expected to see lower-case function
+    ** names.  But for this use case, xFindFunction is expected to deal
+    ** with function names in an arbitrary case.
+    */
+    pCol = pList->a[0].pExpr;
+    if( pCol->op==TK_COLUMN && IsVirtual(pCol->y.pTab) ){
+      sqlite3_vtab *pVtab;
+      sqlite3_module *pMod;
+      void (*xNotUsed)(sqlite3_context*,int,sqlite3_value**);
+      void *pNotUsed;
+      pVtab = sqlite3GetVTable(db, pCol->y.pTab)->pVtab;
+      assert( pVtab!=0 );
+      assert( pVtab->pModule!=0 );
+      pMod = (sqlite3_module *)pVtab->pModule;
+      if( pMod->xFindFunction!=0 ){
+        i = pMod->xFindFunction(pVtab,2, pExpr->u.zToken, &xNotUsed, &pNotUsed);
+        if( i>=SQLITE_INDEX_CONSTRAINT_FUNCTION ){
+          *peOp2 = i;
+          *ppRight = pList->a[1].pExpr;
+          *ppLeft = pCol;
+          return 1;
+        }
+      }
+    }
+  }else if( pExpr->op==TK_NE || pExpr->op==TK_ISNOT || pExpr->op==TK_NOTNULL ){
+    int res = 0;
+    Expr *pLeft = pExpr->pLeft;
+    Expr *pRight = pExpr->pRight;
+    if( pLeft->op==TK_COLUMN && IsVirtual(pLeft->y.pTab) ){
+      res++;
+    }
+    if( pRight && pRight->op==TK_COLUMN && IsVirtual(pRight->y.pTab) ){
+      res++;
+      SWAP(Expr*, pLeft, pRight);
+    }
+    *ppLeft = pLeft;
+    *ppRight = pRight;
+    if( pExpr->op==TK_NE ) *peOp2 = SQLITE_INDEX_CONSTRAINT_NE;
+    if( pExpr->op==TK_ISNOT ) *peOp2 = SQLITE_INDEX_CONSTRAINT_ISNOT;
+    if( pExpr->op==TK_NOTNULL ) *peOp2 = SQLITE_INDEX_CONSTRAINT_ISNOTNULL;
+    return res;
   }
   return 0;
 }
@@ -398,8 +518,8 @@ static void whereCombineDisjuncts(
    && (eOp & (WO_EQ|WO_GT|WO_GE))!=eOp ) return;
   assert( pOne->pExpr->pLeft!=0 && pOne->pExpr->pRight!=0 );
   assert( pTwo->pExpr->pLeft!=0 && pTwo->pExpr->pRight!=0 );
-  if( sqlite3ExprCompare(pOne->pExpr->pLeft, pTwo->pExpr->pLeft, -1) ) return;
-  if( sqlite3ExprCompare(pOne->pExpr->pRight, pTwo->pExpr->pRight, -1) )return;
+  if( sqlite3ExprCompare(0,pOne->pExpr->pLeft, pTwo->pExpr->pLeft, -1) ) return;
+  if( sqlite3ExprCompare(0,pOne->pExpr->pRight, pTwo->pExpr->pRight,-1) )return;
   /* If we reach this point, it means the two subterms can be combined */
   if( (eOp & (eOp-1))!=0 ){
     if( eOp & (WO_LT|WO_LE) ){
@@ -570,7 +690,7 @@ static void exprAnalyzeOrTerm(
           for(j=0, pAndTerm=pAndWC->a; j<pAndWC->nTerm; j++, pAndTerm++){
             assert( pAndTerm->pExpr );
             if( allowedOp(pAndTerm->pExpr->op) 
-             || pAndTerm->eOperator==WO_MATCH 
+             || pAndTerm->eOperator==WO_AUX
             ){
               b |= sqlite3WhereGetMask(&pWInfo->sMaskSet, pAndTerm->leftCursor);
             }
@@ -602,7 +722,12 @@ static void exprAnalyzeOrTerm(
   ** empty.
   */
   pOrInfo->indexable = indexable;
-  pTerm->eOperator = indexable==0 ? 0 : WO_OR;
+  if( indexable ){
+    pTerm->eOperator = WO_OR;
+    pWC->hasOr = 1;
+  }else{
+    pTerm->eOperator = WO_OR;
+  }
 
   /* For a two-way OR, attempt to implementation case 2.
   */
@@ -652,6 +777,7 @@ static void exprAnalyzeOrTerm(
     ** and column is found but leave okToChngToIN false if not found.
     */
     for(j=0; j<2 && !okToChngToIN; j++){
+      Expr *pLeft = 0;
       pOrTerm = pOrWc->a;
       for(i=pOrWc->nTerm-1; i>=0; i--, pOrTerm++){
         assert( pOrTerm->eOperator & WO_EQ );
@@ -675,6 +801,7 @@ static void exprAnalyzeOrTerm(
         }
         iColumn = pOrTerm->u.leftColumn;
         iCursor = pOrTerm->leftCursor;
+        pLeft = pOrTerm->pExpr->pLeft;
         break;
       }
       if( i<0 ){
@@ -694,7 +821,9 @@ static void exprAnalyzeOrTerm(
         assert( pOrTerm->eOperator & WO_EQ );
         if( pOrTerm->leftCursor!=iCursor ){
           pOrTerm->wtFlags &= ~TERM_OR_OK;
-        }else if( pOrTerm->u.leftColumn!=iColumn ){
+        }else if( pOrTerm->u.leftColumn!=iColumn || (iColumn==XN_EXPR 
+               && sqlite3ExprCompare(pParse, pOrTerm->pExpr->pLeft, pLeft, -1)
+        )){
           okToChngToIN = 0;
         }else{
           int affLeft, affRight;
@@ -734,7 +863,7 @@ static void exprAnalyzeOrTerm(
       }
       assert( pLeft!=0 );
       pDup = sqlite3ExprDup(db, pLeft, 0);
-      pNew = sqlite3PExpr(pParse, TK_IN, pDup, 0, 0);
+      pNew = sqlite3PExpr(pParse, TK_IN, pDup, 0);
       if( pNew ){
         int idxNew;
         transferJoinMarkings(pNew, pExpr);
@@ -743,12 +872,11 @@ static void exprAnalyzeOrTerm(
         idxNew = whereClauseInsert(pWC, pNew, TERM_VIRTUAL|TERM_DYNAMIC);
         testcase( idxNew==0 );
         exprAnalyze(pSrc, pWC, idxNew);
-        pTerm = &pWC->a[idxTerm];
+        /* pTerm = &pWC->a[idxTerm]; // would be needed if pTerm where used again */
         markTermAsChild(pWC, idxNew, idxTerm);
       }else{
         sqlite3ExprListDelete(db, pList);
       }
-      pTerm->eOperator = WO_NOOP;  /* case 1 trumps case 3 */
     }
   }
 }
@@ -772,7 +900,6 @@ static void exprAnalyzeOrTerm(
 static int termIsEquivalence(Parse *pParse, Expr *pExpr){
   char aff1, aff2;
   CollSeq *pColl;
-  const char *zColl1, *zColl2;
   if( !OptimizationEnabled(pParse->db, SQLITE_Transitive) ) return 0;
   if( pExpr->op!=TK_EQ && pExpr->op!=TK_IS ) return 0;
   if( ExprHasProperty(pExpr, EP_FromJoin) ) return 0;
@@ -784,12 +911,8 @@ static int termIsEquivalence(Parse *pParse, Expr *pExpr){
     return 0;
   }
   pColl = sqlite3BinaryCompareCollSeq(pParse, pExpr->pLeft, pExpr->pRight);
-  if( pColl==0 || sqlite3StrICmp(pColl->zName, "BINARY")==0 ) return 1;
-  pColl = sqlite3ExprCollSeq(pParse, pExpr->pLeft);
-  zColl1 = pColl ? pColl->zName : 0;
-  pColl = sqlite3ExprCollSeq(pParse, pExpr->pRight);
-  zColl2 = pColl ? pColl->zName : 0;
-  return sqlite3_stricmp(zColl1, zColl2)==0;
+  if( sqlite3IsBinary(pColl) ) return 1;
+  return sqlite3ExprCollSeqMatch(pParse, pExpr->pLeft, pExpr->pRight);
 }
 
 /*
@@ -811,6 +934,9 @@ static Bitmask exprSelectUsage(WhereMaskSet *pMaskSet, Select *pS){
       for(i=0; i<pSrc->nSrc; i++){
         mask |= exprSelectUsage(pMaskSet, pSrc->a[i].pSelect);
         mask |= sqlite3WhereExprUsage(pMaskSet, pSrc->a[i].pOn);
+        if( pSrc->a[i].fg.isTabFunc ){
+          mask |= sqlite3WhereExprListUsage(pMaskSet, pSrc->a[i].u1.pFuncArg);
+        }
       }
     }
     pS = pS->pPrior;
@@ -822,8 +948,8 @@ static Bitmask exprSelectUsage(WhereMaskSet *pMaskSet, Select *pS){
 ** Expression pExpr is one operand of a comparison operator that might
 ** be useful for indexing.  This routine checks to see if pExpr appears
 ** in any index.  Return TRUE (1) if pExpr is an indexed term and return
-** FALSE (0) if not.  If TRUE is returned, also set *piCur to the cursor
-** number of the table that is indexed and *piColumn to the column number
+** FALSE (0) if not.  If TRUE is returned, also set aiCurCol[0] to the cursor
+** number of the table that is indexed and aiCurCol[1] to the column number
 ** of the column that is indexed, or XN_EXPR (-2) if an expression is being
 ** indexed.
 **
@@ -831,18 +957,37 @@ static Bitmask exprSelectUsage(WhereMaskSet *pMaskSet, Select *pS){
 ** true even if that particular column is not indexed, because the column
 ** might be added to an automatic index later.
 */
-static int exprMightBeIndexed(
+static SQLITE_NOINLINE int exprMightBeIndexed2(
   SrcList *pFrom,        /* The FROM clause */
-  int op,                /* The specific comparison operator */
   Bitmask mPrereq,       /* Bitmask of FROM clause terms referenced by pExpr */
-  Expr *pExpr,           /* An operand of a comparison operator */
-  int *piCur,            /* Write the referenced table cursor number here */
-  int *piColumn          /* Write the referenced table column number here */
+  int *aiCurCol,         /* Write the referenced table cursor and column here */
+  Expr *pExpr            /* An operand of a comparison operator */
 ){
   Index *pIdx;
   int i;
   int iCur;
-
+  for(i=0; mPrereq>1; i++, mPrereq>>=1){}
+  iCur = pFrom->a[i].iCursor;
+  for(pIdx=pFrom->a[i].pTab->pIndex; pIdx; pIdx=pIdx->pNext){
+    if( pIdx->aColExpr==0 ) continue;
+    for(i=0; i<pIdx->nKeyCol; i++){
+      if( pIdx->aiColumn[i]!=XN_EXPR ) continue;
+      if( sqlite3ExprCompareSkip(pExpr, pIdx->aColExpr->a[i].pExpr, iCur)==0 ){
+        aiCurCol[0] = iCur;
+        aiCurCol[1] = XN_EXPR;
+        return 1;
+      }
+    }
+  }
+  return 0;
+}
+static int exprMightBeIndexed(
+  SrcList *pFrom,        /* The FROM clause */
+  Bitmask mPrereq,       /* Bitmask of FROM clause terms referenced by pExpr */
+  int *aiCurCol,         /* Write the referenced table cursor & column here */
+  Expr *pExpr,           /* An operand of a comparison operator */
+  int op                 /* The specific comparison operator */
+){
   /* If this expression is a vector to the left or right of a 
   ** inequality constraint (>, <, >= or <=), perform the processing 
   ** on the first element of the vector.  */
@@ -854,26 +999,13 @@ static int exprMightBeIndexed(
   }
 
   if( pExpr->op==TK_COLUMN ){
-    *piCur = pExpr->iTable;
-    *piColumn = pExpr->iColumn;
+    aiCurCol[0] = pExpr->iTable;
+    aiCurCol[1] = pExpr->iColumn;
     return 1;
   }
   if( mPrereq==0 ) return 0;                 /* No table references */
   if( (mPrereq&(mPrereq-1))!=0 ) return 0;   /* Refs more than one table */
-  for(i=0; mPrereq>1; i++, mPrereq>>=1){}
-  iCur = pFrom->a[i].iCursor;
-  for(pIdx=pFrom->a[i].pTab->pIndex; pIdx; pIdx=pIdx->pNext){
-    if( pIdx->aColExpr==0 ) continue;
-    for(i=0; i<pIdx->nKeyCol; i++){
-      if( pIdx->aiColumn[i]!=XN_EXPR ) continue;
-      if( sqlite3ExprCompare(pExpr, pIdx->aColExpr->a[i].pExpr, iCur)==0 ){
-        *piCur = iCur;
-        *piColumn = XN_EXPR;
-        return 1;
-      }
-    }
-  }
-  return 0;
+  return exprMightBeIndexed2(pFrom,mPrereq,aiCurCol,pExpr);
 }
 
 /*
@@ -912,7 +1044,8 @@ static void exprAnalyze(
   int op;                          /* Top-level operator.  pExpr->op */
   Parse *pParse = pWInfo->pParse;  /* Parsing context */
   sqlite3 *db = pParse->db;        /* Database connection */
-  unsigned char eOp2;              /* op2 value for LIKE/REGEXP/GLOB */
+  unsigned char eOp2 = 0;          /* op2 value for LIKE/REGEXP/GLOB */
+  int nLeft;                       /* Number of elements on left side vector */
 
   if( db->mallocFailed ){
     return;
@@ -936,19 +1069,25 @@ static void exprAnalyze(
   }else{
     pTerm->prereqRight = sqlite3WhereExprUsage(pMaskSet, pExpr->pRight);
   }
-  prereqAll = sqlite3WhereExprUsage(pMaskSet, pExpr);
+  pMaskSet->bVarSelect = 0;
+  prereqAll = sqlite3WhereExprUsageNN(pMaskSet, pExpr);
+  if( pMaskSet->bVarSelect ) pTerm->wtFlags |= TERM_VARSELECT;
   if( ExprHasProperty(pExpr, EP_FromJoin) ){
     Bitmask x = sqlite3WhereGetMask(pMaskSet, pExpr->iRightJoinTable);
     prereqAll |= x;
     extraRight = x-1;  /* ON clause terms may not be used with an index
                        ** on left table of a LEFT JOIN.  Ticket #3015 */
+    if( (prereqAll>>1)>=x ){
+      sqlite3ErrorMsg(pParse, "ON clause references tables to its right");
+      return;
+    }
   }
   pTerm->prereqAll = prereqAll;
   pTerm->leftCursor = -1;
   pTerm->iParent = -1;
   pTerm->eOperator = 0;
   if( allowedOp(op) ){
-    int iCur, iColumn;
+    int aiCurCol[2];
     Expr *pLeft = sqlite3ExprSkipCollate(pExpr->pLeft);
     Expr *pRight = sqlite3ExprSkipCollate(pExpr->pRight);
     u16 opMask = (pTerm->prereqRight & prereqLeft)==0 ? WO_ALL : WO_EQUIV;
@@ -959,14 +1098,14 @@ static void exprAnalyze(
       pLeft = pLeft->x.pList->a[pTerm->iField-1].pExpr;
     }
 
-    if( exprMightBeIndexed(pSrc, op, prereqLeft, pLeft, &iCur, &iColumn) ){
-      pTerm->leftCursor = iCur;
-      pTerm->u.leftColumn = iColumn;
+    if( exprMightBeIndexed(pSrc, prereqLeft, aiCurCol, pLeft, op) ){
+      pTerm->leftCursor = aiCurCol[0];
+      pTerm->u.leftColumn = aiCurCol[1];
       pTerm->eOperator = operatorMask(op) & opMask;
     }
     if( op==TK_IS ) pTerm->wtFlags |= TERM_IS;
     if( pRight 
-     && exprMightBeIndexed(pSrc, op, pTerm->prereqRight, pRight, &iCur,&iColumn)
+     && exprMightBeIndexed(pSrc, pTerm->prereqRight, aiCurCol, pRight, op)
     ){
       WhereTerm *pNew;
       Expr *pDup;
@@ -996,8 +1135,8 @@ static void exprAnalyze(
         pNew = pTerm;
       }
       exprCommute(pParse, pDup);
-      pNew->leftCursor = iCur;
-      pNew->u.leftColumn = iColumn;
+      pNew->leftCursor = aiCurCol[0];
+      pNew->u.leftColumn = aiCurCol[1];
       testcase( (prereqLeft | extraRight) != prereqLeft );
       pNew->prereqRight = prereqLeft | extraRight;
       pNew->prereqAll = prereqAll;
@@ -1032,7 +1171,7 @@ static void exprAnalyze(
       int idxNew;
       pNewExpr = sqlite3PExpr(pParse, ops[i], 
                              sqlite3ExprDup(db, pExpr->pLeft, 0),
-                             sqlite3ExprDup(db, pList->a[i].pExpr, 0), 0);
+                             sqlite3ExprDup(db, pList->a[i].pExpr, 0));
       transferJoinMarkings(pNewExpr, pExpr);
       idxNew = whereClauseInsert(pWC, pNewExpr, TERM_VIRTUAL|TERM_DYNAMIC);
       testcase( idxNew==0 );
@@ -1113,11 +1252,11 @@ static void exprAnalyze(
       }
       *pC = c + 1;
     }
-    zCollSeqName = noCase ? "NOCASE" : "BINARY";
+    zCollSeqName = noCase ? "NOCASE" : sqlite3StrBINARY;
     pNewExpr1 = sqlite3ExprDup(db, pLeft, 0);
     pNewExpr1 = sqlite3PExpr(pParse, TK_GE,
            sqlite3ExprAddCollateString(pParse,pNewExpr1,zCollSeqName),
-           pStr1, 0);
+           pStr1);
     transferJoinMarkings(pNewExpr1, pExpr);
     idxNew1 = whereClauseInsert(pWC, pNewExpr1, wtFlags);
     testcase( idxNew1==0 );
@@ -1125,7 +1264,7 @@ static void exprAnalyze(
     pNewExpr2 = sqlite3ExprDup(db, pLeft, 0);
     pNewExpr2 = sqlite3PExpr(pParse, TK_LT,
            sqlite3ExprAddCollateString(pParse,pNewExpr2,zCollSeqName),
-           pStr2, 0);
+           pStr2);
     transferJoinMarkings(pNewExpr2, pExpr);
     idxNew2 = whereClauseInsert(pWC, pNewExpr2, wtFlags);
     testcase( idxNew2==0 );
@@ -1139,38 +1278,46 @@ static void exprAnalyze(
 #endif /* SQLITE_OMIT_LIKE_OPTIMIZATION */
 
 #ifndef SQLITE_OMIT_VIRTUALTABLE
-  /* Add a WO_MATCH auxiliary term to the constraint set if the
-  ** current expression is of the form:  column MATCH expr.
+  /* Add a WO_AUX auxiliary term to the constraint set if the
+  ** current expression is of the form "column OP expr" where OP
+  ** is an operator that gets passed into virtual tables but which is
+  ** not normally optimized for ordinary tables.  In other words, OP
+  ** is one of MATCH, LIKE, GLOB, REGEXP, !=, IS, IS NOT, or NOT NULL.
   ** This information is used by the xBestIndex methods of
   ** virtual tables.  The native query optimizer does not attempt
   ** to do anything with MATCH functions.
   */
-  if( pWC->op==TK_AND && isMatchOfColumn(pExpr, &eOp2) ){
-    int idxNew;
-    Expr *pRight, *pLeft;
-    WhereTerm *pNewTerm;
-    Bitmask prereqColumn, prereqExpr;
+  if( pWC->op==TK_AND ){
+    Expr *pRight = 0, *pLeft = 0;
+    int res = isAuxiliaryVtabOperator(db, pExpr, &eOp2, &pLeft, &pRight);
+    while( res-- > 0 ){
+      int idxNew;
+      WhereTerm *pNewTerm;
+      Bitmask prereqColumn, prereqExpr;
 
-    pRight = pExpr->x.pList->a[0].pExpr;
-    pLeft = pExpr->x.pList->a[1].pExpr;
-    prereqExpr = sqlite3WhereExprUsage(pMaskSet, pRight);
-    prereqColumn = sqlite3WhereExprUsage(pMaskSet, pLeft);
-    if( (prereqExpr & prereqColumn)==0 ){
-      Expr *pNewExpr;
-      pNewExpr = sqlite3PExpr(pParse, TK_MATCH, 
-                              0, sqlite3ExprDup(db, pRight, 0), 0);
-      idxNew = whereClauseInsert(pWC, pNewExpr, TERM_VIRTUAL|TERM_DYNAMIC);
-      testcase( idxNew==0 );
-      pNewTerm = &pWC->a[idxNew];
-      pNewTerm->prereqRight = prereqExpr;
-      pNewTerm->leftCursor = pLeft->iTable;
-      pNewTerm->u.leftColumn = pLeft->iColumn;
-      pNewTerm->eOperator = WO_MATCH;
-      pNewTerm->eMatchOp = eOp2;
-      markTermAsChild(pWC, idxNew, idxTerm);
-      pTerm = &pWC->a[idxTerm];
-      pTerm->wtFlags |= TERM_COPIED;
-      pNewTerm->prereqAll = pTerm->prereqAll;
+      prereqExpr = sqlite3WhereExprUsage(pMaskSet, pRight);
+      prereqColumn = sqlite3WhereExprUsage(pMaskSet, pLeft);
+      if( (prereqExpr & prereqColumn)==0 ){
+        Expr *pNewExpr;
+        pNewExpr = sqlite3PExpr(pParse, TK_MATCH, 
+            0, sqlite3ExprDup(db, pRight, 0));
+        if( ExprHasProperty(pExpr, EP_FromJoin) && pNewExpr ){
+          ExprSetProperty(pNewExpr, EP_FromJoin);
+        }
+        idxNew = whereClauseInsert(pWC, pNewExpr, TERM_VIRTUAL|TERM_DYNAMIC);
+        testcase( idxNew==0 );
+        pNewTerm = &pWC->a[idxNew];
+        pNewTerm->prereqRight = prereqExpr;
+        pNewTerm->leftCursor = pLeft->iTable;
+        pNewTerm->u.leftColumn = pLeft->iColumn;
+        pNewTerm->eOperator = WO_AUX;
+        pNewTerm->eMatchOp = eOp2;
+        markTermAsChild(pWC, idxNew, idxTerm);
+        pTerm = &pWC->a[idxTerm];
+        pTerm->wtFlags |= TERM_COPIED;
+        pNewTerm->prereqAll = pTerm->prereqAll;
+      }
+      SWAP(Expr*, pLeft, pRight);
     }
   }
 #endif /* SQLITE_OMIT_VIRTUALTABLE */
@@ -1184,26 +1331,25 @@ static void exprAnalyze(
   ** is not a sub-select.  */
   if( pWC->op==TK_AND 
   && (pExpr->op==TK_EQ || pExpr->op==TK_IS)
-  && sqlite3ExprIsVector(pExpr->pLeft)
+  && (nLeft = sqlite3ExprVectorSize(pExpr->pLeft))>1
+  && sqlite3ExprVectorSize(pExpr->pRight)==nLeft
   && ( (pExpr->pLeft->flags & EP_xIsSelect)==0 
-    || (pExpr->pRight->flags & EP_xIsSelect)==0
-  )){
-    int nLeft = sqlite3ExprVectorSize(pExpr->pLeft);
+    || (pExpr->pRight->flags & EP_xIsSelect)==0)
+  ){
     int i;
-    assert( nLeft==sqlite3ExprVectorSize(pExpr->pRight) );
     for(i=0; i<nLeft; i++){
       int idxNew;
       Expr *pNew;
       Expr *pLeft = sqlite3ExprForVectorField(pParse, pExpr->pLeft, i);
       Expr *pRight = sqlite3ExprForVectorField(pParse, pExpr->pRight, i);
 
-      pNew = sqlite3PExpr(pParse, pExpr->op, pLeft, pRight, 0);
+      pNew = sqlite3PExpr(pParse, pExpr->op, pLeft, pRight);
       transferJoinMarkings(pNew, pExpr);
       idxNew = whereClauseInsert(pWC, pNew, TERM_DYNAMIC);
       exprAnalyze(pSrc, pWC, idxNew);
     }
     pTerm = &pWC->a[idxTerm];
-    pTerm->wtFlags = TERM_CODED|TERM_VIRTUAL;  /* Disable the original */
+    pTerm->wtFlags |= TERM_CODED|TERM_VIRTUAL;  /* Disable the original */
     pTerm->eOperator = 0;
   }
 
@@ -1240,6 +1386,7 @@ static void exprAnalyze(
   if( pExpr->op==TK_NOTNULL
    && pExpr->pLeft->op==TK_COLUMN
    && pExpr->pLeft->iColumn>=0
+   && !ExprHasProperty(pExpr, EP_FromJoin)
    && OptimizationEnabled(db, SQLITE_Stat34)
   ){
     Expr *pNewExpr;
@@ -1249,7 +1396,7 @@ static void exprAnalyze(
 
     pNewExpr = sqlite3PExpr(pParse, TK_GT,
                             sqlite3ExprDup(db, pLeft, 0),
-                            sqlite3ExprAlloc(db, TK_NULL, 0, 0), 0);
+                            sqlite3ExprAlloc(db, TK_NULL, 0, 0));
 
     idxNew = whereClauseInsert(pWC, pNewExpr,
                               TERM_VIRTUAL|TERM_DYNAMIC|TERM_VNULL);
@@ -1317,6 +1464,7 @@ void sqlite3WhereClauseInit(
   WhereInfo *pWInfo        /* The WHERE processing context */
 ){
   pWC->pWInfo = pWInfo;
+  pWC->hasOr = 0;
   pWC->pOuter = 0;
   pWC->nTerm = 0;
   pWC->nSlot = ArraySize(pWC->aStatic);
@@ -1353,22 +1501,29 @@ void sqlite3WhereClauseClear(WhereClause *pWC){
 ** a bitmask indicating which tables are used in that expression
 ** tree.
 */
-Bitmask sqlite3WhereExprUsage(WhereMaskSet *pMaskSet, Expr *p){
+Bitmask sqlite3WhereExprUsageNN(WhereMaskSet *pMaskSet, Expr *p){
   Bitmask mask;
-  if( p==0 ) return 0;
-  if( p->op==TK_COLUMN ){
-    mask = sqlite3WhereGetMask(pMaskSet, p->iTable);
-    return mask;
+  if( p->op==TK_COLUMN && !ExprHasProperty(p, EP_FixedCol) ){
+    return sqlite3WhereGetMask(pMaskSet, p->iTable);
+  }else if( ExprHasProperty(p, EP_TokenOnly|EP_Leaf) ){
+    assert( p->op!=TK_IF_NULL_ROW );
+    return 0;
   }
-  assert( !ExprHasProperty(p, EP_TokenOnly) );
-  mask = p->pRight ? sqlite3WhereExprUsage(pMaskSet, p->pRight) : 0;
-  if( p->pLeft ) mask |= sqlite3WhereExprUsage(pMaskSet, p->pLeft);
-  if( ExprHasProperty(p, EP_xIsSelect) ){
+  mask = (p->op==TK_IF_NULL_ROW) ? sqlite3WhereGetMask(pMaskSet, p->iTable) : 0;
+  if( p->pLeft ) mask |= sqlite3WhereExprUsageNN(pMaskSet, p->pLeft);
+  if( p->pRight ){
+    mask |= sqlite3WhereExprUsageNN(pMaskSet, p->pRight);
+    assert( p->x.pList==0 );
+  }else if( ExprHasProperty(p, EP_xIsSelect) ){
+    if( ExprHasProperty(p, EP_VarSelect) ) pMaskSet->bVarSelect = 1;
     mask |= exprSelectUsage(pMaskSet, p->x.pSelect);
   }else if( p->x.pList ){
     mask |= sqlite3WhereExprListUsage(pMaskSet, p->x.pList);
   }
   return mask;
+}
+Bitmask sqlite3WhereExprUsage(WhereMaskSet *pMaskSet, Expr *p){
+  return p ? sqlite3WhereExprUsageNN(pMaskSet,p) : 0;
 }
 Bitmask sqlite3WhereExprListUsage(WhereMaskSet *pMaskSet, ExprList *pList){
   int i;
@@ -1423,6 +1578,7 @@ void sqlite3WhereTabFuncArgs(
   pArgs = pItem->u1.pFuncArg;
   if( pArgs==0 ) return;
   for(j=k=0; j<pArgs->nExpr; j++){
+    Expr *pRhs;
     while( k<pTab->nCol && (pTab->aCol[k].colFlags & COLFLAG_HIDDEN)==0 ){k++;}
     if( k>=pTab->nCol ){
       sqlite3ErrorMsg(pParse, "too many arguments on %s() - max %d",
@@ -1433,9 +1589,10 @@ void sqlite3WhereTabFuncArgs(
     if( pColRef==0 ) return;
     pColRef->iTable = pItem->iCursor;
     pColRef->iColumn = k++;
-    pColRef->pTab = pTab;
-    pTerm = sqlite3PExpr(pParse, TK_EQ, pColRef,
-                         sqlite3ExprDup(pParse->db, pArgs->a[j].pExpr, 0), 0);
+    pColRef->y.pTab = pTab;
+    pRhs = sqlite3PExpr(pParse, TK_UPLUS, 
+        sqlite3ExprDup(pParse->db, pArgs->a[j].pExpr, 0), 0);
+    pTerm = sqlite3PExpr(pParse, TK_EQ, pColRef, pRhs);
     whereClauseInsert(pWC, pTerm, TERM_DYNAMIC);
   }
 }

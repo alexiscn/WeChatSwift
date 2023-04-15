@@ -2,7 +2,7 @@
 //  MomentKeyboardNode.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/8/28.
+//  Created by alexiscn on 2019/8/28.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

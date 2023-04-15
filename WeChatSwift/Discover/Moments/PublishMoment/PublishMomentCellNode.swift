@@ -2,7 +2,7 @@
 //  PublishMomentCellNode.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/8/15.
+//  Created by alexiscn on 2019/8/15.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

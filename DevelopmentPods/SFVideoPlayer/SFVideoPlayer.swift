@@ -2,7 +2,7 @@
 //  SFVideoPlayer.swift
 //  SFVideoPlayer
 //
-//  Created by xu.shuifeng on 2019/9/10.
+//  Created by alexiscn on 2019/9/10.
 //
 
 import UIKit

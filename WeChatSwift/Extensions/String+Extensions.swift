@@ -2,7 +2,7 @@
 //  String+Extensions.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2020/8/6.
+//  Created by alexiscn on 2020/8/6.
 //  Copyright © 2020 alexiscn. All rights reserved.
 //
 

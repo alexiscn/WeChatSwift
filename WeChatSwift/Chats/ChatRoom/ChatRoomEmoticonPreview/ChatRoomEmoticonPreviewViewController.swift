@@ -2,7 +2,7 @@
 //  ChatRoomEmoticonPreviewViewController.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/26.
+//  Created by alexiscn on 2019/7/26.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

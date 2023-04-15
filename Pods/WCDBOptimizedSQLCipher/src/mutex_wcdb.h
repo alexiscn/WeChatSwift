@@ -18,8 +18,8 @@
  * limitations under the License.
  */
 
-#ifndef mutex_wcdb_h
-#define mutex_wcdb_h
+#ifndef _SQLITE_MUTEX_WCDB_H
+#define _SQLITE_MUTEX_WCDB_H
 
 #if SQLITE_WCDB_SIGNAL_RETRY
 
@@ -50,4 +50,4 @@ sqlite3_mutex* unixVFSMutex(void);
 
 #endif //SQLITE_WCDB_SIGNAL_RETRY
 
-#endif /* mutex_wcdb_h */
+#endif /* _SQLITE_MUTEX_WCDB_H */

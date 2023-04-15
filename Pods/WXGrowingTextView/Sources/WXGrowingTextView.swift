@@ -2,7 +2,7 @@
 //  WXGrowingTextView.h
 //  WXGrowingTextView
 //
-//  Created by xu.shuifeng on 2020/6/9.
+//  Created by alexiscn on 2020/6/9.
 //  Copyright © 2020 alexiscn. All rights reserved.
 //
 

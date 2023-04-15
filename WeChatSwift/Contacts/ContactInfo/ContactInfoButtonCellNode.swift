@@ -2,7 +2,7 @@
 //  ContactInfoButtonCellNode.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/30.
+//  Created by alexiscn on 2019/7/30.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

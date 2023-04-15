@@ -49,7 +49,6 @@ int sqliterk_register_notify(sqliterk *rk, sqliterk_notify notify);
 typedef struct sqliterk_cipher_conf {
     const void *key;
     int key_len;
-    const char *cipher_name;
     int page_size;
     int kdf_iter;
     int use_hmac;
@@ -63,6 +62,7 @@ typedef struct sqliterk_master_info sqliterk_master_info;
 
 #define SQLITERK_OUTPUT_NO_CREATE_TABLES 0x0001
 #define SQLITERK_OUTPUT_ALL_TABLES 0x0002
+#define SQLITERK_OUTPUT_CHECK_TABLE_COLUMNS 0x0004
 
 int sqliterk_open(const char *path,
                   const sqliterk_cipher_conf *cipher,

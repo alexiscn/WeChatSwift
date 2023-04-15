@@ -2,7 +2,7 @@
 //  ChatRoomMapViewController.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/27.
+//  Created by alexiscn on 2019/7/27.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

@@ -18,8 +18,8 @@
  * limitations under the License.
  */
 
-#ifndef os_wcdb_h
-#define os_wcdb_h
+#ifndef _SQLITE_OS_WCDB_H
+#define _SQLITE_OS_WCDB_H
 
 #if SQLITE_WCDB_SIGNAL_RETRY
 
@@ -64,4 +64,4 @@ int WCDBOsFileGetWait(sqlite3_file* fd);
 
 #endif// SQLITE_WCDB_SIGNAL_RETRY
 
-#endif /* os_wcdb_h */
+#endif /* _SQLITE_OS_WCDB_H */

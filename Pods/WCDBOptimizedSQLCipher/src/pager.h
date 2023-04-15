@@ -122,11 +122,11 @@ int sqlite3PagerOpen(
   int,
   void(*)(DbPage*)
 );
-int sqlite3PagerClose(Pager *pPager);
+int sqlite3PagerClose(Pager *pPager, sqlite3*);
 int sqlite3PagerReadFileheader(Pager*, int, unsigned char*);
 
 /* Functions used to configure a Pager object. */
-void sqlite3PagerSetBusyhandler(Pager*, int(*)(void *), void *);
+void sqlite3PagerSetBusyHandler(Pager*, int(*)(void *), void *);
 int sqlite3PagerSetPagesize(Pager*, u32*, int);
 #ifdef SQLITE_HAS_CODEC
 void sqlite3PagerAlignReserve(Pager*,Pager*);
@@ -151,6 +151,7 @@ DbPage *sqlite3PagerLookup(Pager *pPager, Pgno pgno);
 void sqlite3PagerRef(DbPage*);
 void sqlite3PagerUnref(DbPage*);
 void sqlite3PagerUnrefNotNull(DbPage*);
+void sqlite3PagerUnrefPageOne(DbPage*);
 
 /* Operations on page references. */
 int sqlite3PagerWrite(DbPage*);
@@ -172,23 +173,28 @@ int sqlite3PagerOpenSavepoint(Pager *pPager, int n);
 int sqlite3PagerSavepoint(Pager *pPager, int op, int iSavepoint);
 int sqlite3PagerSharedLock(Pager *pPager);
 
+#ifdef SQLITE_WCDB_DIRTY_PAGE_COUNT
+int sqlite3PagerDirtyPageCount(Pager *);
+#endif //SQLITE_WCDB_DIRTY_PAGE_COUNT
+
 #ifndef SQLITE_OMIT_WAL
-  int sqlite3PagerCheckpoint(Pager *pPager, int, int*, int*);
+  int sqlite3PagerCheckpoint(Pager *pPager, sqlite3*, int, int*, int*);
   int sqlite3PagerWalSupported(Pager *pPager);
   int sqlite3PagerWalCallback(Pager *pPager);
   int sqlite3PagerOpenWal(Pager *pPager, int *pisOpen);
-  int sqlite3PagerCloseWal(Pager *pPager);
-  int sqlite3PagerUseWal(Pager *pPager);
-#ifdef SQLITE_WCDB_CHECKPOINT_HANDLER
-int sqlite3PagerWalCheckpointHandler(Pager *,int (*)(void*,int),void*);
-#endif //SQLITE_WCDB_CHECKPOINT_HANDLER
+  int sqlite3PagerCloseWal(Pager *pPager, sqlite3*);
 
 # ifdef SQLITE_ENABLE_SNAPSHOT
   int sqlite3PagerSnapshotGet(Pager *pPager, sqlite3_snapshot **ppSnapshot);
   int sqlite3PagerSnapshotOpen(Pager *pPager, sqlite3_snapshot *pSnapshot);
+  int sqlite3PagerSnapshotRecover(Pager *pPager);
+  int sqlite3PagerSnapshotCheck(Pager *pPager, sqlite3_snapshot *pSnapshot);
+  void sqlite3PagerSnapshotUnlock(Pager *pPager);
 # endif
-#else
-# define sqlite3PagerUseWal(x) 0
+#endif
+
+#ifdef SQLITE_DIRECT_OVERFLOW_READ
+  int sqlite3PagerDirectReadOk(Pager *pPager, Pgno pgno);
 #endif
 
 #ifdef SQLITE_ENABLE_ZIPVFS
@@ -212,6 +218,11 @@ int sqlite3PagerIsMemdb(Pager*);
 void sqlite3PagerCacheStat(Pager *, int, int, int *);
 void sqlite3PagerClearCache(Pager*);
 int sqlite3SectorSize(sqlite3_file *);
+#ifdef SQLITE_ENABLE_SETLK_TIMEOUT
+void sqlite3PagerResetLockTimeout(Pager *pPager);
+#else
+# define sqlite3PagerResetLockTimeout(X)
+#endif
 
 /* Functions used to truncate the database file. */
 void sqlite3PagerTruncateImage(Pager*,Pgno);

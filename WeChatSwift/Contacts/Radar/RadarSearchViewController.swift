@@ -2,7 +2,7 @@
 //  RadarSearchViewController.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/9/7.
+//  Created by alexiscn on 2019/9/7.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

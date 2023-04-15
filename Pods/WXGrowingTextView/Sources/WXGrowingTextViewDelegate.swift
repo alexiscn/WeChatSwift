@@ -2,7 +2,7 @@
 //  WXGrowingTextViewDelegate.swift
 //  WXGrowingTextView
 //
-//  Created by xu.shuifeng on 2020/6/9.
+//  Created by alexiscn on 2020/6/9.
 //
 
 import UIKit

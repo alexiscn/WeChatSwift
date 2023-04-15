@@ -18,7 +18,8 @@ class UserSettings {
     
     init(userID: String) {
         let basePath = NSHomeDirectory().appending("/Documents/\(userID)/mmkv")
-        mmkv = MMKV.init(mmapID: userID, relativePath: basePath)!
+        MMKV.initialize(rootDir: basePath, logLevel: .info)
+        mmkv = MMKV(mmapID: userID, rootPath: basePath)!
     }
     
     var globalBackgroundImage: String? {

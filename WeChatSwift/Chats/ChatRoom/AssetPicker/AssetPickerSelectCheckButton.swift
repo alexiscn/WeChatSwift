@@ -2,7 +2,7 @@
 //  AssetPickerSelectCheckButton.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/8/21.
+//  Created by alexiscn on 2019/8/21.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

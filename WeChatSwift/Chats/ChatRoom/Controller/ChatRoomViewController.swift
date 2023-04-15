@@ -2,7 +2,7 @@
 //  ChatRoomViewController.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/9.
+//  Created by alexiscn on 2019/7/9.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 
@@ -39,9 +39,6 @@ class ChatRoomViewController: ASDKViewController<ASDisplayNode> {
         tableNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         backgroundImageNode.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        if let backgroundImageName = AppContext.current.userSettings.globalBackgroundImage {
-            backgroundImageNode.image = UIImage.as_imageNamed(backgroundImageName)
-        }
         
         node.addSubnode(backgroundImageNode)
         node.addSubnode(tableNode)
@@ -63,6 +60,9 @@ class ChatRoomViewController: ASDKViewController<ASDisplayNode> {
         let moreButtonItem = UIBarButtonItem(image: Constants.moreImage, style: .done, target: self, action: #selector(moreButtonClicked))
         navigationItem.rightBarButtonItem = moreButtonItem
         
+        if let backgroundImageName = AppContext.current.userSettings.globalBackgroundImage {
+            backgroundImageNode.image = UIImage.as_imageNamed(backgroundImageName)
+        }
         node.backgroundColor = Colors.DEFAULT_BACKGROUND_COLOR
         backgroundImageNode.frame = view.bounds
         

@@ -2,7 +2,7 @@
 //  AssetPickerCollectionViewCell.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/23.
+//  Created by alexiscn on 2019/7/23.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

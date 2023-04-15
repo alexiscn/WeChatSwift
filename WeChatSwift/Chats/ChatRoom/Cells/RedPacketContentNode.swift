@@ -2,7 +2,7 @@
 //  RedPacketContentNode.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/16.
+//  Created by alexiscn on 2019/7/16.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

@@ -10,13 +10,13 @@
 #import "FLEXUtility.h"
 
 @interface FLEXMITMDataSource ()
-@property (nonatomic, readonly) NSArray *(^dataProvider)();
+@property (nonatomic, readonly) NSArray *(^dataProvider)(void);
 @property (nonatomic) NSString *filterString;
 @end
 
 @implementation FLEXMITMDataSource
 
-+ (instancetype)dataSourceWithProvider:(NSArray<id> *(^)())future {
++ (instancetype)dataSourceWithProvider:(NSArray<id> *(^)(void))future {
     FLEXMITMDataSource *ds = [self new];
     ds->_dataProvider = future;
     [ds reloadData:nil];
@@ -24,12 +24,8 @@
     return ds;
 }
 
-- (NSArray *)transactions {
-    return _filteredTransactions;
-}
-
-- (NSInteger)bytesReceived {
-    return _filteredBytesReceived;
+- (BOOL)isFiltered {
+    return self.filterString.length > 0;
 }
 
 - (void)reloadByteCounts {
@@ -49,9 +45,10 @@
         self.filteredTransactions = self.allTransactions;
         if (completion) completion(self);
     } else {
+        NSArray<FLEXNetworkTransaction *> *allTransactions = self.allTransactions.copy;
         [self onBackgroundQueue:^NSArray *{
-            return [self.allTransactions flex_filtered:^BOOL(FLEXNetworkTransaction *entry, NSUInteger idx) {
-                return [entry.request.URL.absoluteString localizedCaseInsensitiveContainsString:searchString];
+            return [allTransactions flex_filtered:^BOOL(FLEXNetworkTransaction *entry, NSUInteger idx) {
+                return [entry matchesQuery:searchString];
             }];
         } thenOnMainQueue:^(NSArray *filteredNetworkTransactions) {
             if ([self.filterString isEqual:searchString]) {
@@ -63,13 +60,18 @@
 }
 
 - (void)setAllTransactions:(NSArray *)transactions {
-    _allTransactions = transactions;
+    _allTransactions = transactions.copy;
     [self updateBytesReceived];
 }
 
+/// This is really just a semantic setter for \c _transactions
 - (void)setFilteredTransactions:(NSArray *)filteredTransactions {
-    _filteredTransactions = filteredTransactions;
+    _transactions = filteredTransactions.copy;
     [self updateFilteredBytesReceived];
+}
+
+- (void)setTransactions:(NSArray *)transactions {
+    self.filteredTransactions = transactions;
 }
 
 - (void)updateBytesReceived {
@@ -83,11 +85,11 @@
 
 - (void)updateFilteredBytesReceived {
     NSInteger filteredBytesReceived = 0;
-    for (FLEXNetworkTransaction *transaction in self.filteredTransactions) {
+    for (FLEXNetworkTransaction *transaction in self.transactions) {
         filteredBytesReceived += transaction.receivedDataLength;
     }
     
-    self.filteredBytesReceived = filteredBytesReceived;
+    self.bytesReceived = filteredBytesReceived;
 }
 
 - (void)onBackgroundQueue:(NSArray *(^)(void))backgroundBlock thenOnMainQueue:(void(^)(NSArray *))mainBlock {

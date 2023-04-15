@@ -37,13 +37,15 @@
 #include <Security/SecRandom.h>
 #include <CoreFoundation/CoreFoundation.h>
 
+int sqlcipher_cc_setup(sqlcipher_provider *p);
+
 static int sqlcipher_cc_add_random(void *ctx, void *buffer, int length) {
   return SQLITE_OK;
 }
 
 /* generate a defined number of random bytes */
 static int sqlcipher_cc_random (void *ctx, void *buffer, int length) {
-  return (SecRandomCopyBytes(kSecRandomDefault, length, (uint8_t *)buffer) == 0) ? SQLITE_OK : SQLITE_ERROR;
+  return (SecRandomCopyBytes(kSecRandomDefault, length, (uint8_t *)buffer) == kCCSuccess) ? SQLITE_OK : SQLITE_ERROR;
 }
 
 static const char* sqlcipher_cc_get_provider_name(void *ctx) {
@@ -64,17 +66,42 @@ static const char* sqlcipher_cc_get_provider_version(void *ctx) {
 #endif
 }
 
-static int sqlcipher_cc_hmac(void *ctx, unsigned char *hmac_key, int key_sz, unsigned char *in, int in_sz, unsigned char *in2, int in2_sz, unsigned char *out) {
+static int sqlcipher_cc_hmac(void *ctx, int algorithm, unsigned char *hmac_key, int key_sz, unsigned char *in, int in_sz, unsigned char *in2, int in2_sz, unsigned char *out) {
   CCHmacContext hmac_context;
-  CCHmacInit(&hmac_context, kCCHmacAlgSHA1, hmac_key, key_sz);
+  if(in == NULL) return SQLITE_ERROR;
+  switch(algorithm) {
+    case SQLCIPHER_HMAC_SHA1:
+      CCHmacInit(&hmac_context, kCCHmacAlgSHA1, hmac_key, key_sz);
+      break;
+    case SQLCIPHER_HMAC_SHA256:
+      CCHmacInit(&hmac_context, kCCHmacAlgSHA256, hmac_key, key_sz);
+      break;
+    case SQLCIPHER_HMAC_SHA512:
+      CCHmacInit(&hmac_context, kCCHmacAlgSHA512, hmac_key, key_sz);
+      break;
+    default:
+      return SQLITE_ERROR;
+  }
   CCHmacUpdate(&hmac_context, in, in_sz);
-  CCHmacUpdate(&hmac_context, in2, in2_sz);
+  if(in2 != NULL) CCHmacUpdate(&hmac_context, in2, in2_sz);
   CCHmacFinal(&hmac_context, out);
   return SQLITE_OK; 
 }
 
-static int sqlcipher_cc_kdf(void *ctx, const unsigned char *pass, int pass_sz, unsigned char* salt, int salt_sz, int workfactor, int key_sz, unsigned char *key) {
-  CCKeyDerivationPBKDF(kCCPBKDF2, (const char *)pass, pass_sz, salt, salt_sz, kCCPRFHmacAlgSHA1, workfactor, key, key_sz);
+static int sqlcipher_cc_kdf(void *ctx, int algorithm, const unsigned char *pass, int pass_sz, unsigned char* salt, int salt_sz, int workfactor, int key_sz, unsigned char *key) {
+  switch(algorithm) {
+    case SQLCIPHER_HMAC_SHA1:
+      if(CCKeyDerivationPBKDF(kCCPBKDF2, (const char *)pass, pass_sz, salt, salt_sz, kCCPRFHmacAlgSHA1, workfactor, key, key_sz) != kCCSuccess) return SQLITE_ERROR;
+      break;
+    case SQLCIPHER_HMAC_SHA256:
+      if(CCKeyDerivationPBKDF(kCCPBKDF2, (const char *)pass, pass_sz, salt, salt_sz, kCCPRFHmacAlgSHA256, workfactor, key, key_sz) != kCCSuccess) return SQLITE_ERROR;
+      break;
+    case SQLCIPHER_HMAC_SHA512:
+      if(CCKeyDerivationPBKDF(kCCPBKDF2, (const char *)pass, pass_sz, salt, salt_sz, kCCPRFHmacAlgSHA512, workfactor, key, key_sz) != kCCSuccess) return SQLITE_ERROR;
+      break;
+    default:
+      return SQLITE_ERROR;
+  }
   return SQLITE_OK; 
 }
 
@@ -83,20 +110,16 @@ static int sqlcipher_cc_cipher(void *ctx, int mode, unsigned char *key, int key_
   size_t tmp_csz, csz;
   CCOperation op = mode == CIPHER_ENCRYPT ? kCCEncrypt : kCCDecrypt;
 
-  CCCryptorCreate(op, kCCAlgorithmAES128, 0, key, kCCKeySizeAES256, iv, &cryptor);
-  CCCryptorUpdate(cryptor, in, in_sz, out, in_sz, &tmp_csz);
+  if(CCCryptorCreate(op, kCCAlgorithmAES128, 0, key, kCCKeySizeAES256, iv, &cryptor) != kCCSuccess) return SQLITE_ERROR;
+  if(CCCryptorUpdate(cryptor, in, in_sz, out, in_sz, &tmp_csz) != kCCSuccess) return SQLITE_ERROR;
   csz = tmp_csz;
   out += tmp_csz;
-  CCCryptorFinal(cryptor, out, in_sz - csz, &tmp_csz);
+  if(CCCryptorFinal(cryptor, out, in_sz - csz, &tmp_csz) != kCCSuccess) return SQLITE_ERROR;
   csz += tmp_csz;
-  CCCryptorRelease(cryptor);
+  if(CCCryptorRelease(cryptor) != kCCSuccess) return SQLITE_ERROR;
   assert(in_sz == csz);
 
   return SQLITE_OK; 
-}
-
-static int sqlcipher_cc_set_cipher(void *ctx, const char *cipher_name) {
-  return SQLITE_OK;
 }
 
 static const char* sqlcipher_cc_get_cipher(void *ctx) {
@@ -115,8 +138,20 @@ static int sqlcipher_cc_get_block_sz(void *ctx) {
   return kCCBlockSizeAES128;
 }
 
-static int sqlcipher_cc_get_hmac_sz(void *ctx) {
-  return CC_SHA1_DIGEST_LENGTH;
+static int sqlcipher_cc_get_hmac_sz(void *ctx, int algorithm) {
+  switch(algorithm) {
+    case SQLCIPHER_HMAC_SHA1:
+      return CC_SHA1_DIGEST_LENGTH;
+      break;
+    case SQLCIPHER_HMAC_SHA256:
+      return CC_SHA256_DIGEST_LENGTH;
+      break;
+    case SQLCIPHER_HMAC_SHA512:
+      return CC_SHA512_DIGEST_LENGTH;
+      break;
+    default:
+      return 0;
+  }
 }
 
 static int sqlcipher_cc_ctx_copy(void *target_ctx, void *source_ctx) {
@@ -145,7 +180,6 @@ int sqlcipher_cc_setup(sqlcipher_provider *p) {
   p->hmac = sqlcipher_cc_hmac;
   p->kdf = sqlcipher_cc_kdf;
   p->cipher = sqlcipher_cc_cipher;
-  p->set_cipher = sqlcipher_cc_set_cipher;
   p->get_cipher = sqlcipher_cc_get_cipher;
   p->get_key_sz = sqlcipher_cc_get_key_sz;
   p->get_iv_sz = sqlcipher_cc_get_iv_sz;

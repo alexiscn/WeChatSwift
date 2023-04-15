@@ -9,15 +9,9 @@
 #import "FLEXNetworkTransaction.h"
 #import "FLEXResources.h"
 #import "FLEXUtility.h"
-
-@interface FLEXHTTPTransaction ()
-@property (nonatomic, readwrite) NSData *cachedRequestBody;
-@end
+#import "NSDateFormatter+FLEX.h"
 
 @implementation FLEXNetworkTransaction
-@synthesize primaryDescription = _primaryDescription;
-@synthesize secondaryDescription = _secondaryDescription;
-@synthesize tertiaryDescription = _tertiaryDescription;
 
 + (NSString *)readableStringFromTransactionState:(FLEXNetworkTransactionState)state {
     NSString *readableString = nil;
@@ -45,22 +39,47 @@
     return readableString;
 }
 
-+ (instancetype)withRequest:(NSURLRequest *)request startTime:(NSDate *)startTime {
++ (instancetype)withStartTime:(NSDate *)startTime {
     FLEXNetworkTransaction *transaction = [self new];
-    transaction->_request = request;
     transaction->_startTime = startTime;
     return transaction;
 }
 
 - (NSString *)timestampStringFromRequestDate:(NSDate *)date {
-    static NSDateFormatter *dateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"HH:mm:ss";
-    });
-    
-    return [dateFormatter stringFromDate:date];
+    return [NSDateFormatter flex_stringFrom:date format:FLEXDateFormatPreciseClock];
+}
+
+- (void)setState:(FLEXNetworkTransactionState)transactionState {
+    _state = transactionState;
+    // Reset bottom description
+    _tertiaryDescription = nil;
+}
+
+- (BOOL)displayAsError {
+    return _error != nil;
+}
+
+- (NSString *)copyString {
+    return nil;
+}
+
+- (BOOL)matchesQuery:(NSString *)filterString {
+    return NO;
+}
+
+@end
+
+
+@interface FLEXURLTransaction ()
+
+@end
+
+@implementation FLEXURLTransaction
+
++ (instancetype)withRequest:(NSURLRequest *)request startTime:(NSDate *)startTime {
+    FLEXURLTransaction *transaction = [self withStartTime:startTime];
+    transaction->_request = request;
+    return transaction;
 }
 
 - (NSString *)primaryDescription {
@@ -101,44 +120,45 @@
 - (NSString *)tertiaryDescription {
     if (!_tertiaryDescription) {
         NSMutableArray<NSString *> *detailComponents = [NSMutableArray new];
-
+        
         NSString *timestamp = [self timestampStringFromRequestDate:self.startTime];
         if (timestamp.length > 0) {
             [detailComponents addObject:timestamp];
         }
-
+        
         // Omit method for GET (assumed as default)
         NSString *httpMethod = self.request.HTTPMethod;
         if (httpMethod.length > 0) {
             [detailComponents addObject:httpMethod];
         }
-
-        if (self.transactionState == FLEXNetworkTransactionStateFinished || self.transactionState == FLEXNetworkTransactionStateFailed) {
+        
+        if (self.state == FLEXNetworkTransactionStateFinished || self.state == FLEXNetworkTransactionStateFailed) {
             [detailComponents addObjectsFromArray:self.details];
         } else {
             // Unstarted, Awaiting Response, Receiving Data, etc.
-            NSString *state = [self.class readableStringFromTransactionState:self.transactionState];
+            NSString *state = [self.class readableStringFromTransactionState:self.state];
             [detailComponents addObject:state];
         }
-
+        
         _tertiaryDescription = [detailComponents componentsJoinedByString:@" ・ "];
     }
     
     return _tertiaryDescription;
 }
 
-- (void)setTransactionState:(FLEXNetworkTransactionState)transactionState {
-    _transactionState = transactionState;
-    // Reset bottom description
-    _tertiaryDescription = nil;
+- (NSString *)copyString {
+    return self.request.URL.absoluteString;
 }
 
-- (BOOL)displayAsError {
-    return _error != nil;
+- (BOOL)matchesQuery:(NSString *)filterString {
+    return [self.request.URL.absoluteString localizedCaseInsensitiveContainsString:filterString];
 }
 
 @end
 
+@interface FLEXHTTPTransaction ()
+@property (nonatomic, readwrite) NSData *cachedRequestBody;
+@end
 
 @implementation FLEXHTTPTransaction
 
@@ -225,6 +245,7 @@
     // Populate receivedDataLength
     if (direction == FLEXWebsocketIncoming) {
         wst.receivedDataLength = wst.dataLength;
+        wst.state = FLEXNetworkTransactionStateFinished;
     }
     
     // Populate thumbnail image

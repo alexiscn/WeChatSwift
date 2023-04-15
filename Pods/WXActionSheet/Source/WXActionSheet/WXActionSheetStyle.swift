@@ -2,7 +2,7 @@
 //  WXActionSheetStyle.swift
 //  WXActionSheet
 //
-//  Created by xu.shuifeng on 2020/6/19.
+//  Created by alexiscn on 2020/6/19.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  FTSContactCellNode.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/8/20.
+//  Created by alexiscn on 2019/8/20.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

@@ -96,6 +96,13 @@
 /* Maximum number of prepared UPDATE statements held by this module */
 #define SQLITE_RBU_UPDATE_CACHESIZE 16
 
+/* Delta checksums disabled by default.  Compile with -DRBU_ENABLE_DELTA_CKSUM
+** to enable checksum verification.
+*/
+#ifndef RBU_ENABLE_DELTA_CKSUM
+# define RBU_ENABLE_DELTA_CKSUM 0
+#endif
+
 /*
 ** Swap two objects of type TYPE.
 */
@@ -146,6 +153,10 @@
 **
 ** RBU_STATE_OALSZ:
 **   Valid if STAGE==1. The size in bytes of the *-oal file.
+**
+** RBU_STATE_DATATBL:
+**   Only valid if STAGE==1. The RBU database name of the table 
+**   currently being read.
 */
 #define RBU_STATE_STAGE        1
 #define RBU_STATE_TBL          2
@@ -156,6 +167,7 @@
 #define RBU_STATE_COOKIE       7
 #define RBU_STATE_OALSZ        8
 #define RBU_STATE_PHASEONESTEP 9
+#define RBU_STATE_DATATBL     10
 
 #define RBU_STAGE_OAL         1
 #define RBU_STAGE_MOVE        2
@@ -198,6 +210,7 @@ typedef sqlite3_int64 i64;
 struct RbuState {
   int eStage;
   char *zTbl;
+  char *zDataTbl;
   char *zIdx;
   i64 iWalCksum;
   int nRow;
@@ -356,6 +369,7 @@ struct sqlite3rbu {
   RbuObjIter objiter;             /* Iterator for skipping through tbl/idx */
   const char *zVfsName;           /* Name of automatically created rbu vfs */
   rbu_file *pTargetFd;            /* File handle open on target db */
+  int nPagePerSector;             /* Pages per sector for pTargetFd */
   i64 iOalSz;
   i64 nPhaseOneStep;
 
@@ -370,6 +384,8 @@ struct sqlite3rbu {
   int pgsz;
   u8 *aBuf;
   i64 iWalCksum;
+  i64 szTemp;                     /* Current size of all temp files in use */
+  i64 szTempLimit;                /* Total size limit for temp files */
 
   /* Used in RBU vacuum mode only */
   int nRbu;                       /* Number of RBU VFS in the stack */
@@ -378,23 +394,34 @@ struct sqlite3rbu {
 
 /*
 ** An rbu VFS is implemented using an instance of this structure.
+**
+** Variable pRbu is only non-NULL for automatically created RBU VFS objects.
+** It is NULL for RBU VFS objects created explicitly using
+** sqlite3rbu_create_vfs(). It is used to track the total amount of temp
+** space used by the RBU handle.
 */
 struct rbu_vfs {
   sqlite3_vfs base;               /* rbu VFS shim methods */
   sqlite3_vfs *pRealVfs;          /* Underlying VFS */
   sqlite3_mutex *mutex;           /* Mutex to protect pMain */
-  rbu_file *pMain;                /* Linked list of main db files */
+  sqlite3rbu *pRbu;               /* Owner RBU object */
+  rbu_file *pMain;                /* List of main db files */
+  rbu_file *pMainRbu;             /* List of main db files with pRbu!=0 */
 };
 
 /*
 ** Each file opened by an rbu VFS is represented by an instance of
 ** the following structure.
+**
+** If this is a temporary file (pRbu!=0 && flags&DELETE_ON_CLOSE), variable
+** "sz" is set to the current size of the database file.
 */
 struct rbu_file {
   sqlite3_file base;              /* sqlite3_file methods */
   sqlite3_file *pReal;            /* Underlying file handle */
   rbu_vfs *pRbuVfs;               /* Pointer to the rbu_vfs object */
   sqlite3rbu *pRbu;               /* Pointer to rbu object (rbu target only) */
+  i64 sz;                         /* Size of file in bytes (temp only) */
 
   int openFlags;                  /* Flags this file was opened with */
   u32 iCookie;                    /* Cookie value for main db files */
@@ -408,6 +435,7 @@ struct rbu_file {
   const char *zWal;               /* Wal filename for this main db file */
   rbu_file *pWalFd;               /* Wal file descriptor for this main db */
   rbu_file *pMainNext;            /* Next MAIN_DB file */
+  rbu_file *pMainRbuNext;         /* Next MAIN_DB file with pRbu!=0 */
 };
 
 /*
@@ -457,6 +485,7 @@ static unsigned int rbuDeltaGetInt(const char **pz, int *pLen){
   return v;
 }
 
+#if RBU_ENABLE_DELTA_CKSUM
 /*
 ** Compute a 32-bit checksum on the N-byte buffer.  Return the result.
 */
@@ -491,6 +520,7 @@ static unsigned int rbuDeltaChecksum(const char *zIn, size_t N){
   }
   return sum3;
 }
+#endif
 
 /*
 ** Apply a delta.
@@ -521,7 +551,7 @@ static int rbuDeltaApply(
 ){
   unsigned int limit;
   unsigned int total = 0;
-#ifndef FOSSIL_OMIT_DELTA_CKSUM_TEST
+#if RBU_ENABLE_DELTA_CKSUM
   char *zOrigOut = zOut;
 #endif
 
@@ -576,7 +606,7 @@ static int rbuDeltaApply(
       case ';': {
         zDelta++; lenDelta--;
         zOut[0] = 0;
-#ifndef FOSSIL_OMIT_DELTA_CKSUM_TEST
+#if RBU_ENABLE_DELTA_CKSUM
         if( cnt!=rbuDeltaChecksum(zOrigOut, total) ){
           /* ERROR:  bad checksum */
           return -1;
@@ -1784,7 +1814,7 @@ static void rbuCreateImposterTable2(sqlite3rbu *p, RbuObjIter *pIter){
         int iCid = sqlite3_column_int(pXInfo, 1);
         int bDesc = sqlite3_column_int(pXInfo, 3);
         const char *zCollate = (const char*)sqlite3_column_text(pXInfo, 4);
-        zCols = rbuMPrintf(p, "%z%sc%d %s COLLATE %s", zCols, zComma, 
+        zCols = rbuMPrintf(p, "%z%sc%d %s COLLATE %Q", zCols, zComma, 
             iCid, pIter->azTblType[iCid], zCollate
         );
         zPk = rbuMPrintf(p, "%z%sc%d%s", zPk, zComma, iCid, bDesc?" DESC":"");
@@ -1845,7 +1875,7 @@ static void rbuCreateImposterTable(sqlite3rbu *p, RbuObjIter *pIter){
         ** "PRIMARY KEY" to the imposter table column declaration. */
         zPk = "PRIMARY KEY ";
       }
-      zSql = rbuMPrintf(p, "%z%s\"%w\" %s %sCOLLATE %s%s", 
+      zSql = rbuMPrintf(p, "%z%s\"%w\" %s %sCOLLATE %Q%s", 
           zSql, zComma, zCol, pIter->azTblType[iCol], zPk, zColl,
           (pIter->abNotNull[iCol] ? " NOT NULL" : "")
       );
@@ -2246,6 +2276,7 @@ static sqlite3 *rbuOpenDbhandle(
 static void rbuFreeState(RbuState *p){
   if( p ){
     sqlite3_free(p->zTbl);
+    sqlite3_free(p->zDataTbl);
     sqlite3_free(p->zIdx);
     sqlite3_free(p);
   }
@@ -2316,6 +2347,10 @@ static RbuState *rbuLoadState(sqlite3rbu *p){
         pRet->nPhaseOneStep = sqlite3_column_int64(pStmt, 1);
         break;
 
+      case RBU_STATE_DATATBL:
+        pRet->zDataTbl = rbuStrndup((char*)sqlite3_column_text(pStmt, 1), &rc);
+        break;
+
       default:
         rc = SQLITE_CORRUPT;
         break;
@@ -2333,7 +2368,7 @@ static RbuState *rbuLoadState(sqlite3rbu *p){
 ** Open the database handle and attach the RBU database as "rbu". If an
 ** error occurs, leave an error code and message in the RBU handle.
 */
-static void rbuOpenDatabase(sqlite3rbu *p){
+static void rbuOpenDatabase(sqlite3rbu *p, int *pbRetry){
   assert( p->rc || (p->dbMain==0 && p->dbRbu==0) );
   assert( p->rc || rbuIsVacuum(p) || p->zTarget!=0 );
 
@@ -2408,7 +2443,7 @@ static void rbuOpenDatabase(sqlite3rbu *p){
     }else{
       RbuState *pState = rbuLoadState(p);
       if( pState ){
-        bOpen = (pState->eStage>RBU_STAGE_MOVE);
+        bOpen = (pState->eStage>=RBU_STAGE_MOVE);
         rbuFreeState(pState);
       }
     }
@@ -2420,6 +2455,15 @@ static void rbuOpenDatabase(sqlite3rbu *p){
     if( !rbuIsVacuum(p) ){
       p->dbMain = rbuOpenDbhandle(p, p->zTarget, 1);
     }else if( p->pRbuFd->pWalFd ){
+      if( pbRetry ){
+        p->pRbuFd->bNolock = 0;
+        sqlite3_close(p->dbRbu);
+        sqlite3_close(p->dbMain);
+        p->dbMain = 0;
+        p->dbRbu = 0;
+        *pbRetry = 1;
+        return;
+      }
       p->rc = SQLITE_ERROR;
       p->zErrmsg = sqlite3_mprintf("cannot vacuum wal mode database");
     }else{
@@ -2433,7 +2477,7 @@ static void rbuOpenDatabase(sqlite3rbu *p){
         if( *zExtra=='\0' ) zExtra = 0;
       }
 
-      zTarget = sqlite3_mprintf("file:%s-vacuum?rbu_memory=1%s%s", 
+      zTarget = sqlite3_mprintf("file:%s-vactmp?rbu_memory=1%s%s", 
           sqlite3_db_filename(p->dbRbu, "main"),
           (zExtra==0 ? "" : "&"), (zExtra==0 ? "" : zExtra)
       );
@@ -2600,16 +2644,35 @@ static void rbuSetupCheckpoint(sqlite3rbu *p, RbuState *pState){
     if( rc2!=SQLITE_INTERNAL ) p->rc = rc2;
   }
 
-  if( p->rc==SQLITE_OK ){
+  if( p->rc==SQLITE_OK && p->nFrame>0 ){
     p->eStage = RBU_STAGE_CKPT;
     p->nStep = (pState ? pState->nRow : 0);
     p->aBuf = rbuMalloc(p, p->pgsz);
     p->iWalCksum = rbuShmChecksum(p);
   }
 
-  if( p->rc==SQLITE_OK && pState && pState->iWalCksum!=p->iWalCksum ){
-    p->rc = SQLITE_DONE;
-    p->eStage = RBU_STAGE_DONE;
+  if( p->rc==SQLITE_OK ){
+    if( p->nFrame==0 || (pState && pState->iWalCksum!=p->iWalCksum) ){
+      p->rc = SQLITE_DONE;
+      p->eStage = RBU_STAGE_DONE;
+    }else{
+      int nSectorSize;
+      sqlite3_file *pDb = p->pTargetFd->pReal;
+      sqlite3_file *pWal = p->pTargetFd->pWalFd->pReal;
+      assert( p->nPagePerSector==0 );
+      nSectorSize = pDb->pMethods->xSectorSize(pDb);
+      if( nSectorSize>p->pgsz ){
+        p->nPagePerSector = nSectorSize / p->pgsz;
+      }else{
+        p->nPagePerSector = 1;
+      }
+
+      /* Call xSync() on the wal file. This causes SQLite to sync the 
+      ** directory in which the target database and the wal file reside, in 
+      ** case it has not been synced since the rename() call in 
+      ** rbuMoveOalFile(). */
+      p->rc = pWal->pMethods->xSync(pWal, SQLITE_SYNC_NORMAL);
+    }
   }
 }
 
@@ -2782,7 +2845,7 @@ static void rbuMoveOalFile(sqlite3rbu *p){
 #endif
 
       if( p->rc==SQLITE_OK ){
-        rbuOpenDatabase(p);
+        rbuOpenDatabase(p, 0);
         rbuSetupCheckpoint(p, 0);
       }
     }
@@ -3062,7 +3125,8 @@ static void rbuSaveState(sqlite3rbu *p, int eStage){
           "(%d, %lld), "
           "(%d, %lld), "
           "(%d, %lld), "
-          "(%d, %lld) ",
+          "(%d, %lld), "
+          "(%d, %Q)  ",
           p->zStateDb,
           RBU_STATE_STAGE, eStage,
           RBU_STATE_TBL, p->objiter.zTbl, 
@@ -3072,7 +3136,8 @@ static void rbuSaveState(sqlite3rbu *p, int eStage){
           RBU_STATE_CKPT, p->iWalCksum,
           RBU_STATE_COOKIE, (i64)pFd->iCookie,
           RBU_STATE_OALSZ, p->iOalSz,
-          RBU_STATE_PHASEONESTEP, p->nPhaseOneStep
+          RBU_STATE_PHASEONESTEP, p->nPhaseOneStep,
+          RBU_STATE_DATATBL, p->objiter.zDataTbl
       )
     );
     assert( pInsert==0 || rc==SQLITE_OK );
@@ -3264,9 +3329,26 @@ int sqlite3rbu_step(sqlite3rbu *p){
               p->rc = SQLITE_DONE;
             }
           }else{
-            RbuFrame *pFrame = &p->aFrame[p->nStep];
-            rbuCheckpointFrame(p, pFrame);
-            p->nStep++;
+            /* At one point the following block copied a single frame from the
+            ** wal file to the database file. So that one call to sqlite3rbu_step()
+            ** checkpointed a single frame. 
+            **
+            ** However, if the sector-size is larger than the page-size, and the
+            ** application calls sqlite3rbu_savestate() or close() immediately
+            ** after this step, then rbu_step() again, then a power failure occurs,
+            ** then the database page written here may be damaged. Work around
+            ** this by checkpointing frames until the next page in the aFrame[]
+            ** lies on a different disk sector to the current one. */
+            u32 iSector;
+            do{
+              RbuFrame *pFrame = &p->aFrame[p->nStep];
+              iSector = (pFrame->iDbPage-1) / p->nPagePerSector;
+              rbuCheckpointFrame(p, pFrame);
+              p->nStep++;
+            }while( p->nStep<p->nFrame 
+                 && iSector==((p->aFrame[p->nStep].iDbPage-1) / p->nPagePerSector)
+                 && p->rc==SQLITE_OK
+            );
           }
           p->nProgress++;
         }
@@ -3311,7 +3393,8 @@ static void rbuSetupOal(sqlite3rbu *p, RbuState *pState){
 
     while( rc==SQLITE_OK && pIter->zTbl && (pIter->bCleanup 
        || rbuStrCompare(pIter->zIdx, pState->zIdx)
-       || rbuStrCompare(pIter->zTbl, pState->zTbl) 
+       || (pState->zDataTbl==0 && rbuStrCompare(pIter->zTbl, pState->zTbl))
+       || (pState->zDataTbl && rbuStrCompare(pIter->zDataTbl, pState->zDataTbl))
     )){
       rc = rbuObjIterNext(p, pIter);
     }
@@ -3363,6 +3446,7 @@ static void rbuCreateVfs(sqlite3rbu *p){
     sqlite3_vfs *pVfs = sqlite3_vfs_find(zRnd);
     assert( pVfs );
     p->zVfsName = pVfs->zName;
+    ((rbu_vfs*)pVfs)->pRbu = p;
   }
 }
 
@@ -3493,6 +3577,7 @@ static sqlite3rbu *openRbuHandle(
     /* Open the target, RBU and state databases */
     if( p->rc==SQLITE_OK ){
       char *pCsr = (char*)&p[1];
+      int bRetry = 0;
       if( zTarget ){
         p->zTarget = pCsr;
         memcpy(p->zTarget, zTarget, nTarget+1);
@@ -3504,7 +3589,18 @@ static sqlite3rbu *openRbuHandle(
       if( zState ){
         p->zState = rbuMPrintf(p, "%s", zState);
       }
-      rbuOpenDatabase(p);
+
+      /* If the first attempt to open the database file fails and the bRetry
+      ** flag it set, this means that the db was not opened because it seemed
+      ** to be a wal-mode db. But, this may have happened due to an earlier
+      ** RBU vacuum operation leaving an old wal file in the directory.
+      ** If this is the case, it will have been checkpointed and deleted
+      ** when the handle was closed and a second attempt to open the 
+      ** database may succeed.  */
+      rbuOpenDatabase(p, &bRetry);
+      if( bRetry ){
+        rbuOpenDatabase(p, 0);
+      }
     }
 
     if( p->rc==SQLITE_OK ){
@@ -3647,6 +3743,12 @@ sqlite3rbu *sqlite3rbu_vacuum(
   const char *zState
 ){
   if( zTarget==0 ){ return rbuMisuseError(); }
+  if( zState ){
+    int n = strlen(zState);
+    if( n>=7 && 0==memcmp("-vactmp", &zState[n-7], 7) ){
+      return rbuMisuseError();
+    }
+  }
   /* TODO: Check that both arguments are non-NULL */
   return openRbuHandle(0, zTarget, zState);
 }
@@ -3695,6 +3797,12 @@ int sqlite3rbu_close(sqlite3rbu *p, char **pzErrmsg){
       p->rc = sqlite3_exec(p->dbMain, "COMMIT", 0, 0, &p->zErrmsg);
     }
 
+    /* Sync the db file if currently doing an incremental checkpoint */
+    if( p->rc==SQLITE_OK && p->eStage==RBU_STAGE_CKPT ){
+      sqlite3_file *pDb = p->pTargetFd->pReal;
+      p->rc = pDb->pMethods->xSync(pDb, SQLITE_SYNC_NORMAL);
+    }
+
     rbuSaveState(p, p->eStage);
 
     if( p->rc==SQLITE_OK && p->eStage==RBU_STAGE_OAL ){
@@ -3717,13 +3825,18 @@ int sqlite3rbu_close(sqlite3rbu *p, char **pzErrmsg){
     /* Close the open database handle and VFS object. */
     sqlite3_close(p->dbRbu);
     sqlite3_close(p->dbMain);
+    assert( p->szTemp==0 );
     rbuDeleteVfs(p);
     sqlite3_free(p->aBuf);
     sqlite3_free(p->aFrame);
 
     rbuEditErrmsg(p);
     rc = p->rc;
-    *pzErrmsg = p->zErrmsg;
+    if( pzErrmsg ){
+      *pzErrmsg = p->zErrmsg;
+    }else{
+      sqlite3_free(p->zErrmsg);
+    }
     sqlite3_free(p->zState);
     sqlite3_free(p);
   }else{
@@ -3819,6 +3932,12 @@ int sqlite3rbu_savestate(sqlite3rbu *p){
     if( rc==SQLITE_OK ) rc = sqlite3_exec(p->dbMain, "COMMIT", 0, 0, 0);
   }
 
+  /* Sync the db file */
+  if( rc==SQLITE_OK && p->eStage==RBU_STAGE_CKPT ){
+    sqlite3_file *pDb = p->pTargetFd->pReal;
+    rc = pDb->pMethods->xSync(pDb, SQLITE_SYNC_NORMAL);
+  }
+
   p->rc = rc;
   rbuSaveState(p, p->eStage);
   rc = p->rc;
@@ -3826,7 +3945,10 @@ int sqlite3rbu_savestate(sqlite3rbu *p){
   if( p->eStage==RBU_STAGE_OAL ){
     assert( rc!=SQLITE_DONE );
     if( rc==SQLITE_OK ) rc = sqlite3_exec(p->dbRbu, "COMMIT", 0, 0, 0);
-    if( rc==SQLITE_OK ) rc = sqlite3_exec(p->dbRbu, "BEGIN IMMEDIATE", 0, 0, 0);
+    if( rc==SQLITE_OK ){ 
+      const char *zBegin = rbuIsVacuum(p) ? "BEGIN" : "BEGIN IMMEDIATE";
+      rc = sqlite3_exec(p->dbRbu, zBegin, 0, 0, 0);
+    }
     if( rc==SQLITE_OK ) rc = sqlite3_exec(p->dbMain, "BEGIN IMMEDIATE", 0, 0,0);
   }
 
@@ -3894,6 +4016,7 @@ int sqlite3rbu_savestate(sqlite3rbu *p){
 */
 
 static void rbuUnlockShm(rbu_file *p){
+  assert( p->openFlags & SQLITE_OPEN_MAIN_DB );
   if( p->pRbu ){
     int (*xShmLock)(sqlite3_file*,int,int,int) = p->pReal->pMethods->xShmLock;
     int i;
@@ -3904,6 +4027,81 @@ static void rbuUnlockShm(rbu_file *p){
     }
     p->pRbu->mLock = 0;
   }
+}
+
+/*
+*/
+static int rbuUpdateTempSize(rbu_file *pFd, sqlite3_int64 nNew){
+  sqlite3rbu *pRbu = pFd->pRbu;
+  i64 nDiff = nNew - pFd->sz;
+  pRbu->szTemp += nDiff;
+  pFd->sz = nNew;
+  assert( pRbu->szTemp>=0 );
+  if( pRbu->szTempLimit && pRbu->szTemp>pRbu->szTempLimit ) return SQLITE_FULL;
+  return SQLITE_OK;
+}
+
+/*
+** Add an item to the main-db lists, if it is not already present.
+**
+** There are two main-db lists. One for all file descriptors, and one
+** for all file descriptors with rbu_file.pDb!=0. If the argument has
+** rbu_file.pDb!=0, then it is assumed to already be present on the
+** main list and is only added to the pDb!=0 list.
+*/
+static void rbuMainlistAdd(rbu_file *p){
+  rbu_vfs *pRbuVfs = p->pRbuVfs;
+  rbu_file *pIter;
+  assert( (p->openFlags & SQLITE_OPEN_MAIN_DB) );
+  sqlite3_mutex_enter(pRbuVfs->mutex);
+  if( p->pRbu==0 ){
+    for(pIter=pRbuVfs->pMain; pIter; pIter=pIter->pMainNext);
+    p->pMainNext = pRbuVfs->pMain;
+    pRbuVfs->pMain = p;
+  }else{
+    for(pIter=pRbuVfs->pMainRbu; pIter && pIter!=p; pIter=pIter->pMainRbuNext){}
+    if( pIter==0 ){
+      p->pMainRbuNext = pRbuVfs->pMainRbu;
+      pRbuVfs->pMainRbu = p;
+    }
+  }
+  sqlite3_mutex_leave(pRbuVfs->mutex);
+}
+
+/*
+** Remove an item from the main-db lists.
+*/
+static void rbuMainlistRemove(rbu_file *p){
+  rbu_file **pp;
+  sqlite3_mutex_enter(p->pRbuVfs->mutex);
+  for(pp=&p->pRbuVfs->pMain; *pp && *pp!=p; pp=&((*pp)->pMainNext)){}
+  if( *pp ) *pp = p->pMainNext;
+  p->pMainNext = 0;
+  for(pp=&p->pRbuVfs->pMainRbu; *pp && *pp!=p; pp=&((*pp)->pMainRbuNext)){}
+  if( *pp ) *pp = p->pMainRbuNext;
+  p->pMainRbuNext = 0;
+  sqlite3_mutex_leave(p->pRbuVfs->mutex);
+}
+
+/*
+** Given that zWal points to a buffer containing a wal file name passed to 
+** either the xOpen() or xAccess() VFS method, search the main-db list for
+** a file-handle opened by the same database connection on the corresponding
+** database file.
+**
+** If parameter bRbu is true, only search for file-descriptors with
+** rbu_file.pDb!=0.
+*/
+static rbu_file *rbuFindMaindb(rbu_vfs *pRbuVfs, const char *zWal, int bRbu){
+  rbu_file *pDb;
+  sqlite3_mutex_enter(pRbuVfs->mutex);
+  if( bRbu ){
+    for(pDb=pRbuVfs->pMainRbu; pDb && pDb->zWal!=zWal; pDb=pDb->pMainRbuNext){}
+  }else{
+    for(pDb=pRbuVfs->pMain; pDb && pDb->zWal!=zWal; pDb=pDb->pMainNext){}
+  }
+  sqlite3_mutex_leave(pRbuVfs->mutex);
+  return pDb;
 }
 
 /*
@@ -3923,14 +4121,14 @@ static int rbuVfsClose(sqlite3_file *pFile){
   sqlite3_free(p->zDel);
 
   if( p->openFlags & SQLITE_OPEN_MAIN_DB ){
-    rbu_file **pp;
-    sqlite3_mutex_enter(p->pRbuVfs->mutex);
-    for(pp=&p->pRbuVfs->pMain; *pp!=p; pp=&((*pp)->pMainNext));
-    *pp = p->pMainNext;
-    sqlite3_mutex_leave(p->pRbuVfs->mutex);
+    rbuMainlistRemove(p);
     rbuUnlockShm(p);
     p->pReal->pMethods->xShmUnmap(p->pReal, 0);
   }
+  else if( (p->openFlags & SQLITE_OPEN_DELETEONCLOSE) && p->pRbu ){
+    rbuUpdateTempSize(p, 0);
+  }
+  assert( p->pMainNext==0 && p->pRbuVfs->pMain!=p );
 
   /* Close the underlying file handle */
   rc = p->pReal->pMethods->xClose(p->pReal);
@@ -4048,11 +4246,19 @@ static int rbuVfsWrite(
     assert( p->openFlags & SQLITE_OPEN_MAIN_DB );
     rc = rbuCaptureDbWrite(p->pRbu, iOfst);
   }else{
-    if( pRbu && pRbu->eStage==RBU_STAGE_OAL 
-     && (p->openFlags & SQLITE_OPEN_WAL) 
-     && iOfst>=pRbu->iOalSz
-    ){
-      pRbu->iOalSz = iAmt + iOfst;
+    if( pRbu ){
+      if( pRbu->eStage==RBU_STAGE_OAL 
+       && (p->openFlags & SQLITE_OPEN_WAL) 
+       && iOfst>=pRbu->iOalSz
+      ){
+        pRbu->iOalSz = iAmt + iOfst;
+      }else if( p->openFlags & SQLITE_OPEN_DELETEONCLOSE ){
+        i64 szNew = iAmt+iOfst;
+        if( szNew>p->sz ){
+          rc = rbuUpdateTempSize(p, szNew);
+          if( rc!=SQLITE_OK ) return rc;
+        }
+      }
     }
     rc = p->pReal->pMethods->xWrite(p->pReal, zBuf, iAmt, iOfst);
     if( rc==SQLITE_OK && iOfst==0 && (p->openFlags & SQLITE_OPEN_MAIN_DB) ){
@@ -4071,6 +4277,10 @@ static int rbuVfsWrite(
 */
 static int rbuVfsTruncate(sqlite3_file *pFile, sqlite_int64 size){
   rbu_file *p = (rbu_file*)pFile;
+  if( (p->openFlags & SQLITE_OPEN_DELETEONCLOSE) && p->pRbu ){
+    int rc = rbuUpdateTempSize(p, size);
+    if( rc!=SQLITE_OK ) return rc;
+  }
   return p->pReal->pMethods->xTruncate(p->pReal, size);
 }
 
@@ -4177,6 +4387,9 @@ static int rbuVfsFileControl(sqlite3_file *pFile, int op, void *pArg){
       }else if( rc==SQLITE_NOTFOUND ){
         pRbu->pTargetFd = p;
         p->pRbu = pRbu;
+        if( p->openFlags & SQLITE_OPEN_MAIN_DB ){
+          rbuMainlistAdd(p);
+        }
         if( p->pWalFd ) p->pWalFd->pRbu = pRbu;
         rc = SQLITE_OK;
       }
@@ -4338,20 +4551,6 @@ static int rbuVfsShmUnmap(sqlite3_file *pFile, int delFlag){
   return rc;
 }
 
-/*
-** Given that zWal points to a buffer containing a wal file name passed to 
-** either the xOpen() or xAccess() VFS method, return a pointer to the
-** file-handle opened by the same database connection on the corresponding
-** database file.
-*/
-static rbu_file *rbuFindMaindb(rbu_vfs *pRbuVfs, const char *zWal){
-  rbu_file *pDb;
-  sqlite3_mutex_enter(pRbuVfs->mutex);
-  for(pDb=pRbuVfs->pMain; pDb && pDb->zWal!=zWal; pDb=pDb->pMainNext){}
-  sqlite3_mutex_leave(pRbuVfs->mutex);
-  return pDb;
-}
-
 /* 
 ** A main database named zName has just been opened. The following 
 ** function returns a pointer to a buffer owned by SQLite that contains
@@ -4430,7 +4629,7 @@ static int rbuVfsOpen(
       pFd->zWal = rbuMainToWal(zName, flags);
     }
     else if( flags & SQLITE_OPEN_WAL ){
-      rbu_file *pDb = rbuFindMaindb(pRbuVfs, zName);
+      rbu_file *pDb = rbuFindMaindb(pRbuVfs, zName, 0);
       if( pDb ){
         if( pDb->pRbu && pDb->pRbu->eStage==RBU_STAGE_OAL ){
           /* This call is to open a *-wal file. Intead, open the *-oal. This
@@ -4460,6 +4659,8 @@ static int rbuVfsOpen(
         pDb->pWalFd = pFd;
       }
     }
+  }else{
+    pFd->pRbu = pRbuVfs->pRbu;
   }
 
   if( oflags & SQLITE_OPEN_MAIN_DB 
@@ -4480,10 +4681,7 @@ static int rbuVfsOpen(
     ** mutex protected linked list of all such files.  */
     pFile->pMethods = &rbuvfs_io_methods;
     if( flags & SQLITE_OPEN_MAIN_DB ){
-      sqlite3_mutex_enter(pRbuVfs->mutex);
-      pFd->pMainNext = pRbuVfs->pMain;
-      pRbuVfs->pMain = pFd;
-      sqlite3_mutex_leave(pRbuVfs->mutex);
+      rbuMainlistAdd(pFd);
     }
   }else{
     sqlite3_free(pFd->zDel);
@@ -4531,12 +4729,14 @@ static int rbuVfsAccess(
   **      file opened instead.
   */
   if( rc==SQLITE_OK && flags==SQLITE_ACCESS_EXISTS ){
-    rbu_file *pDb = rbuFindMaindb(pRbuVfs, zPath);
+    rbu_file *pDb = rbuFindMaindb(pRbuVfs, zPath, 1);
     if( pDb && pDb->pRbu && pDb->pRbu->eStage==RBU_STAGE_OAL ){
       if( *pResOut ){
         rc = SQLITE_CANTOPEN;
       }else{
-        *pResOut = 1;
+        sqlite3_int64 sz = 0;
+        rc = rbuVfsFileSize(&pDb->base, &sz);
+        *pResOut = (sz>0);
       }
     }
   }
@@ -4723,6 +4923,20 @@ int sqlite3rbu_create_vfs(const char *zName, const char *zParent){
   }
 
   return rc;
+}
+
+/*
+** Configure the aggregate temp file size limit for this RBU handle.
+*/
+sqlite3_int64 sqlite3rbu_temp_size_limit(sqlite3rbu *pRbu, sqlite3_int64 n){
+  if( n>=0 ){
+    pRbu->szTempLimit = n;
+  }
+  return pRbu->szTempLimit;
+}
+
+sqlite3_int64 sqlite3rbu_temp_size(sqlite3rbu *pRbu){
+  return pRbu->szTemp;
 }
 
 

@@ -2,7 +2,7 @@
 //  GameContentNode.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/24.
+//  Created by alexiscn on 2019/7/24.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

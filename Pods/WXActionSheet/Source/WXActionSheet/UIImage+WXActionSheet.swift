@@ -2,7 +2,7 @@
 //  UIImage+WXActionSheet.swift
 //  WXActionSheet
 //
-//  Created by xu.shuifeng on 2020/7/23.
+//  Created by alexiscn on 2020/7/23.
 //
 
 import UIKit

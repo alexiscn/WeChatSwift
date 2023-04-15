@@ -7,6 +7,7 @@ GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) AS_USE_ASSE
 OTHER_LDFLAGS = $(inherited) -l"c++" -framework "AVFoundation" -framework "Accelerate" -framework "AssetsLibrary" -framework "CoreLocation" -framework "CoreMedia" -framework "ImageIO" -framework "MapKit" -framework "PINRemoteImage" -framework "Photos" -framework "UIKit" -weak_framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_DEVELOPMENT_LANGUAGE = ${DEVELOPMENT_LANGUAGE}
 PODS_ROOT = ${SRCROOT}
 PODS_TARGET_SRCROOT = ${PODS_ROOT}/Texture
 PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates

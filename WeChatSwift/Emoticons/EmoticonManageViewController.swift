@@ -2,7 +2,7 @@
 //  EmoticonManageViewController.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/7/25.
+//  Created by alexiscn on 2019/7/25.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

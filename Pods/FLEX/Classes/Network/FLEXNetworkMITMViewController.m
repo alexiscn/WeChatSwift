@@ -21,9 +21,14 @@
 #import "FLEXWebViewController.h"
 #import "UIBarButtonItem+FLEX.h"
 #import "FLEXResources.h"
+#import "NSUserDefaults+FLEX.h"
 
-typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
-    FLEXNetworkObserverModeREST = 0,
+#define kFirebaseAvailable NSClassFromString(@"FIRDocumentReference")
+#define kWebsocketsAvailable @available(iOS 13.0, *)
+
+typedef NS_ENUM(NSInteger, FLEXNetworkObserverMode) {
+    FLEXNetworkObserverModeFirebase = 0,
+    FLEXNetworkObserverModeREST,
     FLEXNetworkObserverModeWebsockets,
 };
 
@@ -32,9 +37,12 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 @property (nonatomic) BOOL updateInProgress;
 @property (nonatomic) BOOL pendingReload;
 
+@property (nonatomic) FLEXNetworkObserverMode mode;
+
 @property (nonatomic, readonly) FLEXMITMDataSource<FLEXNetworkTransaction *> *dataSource;
 @property (nonatomic, readonly) FLEXMITMDataSource<FLEXHTTPTransaction *> *HTTPDataSource;
 @property (nonatomic, readonly) FLEXMITMDataSource<FLEXWebsocketTransaction *> *websocketDataSource;
+@property (nonatomic, readonly) FLEXMITMDataSource<FLEXFirebaseTransaction *> *firebaseDataSource;
 
 @end
 
@@ -50,20 +58,33 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
     [super viewDidLoad];
 
     self.showsSearchBar = YES;
+    self.pinSearchBar = YES;
     self.showSearchBarInitially = NO;
+    NSMutableArray *scopeTitles = [NSMutableArray arrayWithObject:@"REST"];
     
     _HTTPDataSource = [FLEXMITMDataSource dataSourceWithProvider:^NSArray * {
         return FLEXNetworkRecorder.defaultRecorder.HTTPTransactions;
     }];
-    
-    if (@available(iOS 13.0, *)) {
-        self.searchController.searchBar.showsScopeBar = YES;
-        self.searchController.searchBar.scopeButtonTitles = @[@"REST", @"Websockets"];
+
+    if (kFirebaseAvailable) {
+        _firebaseDataSource = [FLEXMITMDataSource dataSourceWithProvider:^NSArray * {
+            return FLEXNetworkRecorder.defaultRecorder.firebaseTransactions;
+        }];
+        [scopeTitles insertObject:@"Firebase" atIndex:0]; // First space
+    }
+
+    if (kWebsocketsAvailable) {
+        [scopeTitles addObject:@"Websockets"]; // Last space
         _websocketDataSource = [FLEXMITMDataSource dataSourceWithProvider:^NSArray * {
             return FLEXNetworkRecorder.defaultRecorder.websocketTransactions;
         }];
     }
     
+    // Scopes will only be shown if we have either firebase or websockets available
+    self.searchController.searchBar.showsScopeBar = scopeTitles.count > 1;
+    self.searchController.searchBar.scopeButtonTitles = scopeTitles;
+    self.mode = NSUserDefaults.standardUserDefaults.flex_lastNetworkObserverMode;
+
     [self addToolbarItems:@[
         [UIBarButtonItem
             flex_itemWithImage:FLEXResources.gearIcon
@@ -140,12 +161,23 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 
 - (void)trashButtonTapped:(UIBarButtonItem *)sender {
     [FLEXAlert makeSheet:^(FLEXAlert *make) {
-        make.title(@"Clear All Recorded Requests?");
-        make.message(@"This cannot be undone.");
+        BOOL clearAll = !self.dataSource.isFiltered;
+        if (!clearAll) {
+            make.title(@"Clear Filtered Requests?");
+            make.message(@"This will only remove the requests matching your search string on this screen.");
+        } else {
+            make.title(@"Clear All Recorded Requests?");
+            make.message(@"This cannot be undone.");
+        }
         
         make.button(@"Cancel").cancelStyle();
-        make.button(@"Clear All").destructiveStyle().handler(^(NSArray *strings) {
-            [FLEXNetworkRecorder.defaultRecorder clearRecordedActivity];
+        make.button(@"Clear").destructiveStyle().handler(^(NSArray *strings) {
+            if (clearAll) {
+                [FLEXNetworkRecorder.defaultRecorder clearRecordedActivity];
+            } else {
+                FLEXNetworkTransactionKind kind = (FLEXNetworkTransactionKind)self.mode;
+                [FLEXNetworkRecorder.defaultRecorder clearRecordedActivity:kind matching:self.searchText];
+            }
         });
     } showFrom:self source:sender];
 }
@@ -157,19 +189,87 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 
 #pragma mark Transactions
 
+- (FLEXNetworkObserverMode)mode {
+    FLEXNetworkObserverMode mode = self.searchController.searchBar.selectedScopeButtonIndex;
+    switch (mode) {
+        case FLEXNetworkObserverModeFirebase:
+            if (kFirebaseAvailable) {
+                return FLEXNetworkObserverModeFirebase;
+            }
+
+            return FLEXNetworkObserverModeREST;
+        case FLEXNetworkObserverModeREST:
+            if (kFirebaseAvailable) {
+                return FLEXNetworkObserverModeREST;
+            }
+
+            return FLEXNetworkObserverModeWebsockets;
+        case FLEXNetworkObserverModeWebsockets:
+            return FLEXNetworkObserverModeWebsockets;
+    }
+}
+
+- (void)setMode:(FLEXNetworkObserverMode)mode {
+// The segmentd control will have different appearances based on which APIs
+// are available. For example, when only Websockets is available:
+//
+//               0                           1
+// ┌───────────────────────────┬────────────────────────────┐
+// │            REST           │         Websockets         │
+// └───────────────────────────┴────────────────────────────┘
+//
+// And when both Firebase and Websockets are available:
+//
+//          0                  1                  2
+// ┌──────────────────┬──────────────────┬──────────────────┐
+// │     Firebase     │       REST       │    Websockets    │
+// └──────────────────┴──────────────────┴──────────────────┘
+//
+// As a result, we need to adjust the input mode variable accordingly
+// before we actually set it. When we try to set it to Firebase but
+// Firebase is not available, we don't do anything, because when Firebase
+// is unavailable, FLEXNetworkObserverModeFirebase represents the same index
+// as REST would without Firebase. For each of the others, we subtract 1
+// from them for every relevant API that is unavailable. So for Websockets,
+// if it is unavailable, we subtract 1 and it becomes FLEXNetworkObserverModeREST.
+// And if Firebase is also unavailable, we subtract 1 again.
+
+    switch (mode) {
+        case FLEXNetworkObserverModeFirebase:
+            // Will default to REST if Firebase is unavailable
+            break;
+        case FLEXNetworkObserverModeREST:
+            // Firebase will become REST when Firebase is unavailable
+            if (!kFirebaseAvailable) {
+                mode--;
+            }
+            break;
+        case FLEXNetworkObserverModeWebsockets:
+            // Default to REST if Websockets are unavailable
+            if (!kWebsocketsAvailable) {
+                mode--;
+            }
+            // Firebase will become REST when Firebase is unavailable
+            if (!kFirebaseAvailable) {
+                mode--;
+            }
+    }
+
+    self.searchController.searchBar.selectedScopeButtonIndex = mode;
+}
+
 - (FLEXMITMDataSource<FLEXNetworkTransaction *> *)dataSource {
-    switch (self.searchController.searchBar.selectedScopeButtonIndex) {
+    switch (self.mode) {
         case FLEXNetworkObserverModeREST:
             return self.HTTPDataSource;
         case FLEXNetworkObserverModeWebsockets:
             return self.websocketDataSource;
-            
-        default:
-            @throw NSInternalInconsistencyException;
+        case FLEXNetworkObserverModeFirebase:
+            return self.firebaseDataSource;
     }
 }
 
-- (void)updateTransactions:(void(^)())callback {
+- (void)updateTransactions:(void(^)(void))callback {
     id completion = ^(FLEXMITMDataSource *dataSource) {
         // Update byte count
         [self updateFirstSectionHeader];
@@ -178,6 +278,7 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
     
     [self.HTTPDataSource reloadData:completion];
     [self.websocketDataSource reloadData:completion];
+    [self.firebaseDataSource reloadData:completion];
 }
 
 
@@ -193,20 +294,21 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 }
 
 - (NSString *)headerText {
-    long long bytesReceived = 0;
-    NSInteger totalRequests = 0;
-    if (self.searchController.isActive) {
-        bytesReceived = self.dataSource.filteredBytesReceived;
-        totalRequests = self.dataSource.transactions.count;
-    } else {
-        bytesReceived = self.dataSource.bytesReceived;
-        totalRequests = self.dataSource.transactions.count;
-    }
+    long long bytesReceived = self.dataSource.bytesReceived;
+    NSInteger totalRequests = self.dataSource.transactions.count;
     
     NSString *byteCountText = [NSByteCountFormatter
         stringFromByteCount:bytesReceived countStyle:NSByteCountFormatterCountStyleBinary
     ];
     NSString *requestsText = totalRequests == 1 ? @"Request" : @"Requests";
+    
+    // Exclude byte count from Firebase
+    if (self.mode == FLEXNetworkObserverModeFirebase) {
+        return [NSString stringWithFormat:@"%@ %@",
+            @(totalRequests), requestsText
+        ];
+    }
+    
     return [NSString stringWithFormat:@"%@ %@ (%@ received)",
         @(totalRequests), requestsText, byteCountText
     ];
@@ -274,13 +376,13 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 
     // Get state before update
     NSString *currentFilter = self.searchText;
-    FLEXNetworkObserverMode currentMode = self.searchController.searchBar.selectedScopeButtonIndex;
+    FLEXNetworkObserverMode currentMode = self.mode;
     NSInteger existingRowCount = self.dataSource.transactions.count;
     
     [self updateTransactions:^{
         // Compare to state after update
         NSString *newFilter = self.searchText;
-        FLEXNetworkObserverMode newMode = self.searchController.searchBar.selectedScopeButtonIndex;
+        FLEXNetworkObserverMode newMode = self.mode;
         NSInteger newRowCount = self.dataSource.transactions.count;
         NSInteger rowCountDiff = newRowCount - existingRowCount;
         
@@ -326,6 +428,7 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 - (void)handleTransactionUpdatedNotification:(NSNotification *)notification {
     [self.HTTPDataSource reloadByteCounts];
     [self.websocketDataSource reloadByteCounts];
+    // Don't need to reload Firebase here
 
     FLEXNetworkTransaction *transaction = notification.userInfo[kFLEXNetworkRecorderUserInfoTransactionKey];
 
@@ -392,7 +495,7 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (self.searchController.searchBar.selectedScopeButtonIndex) {
+    switch (self.mode) {
         case FLEXNetworkObserverModeREST: {
             FLEXHTTPTransaction *transaction = [self HTTPTransactionAtIndexPath:indexPath];
             UIViewController *details = [FLEXHTTPTransactionDetailController withTransaction:transaction];
@@ -415,9 +518,13 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
             }
             break;
         }
-            
-        default:
-            @throw NSInternalInconsistencyException;
+        
+        case FLEXNetworkObserverModeFirebase: {
+            FLEXFirebaseTransaction *transaction = [self firebaseTransactionAtIndexPath:indexPath];
+//            id obj = transaction.documents.count == 1 ? transaction.documents.firstObject : transaction.documents;
+            UIViewController *explorer = [FLEXObjectExplorerFactory explorerViewControllerForObject:transaction];
+            [self.navigationController pushViewController:explorer animated:YES];
+        }
     }
 }
 
@@ -434,13 +541,14 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
 
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
     if (action == @selector(copy:)) {
-        NSURLRequest *request = [self transactionAtIndexPath:indexPath].request;
-        UIPasteboard.generalPasteboard.string = request.URL.absoluteString ?: @"";
+        UIPasteboard.generalPasteboard.string = [self transactionAtIndexPath:indexPath].copyString;
     }
 }
 
 - (UIContextMenuConfiguration *)tableView:(UITableView *)tableView contextMenuConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath point:(CGPoint)point __IOS_AVAILABLE(13.0) {
-    NSURLRequest *request = [self transactionAtIndexPath:indexPath].request;
+    
+    FLEXNetworkTransaction *transaction = [self transactionAtIndexPath:indexPath];
+    
     return [UIContextMenuConfiguration
         configurationWithIdentifier:nil
         previewProvider:nil
@@ -450,25 +558,32 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
                 image:nil
                 identifier:nil
                 handler:^(__kindof UIAction *action) {
-                    UIPasteboard.generalPasteboard.string = request.URL.absoluteString ?: @"";
+                    UIPasteboard.generalPasteboard.string = transaction.copyString;
                 }
             ];
-            UIAction *denylist = [UIAction
-                actionWithTitle:[NSString stringWithFormat:@"Exclude '%@'", request.URL.host]
-                image:nil
-                identifier:nil
-                handler:^(__kindof UIAction *action) {
-                    NSMutableArray *denylist =  FLEXNetworkRecorder.defaultRecorder.hostDenylist;
-                    [denylist addObject:request.URL.host];
-                    [FLEXNetworkRecorder.defaultRecorder clearExcludedTransactions];
-                    [FLEXNetworkRecorder.defaultRecorder synchronizeDenylist];
-                    [self tryUpdateTransactions];
-                }
-            ];
+        
+            NSArray *children = @[copy];
+            if (self.mode == FLEXNetworkObserverModeREST) {
+                NSURLRequest *request = [self HTTPTransactionAtIndexPath:indexPath].request;
+                UIAction *denylist = [UIAction
+                    actionWithTitle:[NSString stringWithFormat:@"Exclude '%@'", request.URL.host]
+                    image:nil
+                    identifier:nil
+                    handler:^(__kindof UIAction *action) {
+                        NSMutableArray *denylist =  FLEXNetworkRecorder.defaultRecorder.hostDenylist;
+                        [denylist addObject:request.URL.host];
+                        [FLEXNetworkRecorder.defaultRecorder clearExcludedTransactions];
+                        [FLEXNetworkRecorder.defaultRecorder synchronizeDenylist];
+                        [self tryUpdateTransactions];
+                    }
+                ];
+                
+                children = [children arrayByAddingObject:denylist];
+            }
             return [UIMenu
                 menuWithTitle:@"" image:nil identifier:nil
                 options:UIMenuOptionsDisplayInline
-                children:@[copy, denylist]
+                children:children
             ];
         }
     ];
@@ -486,6 +601,9 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
     return self.websocketDataSource.transactions[indexPath.row];
 }
 
+- (FLEXFirebaseTransaction *)firebaseTransactionAtIndexPath:(NSIndexPath *)indexPath {
+    return self.firebaseDataSource.transactions[indexPath.row];
+}
 
 #pragma mark - Search Bar
 
@@ -498,11 +616,14 @@ typedef NS_ENUM(NSUInteger, FLEXNetworkObserverMode) {
     
     [self.HTTPDataSource filter:searchString completion:callback];
     [self.websocketDataSource filter:searchString completion:callback];
+    [self.firebaseDataSource filter:searchString completion:callback];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)newScope {
     [self updateFirstSectionHeader];
     [self.tableView reloadData];
+
+    NSUserDefaults.standardUserDefaults.flex_lastNetworkObserverMode = self.mode;
 }
 
 - (void)willDismissSearchController:(UISearchController *)searchController {

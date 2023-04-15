@@ -2,7 +2,7 @@
 //  WXActionSheet.swift
 //  WXActionSheetDemo
 //
-//  Created by xu.shuifeng on 2018/12/26.
+//  Created by alexiscn on 2018/12/26.
 //  Copyright © 2018 shuifeng.me. All rights reserved.
 //
 

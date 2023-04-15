@@ -26,6 +26,7 @@ struct PgHdr {
   sqlite3_pcache_page *pPage;    /* Pcache object page handle */
   void *pData;                   /* Page data */
   void *pExtra;                  /* Extra content */
+  PCache *pCache;                /* PRIVATE: Cache that owns this page */
   PgHdr *pDirty;                 /* Transient list of dirty sorted by pgno */
   Pager *pPager;                 /* The pager this page is part of */
   Pgno pgno;                     /* Page number for this page */
@@ -35,14 +36,15 @@ struct PgHdr {
   u16 flags;                     /* PGHDR flags defined below */
 
   /**********************************************************************
-  ** Elements above are public.  All that follows is private to pcache.c
-  ** and should not be accessed by other modules.
+  ** Elements above, except pCache, are public.  All that follow are 
+  ** private to pcache.c and should not be accessed by other modules.
+  ** pCache is grouped with the public elements for efficiency.
   */
   i16 nRef;                      /* Number of users of this page */
-  PCache *pCache;                /* Cache that owns this page */
-
   PgHdr *pDirtyNext;             /* Next element in list of dirty pages */
   PgHdr *pDirtyPrev;             /* Previous element in list of dirty pages */
+                          /* NB: pDirtyNext and pDirtyPrev are undefined if the
+                          ** PgHdr object is not dirty */
 };
 
 /* Bit values for PgHdr.flags */
@@ -180,5 +182,13 @@ int sqlite3HeaderSizePcache1(void);
 
 /* Number of dirty pages as a percentage of the configured cache size */
 int sqlite3PCachePercentDirty(PCache*);
+
+#ifdef SQLITE_DIRECT_OVERFLOW_READ
+int sqlite3PCacheIsDirty(PCache *pCache);
+#endif
+
+#ifdef SQLITE_WCDB_DIRTY_PAGE_COUNT
+int sqlite3PCacheDirtyPageCount(PCache*);
+#endif //SQLITE_WCDB_DIRTY_PAGE_COUNT
 
 #endif /* _PCACHE_H_ */

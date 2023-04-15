@@ -2,7 +2,7 @@
 //  MockData.swift
 //  WeChatSwift
 //
-//  Created by xu.shuifeng on 2019/9/9.
+//  Created by alexiscn on 2019/9/9.
 //  Copyright © 2019 alexiscn. All rights reserved.
 //
 

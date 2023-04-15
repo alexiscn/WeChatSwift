@@ -95,6 +95,8 @@ SQLITE_EXTENSION_INIT3
 */
 #define FTS3_VARINT_MAX 10
 
+#define FTS3_BUFFER_PADDING 8
+
 /*
 ** FTS4 virtual tables may maintain multiple indexes - one index of all terms
 ** in the document set and zero or more prefix indexes. All indexes are stored
@@ -126,6 +128,18 @@ SQLITE_EXTENSION_INIT3
 */
 #define POS_COLUMN  (1)     /* Column-list terminator */
 #define POS_END     (0)     /* Position-list terminator */ 
+
+/*
+** The assert_fts3_nc() macro is similar to the assert() macro, except that it
+** is used for assert() conditions that are true only if it can be 
+** guranteed that the database is not corrupt.
+*/
+#if defined(SQLITE_DEBUG) || defined(SQLITE_TEST)
+extern int sqlite3_fts3_may_be_corrupt;
+# define assert_fts3_nc(x) assert(sqlite3_fts3_may_be_corrupt || (x))
+#else
+# define assert_fts3_nc(x) assert(x)
+#endif
 
 /*
 ** This section provides definitions to allow the
@@ -230,6 +244,7 @@ struct Fts3Table {
   ** statements is run and reset within a single virtual table API call. 
   */
   sqlite3_stmt *aStmt[40];
+  sqlite3_stmt *pSeekStmt;        /* Cache for fts3CursorSeekStmt() */
 
   char *zReadExprlist;
   char *zWriteExprlist;
@@ -299,6 +314,7 @@ struct Fts3Cursor {
   i16 eSearch;                    /* Search strategy (see below) */
   u8 isEof;                       /* True if at End Of Results */
   u8 isRequireSeek;               /* True if must seek pStmt to %_content row */
+  u8 bSeekStmt;                   /* True if pStmt is a seek */
   sqlite3_stmt *pStmt;            /* Prepared statement in use by the cursor */
   Fts3Expr *pExpr;                /* Parsed MATCH query string */
   int iLangid;                    /* Language being queried for */
@@ -582,7 +598,7 @@ int sqlite3Fts3ExprParse(sqlite3_tokenizer *, int,
 );
 void sqlite3Fts3ExprFree(Fts3Expr *);
 #ifdef SQLITE_TEST
-int sqlite3Fts3ExprInitTestInterface(sqlite3 *db);
+int sqlite3Fts3ExprInitTestInterface(sqlite3 *db, Fts3Hash*);
 int sqlite3Fts3InitTerm(sqlite3 *db);
 #endif
 
